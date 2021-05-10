@@ -1,0 +1,159 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{FMF}[2020/10/05 FMF]
+
+\RequirePackage{geometry}
+ \geometry{
+ a4paper,
+	left=2.5cm,
+	right=2.5cm,
+	top=2.5cm,
+	bottom=2.5cm
+ }
+\RequirePackage[slovene]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\RequirePackage[xindy]{imakeidx}
+\makeindex[program=xindy,options=-L slovenian -C utf8]
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage[backend=biber]{biblatex}
+\nocite{*}
+\RequirePackage{csquotes}
+\RequirePackage{url}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+\RequirePackage{enumitem}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{mathrsfs}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{etoolbox}
+\RequirePackage{esvect}
+
+\RequirePackage{pgf,tikz-cd,pgfplots}
+\usetikzlibrary{babel}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\tikzcdset{every label/.append style = {font = \small}}
+\pgfplotsset{compat=1.15}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[4][]{%
+    \tikz[overlay,remember picture]{%
+        \coordinate (TopLeft)     at ($(#2)+(-0.2em,0.9em)$);
+        \coordinate (BottomRight) at ($(#3)+(0.2em,-0.3em)$);
+        %
+        \path (TopLeft); \pgfgetlastxy{\XCoord}{\IgnoreCoord};
+        \path (BottomRight); \pgfgetlastxy{\IgnoreCoord}{\YCoord};
+        \coordinate (LabelPoint) at ($(\XCoord,\YCoord)!0.5!(BottomRight)$);
+        %
+        \draw [red,#1] (TopLeft) rectangle (BottomRight);
+        \node [below, #1, fill=none, fill opacity=1] at (LabelPoint) {#4};
+    }
+}
+\RequirePackage{float}
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{wrapfig}
+\RequirePackage{multirow}
+\RequirePackage{array}
+\renewcommand{\arraystretch}{1.4}
+\setcounter{MaxMatrixCols}{20}
+
+\RequirePackage{fancyhdr}
+\RequirePackage{footmisc}
+\RequirePackage{multicol}
+\RequirePackage{epigraph}
+    \pretocmd{\@epitext}{\em}{}{}
+    \apptocmd{\@epitext}{\em}{}{}
+    \setlength{\epigraphrule}{0pt}
+
+\RequirePackage[parfill]{parskip}
+\patchcmd\deferred@thm@head
+  {\addvspace{-\parskip}}
+  {}
+  {}{\typeout{\string\deferred@thm@head patch failed!}}
+
+\RequirePackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor=black,
+    citecolor=black,
+    breaklinks=true,
+    urlcolor=black
+}
+\RequirePackage{footnotebackref}
+
+\RequirePackage{tcolorbox}
+\newenvironment{okvir}
+{\vspace{0.2cm}
+\begin{tcolorbox}[colback=yellow!40!white,colframe=red!75!white,parbox=false]}
+{\end{tcolorbox}\vspace{0.2cm}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newenvironment{rešitev}{\begin{proof}[Rešitev]}{\end{proof}}
+\theoremstyle{definition}
+\newtheorem{izrek}{Izrek}[subsection]
+\newtheorem{lema}[izrek]{Lema}%[section]
+\newtheorem*{lema*}{Lema}%[section]
+\newtheorem{opomba}{Opomba}[izrek]
+\newtheorem{posledica}[opomba]{Posledica}
+\newtheorem{trditev}[izrek]{Trditev}
+\newtheorem{definicija}[izrek]{Definicija}%[section]
+\newtheorem{zgled}{Zgled}[izrek]
+\newtheorem{primer}{Primer}[subsection]
+\newtheorem{naloga}{Naloga}[section]
+
+\let\Re\relax
+\let\Im\relax
+\let\hom\relax
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\hom}{Hom}
+\DeclareMathOperator{\enm}{End}
+\DeclareMathOperator{\aut}{Aut}
+\providecommand{\pot}{\mathcal{P}}
+\providecommand{\rel}[1]{\mathrel{#1}}
+\providecommand{\set}[1]{\left\{#1\right\}}
+\providecommand{\setb}[2]{\left\{#1~\middle\vert~#2\right\}}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\providecommand{\eval}[3]{\left. #1\right|_{#2}^{#3}}
+\providecommand{\skl}[1]{\left\langle #1\right\rangle}
+
+\newcommand*\dashline{\rel{\rotatebox[origin=c]{90}{$\dabar@\dabar@\dabar@$}}}
+\RequirePackage{arydshln}
+
+\newcommand{\obvs}{\begin{proof}The proof is obvious and need not be mentioned. \end{proof}}
+
+\title{\ \naslov}
+\author{Luka Horjak (\href{mailto:luka.horjak@student.fmf.uni-lj.si}{luka.horjak@student.fmf.uni-lj.si})}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\nouppercase\leftmark}
+\rhead{Luka Horjak}
+\cfoot{\thepage}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+\setcounter{tocdepth}{2}
