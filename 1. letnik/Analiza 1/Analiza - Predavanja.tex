@@ -1,0 +1,4081 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{FMF}
+
+\newcommand{\naslov}{Analiza 1}
+
+\begin{document}
+
+\renewcommand{\headheight}{20pt}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Uvod}
+\addcontentsline{toc}{section}{Uvod}
+\markboth{Uvod}{}
+
+V tem dokumentu so zbrani moji zapiski s predavanj predmeta Analiza 1 v letu 2020/21. Predavatelj v tem letu je bil prof.~dr.~Miran Černe.
+
+Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem ga označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
+
+Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravki so vselej dobrodošli.
+
+\newpage
+
+\section{Števila}
+
+\subsection{Množice števil}
+
+\begin{definicija}
+\emph{Naravna števila}\index{Števila!Naravna} ($\N$) so števila, s katerimi štejemo:
+\[
+\N=\set{1,2,3,4,\dots}
+\]
+Na njih sta definirani dve operaciji, $+$ in $\cdot$. Zaradi nepopolnosti sistema (ne znamo na primer rešiti enačbe $x+5=3$), jih razširimo.
+\end{definicija}
+
+\begin{definicija}
+\emph{Cela števila}\index{Števila!Cela} ($\Z$) so števila, ki jih dobimo tako, da naravnim dodamo 0 in njihova nasprotna števila:
+\[
+\Z=\set{0,1,-1,2,-2,\dots}
+\]
+Tudi na njih sta definirani prejšnji dve operaciji. Operacija $-$ je pravzaprav prištevanje nasprotnega elementa, zato je ni potrebno posebej definirati.
+
+Tudi ta sistem ni popoln, saj operacija $\cdot$ nima inverzov (ne znamo rešiti na primer $2x-1=0$).
+\end{definicija}
+
+\begin{definicija}
+\emph{Racionalna števila}\index{Števila!Racionalna} ($\Q$) zapisujemo z ulomki oblike $\frac{p}{q}$, kjer velja $p, q\in\Z$ in $q\ne 0$. Dva ulomka, $\frac{a}{b}$ in $\frac{c}{d},$ sta enaka natanko tedaj, ko velja enakost $ad=bc$. Ulomek je okrajšan, če velja $(p, q)=1$. Tudi na racionalnih številih lahko definiramo zgornji operaciji.
+\end{definicija}
+
+\newpage
+
+\subsection{Aksiomi realnih števil}
+
+\subsubsection{Seštevanje}
+
+\begin{okvir}
+\begin{definicija}
+Aksiomi seštevanja:
+
+\begin{enumerate}[label=A\arabic*:]
+\item Asociativnost: $\forall a,b,c\colon(a+b)+c=a+(b+c)$
+\item Komutativnost: $\forall a,b\colon a+b=b+a$
+\item Obstoj nevtralnega elementa: $\exists 0~\forall a\colon a+0=a$
+\item Obstoj nasprotnega elementa: $\forall a~\exists {-a}\colon a+(-a)=0$
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+Množica z binarno operacijo s prvimi štirimi lastnostmi je \emph{Abelova grupa}\index{Grupa} (grupa je Abelova, če je komutativna). Primeri:
+
+\begin{multicols}{3}
+\begin{center}
+\begin{itemize}
+\item $(\C,+)$
+\item $(\Z,+)$
+\item $(\Q\setminus\set{0},\cdot)$
+\end{itemize}
+\end{center}
+\end{multicols}
+
+\begin{opomba}\label{o1}
+Za dani $a$ je nasprotni element enoličen.
+\end{opomba}
+
+\begin{proof}
+Obstoj zagotavlja 4. aksiom. Naj bosta $a'$ in $a''$ nasprotna elementa $a$. Potem velja
+
+\begin{enumerate}[label=(\roman*)]
+\item $a+a'=0$ in
+\item $a+a''=0$.
+\end{enumerate}
+
+Sledi, da je
+\[
+a'=a'+0=a'+(a+a'')=(a'+a)+a''=0+a''=a''+0=a''.\qedhere
+\]
+\end{proof}
+
+\begin{opomba}\label{o2}
+Pravilo krajšanja: $\forall a,x,y$ velja
+\[
+a+x=a+y\implies x=y.
+\]
+\end{opomba}
+
+\begin{proof}
+\[
+x=((-a)+a)+x=(-a)+(a+x)=(-a)+(a+y)=((-a)+a)+y=(a+(-a))+y=y.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+$-0=0$
+\end{posledica}
+
+\begin{proof}
+Vemo, da je
+\[
+0+(-0)=0=0+0,
+\]
+kar s pravilom krajšanja zaključi dokaz.
+\end{proof}
+
+\begin{definicija}
+Razlika števil $a$ in $b$ je definirana kot
+\[
+a-b\coloneqq a+(-b).
+\]
+\end{definicija}
+
+\begin{posledica}\label{p1}
+Število $a-b$ je edina rešitev enačbe
+\[
+x+b=a.
+\]
+\end{posledica}
+
+\begin{proof}
+Denimo, da $x$ reši enačbo $x+b=a$. Sledi, da je
+\[
+x=x+(b+(-b))=(x+b)+(-b)=a-b.
+\]
+Tak $x$ res reši enačbo, saj je
+\[
+(a-b)+b=(a+(-b))+b=a+((-b)+b)=a+(b+(-b))=a.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsubsection{Množenje}
+
+\begin{okvir}
+\begin{definicija}
+Aksiomi množenja:
+
+\begin{enumerate}[label=A\arabic*:]
+\setcounter{enumi}{4}
+\item Asociativnost: $\forall a, b, c\colon(a\cdot b)\cdot c=a\cdot(b\cdot c)$
+\item Komutativnost: $\forall a, b\colon a\cdot b=b\cdot a$
+\item Obstoj nevtralnega elementa: $\exists 1~\forall a\colon a\cdot 1=a$
+\item Obstoj recipročnega števila: $\forall a\ne 0~\exists a^{-1}\colon a\cdot a^{-1}=1$
+\item $1\ne 0$
+\item Distributivnost: $\forall a,b,c\colon a\cdot(b+c)=a\cdot b+a\cdot c$
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Za $a\ne 0$ je recipročno število enolično.
+\end{opomba}
+
+\begin{proof}
+Dokaz je enak kot pri opombi \ref{o1}.
+\end{proof}
+
+\begin{opomba}
+Pravilo krajšanja: $\forall a,x,y,~a\ne 0$ velja
+\[
+a\cdot x=a\cdot y\implies x=y.
+\]
+\end{opomba}
+
+\begin{proof}
+Dokaz je enak kot pri opombi \ref{o2}.
+\end{proof}
+
+\begin{posledica}
+$1^{-1}=1.$
+\end{posledica}
+
+\begin{proof}
+\[
+1\cdot 1^{-1}=1=1\cdot 1,
+\]
+kar zaključi dokaz s pravilom krajšanja.
+\end{proof}
+
+\begin{posledica}
+$\forall a$ je $a\cdot 0=0$.
+\end{posledica}
+
+\begin{proof}
+\[
+a+0=a=a\cdot 1=a(1+0)=a\cdot 1+a\cdot 0=a+a\cdot 0,
+\]
+kar zaključi dokaz s pravilom krajšanja.
+\end{proof}
+
+\begin{posledica}
+$(-a)\cdot b=-a\cdot b$
+\end{posledica}
+
+\begin{proof}
+\[
+a\cdot b+(-a\cdot b)=0=0\cdot b=(a+(-a))\cdot b=a\cdot b+(-a)\cdot b,
+\]
+kar zaključi dokaz s pravilom krajšanja.
+\end{proof}
+
+\begin{definicija} Količnik števil $a$ in $b\ne 0$ je definiran kot
+\[
+a:b\coloneqq a\cdot b^{-1}.
+\]
+\end{definicija}
+
+\begin{posledica}
+Število $a:b$ je edina rešitev enačbe
+\[
+x\cdot b=a.
+\]
+\end{posledica}
+
+\begin{proof}
+Dokaz je enak kot pri posledici \ref{p1}.
+\end{proof}
+
+\begin{definicija}
+Množica, na kateri sta definirani operaciji $+$ in $\cdot$ in zadošča zgornjim aksiomom, je \emph{polje}\index{Polje} ali \emph{komutativni obseg}. Če veljata še aksioma iz naslednjega podpoglavja, je obseg \emph{urejen}. Če zadošča vsem prvim desetim, razen osmemu, je to \emph{kolobar}\index{Kolobar}.
+\end{definicija}
+
+\newpage
+
+\subsubsection{Urejenost}
+
+\begin{okvir}
+\begin{definicija}
+Aksioma urejenosti:
+
+\begin{enumerate}[label=A\arabic*:]
+\setcounter{enumi}{10}
+\item Če je $a\ne 0$, je natanko eno od števil $a$ in $-a$ pozitivno, drugo pa negativno.
+\item Usklajenost operacij z urejenostjo: Če sta $a$ in $b$ pozitivni števili, sta tudi $a+b$ in $a\cdot b$ pozitivni.
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Za števili $a$ in $b$ je $a$ večji od $b$ ($a>b$), če je razlika $a-b$ pozitivno število. Podobno je $a$ manjši od $b$ ($a<b$), če je razlika $a-b$ negativno število.
+\end{definicija}
+
+\begin{opomba}
+Ker je $a-0=a$, dobimo
+\begin{align*}
+a>0&\iff a\text{ je pozitiven in}
+\\
+a<0&\iff a\text{ je negativen.}
+\end{align*}
+\end{opomba}
+
+\begin{posledica}
+Za vsaki dve števili $a$ in $b$ velja natanko ena od treh možnosti:
+
+\begin{multicols}{3}
+\begin{center}
+\begin{itemize}
+\item $a<b$
+\item $a=b$
+\item $a>b$
+\end{itemize}
+\end{center}
+\end{multicols}
+
+Taka urejenost je \emph{linearna urejenost}\index{Linearna urejenost}.
+\end{posledica}
+
+\begin{posledica}
+1 je pozitivno število.
+\end{posledica}
+
+\begin{proof}
+V nasprotnem primeru je $(-1)\cdot(-1)=1$ pozitivno.
+\end{proof}
+
+\begin{opomba}
+Tranzitivnost: Iz $a>b$ in $b>c$ sledi $a>c$.
+\end{opomba}
+
+\begin{proof}
+Vemo, da je $a-b>0$ in $b-c>0$, zato je tudi njuna vsota pozitivna, kar pomeni $a>c$.
+\end{proof}
+
+\begin{opomba}
+Če je $a>b$, je $a+c>b+c$.
+\end{opomba}
+
+\begin{proof}
+\[
+(a+c)-(b+c)=a-b>0.\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je $a>b$ in $c>0$, je $ac>bc$.
+\end{opomba}
+
+\begin{proof}
+$(a-b)\cdot c$ je pozitivno, saj sta $a-b$ in $c$ pozitivni.
+\end{proof}
+
+\begin{definicija}
+$a\geq b$ natanko tedaj, ko je $a>b$ ali $a=b$. Simetrično velja za $\leq$.
+\end{definicija}
+
+\newpage
+
+\subsubsection{Dedekindov aksiom}
+
+
+\begin{trditev}\label{o3}
+Enačba $x^2=2$ ni rešljiva v $\Q$, oziroma $\sqrt{2}\not\in\Q$.
+\end{trditev}
+
+\begin{proof}
+Če je $x=\frac{p}{q}$ okrajšan ulomek, je $p^2=2q^2$. Od tod sledi, da je $p$ sod, oziroma $p=2r$. Sledi, da je $2r^2=q^2$, torej je tudi $q$ sod, zato ulomek ni bil okrajšan.
+\end{proof}
+
+\begin{definicija}
+$S$ naj bo neprazna množica z linearno urejenostjo. Neprazna podmnožica $A\subseteq S$ je \emph{navzgor omejena}\index{Množica!Omejena}, če obstaja $M\in S$, da $\forall a\in A$ velja $a\leq M$. Vsak tak $M$ se imenuje zgornja meja za $A$. Simetrično definiramo \emph{navzdol omejene} množice. Množica je \emph{omejena}, če je navzgor in navzdol omejena.
+\end{definicija}
+
+\begin{opomba}
+Če je $A\subseteq S$ ($S\in\set{\Q,~\R}$) navzgor omejena, ima zgornjo mejo $M$. Vsako število $M'$, večje od $M$, je prav tako zgornja meja za $A$. Največja zgornja meja ne obstaja.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $A$ navzgor omejena neprazna podmnožica $S$ ($S\in\set{\Q,~\R}$). Število $b\in S$ je \emph{natančna zgornja meja} ali \emph{najmanjša zgornja meja} ali \emph{supremum}\index{Supremum} množice $A$ ($b=\sup A$), če velja
+
+\begin{enumerate}[label=(\roman*)]
+\item $\forall a\in A$ je $a\geq b$ in
+\item $\forall b'<b~\exists a'\in A$, da je $b'<a'$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Druga točka je ekvivalentna $\forall\varepsilon>0~\exists a'\in A$, da je $b-\varepsilon < a'$.
+\end{opomba}
+
+\begin{opomba}
+Naj bo za $r\in\Q$
+\[
+r*=\setb{x\in\Q}{x<r}.
+\]
+Potem je $r=\sup r*$.
+\end{opomba}
+
+\begin{proof}
+Vidimo, da je $r$ očitno zgornja meja, za poljuben $x<r$ pa je $\frac{x+r}{2}<r$ element $r*$.
+\end{proof}
+
+\begin{opomba}
+Obstoj supremuma v $\Q$ ni zagotovljena z omejenostjo navzgor.
+\end{opomba}
+
+\begin{proof}
+Za protiprimer vzamemo
+\[
+A=\setb{a\in\Q}{\text{$a\geq 0$ in $a^2<2$}}.
+\]
+Vidimo, da je $A$ neprazna ($1\in A$). Ker $\forall x>2$ velja  $x^2>4$, je $2$ zgornja meja za $A$ in je $A$ navzgor omejena. Zdaj predpostavimo, da je $b=\sup A$. Potem velja natanko ena izmed možnosti $b^2=2$, $b^2<2$ ali $b^2>2$.
+
+Prva možnost ne velja zaradi opombe \ref{o3}.
+
+Če je $b^2<2$, lahko najdemo tak $1>h>0$, da je $b+h\in A$. Ker je
+\[(b+h)^2=b^2+2bh+h^2<b^2+2bh+h,\]
+si lahko izberemo kar $h=\frac{2-b^2}{2b+1}$, s tem pa bodo vsi pogoji zadoščeni, saj je $b\geq 1$ in $b^2<2$.
+
+Če je $b^2>2$, lahko najdemo tak $h>0$, da je $(b-h)^2>2$. Ker je
+\[(b-h)^2=b^2-2bh+h^2>b^2-2bh,\]
+si lahko izberemo kar $h=\frac{b^2-2}{2b}$, s tem pa bodo zadoščeni vsi pogoji, saj je $b^2>2$.
+\end{proof}
+
+\begin{okvir}
+\begin{definicija}
+Dedekindov aksiom:
+
+\begin{enumerate}[label=A\arabic*:]
+\setcounter{enumi}{12}
+\item Vsaka neprazna navzgor omejena množica ima supremum.
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+$\Q$ zadošča le prvim 12 aksiomom.
+\end{opomba}
+
+\begin{izrek}[Obstoj realnih števil $\R$]\index{Števila!Realna}
+Obstaja urejen obseg števil $\R$, ki izpolnjuje tudi Dedekindov aksiom in vsebuje $\Q$ kot urejen podobseg. Operaciji $+,\cdot$ v $\Q$ sovpadata z operacijami v $\R$, urejenost na $\Q$ pa se ujema s tisto na $\R$.
+\end{izrek}
+
+\begin{opomba}
+Tak urejen obseg je natanko določen do izomorfizma natančno.
+\end{opomba}
+
+\begin{definicija}
+\emph{Rez}\index{Rez} je taka neprazna podmnožica $A\subset\Q$, da velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item Če je $a\in A$ in $a'<a$, je tudi $a'\in A$
+\item Če je $a\in A$ obstaja $a'>a$, za katerega je $a'\in A$
+\end{enumerate}
+
+$\R$ je množica vseh rezov.
+\end{definicija}
+
+\begin{zgled}
+Za $r\in\Q$ je $r*=\setb{x\in\Q}{x<r}$ rez, ki mu ga lahko priredimo. Tako je $\Q\subseteq\R$.
+\end{zgled}
+
+\begin{opomba}
+Za rez $A$ velja $A>0*\iff 0\in A$, torej vsebuje tudi kakšno pozitivno število.
+\end{opomba}
+
+\begin{definicija}
+Na $\R$ vpeljemo operaciji $+,\cdot$ in relacijo $<$, za katere velja vseh 13 aksiomov:
+
+\begin{description}[font=\normalfont, align=left, labelwidth=3cm]
+\item[$\bullet$ Operacija $+$] Vsota rezov $A,B$ je definirana kot $A+B=\setb{a+b}{a\in A,~b\in B}$
+\item[$\bullet$ Operacija $\cdot$] Produkt rezov $A,B$ je definiran kot
+
+\begin{description}[font=\normalfont, align=left, labelwidth=3.5cm]
+\item [a) $A,B>0$] $A\cdot B=\setb{a\cdot b}{a\in A,~a\geq 0,~b\in B,~b\geq 0}\cup 0*$
+\item[b) $A>0,B<0$] $A\cdot B=-(A\cdot(-B))$
+\item [c) $A<0$] $A\cdot B=-((-A)\cdot B)$
+\end{description}
+\item[$\bullet$ Relacija $<$] Za reza $A,B$ je $A<B\iff A\subset B$
+\end{description}
+\end{definicija}
+
+\begin{opomba}
+$A+B$ in $A\cdot B$ sta reza, $\R$ pa ima linearno urejenost.
+\end{opomba}
+
+\begin{izrek}
+Za urejen obseg rezov z operacijama $+$, $\cdot$ in ureditvijo $<$ velja aksiom A13.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\mathcal{A}$ neprazna navzgor omejena množica rezov. Naj bo $\displaystyle C=\bigcup_{A\in\mathcal{A}}A.$
+
+\begin{enumerate}[label=\arabic*)]
+\item $C$ je rez. Očitno je $C\ne \emptyset$ in $C\ne\Q$, saj je $\mathcal{A}$ navzgor omejena. Prav tako vidimo, da za vsak $c\in C$ in $c'<c$ velja $c'\in C$ in obstaja  $c''>c$, ki je element $C$, saj je $c$ element nekega reza v $\mathcal{A}$.
+\item $C$ je zgornja meja, saj za vsak rez $A$ iz $\mathcal{A}$  velja $A\subseteq C$.
+\item $C$ je najmanjša zgornja meja, saj za vsak $C'<C$ obstaja nek $x\in C$ in $x\not\in C'$, kar pomeni, da je $x$ element nekega reza $A$ iz $\mathcal{A}$. Sledi $C'<A$, kar pomeni, da $C'$ ni zgornja meja.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{posledica}
+Množica $\N$ ni navzgor omejena v $\R$.
+\end{posledica}
+
+\begin{trditev}[Arhimedova lastnost]\index{Arhimedova lastnost}
+$\forall a,b>0~\exists n\in\N\colon an>b$.
+\end{trditev}
+
+\begin{definicija}
+Naj bo $A$ neprazna navzdol omejena množica realnih števil. $m$ je \emph{infimum}\index{Infimum} $A$, če velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $\forall a\in A$ je $a\geq m$ in
+\item $\forall m'>m~\exists a\in A$, da je $m'>a$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A\subseteq\R$ neprazna množica. Definiramo množico
+\[
+A^-=\setb{-a}{a\in A}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če je $A$ navzdol omejena, je $A^-$ navzgor omejena in velja
+\[
+c\inf A=-\sup(A^-).
+\]
+\end{trditev}
+
+\begin{posledica}
+Vsaka navzdol omejena množica realnih števil ima infimum.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $A$ neprazna navzgor omejena množica. Če je $\sup A\in A$, rečemo, da je $\sup A$ \emph{maksimum}\index{Maksimum} množice $A$. V nasprotnem primeru množica $A$ nima maksimuma. Simetrično definiramo \emph{minimum}\index{Minimum}.
+\end{definicija}
+
+\begin{posledica}
+$\forall\varepsilon>0~\exists n_0\in\N$, da je
+\[
+0<\frac{1}{n_0}<\varepsilon.
+\]
+\end{posledica}
+
+\begin{trditev}
+Racionalna števila so povsod gosta v $\R$.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $x<y$ realni števili. Potem obstaja tak $q\in\N$, da je $\frac{1}{q}<y-x$, zato obstaja tak $p\in\Z$, da je $x<\frac{p}{q}<y$, na primer $p=\lfloor xq+1\rfloor$. Potem je očitno $\frac{p}{q}>x$ in
+\[
+\frac{p}{q}\leq \frac{xq+1}{q}<y.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Vsaka navzgor omejena množica celih števil ima maksimum.
+\end{trditev}
+
+\begin{definicija}
+Naj bosta $a<b$ realni števili. Potem definiramo naslednje množice\index{Interval}:
+
+\begin{itemize}
+\item \emph{Odprt interval}: $(a,b)=\setb{x\in\R}{a<x<b}$
+\item \emph{Zaprt interval}: $[a,b]=\setb{x\in\R}{a\leq x\leq b}$
+\item \emph{Polodprt interval}: $(a,b]=\setb{x\in\R}{a<x\leq b}$ ali $[a,b)=\setb{x\in\R}{a\leq x<b}$
+\item \emph{Odprt poltrak}: $(-\infty, a)=\setb{x\in\R}{x<a}$ ali $(a,\infty)=\setb{x\in\R}{a<x}$
+\item \emph{Zaprt poltrak} podobno kot zgoraj
+\end{itemize}
+\end{definicija}
+
+\begin{definicija}
+Za vsako realno število $x$ je njegova \emph{absolutna vrednost}\index{Absolutna vrednost} definirana kot
+\[
+|x|=\begin{cases}
+x, &x\geq 0\\
+-x, &x<0\end{cases}
+\]
+Ekvivalentno je
+\[
+|x|=\max(x,-x).
+\] 
+\end{definicija}
+
+\begin{posledica}
+Za poljubna $x,y\in\R$ veljajo naslednje lastnosti:
+
+\begin{enumerate}
+\item $|x|\geq 0$
+\item $|x|=0\iff x=0$
+\item $|x|=|-x|$
+\item $|x\cdot y|=|x|\cdot|y|$
+\item $|x|+|y|\geq |x+y|$
+\end{enumerate}
+\end{posledica}
+
+\begin{zgled}
+Kaj so rešitve neenačbe $|x-a|<r$ za $a\in\R,~r>0$?
+
+Rešitve so vsi $x$, za katere je $-r<x-a<r$, oziroma $x\in(a-r,a+r)$.
+\end{zgled}
+
+\begin{opomba}
+Za vse realne $x,y$ velja tudi
+\[|x-y|\geq\left||x|-|y|\right|.\]
+\end{opomba}
+
+\newpage
+
+\subsection{Decimalni zapis realnih števil}
+
+\begin{definicija}
+\emph{Celi del}\index{Celi del} števila $x$ je največje celo število, ki ni večje od $x$. To število označimo z $[x]$.
+\end{definicija}
+
+Konstruiramo niz števil $x_0\leq x_1\leq x_2\leq\dots\leq x$, za katere je
+\[
+0\leq x-x_n<\frac{1}{10^n}.
+\]
+To dosežemo tako, da vzamemo
+\[
+x_i=x_{i-1}+\frac{n_i}{10^i}\leq x<x_i+\frac{1}{10^i},
+\]
+kjer je $n_i\in\set{0,1,2,\dots,9}$ in $x_0=[x]$.
+
+\begin{trditev}
+Velja
+\[
+x=\sup\set{x_0,x_1,x_2,\dots}.
+\]
+\end{trditev}
+
+\begin{proof}
+Očitno je $x$ zgornja meja množice, zato je dovolj dokazati, da je najmanjša. Predpostavimo, da je $y<x$ supremum množice. Potem obstaja tak $k\in\N$,\footnote{Množica $\setb{10^k}{k\in\N}$ ni navzgor omejena. V nasprotnem primeru bi za njen supremum $M$ veljalo $M<10^{n'}+1<10^{n'+1}\leq M$, kar je seveda protislovje.} da je
+\[
+\frac{1}{10^k}<x-y,
+\]
+od koder sledi
+\[
+\frac{1}{10^k}<x-y<x-x_k,
+\]
+kar je protislovje.
+\end{proof}
+
+\begin{zgled}
+Velja
+\[
+1,0000\ldots=0,9999\dots
+\]
+Z zgornjo konstrukcijo smo vsakemu številu, ki bi lahko imel dva možna decimalna zapisa, priredili tisto, ki se končajo z neskončno mnogo ničlami. Zapisov, ki se končajo z neskončno mnogo deveticami, ne dobimo.
+\end{zgled}
+
+\newpage
+
+\subsection{Iracionalna števila}
+
+Zapis racionalnega števila je od neke točke dalje periodičen. To je posledica cikličnega ponavljanja ostankov pri deljenju.
+
+\begin{definicija}
+Realno število $r$ je \emph{algebraično}\index{Števila!Algebraična}, če obstaja tak $P\in\Z[x]$, $\deg P>0$, da je $P(r)=0$. V nasprotnem primeru je $r$ \emph{transcendentno}\index{Števila!Transcendentna} število.
+\end{definicija}
+
+\begin{posledica}
+Vsa racionalna števila so algebraična, saj so ničle linearnih polinomov. Tudi vsi koreni racionalnih števil so algebraična števila.
+\end{posledica}
+
+\newpage
+
+\subsection{Peanovi aksiomi}
+
+\begin{okvir}
+\begin{definicija}
+Peanovi aksiomi naravnih števil:
+
+\begin{enumerate}[label=P\arabic*.]
+\item 1 je naravno število
+\item Vsakemu naravnemu številu $n$ sledi natanko določeno naravno število $n^+$, ki ga imenujemo naslednik števila $n$
+\item Iz $n\ne m$ sledi $n^+\ne m^+$
+\item Število 1 ni naslednik nobenega naravnega števila
+\item Vsaka podmnožica naravnih števil, ki vsebuje 1 in je v njej s številom $n$ vedno tudi $n^+$, vsebuje vsa naravna števila.
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Kako definirati operaciji $(+,\cdot)$ na $\N$ s Peanovimi aksiomi?
+
+\begin{description}[align=right, labelwidth=3cm]
+\item[Operacija $+$:] Induktivno definiramo
+
+\begin{itemize}
+\item $p+1=p^+$
+\item $p+k^+=(p+k)^+$
+\end{itemize}
+
+\item[Operacija $\cdot$:] Induktivno definiramo
+
+\begin{itemize}
+\item $p\cdot 1=p$
+\item $p\cdot k^+=p\cdot k+p$
+\end{itemize}
+\end{description}
+\end{opomba}
+
+\newpage
+
+\subsection{Obstoj korenov, potenc in logaritmov}
+
+\begin{izrek}[Obstoj $n$-tega korena]\index{Koren}
+Za vsako pozitivno realno število $x$ in naravno število $n$ obstaja natanko eno število $y>0$, ki zadošča enačbi $y^n=x$. Označimo $y=\sqrt[n]{x}$.
+\end{izrek}
+
+\begin{proof}
+Če sta taki števili dve, je eno večje. Potem je tudi $n$-ta potenca tega števila večja, torej ne moreta biti enaki. Če rešitev obstaja, to pomeni, da je enolična.
+
+Če je $x=1$, dobimo rešitev $y=1$. Če je $x>1$, vzamemo $E=\setb{t\in\R_0^+}{t^n\leq x}$. Seveda je $E$ neprazna in navzgor omejena. To pomeni, da ima supremum $y$. Predpostavimo, da je $y^n\ne x$.
+
+Če je $y^n<x$, obstaja $0<h<1$, da je $(y+h)^n<x$. Ker je
+\[
+\sum_{i=0}^n\binom{n}{i}y^ih^{n-i}< y^n+h\left(\sum_{i=1}^ny^i\right),
+\]
+lahko namreč preprosto izberemo
+\[
+h=\frac{x-y^n}{k\cdot \sum_{i=1}^ny^i},\]
+kjer je $k$ tako naravno število, da je $h<1$.
+
+Če je $y^n>x$, obstaja $0<h<1$, da je $(y-h)^n>x$. Ker je
+\[
+\sum_{i=0}^ny^{n-i}(-h)^i>y^n-h\cdot\left(\binom{n}{1}y^{n-1}+\binom{n}{3}y^{n-3}+\dots\right),
+\]
+lahko preprosto izberemo
+\[
+h=\frac{y^n-x}{k\cdot\left(\binom{n}{1}y^{n-1}+\binom{n}{3}y^{n-3}+\dots\right)},
+\]
+kjer je $k$ tako naravno število, da je $h<1$ in $h<y$.
+
+Za $x<1$ obstaja koren inverza, katerega inverz je koren $x$.
+\end{proof}
+
+\begin{opomba}
+Za lihe $n$ izrek velja tudi za $x<0$, pri čemer je $y<0$.
+\end{opomba}
+
+\begin{definicija}
+Za $b>0$ in $\frac{p}{q}\in\Q$ je $b^\frac{p}{q}=\sqrt[q]{b}^n$.
+\end{definicija}
+
+Izkaže se, da za tako definirane potence veljajo osnovna pravila potenciranja:
+
+\begin{enumerate}[label=\arabic*)]
+\item $b^r\cdot b^s=b^{r+s}$
+\item $(b^r)^s=b^{rs}$
+\item $(a\cdot b)^r=a^r\cdot b^r$
+\end{enumerate}
+
+\begin{definicija}
+Za $b>0$ in $x\in\R$ naj bo 
+\[
+b^x=\begin{cases}
+1, &b=1 \\
+\sup\setb{b^r}{r\in\Q\land r\leq x}, &b>1 \\
+\left(\frac{1}{b}\right)^{-x}, &b<1
+\end{cases}
+\]
+\end{definicija}
+
+Preverimo lahko, da s to definicijo še vedno veljajo prej naštete lastnosti.
+
+\begin{izrek}[Obstoj logaritma]\index{Logaritem}
+Naj bo $b>0$ in $b\ne 1$. Za vsak pozitiven $x$ obstaja enolično določen realen $y$, da velja
+\[
+b^y=x.
+\]
+Pišemo $y=\log_b x$.
+\end{izrek}
+
+\begin{proof}
+Dovolj je izrek dokazati za $b>1$.
+
+Množica $\setb{b^n}{n\in\N}$ ni navzgor omejena (v nasprotnem primeru obstaja supremum, kar hitro privede do protislovja). Posledično $\forall\varepsilon>0~\exists n\in\N$, da je $0<b^{-n}<\varepsilon$. Zdaj naj bo $E=\setb{t\in\R}{b^t\leq x}$. Množica ni prazna in je navzgor omejena. Supremum te množice je iskan logaritem, kar dokažemo s case-workom, kjer upoštevamo, da $b^n$ ni navzgor omejen.
+\end{proof}
+
+\begin{opomba}
+$\Q$ lahko razširimo na več načinov, na primer $\Q[\sqrt{2}]$
+\end{opomba}
+
+\newpage
+
+\subsection{Kompleksna števila}
+
+Enačba $x^2=-1$ zaradi urejenosti v $\R$ ni rešljiva, zato jih razširimo na \emph{kompleksna števila}\index{Števila!Kompleksna} $\C=\R[i]$, kjer je $i$ ena izmed rešitev enačbe $z^2=-1$. Ekvivalentno je
+\[
+\C=\setb{a+bi}{a,b\in\R}.
+\]
+$\C$ je neurejen komutativen obseg. Definiramo $\Re(z)=a$ in $\Im(z)=b$ za $z=a+bi$, kjer sta $a$ in $b$ realni števili. Za tak $z$ je $\bar{z}=a-bi$. \emph{Absolutna vrednost}\index{Absolutna vrednost} števila $z$ je definirana kot $|z|=\sqrt{a^2+b^2}=\sqrt{z\bar{z}}$. Definiramo lahko
+\[
+z^{-1}=\frac{\overline{z}}{|z|^2}.
+\]
+
+Lastnosti absolutne vrednosti:
+
+\begin{enumerate}[label=\arabic*)]
+\item $|z|\geq 0~\forall z$
+\item $|z|=0\iff z=0$
+\item $|z\cdot w|=|z|\cdot|w|$
+\item $|z+w|\leq |z|+|w|$
+\end{enumerate}
+
+\subsubsection{Kompleksna ravnina}
+Kompleksna števila lahko predstavimo v ravnini. Vse zgoraj definirane operacije imajo tudi geometrijsko interpretacijo.
+
+Kompleksna števila lahko zapišemo v obliki $z=|z|\cdot(\cos(\varphi)+i\sin(\varphi))=|z|\cdot e^{i\varphi}.$ Velja $|z|e^{i\varphi}\cdot |w|e^{i\psi}=|zw|e^{i(\varphi+\psi)}$. Velja tudi
+\[
+\sqrt[n]{z}=\sqrt[n]{|z|}\cdot\left(\cos\left(\frac{\varphi+2k\pi}{n}\right)+\sin\left(\frac{\varphi+2k\pi}{n}\right)\right).
+\]
+Koreni so v ravnini oglišča pravilnega $n$-kotnika s središčem v $0$.
+
+\begin{izrek}[Osnovni izrek algebre]\index{Izrek!Osnovni izrek algebre}
+Obseg $\C$ je algebraično zaprt obseg. Vsak nekonstanten polinom s kompleksnimi koeficienti ima kompleksno ničlo.
+\end{izrek}
+
+\begin{posledica}
+Vsak polinom $P$ stopnje $n$ s kompleksnimi koeficienti ima $n$ ničel. $P$ lahko razcepimo na produkt $n$ linearnih faktorjev.
+\end{posledica}
+
+\newpage
+
+\section{Številska zaporedja}
+
+\subsection{Množice in preslikave}
+
+Uporabljamo sistem aksiomov ZFC.
+
+\begin{definicija}
+Osnovni pojmi teorije množic:
+
+\begin{itemize}
+\item $\mathcal{U}$ je univerzalna množica
+\item $A\subseteq B$ pomeni, da $\forall a\in A\colon a\in B$
+\item $\emptyset=\set{}$ je prazna množica
+\item $A\cup B=\setb{x\in U}{x\in A\vee x\in B}$ je unija množic
+\item $A\cap B=\setb{x\in U}{x\in A\wedge x\in B}$ je presek množic
+\item $A^c=\setb{x\in U}{x\not\in A}$ je komplement množice
+\item $A\cup A^c=U$
+\item $A\cap A^c=\emptyset$
+\item Množice so disjunktne, če je njihov presek prazen
+\item $A\setminus B=A\cap B^c$
+\item $\mathcal{P}(X)=\setb{A}{A\subseteq X}$ je potenčna množica
+\end{itemize}
+\end{definicija}
+
+\subsection{Preslikave med množicami}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Preslikava}\index{Preslikava} množice $X$ v množico $Y$ je pravilo, ki vsakemu elementu $x\in X$ priredi natanko določen element $Y$. Označimo $f\colon X\to Y$. Elementu $x\in X$ $f$ priredi element $f(x)\in Y$.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Če je $Y$ množica števil, preslikavi pravimo \emph{funkcija}\index{Funkcija}.
+\end{definicija}
+
+Pogosto opazujemo preslikave, ki niso definirane na celotni množici $X$, ampak le na podmnožici $D\subseteq X$. Tak $D$ je \emph{domena}\index{Funkcija!Domena in kodomena} preslikave $f$, ki jo označimo z $D_f$. Množico $Y$ pravimo \emph{kodomena} preslikave $f$.
+
+\begin{definicija}
+\emph{Zaloga vrednosti}\index{Funkcija!Zaloga vrednosti} $f$ je množica $Z_f$, definirana kot
+\[
+Z_f=\setb{f(x)}{x\in D_f}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f\colon X\to Y$ preslikava. $f$ je
+
+\begin{itemize}
+\item \emph{injektivna}\index{Funkcija!Injektivna, surjektivna, bijektivna}, če iz $x_1,x_2\in X$ in $x_1\ne x_2$ sledi $f(x_1)\ne f(x_2)$
+\item \emph{surjektivna}, če je $Z_f=Y$
+\item \emph{bijektivna}, če je injektivna in surjektivna
+\end{itemize}
+\end{definicija}
+
+\begin{definicija}
+\emph{Kompozitum}\index{Funkcija!Kompozitum} ali \emph{kompozicija preslikav} $f\circ g$ je preslikava, definirana kot $(f\circ f)(x)=g(f(x))$.
+\end{definicija}
+
+\begin{definicija}
+Če je $f\colon X\to Y$ bijektivna, obstaja \emph{inverzna preslikava}\index{Funkcija!Inverzna} $f^{-1}\colon Y\to X$, za katero je $f^{-1}\circ f\equiv \id_X$ in $f\circ f^{-1}\equiv \id_Y$, kjer je $\id$ \emph{identiteta}\index{Funkcija!Identiteta} oziroma \emph{identična preslikava}, ki vsakemu elementu priredi samega sebe.
+\end{definicija}
+
+\begin{definicija}
+\emph{Moč množice}\index{Množica!Moč} $A$ je ">število elementov"< v $A$. Označimo jo z $|A|$.
+\end{definicija}
+
+\begin{definicija}
+Za množici $A$ in $B$ je $|A|=|B|$, če obstaja bijekcija $f\colon A\to B$. Pravimo, da sta množici \emph{ekvipolentni}\index{Množica!Ekvipolentnost}.
+\end{definicija}
+
+\begin{opomba}
+Velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $|A|=|A|$, saj je $\id$ bijekcija
+\item $|A|=|B|\iff |B|=|A|$, saj lahko izberemo inverzno preslikavo
+\item če je $|A|=|B|$ in $|B|=|C|$, je tudi $|A|=|C|$, saj lahko izberemo kompozitum.
+\end{enumerate}
+\end{opomba}
+
+\begin{definicija}
+Množica $A$ je \emph{končna}\index{Množica!Končna}, če je ekvipolentna množici $\set{1,2,\dots,n}$ za nek $n\in\N$. Takrat je $|A|=n$.
+\end{definicija}
+
+\begin{definicija}
+Množica $A$ je \emph{števna}\index{Množica!Števna}, če je končna, ali pa je ekvipolentna množici $\N$. Elemente množice $A$ lahko v tem primeru razvrstimo v zaporedje.
+\end{definicija}
+
+\begin{definicija}
+Množica $A$ je \emph{kontinuum}\index{Množica!Kontinuum}, če je ekvipolentna množici $\R$.
+\end{definicija}
+
+\begin{definicija}
+$|A|\leq |B|$ natanko tedaj, ko obstaja injektivna preslikava $f\colon A\to B$.
+\end{definicija}
+
+\begin{opomba}
+Za poljubni množici $A$ in $B$ velja $|A|\leq |B|$ ali $|B|\leq |A|$.
+\end{opomba}
+
+\begin{izrek}
+$\Q$ je števna.
+\end{izrek}
+
+\begin{proof}
+Vsa racionalna števila lahko razvrstimo v tabelo, nato pa se po njej sprehodimo po diagonalah ali čem podobnem.
+\end{proof}
+
+\begin{izrek}
+Naj bo $A_n$ za vsak $n\in\N$ množica $A_n$ števno neskončna. Potem je
+\[
+A=\bigcup_{n=1}^\infty A_n
+\]
+števno neskončna.
+\end{izrek}
+
+\begin{proof}
+Enak prejšnjemu.
+\end{proof}
+
+\begin{definicija}
+\emph{Kartezični produkt}\index{Množica!Kartezični produkt} množic $A$ in $B$ je množica
+\[
+A\times B=\setb{(a,b)}{a\in A,b\in B}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Kartezični produkt končno mnogo števnih množic je števna množica.
+\end{trditev}
+
+\begin{proof}
+Dovolj je trditev dokazati za dve množici, kar pa je ravno dokaz števnosti $\Q$.
+\end{proof}
+
+\begin{posledica}
+Množica algebraičnih števil je števno neskončna.
+\end{posledica}
+
+\begin{proof}
+Polinomov s celimi koeficienti je števno. Ker imajo končno mnogo ničel, je njihova unija števna.
+\end{proof}
+
+\begin{trditev}
+Vsaka podmnožica $\N$ je bodisi končna bodisi števno neskončna.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+$|\N|<|\R|$.
+\end{izrek}
+
+\begin{proof}
+Očitno velja $|\N|\leq|\R|$. Predpostavimo, da sta enaki. To pomeni, da lahko vse elemente $\R$ zapišemo v neko zaporedje, torej lahko tudi $[0,1)$ zapišemo v neko zaporedje. Potem lahko z diagonalnim argumentom najdemo število, ki ga še ni na seznamu.
+\end{proof}
+
+\begin{izrek}
+Za vsako množico $X$ je $|X|<|\mathcal{P}(X)|$.
+\end{izrek}
+
+\begin{proof}
+Definiramo karakteristično funkcijo množice $A\subseteq X$:
+\[
+f_A(x)=\begin{cases}
+1, &x\in A\\
+0, &x\not\in A
+\end{cases}
+\]
+Naj bo $\mathcal{F}=\setb{f_a}{A\subseteq X}$. Dokazali bomo, da je $|X|<|\mathcal{F}|$.
+
+\begin{enumerate}[label=\arabic*)]
+\item $|X|\leq|\mathcal{F}|$: $x\mapsto f_{\set{x}}$ je injektivna preslikava.
+\item Predpostavimo, da je $\Phi:X\to\mathcal{F}$ bijekcija. Definiramo
+\[
+\Psi(x)=\begin{cases}
+1, &\text{če je $(\Phi(x))(x)=0$}\\
+0, &\text{če je $(\Phi(x))(x)=1$}
+\end{cases}
+\]
+Velja $\Psi\not\equiv\Phi(x)$ za vse $x$, kar je protislovje, saj sledi $\Psi\not\in Z_{\Phi}$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Velja $|\R|=|\mathcal{P}(\N)|$.
+\end{opomba}
+
+\newpage
+
+\subsection{Stekališča in limite}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $A\ne\emptyset$. \emph{Zaporedje}\index{Zaporedje} v $A$ je preslikava $a\colon \N\to A$. $n$-ti člen zaporedja označimo z $a_n=a(n)$.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Naj bo $n_1<n_2<\dots$ strogo naraščajoče zaporedje naravnih števil. Potem je $(a_{n_j})_{j=1}^\infty$ \emph{podzaporedje} zaporedja $a_1,a_2,\dots$
+\end{definicija}
+
+\begin{definicija}
+Naj bo $(a_n)_{n=1}^\infty$ zaporedje števil. $a\in\R$ je \emph{stekališče}\index{Zaporedje!Stekališče} tega zaporedja, če za vsak $\varepsilon>0$ in vsaj $n_0\in\N$ obstaja tako naravno število $n>n_0$, da je
+\[
+|a_n-a|<\varepsilon.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A$ množica in $f\colon A\to\R$ realna funkcija. $f$ je \emph{navzgor omejena}, če je $Z_f$ navzgor omejena. Simetrično definiramo \emph{navzdol omejene} funkcije. $f$ je \emph{omejena}\index{Funkcija!Omejena}, če je navzgor in navzdol omejena.
+\end{definicija}
+
+\begin{izrek}[Bolzano–Weierstrass]\index{Izrek!Bolzano–Weierstrass}
+Če je zaporedje omejeno, ima stekališče.
+\end{izrek}
+
+\begin{proof}
+Naj bo $(a_n)_{n=1}^\infty$ omejeno zaporedje. Naj bo
+\[
+E=\setb{x\in\R}{\text{neenakost $a_n<x$ ne velja za neskončno mnogo členov zaporedja}}.
+\]
+Vidimo, da je $E$ zaradi omejenosti neprazna in navzgor omejena, zato ima supremum $\alpha$. Tak $\alpha$ je stekališče -- za vse $\varepsilon>0$ namreč $\alpha-\varepsilon$ ni zgornja meja za $E$, kar pomeni, da je na intervalu $(\alpha-\varepsilon,\alpha+\varepsilon)$ neskončno števil.
+\end{proof}
+
+\begin{opomba}
+Iz konstrukcije $\alpha$ vidimo, da je to najmanjše stekališče zaporedja, oziroma \emph{limes inferior}\index{Zaporedje!Limes inferior/superior}. Označimo
+\[
+\alpha=\liminf_{n\to\infty}a_n=\varliminf_{n\to\infty}a_n.
+\]
+Simetrično obstaja tudi največje stekališče \emph{limes superior}
+\[
+\beta=\limsup_{n\to\infty}a_n=\varlimsup_{n\to\infty}a_n.
+\]
+\end{opomba}
+
+\begin{definicija}
+Število $a\in\R$ je \emph{limita zaporedja}\index{Zaporedje!Limita} $(a_n)_{n=1}^\infty$, če $\forall\varepsilon>0$ $\exists n_0\in\N$, da za vsak $n>n_0$ velja
+\[
+|a_n-a|<\varepsilon.
+\]
+\end{definicija}
+
+\begin{definicija}
+Če ima $(a_n)_{n=1}^\infty$ limito, pravimo, da je \emph{konvergentno}\index{Zaporedje!Konvergentno} in konvergira k limiti
+\[
+a=\lim_{n\to\infty}a_n.
+\]
+\end{definicija}
+
+\begin{trditev}
+Zaporedje $(a_n)_{n=1}^\infty$ je konvergentno natanko tedaj, ko je omejeno in ima natanko eno stekališče. To stekališče je limita zaporedja.
+\end{trditev}
+
+\begin{proof}
+Če ima zaporedje limito, je očitno omejeno in ima natanko eno stekališče (vzamemo dovolj majhen $\varepsilon$). Naj bo
+\[
+a=\limsup_{n\to\infty}a_n=\liminf_{n\to\infty}a_n.
+\]
+Po prej dokazanem vemo, da za je za vse $\varepsilon$ izven intervala $(a-\varepsilon, a+\varepsilon)$ kvečjemu končno mnogo členov zaporedja. To pomeni, da je $a$ limita zaporedja.
+\end{proof}
+
+\begin{izrek}
+Za zaporedje $(a_n)_{n=1}^\infty$ sta naslednji izjavi ekvivalentni:
+
+\begin{enumerate}[label=(\arabic*)]
+\item Število $a$ je stekališče zaporedja
+\item Obstaja podzaporedje $(a_{n_j})_{j=1}^\infty$, ki konvergira k $a$
+\end{enumerate}
+\end{izrek}
+
+\obvs
+
+\begin{posledica}
+Vsako omejeno zaporedje realnih števil ima konvergentno podzaporedje.
+\end{posledica}
+
+\newpage
+
+\subsection{Monotona zaporedja}
+
+\begin{definicija}
+Naj bo $(a_n)_{n=1}^\infty$ zaporedje realnih števil.
+
+\begin{enumerate}[label=\arabic*)]
+\item To zaporedje je \emph{naraščajoče}, če je $a_n\leq a_{n+1}$ za vse $n$.
+\item To zaporedje je \emph{padajoče}, če je $a_n\geq a_{n+1}$ za vse $n$.
+\item Zaporedje je \emph{monotono}\index{Zaporedje!Monotono}, če je naraščajoče ali padajoče.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Če je zaporedje $(a_n)_{n=1}^\infty$ monotono in omejeno, ima limito.
+
+\begin{enumerate}[label=\arabic*)]
+\item Če je zaporedje naraščajoče in navzgor omejeno, je
+\[
+\lim_{n\to\infty}=\sup_na_n.
+\]
+\item Če je zaporedje padajoče in navzdol omejeno, je
+\[
+\lim_{n\to\infty}=\inf_na_n.
+\]
+\end{enumerate}
+\end{izrek}
+
+\obvs
+
+\begin{izrek}[O sendviču]\index{Izrek!O sendviču}
+Naj bodo $(a_n)_{n=1}^\infty$, $(b_n)_{n=1}^\infty$ in $(c_n)_{n=1}^\infty$ zaporedja realnih števil, za katere velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $a_n\leq b_n\leq c_n$ za vse $n$
+\item $\displaystyle\lim_{n\to\infty}a_n=\lim_{n\to\infty}c_n$
+\end{enumerate}
+
+Potem je
+\[
+\lim_{n\to\infty}a_n=\lim_{n\to\infty}b_n=\lim_{n\to\infty}c_n.
+\]
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\subsection{Računanje z limitami}
+
+\begin{izrek}
+Naj bosta $(a_n)_{n=1}^\infty$ in $(b_n)_{n=1}^\infty$ konvergentni zaporedji z limitama $a$ in $b$. Potem so konvergentna zaporedja
+\[
+(a_n+b_n)_{n=1}^\infty,\qquad (a_n-b_n)_{n=1}^\infty,\qquad (a_n\cdot b_n)_{n=1}^\infty\qquad\text{in}\qquad\left(\frac{a_n}{b_n}\right)_{n=1}^\infty.
+\]
+(Pri zadnji imamo dodaten pogoj $b_n\ne 0$ in $b\ne 0$). Limite teh zaporedij so zaporedoma $a+b$, $a-b$, $a\cdot b$ in $\frac{a}{b}$.
+\end{izrek}
+
+\obvs
+
+\begin{posledica}
+Naj bo $\displaystyle\lim_{n\to\infty}a_n=a$.
+
+\begin{enumerate}[label=\arabic*)]
+\item Naj bo $k\in\Z$, pri čemer je $k>0$ ali $a_n\ne 0$ in $a\ne 0$. Potem je
+\[
+\lim_{n\to\infty}a_n^k=a^k.
+\]
+\item Če je $a_n>0$, je za vsak naravni $k$
+\[
+\lim_{n\to\infty}\sqrt[k]{a_n}=\sqrt[k]{a}.
+\]
+\item Če je $a_n>0$, je za vsak realni $r$
+\[
+\lim_{n\to\infty}a_n^r=a^r.
+\]
+\end{enumerate}
+\end{posledica}
+
+\begin{posledica}
+Veljajo naslednje lastnosti:
+
+\begin{enumerate}[label=\arabic*)]
+\item Če je $|x|<1$, je $\displaystyle\lim_{n\to\infty}x^n=0$.
+\item Za $s>0$ in $a_n=n^{-s}$ je $a=0$.
+\item Za $x>0$ je $\displaystyle\lim_{n\to\infty}\sqrt[n]{x}=1$.
+\item Za $s\in\R$ in $a>1$ je $\displaystyle\lim_{n\to\infty}\frac{n^s}{a^n}=0$.
+\item $\displaystyle\lim_{n\to\infty}\sqrt[n]{n}=1$.
+\item $\displaystyle\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n=e$.
+\end{enumerate}
+\end{posledica}
+
+\begin{izrek}[Cauchyjev pogoj]\index{Izrek!Cauchyjev pogoj konvergence!Zaporedja}
+Zaporedje $(a_n)_{n=1}^\infty$ je konvergentno natanko tedaj, ko za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da je za vse $n,m\geq n_0$
+\[
+|a_n-a_m|<\varepsilon.
+\]
+\end{izrek}
+
+\begin{proof}
+Če je konvergentno z limito $a$, si izberemo $n_0$, za katerega za vse $n\geq n_0$ velja $|a_n-a|<\frac{\varepsilon}{2}$.
+
+Če je zaporedje Cauchyjevo, je očitno omejeno. To pomeni, da ima stekališče. Če sta stekališči vsaj dve, recimo $\alpha$ in $\beta$, za vse $\varepsilon$ obstaja neskončno $m$ in $n$, da je $|a_m-\alpha|<\varepsilon$ in $|a_n-\beta|<\varepsilon$ in $|a_n-a_m|<\varepsilon$. To pomeni, da je $|a_m-a_n|>|\alpha-\beta|-2\varepsilon$, kar je za $\varepsilon=\frac{|\alpha-\beta|}{3}$ protislovje, saj dobimo $\varepsilon>|a_n-a_m|>\varepsilon$. To pomeni, da je stekališče samo eno, torej mora biti limita.
+\end{proof}
+
+\newpage
+
+\subsection{Posplošene limite}
+
+\begin{definicija}
+Naj bo $(a_n)_{n=1}^\infty$ zaporedje.
+
+\begin{enumerate}[label=\arabic*)]
+\item Pravimo, da to zaporedje \emph{konvergira k $+\infty$}, če za vsak $M\in\R$ obstaja tak $n_0\in\N$, da za vsak $n\geq n_0$ velja
+\[
+M<a_n.
+\]
+\item Pravimo, da to zaporedje \emph{konvergira k $-\infty$}, če za vsak $m\in\R$ obstaja tak $n_0\in\N$, da za vsak $n\geq n_0$ velja
+\[
+m>a_n.
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Z $\overline{\R}=\R\cup\set{+\infty,-\infty}$ označimo \emph{razširjen sistem realnih števil}\index{Razširjen sistem realnih števil}.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $(a_n)_{n=1}^\infty$ zaporedje in $E$ množica vseh stekališč tega zaporedja.
+
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\limsup_{n\to\infty}a_n=+\infty$, če zaporedje ni navzgor omejeno.
+\item $\displaystyle\liminf_{n\to\infty}a_n=-\infty$, če zaporedje ni navzdol omejeno.
+\item Če je zaporedje navzgor omejeno, je
+
+\begin{enumerate}[label=(\roman*)]
+\item $\displaystyle\limsup_{n\to\infty}a_n=\sup E$, če je $E\ne\emptyset$.
+\item $\displaystyle\limsup_{n\to\infty}a_n=-\infty$, če je $E=\emptyset$.
+\end{enumerate}
+
+\item Če je zaporedje navzdol omejeno, je
+
+\begin{enumerate}[label=(\roman*)]
+\item $\displaystyle\liminf_{n\to\infty}a_n=\inf E$, če je $E\ne\emptyset$.
+\item $\displaystyle\liminf_{n\to\infty}a_n=+\infty$, če je $E=\emptyset$.
+\end{enumerate}
+\end{enumerate}
+\end{definicija}
+
+\newpage
+
+\subsection{Zaporedja kompleksnih števil}
+
+\begin{definicija}
+Zaporedje $(z_n)_{n=1}^\infty$ kompleksnih števil konvergira k $\alpha\in\C$, če za vsak $\varepsilon>0$ in $n_0\in\N$ obstaja tak $n\geq n_0$, da je $|\alpha-a_n|<\varepsilon$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $(z_n=a_n+ib_n)_{n=1}^\infty$ zaporedje kompleksnih števil, kjer so $a_n$ in $b_n$ realna števila. Tedaj $(z_n)_{n=1}^\infty$ konvergira k $\alpha=a+ib$, kjer sta $a,b\in\R$, natanko tedaj, ko
+\[
+\lim_{n\to\infty}a_n=a\qquad\text{in}\qquad\lim_{n\to\infty}b_n=b.
+\]
+\end{izrek}
+
+\obvs
+
+\begin{posledica}
+Naj bosta $(z_n)_{n=1}^\infty$ in $(w_n)_{n=1}^\infty$ konvergentni zaporedji kompleksnih števil z limitama $z$ in $w$. Potem so konvergentna naslednja zaporedja z limitami
+
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\lim_{n\to\infty}(z_n+w_n)=z+w$
+\item $\displaystyle\lim_{n\to\infty}(z_n-w_n)=z-w$
+\item $\displaystyle\lim_{n\to\infty}(z_n\cdot w_n)=z\cdot w$
+\item $\displaystyle\lim_{n\to\infty}\frac{z_n}{w_n}=\frac{z}{w}$, če je $w\ne 0$
+\end{enumerate}
+\end{posledica}
+
+\begin{izrek}
+Zaporedje $(z_n)_{n=1}^\infty$ kompleksnih števil je konvergentno natanko tedaj, ko je Cauchyjevo.
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\section{Realne funkcije realne spremenljivke}
+
+\subsection{Funkcije, grafi in operacije}
+
+\begin{okvir}
+\begin{definicija}
+Funkcija $f\colon X\to\R$ je \emph{realna funkcija}\index{Funkcija!Realna}. Če je $X\subseteq\R$, je $f$ \emph{funkcija realne spremenljivke}\index{Funkcija!Realne spremenljivke}.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Funkcija je \emph{omejena navzgor (navzdol)}\index{Funkcija!Omejena}, če je njena zaloga vrednosti omejena navzgor (navzdol).
+\end{definicija}
+
+\begin{definicija}
+\emph{Graf funkcije}\index{Funkcija!Graf} $f$ je množica $G(f)\subset\R^2$, za katero je
+\[
+G(f)=\setb{(x,f(x))}{x\in D_f}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Projekciji na osi} sta funkciji $\pi_x,\pi_y\colon \R^2\to\R$, definirani s predpisom $\pi_x(x,y)=x$ in $\pi_y(x,y)=y$.
+\end{definicija}
+
+\begin{trditev}
+$\emptyset\ne\Gamma\subseteq\R^2$ je graf neke funkcije $f$ natanko tedaj, ko je $\pi_x$ na $\Gamma$ injektivna. Velja $D_f=\pi_x(\Gamma)$ in $f(x)=\pi_y(\pi_x^{-1}(x)).$
+\end{trditev}
+
+\begin{trditev}
+Funkcija $f$ je injektivna natanko tedaj, ko je $\pi_y$ na $G(f)$ injektivna.
+\end{trditev}
+
+\begin{trditev}
+Naj bo $f\colon D\to\R$ injektivna funkcija in $B=f(D)$. $f\colon D\to B$ je po definiciji bijekcija in ima inverz.
+\end{trditev}
+
+\begin{definicija}
+Naj bo $\tau\colon\R^2\to\R^2$ preslikava, definirana s predpisom $(x,y)\mapsto(y,x)$. $\tau$ je \emph{zrcaljenje preko simetrale lihih kvadrantov}.
+\end{definicija}
+
+\begin{trditev}
+Velja $G(f^{-1})=\tau(G(f))$.
+\end{trditev}
+
+\begin{definicija}
+Naj bosta $f, g\colon D\to\R$ funkciji. Potem definiramo naslednje funkcije:
+
+\begin{enumerate}[label=\arabic*)]
+\item $(f+g)(x)\equiv f(x)+g(x)$
+\item $(f-g)(x)\equiv f(x)-g(x)$
+\item $(f\cdot g)(x)\equiv f(x)\cdot g(x)$
+\item $\frac{f}{g}(x)\equiv \frac{f(x)}{g(x)}$ za $g(x)\ne 0$ ($D_{\frac{f}{g}}=\setb{x\in D}{g(x)\ne 0}$)
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f$ navzgor omejena. Potem obstaja $\sup f =\sup Z_f$\index{Funkcija!Supremum, infimum}. Če obstaja $\max Z_f$, definiramo $\max f=\max Z_f$\index{Funkcija!Maksimum, minimum}. Simetrično definiramo $\inf f$ in $\min f$.
+\end{definicija}
+
+\newpage
+
+\subsection{Zveznost}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $D\subseteq\R$, $f\colon D\to\R$ funkcija in naj bo $a\in D$. Funkcija $f$ je \emph{zvezna}\index{Funkcija!Zvezna} v točki $a$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsak $x\in D$, ki zadošča $|x-a|<\delta$, velja
+\[
+|f(x)-f(a)|<\varepsilon.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}\label{thr:zzz}
+Funkcija $f\colon D\to\R$ je zvezna v točki $x$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$ iz $D$, za katerega velja
+\[
+\lim_{n\to\infty}x_n=x,
+\]
+velja tudi
+\[
+\lim_{n\to\infty}f(x_n)=f(x).
+\]
+\end{izrek}
+
+\obvs
+
+\begin{definicija}
+Funkcija $f\colon D\to\R$ je \emph{zvezna}, če je zvezna v vsaki točki $a\in D$.
+\end{definicija}
+
+\begin{izrek}
+Naj bosta $f,g\colon D\to\R$ funkciji, zvezni v točki $a\in D$. Potem so v $a$ zvezne tudi funkcije
+\[
+f+g,\qquad f-g,\qquad f\cdot g,\qquad \frac{f}{g},~\text{če $g(a)\ne 0$}.
+\]
+\end{izrek}
+
+\begin{proof}
+Uporabimo izrek \ref{thr:zzz} in že prej izpeljane rezultate o limitah.
+\end{proof}
+
+\begin{izrek}
+Kompozitum zveznih funkcij je zvezna funkcija.
+\end{izrek}
+
+\obvs
+
+\begin{opomba}
+Eksponentna funkcija je zvezna.
+\end{opomba}
+
+\begin{proof}
+Dovolj je dokazati zveznost v $0$, ki je očitna, saj je $\displaystyle\lim_{n\to\infty}b^{\frac{1}{n}}=1$.
+\end{proof}
+
+\begin{trditev}
+Trigonometrične funkcije so zvezne.
+\end{trditev}
+
+\begin{proof}
+Dovolj je dokazati zveznost $\sin$, kar lahko z adicijskimi izreki pretvorimo na zveznost v $0$, ki je posledica $|\sin x|\leq |x|$.
+\end{proof}
+
+\newpage
+
+\subsection{Monotone funkcije}
+
+\begin{definicija}
+Funkcija $f\colon D\to\R$ je
+
+\begin{enumerate}[label=\arabic*)]
+\item \emph{naraščajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1\leq x_2$, velja $f(x_1)\leq f(x_2)$
+\item \emph{padajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1\leq x_2$, velja $f(x_1)\geq f(x_2)$
+\item \emph{strogo naraščajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1<x_2$, velja $f(x_1)<f(x_2)$
+\item \emph{strogo padajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1<x_2$, velja $f(x_1)>f(x_2)$
+\item \emph{(strogo) monotona}\index{Funkcija!Monotona}, če je (strogo) naraščajoča ali (strogo) padajoča
+\end{enumerate}
+\end{definicija}
+
+\begin{posledica}
+Vse strogo monotone funkcije so injektivne.
+\end{posledica}
+
+\begin{posledica}
+Zvezna funkcija je strogo monotona natanko tedaj, ko je injektivna.
+\end{posledica}
+
+\begin{izrek}
+Naj bo $f\colon I\to\R$ zvezna strogo monotona funkcija na intervalu $I$. Potem je $f^{-1}:Z_f\to I$ zvezna.
+\end{izrek}
+
+\begin{proof}
+Naj bo $a\in I$ in $b=f(a)$. Dokazujemo, da $\forall\varepsilon>0$ $\exists\delta>0$, da za vse $|x-b|<\delta$ velja $|f^{-1}(x)-a|<\varepsilon$. Vzamemo lahko kar $\delta=\min\set{\abs{b-f(a-\varepsilon)},\abs{f(a+\varepsilon)-b}}.$
+\end{proof}
+
+\begin{posledica}
+Za vse $r\in\Q$ je $x\mapsto x^r$ zvezna na $(0,\infty)$.
+\end{posledica}
+
+\begin{posledica}
+Ciklometrične funkcije so zvezne.
+\end{posledica}
+
+\begin{definicija}
+\emph{Hiperbolični funkciji}\index{Hiperbolične funkcije} $\sinh$ in $\cosh$ definiramo kot
+\[
+\sinh=\frac{e^x-e^{-x}}{2}\qquad\text{in}\qquad\cosh=\frac{e^x+e^{-x}}{2}.
+\]
+Njuni inverzni funkciji sta
+\[
+\sinh^{-1}(x)=\ln(x+\sqrt{x^2+1})\qquad\text{in}\qquad\cosh^{-1}(x)=\ln(x+\sqrt{x^2-1}).
+\]
+Podobno kot pri kotnih funkcijah definiramo
+\[
+\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}
+\]
+z inverzom
+\[
+\tanh^{-1}(x)=\frac{1}{2}\ln\frac{1+x}{1-x}.
+\]
+\end{definicija}
+
+\begin{posledica}
+$\sinh$, $\cosh$ in $\tanh$ so zvezne.
+\end{posledica}
+
+\newpage
+
+\subsection{Enakomerna zveznost}
+
+\begin{okvir}
+\begin{definicija}
+Funkcija $f\colon D\to\R$ je \emph{enakomerno zvezna}\index{Funkcija!Enakomerno zvezna} na $D$, če za vse $\varepsilon>0$ obstaja $\delta>0$, da za vse $x,x'\in D$, ki zadoščata $|x-x'|<\delta$, velja
+\[
+|f(x)-f(x')|<\varepsilon.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Naj bo $D$ omejen interval. Naj bo $f\colon D\to\R$ enakomerno zvezna. Tedaj je $f$ omejena na $D$.
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Osnovne lastnosti zveznih funkcij na zaprtih omejenih intervalih}
+
+\begin{izrek}
+Naj bo $D=[a,b]$ zaprt omejen interval in $f\colon D\to\R$ zvezna funkcija. Potem je $f$ enakomerno zvezna na $D$.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo nasprotno in fiksiramo ">slab"< $\varepsilon$. Naj bosta $x_n,x_n'\in D$ taki števili, da je $|x_n-x_n'|<\frac{1}{n}$ in $|f(x_n)-f(x_n')|>\varepsilon$. Vzemimo podzaporedje $\left(x_{n_j}\right)_{j=1}^\infty$, ki konvergira k $\alpha$. Potem obstaja podzaporedje
+\[
+\left(x_{n_{j_k}}'\right)_{j=1}^\infty,
+\]
+ki konvergira k $\beta$.
+
+Tudi $\displaystyle\lim_{k\to\infty}x_{n_{j_k}}=\alpha$, ker pa je $\displaystyle\lim_{k\to\infty}\left|x_{n_{j_k}}-x_{n_{j_k}}'\right|=0$, je $\alpha=\beta.$ Vemo pa, da je
+\[
+\left|f\left(x_{n_{j_k}}\right)-f\left(x_{n_{j_k}}'\right)\right|\geq\varepsilon,
+\]
+kar pomeni, da $f$ ni zvezna v $\alpha$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon D\to\R$ zvezna funkcija, kjer je $D$ zaprt omejen interval. Potem je $f$ omejena na $D$ in obstajata točki $x_m,x_M\in D$, da je
+\[
+f(x_m)=\inf_D f=\min_D f\qquad\text{in}\qquad f(x_M)=\sup_D f=\max_D f.
+\]
+\end{izrek}
+
+\begin{proof}
+Prvi del smo že dokazali z enakomerno zveznostjo. Predpostavimo nasprotno in definiramo $g(x)=\frac{1}{M-f(x)}$, ki je po predpostavki dobro definirana. Sledi, da je $g$ omejena, kar je očitno protislovje.
+\end{proof}
+
+\begin{izrek}[O obstoju ničle]
+Naj bo $f\colon [a,b]\to\R$ zvezna funkcija. Denimo, da je $f(a)\cdot f(b)<0$. Potem obstaja tak $c\in(a,b)$, da je $f(c)=0$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $D_0=[a,b]$. Induktivno definiramo
+\[
+D_{i+1}=\begin{dcases}
+\left[a_i,\frac{a_i+b_i}{2}\right], &\text{če $f(a_i)\cdot f\left(\frac{a_i+b_i}{2}\right)<0$}
+\\
+\left[\frac{a_i+b_i}{2},b_i\right], &\text{če $f(b_i)\cdot f\left(\frac{a_i+b_i}{2}\right)<0$}
+\end{dcases}
+\]
+kjer sta $a_i$ in $b_i$ krajišči intervala $D_i$. Če je $f\left(\frac{a_i+b_i}{2}\right)=0$ za nek $i$, lahko preprosto vzamemo $c=\frac{a_i+b_i}{2}$. V nasprotnem primeru je $\displaystyle\lim_{n\to\infty}(b_n-a_n)=0$. Vidimo tudi, da imajo vsi $f(a_i)$ ter vsi $f(b_i)$ enak predznak. To pomeni, da je
+\[
+0\geq \lim_{n\to\infty}f(a_n)=\lim_{n\to\infty}f(b_n)\geq 0
+\]
+ali
+\[
+0\leq \lim_{n\to\infty}f(a_n)=\lim_{n\to\infty}f(b_n)\leq 0.
+\]
+V obeh primerih je $c=\displaystyle\lim_{n\to\infty}a_n$ iskana ničla.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f$ zvezna na zaprtem intervalu $D=[a,b]$. Potem $f$ zavzame vse vrednosti med $\displaystyle\min_D f$ in $\displaystyle\max_D f$.
+\end{posledica}
+
+\begin{posledica}
+Naj bo $I$ interval. Naj bo $f\colon I\to\R$ zvezna injektivna funkcija. Tedaj je $f$ strogo monotona na $I$.
+\end{posledica}
+
+\begin{proof}
+V nasprotnem primeru lahko najdemo $a<b<c$, za katere $f(a)$, $f(b)$ in $f(c)$ niso urejene po velikosti, zato na $(a,b)$ in $(b,c)$ obstajata števili z enako sliko.
+\end{proof}
+
+\newpage
+
+\subsection{Limite funkcij}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f\colon(a-r,a+r)\setminus\set{a}\to\R$,\footnote{$(a-r,a+r)\setminus\set{a}$ je \emph{prebodena} ali \emph{punktirana} okolica točke $a$.} kjer je $a\in\R$ in $r>0$. Število $A\in\R$ je limita funkcije $f$ v točki $a$, če $\forall\varepsilon>0$ $\exists\delta>0$, da iz $0<|x-a|<\delta$ sledi
+\[
+\left|f(x)-A\right|<\varepsilon.
+\]
+Označimo $\displaystyle\lim_{x\to a}f(x)=A$.
+\end{definicija}
+\end{okvir}
+
+\begin{posledica}
+Očitno velja naslednje:
+
+\begin{enumerate}[label=\arabic*)]
+\item če je $f$ definirana na $(a-r,a+r)$ in zvezna v $a$, je $\displaystyle\lim_{x\to a}f(x)=f(a)$
+\item če je $A=\displaystyle\lim_{x\to a}f(x)$, je funkcija
+\[
+\tilde{f}(x)=\begin{cases}
+f(x), &x\ne a
+\\
+A, &x=a
+\end{cases}
+\]
+zvezna v $a$.
+\end{enumerate}
+\end{posledica}
+
+\begin{izrek}
+Naslednji trditvi sta ekvivalentni za funkcijo $f\colon(a-r,a+r)\setminus\set{a}\to\R$:
+
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\lim_{x\to a}f(x)=A$
+\item za vsako zaporedje $(x_n)_{n=1}^\infty$ iz $(a-r,a+r)\setminus\set{a}$, za katerega velja, da je $\displaystyle\lim_{n\to\infty}x_n=a$, velja $\displaystyle\lim_{n\to\infty}f\left(x_n\right)=A$
+\end{enumerate}
+\end{izrek}
+
+\begin{trditev}
+Naj bosta $f,g$ definirani na $(a-r,a+r)\setminus\set{a}$. Če obstajata limiti
+\[
+\lim_{x\to a} f(x)\qquad\text{in}\qquad \lim_{x\to a} g(x),
+\]
+velja
+\begin{align*}
+\lim_{x\to a} (f+g)(x)&=\lim_{x\to a} f(x)+\lim_{x\to a} g(x), & \lim_{x\to a} (f-g)(x)&=\lim_{x\to a} f(x)-\lim_{x\to a} g(x)
+\\
+\lim_{x\to a} (f\cdot g)(x)&=\lim_{x\to a} f(x)\cdot \lim_{x\to a} g(x) & \lim_{x\to a} \frac{f}{g}(x)&=\frac{\displaystyle\lim_{x\to a} f(x)}{\displaystyle\lim_{x\to a} g(x)},
+\end{align*}
+pri čemer imamo pri 4. limiti še dodaten pogoj, da $\displaystyle\lim_{x\to a}g(x)\ne 0$.
+\end{trditev}
+
+\begin{definicija}
+Naj bo $f\colon (a-r,a)\to\R$, kjer je $a\in\R$ in $r>0$. Funkcija $f$ ima v točki $a$ \emph{levo limito} $A$, če je $\forall\varepsilon>0~\exists\delta>0$, da je za vse $x\in(a-\delta,a)$
+\[
+\left|f(x)-A\right|<\varepsilon.
+\]
+Označimo $\displaystyle\lim_{x\uparrow a}f(x)=A$. Simetrično definiramo \emph{desno limito} $\displaystyle\lim_{x\downarrow a}f(x)=A$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f\colon(a-r,a+r)\setminus\set{a}\to\R$ funkcija. $f$ ima v $a$ limito natanko tedaj, ko ima levo in desno limito in sta enaki.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Če je $f$ definirana na $(a-r,a+r)\setminus\set{a}$ in obstajata leva ter desna limita, a nista enaki, pravimo, da ima $f$ v $a$ \emph{skok}\index{Funkcija!Skok}.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $f\colon I\to\R$ monotona funkcija na intervalu $I$. Potem ima $f$ v vsaki notranji točki intervala $I$ levo in desno limito.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da je $f$ naraščajoča. Naj bo $A=\sup\setb{f(x)}{x\in I\land x<a}$ (ta obstaja, saj je $f(x)\leq f(a)$). Potem je očitno $A=\displaystyle\lim_{x\uparrow a}f(x)$. Simetrično lahko dokažemo obstoj desne limite.
+\end{proof}
+
+\begin{posledica}
+Monotona funkcija ima na intervalu $I$ največ števno mnogo skokov.
+\end{posledica}
+
+\begin{proof}
+Vsak skok vsebuje racionalno število.
+\end{proof}
+
+\begin{definicija}
+Pravimo, da $f$ \emph{konvergira k $+\infty$} ko gre $x$ proti $a$, če za $\forall M\in\R$ obstaja $\delta>0$, da iz $0<x<\delta$ sledi $|x-a|<\delta$ $f(x)>M$. Pišemo
+\[
+\lim_{x\to a}f(x)=+\infty.
+\]
+Podobno definiramo konvergentnost k $-\infty$ in posplošene enostranske limite.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f$ definirana na $(a,\infty)$, $a\in\R$. Število $A\in\R$ je limita funkcije $f$, ko gre $x\to+\infty$, če za vsak $\forall\varepsilon>0$ obstaja $M>a$, da je za vse $x>M$
+\[
+|f(x)-A|<\varepsilon.
+\]
+Podobno definiramo limito v $-\infty$ in konvergentnost k $\pm\infty$.
+\end{definicija}
+
+\begin{opomba}
+$\displaystyle\lim_{x\to+\infty}f(x)=A$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$, za katerega velja $\displaystyle\lim_{n\to\infty}x_n=+\infty$, sledi
+\[
+\lim_{n\to\infty}f(x_n)=A.
+\]
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+\lim_{x\to\pm\infty}\left(1+\frac{1}{x}\right)^x=e.
+\]
+\end{trditev}
+
+\begin{proof}
+Trditev bomo dokazali le za $x\to\infty$. Za $n\leq x<n+1$ je
+\[
+\left(1+\frac{1}{n+1}\right)^n<\left(1+\frac{1}{x}\right)^x<\left(1+\frac{1}{n}\right)^{n+1}.
+\]
+Obe strani konvergirata k $e$, ker pa imamo poljubno velike $x$, smo končali.
+\end{proof}
+
+\newpage
+
+\section{Odvod}
+
+Odvod prestavlja hitrost spreminjanja funkcije glede na neodvisno spremenljivko.
+
+\subsection{Definicija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f$ definirana v okolici točke $a$. Funkcija $f$ je \emph{odvedljiva}\index{Funkcija!Odvedljiva} v točki $a$, če obstaja limita
+\[
+\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}=f'(a).
+\]
+$f'(a)$ je \emph{odvod}\index{Odvod} funkcije $f$ v točki $a$.
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Izrazu $\frac{f(x)-f(a)}{x-a}$ pravimo \emph{diferenčni kvocient}\index{Diferenčni kvocient}.
+\end{opomba}
+
+\begin{opomba}
+Podobno kot pri limitah lahko definiramo tudi levi in desni odvod. $f$ je v $a$ odvedljiva, če sta levi in desni odvod v $a$ enaka.
+\end{opomba}
+
+\begin{trditev}
+Smerni koeficient tangente na graf $f$ v točki $(a,f(a))$ je $f'(a)$. Njen predpis je
+\[
+t(x)=f'(a)(x-a)+f(a).
+\]
+\end{trditev}
+
+\begin{definicija}
+Naj bo $f\colon I\to\R$ funkcija na intervalu $I$. Rečemo, da je $f$ \emph{odvedljiva na $I$}, če je odvedljiva v vsaki notranji točki $I$, v krajiščih intervala, če pripadajo $I$, pa ustrezno enostransko odvedljiva.
+\end{definicija}
+
+\begin{definicija}
+$f$ je \emph{zvezno odvedljiva} na $I$, če njen odvod obstaja in je zvezen na $I$.
+\end{definicija}
+
+\begin{trditev}
+Če je $f$ odvedljiva v $a$, je $f$ zvezna v $a$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+f(a+h)=f(a)+f'(a)h+o(h),
+\]
+kjer je $\displaystyle\lim_{h\to 0}\frac{o(h)}{h}=0$.
+\end{proof}
+
+\begin{definicija}
+Funkcija $f$, definirana v okolici točke $a$, je \emph{diferenciabilna}\index{Funkcija!Diferenciabilna} v $a$, če obstaja taka linearna funkcija $L\colon\R\to\R$, da je
+\[
+\lim_{h\to 0}\frac{f(a+h)-f(a)-Lh}{h}=0.
+\]
+$L$ imenujemo \emph{diferencial}\index{Diferencial} v točki $a$; $L=df_a$.
+\end{definicija}
+
+\begin{opomba}
+Če tak $L$ obstaja, je natanko en.
+\end{opomba}
+
+\begin{trditev}
+Funkcija $f$, definirana v okolici točke $a$, je v $a$ diferenciabilna natanko tedaj, ko je v $a$ odvedljiva. Tedaj je $df_a(h)=f'(a)\cdot h$.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Naj bo $f$ diferenciabilna v $a$. Potem je
+\[
+df_a(h)=f'(a)\cdot h=f'(a) d\id_a(h).
+\]
+Od tod dobimo notacijo
+\[
+f'(a)=\frac{df}{dx}(a).
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Pravila za odvajanje}
+
+\begin{izrek}
+Naj bosta $f,g$ definirani v okolici točke $a$. Naj bosta $f$ in $g$ odvedljivi v $a$. Potem so v $a$ odvedljive tudi funkcije
+\[
+f+g,\quad f-g,\quad f\cdot g,\quad\text{in}\quad \frac{f}{g},
+\]
+pri čemer imamo pri 4. limiti še dodaten pogoj, da $g(a)\ne 0$. Odvode izračunamo kot
+\[
+(f+g)'=f'+g',\quad (f-g)'=f'-g',\quad (f\cdot g)'=f'\cdot g+f\cdot g'\quad\text{in}\quad \left(\frac{f}{g}\right)=\frac{f'\cdot g-f\cdot g'}{g^2}.
+\]
+\end{izrek}
+
+\begin{proof}
+Prvi dve točki sta trivialni. Velja pa
+\begin{align*}
+(f\cdot g)'(a)=&\lim_{h\to 0}\frac{f(a+h)g(a+h)-f(a)g(a)}{h}
+\\
+=&\lim_{h\to 0}\frac{f(a+h)g(a+h)-f(a)g(a+h)+f(a)g(a+h)-f(a)g(a)}{h}
+\\
+=&f'(a)g(a)+f(a)g'(a)
+\end{align*}
+in
+\begin{align*}
+\left(\frac{f}{g}\right)'(a)=&\lim_{h\to 0}\frac{\frac{f(a+h)}{g(a+h)}-\frac{f(a)}{g(a)}}{h}
+\\
+=&\lim_{h\to 0}\frac{f(a+h)g(a)-f(a)g(a)+f(a)g(a)-f(a)g(a+h)}{hg(a+h)g(a)}
+\\
+=&\frac{f'(a)g(a)-f(a)g'(a)}{g(a)^2}.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bodo $f_1,\dots,f_n$ definirane na $(a-r,a+r)$ in odvedljive v $a$. Naj bo $F=f_1\cdot f_2\cdots f_n$. Potem je
+\[
+F'(a)=\sum_{i=1}^n\left(\frac{F}{f_i}\cdot f_i'\right)(a).
+\]
+\end{posledica}
+
+\begin{posledica}
+Naj bo $f\equiv\ln$. Potem je
+\[
+f'(x)=\frac{1}{x}.
+\]
+\end{posledica}
+
+\begin{proof}
+Odvajamo po definiciji. Velja
+\begin{align*}
+\lim_{h\to 0}\frac{\ln(x+h)-\ln(x)}{h}
+&=\lim_{h\to 0}\ln\left(1+\frac{h}{x}\right)^{\frac{1}{h}}
+\\
+&=\ln\lim_{h\to 0}\left(1+\frac{h}{x}\right)^{\frac{1}{h}}
+\\
+&=\ln\lim_{t\to\pm\infty}\left(1+\frac{1}{tx}\right)^t
+\\
+&=\ln\lim_{t\to\pm\infty}\left(1+\frac{1}{tx}\right)^{\frac{tx}{x}}
+\\
+&=\ln e^{\frac{1}{x}}=\frac{1}{x}.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}[Odvod kompozituma funkcij]
+Naj bo $f$ definirana v okolici $a$ in odvedljiva v $a$. Naj bo $g$ definirana v okolici $f(a)$ in odvedljiva v $f(a)$. Potem je $g\circ f$ odvedljiva v $a$ in je
+\[
+(g\circ f)'(a)=g'(f(a))\cdot f'(a).
+\]
+\end{izrek}
+
+\begin{proof}
+Ker je $f$ odvedljiva v $a$, je
+\[
+f(a+h)=f(a)+f'(a)\cdot h+h\cdot\eta_f(h)
+\]
+kjer je $\displaystyle\lim_{h\to 0}\eta_f(h)=0$. Podobno velja za $g$. Potem je
+\begin{align*}
+(g\circ f)(a+h)&=g(f(a+h))
+\\
+&=g(f(a)+f'(a)h+h\eta_f(h))
+\\
+&=g(f(a)+k(h))
+\\
+&=g(f(a))+g'(f(a))k(h)+k(h)\eta_g(k(h))
+\\
+&=g(f(a))+g'(f(a))\left(f'(a)h+h\eta_f(h)\right)+k(h)\eta_g(k(h))
+\\
+&=g(f(a))+g'(f(a))\cdot f'(a)\cdot h+o(h).
+\end{align*}
+Dovolj je tako dokazati, da je
+\[
+\lim_{h\to 0}\frac{o(h)}{h}=0.
+\]
+Velja pa
+\begin{align*}
+\lim_{h\to 0}\frac{o(h)}{h}&=\lim_{h\to 0}\frac{g'(f(a))\cdot h\eta_f(h)+(f'(a)h+h\eta_f(a))\eta_g(k(h))}{h}
+\\
+&=\lim_{h\to 0}\left(g'(f(a))\cdot \eta_f(h)+(f'(a)+\eta_f(a))\eta_g(k(h))\right)
+\\
+&=0.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon I\to J$ strogo monotona zvezna bijekcija na intervalih $I$ in $J$. Če je $f$ v $a\in I$ odvedljiva in je $f'(a)\ne 0$, je inverzna funkcija odvedljiva v točki $f(a)$ in velja
+\[
+\left(f^{-1}\right)'(f(a))=\frac{1}{f'(a)}.
+\]
+\end{izrek}
+
+\begin{proof}
+Ker sta $f$ in $f^{-1}$ zvezni, je $x\to a$ ekvivalentno $y\to f(a)$, kjer je $y=f(x)$.
+\begin{align*}
+\lim_{y\to f(a)}\frac{f^{-1}(y)-f^{-1}(f(a))}{y-f(a)}&=\lim_{x\to a}\frac{x-a}{f(x)-f(a)}
+\\
+&=\frac{1}{\displaystyle\lim_{x\to a}\frac{f(x)-f(a)}{x-a}}
+\\
+&=\frac{1}{f'(a)}.
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+$(e^x)'=e^x$, $\sinh'(x)=\cosh(x)$ in $\cosh'(x)=\sinh(x)$.
+\end{posledica}
+
+\obvs
+
+\begin{posledica}
+Naj bo $r\in\R$ in $f(x)=x^r$. Potem je $f'(x)=r\cdot x^{r-1}$.
+\end{posledica}
+
+\begin{proof}
+\[
+f'(x)=(e^{r\ln x})'=x^r\cdot r\cdot\frac{1}{x}=rx^{r-1}.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Odvodi ciklometričnih funkcij so po vrsti
+\[
+(\arcsin(x))'=\frac{1}{\sqrt{1-x^2}},\quad (\arccos(x))'=-\frac{1}{\sqrt{1-x^2}}\quad\text{in}\quad (\arctan(x))'=\frac{1}{1+x^2}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+$(\operatorname{arsh}(x))'=\frac{x}{\sqrt{x^2+1}}$, $(\operatorname{arch}(x))'=\frac{x}{\sqrt{x^2-1}}$ in $(\operatorname{arth}(x))'=\frac{1}{1-x^2}$.
+\end{posledica}
+
+\newpage
+
+\subsection{Višji odvodi}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f\colon I\to\R$ funkcija, kjer je $I$ interval. Denimo, da je $f$ na $I$ odvedljiva. Naj bo $f'\colon I\to\R$ odvod funkcije $f$ na intervalu $I$. Če je $f'$ tudi odvedljiva na $I$, obstaja njen odvod $(f')'=f''$, ki mu pravimo \emph{drugi odvod funkcije $f$ na $I$}.
+
+Višji odvodi so definirani rekurzivno:
+\[
+f^{(n+1)}=\left(f^{(n)}\right)'.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+$C^n(I)$ je množica vseh funkcij $f\colon I\to\R$, ki so $n$-krat zvezno odvedljive na $I$.\footnote{Posebej definiramo $C(I)=C^0(I)$, kar označuje zvezne funkcije na $I$.}
+\end{definicija}
+
+\begin{definicija}
+Elementom množice
+\[
+C^{\infty}(I)=\bigcap_{n=0}^{\infty}C^n(I)
+\]
+pravimo \emph{gladke funkcije}\index{Funkcija!Gladka}.
+\end{definicija}
+
+Odvod je linearen operator:
+\[
+D\colon C^{n+1}(I)\to C^n(I),\quad f\mapsto Df=f'.
+\]
+
+\newpage
+
+\subsection{Rolleov in Lagrangev izrek}
+
+\begin{izrek}[Rolle]\index{Izrek!Rolle}
+Naj bo $f\colon[a,b]\to\R$ zvezna funkcija, ki je na $(a,b)$ odvedljiva. Naj bo $f(a)=f(b)=0$. Potem obstaja tak $c\in(a,b)$, da je $f'(c)=0$.
+\end{izrek}
+
+\begin{proof}
+$f$ je zvezna na $[a,b]$, zato na tem intervalu zavzame maksimum in minimum. Če sta oba $0$, je funkcija konstantna in je njen odvod povsod $0$. V nasprotnem primeru pa imamo ekstrem, različen od $a$ in $b$, zato je odvod v tisti točki enak $0$.
+\end{proof}
+
+\begin{izrek}[Lagrange]\index{Izrek!Lagrange}
+Naj bo $f\colon[a,b]\to\R$ zvezna funkcija, ki je na $(a,b)$ odvedljiva. Potem obstaja $c\in(a,b)$, da je
+\[
+f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+\end{izrek}
+
+\begin{proof}
+Izrek je ekvivalenten Rolleovem izreku za
+\[
+g(x)=f(x)-\frac{f(b)-f(a)}{b-a}\cdot (x-a)-f(a).\qedhere
+\]
+\end{proof}
+
+\begin{posledica}\label{psl:lag}
+Naj bo $f\in C\left([a,b]\right)$ odvedljiva na $(a,b)$.
+
+\begin{enumerate}[label=\arabic*)]
+\item Če je $f'(x)=0$ na $(a,b)$, je $f$ konstantna funkcija
+\item $f$ je naraščajoča na $[a,b]$ natanko tedaj, ko je $f'\geq 0$ na $(a,b)$
+\item $f$ je padajoča na $[a,b]$ natanko tedaj, ko je $f'\leq 0$ na $(a,b)$
+\item Če je $f'>0$ na $(a,b)$, je $f$ strogo naraščajoča na $[a,b]$
+\item Če je $f'<0$ na $(a,b)$, je $f$ strogo padajoča na $[a,b]$
+\end{enumerate}
+\end{posledica}
+
+\begin{posledica}
+Naj bo $f\colon(a,b)\to\R$ odvedljiva funkcija in naj bo $c\in(a,b)$ izolirana ničla odvoda $f'$.
+
+\begin{enumerate}[label=\arabic*)]
+\item Če odvod pri prehodu točke $x=c$ od leve proti desni spremeni predznak iz $+$ v $-$, ima $f$ v $c$ lokalni maksimum.
+\item Če odvod pri prehodu točke $x=c$ od leve proti desni spremeni predznak iz $-$ v $+$, ima $f$ v $c$ lokalni minimum.
+\item Če odvod pri prehodu točke $x=c$ ne spremeni predznaka, $c$ ni lokalni ekstrem.
+\end{enumerate}
+\end{posledica}
+
+\begin{opomba}
+Naj bo $f\in C\left([a,b]\right)$ odvedljiva na $(a,b)$.
+
+\begin{enumerate}[label=\arabic*)]
+\item Če je na $(a,a+\delta)$ $f'<0$, ima $f$ v $a$ lokalni maksimum.
+\item Če je na $(a,a+\delta)$ $f'>0$, ima $f$ v $a$ lokalni minimum.
+\item Če je na $(b,b-\delta)$ $f'>0$, ima $f$ v $a$ lokalni maksimum.
+\item Če je na $(b,b-\delta)$ $f'<0$, ima $f$ v $a$ lokalni minimum.
+\end{enumerate}
+\end{opomba}
+
+\newpage
+
+\subsection{Konveksnost in konkavnost}
+
+\begin{definicija}
+Naj bo $f\colon I\to\R$, kjer je $I$ interval. $f$ je \emph{konveksna}\index{Funkcija!Konveksna, konkavna} na $I$, če za vsako trojico števil $a<x<b$ z intervala velja neenakost
+\[
+f(x)\leq f(a)+\frac{f(b)-f(a)}{b-a}(x-a).
+\]
+Ekvivalentno
+\[
+f((1-t)a+tb)\leq (1-t)f(a)+tf(b)
+\]
+za $t\in[0,1]$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f\colon I\to\R$, kjer je $I$ interval. $f$ je \emph{konkavna} na $I$, če za vsako trojico števil $a<x<b$ z intervala velja neenakost
+\[
+f(x)\geq f(a)+\frac{f(b)-f(a)}{b-a}(x-a).
+\]
+Ekvivalentno
+\[
+f((1-t)a+tb)\geq (1-t)f(a)+tf(b)
+\]
+za $t\in[0,1]$.
+\end{definicija}
+
+\begin{opomba}
+Množica $K\subseteq \R^n$ je konveksna, če za vse $\vv{a},\vv{b}\in K$ velja, da je
+\[
+\setb{(1-t)\vv{a}+t\vv{b}}{t\in[0,1]}\subseteq K.
+\]
+\end{opomba}
+
+\begin{opomba}
+$f$ je konveksna na $I$ natanko tedaj, ko je
+\[
+\setb{(x,y)}{x\in I\land y\geq f(x)}
+\]
+konveksna.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $f\colon I\to\R$ funkcija, odvedljiva na $I$. Potem je $f$ konveksna na $I$ natanko tedaj, ko za vse $a,x\in I$ velja
+\[
+f(x)\geq f(a)+f'(a)(x-a).
+\]
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da je $f$ konveksna na $I$. Naj bosta $a,x\in I$. Brez škode za splošnost vzemimo $x>a$. Za $y\in (a,x)$ velja neenakost
+\[
+f(y)\leq f(a)+\frac{f(x)-f(a)}{x-a}(y-a).
+\]
+Tako dobimo
+\[
+\frac{f(y)-f(a)}{y-a}(x-a)\leq f(x)-f(a).
+\]
+Sledi
+\[
+f'(a)(x-a)=\lim_{y\to a}\frac{f(y)-f(a)}{y-a}(x-a)\leq f(x)-f(a).
+\]
+Druga implikacija sledi direktno iz
+\[
+(1-t)f(a)+tf(b)\geq (1-t)g(a)+tg(b)=g(x)=f(x),
+\]
+kjer je $x=(1-t)a+tb$ in $g$ tangenta v $x$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon I\to\R$ funkcija, odvedljiva na $I$. Potem je $f$ konveksna na $I$ natanko tedaj, ko je $f'$ naraščajoča na $I$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $f$ konveksna na $I$ in naj bosta $a,b\in I$ ter $a<b$. Naj bo $k=\frac{f(b)-f(a)}{b-a}$. Potem je za vse $x\in(a,b)$
+\[
+f(x)\leq f(a)+k(x-a)=f(b)+k(x-b).
+\]
+Potem je
+\[
+\frac{f(x)-f(a)}{x-a}\leq k\leq\frac{f(x)-f(b)}{x-b},
+\]
+iz česar s pravimi limitami sledi
+\[
+f'(a)\leq k\leq f'(b).
+\]
+Zdaj predpostavimo, da je odvod naraščajoča funkcija in $a,x\in I$. Privzemimo, da je $a<b$. Po Lagrangu obstaja tak $c\in(a,x)$, da je
+\[
+f'(a)\leq f'(c)=\frac{f(x)-f(a)}{x-a}.
+\]
+To pomeni, da je
+\[
+f(x)\geq f(a)+f'(a)(x-a).
+\]
+Simetrično velja, če je $x<a$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f\colon I\to\R$ funkcija, odvedljiva na $I$. Potem je $f$ konkavna na $I$ natanko tedaj, ko je $f'$ padajoča na $I$.
+\end{posledica}
+
+\begin{posledica}
+Naj bo $f\colon I\to\R$ dvakrat odvedljiva.
+
+\begin{enumerate}[label=\roman*)]
+\item $f$ je konveksna na $I$ natanko tedaj, ko je $f''\geq 0$ na $I$.
+\item $f$ je konkavna na $I$ natanko tedaj, ko je $f''\leq 0$ na $I$.
+\end{enumerate}
+\end{posledica}
+
+\begin{definicija}
+Dvakrat odvedljiva funkcija $f$ na intervalu $I$ je \emph{strogo konveksna}, če je $f''>0$ na $I$. Simetrično je $f$ \emph{strogo konkavna}, če je $f''<0$ na $I$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Prevoj}\index{Prevoj} je točka na grafu funkcije $f$, kjer $f$ preide iz konveksnosti v konkavnost ali obratno.
+\end{definicija}
+
+\begin{posledica}
+Naj bo $f\in C^2(I)$. Če ima graf $f$ prevoj v $(a,f(a))$, je $f''(a)=0$.
+\end{posledica}
+
+\begin{proof}
+V nasprotnem primeru je $f$ v okolici $a$ konveksna ali konkavna.
+\end{proof}
+
+\begin{posledica}
+Naj bo $F$ dvakrat odvedljiva v okolici točke $c\in\R$. Naj bo $c$ stacionarna točka za $f$.
+
+\begin{enumerate}[label=(\roman*)]
+\item Če je $f''(c)>0$, ima $f$ v $c$ strogi lokalni minimum.
+\item Če je $f''(c)<0$, ima $f$ v $c$ strogi lokalni maksimum.
+\end{enumerate}
+\end{posledica}
+
+\obvs
+
+\newpage
+
+\subsection{L'Hôpitalovi izreki}
+
+\begin{izrek}[Posplošeni Lagrangev]\index{Izrek!Posplošeni Lagrangev}
+Naj bosta $f,g\colon[a,b]\to\R$ zvezni funkciji, odvedljivi na $(a,b)$. Naj velja $g'(x)\ne 0$ na $(a,b)$. Tedaj obstaja tak $c\in(a,b)$, da je
+\[
+\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+F(x)=f(x)-f(a)-k(g(x)-g(a)),
+\]
+kjer je $k=\frac{f(b)-f(a)}{g(b)-g(a)}$ (po Rollu namreč $g(a)\ne g(b)$). Potem je $F$ odvedljiva na $(a,b)$ in $F(a)=F(b)=0$, zato lahko uporabimo Rollov izrek, s čemer dobimo ravno želeni $c$.
+\end{proof}
+
+\begin{izrek}[L'Hôpital]\index{Izrek!L'Hôpital}
+Naj bosta $f$ in $g$ odvedljivi funkciji na intervalu $(a,b)$. Naj velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $g(x)\ne 0$ in $g'(x)\ne 0$ na $(a,b)$
+\item $\displaystyle\lim_{x\downarrow a}f(x)=\lim_{x\downarrow a}g(x)=0$
+\end{enumerate}
+Če obstaja limita
+\[
+\lim_{x\downarrow a}\frac{f'(x)}{g'(x)}=B,
+\]
+potem obstaja tudi limita
+\[
+\lim_{x\downarrow a}\frac{f(x)}{g(x)}=A
+\]
+in je $A=B$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $f(a)=g(a)=0$. Potem sta $f$ in $g$ zvezni na $[a,b)$. Za $x\in(a,b)$ so na $[a,x]$ izpolnjeni pogoji posplošenega Lagrangevega izreka, zato obstaja $c_x\in(a,x)$, da je
+\[
+\frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(c_x)}{g'(c_x)}.
+\]
+Po predpostavki obstaja
+\[
+\lim_{x\downarrow a}\frac{f'(x)}{g'(x)},
+\]
+zato obstaja tudi
+\[
+\lim_{x\downarrow a}\frac{f(x)}{g(x)},
+\]
+ki je enaka prejšnji.
+\end{proof}
+
+\begin{izrek}
+Naj bosta $f$ in $g$ odvedljivi na $(a,b)$ in naj bo $g(x)\ne 0$ in $g'(x)\ne 0$ za vse $x\in(a,b)$. Denimo, da je $\displaystyle\lim_{x\downarrow a}g(x)=\pm\infty$. Če obstaja limita
+\[
+\lim_{x\downarrow a}\frac{f'(x)}{g'(x)}=B,
+\]
+potem obstaja tudi limita
+\[
+\lim_{x\downarrow a}\frac{f(x)}{g(x)}=A
+\]
+in je $A=B$.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+\lim_{x\downarrow a}\frac{f'(x)}{g'(x)}=B.
+\]
+Naj bo $\varepsilon>0$. Potem $\exists\delta>0$, da je za vse $x\in(a,a+\delta)$
+\[
+B-\varepsilon<\frac{f'(x)}{g'(x)}<B+\varepsilon.
+\]
+Potem je po posplošenem Lagrangevem izreku
+\[
+\frac{f(x)-f(a+\delta)}{g(x)-g(a+\delta)}=\frac{f'(c_x)}{g'(c_x)}
+\]
+za nek $c_x\in(x,a+\delta)$. To pomeni, da je
+\[
+B-\varepsilon<\frac{\frac{f(x)}{g(x)}-\frac{f(a+\delta)}{g(x)}}{1-\frac{g(a+\delta)}{g(x)}}<B+\varepsilon.
+\]
+Zdaj obstaja tak $\delta_1\leq\delta$, da je $\left|\frac{g(a+\delta)}{g(x)}\right|<1$. Tako je
+\[
+(B-\varepsilon)\left(1-\frac{g(a+\delta)}{g(x)}\right)+\frac{f(a+\delta)}{g(x)}<\frac{f(x)}{g(x)}<(B+\varepsilon)\left(1-\frac{g(a+\delta)}{g(x)}\right)+\frac{f(a+\delta)}{g(x)},
+\]
+zato obstaja tak $\delta_2\leq\delta_1,$ da je
+\[
+B-2\varepsilon<\frac{f(x)}{g(x)}<B+2\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Podobni izreki veljajo za leve in dvostranske limite.
+\end{opomba}
+
+\begin{trditev}
+Naj bosta $f$ in $g$ odvedljivi funkciji na $(A,\infty)$, $g(x)\ne 0$ in $g'(x)\ne 0$  za $A<x<\infty$. Naj bo
+\[
+\lim_{x\to\infty}f(x)=0\quad\text{in}\quad\lim_{x\to\infty}g(x)=0
+\]
+ali
+\[
+\lim_{x\to\infty}f(x)=\infty\quad\text{in}\quad\lim_{x\to\infty}g(x)=\infty.
+\]
+Če obstaja limita
+\[
+\lim_{x\to\infty}\frac{f'(x)}{g'(x)}=B,
+\]
+potem obstaja tudi limita
+\[
+\lim_{x\to\infty}\frac{f(x)}{g(x)}=A
+\]
+in je $A=B$.
+\end{trditev}
+
+\begin{proof}
+Naredimo substitucijo $t=\frac{1}{x}$.
+\end{proof}
+
+\newpage
+
+\subsection{Uporaba odvoda v geometriji}
+
+\subsubsection{Krivulje v ravnini}
+
+\begin{definicija}
+\emph{Pot}\index{Pot} v $\R^2$ je zvezna preslikava
+\[
+\vv{r}\colon t\in I\mapsto\vv{r}(t)=\left(x(t),y(t)\right).
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Tir}\index{Tir}
+ ali \emph{sled} poti je množica točk
+\[
+\Gamma=\vv{r}(I)=\setb{\vv{r}(t)}{t\in I}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Pot $\vv{r}=(x,y)$ je zvezna (odvedljiva), če sta $x$ in $y$ zvezni (odvedljivi).
+\end{definicija}
+
+\begin{definicija}
+Če je $\dot{\vv{r}}(t)=(\dot{x}(t),\dot{y}(t))\ne\vv{0}$, je $\vv{r}$ \emph{regularna parametrizacija gladke krivulje}\index{Regularna parametrizacija} $\Gamma=\vv{r}(I)$.
+\end{definicija}
+
+\begin{opomba}
+Če je $\dot{\vv{r}}(t_0)=\vv{0}$, ima tir te poti lahko v točki $\vv{r}(t_0)$ nekakšno singularnost oziroma negladnost.
+\end{opomba}
+
+\begin{definicija}
+Vektor $\dot{\vv{r}}(t)$ je \emph{tangentni vektor} na krivuljo $\Gamma=\vv{r}(I)$. Vektorska enačba tangente na $\Gamma$ v $\vv{r}(t_0)$ je enaka $T(\lambda)=\vv{r}(0)+\lambda\dot{\vv{r}}(t_0)$. Smerni koeficient tangente dobimo kot
+\[
+k_T=\frac{\dot{y}(t)}{\dot{x}(t)},
+\]
+če je $\dot{x}(t)\ne 0$, če je $\dot{x}(t)=0$, pa je tangenta navpična.
+\end{definicija}
+
+\begin{definicija}
+Točke, v katerih je kateri izmed odvodov komponent enak $0$, so \emph{stacionarne točke}. V takih točkah imata lahko $x$ in $y$ lokalne ekstreme.
+\end{definicija}
+
+\begin{definicija}
+Vektor $\vv{n}=(-\dot{y},\dot{x})$ je \emph{normalni vektor} na krivuljo $\Gamma=\vv{r}(I)$. Vektorska enačba normale na $\Gamma$ v $\vv{r}(t_0)$ je enaka $N(\lambda)=\vv{r}(0)+\lambda\vv{n}(t_0)$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $\vv{r}(t)=\left(X(t),Y(t)\right)$ zvezno odvedljiva pot v $\R^2$ $\vv{r}\colon I\to\R^2$. Naj bo $t_0\in I$ notranja točka $I$ in naj bo $\dot{\vv{r}}(t_0)\ne\vv{0}$. Potem obstaja okolica $U\subseteq I$ točke $t_0$, da lahko množico $\vv{r}(U)\subseteq\R^2$ predstavimo kot graf neke $C^1$ funkcije $f$ na $x$ osi ali kot graf neke $C^1$ funkcije $g$ na $y$ osi.\footnote{Če je $\dot{x}(t_0)\ne 0$, je $\vv{r}(U)=\setb{(x,f(x))}{x\in J_x}$, če je $\dot{y}(t_9)\ne 0$, pa je $\vv{r}(U)=\setb{(g(y),y)}{y\in J_y}$.}
+\end{izrek}
+
+\begin{proof}
+Naj bo $\dot{X}(t_0)\ne 0$. Brez škode za splošnost vzamemo, da je $\dot{x}(t)>0$ v okolici $U$, saj je odvod zvezen. Sledi, da je $X$ strogo naraščajoča, zato je $X$ bijekcija iz $U$ v $J_x=X(U)$. Sledi, da je tudi inverz $\tau$ zvezno odvedljiv. Sledi, da je
+\[
+\vv{r}(U)=\setb{\left(x,Y(\tau(x))\right)}{x\in J_x}.
+\]
+Ker sta $Y$ in $\tau$ zvezno odvedljivi, je tudi njun kompozitum zvezno odvedljiv.
+\end{proof}
+
+\newpage
+
+\section{Integral}
+
+\subsection{Nedoločeni integral}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $I\subseteq\R$ interval in $f\colon I\to\R$ funkcija. Funkcija $F\colon I\to\R$ je \emph{nedoločeni integral}\index{Integral!Nedoločeni} ali \emph{primitivna funkcija} funkcije $f$, če je $F$ na $I$ odvedljiva in velja
+\[
+F'\equiv f.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Naj bo $F$ nedoločeni integral funkcije $f$ na intervalu $I\subseteq\R$. Potem je vsak nedoločeni integral $G$ funkcije $f$ na $I$ oblike
+\[
+G\equiv F+c
+\]
+za neko konstanto $c\in\R$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+(F-G)'\equiv f-f\equiv 0,
+\]
+zato je $F-G$ konstantna po posledici \ref{psl:lag}.
+\end{proof}
+
+Namesto $F'\equiv f$ pišemo
+\[
+\int f(x)\;dx=F(x)+C.
+\]
+
+\begin{opomba}
+V splošnem nedoločeni integral ne obstaja. Primer za funkcijo, ki nima integrala, je
+\[
+f(x)=\begin{cases}
+-1, & x < 0
+\\
+1,  & x \geq 0
+\end{cases}
+\]
+\end{opomba}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c}
+$f(x)$                   & $\displaystyle\int f(x)\;dx$ \\ \hline
+$x^n$, $n\ne -1$         & $\frac{1}{n+1}x^{n+1}+c$     \\
+$\frac{1}{x}$            & $\ln\abs{x}+c$               \\
+$e^x$                    & $e^x+c$                      \\
+$\sin x$                 & $-\cos x+c$                  \\
+$\cos x$                 & $\sin x + c$                 \\
+$\frac{1}{\cos(x)^2}$    & $\tan x+c$                   \\
+$\frac{1}{\sin(x)^2}$    & $-\cot x+c$                  \\
+$\frac{1}{1+x^2}$        & $\arctan x+c$                \\
+$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x+c$                \\
+$\frac{1}{\sqrt{x^2+a}}$ & $\ln(x+\sqrt{x+a})+c$
+\end{tabular}
+\caption{Tabela osnovnih nedoločenih integralov}
+\end{table}
+
+\begin{trditev}
+Naj bosta $f,g\colon I\to\R$ funkciji z nedoločenima integraloma in $\lambda\in\R$. Potem velja
+\begin{align*}
+\int(f+g)(x)\;dx &= \int f(x)\;dx+\int g(x)\;dx
+\\
+\int (\lambda f)(x)\;dx &= \lambda\int f(x)\;dx
+\end{align*}
+\end{trditev}
+
+\obvs
+
+\begin{trditev}[Integriranje po delih -- Per partes]
+Naj bosta $u, v\colon I\to\R$ odvedljivi funkciji. Potem je
+\[
+\int u(x) v'(x)\;dx = u(x) v(x) - \int u'(x) v(x)\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Integriramo $(u\cdot v)'=u'v+uv'$.
+\end{proof}
+
+\begin{trditev}[Vpeljava nove spremenljivke]
+Naj bo $\varphi\colon J_t\to I_x$ odvedljiva, strogo monotona funkcija in $\varphi'(t)\ne 0$. Naj bo
+\[
+G(t) = \int f(\varphi(t))\varphi'(t)\;dt.
+\]
+Potem je
+\[
+\int f(x)\;dx = G(\varphi^{-1}(x)).
+\]
+\end{trditev}
+
+\begin{proof}
+Odvajamo obe strani.
+\end{proof}
+
+\begin{opomba}
+Vsaka racionalna funkcija ima elementaren nedoločen integral. Velja namreč
+\[
+\int\frac{A}{(x-\alpha)^m}\;dx=\begin{cases}
+A\ln\abs{x-\alpha}+C, & m=1 \\
+-\frac{1}{m-1}\cdot\frac{A}{(x-\alpha)^{m-1}}, & m>1
+\end{cases}
+\]
+in
+\[
+\int \frac{Ax+B}{(x^2+ax+b)^2}\;dx = \begin{cases}
+E\ln(x^2+ax+b)+F\arctan\left(\frac{2x+a}{\sqrt{4b-a^2}}\right)+c, & m=1 \\
+\frac{r(x)}{(x^2+ax+b)^{m-1}}+F\arctan\left(\frac{2x+a}{\sqrt{4b-a^2}}\right)+c, & m>1
+\end{cases}
+\]
+kjer je $\deg(r)=2m-3$.
+\end{opomba}
+
+\newpage
+
+\subsection{Določeni integral}
+
+\begin{definicija}
+\emph{Delitev}\index{Interval!Delitev} intervala $[a,b]$ je izbor končno mnogo točk
+\[
+D=\set{x_0,x_1,\dots,x_n}\subseteq[a,b],
+\]
+za katere je
+\[
+a=x_0<x_1<x_2<\dots<x_n=b.
+\]
+Intervale $[x_{j-1},x_j]$ imenujemo \emph{podintervali delitve}, množico $\mathcal{T}=\set{t_1,t_2,\dots,t_n}\subseteq[a,b]$, kjer je $t_j\in[x_{j-1},x_j]$, pa \emph{izbor točk}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Riemannova vsota}\index{Integral!Riemannova vsota} funkcije $f$ pri delitvi $D$ in izboru točk $\mathcal{T}$ je vsota
+\[
+R(f,D,\mathcal{T})=\sum_{j=1}^n f(t_j)(x_j-x_{j-1})=\sum_{j=1}^n f(t_j)\Delta x_j.
+\]
+\end{definicija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f\colon[a,b]\to\R$. $f$ je \emph{integrabilna po Riemannu}\index{Integral!Integrabilnost po Reimannu} na $[a,b]$, če obstaja tako število $I$, da za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsako delitev $D$ intervala $[a,b]$, ki zadošča pogoju $\displaystyle\max_{j}\Delta x_j<\delta$ in za poljuben izbor $\mathcal{T}$ velja
+\[
+\abs{R(f,D,\mathcal{T})-I}<\varepsilon.
+\]
+To označimo kot
+\[
+\lim_{\max \Delta x_j\to 0} R(f,d,\mathcal{T})=I.
+\]
+Številu $I$ pravimo \emph{Riemannov} oziroma \emph{določeni integral}\index{Integral!Riemannov} funkcije $f$ na intervalu $[a,b]$ in ga označimo kot
+\[
+I=\int_a^b f(x)\;dx.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Če je $f$ Riemannovo integrabilna, je omejena.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $f\colon[a,b]\to\R$ omejena in $D$ delitev intervala $[a,b]$. Naj bo 
+\[
+m_j=\inf_{[x_{j-1},x_j]} f(x)\quad\text{in}\quad M_j=\sum_{[x_{j-1},x_j]} f(x).
+\]
+Podobno naj bo
+\[
+m=\inf_{[a,b]} f(x)\quad\text{in}\quad M=\sum_{[a,b]} f(x).
+\]
+\emph{Spodnja Darbouxjeva vsota}\index{Integral!Darbouxjeva vsota} funkcije $f$ za delitev $D$ je
+\[
+s(D)=\sum_{j=1}^n m_j\Delta x_j.
+\]
+Simetrično definiramo \emph{zgornjo Darbouxjevo vsoto} $S(D)$.
+\end{definicija}
+
+\begin{definicija}
+Delitev $D'$ je \emph{nadaljevanje} delitve $D$ ($D'$ je \emph{finejša} od delitve $D$), če je $D\subseteq D'$.
+\end{definicija}
+
+\begin{trditev}
+Če je $D\subseteq D'$, je
+\[
+s(D)\leq s(D')\leq S(D')\leq S(D).
+\]
+\end{trditev}
+
+\begin{proof}
+Po vrsti dodajamo točke.
+\end{proof}
+
+\begin{posledica}
+Če sta $D_1$ in $D_2$ delitvi, je
+\[
+s(D_1)<S(D_2).
+\]
+\end{posledica}
+
+\begin{proof}
+Uporabimo zgornjo trditev na njuni uniji.
+\end{proof}
+
+\begin{definicija}
+\emph{Spodnji Darbouxjev integral}\index{Integral!Darbouxjev} je supremum
+\[
+s=\sup_D s(D).
+\]
+Simetrično je \emph{zgornji Darbouxjev integral}
+\[
+S=\inf_D S(D).
+\]
+\end{definicija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f\colon[a,b]\to\R$ omejena funkcija. $f$ je na $[a,b]$ \emph{integrabilna po Darbouxu}\index{Integral!Integrabilnost po Darbouxu}, če je $S=s$. To število je njen \emph{Darbouxjev integral}.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Omejena funkcija $f\colon[a,b]\to\R$ je integrabilna po Darbouxju natanko tedaj, ko za vse $\varepsilon>0$ obstaja delitev $D$, da je
+\[
+S(D)-s(D)<\varepsilon.
+\]
+\end{trditev}
+
+\begin{proof}
+Če a vse $\varepsilon$ obstaja taka delitev, je
+\[
+S-s\leq S(D)-s(D)<\varepsilon,
+\]
+zato je $S=s$. Če je $f$ integrabilna, pa obstajata taki delitvi $D_1$ in $D_2$, da je
+\[
+s-\frac{\varepsilon}{2}<s(D_1)\leq s=S\leq S(D_2)<S+\frac{\varepsilon}{2},
+\]
+zato njuna unija zadošča pogoju.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon[a,b]\to\R$ omejena. Funkcija $f$ je na $[a,b]$ Riemannovo integrabilna, natanko tedaj, ko je integrabilna po Darbouxju in sta integrala enaka.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da je $f$ integrabilna po Riemannu z integralom $I_R$. Naj bo $\varepsilon>0$. Potem obstaja $\delta>0$, da za vsak $D$, za katerega je $\max\Delta x_j<\delta$ velja
+\[
+\abs{R(f,D,\mathcal{T})-I_R}<\frac{\varepsilon}{3}
+\]
+za vsak $\mathcal{T}$. Zdaj izberemo tak $\mathcal{T}$, da je $f(t_j)$ poljubno blizu $M_j$. Sledi
+\[
+\abs{S(D)-I_R}\leq\frac{\varepsilon}{3}.
+\]
+Podobno sledi za spodnjo Darbouxjevo vsoto, zato je
+\[
+S(D)-s(d)\leq\frac{2\varepsilon}{3}<\varepsilon.
+\]
+Sledi, da je $f$ integrabilna po Darbouxju z enakim integralom.
+
+Predpostavimo, da je $f$ integrabilna po Darbouxju. Naj bo $\varepsilon>0$. Obstaja delitev $D_0$, da je $S(D_0)-s(D_0)<\frac{\varepsilon}{2}$.
+
+\begin{lema*}
+Naj bo $D_0$ delitev $[a,b]$. Naj bo $\varepsilon_0>0$. Potem obstaja tak $\delta>0$, da je za vsako delitev $D$, za katero je $\max\Delta x_j<\delta$, vsota dolžin delilnih intervalov $D$, ki niso vsebovani v nobenem delilnem intervalu $D_0$, pod $\varepsilon_0$.
+\end{lema*}
+
+\begin{proof}
+Teh intervalov je največ $\abs{D_0}$, zato je skupna dolžina navzgor omejena z $\delta\abs{D_0}$, zato lahko vzamemo $\delta=\frac{\varepsilon}{\abs{D_0}}$.
+\end{proof}
+
+Uporabimo zgornjo lemo za $\varepsilon_0=\frac{\varepsilon}{2(M-m)}$. Naj bo $D$ taka delitev, da je $\max\Delta x_j<\delta$. Potem je
+\[
+S(D)-s(D)\leq S(D_0)-s(D_0) + \frac{\varepsilon}{2}.
+\]
+Sledi
+\[
+R(f,D,\mathcal{T})-s(D)<\varepsilon\quad\text{in}\quad S(D)-R(f,D,\mathcal{T})<\varepsilon.
+\]
+Sledi, da je $f$ integrabilna tudi po Riemannu, integrala pa sta enaka.
+\end{proof}
+
+\begin{izrek}
+Vsaka zvezna funkcija $f\colon[a,b]\to\R$ je integrabilna.
+\end{izrek}
+
+\begin{proof}
+Ker je funkcija zvezna na zaprtem intervalu, je enakomerno zvezna. Za $\varepsilon>0$ obstaja tak $\delta$, da za vse $x,y$, za katere je $\abs{x-y}<\delta$, velja
+\[
+\abs{f(x)-f(y)}<\frac{\epsilon}{b-a}.
+\]
+Naj bo $D$ delitev, za katero je $\max\Delta x_j<\delta$. Potem je
+\[
+S(D)-s(D)<(b-a)\cdot\frac{\varepsilon}{b-a}=\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $f\colon[a,b]\to\R$ omejena in zvezna na $(a,b)$. Potem je $f$ integrabilna na $[a,b]$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\varepsilon>0$, $a'=a+\frac{\varepsilon}{3(M-m)}$ in $b'=b-\frac{\varepsilon}{3(M-m)}$, pri čemer je $a'<b'$. Potem obstaja delitev $D'$ intervala $[a',b']$, da je $S(D')-s(D')<\frac{\varepsilon}{3}$. Naj bo $D=D'\cup\set{a,b}$. Potem je
+\[
+S(D)-s(D)\leq S(D')-s(D')+2(M-m)\frac{\varepsilon}{3}<\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon[a,b]\to\R$ monotona. Potem je $f$ integrabilna na $[a,b]$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $f$ nekonstantna naraščajoča funkcija, $D$ pa delitev intervala $[a,b]$. Potem je $M_j=f(x_j)$ in $m_j=f(x_{j-1})$. Velja
+\[
+S(D)-s(D)<\delta(f(b)-f(a)),
+\]
+kjer je $\displaystyle\max_j\Delta x_j<\delta$, zato lahko preprosto izberemo $\delta=\frac{\varepsilon}{f(b)-f(a)}$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $f\colon[a,b]\to\R$ omejena in $c\in(a,b)$. $f$ je integrabilna na $[a,b]$ natanko tedaj, ko je $f$ integrabilna na $[a,c]$ in $[c,b]$ in je
+\[
+\int_a^b f(x)\;dx=\int_a^c f(x)\;dx+\int_c^b f(x)\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $f$ integrabilna na $[a,b]$ in $\varepsilon>0$. Potem obstaja taka delitev $D$, da je $S(D)-s(D)<\varepsilon$. Brez škode za splošnost je $c\in D$. Potem je
+\[
+S(D_1)-s(D_1)\leq S(D_1)-s(D_1)+S(D_2)-s(D_2)=S(D)-s(D)<\varepsilon,
+\]
+kjer je $D_1=D\cap[a,c]$ in $D_2=D\cap[c,b]$. Simetrično velja za $D_2$.
+
+Naj bo $f$ integrabilna na $[a,c]$ in $[c,b]$ in $\varepsilon>0$. Potem obstajata delitvi $D_1$ in $D_2$ intervalov $[a,c]$ in $[c,b]$, za kateri je
+\[
+S(D_1)-s(D_1)<\frac{\varepsilon}{2}\quad\text{in}\quad S(D_2)-s(D_2)<\frac{\varepsilon}{2}.
+\]
+Sledi, da za delitev $D=D_1\cup D_2$ intervala $[a,b]$ velja
+\[
+S(D)-s(D)=S(D_1)-s(D_1)+S(D_2)-s(D_2)<\varepsilon.
+\]
+Za enakost integralov je dovolj opaziti
+\[
+R(f,D,\mathcal{T})=R(f,D_1,\mathcal{T}_1)+R(f,D_2,\mathcal{T}_2).\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $f\colon[a,b]\to\R$ omejena. Naj obstajajo točke $a<c_1<\dots<c_k<b$, da je $f$ zvezna na intervalih $(a,c_1)$, $(c_1,c_2)$, ..., $(c_k,b)$.\footnote{Taki funkciji pravimo \emph{odsekoma zvezna} funkcija.} Potem je $f$ integrabilna na $[a,b]$.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $f\colon[a,b]\to\R$ integrabilna funkcija. Potem definiramo
+\[
+\int_b^a f(x)\;dx=-\int_a^b f(x)\;dx.
+\]
+\end{definicija}
+
+\begin{posledica}
+Naj bodo $a,b,c\in\R$ in $f$ funkcija, ki je na $[\min(a,b,c),\max(a,b,c)]$ integrabilna. Potem je
+\[
+\int_a^b f(x)\;dx=\int_a^c f(x)\;dx+\int_c^b f(x)\;dx.
+\]
+\end{posledica}
+
+\begin{trditev}
+Integrabilne funkcije na $[a,b]$ tvorijo vektorski prostor nar $\R$, določeni integral pa je linearen funkcional na tem prostoru.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $f\colon[a,b]\to\R$ integrabilna. Potem je integrabilna tudi $\abs{f}$ in velja
+\[
+\abs{\int_a^b f(x)\;dx}\leq \int_a^b \abs{f(x)}\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $D$ delitev $[a,b]$ in
+\begin{align*}
+\overline{M}_j&=\sup_{[x_{j-1},x_j]}\abs{f(x)}, &M_j&=\sup_{[x_{j-1},x_j]}f(x), \\
+\overline{m}_j&=\inf_{[x_{j-1},x_j]}\abs{f(x)}, &m_j&=\inf_{[x_{j-1},x_j]}f(x).
+\end{align*}
+Za poljubna $x,y\in[x_{j-1},x_j]$ velja
+\[
+\abs{\abs{f(x)}-\abs{f(y)}}\leq\abs{f(x)-f(y)}\leq M_j-m_j.
+\]
+Sledi
+\[
+\overline{M}_j-\overline{m}_j\leq M_j-m_j,
+\]
+zato je
+\[
+S\left(\abs{f},D\right)-s\left(\abs{f},D\right)\leq S(f,D)-s(f,D),
+\]
+zato je $\abs{f}$ integrabilna.
+
+Neenakost sledi iz trikotniške neenakosti na Riemannovi vsoti.
+\end{proof}
+
+\begin{trditev}
+Če sta $f$ in $g$ integrabilni na $[a,b]$ in je
+\[
+f(x)\leq g(x)
+\]
+na intervalu $[a,b]$, je
+\[
+\int_a^b f(x)\;dx\leq \int_a^b g(x)\;dx.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Naj bo $f$ integrabilna na $[a,b]$. Naj bo
+\[
+m=\inf_{[a,b]} f(x)\quad\text{in}\quad M=\sup_{[a,b]} f(x).
+\]
+Potem je
+\[
+m(b-a)\leq \int_a^b f(x)\;dx\leq M(b-a).
+\]
+\end{posledica}
+
+\obvs
+
+\begin{definicija}
+\emph{Povprečna vrednost} funkcije $f$ na $[a,b]$ je definirana kot
+\[
+\frac{1}{b-a}\int_a^b f(x)\;dx.
+\]
+\end{definicija}
+
+\begin{izrek}[O povprečni vrednosti]\index{Izrek!O povprečni vrednosti}
+Naj bo $f$ zvezna na $[a,b]$. Potem obstaja tak $c\in[a,b]$, da je
+\[
+f(c)=\frac{1}{b-a}\int_a^b f(x)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+M\geq\frac{1}{b-a}\int_a^b f(x)\;dx\geq m.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Osnovni izrek analize]\index{Izrek!Osnovni izrek analize}
+Naj bo $f\colon[a,b]\to\R$ integrabilna funkcija z nedoločenim integralom $F$. Potem je
+\[
+\int_a^b f(x)\;dx=F(b)-F(a)=\eval{F(x)}{a}{b}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $D$ delitev $[a,b]$. Potem je po Lagrangevem izreku
+\[
+F(b)-F(a)=F(x_n)-F(x_{n-1})+\dots+F(x_1)-F(x_0)=f(t_n)\Delta x_n+\dots+f(t_1)\Delta x_1,
+\]
+kar je ravno Riemannova vsota za delitev $D$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon[a,b]\to\R$ integrabilna funkcija. Naj bo
+\[
+F(x)=\int_a^x f(t)\;dt.
+\]
+Tedaj je $F$ zvezna na $[a,b]$. Če je $f$ zvezna v $x\in[a,b]$, je $F$ odvedljiva v $x$ in je $F'(x)=f(x)$.
+\end{izrek}
+
+\begin{proof}
+Ker je $f$ integrabilna, je omejena. Naj bo $M$ število, za katero je $\abs{f(x)}\leq M$ za vse $x\in[a,b]$. Naj bo $x\in[a,b]$. Potem je
+\[
+\abs{F(x+h)-F(x)}=\abs{\int_x^{x+h} f(t)\;dt}\leq\abs{\int_x^{x+h}\abs{f(t)}\;dt}\leq M\cdot\abs{h}.
+\]
+Sledi, da je $F$ zvezna.
+
+Naj bo $f$ zvezna v $x\in[a,b]$. Potem je
+\begin{align*}
+F(x+h)-F(x)&=\int_x^{x+h} f(t)\;dt
+\\
+&=\int_x^{x+h} (f(x)+(f(t)-f(x)))\;dt
+\\
+&=f(x)\cdot h+\int_x^{x+h}(f(t)-f(x))\;dt.
+\end{align*}
+Sledi, da je
+\[
+\lim_{h\to 0}\frac{F(x+h)-F(x)}{h}=f(x)+\lim_{h\to 0}\frac{1}{h}\int_x^{x+h}(f(t)-f(x))\;dt.
+\]
+Za vse $\abs{h}<\delta$ iz definicije zveznosti za nek $\varepsilon>0$ pa je
+\[
+\abs{\frac{1}{h}\int_x^{x+h}(f(t)-f(x))\;dt}\leq\frac{1}{\abs{h}}\abs{\int_x^{x+h}\abs{f(t)-f(x)}\;dt}\leq\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $f\colon[a,b]\to\R$ zvezna. Potem je
+\[
+F(x)=\int_a^x f(t)\;dt
+\]
+njen nedoločeni integral.
+\end{posledica}
+
+\begin{trditev}[Integriranje po delih -- Per partes]
+Naj bosta $u,v\colon[a,b]\to\R$ zvezno odvedljivi. Potem velja
+\[
+\int_a^b u(x)v'(x)\;dx=\eval{u(x)v(x)}{a}{b}-\int_a^b v(x)u'(x)\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Vse funkcije so integrabilne na $[a,b]$. Ker je
+\[
+(uv)'=uv'+u'v,
+\]
+je
+\[
+\eval{uv}{a}{b}=\int_a^bu(x)v'(x)\;dx + \int_a^bu'(x)v(x)\;dx.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}[Vpeljava nove spremenljivke]
+Naj bo $\varphi\colon[\alpha,\beta]\to[m,M]$ zvezno odvedljiva funkcija in $f\colon[m,M]\to\R$ zvezna. Potem je
+\[
+\int_{\varphi(\alpha)}^{\varphi(\beta)} f(x)\;dx = \int_\alpha^\beta f(\varphi(t))\varphi'(t)\;dt.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\int_{\varphi(\alpha)}^{\varphi(\beta)} f(x)\;dx =F(\varphi(\beta))-F(\varphi(\alpha)).
+\]
+Velja pa
+\[
+(F(\varphi(t))'=f(\varphi(t))\varphi'(t),
+\]
+zato je
+\[
+F(\varphi(\beta))-F(\varphi(\alpha))=\int_\alpha^\beta f(\varphi(t))\varphi'(t)\;dt.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon[a,b]\to\R$ zvezna in naj bo $g\colon[a,b]\to[0,\infty)$ zvezno odvedljiva, padajoča funkcija. Potem obstaja tak $c\in[a,b]$, da je
+\[
+\int_a^b f(x)g(x)\;dx=g(a)\int_a^cf(x)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+F(x)=\int_a^x f(t)\;dt.
+\]
+Če je $g\equiv 0$, trditev očitno velja. V nasprotnem primeru pa iščemo tak $c\in[a,b]$, da je
+\[
+F(c)=\frac{1}{g(a)}\int_a^bf(x)g(x)\;dx.
+\]
+Naj bosta $m$ in $M$ ekstrema $F$ na $[a,b]$. Velja $F'\equiv f$ in $F(a)=0$. Sledi, da je
+\[
+\int_a^bf(x)g(x)\;dx=\eval{F(x)g(x)}{a}{b}-\int_a^b F(x)g'(x)\;dx=F(b)g(b)+\int_a^b F(x)(-g'(x))\;dx.
+\]
+Velja pa
+\[
+mg(b)\leq F(b)g(b)\leq Mg(b)\quad\text{in}\quad m(-g'(x))\leq F(x)(-g'(x))\leq M(-g'(x)).
+\]
+Sledi, da je
+\[
+m\int_a^b-g'(x)\;dx\leq \int_a^b F(x)(-g'(x))\;dx\leq M\int_a^b-g'(x)\;dx.
+\]
+Sledi, da je
+\[
+mg(a)\leq \int_a^bf(x)g(x)\;dx\leq Mg(a).\qedhere
+\]
+\end{proof}
+
+\subsection{Posplošeni Riemannov integral}
+
+\begin{definicija}
+Naj bo $f\colon(a,b]\to R$ funkcija z lastnostjo, da je za vse $a'\in(a,b)$ integrabilna na $[a',b]$. \emph{Posplošeni integral}\index{Integral!Posplošeni} $f$ po $[a,b]$ je
+\[
+\lim_{a'\downarrow a}\int_{a'}^b f(x)\;dx=\int_a^b f(x)\;dx,
+\]
+če limita obstaja. Simetrično definiramo posplošeni integral za $f\colon[a,b)$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f\colon[a,b]\setminus\set{c}\to\R$ funkcija, ki je za vse $c'\in(a,c)$ in $c''\in(c,b)$ integrabilna na $[a,c']$ in $[c'',b]$. Potem je
+\[
+\int_a^b f(x)\;dx=\int_a^c f(x)\;dx+\int_c^b f(x)\;dx.
+\]
+\end{definicija}
+
+\begin{opomba}
+Podobno je definirana \emph{Cauchyjeva glavna vrednost}. Za $f\colon[a,b]\setminus\set{c}\to\R$ je definirana kot
+\[
+\int_a^b f(x)\;dx=\lim_{\varepsilon\downarrow 0}\left(\int_a^{c-\varepsilon} f(x)\;dx + \int_{c+\varepsilon}^b f(x)\;dx\right).
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $f\colon[a,b]\to\R$ integrabilna na $[a,b]$ za vse $b>a$. Posplošeni integral $f$ po $[a,\infty)$ je
+\[
+\int_a^\infty f(x)\;dx=\lim_{b\to\infty}\int_a^b f(x)\;dx,
+\]
+če limita obstaja. Simetrično definiramo posplošeni integral na $(-\infty, b]$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f\colon(-\infty,\infty)\to\R$. Posplošeni integral $f$ po realni osi je definiran kot
+\[
+\int_{-\infty}^\infty f(x)\;dx=\int_{-\infty}^0 f(x)\;dx+\int_0^\infty f(x)\;dx,
+\]
+če oba integrala obstajata.
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $f,g\colon[a,b)\to[0,\infty)$ funkciji, ki sta za vse $b'\in(a,b)$ integrabilni na $[a,b']$. Denimo, da je $f\leq g$. Če obstaja
+\[
+\int_a^b g(x)\;dx,
+\]
+obstaja tudi
+\[
+\int_a^b f(x)\;dx
+\]
+in velja
+\[
+\int_a^b f(x)\;dx\leq \int_a^b g(x)\;dx.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $g\colon[a,b]\to[0,\infty)$ zvezna in naj bo $g(a)>0$. Potem
+\[
+\int_a^b \frac{g(x)}{(x-a)^s}\;dx
+\]
+obstaja natanko tedaj, ko je $s<1$.
+\end{trditev}
+
+% Dodaj dokaz ko se ti bo dalo
+
+\begin{trditev}[Cauchyjev pogoj]\index{Izrek!Cauchyjev pogoj konvergence!Funkcije}
+Naj bo $f\colon(b-r,b)\to\R$ funkcija. Limita $\displaystyle\lim_{x\uparrow b} f(x)$ obstaja natanko tedaj, ko za vse $\varepsilon>0$ obstaja tak $\delta>0$, da za vse $x,y\in(b-\delta, b)$ velja
+\[
+\abs{f(x)-f(y)}<\varepsilon.
+\]
+\end{trditev}
+
+\begin{proof}
+Iz obstoja limite očitno sledi Cauchyjev pogoj. Naj bo $(x_n)_{n=1}^\infty$ poljubno zaporedje, ki konvergira k $b$. Sledi, da je $x_i$ Cauchyjevo, zato je tudi $f(x_i)$ Cauchyjevo in ima limito. Limiti poljubnih dveh zaporedij pa sta enaki, saj tudi njuna ">kombinacija"< konvergira k $b$, zato ima limito.
+\end{proof}
+
+\begin{trditev}
+Naj bo $f\colon(a,\infty)\to\R$ funkcija. Limita $\displaystyle\lim_{x\to\infty} f(x)$ obstaja natanko tedaj, ko za vse $\varepsilon>0$ obstaja tak $M>0$, da za vse $x,y>M$ velja
+\[
+\abs{f(x)-f(y)}<\varepsilon.
+\]
+\end{trditev}
+
+\begin{trditev}
+Naj bo $f\colon[a,b)\to\R$ taka funkcija, da za vse $b'\in(a,b)$ integrabilna na $[a,b']$. Če obstaja
+\[
+\int_a^b\abs{f(x)}\;dx,
+\]
+obstaja tudi
+\[
+\int_a^b f(x)\;dx
+\]
+in velja
+\[
+\abs{\int_a^b f(x)\;dx}\leq \int_a^b\abs{f(x)}\;dx.
+\]
+Enako velja za funkcije in njihove integrale na poltraku.
+\end{trditev}
+
+\begin{proof}
+Naj bosta
+\[
+F(x)=\int_a^x f(t)\;dt\quad\text{in}\quad \widetilde{F}(x)=\int_a^x \abs{f(t)}\;dt.
+\]
+Za $x,y\in[a,b]$ velja
+\[
+\abs{F(y)-F(x)}=\abs{\int_x^y f(t)\;dt}\leq\abs{\int_x^y \abs{f(t)}\;dt}=\abs{\widetilde{F}(y)-\widetilde{F}(x)},
+\]
+torej $F$ zadošča Cauchyjevemu pogoju.
+\end{proof}
+
+\begin{opomba}
+Za funkcije, za katere obstaja integral
+\[
+\int_a^\infty \abs{f(x)}\;dx,
+\]
+pravimo, da so \emph{absolutno integrabilne}\index{Integral!Absolutna integrabilnost}.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $g\colon[a,\infty)\to\R$ taka zvezna funkcija, da obstajajo $0<a\leq b$ in $0<m\leq M$, da za vse $x\geq b$ velja
+\[
+m\leq g(x)\leq M.
+\]
+Tedaj
+\[
+\int_a^\infty \frac{g(x)}{x^s}\;dx
+\]
+obstaja natanko tedaj, ko je $s>1$.
+\end{trditev}
+
+\begin{proof}
+Najprej opazimo, da je
+\[
+\int\frac{g(x)}{x^s}\;dx=\int_a^b\frac{g(x)}{x^s}\;dx+\int_b^\infty\frac{g(x)}{x^s}\;dx.
+\]
+Prvi integral na desni strani vedno obstaja, zato je obstoj začetnega integrala ekvivalenten obstoju integrala
+\[
+\int_a^\infty\frac{g(x)}{x^s}\;dx.
+\]
+Za $x\geq b$ velja
+\[
+\frac{m}{x^s}\leq\frac{g(x)}{x^s}\leq \frac{M}{x^s}.
+\]
+Sledi, da integral
+\[
+\int_a^\infty\frac{g(x)}{x^s}\;dx
+\]
+obstaja natanko tedaj, ko obstaja integral
+\[
+\int_b^\infty\frac{dx}{x^s},
+\]
+ta pa obstaja natanko tedaj, ko je $s>1$.
+\end{proof}
+
+\newpage
+
+\subsection{Uporaba integrala v geometriji}
+
+\subsubsection{Ploščina ravninskega lika}
+
+Ploščino množice
+\[
+A=\setb{(x,y)\in\R^2}{x\in[a,b]\land 0\leq y\leq f(x)},
+\]
+kjer je $f$ nenegativna funkcija, lahko izračunamo kot
+\[
+\int_a^b f(x)\;dx.
+\]
+
+\begin{trditev}
+Naj bosta $f,g\colon[a,b]\to\R$ integrabilni funkciji in naj bo $g\leq f$ na $[a,b]$. Potem je ploščina množice
+\[
+A=\setb{(x,y)\in\R^2}{x\in[a,b]\land g(x)\leq y\leq f(x)}
+\]
+enaka
+\[
+\int_a^b\left(f(x)-g(x)\right)\;dx.
+\]
+\end{trditev}
+
+\begin{trditev}
+Naj bo $r\colon[\alpha,\beta]\to[0,\infty)$. Ploščino izseka, podanega z $r$, izračunamo kot
+\[
+P=\frac{1}{2}\int_\alpha^\beta r(\varphi)^2\;d\varphi.
+\]
+\end{trditev}
+
+\subsubsection{Dolžina poti}
+
+Naj bo $\vv{r}\colon[a,b]\to\R^2$ $C^1$ pot in naj bo $\Gamma$ njen tir.
+
+\begin{definicija}
+Naj bo $D$ delitev intervala $[a,b]$. \emph{Dolžina poligonske krivulje}\index{Dolžina!Poligonske krivulje}, definirane s točkami $\setb{\vv{r}(x)}{x\in D}$, je enaka
+\[
+\lambda(D)=\sum_{i=1}^n\abs{\vv{r}\left(t_i\right)-\vv{r}\left(t_{i-1}\right)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $D\subseteq D'$, po trikotniški neenakosti velja
+\[
+\lambda(D)\leq\lambda(D').
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Dolžina poti}\index{Dolžina!Poti} $\Gamma$ je
+\[
+\lambda(\Gamma)=\sup\setb{\lambda(D)}{\text{$D$ je delitev intervala $[a,b]$}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $\lambda(\Gamma)\in\R$, pravimo, da je pot \emph{izmerljiva}\index{Pot!Izmerljiva ali rektifikabilna} ali \emph{rektifikabilna}.
+\end{opomba}
+
+\begin{izrek}
+Naj bosta $\vv{r}\colon[a,b]\to\R^2$ in $\vv{\rho}\colon[\alpha,\beta]\to\R^2$ regularni parametrizaciji poti $\Gamma$. Potem je
+\[
+\int_a^b \abs{\dot{\vv{r}}(t)}\;dt=\int_\alpha^\beta \abs{\dot{\vv{\rho}}(t)}\;dt
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $h\colon[\alpha,\beta]\to[a,b]$ bijekcija. Velja
+% Tu načeloma loči pozitivne in negativne h'
+\begin{align*}
+\lambda_{\vv{\rho}}(\Gamma)&=\int_\alpha^\beta \abs{\dot{\vv{\rho}}(\tau)}\;d\tau
+\\
+&=\int_\alpha^\beta \abs{\Dot{\vv{r}}(h(\tau))\abs{h'(\tau)}}\;d\tau
+\\
+&=\int_a^b\abs{\dot{\vv{r}}(t)}\;dt
+\\
+&=\lambda_{\vv{r}}(\Gamma).
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Če je $\vv{r}$ zvezno odvedljiva pot v $\R^2$, je
+\[
+\lambda(\Gamma)=\int_a^b \abs{\dot{\vv{r}}(t)}\;dt=\int_a^b\sqrt{\dot{x}(t)^2+\dot{y}(t)^2}\;dt.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $D$ delitev intervala $[a,b]$. Potem je po Lagrangevem izreku
+\begin{align*}
+\lambda(D)&=\sum_{i=1}^n\abs{\vv{r}\left(t_i\right)-\vv{r}\left(t_{i-1}\right)}
+\\
+&=\sum_{i=1}^n\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tilde{\tau}_i)}\Delta t_i,
+\end{align*}
+kjer $\tau_i,\tilde{\tau}_i\in(t_{i-1},t_i)$. Vidimo, da je zadnja vsota omejena med Riemannovi vsoti za delitvi % WRONG
+\[
+p_i=\begin{cases}
+\tau_i, & \abs{\dot{\vv{r}}(\tau_i)}\geq \abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+\\
+\tilde{\tau}_i, & \abs{\dot{\vv{r}}(\tau_i)}<\abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+\end{cases}
+\quad\text{in}\quad
+q_i=\begin{cases}
+\tilde{\tau}_i, & \abs{\dot{\vv{r}}(\tau_i)}\geq \abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+\\
+\tau_i, & \abs{\dot{\vv{r}}(\tau_i)}<\abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+\end{cases}\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Dolžino grafa funkcije $f\in C^1([a,b])$ izračunamo kot
+\[
+\lambda=\int_a^b \sqrt{1+f(x)^2}\;dx.
+\]
+\end{posledica}
+
+\begin{posledica}
+Naj bo $r\colon[a,b]\to\R$ krivulja v polarnem zapisu. Njeno dolžino lahko izračunamo kot
+\[
+\lambda=\int_a^b\sqrt{r'(t)^2+r^2(t)}\;dt.
+\]
+\end{posledica}
+
+\obvs
+
+% Poglej si nastavke za integriranje
+
+\subsubsection{Prostornina in površina vrtenine}
+
+\begin{trditev}
+Naj bo $f\colon[a,b]\to[0,\infty)$. Volumen vrtenine, ki jo dobimo, ko graf $f$ zavrtimo okoli $x$-osi, izračunamo kot
+\[
+V=\pi\int_a^b f(x)^2\;dx.
+\]
+\end{trditev}
+
+\begin{trditev}
+Naj bo $f\colon[a,b]\to[0,\infty)$. Površina plašča vrtenine, ki jo dobimo, ko graf $f$ zavrtimo okoli $x$-osi, izračunamo kot
+\[
+2\pi\int_a^b f(x)\;ds=2\pi\int_a^b f(x)\cdot\sqrt{1+f'(x)^2}\;dx.
+\]
+\end{trditev}
+
+% Fizicc
+
+\subsubsection{Težišče homogene plošče}
+
+\begin{trditev}
+Koordinate težišča $T$ plošče $D$, omejene s funkcijama $f$ in $g$ na $[a,b]$, dobimo kot
+\[
+\frac{1}{P(D)}\left(\int_a^b x\left(f(x)-g(x)\right)\;dx, \frac{1}{2}\int_a^b\left(f(x)^2-g(x)^2\right)\;dx\right),
+\]
+kjer je $P(D)$ površina plošče.
+\end{trditev}
+
+\newpage
+
+\section{Vrste}
+
+\epigraph{">A lahk sam vprašam kaj nam to sploh pomaga da damo to pod koren?"<}{---Jan Kamnikar}
+
+\subsection{Številske vrste}
+
+\begin{okvir}
+\begin{definicija}
+Dano je zaporedje števil $(a_n)_{n=1}^\infty$. \emph{Številska vrsta}\index{Vrsta!Številska} zaporedja je vsota
+\[
+\sum_{n=1}^\infty a_n=a_1+a_2+\dots=\lim_{n\to\infty}s_n,
+\]
+kjer so
+\[
+s_n=\sum_{i=1}^n a_i
+\]
+delne vsote zaporedja.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Vrsta $\displaystyle\sum_{n=1}^\infty a_n$ \emph{konvergira}\index{Vrsta!Konvergentna}, če konvergira zaporedje delnih vsot.
+\end{definicija}
+
+\begin{izrek}[Cauchyjev pogoj]\index{Izrek!Cauchyjev pogoj konvergence!Vrste}
+Vrsta
+\[
+\sum_{n=1}^\infty a_n
+\]
+konvergira natanko tedaj, ko za vse $\varepsilon>0$ $\exists n_0\in\N$, da za vse $n\geq n_0$ in $k\in\N$ velja
+\[
+\abs{\sum_{i=1}^k a_{n+i}}<\varepsilon.
+\]
+\end{izrek}
+
+\obvs
+
+\begin{posledica}
+Če vrsta $\displaystyle\sum_{n=1}^\infty a_n$ konvergira, je $\displaystyle\lim_{n\to\infty}a_n=0$.
+\end{posledica}
+
+\obvs
+
+\begin{opomba}
+Vrsta $\displaystyle\sum_{n=1}^\infty a_n$ konvergira natanko tedaj, ko konvergira njen \emph{ostanek} oziroma \emph{rep}\index{Vrsta!Rep}
+\[
+\sum_{n=N}^\infty a_n.
+\]
+\end{opomba}
+
+\begin{trditev}
+Naj vrsti $\displaystyle\sum_{n=1}^\infty a_n$ in $\displaystyle\sum_{n=1}^\infty b_n$. Tedaj konvergirajo vrste
+\[
+\sum_{n=1}^\infty (a_n+b_n),\quad \sum_{n=1}^\infty (a_n-b_n)\quad\text{in}\quad \sum_{n=1}^\infty(ca_n)
+\]
+z vsotami
+\[
+\sum_{n=1}^\infty a_n+\sum_{n=1}^\infty b_n,\quad \sum_{n=1}^\infty a_n-\sum_{n=1}^\infty b_n\quad\text{in}\quad c\sum_{n=1}^\infty a_n.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ vrsta s pozitivnimi členi. Potem vrsta konvergira natanko tedaj, ko je navzgor omejena.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $0\leq a_n\leq b_n$. Če konvergira vrsta $\displaystyle\sum_{n=1}^\infty b_n$, konvergira tudi $\displaystyle\sum_{n=1}^\infty a_n$.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Vrsti $\displaystyle\sum_{n=1}^\infty a_n$ pravimo \emph{minoranta}\index{Vrsta!Minoranta, majoranta}, vrsti $\displaystyle\sum_{n=1}^\infty b_n$ pa \emph{majoranta}.
+\end{opomba}
+
+\begin{izrek}[D'Alembertov kvocientni kriterij]\index{Izrek!D'Alembertov kvocientni kriterij}
+Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ vrsta s pozitivnimi členi in naj bo
+\[
+q_n=\frac{a_{n+1}}{a_n}.
+\]
+
+\begin{enumerate}[label=\arabic*)]
+\item Če obstajata taka $q<1$ in $n_0\in\N$, da je za vse $n\geq n_0$
+\[
+q_n\leq q,
+\]
+potem vrsta konvergira.
+\item Če obstaja tak $n_0$, da je za vse $n\geq n_0$
+\[
+q_n\geq 1,
+\]
+potem vrsta divergira.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Primerjava z geometrijsko vrsto.
+\end{proof}
+
+\begin{posledica}
+Če je $\displaystyle\limsup_{n\to\infty}\frac{a_{n+1}}{a_n}<1$, vrsta konvergira.
+\end{posledica}
+
+\begin{posledica}
+Če je $\displaystyle\liminf_{n\to\infty}\frac{a_{n+1}}{a_n}>1$, vrsta divergira.
+\end{posledica}
+
+\begin{izrek}[Cauhcyjev korenski kriterij]\index{Izrek!Cauchyjev korenski kriterij}
+Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ z nenegativnimi členi in naj bo
+\[
+q_n=\sqrt[n]{a_n}.
+\]
+
+\begin{enumerate}[label=\arabic*)]
+\item Če obstajata taka $q<1$ in $n_0\in\N$, da je za vse $n\geq n_0$
+\[
+q_n\leq q,
+\]
+potem vrsta konvergira.
+\item Če obstaja podzaporedje $(a_{n_j})_{j=1}^\infty$, da za vse $j$ velja
+\[
+q_{n_j}\geq 1,
+\]
+potem vrsta divergira.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Prva točka je ekvivalentna $a_n\leq q^n$. Pri drugi je dovolj dokazati, da vrsta podzaporedja divergira, kar je očitno.
+\end{proof}
+
+\begin{posledica}
+Če je $\displaystyle\limsup_{n\to\infty}\sqrt[n]{a_n}<1$, vrsta konvergira.
+\end{posledica}
+
+\begin{posledica}
+Če je $\displaystyle\limsup_{n\to\infty}\sqrt[n]{a_n}>1$, vrsta divergira.
+\end{posledica}
+
+\begin{izrek}[Cauhcyjev integralski kriterij]\index{Izrek!Cauchyjev integralski kriterij}
+Naj bo $f\colon[1,\infty)\to(0,\infty)$ zvezna padajoča funkcija. Tedaj
+\[
+\sum_{n=1}^\infty f(n)
+\]
+konvergira natanko tedaj, ko obstaja posplošeni integral
+\[
+\int_1^\infty f(x)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Vidimo, da je $\displaystyle\sum_{n=1}^\infty f(n)$ zgornja, $\displaystyle\sum_{n=2}^\infty f(n)$ pa spodnja Darbouxjeva vsota. Sledi, da je
+\[
+\sum_{n=1}^\infty f(n)\leq \int_1^\infty f(x)\;dx\leq \sum_{n=2}^\infty f(n).\qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Raabejev kriterij]\index{Izrek!Raabejev kriterij}
+Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ s pozitivnimi členi in naj bo
+\[
+R_n=n\left(\frac{a_n}{a_{n+1}}-1\right).
+\]
+
+\begin{enumerate}[label=\arabic*)]
+\item Če obstajata taka $r>1$ in $n_0\in\N$, da je za vse $n\geq n_0$
+\[
+1<r\leq R_n,
+\]
+potem vrsta konvergira.
+\item Če obstaja tak $n_0\in\N$, da je za vse $n\geq n_0$
+\[
+R_n\leq 1,
+\]
+potem vrsta divergira.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Najprej dokažimo naslednjo lemo:
+
+\begin{lema*}
+Naj bo $r>1$ in $s\in\Q$, in $1<s<r$. Potem obstaja tak $n_0\in\N$, da za vse $n\geq n_0$ velja
+\[
+\left(1+\frac{1}{n}\right)^s<1+\frac{r}{n}.
+\]
+\end{lema*}
+
+\begin{proof}
+Neenakost je ekvivalentna
+\[
+n\left(\left(1+\frac{r}{n}\right)^q-\left(1+\frac{1}{n}\right)^p\right)>0,
+\]
+kjer je $s=\frac{p}{q}$. To lahko razpišemo kot
+\[
+n\cdot\left(1+q\frac{r}{n}+\dots-1-\frac{p}{n}-\dots\right)>0,
+\]
+oziroma
+\[
+(qr-p)+\frac{1}{n}(\dots)>0,
+\]
+kar očitno velja za dovolj velike $n$.
+\end{proof}
+
+Privzemimo, da za $n\geq n_0$ velja $R_n\geq r>1$. S pomočjo leme dobimo
+\[
+\frac{a_n}{a_{n+1}}\geq 1+\frac{r}{n}>\left(1+\frac{1}{n}\right)^s
+\]
+za vse $n\geq N$. Sledi
+\[
+a_{n+1}\leq \frac{1}{(n+1)^s}n^s a_n,
+\]
+oziroma
+\[
+a_n\leq \frac{c}{n^s},
+\]
+kjer je $a_N=\frac{N}{c^N}$, zato vrsta konvergira.
+
+Drugi pogoj je ekvivalenten
+\[
+\frac{n}{n+1}a_n\leq a_{n+1}.
+\]
+Naj bo $a_{n_0}=\frac{c}{n_0}$. Potem je za vse $n\geq n_0$
+\[
+a_n\geq\frac{c}{n},
+\]
+zato vrsta divergira.
+\end{proof}
+
+\begin{posledica}
+Če je $\displaystyle\liminf_{n\to\infty}R_n>1$, vrsta konvergira.
+\end{posledica}
+
+\begin{posledica}
+Če je $\displaystyle\limsup_{n\to\infty}R_n<1$, vrsta divergira.
+\end{posledica}
+
+\begin{definicija}
+Vrsta $\displaystyle\sum_{n=1}^\infty a_n$ konvergira \emph{absolutno}\index{Vrsta!Absolutna konvergenca}, če konvergira vrsta
+\[
+\sum_{n=1}^\infty \abs{a_n}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če vrsta konvergira absolutno, potem konvergira.
+\end{trditev}
+
+\begin{proof}
+Uporabimo Cauchyjev kriterij in trikotniško neenakost.
+\end{proof}
+
+\begin{definicija}
+Vrsta konvergira \emph{pogojno}\index{Vrsta!Pogojna konvergenca}, če konvergira, a ne konvergira absolutno.
+\end{definicija}
+
+\begin{izrek}[Leibnizev kriterij]\index{Izrek!Leibnizev kriterij}
+Naj bo $(a_n)_{n=1}^\infty$ padajoče zaporedje nenegativnih števil z limito $0$. Potem vrsta
+\[
+\sum_{i=1}^n (-1)^n a_n
+\]
+konvergira.
+\end{izrek}
+
+\begin{proof}
+Zaporedje $s_{2n}$ je padajoče, $s_{2n-1}$ pa naraščajoče. Ker je $s_{2n}\geq s_{2n-1}$, sta obe omejeni, torej imata limiti, ki sta očitno enaki.
+\end{proof}
+
+\newpage
+
+\subsection{Preureditev vrste}
+
+\begin{definicija}
+Naj bo $\displaystyle\sum_{i=1}^\infty a_i$ vrsta in $\pi\colon\N\to\N$ bijekcija. Vrsti
+\[
+\sum_{i=1}^\infty a_{\pi(i)}
+\]
+pravimo \emph{preureditev}\index{Vrsta!Preureditev} vrste. 
+\end{definicija}
+
+\begin{izrek}
+Naj bo $\displaystyle\sum_{i=1}^\infty a_i$ absolutno konvergentna vrsta. Potem konvergira tudi vsaka njena preureditev, vsota vrste pa je neodvisna od bijekcije $\pi$.
+\end{izrek}
+
+\begin{proof}
+Z $s_n$ označimo delno vsoto vrste. Naj bo $\varepsilon>0$. Potem obstaja tak $n_0$, da velja
+\[
+\sum_{i=n_0+1}^\infty\abs{a_i}<\varepsilon.
+\]
+Naj bo $n_1$ tako naravno število, da je
+\[
+\set{1,2,\dots,n_0}\subseteq\set{\pi(1),\dots,\pi(n_1)}.
+\]
+Potem po trikotniški neenakosti za vse $N\geq n_1$ velja
+\[
+\abs{s-\sum_{i=1}^{N}\pi(i)}<\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Riemannov o vrstah]\index{Izrek!Riemannov o vrstah}
+Če je vrsta $\displaystyle\sum_{i=1}^\infty a_i$ pogojno konvergentna, potem za vsak $A\in\R$ obstaja taka bijekcija $\pi\colon\N\to\N$, da je
+\[
+\sum_{i=1}^\infty a_{\pi(i)}=A.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bodo $p_1,p_2,\dots$ nenegativni členi, $q_1,q_2,\dots$ pa negativni členi zaporedja $a_n$ v istem vrstnem redu, kot se pojavijo v zaporedju
+
+Če katera izmed vrst zgornjih zaporedij konvergira, konvergira tudi druga, saj je njuna vsota konvergentna vrsta. Sledilo bi, da je začetna vrsta absolutno konvergentna, kar po predpostavki ni res, zato sta obe divergentni.
+
+Rekurzivno definiramo bijekcijo $\pi$:
+\[
+\pi(n)=\begin{cases}
+k(n), &\text{če je $\displaystyle\sum_{i=1}^{n-1} a_{\pi(i)}\leq A$}
+\\
+m(n), &\text{če je $\displaystyle\sum_{i=1}^{n-1} a_{\pi(i)}>A$}
+\end{cases}
+\]
+kjer je $k(n)$ indeks prvega še neporabljenega nenegativnega člena zaporedja, $m(n)$ pa prvega negativnega člena zaporedja. Ni težko videti, da je $\pi$ bijekcija in
+\[
+\sum_{i=1}^\infty a_{\pi(i)}=A.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Dvojne vrste}
+
+\begin{izrek}[Fubini]\index{Izrek!Fubini}
+Naj bo
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty\abs{a_{i,j}}\right)<\infty.
+\]
+Potem konvergirata tudi vrsti
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right)\quad\text{in}\quad \sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right)
+\]
+in sta enaki.
+\end{izrek}
+
+\begin{proof}
+Najprej poglejmo primer, ko so členi vrste nenegativni. Velja
+\[
+A=\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right)<\infty.
+\]
+Očitno pa je
+\[
+\sum_{j=1}^n\left(\sum_{i=1}^m a_{i,j}\right)=\sum_{i=1}^m\left(\sum_{j=1}^n a_{i,j}\right)\leq A,
+\]
+zato je v limiti
+\[
+B=\sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right)\leq A.
+\]
+Simetrično lahko dobimo $B\geq A$, s čemer je trditev dokazana.
+
+Naj bo zdaj
+\[
+b_{i,j}=\max\{a_{i,j},0\}\quad\text{in}\quad c_{i,j}=\max\{-a_{i,j},0\}.
+\]
+Potem je
+\[
+\infty>\sum_{i=1}^\infty\left(\sum_{j=1}^\infty \left(b_{i,j}+c_{i,j}\right)\right)=\sum_{i=1}^\infty\left(\sum_{j=1}^\infty b_{i,j}\right)+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty c_{i,j}\right).
+\]
+Sledi, da konvergirata obe vrsti, torej konvergira tudi njuna razlika. Ker velja $b_{i,j},c_{i,j}\geq 0$, je tako
+\begin{align*}
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right)&=\sum_{i=1}^\infty\left(\sum_{j=1}^\infty \left(b_{i,j}-c_{i,j}\right)\right)
+\\
+&=\sum_{i=1}^\infty\left(\sum_{j=1}^\infty b_{i,j}\right)-\sum_{i=1}^\infty\left(\sum_{j=1}^\infty c_{i,j}\right)
+\\
+&=\sum_{j=1}^\infty\left(\sum_{i=1}^\infty b_{i,j}\right)-\sum_{j=1}^\infty\left(\sum_{i=1}^\infty c_{i,j}\right)
+\\
+&=\sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Naj bo $\pi\colon\N\to\N\times\N$ bijekcija. Če katera od vrst
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty\abs{a_{i,j}}\right),\quad \sum_{j=1}^\infty\left(\sum_{i=1}^\infty\abs{a_{i,j}}\right),\quad\sum_{i=1}^\infty \abs{a_{\pi(i)}}
+\]
+konvergira, konvergirajo vse in velja, da vrste
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right),\quad \sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right),\quad\text{in}\quad\sum_{i=1}^\infty a_{\pi(i)}
+\]
+konvergirajo in so enake.
+\end{izrek}
+
+% Dokaz v zapiskih, 14. 4. 2021
+
+\newpage
+
+\subsection{Produkt vrst}
+
+\begin{izrek}
+Naj bosta $\displaystyle\sum_{i=1}^\infty a_i$ in $\displaystyle\sum_{i=1}^\infty b_i$ absolutno konvergentni vrsti. Tedaj je tudi
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_ib_j\right)
+\]
+absolutno konvergentna in je enaka produktu vrst.
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty \abs{a_i}\cdot\abs{b_j}\right)=\sum_{i=1}^\infty\left(\abs{a_i}\cdot\sum_{j=1}^\infty \abs{b_j}\right)=\left(\sum_{i=1}^\infty \abs{a_i}\right)\cdot\left(\sum_{j=1}^\infty \abs{b_j}\right).
+\]
+S podobnim izračunom dobimo, da je
+\[
+\sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_i b_j\right)=\left(\sum_{i=1}^\infty a_i\right)\cdot\left(\sum_{j=1}^\infty b_j\right).\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+V zgornjem izreku vrstni red seštevanja členov $a_ib_j$ ni pomembna.
+\end{opomba}
+
+\newpage
+
+\subsection{Funkcijska zaporedja in vrste}
+
+\begin{definicija}
+\emph{Funkcijsko zaporedje}\index{Zaporedje!Funkcijsko} je zaporedje, katerega elementi so funkcije, definirane na isti množici.
+\end{definicija}
+
+\begin{definicija}
+Funkcijsko zaporedje $(f_n)_{n=1}^\infty$ funkcij na $D$ \emph{konvergira po točkah}\index{Zaporedje!Funkcijsko!Konvergenca po točkah} k funkciji $f\colon D\to\R$, če za vsak $x\in D$ velja
+\[
+\lim_{n\to\infty} f_n(x)=f(x).
+\]
+\end{definicija}
+
+\begin{definicija}
+Funkcijsko zaporedje $(f_n)_{n=1}^\infty$ funkcij na $D$ \emph{konvergira enakomerno}\index{Zaporedje!Funkcijsko!Enakomerna konvergenca} na $D$ k funkciji $f\colon D\to\R$, če za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $n>n_0$ in $x\in D$ velja
+\[
+\abs{f(x)-f_n(x)}<\varepsilon.
+\]
+\end{definicija}
+
+\begin{posledica}
+Če funkcijsko zaporedje enakomerno konvergira proti $f$, potem konvergira k $f$ tudi po točkah.
+\end{posledica}
+
+\begin{definicija}
+\emph{Funkcijska vrsta}\index{Vrsta!Funkcijska} je limita delnih vsot funkcijskega zaporedja, oziroma
+\[
+\sum_{i=1}^\infty f_i(x)=\lim_{n\to\infty} s_n(x),
+\]
+kjer je
+\[
+s_n(x)=\left(\sum_{i=1}^n f_i\right)(x).
+\]
+\end{definicija}
+
+\begin{definicija}
+Funkcijska vrsta \emph{konvergira po točkah}\index{Vrsta!Funkcijska!Konvergenca po točkah} k $f$, če zaporedje njenih delnih vsot konvergira po točkah k $f$.
+\end{definicija}
+
+\begin{definicija}
+Funkcijska vrsta \emph{konvergira enakomerno}\index{Vrsta!Funkcijska!Enakomerna konvergenca} na $D$ k $f$, če zaporedje njenih delnih vsot na $D$ enakomerno konvergira k $f$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $D\subseteq\R$ in naj zaporedje $(f_n)_{n=1}^\infty$ konvergira enakomerno na $D$ k $f$, pri čemer $f_n\colon D\to\R$ za vse $n$. Naj bo $a\in D$. Če so vse funkcije $f_n$ zvezne v $a$, je tudi $f$ zvezna v $a$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\varepsilon>0$. Potem za vsak $n$ obstaja $\delta>0$, da za vse $x\in(a-\delta,a+\delta)$ velja
+\[
+\abs{f_n(x)-f_n(a)}\leq \frac{\varepsilon}{3}.
+\]
+Ker funkcijsko zaporedje konvergira enakomerno, je za dovolj velik $n\in\N$
+\[
+\abs{f(x)-f_n(x)}<\frac{\varepsilon}{3}\quad\text{in}\quad\abs{f(a)-f_n(a)}<\frac{\varepsilon}{3}.
+\]
+Po trikotniški neenakosti sledi, da je
+\[
+\abs{f(x)-f(a)}<\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Če funkcijska vrsta zveznih funkcij konvergira enakomerno na $D$, je vsota vrste zvezna funkcija na $D$.
+\end{posledica}
+
+\begin{izrek}[Cauchyjev pogoj]\index{Izrek!Cauchyjev pogoj konvergence!Funkcijskega zaporedja}
+Zaporedje $(f_n)_{n=1}^\infty$ funkcij na $D$ konvergira enakomerno na $D$ natanko tedaj, ko za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $m,n\geq n_0$ in $x\in D$ velja
+\[
+\abs{f_n(x)-f_m(x)}<\varepsilon.
+\]
+\end{izrek}
+
+\begin{proof}
+Če zaporedje enakomerno konvergira, je očitno Cauchyjevo. Če je zaporedje Cauchyjevo, očitno konvergira po točkah. Ker pa za dovolj velike $m$ in $n$ velja
+\[
+\abs{f_n(x)-f_m(x)}<\frac{\varepsilon}{2},
+\]
+je
+\[
+\abs{f_n(x)-f(x)}=\lim_{m\to\infty}\abs{f_n(x)-f_m(x)}\leq\frac{\varepsilon}{2}<\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Funkcijska vrsta $\displaystyle\sum_{i=1}^n f_n$ funkcij na $D$ konvergira enakomerno na $D$ natanko tedaj, ko za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $m\geq n_0$, $k\in\N$ in $x\in D$ velja
+\[
+\abs{\sum_{i=m+1}^{m+k} f_i(x)}<\varepsilon.
+\]
+\end{posledica}
+
+\begin{izrek}[Weierstrassov majorantni test]\index{Izrek!Weierstrassov majorantni test}
+Naj bo $(f_n)_{n=1}^\infty$ zaporedje funkcij na $D$. Če obstajajo taka števila $(a_n)_{n=1}^\infty$, da za vsak $n\in\N$ in $x\in D$ velja
+\[
+\abs{f_n(x)}\leq a_n\quad\text{in}\quad\sum_{i=1}^\infty a_i~\text{konvergira},
+\]
+potem $\displaystyle\sum_{i=1}^\infty f_i$ konvergira enakomerno na $D$.
+\end{izrek}
+
+\begin{proof}
+Za dovolj velike $m$ je po trikotniški neenakosti
+\[
+\abs{\sum_{i=m+1}^{m+k} f_i(x)}\leq\sum_{i=m+1}^{m+k} a_n<\varepsilon,
+\]
+po Cauchyjevem pogoju za konvergenco vrste.
+\end{proof}
+
+\newpage
+
+\subsection{Integriranje in odvajanje funkcijskih zaporedij in vrst}
+
+\begin{izrek}
+Naj bodo $(f_n)_{n=1}^\infty$ zvezne funkcije na $[a,b]$, ki na tem intervalu enakomerno konvergirajo. Potem je
+\[
+\int_a^b \lim_{n\to\infty} f_n(x)\;dx=\lim_{n\to\infty}\int_a^b f_n(x)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $f$ limita zaporedja in $\varepsilon>0$. Potem obstaja tak $n_0\in\N$, da za vse $n\in n_0$ in $x\in [a,b]$ velja
+\[
+\abs{f_n(x)-f(x)}<\frac{\varepsilon}{b-a}.
+\]
+Sledi, da je
+\[
+\abs{\int_a^b f_n(x)\;dx-\int_a^b f(x)\;dx}=\abs{\int_a^b \left(f_n(x)-f(x)\right)\;dx}\leq\int_a^b \abs{f_n(x)-f(x)}\;dx<\varepsilon.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bodo $(f_n)_{n=1}^\infty$ zvezne funkcije na $[a,b]$ in naj njihova funkcijska vrsta konvergira enakomerno na $[a,b]$. Potem je
+\[
+\int_a^b\sum_{n=1}^\infty f_n(x)\;dx=\sum_{n=1}^\infty\int_a^b f_n(x)\;dx.
+\]
+\end{posledica}
+
+\begin{izrek}
+Naj bo $(f_n)_{n=1}^\infty$ funkcijsko zaporedje zvezno odvedljivih funkcij na $[a,b]$, ki po točkah konvergira k funkciji $f$ in naj zaporedje odvodov konvergira enakomerno na $[a,b]$. Potem je $f$ zvezno odvedljiva na $[a,b]$ in velja
+\[
+\lim_{n\to\infty} f_n'=f'.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $(f_n)_{n=1}^\infty$ po točkah konvergira k $f$, $(f_n')_{n=1}^\infty$ pa k $g$. Sledi, da je $g$ zvezna. Za $x\in[a,b]$ po prejšnjem izreku velja
+\[
+\int_a^x g(t)\;dt=\lim_{n\to\infty}\int_a^xf_n'(t)\;dt=\lim_{n\to\infty}\left(f_n(x)-f_n(a)\right)=f(x)-f(a).
+\]
+Z odvajanjem dobimo iskano enačbo.
+\end{proof}
+
+\begin{posledica}
+Naj bodo $(f_n)_{n=1}^\infty$ zvezno odvedljive funkcije na $[a,b]$. Naj funkcijska vrsta $\displaystyle\sum_{n=1}^\infty f_n$ konvergira po točkah in naj vrsta $\displaystyle\sum_{n=1}^\infty f_n'$ konvergira enakomerno na $[a,b]$. Potem je vsota vrste zvezno odvedljiva in velja
+\[
+\left(\sum_{n=1}^\infty f_n\right)'=\sum_{n=1}^\infty f_n'.
+\]
+\end{posledica}
+
+\newpage
+
+\subsection{Potenčne vrste}
+
+\begin{definicija}
+\emph{Potenčna vrsta}\index{Vrsta!Potenčna} s središčem v $a$ je funkcijska vrsta oblike
+\[
+\sum_{n=0}^\infty a_n(x-a)^n.
+\]
+\end{definicija}
+
+\begin{izrek}[O konvergenčnem polmeru]\index{Izrek!O konvergenčnem polmeru}
+Naj bo $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$ potenčna vrsta. Potem obstaja tak $R\in[0,\infty]$,\footnote{Takemu $R$ pravimo \emph{konvergenčni polmer}\index{Vrsta!Potenčna!Konvergenčni polmer} te potenčne vrste.} da vrsta absolutno konvergira za vsak $x$, kjer je $\abs{x-a}<R$ in divergira za vsak $x$, za katerega je $\abs{x-a}>R$. Za vsak $0\leq r<R$ vrsta konvergira enakomerno na $[a-r,a+r]$.
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost vzemimo $a=0$. Denimo, da vrsta konvergira za $x_0\ne 0$ in naj bo $0\leq r<\abs{x_0}$.
+
+Obstaja tak $M$, da za vse $n$ velja $\abs{a_nx_0^n}\leq M$. Naj bo $x\in[-r,r]$. Potem je
+\[
+\abs{a_nx^n}\leq\abs{a_n\cdot x_0^n}\cdot\left(\frac{r}{\abs{x_0}}\right)^n\leq M\cdot\left(\frac{r}{\abs{x_0}}\right)^n.
+\]
+Sledi, da je vrsta
+\[
+\sum_{n=0}^\infty M\cdot\left(\frac{r}{\abs{x_0}}\right)^n
+\]
+majoranta za začetno vrsto na $[-r,r]$, zato vrsta na tem intervalu konvergira absolutno in enakomerno.
+
+Zdaj lahko preprosto izberemo
+\[
+R=\sup\setb{\abs{x_0}}{\sum_{n=0}^\infty a_nx^n~\text{konvergira v}~x_0}.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Vsota potenčne vrste s konvergenčnim polmerom $R>0$ je zvezna funkcija na intervalu $(a-R,a+R)$.
+\end{posledica}
+
+\begin{izrek}[Cauchy-Hadamardova formula]\index{Izrek!Cauchy-Hadamarnova formul}
+Naj bo $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$ potenčna vrsta. Tedaj je
+\[
+\frac{1}{R}=\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}},
+\]
+kjer je $R$ konvergenčni polmer vrste.
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost vzemimo $a=0$. Uporabimo korenski kriterij. Vrsta konvergira, ko je
+\[
+\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}\abs{x}^n}<1,
+\]
+kar velja za vse $x\in(-R,R)$. Vrsta pa divergira, ko je
+\[
+\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}\abs{x}^n}>1,
+\]
+kar pa velja za $x\not\in[-R,R]$.
+\end{proof}
+
+\begin{trditev}
+Naj bodo $a_n\ne 0$ za vse $n\in\N_0$. Za konvergenčni polmer potenčne vrste $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$ velja
+\[
+\frac{1}{R}=\lim_{n\to\infty}\frac{\abs{a_{n+1}}}{\abs{a_n}},
+\]
+če obstaja posplošena limita.
+\end{trditev}
+
+\begin{proof}
+Brez škode za splošnost vzemimo $a=0$. Uporabimo kvocientni kriterij. Velja
+\[
+\lim_{n\to\infty}\frac{\abs{a_{n+1}}\cdot\abs{x}^{n+1}}{\abs{a_n}\cdot\abs{x}^n}=\abs{x}\lim\frac{\abs{a_{n+1}}}{\abs{a_n}}.
+\]
+Zaključimo s podobnim sklepom kot pri prejšnjem izreku.
+\end{proof}
+
+\begin{trditev}
+Naj bo $R$ konvergenčni polmer vrste $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$. Tedaj je $R$ tudi konvergenčni polmer vrst
+\[
+\sum_{n=0}^\infty n\cdot a_n(x-a)^{n-1}\quad\text{in}\quad \sum_{n=0}^\infty \frac{a_n}{n+1}(x-a)^{n+1}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\limsup_{n\to\infty}\sqrt[n-1]{n\cdot \abs{a_n}}=\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}}.
+\]
+Podobno je
+\[
+\limsup_{n\to\infty}\sqrt[n+1]{\frac{\abs{a_n}}{n+1}}=\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}}.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $R$ konvergenčni polmer vrste $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$. Tedaj za $\abs{x-a}<R$ velja
+\[
+\left(\sum_{n=0}^\infty a_n(x-a)^n\right)'=\sum_{n=1}^\infty a_nn\cdot (x-a)^{n-1}
+\]
+in
+\[
+\int_a^x\left(\sum_{n=0}^\infty a_n(t-a)^n\right)\;dt=\sum_{n=0}^\infty\frac{a_n}{n+1}(x-a)^{n+1}.
+\]
+\end{posledica}
+
+\begin{posledica}
+Potenčna vrsta s konvergenčnim polmerom $R$ je gladka na $(a-R,a+R)$.
+\end{posledica}
+
+\newpage
+
+\subsection{Taylorjeva vrsta}
+
+\begin{definicija}
+Naj bo funkcija $f$, definirana v okolici točke $a$, v točki $a$ $n$-krat odvedljiva. Polinom
+\[
+T_n(x)=\sum_{i=0}^n \frac{f^{(i)}(a)}{i!}
+\]
+imenujemo $n$-ti \emph{Taylorjev polinom}\index{Taylorjev polinom}.
+\end{definicija}
+
+\begin{izrek}[Taylor]\index{Izrek!Taylor}
+Naj bo $f$ $(N+1)$-krat odvedljiva funkcija na odprtem intervalu $I$. Naj bo $a\in I$. Tedaj za vse $n\in\set{0,1,\dots,N}$, $x\in I$ in $p\in\N$ obstaja taka točka $\xi$ med $a$ in $x$, da velja
+\[
+R_n(x)=\frac{f^{(n+1)}(\xi)}{p\cdot n!}(x-a)^p(x-\xi)^{n-p+1},
+\]
+kjer je $R_n=f-T_n$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $b\in I$ in
+\[
+F(x)=\sum_{i=0}^n\frac{f^{(i)}(x)}{i!}(b-x)+\left(\frac{b-x}{b-a}\right)^p R_n(b).
+\]
+Vidimo, da je $F$ odvedljiva na $I$. Ker je $F(b)=f(b)$ in
+\[
+F(a)=T_n(b)+R_n(b)=f(b),
+\]
+po Lagrangevem izreku obstaja tak $\xi$ med $a$ in $b$, da je $F'(\xi)=0$. Velja pa
+\[
+F'(x)=\frac{f^{(n+1)}(x)}{n!}(b-x)^n-p\frac{(b-x)^{p-1}}{(b-a)^p}R_n(b),
+\]
+zato je
+\[
+R_n(b)=\frac{f^{(n+1)}(\xi)}{p\cdot n!}(b-a)^p(b-\xi)^{n-p+1}.\qedhere
+\]
+\end{proof}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $f\in C^\infty$ v okolici točke $a$. Vrsto
+\[
+T(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n
+\]
+imenujemo \emph{Taylorjeva vrsta}\index{Vrsta!Taylorjeva} funkcije $f$ v okolici točke $a$.
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}[Borelov izrek]\index{Izrek!Borelov}
+Za vsako zaporedje realnih števil $(a_n)_{n=1}^\infty$ obstaja taka funkcija $f\in C^\infty$, da za vsak $n$ velja
+\[
+a_n=\frac{f^{(n)}(0)}{n!}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Za vsak $x$ velja
+\[
+e^x=\sum_{n=0}^\infty\frac{x^n}{n!}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+R_n(x)=\frac{e^{\xi}}{(n+1)!}x^{n+1}<\frac{\max(1,e^x)}{(n+1)!}x^{n+1},
+\]
+kar konvergira k $0$, saj fakulteta narašča bistveno hitreje kot eksponentna funkcija.
+\end{proof}
+
+\begin{posledica}
+Za vsak $x$ velja
+\[
+\sinh(x)=\sum_{n=0}^\infty\frac{x^{2n+1}}{(2n+1)!}\quad\text{in}\quad\cosh(x)=\sum_{n=0}^\infty\frac{x^{2n}}{(2n)!}.
+\]
+\end{posledica}
+
+\begin{posledica}
+Število $e$ je iracionalno.
+\end{posledica}
+
+\begin{proof}
+Predpostavimo, da je $e=\frac{p}{q}$. Potem je
+\[
+x=q!\cdot\left(e-\sum_{n=0}^q\frac{1}{n!}\right)=p\cdot(q-1)!-\sum_{n=0}^q\frac{q!}{n!}\in\Z.
+\]
+Velja pa
+\[
+x=q!\cdot R_q(1)=q!\cdot\frac{e^\xi}{(q+1)!}<\frac{3}{q+1}\leq 1,
+\]
+kar je seveda protislovje, saj je očitno $x>0$.
+\end{proof}
+
+\begin{trditev}
+Za vsak $x$ velja
+\[
+\sin x=\sum_{n=0}^\infty(-1)^n\frac{x^{2n+1}}{(2n+1)!}\quad\text{in}\quad\cos x=\sum_{n=0}^\infty(-1)^n\frac{x^{2n}}{(2n)!}.
+\]
+\end{trditev}
+
+\begin{proof}
+Za $\sin$ velja
+\[
+R_n(x)\leq\frac{1}{(n+1)!}\cdot\abs{x}^{n+1},
+\]
+kar konvergira k $0$. Podobna ocena velja za $\cos$.
+\end{proof}
+
+\begin{posledica}[Eulerjeva formula]\index{Izrek!Eulerjeva formula}
+Velja
+\[
+e^{i\pi}+1=0.
+\]
+\end{posledica}
+
+\begin{opomba}
+Velja
+\[
+\sinh(ix)=\sin(ix),\quad \sin(ix)=i\sinh(x),\quad \cosh(ix)=\cos(x)\quad\text{in}\quad \cos(ix)=\cosh(x).
+\]
+\end{opomba}
+
+\begin{trditev}
+Za $x\in(-1,1]$ velja
+\[
+\ln(1+x)=\sum_{n=1}^\infty (-1)^{n-1}\frac{x^n}{n}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+R_n(x)=\frac{f^{(n+1)}(\theta x)}{(n+1)!}x^n=\frac{(-1)^n}{n+1}\cdot\frac{1}{(1+\theta x)^{n+1}}x^n,
+\]
+kar za $0<x\leq 1$ konvergira k $0$, saj je $1+\theta x>1$. Za $x<0$ pa pri $p=1$ dobimo
+\[
+R_n(x)=\frac{f^{(n+1)}(\theta x)}{n!}(1-\theta)^n x^{n+1}=\frac{(-1)^n}{(1+\theta x)^{n+1}}(1-\theta)^n x^{n+1},
+\]
+kar je po absolutni vrednosti manjše od
+\[
+\frac{\abs{x}^{n+1}}{1+x},
+\]
+kar prav tako konvergira proti $0$.
+\end{proof}
+
+\begin{opomba}
+Gladke funkcije, ki so v okolici vsake točke, kjer so definirane, enake vsoti konvergentnih potenčnih vrst, imenujemo \emph{analitične}\index{Funkcija!Analitična} funkcije.
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+(1+x)^\alpha=\sum_{n=0}^\infty\binom{\alpha}{n}x^n,
+\]
+kjer je 
+\[
+\binom{\alpha}{k}=\frac{1}{k!}\cdot\prod_{i=0}^{k-1}(\alpha-i).
+\]
+\end{trditev}
+
+\begin{proof}
+Za $0\leq x<1$ pri $p=n+1$ velja
+\[
+R_n(x)=\frac{f^{(n+1)}(\theta x)}{(n+1)!}x^{n+1}=\binom{\alpha}{n+1}(1+\theta x)^{\alpha-n-1}x^{n+1},
+\]
+kar je po absolutni vrednosti manjše od
+\[
+\max\set{1,2^\alpha}\cdot\abs{\binom{\alpha}{n+1}}\cdot x^{n+1},
+\]
+kar pa konvvergira k $0$, saj je $\displaystyle\lim_{k\to\infty}\frac{\abs{\alpha-k+1}}{k}=1$. Za $-1<x<0$ pa pri $p=1$ dobimo
+\[
+R_n(x)=(n+1)\binom{\alpha}{n+1}(1+\theta x)^{\alpha-n-1}(1.\theta)^nx^{n+1},
+\]
+kar je po absolutni vrednosti manjše od
+\[
+(n+1)\max\set{1,(1+x)^\alpha}\cdot\abs{\binom{\alpha}{n+1}}\cdot\frac{\abs{x}^{n+1}}{1+x},
+\]
+kar prav tako konvergira k $0$.
+\end{proof}
+
+\newpage
+\printindex
+
+\end{document}

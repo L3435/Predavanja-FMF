@@ -1,0 +1,329 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{FMF}
+
+\newcommand{\naslov}{Proseminar B}
+
+\makeindex
+
+\begin{document}
+
+\renewcommand{\headheight}{20pt}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Uvod}
+\addcontentsline{toc}{section}{Uvod}
+\markboth{Uvod}{}
+
+%V tem dokumenti so zbrani moji zapiski s predavanj predmeta Algebra 1 v letu 2020/21. Predavatelj v tem letu je bil prof.~dr.~Primož Moravec.
+%
+%Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem ga označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
+%
+%Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravki so vselej dobrodošli.
+
+\newpage
+
+\section{Modularna aritmetika}
+
+\subsection{Praštevila}
+
+\begin{okvir}
+\begin{definicija}
+$p\in\N$ je \emph{praštevilo}\index{Praštevilo}, če je $p\ne 1$ in sta edina delitelja $p$ enaka $1$ in $p$.
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}[Osnovni izrek aritmetike]\index{Izrek!Osnovni aritmetike}
+Vsako naravno število $n$ lahko na enoličen način do vrstnega reda natančno zapišemo kot
+\[
+n=\prod_{i=1}^r p_{i}^{k_i},
+\]
+kjer so $p_i\in\P$ različna praštevila.
+\end{izrek}
+
+\begin{proof}
+Induktivno lahko razcepimo vsako naravno število. Če ima neko število dva razcepa, lahko pokrajšamo vse skupne faktorje, nato pa nam na eni strani ostane neko praštevilo, ki ne deli druge strani, kar je seveda protislovje.
+\end{proof}
+
+\begin{izrek}
+Množica $\P$ je neskončna.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo nasprotno. Potem
+\[
+P=\prod_{p\in\P} p + 1
+\]
+nima nobenega delitelja iz $\P$, kar je seveda protislovje.
+\end{proof}
+
+\newpage
+
+\subsection{Teorija grup}
+
+\begin{definicija}
+$(G,\circ)$ je \emph{grupa}\index{Grupa}, če:
+
+\begin{enumerate}
+\item ima enoto: $\exists e\in G~\forall a\in G\colon a\circ e=e\circ a=a$
+\item vsak element ima inverz: $\forall a\in G~\exists a^{-1}\in G\colon a\circ a^{-1}=a^{-1}\circ a=e$
+\item $\circ$ je asociativna
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Za $a\in G$ rečemo, da je \emph{končnega reda}, če $\exists m\in\N\colon a^m=e$. Najmanjšemu takemu $m$ pravimo \emph{red elementa}\index{Grupa!Red}:
+\[
+\abs{a}=\min\set{m\in\N\mid a^m=e}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če je $\abs{a}=r\in\N$ in je $a^m=e$, $r\mid m$.
+\end{trditev}
+
+\begin{proof}
+Če je $a^m=e$, je tudi  $a^{m\bmod r}=e$, kar je protislovje, če $r\nmid m$.
+\end{proof}
+
+\begin{izrek}[Lagrange]\index{Izrek!Lagrangev}
+Naj bo $H$ podgrupa končne grupe $G$. Potem
+\[
+\abs{H}\mid\abs{G}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $A_x=\set{xy\mid y\in H}$. Očitno je $A$ particija $G$ na množice z močjo $\abs{H}$.
+\end{proof}
+
+\begin{trditev}
+Če je $G$ končna grupa, je vsak $a\in G$ končnega reda in velja
+\[
+\abs{a}\mid\abs{G}.
+\]
+\end{trditev}
+
+\begin{proof}
+Očitno obstajata $k<l$, da je $a^k=a^l$, saj je $G$ končna. Potem je
+\[
+e=a^k\circ a^{-k}=a^l\circ a^{-k}=a^{l-k}.
+\]
+Naj bo $\abs{a}=r$ in $A_a=\set{e,a,\dots,a^{r-1}}$. $A$ je podgrupa $G$, zato smo končali po Lagrangu.
+\end{proof}
+
+\begin{trditev}
+Če je $(K,+,\cdot)$ kolobar z enico, je $K'=\set{x\in K\mid \exists y\in K\colon xy=yx=1}$ grupa.
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Primes again}
+
+\begin{izrek}
+Množica $\P$ je neskončna.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\hat{p}=2^p-1$ (Mersenovo število). Naj $q\mid \hat{p}$ za $p,q\in\P$. Potem je $p$ red $2$ po modulu $q$, zato $p\mid q-1$, torej je $q>p$.
+\end{proof}
+
+\begin{trditev}
+Različni Fermatovi števili $F_n=2^{2^n}$ sta si tuji.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\prod_{k=0}^{n-1} F_k=F_n-2.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Porazdelitev praštevil}
+
+Za $x\in\R$ definiramo
+\[
+\pi(x)=\abs{\set{p\in\P\mid p\leq x}}.
+\]
+
+Definirajmo $\displaystyle\log x=\int_1^x \frac{1}{t}\;dt$. Sledi, da je
+\[
+\log x\leq \sum_{i=1}^{\floor{x}}\frac{1}{i}\leq\prod_{\substack{p\in\P \\ p\leq n}}\frac{p}{p-1}\leq\pi(x)+1,
+\]
+saj je $p_i\geq i+1$.
+
+Izkaže se, da tudi $\displaystyle\sum_{p\in\P}\frac{1}{p}$ divergira.
+
+% Too lazy to write proof
+
+\begin{definicija}
+Prašteviloma $p$ in $p+2$ pravimo \emph{praštevilska dvojčka}.
+\end{definicija}
+
+\begin{izrek}[Wilson]\index{Izrek!Wilson}
+Naravno število $p>1$ je praštevilo natanko tedaj, ko je
+\[
+(p-1)!+1\equiv 0\pmod{p}.
+\]
+\end{izrek}
+
+\begin{proof}
+Če je $p$ praštevilo, lahko vsa manjša števila razen $1$ in $p-1$ združimo v inverzne pare, saj iz $x^2\equiv 1\pmod{p}$ sledi $x\equiv\pm 1\pmod{p}$. Sledi, da je
+\[
+(p-1)!+1\equiv 1\cdot 1^{\frac{p-3}{2}}\cdot -1+1\equiv 0\pmod{p}.
+\]
+V nasprotnem primeru lahko $p$ zapišemo kot $a\cdot b$, kjer je $1<a<b<p$ z izjemo, ko je $p$ kvadrat praštevila. Sledi
+\[
+(p-1)!+1\equiv 1\pmod{a},
+\]
+zato $a\nmid (p-1)!+1$.
+\end{proof}
+
+\begin{izrek}
+Števili $m$ in $m+2$ sta praštevilska dvojčka natanko tedaj, ko je
+\[
+4((m-1)!+1)+m\equiv 0\pmod{m(m+2)}.
+\]
+\end{izrek}
+
+% Boring stuff
+
+\newpage
+
+\subsection{Porazdelitev praštevil}
+
+\begin{izrek}
+Velja
+\[
+\lim_{x\to\infty}\frac{\pi(x)}{\frac{x}{\log{x}}}=1.
+\]
+\end{izrek}
+
+\begin{definicija}
+Naj bosta $f,g\colon[0,\infty)\to\R$. Oznaka
+\[
+f=\Theta(g)
+\]
+pomeni, da obstajata taki konstanti $c,d>0$, da je
+\[
+cg(x)\leq f(x)\leq dg(x)
+\]
+za velike $x$.
+
+Oznaka
+\[
+f=\Omega(g)
+\]
+pomeni, da obstaja taka konstanta $c>0$, da je
+\[
+cg(x)\leq f(x)
+\]
+za velike $x$.
+\end{definicija}
+
+\begin{izrek}[Čebišev]
+Velja
+\[
+\pi(x)=\Theta\left(\frac{x}{\log{x}}\right)
+\]
+\end{izrek}
+
+\begin{lema}
+Velja
+\[
+\binom{2m}{m}\geq\frac{2^{2m}}{2m}\quad\text{in}\quad\binom{2m+1}{m}<2^{2m}.
+\]
+\end{lema}
+
+\begin{definicija}
+Za $n\in\N$ in $p\in\P$ označimo
+\[
+\nu_p(n)=\max\set{k\mid p^k\mid n}.
+\]
+\end{definicija}
+
+\begin{lema}
+Velja
+\[
+\nu_p(n!)=\sum_{k\in\N}\floor{\frac{n}{p^k}}.
+\]
+\end{lema}
+
+\obvs
+
+\begin{izrek}
+Za vsa naravna števila $n\geq 2$ velja
+\[
+\pi(n)\geq\left(\frac{\log 2}{2}\right)\frac{n}{\log n}.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+\nu_p\binom{2m}{m}=\nu_p((2m)!)-2\nu_p(m!)=\sum_{k\geq 1}\left(\floor{\frac{2m}{p^k}}-2\floor{\frac{m}{p^k}}\right).
+\]
+Seveda pa je
+\[
+\sum_{k\geq 1}\left(\floor{\frac{2m}{p^k}}-2\floor{\frac{m}{p^k}}\right)\leq\frac{\log(2m)}{\log p},
+\]
+saj so vsi členi največ 1, za $k>\frac{\log(2m)}{\log p}$ pa so vsi enaki 0. Velja pa
+\begin{align*}
+\pi(2m)\log(2m)&=\sum_{p\leq 2m}\frac{\log(2m)}{\log p}\cdot\log p
+\\
+&\geq\sum_{p\leq 2m}\nu_p\binom{2m}{m}\log p
+\\
+&=\log\binom{2m}{m}
+\\
+&\geq \log\left(\frac{2^{2m}}{2m}\right)
+\\
+&\geq m\log 2.
+\end{align*}
+Sledi
+\[
+\pi(2m)\geq \frac{m\log 2}{\log 2m}=\frac{\log 2}{2}\cdot\frac{2m}{\log 2m}.
+\]
+Ker je $\pi(2m)=\pi(2m-1)$ in je $\frac{x}{\log x}$ naraščajoča, smo končali.
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+\pi(x)=\Omega\left(\frac{x}{\log x}\right).
+\]
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+\pi(x)=\pi(n)\geq\left(\frac{\log 2}{2}\right)\frac{n}{\log n}\geq\left(\frac{\log 2}{2}\right)\frac{x}{\log x}-\frac{\log 2}{2\log x},
+\]
+zato vzamemo $c=\frac{\log 2}{2}-\varepsilon$.
+\end{proof}
+
+%----Eyy theorem go brrrrr----
+
+\begin{izrek}
+Za $x\geq 1$ je
+\[
+\theta(x)<2\log 2\cdot x.
+\]
+\end{izrek}
+
+
+
+\newpage
+\printindex
+
+\end{document}

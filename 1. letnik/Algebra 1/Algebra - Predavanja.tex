@@ -1,0 +1,3725 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{FMF}
+
+\newcommand{\naslov}{Algebra 1}
+
+\makeindex
+
+\begin{document}
+
+\renewcommand{\headheight}{20pt}
+\renewcommand{\arraystretch}{1}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Uvod}
+\addcontentsline{toc}{section}{Uvod}
+\markboth{Uvod}{}
+
+V tem dokumenti so zbrani moji zapiski s predavanj predmeta Algebra 1 v letu 2020/21. Predavatelj v tem letu je bil prof.~dr.~Primož Moravec.
+
+Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem ga označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
+
+Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravki so vselej dobrodošli.
+
+\newpage
+
+\section{Vektorji v prostoru}
+\subsection{Krajevni vektorji}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Prostor} je kartezični produkt
+\[
+\R^3=\R\times\R\times\R
+=\set{(x, y, z)\mid x,y,z\in\R}
+=\set{
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+\colon x,y,z\in\R}.
+\]
+\end{definicija}
+\end{okvir}
+
+Vsaki točki $T(x,y,z)$ lahko priredimo usmerjeno daljico, ki se začne v $O$ in konča v tej točki. Tej daljici pravimo \emph{krajevni vektor}\index{Krajevni vektor} točke $T$.
+
+Krajevni vektor zapisujemo s komponentami v obliki
+\[
+\vv{r}=
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+\quad\text{ali}\quad
+\vv{r}=(x,y,z).
+\]
+Tako lahko opišemo poljuben vektor $\vv{AB}$, kjer sta $A(x_1,y_1,z_1)$ in $B(x_2,y_2,z_2)$ točki v prostoru na naslednji način:
+\[
+\vv{AB}=
+\begin{bmatrix}
+x_2-x_1 \\
+y_2-y_1 \\
+z_2-z_1
+\end{bmatrix}
+\]
+
+\newpage
+
+\subsection{Računanje z vektorji}
+
+\begin{definicija}
+Za vektorja $\vv{a}=(x_1,y_1,z_1)$ in $\vv{b}=(x_2,y_2,z_2)$  je njuna vsota vektor, pri čemer je
+\[
+\vv{a}+\vv{b}=
+\begin{bmatrix}
+x_1+x_2 \\
+y_1+y_2 \\
+z_1+z_2
+\end{bmatrix}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Za vektor $\vv{a}=(x_1,y_1,z_1)$ in $\lambda\in\R$ je njun produkt vektor, pri čemer je
+\[\lambda\vv{a}=
+\begin{bmatrix}
+\lambda x \\
+\lambda y \\
+\lambda z
+\end{bmatrix}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Ničelni vektor}\index{Ničelni vektor} je vektor, ki ga označujemo z $\vv{0}=(0,0,0).$
+\end{definicija}
+
+\begin{definicija}
+\emph{Nasprotni vektor}\index{Nasprotni vektor} vektorja $\vv{a}$ je vektor $-\vv{a}=-1\cdot\vv{a}$.
+\end{definicija}
+
+\begin{opomba}
+Naj bodo $\vv{a},\vv{b},\vv{c}\in\R^3$ in $\alpha,\beta\in\R$. Potem je
+
+\begin{enumerate}[label=\alph*)]
+\item Komutativnost: $\vv{a}+\vv{b}=\vv{b}+\vv{a}$
+\item Asociativnost seštevanja: $(\vv{a}+\vv{b})+\vv{c}=\vv{a}+(\vv{b}+\vv{c})$
+\item Nevtralni element za seštevanje: $\vv{a}+\vv{0}=\vv{0}+\vv{a}=\vv{a}$
+\item Nasprotni element: $\vv{a}+(-\vv{a)}=-\vv{a}+\vv{a}=\vv{0}$
+\item ">Distributivnost vektorjev"<: $\alpha(\vv{a}+\vv{b})=\alpha\vv{a}+\alpha\vv{b}$
+\item ">Distributivnost skalarjev"<: $(\alpha+\beta)\vv{a}=\alpha\vv{a}+\beta\vv{a}$
+\item Homogenost: $\alpha(\beta\vv{a})=(\alpha\beta)\vv{a}$
+\item Nevtralni element za množenje: $1\cdot\vv{a}=\vv{a}$
+\end{enumerate}
+\end{opomba}
+
+\newpage
+
+\subsection{Linearna kombinacija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bodo $\vv*{a}{1},\vv*{a}{2},\dots,\vv*{a}{n}\in\R^3$ in $\alpha_1,\alpha_2,\dots,\alpha_n\in\R$. \emph{Linearna kombinacija}\index{Linearna kombinacija} vektorjev $\vv*{a}{1},\vv*{a}{2},\dots,\vv*{a}{n}$ je vektor oblike
+\[
+\alpha_1\vv*{a}{1}+\alpha_2\vv*{a}{2}+\dots+\alpha_n\vv*{a}{n}
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Vektorji $\vv*{a}{1},\vv*{a}{2},\dots,\vv*{a}{n}\in\R^3$ so \emph{linearno neodvisni}\index{Linearna neodvisnost}, če iz
+\[
+\alpha_1\vv*{a}{1}+\alpha_2\vv*{a}{2}+\dots+\alpha_n\vv*{a}{n}=\vv{0}
+\]
+sledi $\alpha_1=\alpha_2=\dots=\alpha_n=0$. 
+\end{definicija}
+
+\begin{posledica}
+Vektorji so linearno odvisni, če lahko enega izmed njih izrazimo kot linearno kombinacijo ostalih. Največje število neodvisnih vektorjev v prostoru $\R^n$ je $n$, teh $n$ vektorjev pa tvori bazo.
+\end{posledica}
+
+\newpage
+
+\subsection{Skalarni produkt vektorjev}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Skalarni produkt}\index{Skalarni produkt} vektorjev $\vv{a}=(x_1,y_1,z_1)$ in $\vv{b}=(x_2,y_2,z_2)$
+je skalar
+\[
+\vv{a}\cdot\vv{b}=x_1x_2+y_1y_2+z_1z_2.
+\]
+\end{definicija}
+\end{okvir}
+
+V posebnem primeru je
+\[
+\vv{a}\cdot\vv{a}=x_1^2+y_1^2+z_1^2=\left|\vv{a}\right|^2,
+\]
+kjer je $\left|\vv{a}\right|$ dolžina vektorja.
+
+\begin{posledica}
+Naj bodo $\vv{a},\vv{b},\vv{c}\in\R^3$ in $\alpha\in\R$. Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $\vv{a}\cdot\vv{a}\geq 0$
+\item $\vv{a}\cdot\vv{a}=0\iff\vv{a}=\vv{0}$
+\item $\vv{a}\cdot\vv{b}=\vv{b}\cdot\vv{a}$
+\item $(\vv{a}+\vv{b})\cdot\vv{c}=\vv{a}\cdot\vv{c}+\vv{b}\cdot\vv{c}$
+\item $(\alpha\vv{a})\cdot\vv{b}=\alpha(\vv{a}\cdot\vv{b})$
+\end{enumerate}
+\end{posledica}
+
+Geometrijsko lahko skalarni produkt interpretiramo kot produkt dolžine $\vv{a}$ in dolžine vektorja, ki ga dobimo, če $\vv{b}$ projeciramo na $\vv{a}$, saj velja
+\[
+\vv{a}\cdot\vv{b}=\left|\vv{a}\right|\cdot\left|\vv{b}\right|\cos\left(\sphericalangle\left(\vv{a},\vv{b}\right)\right).
+\]
+
+\begin{definicija}
+Vektorja $\vv{a}$ in $\vv{b}$ sta \emph{pravokotna}\index{Pravokotnost} natanko tedaj, ko je $\vv{a}\cdot\vv{b}=0$.
+\end{definicija}
+
+\newpage
+
+\subsection{Vektorski produkt vektorjev}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Vektorski produkt}\index{Vektorski produkt} vektorjev $\vv{a}=(x_1,y_1,z_1)$ in $\vv{b}=(x_2,y_2,z_2)$ je vektor
+\[
+\vv{a}\times\vv{b}=
+\begin{bmatrix}
+y_1z_2-z_1y_2 \\
+z_1x_2-x_1z_2 \\
+x_1y_2-y_1x_2
+\end{bmatrix}.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{posledica}
+Naj bodo $\vv{a},\vv{b},\vv{c}\in\R^3$ in $\alpha\in\R$. Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $\vv{a}\times\vv{a}=0$
+\item $\vv{a}\times\vv{b}=-\vv{b}\times\vv{a}$
+\item $\vv{a}\times(\vv{b}+\vv{c})=\vv{a}\times\vv{b}+\vv{a}\times\vv{c}$
+\item $(\alpha\vv{a})\times\vv{b}=\alpha(\vv{a}\times\vv{b})$
+\item $(\vv{a}\times\vv{b})\times\vv{c}=(\vv{a}\cdot\vv{c})\cdot\vv{b}-(\vv{b}\cdot\vv{c})\cdot\vv{a}$
+\end{enumerate}
+\end{posledica}
+
+\begin{definicija}
+Mešani produkt vektorjev $\vv{a},\vv{b},\vv{c}\in\R^3$ je
+\[
+\left[\vv{a},\vv{b},\vv{c}\right]=(\vv{a}\times\vv{b})\cdot\vv{c}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja $\left[\vv{a},\vv{b},\vv{c}\right]=-\left[\vv{a},\vv{c},\vv{b}\right]$. Podobno velja, če zamenjamo poljubna dva vektorja.
+\end{trditev}
+
+\begin{trditev}
+Naj bosta $\vv{a},\vv{b}\in\R^3$. Potem velja
+\[
+\left|\vv{a}\times\vv{b}\right|^2+(\vv{a}\cdot\vv{b})^2=\left|\vv{a}\right|^2\cdot\left|\vv{b}\right|^2.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\begin{align*}
+\left|\vv{a}\times\vv{b}\right|^2&=(\vv{a}\times\vv{b})\cdot(\vv{a}\times\vv{b})
+\\
+&=\left[\vv{a},\vv{b},\vv{a}\times\vv{b}\right]
+\\
+&=\left[\vv{a}\times\vv{b},\vv{a},\vv{b}\right]
+\\
+&=((\vv{a}\times\vv{b})\times\vv{a})\cdot\vv{b}
+\\
+&=((\vv{a}\cdot\vv{a})\cdot\vv{b}-(\vv{b}\cdot\vv{a})\cdot\vv{a})\cdot\vv{b}
+\\
+&=(\vv{a}\cdot\vv{a})\cdot(\vv{b}\cdot\vv{b})-(\vv{a}\cdot\vv{b})^2.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Naj bosta $\vv{a},\vv{b}\in\R^3$.
+
+\begin{enumerate}[label=\alph*)]
+\item $\vv{a}\times\vv{b}$ je pravokoten na $\vv{a}$ in $\vv{b}$.
+\item $\left|\vv{a}\times\vv{b}\right|$ je ploščina paralelograma med $\vv{a}$ in $\vv{b}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Uporabimo prejšnje trditve:
+
+\begin{enumerate}[label=\alph*)]
+\item $(\vv{a}\times\vv{b})\cdot\vv{a}=\left[\vv{a},\vv{b},\vv{a}\right]=-\left[\vv{a},\vv{a},\vv{b}\right]=0$.
+\item Velja
+\[
+\left|\vv{a}\times\vv{b}\right|^2
+=\left|\vv{a}\right|^2\cdot\left|\vv{b}\right|^2-(\vv{a}\cdot\vv{b})^2
+=\left|\vv{a}\right|^2\cdot\left|\vv{b}\right|^2\cdot(1-\cos^2\varphi)
+=\left|\vv{a}\right|^2\cdot\left|\vv{b}\right|^2\cdot\sin^2\varphi.\qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{trditev}
+Mešani produkt vektorjev $\vv{a},\vv{b},\vv{c}\in\R^3$ je enak volumnu \emph{paralelepipeda}\index{Paralelepiped}, ki ga tej vektorji omejujejo.
+\end{trditev}
+
+\newpage
+
+\subsection{Objekti v prostoru}
+
+Dve točki v prostoru določata natanko eno premico. Premico lahko opišemo tudi z eno točko in neničelnim vektorjem, ki ležita na njej. Temu vektorju pravimo \emph{smerni vektor}\index{Smerni vektor}. \emph{Parametrična enačba premice}\index{Enačba premice} je oblike
+\[
+\vv{r}=\vv{r_1}+t\cdot\vv{s},
+\]
+kjer $t$ preteče vsa realna števila. Ekvivalentno je
+\[
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_0 \\
+y_0 \\
+z_0
+\end{bmatrix}
++t\begin{bmatrix}
+\alpha \\
+\beta \\
+\gamma
+\end{bmatrix}
+\]
+in
+\[
+T(\alpha\cdot t+x_0,\beta\cdot t+y_0,\gamma\cdot t+z_0).
+\]
+\emph{Kanonična enačbe premice} je oblike
+\[
+\frac{x-x_0}{\alpha}=\frac{y-y_0}{\beta}=\frac{z-z_0}{\gamma}.
+\]
+Naj bo $T$ točka v prostoru, točka $T_1$ in vektor $\vv{s}$ pa na premici $p$. Razdalja med točko $T$ in premico $p$ je enaka
+\[
+d=\frac{\left|\vv{T_1T}\times\vv{s}\right|}{\left|\vv{s}\right|}.
+\]
+Ravnina je natanko določena s tremi nekolinearnimi točkami. Lahko jo določimo tudi s točko na ravnini in vektorjem, pravokotnim na ravnino. Temu vektorju pravimo \emph{normala}\index{Normala}.
+
+S pomočjo normale $\vv{n}$ izpeljemo \emph{vektorsko enačbo ravnine}\index{Enačba ravnine}
+\[
+(\vv{r}-\vv{r_1})\cdot\vv{n}=0.
+\]
+Če ta vektor izrazimo v koordinatah, dobimo
+\[
+(x-x_1)a+(y-y_1)b+(z-z_1)c=0,
+\]
+oziroma
+\[
+ax+by+cz=d.
+\]
+Enačbo ravnine, na kateri ležijo tri nekolinearne točke, lahko dobimo tako, da z vektorskim produktom poiščemo normalo.
+
+Razdalja točke $T$ od ravnine, določene z normalo $\vv{n}$ in točko $T_1$, je enaka
+\[
+d=\frac{\left|\vv{n}\cdot\vv{T_1T}\right|}{\left|\vv{n}\right|}.
+\]
+
+Razdaljo med premicama, določenima zaporedoma s paroma $(T_1,\vv{s_1})$ in $(T_2,\vv{s}_2)$, izračunamo po enačbi
+\[
+d=\frac{\left|\vv{T_1T_2}\cdot(\vv{s_1}\times\vv{s}_2)\right|}{\left|\vv{s_1}\times\vv{s}_2\right|}.
+\]
+
+\newpage
+
+\section{Relacije, operacije in algebraične strukture}
+
+\subsection{Relacije}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $X$ neprazna množica. \emph{Relacija}\index{Relacija} na $X$ je podmnožica v $X\times X$. ">$x$ je v relaciji $R$ z $y$"< označimo z $(x,y)\in R$ ali $x\rel{R}y$.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Relacija $R$ na $X$ je
+\begin{enumerate}[label=\alph*)]
+\item \emph{refleksivna}, če $x\rel{R}x$ $\forall x\in X$
+\item \emph{simetrična}, če $x\rel{R}y\iff y\rel{R}x$ $\forall x,y\in X$
+\item \emph{antisimetrična}, če $x\rel{R}y$ in $y\rel{R}x\implies x=y$ $\forall x,y\in X$
+\item \emph{tranzitivna}, če $x\rel{R}y$ in $y\rel{R}z\implies x\rel{R}z$ $\forall x,y,z\in X$
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Relacija je
+
+\begin{enumerate}[label=\alph*)]
+\item \emph{ekvivalenčna}, če je refleksivna, simetrična in tranzitivna
+\item \emph{delna urejenost}, če je refleksivna, antisimetrična in tranzitivna
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\sim$ ekvivalenčna relacija na $X$. \emph{Ekvivalenčni razred}\index{Ekvivalenčni razred} elementa $x\in X$ je množica
+\[
+[x]=\set{a\in X\mid x\sim a}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\sim$ ekvivalenčna relacija na $X$. \emph{Kvocientna množica}\index{Kvocientna množica} množice $X$ glede na $\sim$ je
+\[
+X/{\sim} =\set{[x]\mid x\in X}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\sim$ ekvivalenčna relacija na $X$ in $a,b\in X$. Potem velja bodisi $[a]=[b]$ bodisi $[a]\cap[b]=\emptyset$. Ekvivalentno je $X$ disjunktna unija ekvivalenčnih razredov.
+\end{trditev}
+
+\begin{proof}
+Če je $c\in [a]\cap[b]$, je za vse $x\in[a]$
+\[
+x\sim a\sim c\sim b,
+\]
+oziroma $x\in[b]$. Simetrično velja, če je $x\in[b]$.
+\end{proof}
+
+\newpage
+
+\subsection{Operacije}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $X$ neprazna množica. \emph{Operacija}\index{Operacija} na $X$ je vsaka preslikava $X\times X\to X$. Označimo $\circ\colon X\times X\to X$ in namesto $\circ(a,b)$ pišemo $a\circ b$.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Naj bo $\circ$ operacija na $X$. Operacija je
+
+\begin{enumerate}[label=\alph*)]
+\item \emph{komutativna}, če $a\circ b=b\circ a$ $\forall a,b\in X$
+\item \emph{asociativna}, če $(a\circ b)\circ c=a\circ(b\circ c)$ $\forall a,b,c\in X$
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\circ$ operacija na $X$. Za element $e\in X$ pravimo, da je \emph{enota}\index{Operacija!Enota, nevtralni element} ali \emph{nevtralni element} za $\circ$, če velja \[
+e\circ x=x\circ e=x\quad\forall x\in X.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $X$ množica z operacijo $\circ$. Če obstaja enota za to operacijo, je enolično določena.
+\end{trditev}
+
+\begin{proof}
+Za enoti $e_1$ in $e_2$ je po definiciji
+\[
+e_1=e_1\circ e_2=e_2.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $X$ množica z operacijo $\circ$ in naj bo $Y$ njena neprazna podmnožica. Pravimo, da je $Y$ \emph{zaprta za operacijo $\circ$}\index{Operacija!Zaprtost}, če $\forall a,b\in Y$ velja $a\circ b\in Y$.
+\end{definicija}
+\begin{opomba}
+Če je $Y$ zaprta za $\circ$, je tudi $Y$ opremljena s to operacijo.
+\end{opomba}
+
+\newpage
+
+\subsection{Grupe}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $(X,\circ)$ množica z operacijo $\circ$.
+
+\begin{enumerate}[label=\alph*)]
+\item $(X,\circ)$ je \emph{polgrupa}, če je $\circ$ asociativna
+\item $(X,\circ)$ je \emph{monoid}\index{Monoid}, če je polgrupa in ima enoto za $\circ$
+\item $(X,\circ)$ je \emph{grupa}\index{Grupa}, če je monoid in ima vsak element $X$ \emph{inverz}\index{Operacija!Inverz} glede na $\circ$:
+\[
+\forall a\in X~\exists b\in X\colon \quad a\circ b=b\circ a=e.
+\]
+Kadar je $\circ$ komutativna, govorimo o \emph{komutativni polgrupi}, \emph{komutativnem monoidu} in \emph{abelovi grupi}.
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+V grupi je inverz elementa enolično določen.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $b$ in $c$ inverza elementa $a$ v grupi $(G,\circ)$. Potem je
+\[
+b=b\circ (a\circ c)=(b\circ a)\circ c=c.\qedhere
+\]
+\end{proof}
+
+Za element $a\in G$ označimo njegov inverz z $a^{-1}$.
+
+\begin{definicija}
+Naj bo $(G,\circ)$ grupa in $H\subseteq G$ neprazna podmnožica. Pravimo, da je $H$ \emph{podgrupa} v grupi $G$, če je tudi $(H,\circ)$ grupa.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $(G,\circ)$ in $(H,*)$ grupi. Funkcija $f\colon (G,\circ)\to(H,*)$ je \emph{homomorfizem grup}\index{Homomorfizem}, če velja
+\[
+\forall a,b\in G\colon f(a\circ b)=f(a)*f(b).
+\]
+Bijektivnim homomorfizmom pravimo \emph{izomorfizmi}\index{Izomorfizem}. Grupi sta \emph{izomorfni}\index{Izomorfnost}, če med njima obstaja izomorfizem.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ neprazna množica in
+\[
+\operatorname{Sym}X=\set{f\colon X\to X\mid \text{$f$ je bijektivna}}.
+\]
+Potem je $(\operatorname{Sym}X,\circ)$ grupa, kjer je $\circ$ operacija kompozitum. Njena enota je $\id$. $\operatorname{Sym}X$ imenujemo \emph{grupa simetrij} množice $X$.
+\end{definicija}
+
+\begin{definicija}
+Če je $X$ končna množica z $n$ elementi, označimo $\operatorname{Sym}X=S_n$. $S_n$ je \emph{simetrična grupa} na $n$ elementih. Elementom grupe $S_n$ pravimo \emph{permutacije}\index{Permutacija}. Velja $|S_n|=n!$.
+\end{definicija}
+
+Permutacije označujemo z malimi grškimi črkami:
+\[
+\sigma=
+\begin{pmatrix}
+1 & 2 & 3 & 4 \\
+2 & 1 & 4 & 3
+\end{pmatrix},
+\quad
+\tau=
+\begin{pmatrix}
+1 & 2 & 3 & 4 \\
+2 & 1 & 3 & 4
+\end{pmatrix},
+\quad
+\sigma\circ\tau=
+\begin{pmatrix}
+1 & 2 & 3 & 4 \\
+1 & 2 & 4 & 3
+\end{pmatrix}
+\]
+Poseben primer permutacij so \emph{cikli}. $\sigma=(j_1~j_2~\dots~j_k)$ je cikel dolžine $k$, kjer je $\sigma(j_i)=j_{i+1}$, kjer gledamo indekse po modulu $k$. Ciklom dolžine 2 pravimo \emph{transpozicije}.
+
+Vsako permutacijo lahko zapišemo kot kompozitum (produkt) disjunktnih ciklov ali produkt transpozicij:
+\[
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+4 & 3 & 2 & 5 & 1 & 6
+\end{pmatrix}
+=(1~4~5)\circ(2~3)=(2~3)\circ(1~4~5)
+=(4~5)\circ(2~3)\circ(1~5)
+\]
+
+\begin{definicija}
+Naj bo $\sigma$ permutacija množice $\set{1,\dots,n}$ in naj bosta $i<j$ elementa te množice. Pravimo, da je par $(i,j)$ \emph{inverzija}\index{Permutacija!Inverzija} za $\sigma$, če velja $\sigma(i)>\sigma(j)$.  Številu vseh inverzij pravimo \emph{indeks}\index{Permutacija!Indeks} permutacije $\sigma$ in ga označimo z $\operatorname{ind}\sigma$. Številu $\sgn\sigma=(-1)^{\operatorname{ind}\sigma}$ pravimo \emph{signatura}\index{Signatura, znak} ali \emph{znak} permutacije $\sigma$.
+\end{definicija}
+
+\begin{definicija}
+Permutacijam $\sigma\in S_n$, za katere je $\sgn\sigma=1$, pravimo \emph{sode}\index{Permutacija!Soda, liha} permutacije, ostalim pa \emph{lihe}.
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $\sigma$ in $\widetilde{\sigma}$ permutaciji, za kateri je $\sigma(i)=\widetilde{\sigma}(j)$, $\sigma(j)=\widetilde{\sigma}(i)$ in $\sigma(k)=\widetilde{\sigma}(k)$ za vse ostale $k$. Potem je $\sgn\widetilde{\sigma}=-\sgn\sigma$.
+\end{trditev}
+
+\begin{proof}
+Preštejemo lahko, da se spremeni vrstni red lihega števila parov. Paru $(i,k)$ se namreč spremeni natanko tedaj kot paru $(j,k)$, spremeni pa se tudi vrstni red $(i,j)$.
+\end{proof}
+
+\begin{posledica}
+Permutacija je soda natanko tedaj, ko jo lahko zapišemo kot produkt sodega števila transpozicij.
+\end{posledica}
+
+\begin{posledica}
+Za poljubni permutaciji $\sigma,\tau\in S_n$ je $\sgn\sigma^{-1}=\sgn\sigma$ in $\sgn(\sigma\circ\tau)=\sgn\sigma\cdot\sgn\tau$.
+\end{posledica}
+
+\newpage
+
+\subsection{Kolobarji, obsegi in polja}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $K$ neprazna množica z operacijama $+\colon K\times K\to K$ in $\cdot\colon K\times K\to K$. Pravimo, da je $(K,+,\cdot)$ \emph{kolobar}\index{Kolobar}, če velja:
+
+\begin{enumerate}[label=\alph*)]
+\item $(K,+)$ je abelova grupa
+\begin{itemize}
+\item enoto označimo z $0$
+\item inverz $a$ označimo z $-a$
+\end{itemize}
+\item $(K,\cdot)$ je polgrupa
+\item leva in desna distributivnost
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $(K,+,\cdot)$ kolobar.
+
+\begin{enumerate}[label=\alph*)]
+\item Če ima $K$ nevtralen element za množenje, pravimo, da je $K$ \emph{kolobar z enico}. Nevtralni element označimo z $1$.
+\item Če je množenje v $K$ komutativno, pravimo, da je $K$ \emph{komutativen kolobar}.
+\item Če je $K$ kolobar z enico, za katerega velja, da je $K\setminus\set{0}$ za množenje grupa, pravimo, da je $K$ \emph{obseg}\index{Obseg}.
+\item Komutativnim obsegom pravimo \emph{polja}\index{Polje}.
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Naj bo $(K,+,\cdot)$ kolobar in $L\subseteq K$ neprazna podmnožica. Pravimo, da je $L$ \emph{podkolobar v $K$}\index{Podkolobar}, če je $(L,+,\cdot)$ tudi kolobar.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $(K,+_1,\cdot_1)$ in $(L,+_2,\cdot_2)$ kolobarja. \emph{Homomorfizem kolobarjev}\index{Homomorfizem} je preslikava $f\colon (K,+_1,\cdot_1)\to(L,+_2,\cdot_2)$, za katero je
+\[\forall a,b\in K\colon f(a +_1 b)=f(a) +_2 f(b)\quad\text{in}\quad (a \cdot_1 b)=f(a) \cdot_2 f(b).\]
+Bijektivnim homomorfizmom pravimo \emph{izomorfizmi}\index{Izomorfizem}. Kolobarja sta \emph{izomorfna}\index{Izomorfnost}, če med njima obstaja izomorfizem.
+\end{definicija}
+
+\newpage
+
+\section{Vektorski prostori}
+
+\subsection{Definicija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $V\ne\emptyset$ z operacijo
+\[
++\colon V\times V\to V,\qquad (u,v)\mapsto u+v.
+\]
+Naj bo $\F$ polje in recimo, da imamo preslikavo
+\[
+\cdot\colon \F\times V\to V,\qquad(\alpha,v)\mapsto\alpha v.
+\]
+Pravimo, da je $V$ \emph{vektorski prostor}\index{Vektorski prostor} nad poljem $\F$, če veljajo naslednji pogoji:
+
+\begin{enumerate}[label=\arabic*)]
+\item $(V,+)$ je abelova grupa. Enoto za $+$ označimo z $0$, inverz $v$ pa z $-v$
+\item $(\alpha+\beta)v=\alpha v+\beta v$ velja $\forall\alpha,\beta\in \F,\forall v\in V$
+\item $\alpha(u+v)=\alpha u+\alpha v$ velja $\forall\alpha\in \F,\forall u,v\in V$
+\item $\alpha(\beta v)=(\alpha\beta)v$ velja $\forall\alpha,\beta\in \F,\forall v\in V$
+\item $1\cdot v=v$ velja $\forall v\in V$
+\end{enumerate}
+Elementom $V$ pravimo \emph{vektorji}, elementom $\F$ pa \emph{skalarji}.
+\end{definicija}
+\end{okvir}
+
+Primer vektorskega prostora je $V=\F^n$ nad $\F$ za neko polje $\F$. Vpeljemo lahko
+\[
+\begin{bmatrix}
+\alpha_1 \\
+\alpha_2 \\
+\vdots \\
+\alpha_n
+\end{bmatrix}
++
+\begin{bmatrix}
+\beta_1 \\
+\beta_2 \\
+\vdots \\
+\beta_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+\alpha_1+\beta_1 \\
+\alpha_2+\beta_2 \\
+\vdots \\
+\alpha_n+\beta_n
+\end{bmatrix}
+\qquad
+\text{in}
+\qquad
+\alpha\cdot
+\begin{bmatrix}
+\alpha_1 \\
+\alpha_2 \\
+\vdots \\
+\alpha_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+\alpha\alpha_1 \\
+\alpha\alpha_2 \\
+\vdots \\
+\alpha\alpha_n
+\end{bmatrix}
+\]
+Ti operaciji zadoščata zgornjim pogojem.
+
+Ta primer lahko tudi posplošimo. Naj bo $X$ neprazna množica, $\F$ polje in
+\[
+\F^X=\set{f\mid f\colon X\to\F}.
+\]
+Na tej množici vpeljemo seštevanje in množenje s skalarjem. Za $f,g\in\F^X$ definiramo
+\[
+(f+g)(x)=f(x)+g(x)\qquad\text{in}\qquad (\lambda f)(x)=\lambda f(x).
+\]
+
+\begin{trditev}
+Naj bo $V$ vektorski prostor nad $\F$.
+
+\begin{enumerate}[label=\alph*)]
+\item $0\cdot v=0$ velja $\forall v\in V$
+\item $\alpha\cdot 0=0$ velja $\forall \alpha\in\F$
+\item $(-1)\cdot v=-v$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$ in $U$ neprazna podmnožica $V$. Pravimo, da je $U$ \emph{vektorski podprostor v $V$}, če je $U$ za dano seštevanje in množenje s skalarjem tudi vektorski prostor nad $\F$. Označimo $U\leq V$.
+\end{definicija}
+
+\begin{opomba}
+To pomeni naslednje:
+
+\begin{itemize}
+\item $(U,+)$ je podgrupa v $(V,+)$
+\item $\forall u\in U,\alpha\in\F$ je $\alpha u\in U$
+\end{itemize}
+\end{opomba}
+
+\begin{trditev}
+Naj bo $V$ vektorski prostor nad $\F$ in $U\subseteq V$ neprazna podmnožica. Potem je $U$ vektorski podprostor v  $V$ natanko tedaj, ko je za poljubna vektorja $u_1,u_2\in U$ in skalarja $\alpha_1,\alpha_2\in\F$
+\[
+\alpha_1u_1+\alpha_2u_2\in U.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Vsak podprostor $U$ vektorskega prostora $V$ vsebuje ničelni vektor.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\F$ polje in $\F^\F=\set{\text{vse funkcije $\F\to\F$}}$. Potem je
+\[
+\F[x]=\set{p\in\F^\F\mid p(x)=\sum_{i=0}^na_ix^i,n\geq 0,a_i\in\F}
+\]
+vektorski podprostor v $\F^\F$. Za poljuben $n$ je
+\[
+\F_n[x]=\set{p\in\F^\F\mid p(x)=\sum_{i=0}^na_ix^i,a_i\in\F}
+\]
+vektorski podprostor v $\F[x]$.
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Kvocientni prostori}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$, $U$ pa podprostor v $V$. Na množici $V$ definiramo relacijo $\sim$:
+\[
+\forall x,y\in V\colon x\sim y\iff x-y\in U
+\]
+\end{definicija}
+
+\begin{trditev}
+$\sim$ je ekvivalenčna relacija na $V$.
+\end{trditev}
+
+\obvs
+
+Za tako definirano relacijo $\sim$ označimo $V/U=V/{\sim}$.
+
+Elementi $V/U$ so
+\[
+v\in V\colon [v]=\set{x\in V\mid x\sim v}=\set{x\in V\mid x=v+u,u\in U}=v+U.
+\]
+
+\begin{izrek}
+Naj bo $V$ vektorski prostor nad $\F$ in $U\leq V$. Potem $V/U$ postane vektorski prostor nad $\F$ z naslednjim seštevanjem in množenje s skalarjem:
+\begin{align*}
+(v_1+U)+(v_2+U)&=(v_1+v_2)+U
+\\
+\alpha\cdot(v+U)&=\alpha v+U
+\end{align*}
+$V/U$ je \emph{kvocientni prostor}\index{Vektorski prostor!Kvocientni prostor} prostora $V$ glede na $U$.
+\end{izrek}
+
+\obvs
+
+\begin{opomba}
+V $V/U$ je $U$ nevtralni element.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$ in $V_1,V_2$ podprostora v $V$. Potem označimo
+\[
+V_1+V_2=\set{v_1+v_2\mid v_1\in V_1,v_2\in V_2}.
+\]
+Tej množici pravimo \emph{vsota podprostorov $V_1$ in $V_2$}\index{Vektorski prostor!Vsota podprostorov}.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $V$ vektorski prostor nad $\F$ in $V_1,V_2\leq V$. Potem sta tudi $V_1\cap V_2$ in $V_1+V_2$ podprostora $V$.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Unija je vektorski prostor le, če je $V_1\subseteq V_2$ ali $V_2\subseteq V_1$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$ in $V_1,V_2,\dots, V_n\leq V$. Pravimo, da je $V$ \emph{direktna vsota}\index{Vektorski prostor!Direktna vsota} podprostorov $V_1,V_2,\dots V_n$, če velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item $V=V_1+V_2+\dots V_n$
+\item $V_i\cap (V_1+V_2+\dots+V_{i-1}+V_{i+1}+\dots+V_n)=\set{0}$ za vse $i$.
+\end{enumerate}
+
+Označimo $V=V_1\oplus V_2\oplus\dots\oplus V_n$
+\end{definicija}
+
+\begin{izrek}
+Naj bo $V$ vektorski prostor in $V_1,V_2,\dots, V_n\leq V$. Potem je $V=V_1\oplus V_2\oplus\dots\oplus V_n$ natanko tedaj, ko se da vsak $v\in V$ na enoličen način zapisati kot $v=v_1+v_2+\dots+v_n$ za $v_i\in V_i$.
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\subsection{Homomorfizmi vektorskih prostorov}
+
+\begin{okvir}
+\begin{definicija}
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Za preslikavo $A\colon U\to V$ pravimo, da je \emph{homomorfizem vektorskih prostorov}\index{Homomorfizem} oziroma \emph{linearna preslikava}\index{Preslikava!Linearna}, če velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item Aditivnost: $\forall u_1,u_2\in U\colon A(u_1+u_2)=A(u_1)+A(u_2)$ 
+\item Homogenost: $\forall u\in U,\alpha\in\F\colon A(\alpha u)=\alpha A(u)$ 
+\end{enumerate}
+
+Krajše pišemo $A(u)=Au$.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Množico vseh linearnih preslikav $U\to V$ označimo z $\hom_\F(U,V)$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A\in\hom_\F(U,V)$.
+
+\begin{enumerate}[label=\alph*)]
+\item $A$ je \emph{monomorfizem}\index{Monomorfizem}, če je injektivna.
+\item $A$ je \emph{epimorfizem}\index{Epimorfizem}, če je surjektivna.
+\item $A$ je \emph{izomorfizem}\index{Izomorfizem}, če je bijektivna.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Linearnim preslikavam $A\colon U\to U$ pravimo \emph{endomorfizmi}\index{Endomorfizem} prostora $U$. Označimo $\enm_\F(U)=\hom_\F(U,U)$.
+\end{definicija}
+
+\begin{definicija}
+Vektorska prostora $U$ in $V$ nad $\F$ sta \emph{izomorfna}\index{Izomorfnost}, če med njima obstaja izomorfizem. Označimo $U\cong V$.
+\end{definicija}
+
+\begin{opomba}
+Če je $A$ izomorfizem vektorskih prostorov, je tudi njegov inverz izomorfizem.
+\end{opomba}
+
+\begin{trditev}
+Preslikava $A\colon U\to V$ je linearna natanko tedaj, ko je
+\[
+A(\alpha u_1+\beta u_2)=\alpha Au_1+\beta Au_2
+\]
+za vse $\alpha,\beta\in\F$ in $u_1,u_2\in U$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Če je $A\colon U\to V$ bijektivna linearna preslikava, je tudi $A^{-1}\colon V\to U$ linearna.
+\end{trditev}
+
+\begin{proof}
+Za $u_1=A^{-1}v_1$ in $u_2=A^{-1}v_2$ je
+\[
+A^{-1}(\alpha v_1+\beta v_2)=A^{-1}(A(\alpha u_1+\beta u_2))=\alpha A^{-1}v_1+\beta A^{-1}v_2.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Na $\hom_\F(U,V)$ definiramo seštevanje in množenje s skalarjem:
+
+\begin{itemize}
+\item $A,B\in\hom_\F(U,V)\colon (A+B)u=Au+Bu$
+\item $\alpha\in\F$, $A\in\hom_\F(U,V)\colon (\alpha A)u=\alpha Au$
+\end{itemize}
+\end{definicija}
+
+\begin{trditev}
+Ob zgornjih definicijah $\hom_\F(U,V)$ postane vektorski prostor nad $\F$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}\label{td:komp}
+Naj bo $A\in\hom_\F(U,V)$ in $B\in\hom_\F(V,W)$. Potem je $B\circ A\in\hom_\F(U,W)$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+B(A(\alpha u+\beta v))=B(\alpha Au+\beta Av)=\alpha B(Au)+\beta B(Av).\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $A$ neprazna množica in $\F$ polje. Recimo, da imamo na $A$ operaciji $+$ in $\cdot$ ter množenje s skalarjem. Pravimo, da je $A$ \emph{algebra}\index{Algebra} nad poljem $\F$, če velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item $A$ za seštevanje in množenje s skalarjem je vektorski prostor nad $\F$
+\item $(A,+,\cdot)$ je kolobar
+\item $\forall a,b\in A$, $\forall\alpha\in\F\colon \alpha(a\cdot b)=(\alpha a)\cdot b=a\cdot(\alpha b)$
+\end{enumerate}
+\end{definicija}
+
+\begin{posledica}
+$\text{End}_\F(U)$ je z zgornjim seštevanjem, kompozitumom in množenjem s skalarjem algebra nad $\F$.
+\end{posledica}
+
+\begin{trditev}
+Naj bo $A\colon U\to V$ linearna preslikava. Potem je $A0=0$.
+\end{trditev}
+
+\begin{proof}
+Po definiciji je
+\[
+A0=A(0\cdot u)=0\cdot Au=0.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Jedro in slika linearne preslikave}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $A\colon U\to V$ linearna preslikava.
+
+\emph{Jedro}\index{Preslikava!Jedro} linearne preslikave $A$ je
+\[
+\ker A=\set{u\in U\mid Au=0}.
+\]
+\emph{Slika}\index{Preslikava!Slika} linearne preslikave $A$ je
+\[
+\im A=\set{Au\mid u\in U}.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}
+Naj bo $A\colon U\to V$ linearna. Potem je $\ker A$ podprostor v $U$ in $\im A$ podprostor v $V$.
+\end{izrek}
+
+\obvs
+
+\begin{trditev}
+Naj bo $A\colon U\to V$ linearna preslikava.
+
+\begin{enumerate}[label=\alph*)]
+\item $A$ je injektivna natanko tedaj, ko je $\ker A=\set{0}$.
+\item $A$ je surjektivna natanko tedaj, ko je $\im A=V$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[1. izrek o izomorfizmu]\index{Izrek!O izomorfizmu}\label{izo1}
+Naj bo $A\colon U\to V$ linearna preslikava. Potem je
+\[
+U/\ker A\cong\im A.
+\]
+\end{izrek}
+
+\begin{izrek}[2. izrek o izomorfizmu]\label{izo2}
+Naj bosta $V_1$ in $V_2$ podprostora vektorskega prostora $V$. Potem je
+\[
+(V_1+V_2)/V_1\cong V_2/(V_1\cap V_2).
+\]
+\end{izrek}
+\begin{izrek}[3. izrek o izomorfizmu]\label{izo3}
+Naj bodo $U\leq V\leq W$ vektorski prostori. Potem je $V/U$ podprostor v $W/U$ in je
+\[
+(W/U)/(V/U)\cong W/V.
+\]
+\end{izrek}
+
+\begin{opomba}
+Kadar dokazujemo $U/U_1\cong V$, lahko konstruiramo $A\colon U\to V$, da bo
+
+\begin{itemize}
+\item $\im A=V$
+\item $\ker A=U_1$
+\end{itemize}
+
+Po 1. izreku o izomorfizmu (\ref{izo1}) sledi izomorfnost.
+\end{opomba}
+
+\newpage
+
+\subsection{Končnorazsežni vektorski prostori}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$ in naj bo $X$ neprazna podmnožica v $V$. Z $\Lin X$ označimo \emph{linearno ogrinjačo}\index{Linearna ogrinjača} množice $X$, ki jo definiramo kot
+\[
+\Lin X=\set{\sum_{i=1}^k \alpha_ix_i\mid k\in\N,\alpha_i\in\F,x_i\in X}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $X$ podmnožica vektorskega prostora $V$. Potem je $\Lin X$ najmanjši vektorski podprostor v $V$, ki vsebuje $X$.
+\end{trditev}
+
+\begin{proof}
+Očitno je $\Lin X$ vektorski prostor. Naj bo $X\subseteq U$, kjer je $U\leq V$ vektorski podprostor. Potem je po definiciji tudi vsaka linearna kombinacija vektorjev iz $X$ v $U$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor in $X$ neprazna podmnožica v $V$. Pravimo, da je $X$ \emph{ogrodje}\index{Ogrodje} za $V$, če je $\Lin X=V$.
+\end{definicija}
+
+\begin{okvir}
+\begin{definicija}
+Vektorski prostor je \emph{končnorazsežen}\index{Vektorski prostor!Končnorazsežen}, če ima končno ogrodje.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Če je $X$ ogrodje prostora $V$ in $X\subseteq Y\subseteq V$, je tudi $Y$ ogrodje prostora $V$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}\label{td:ogrodja}
+Recimo, da je $X$ ogrodje prostora $V$ in recimo, da je $x\in X$ linearna kombinacija od $x$ različnih vektorjev iz $X$. Potem je $X\setminus\set{x}$ tudi ogrodje prostora $V$.
+\end{trditev}
+
+\begin{proof}
+V reprezentaciji poljubnega vektorja $v\in V$ z vektorji iz $X$ preprosto $x$ nadomestimo z linearno kombinacijo, s katero ga lahko izrazimo.
+\end{proof}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$ in $\set{v_1,v_2,\dots,v_n}$ množica vektorjev iz $V$. Pravimo, da so $v_1,v_2,\dots,v_n$ \emph{linearno neodvisni}\index{Linearna neodvisnost}, če iz enakosti
+\[
+\sum_{i=1}^n\alpha_iv_i=0,
+\]
+kjer so $\alpha_i\in\F$, sledi $\alpha_i=0$ za vse $i$. V nasprotnem primeru pravimo, da so \emph{linearno odvisni}.
+\end{definicija}
+
+\begin{opomba}
+Če so vektorji linearno odvisni, lahko enega izmed njih izrazimo z linearno kombinacijo ostalih.
+\end{opomba}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $V$ vektorski prostor in naj bo $B=\set{v_1,v_2,\dots,v_n}$ množica vektorjev iz $V$. Pravimo, da je $B$ \emph{baza}\index{Vektorski prostor!Baza} prostora $V$, če
+
+\begin{enumerate}[label=\roman*)]
+\item $B$ je ogrodje $V$
+\item vektorji iz $B$ so linearno neodvisni
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}
+Netrivialen vektorski prostor je končnorazsežen natanko tedaj, ko ima bazo.
+\end{izrek}
+
+\begin{proof}
+Vzemimo poljubno ogrodje prostora $X$, nato pa po trditvi~\ref{td:ogrodja} postopoma iz $X$ odstranjujemo vektorje, dokler niso vsi linearno neodvisni. Ostane nam baza prostora.
+\end{proof}
+
+\newpage
+
+\subsection{Lastnosti baz končnorazsežnih prostorov}
+
+\begin{trditev}
+Naj bo $B=\set{v_1,v_2,\dots,v_n}$ baza vektorskega prostora $V$. Potem se da vsak vektor $v\in V$ na enoličen način zapisati kot linearno kombinacijo vektorjev iz $B$.
+\end{trditev}
+
+\begin{proof}
+$B$ je ogrodje, zato lahko vsak $v$ zapišemo kot linearno kombinacijo vektorjev iz $B$. Če ga lahko kot linearno kombinacijo zapišemo na dva načina, ju preprosto odštejemo. Ostane nam vektor $0$, izražen z vektorji iz $B$. To je nemogoče pri različnih zapisih z bazo $B$, saj so vektorji iz $B$ linearno neodvisni.
+\end{proof}
+
+\begin{lema}\label{lm:ineq}
+Naj bo $V$ vektorski prostor in $X=\set{u_1,u_2,\dots,u_m}$ ogrodje $V$. Naj bo $Y=\set{v_1,v_2,\dots,v_n}$ množica linearno neodvisnih vektorjev iz $V$. Potem je $n\leq m$.
+\end{lema}
+
+\begin{proof}
+Vektorje v $X$ lahko zaporedoma zamenjujemo z vektorji iz $Y$. Poljuben vektor iz $Y$ lahko izrazimo kot linearno kombinacijo vektorjev iz $X$, nato pa enega izmed $u_i$ v tem zapisu zamenjamo s tem vektorjem. Tak $u_i$ bo vedno obstajal, saj so vektorji iz $Y$ linearno neodvisni. Algoritem se konča, ko so vsi elementi $Y$ v množici $X$, kar pomeni, da je $n\leq m$.
+\end{proof}
+
+\begin{posledica}
+Vse baze končnorazsežnega prostora imajo isto moč.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $V$ končnorazsežen vektorski prostor. \emph{Dimenzija}\index{Vektorski prostor!Dimenzija} prostora $V$ je število vektorjev v bazi prostora $V$. Označimo jo z $\dim V$.
+\end{definicija}
+
+\begin{trditev}
+Recimo, da je $V$ končnorazsežen vektorski prostor in $U$ podprostor v $V$. Recimo, da je $B$ baza podprostora $U$. Potem lahko $B$ dopolnimo do baze celega prostora.
+\end{trditev}
+
+\begin{proof}
+V $B$ postopoma dodajamo linearno neodvisne vektorje. Po lemi~\ref{lm:ineq} lahko dodamo le končno mnogo vektorjev. Na tej točki je tako $B$ ogrodje $V$, kar pomeni, da je baza prostora.
+\end{proof}
+
+\begin{posledica}
+Naj bo $V$ končnorazsežen prostor in $\dim V=n$. Če je $X$ podmnožica v $V$, ki vsebuje natanko $n$ linearno neodvisnih vektorjev, je $X$ baza prostora $V$.
+\end{posledica}
+
+\begin{posledica}
+Naj bo $V$ končnorazsežen vektorski prostor in $U\leq V$. Potem je $\dim U\leq\dim V$ z enakostjo natanko tedaj, ko je $U=V$.
+\end{posledica}
+
+\begin{izrek}
+Naj bo $V$ vektorski prostor nad $\F$ in $\dim V=n$. Potem je $V\cong\F^n$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $A$ linearna preslikava, ki vsakemu baznemu vektorju $v_i$ priredi vektor $e_i=(0,\dots,0,1,0,\dots,0)$, kjer je $1$ na $i$-tem mestu. Ni težko preveriti, da je $A$ izomorfizem.
+\end{proof}
+
+\begin{opomba}
+Množici $\set{e_1,\dots,e_n}$ pravimo \emph{standardna baza}\index{Vektorski prostor!Baza!Standardna} prostora $\F^n$.
+\end{opomba}
+
+\begin{izrek}
+Naj bosta $U$ in $V$ končnorazsežna vektorska prostora nad $\F$. Potem je $U\cong V$ natanko tedaj, ko je $\dim U=\dim V$.
+\end{izrek}
+
+\begin{proof}
+Če je $\dim U=\dim V$, je po prejšnjem izreku
+\[
+U\cong \F^{\dim U}\cong V,
+\]
+$\cong$ pa je ekvivalenčna relacija (vzamemo kompozitum).
+
+Če je $U\cong V$, potem ni težko preveriti, da izomorfizem med njima bazo $U$ preslika v bazo $V$. To pomeni, da je $\dim U=\dim V$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $V$ končnorazsežen vektorski prostor in $U$ podprostor v $V$. Potem obstaja podprostor $W$ v $V$, da je $V=U\oplus W$ in $\dim V=\dim U+\dim W$.
+\end{trditev}
+
+\begin{proof}
+Bazo $U$ dopolnimo do baze $V$. $W$ definiramo kot linearno ogrinjačo vektorjev, ki smo jih dodali.
+\end{proof}
+
+\begin{trditev}
+Naj bo $V$ končnorazsežen prostor in $U\leq V$. Potem je
+\[
+\dim V/U=\dim V-\dim U.
+\]
+\end{trditev}
+
+\begin{proof}
+V 2. izrek o izomorfizmu (\ref{izo2}) vstavimo $V_1=W$ in $V_2=U$, pri čemer je $V=U\oplus W$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $V$ končnorazsežen vektorski prostor in $V_1,V_2\leq V$. Potem je
+\[
+\dim(V_1+V_2)=\dim V_1+\dim V_2-\dim(V_1\cap V_2).
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo 2. izrek o izomorfizmu (\ref{izo2}) in prejšnjo trditev.
+\end{proof}
+
+\begin{posledica}
+$\dim(V_1\oplus V_2)=\dim V_1+\dim V_2$.
+\end{posledica}
+
+\begin{trditev}
+Naj bosta $U$ in $V$ končnorazsežna vektorska prostora nad $\F$ in $A\colon U\to V$ linearna preslikava. Potem je
+\[
+\dim\ker A+\dim\im A=\dim U.
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo 1. izrek o izomorfizmu (\ref{izo1}).
+\end{proof}
+
+\begin{definicija}
+Naj bo $A\colon U\to V$ linearna. Številu
+\[
+\rang A=\dim\im A
+\]
+pravimo \emph{rang}\index{Preslikava!Rang} preslikave $A$.
+\end{definicija}
+
+\newpage
+
+\section{Matrike}
+
+\epigraph{">Aja pa snemati moram začeti"}{---prof. dr. Primož Moravec, preden je pozabil začeti snemati}
+
+\subsection{Linearne preslikave med končnorazsežnimi vektorskimi prostori in matrike}
+
+Od tu dalje obravnavamo le končnorazsežne vektorske prostore.
+
+Naj bosta $U,V$ vektorska prostora nad $\F$. Izberimo bazi prostorov $U$ in $V$
+\begin{gather*}
+\mathcal{B}=\set{u_i\mid i\leq n},
+\\
+\mathcal{C}=\set{v_i\mid i\leq m}.
+\end{gather*}
+Naj bo $A\colon U\to V$ linearna preslikava.
+
+\begin{trditev}
+$A$ je natanko določena s slikami vektorjev iz $\mathcal{B}$.
+\end{trditev}
+
+\begin{proof}
+Vsak vektor iz $U$ lahko izrazimo kot linearno kombinacijo baznih vektorjev.
+\end{proof}
+Vektorje $Au_i$ lahko razvijemo po bazi $\mathcal{C}$:
+\[
+Au_i=\sum_{j=1}^m\alpha_{j,i}v_j
+\]
+
+\begin{okvir}
+\begin{definicija}
+Tabeli
+\[
+A_{\mathcal{CB}}=
+\begin{bmatrix}
+\alpha_{1,1} & \alpha_{1,2} & \dots & \alpha_{1,n} \\
+\alpha_{2,1} & \alpha_{2,2} & \dots & \alpha_{2,n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\alpha_{m,1} & \alpha_{m,1} & \dots & \alpha_{m,n}
+\end{bmatrix} 
+\]
+pravimo \emph{matrika}\index{Matrika}, ki pripada linearni preslikavi $A$ glede na bazi $\mathcal{B}$ in $\mathcal{C}$. Pravimo, da je ta matrika $m\times n$ matrika nad $\F$. Označimo
+\[
+\F^{m\times n}=\set{\text{vse $m\times n$ matrike nad poljem $\F$}}.
+\]
+\end{definicija}
+\end{okvir}
+
+Recimo, da imamo matriko $A\in\F^{m\times n}$. Potem ta matrika določa linearno preslikavo
+\[
+A\colon\F^n\to\F^m
+\]
+na naslednji način:
+
+Izberemo standardno bazo $\F^n\colon\mathcal{S}=\set{e_1,e_2,\dots,e_n}$. Vektorju $e_i$ priredimo $i$-ti stolpec matrike $A$.
+
+\begin{trditev}
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$, $\mathcal{B}$ in $\mathcal{C}$ pa bazi za $U$ in $V$. Potem je preslikava
+\[
+\Phi_{\mathcal{CB}}\colon\hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
+\]
+bijekcija.
+\end{trditev}
+
+\begin{proof}
+Ni težko videti, da lahko vsaki matriki priredimo linearno preslikavo, različni linearni preslikavi pa imata različni matriki.
+\end{proof}
+
+\begin{definicija}
+Naj $\F^{m\times n}$ definiramo seštevanje in množenje s skalarjem iz $\F$ na naslednji način:
+
+\begin{enumerate}[label=\roman*)]
+\item Za $A,B\in\F^{m\times n}$, kjer je $A=[a_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}$ in $B=[b_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}$, je
+\[
+A+B=[a_{i,j}+b_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}.
+\]
+\item Za $A\in\F^{m\times n}$, kjer je $A=[a_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}$, je
+\[
+\alpha\cdot A=[\alpha\cdot a_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}.
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+To seštevanje in množenje s skalarjem se ujema s seštevanjem in množenjem s skalarjem, ki smo jih definirali za vektorje.
+\end{opomba}
+
+\begin{trditev}
+$F^{m\times n}$ z zgoraj definiranim seštevanjem in množenjem s skalarjem postane vektorski prostor nad $\F$.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Naj bosta $U$ in $V$ končnorazsežna vektorska prostora nad $\F$, $\mathcal{B}$ in $\mathcal{C}$ pa njuni bazi. Potem je
+\[
+\Phi_{\mathcal{CB}}\colon\hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
+\]
+izomorfizem vektorskih prostorov.
+\end{izrek}
+
+\obvs
+
+V posebnem primeru, ko imamo linearno preslikavo $A\colon\F^n\to\F^m$, lahko za $\F^n$ in $\F^m$ izberemo standardni bazi
+\[
+\mathcal{B}=\set{e_1,e_2,\dots,e_n}
+\quad\text{in}\quad
+\mathcal{C}=\set{f_1,f_2,\dots,f_m}.
+\]
+Potem je $i$-ta komponenta vektorja $Ax$ kar ">skalarni produkt"< $i$-te vrstice matrike $A_{\mathcal{CB}}$ in stolpca $x$.
+
+\begin{definicija}
+Naj bo $A\in\F^{m\times n}$ in $x\in\F^n$. \emph{Produkt matrike $A$ z vektorjem $x$}\index{Matrika!Produkt z vektorjem} je vektor $A\cdot x$, katerega $i$-ta komponenta je skalarni produkt $i$-te vrstice matrike $A$ in stolpca $x$.
+\end{definicija}
+
+\begin{opomba}
+Če je $A\colon\F^m\to\F^n$ in sta $\mathcal{B}$ ter $\mathcal{C}$ standardni bazi, potem je $Ax=A_{\mathcal{CB}}\cdot x$.
+\end{opomba}
+
+\begin{izrek}\label{diagram:1}
+Naj bo $A\colon U\to V$ linearna preslikava in $\mathcal{B}=\set{u_i\mid 0<i\leq n}$ ter $\mathcal{C}=\set{v_i\mid 0<i\leq m}$ bazi $U$ in $V$. Naj bosta $\Psi_{\mathcal{B}}\colon U\to\F^n$ in $\Psi_{\mathcal{C}}\colon V\to\F^m$ izomorfizma, za katera je $\Psi_{\mathcal{B}}u_i=e_i$ in $\Psi_{\mathcal{C}}v_i=f_i$, kjer sta $\set{e_i\mid 0<i\leq n}$ in $\set{f_i\mid 0<i\leq m}$ standardni bazi. Potem je $\Psi_{\mathcal{C}}\circ A=A_{\mathcal{CB}}\circ\Psi_{\mathcal{B}}$.
+\end{izrek}
+
+\begin{figure}[H]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U
+\arrow[r, "A"]
+\arrow[d, "\Psi_{\mathcal{B}}"']
+\arrow[dr, out=45, in=45, looseness=2, "\Psi_{\mathcal{C}}\circ A"]
+\arrow[dr, out=220, in=225, looseness=2, "A_{\mathcal{CB}}\circ \Psi_{\mathcal{B}}"'] & V \arrow[d, "\Psi_{\mathcal{C}}"] \\
+\F^n \arrow[r, "A_{\mathcal{CB}}"'] & \F^m
+\end{tikzcd}
+\]
+\vspace{-50pt}\\
+\caption{Izrek~\ref{diagram:1} -- ">diagram komutira"<}
+\end{figure}
+
+\begin{proof}
+Dovolj je trditev dokazati za bazne vektorje. Velja pa
+\[
+(\Psi_{\mathcal{C}}\circ A)u_i=\Psi_{\mathcal{C}}(Au_i)
+=\Psi_{\mathcal{C}}\left(\sum_{j=1}^m a_{j,i}v_j\right)
+=\sum_{j=1}^m a_{j,i}f_j
+\]
+in
+\[
+(A_{\mathcal{CB}}\circ \Psi_{\mathcal{B}})u_i=A_{\mathcal{CB}}(\Psi_{\mathcal{B}}u_i)
+=A_{\mathcal{CB}}e_i
+=A_{\mathcal{CB}}\cdot e_i
+=\sum_{j=1}^m a_{j,i}f_j.\qedhere
+\]
+\end{proof}
+
+
+
+\newpage
+
+\subsection{Množenje matrik}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $A\in\F^{m\times n}$ in $B\in\F^{n\times p}$. Definiramo matriko $A\cdot B\in\F^{m\times p}$ tako, da je element $(i,j)$ matrike skalarni produkt $i$-te vrstice matrike $A$ in $j$-tega stolpca matrike $B$, oziroma
+\[
+\sum_{k=1}^n a_{i,k}\cdot b_{k,j}.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}
+Naj bosta $A\colon U\to V$ in $B\colon W\to U$ linearni preslikavi. Naj bodo $\mathcal{B}$, $\mathcal{C}$ in $\mathcal{D}$ zaporedoma baze $U$, $V$ in $W$. Za linearno preslikavo $A\circ B\colon W\to V$ velja
+\[
+(A\circ B)_{\mathcal{CD}}=A_{\mathcal{CB}}\cdot B_{\mathcal{BD}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Opazimo, da je množenje asociativno.
+\end{proof}
+
+\begin{posledica}
+Če so produkti in vsote definirani, veljajo naslednje lastnosti:
+
+\begin{enumerate}
+\item $A\cdot(BC)=(AB)\cdot C$
+\item $A\cdot(B+C)=AB+AC$
+\item $(B+C)\cdot A=BA+CA$
+\item $(\alpha A)B=A(\alpha B)=\alpha(AB)$
+\end{enumerate}
+\end{posledica}
+
+\newpage
+
+\subsection{Dualni prostor in dualna preslikava}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad $\F$. \emph{Linearen funkcional}\index{Linearen funkcional} je linearna preslikava $\varphi\colon V\to\F$. \emph{Dualni prostor}\index{Dualni prostor} vektorskega prostora $V$ je množica vseh linearnih funkcionalov, ki slikajo iz $V$ v $\F$, oziroma $V^*=\hom_\F(V,\F)$.
+\end{definicija}
+\end{okvir}
+
+\begin{izrek}
+Naj bo $\set{v_1,\dots,v_n}$ baza prostora $V$. Definiramo linearne funkcionale $\varphi_1,\dots,\varphi_n\in V^*$ na naslednji način:
+\[
+\varphi_i(v_j)=
+\begin{cases}
+1, &i=j
+\\
+0, &i\ne j
+\end{cases}
+\]
+Potem je $\set{\varphi_1,\dots,\varphi_n}$ baza prostora $V^*$. Tej bazi pravimo \emph{dualna baza} baze $\set{v_1,\dots,v_n}$.
+\end{izrek}
+
+\begin{proof}
+Očitno so $\varphi_i$ linearno neodvisni. Za poljuben $\varphi\in V^*$ velja
+\[
+\varphi=\sum_{i=1}^n \varphi(v_i)\cdot\varphi_i.
+\]
+Dovolj je enakost dokazati za bazne vektorje, kar je trivialno.
+\end{proof}
+
+\begin{posledica}
+$\dim V^*=\dim V$, oziroma $V^*\cong V$.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor in $X$ neprazna podmnožica v $V$. Definiramo
+\[
+X^0=\set{\varphi\in V^*\mid \forall x\in X\colon\varphi(x)=0}.
+\]
+Množici $X^0$ pravimo \emph{anihilator}\index{Dualni prostor!Anihilator} množice $X$.
+\end{definicija}
+
+\begin{trditev}
+Če je $X\subseteq V$, je $X^0$ vektorski podprostor v $V^*$.
+\end{trditev}
+
+\begin{proof}
+$X^0$ je jedro preslikave.
+\end{proof}
+
+\begin{trditev}\label{td:oplus}
+Recimo, da je $V=U\oplus W$. Potem je $U^0\cong W^*$.
+\end{trditev}
+
+\begin{proof}
+Za izomorfizem preprosto izberemo zožitev funkcionala na $W$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $A\colon U\to V$ linearna preslikava in $\varphi\in V^*$ linearen funkcional. Potem je $\varphi A\in U^*$. To pomeni, da imamo preslikavo $A^*\colon V^*\to U^*$, za katero je $A^*(\varphi)=\varphi A$. Tej preslikavi pravimo \emph{dualna preslikava}\index{Preslikava!Dualna} preslikave $A$.
+\end{definicija}
+
+\begin{trditev}
+$A^*$ je linearna preslikava.
+\end{trditev}
+
+\begin{proof}
+$A^*$ je kompozitum dveh linearnh preslikav, kar je linearna preslikava po trditvi~\ref{td:komp}.
+\end{proof}
+
+\begin{izrek}\label{iz:rang}
+Naj bo $A\colon U\to V$ linearna.
+\begin{enumerate}[label=\alph*)]
+\item $\ker A^*=(\im A)^0$
+\item $\rang A^*=\rang A$
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\begin{enumerate}[label=\alph*)]
+\item Veljajo ekvivalence
+\[
+\varphi\in\ker A^*\iff \varphi A=0\iff \varphi(Au)=0~\forall u\in U\iff \varphi\in(\im A)^0.
+\]
+\item Naj bo $W$ tak podprostor $V$, da je $V=\im A\oplus W$. Po trditvi~\ref{td:oplus} je
+\[
+W^*\cong (\im A)^0\cong\ker A^*.
+\]
+Torej je
+\[
+\rang A^*=\dim V^*-\dim\ker A^*=\dim V-\dim W=\dim\im A=\rang A.\qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Naj bo $A\in\F^{m\times n}$. \emph{Transponiranka}\index{Matrika!Transponiranka} matrike $A$ je matrika $A^\top\in\F^{n\times m}$, katere $(i,j)$-ti element je $(j,i)$-ti element matrike $A$.
+\end{definicija}
+
+\begin{posledica}
+Transponiranje je izomorfizem.
+\end{posledica}
+
+\begin{izrek}
+Naj preslikavi $A\colon U\to V$ v bazah $\mathcal{B}$ in $\mathcal{C}$ prostorov $U$ in $V$ pripada matrika $A_{\mathcal{CB}}$. Potem dualni preslikavi $A^*\colon V^*\to U^*$ v dualnih bazah $\mathcal{C}^*$ in $\mathcal{B}^*$ pripada matrika
+\[
+A^*_{\mathcal{B}^*\mathcal{C}^*}=(A_{\mathcal{CB}})^\top.
+\]
+\end{izrek}
+
+\begin{proof}
+Najprej označimo $\mathcal{B}=\set{u_1,\dots,u_n}$, $\mathcal{C}=\set{v_1,\dots,v_m}$, $\mathcal{B}^*=\set{\varphi_1,\dots,\varphi_n}$ in $\mathcal{C}^*=\set{\psi_1,\dots,\psi_m}$. Naj bo še $A_{\mathcal{CB}}=[a_{i,j}]_{
+\substack{
+1\leq i\leq m \\
+1\leq j\leq n}}$ in 
+$A^*_{\mathcal{B}^*\mathcal{C}^*}=[b_{i,j}]_{
+\substack{
+1\leq i\leq n \\
+1\leq j\leq m}}$. Potem je
+\[
+(A^*\psi_j)u_i=\left(\sum_{k=1}^n b_{k,j}\varphi_k\right)u_i
+=\sum_{k=1}^n b_{k,j}\varphi_k(u_i)
+=b_{i,j},
+\]
+po drugi strani pa je
+\[
+(A^*\psi_j)u_i=(\psi_k\circ A)u_i
+=\psi_j\left(\sum_{k=1}^m a_{k,i}v_i\right)
+=\sum_{k=1}^m a_{k,i}\psi_j(v_i)
+=a_{j,i}.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Za matriki $A$ in $B$, katerih produkt je definiran, je
+\[
+(AB)^\top=B^\top A^\top.
+\]
+\end{posledica}
+
+\newpage
+
+\subsection{Rang matrike}
+
+\begin{definicija}
+\emph{Rang matrike}\index{Matrika!Rang} je enak rangu preslikave, ki jo ta matrika določa.
+\end{definicija}
+
+\begin{trditev}\label{diagram:2}
+Za vse linearne preslikave je $\rang A_{\mathcal{CB}}=\rang A$.
+\end{trditev}
+
+\begin{proof}
+Vemo že $\Psi_{\mathcal{C}}\circ A=A_{\mathcal{CB}}\circ\Psi_{\mathcal{B}}$. Po izreku~\ref{diagram:1} sledi $\Psi_{\mathcal{C}}(\im A)=\im A_{\mathcal{CB}}$.
+
+\begin{figure}[H]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U
+\arrow[r, "A"]
+\arrow[d, "\Psi_{\mathcal{B}}"', "\cong"] & V \arrow[d, "\Psi_{\mathcal{C}}", "\cong"'] \\
+\F^n \arrow[r, "A_{\mathcal{CB}}"'] & \F^m
+\end{tikzcd}
+\]
+%\vspace{-50pt}\\
+\caption{Trditev~\ref{diagram:2}}
+\end{figure}
+
+Sledi
+\[
+\rang A_{\mathcal{CB}}=\dim\im A_{\mathcal{CB}}=\dim \Psi_{\mathcal{C}}(\im A)=\dim\im A.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Vrstični rang} matrike je maksimalno število linearno neodvisnih vrstic matrike. Označimo ga z $\rang_v(A)$.
+
+\emph{Stolpčni rang} matrike je maksimalno število linearno neodvisnih stolpcev matrike. Označimo ga z $\rang_s(A)$.
+\end{definicija}
+
+\begin{izrek}
+Za poljubno matriko $A\in\F^{m\times n}$ je
+\[
+\rang_v(A)=\rang_s(A)=\rang(A).
+\]
+\end{izrek}
+
+\begin{proof}
+Dovolj je dokazati $\rang A=\rang_s A$ (matriko transponiramo in uporabimo izrek~\ref{iz:rang}). Očitno je $\im A=\Lin\set{Ae_1,\dots,Ae_n}$, to pa so ravno stolpci v matriki. Dimenzija linearne ogrinjače je največja možna linearno neodvisna podmnožica, kar je ravno stolpčni rang.
+\end{proof}
+
+Naslednje transformacije matrike $A$ ne spremenijo ranga:
+
+\begin{enumerate}[label=\arabic*)]
+\item Menjava stolpcev ali vrstic
+\item Množenje stolpca ali vrstice z neničelnim skalarjem
+\item Stolpec ali vrstico prištejemo k nekemu drugemu stolpcu ali vrstici
+\end{enumerate}
+
+S takimi transformacijami lahko v neničelni matriki prvi element nastavimo na $1$, vse ostale elemente v prvem stolpcu in vrstici pa na $0$. Nato ta algoritem ponavljamo na manjših matrikah, dokler ne dobimo samih $0$. Potem je rang matrike število $1$ na diagonali.
+
+\subsection{Sistemi linearnih enačb}
+
+Obravnavali bomo sisteme $m$ enačb z $n$ neznankami nad poljem $\F$:
+\begin{align*}
+\sum_{i=1}^n a_{1,i}x_i&=b_1
+\\
+\sum_{i=1}^n a_{2,i}x_i&=b_2
+\\
+&\vdotswithin{=}
+\\
+\sum_{i=1}^n a_{m,i}x_i&=b_m
+\end{align*}
+
+Sestavimo lahko naslednje matrike:
+\[
+A=\begin{bmatrix}
+a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ 
+a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ 
+\vdots & \vdots & \ddots & \vdots \\ 
+a_{m,1} & a_{m,2} & \dots & a_{m,n}
+\end{bmatrix},
+\quad
+x=\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+\quad\text{in}\quad
+b=\begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{bmatrix}.
+\]
+Sistem lahko zapišemo v matrični obliki
+\[
+Ax=b.
+\]
+
+V posebnem primeru, ko je $b=0$, dobimo \emph{homogen sistem}\index{Homogen sistem}. Množica rešitev tega sistema je $\ker A$. Vedno dobimo vsaj eno rešitev -- ničelni vektor. Tej rešitvi pravimo \emph{trivialna rešitev}\index{Trivialna rešitev}.
+
+Zgornji sistem ima netrivialne rešitve natanko tedaj, ko $\ker A\ne\set{0}$, torej $n>\rang A$. Recimo, da ima $\ker A$ bazo $\set{v_1,v_2,\dots,v_k}$. Potem ima poljubna rešitev enačbe obliko
+\[
+x=\alpha_1v_1+\alpha_2v_2+\dots+\alpha_kv_k.
+\]
+
+Taki rešitvi pravimo \emph{$k$-parametrična rešitev}.
+
+\begin{izrek}
+Naj bo $\widetilde{x}$ rešitev sistema $Ax=b$. Potem je množica vseh rešitev tega sistema enaka
+\[
+\widetilde{x}+\ker A.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+A(x-\widetilde{x})=Ax-A\widetilde{x}=Ax-b.
+\]
+To pomeni, da je $Ax=b$ natanko tedaj, ko je $x-\widetilde{x}\in\ker A$.
+\end{proof}
+
+Napravimo razširjeno matriko sistema $\widetilde{A}=\left[A\dashline b\right]$. Naslednje transformacije na $\widetilde{A}$ ne spremenijo množice rešitev:
+
+\begin{enumerate}
+\item Menjava vrstic
+\item Menjava stolpcev (spremeni se vrstni red neznank)
+\item Vrstico lahko pomnožimo z neničelnim številom
+\item Vrstici lahko prištejemo neko drugo vrstico
+\end{enumerate}
+
+\begin{izrek}[Kronecker-Capelli]\index{Izrek!Kronecker-Capelli}
+Sistem linearnih enačb ima rešitev natanko tedaj, ko je $\rang\widetilde{A}=\rang A$.
+\end{izrek}
+
+\begin{proof}
+S podobnim algoritmom kot pri iskanju ranga lahko matriko $\widetilde{A}$ transformiramo v
+\[
+\widetilde{A}\sim
+\left[\begin{array}{ccccccc:c}
+1      & 0      & \dots  & 0      & *      & \dots  & *      & *      \\ 
+0      & 1      & \dots  & 0      & *      & \dots  & *      & *      \\ 
+\vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 
+0      & 0      & \dots  & 1      & *      & \dots  & *      & *      \\ 
+0      & 0      & \dots  & 0      & 0      & \dots  & 0      & c_1    \\ 
+\vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 
+0      & 0      & \dots  & 0      & 0      & \dots  & 0      & c_l
+\end{array}\right]
+\]
+Temu postopku pravimo \emph{Gaussova eliminacija}\index{Gaussova eliminacija}.
+
+Naj bo $r=\rang A$. Sistem enačb tako postane
+\begin{align*}
+y_1+*y_{r+1}+*y_{r+2}+\dots+*y_n&=*
+\\
+y_2+*y_{r+1}+*y_{r+2}+\dots+*y_n&=*
+\\
+&\vdotswithin{=}
+\\
+y_r+*y_{r+1}+*y_{r+2}+\dots+*y_n&=*
+\\
+0&=c_1
+\\
+0&=c_2
+\\
+&\vdotswithin{=}
+\\
+0&=c_l,
+\end{align*}
+kjer so $y_i$ neka permutacija $x_i$. Recimo, da je $c_1=c_2=\dots=c_l=0$. V nasprotnem primeru namreč nimamo rešitev. Vidimo, da so lahko $y_i$ poljubni za $i>r$ (teh je ravno $\dim\ker A$), tej parametri pa natanko določajo preostale $y$.
+
+To pomeni, da ima sistem rešitev natanko tedaj, ko je $c_1=c_2=\dots=c_l=0$, to pa se zgodi natanko tedaj, ko je $\rang\widetilde{A}=\rang A$.
+\end{proof}
+
+\begin{posledica}
+Podan je sistem $Ax=b$. Naj bo $\widetilde{A}=[A\dashline b]$.
+
+\begin{enumerate}
+\item Če je $\rang\widetilde{A}\ne\rang A$, sistem nima rešitev.
+\item Če je $\rang\widetilde{A}=\rang A=n$, ima sistem natanko eno rešitev.
+\item Če je $\rang\widetilde{A}=\rang A<n$, imamo $(n-\rang A)$-parametrično rešitev sistema.
+\end{enumerate}
+\end{posledica}
+
+\subsection{Endomorfizmi končnorazsežnih vektorskih prostorov in kvadratne matrike}
+
+Spomnimo, $\enm_\F(V)$ je algebra nad $\F$, kjer je $V$ končnorazsežen vektorski prostor nad $\F$.
+
+Izberemo bazo $\mathcal{B}$ prostora $V$ in endomorfizmu $A$ priredimo matriko $A_{\mathcal{BB}}\in\F^{n\times n}$. To pomeni, da imamo preslikavo
+\[
+\Phi_{\mathcal{BB}}\colon\enm_\F(V)\to\F^{n\times n},\quad\Phi_{\mathcal{BB}}(A)=A_{\mathcal{BB}}.
+\]
+$\Phi_{\mathcal{BB}}$ je izomorfizem vektorskih prostorov. Na $\F^{n\times n}$ imamo poleg seštevanja in množenja s skalarjem tudi množenje (množenje matrik), zato je tudi $\F^{n\times n}$ algebra nad $\F$.
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ algebri nad $\F$. \emph{Homomorfizem algeber}\index{Homomorfizem} je preslikava $f\colon X\to Y$, za katero velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $f$ je linearna
+\item $f$ je homomorfizem kolobarjev
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+$\Phi_{\mathcal{BB}}\colon\enm_\F(V)\to\F^{n\times n}$ je izomorfizem algeber.
+\end{izrek}
+
+\obvs
+
+$\enm_\F(V)$ ima nevtralni element za množenje -- $\id$. Pripada ji \emph{identična matrika}\index{Matrika!Identična}
+\[
+\id_{\mathcal{BB}}=I=
+\begin{bmatrix}
+1 \\
+& 1 \\
+& & 1 \\
+& & & \ddots \\
+& & & & 1
+\end{bmatrix}
+\]
+$I$ je enota za množenje v $\F^{n\times n}$.
+
+\begin{definicija}
+Bijektivnim endomorfizmom vektorskega prostora pravimo \emph{avtomorfizmi}\index{Avtomorfizem} vektorskega prostora $V$:
+\[
+\aut_\F(V)=\set{A\mid A\in\enm_\F(V), \text{$A$ je bijektivna}}.
+\]
+\end{definicija}
+
+Na $\aut_\F(V)$ seštevanje ni operacija, prav tako pa množenje s skalarjem ni dobro definirano. Produkt je operacija na $\aut_\F(V)$, kjer je produkt avtomorfizmov njun kompozitum.
+
+\begin{trditev}
+$\aut_\F(V)$ z množenjem je grupa.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $A\in\enm_\F(V)$. Naslednje trditve so ekvivalentne:
+
+\begin{enumerate}[label=\arabic*)]
+\item $A\in\aut_\F(V)$
+\item $A$ je surjektivna
+\item $A$ je injektivna
+\item $\rang A=\dim V$
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če je $A$ avtomorfizem, je surjektivna.
+
+Če je $A$ surjektivna, zaradi $\dim\ker A+\dim\im A=\dim V$ velja $\dim\ker A=0$, zato je $A$ injektivna.
+
+Če je $A$ injektivna, je $\rang A=\dim V-\dim\ker A=\dim V$.
+
+Če je $\rang A=\dim V$, je $A$ surjektivna, saj je $\im A\leq V$ in $\dim\im A=\dim V$.
+\end{proof}
+
+\begin{definicija}
+Matrika $A\in\F^{n\times n}$ je \emph{obrnljiva}\index{Matrika!Obrnljiva}, če obstaja $B\in\F^{n\times n}$, da je
+\[
+A\cdot B=B\cdot A=I.
+\]
+Matriki $B$ pravimo \emph{inverz matrike}\index{Matrika!Inverz} $A$. Pišemo $B=A^{-1}$.
+\end{definicija}
+
+\begin{opomba}
+Če za matriki $A$ in $B$ velja $A\cdot B=I$, potem je tudi $B\cdot A=I$.
+\end{opomba}
+
+\begin{proof}
+$A$ je inverzna preslikava $B$, zato je $B$ inverzna preslikava $A$.
+\end{proof}
+
+\begin{opomba}
+Matrika $A\in\F^{n\times n}$ je obrnljiva natanko tedaj, ko je $\rang A=n$. Inverz poiščemo z Gaussovo eliminacijo.
+\end{opomba}
+
+\newpage
+
+\subsection{Prehod med bazami}
+
+\begin{definicija}
+\emph{Prehodna matrika}\index{Matrika!Prehodna} je matrika za identiteto:
+\[
+P_{\mathcal{CB}}=(\id)_{\mathcal{CB}}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bodo $\mathcal{B}$, $\mathcal{C}$ in $\mathcal{D}$ baze vektorskega prostora $V$ in $v\in V$ vektor.
+
+\begin{enumerate}[label=\alph*)]
+\item $P_{\mathcal{CB}}\cdot v_{\mathcal{B}}=v_{\mathcal{C}}$.
+\item $P_{\mathcal{CB}}$ je obrnljiva, $P_{\mathcal{CB}}^{-1}=P_{\mathcal{BC}}$
+\item $P_{\mathcal{CD}}\cdot P_{\mathcal{DB}}=P_{\mathcal{CB}}$
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Matrike predstavljajo preslikave.
+\end{proof}
+
+Recimo, da imamo linearno preslikavo $A\colon U\to V$, kjer sta $U$ in $V$ končnorazsežna netrivialna vektorska prostora. Za $U$ in $V$ izberemo bazi $\mathcal{B}$ in $\mathcal{C}$. Dobimo matriko $A_{\mathcal{CB}}$.
+
+Recimo, da za $U$ in $V$ izberimo še bazi $\mathcal{B'}$ in $\mathcal{C'}$. Dobimo še matriko $A_{\mathcal{C'B'}}$. Potem je
+\[
+A_{\mathcal{CB}}=P_{\mathcal{CC'}}A_{\mathcal{C'B'}}P_{\mathcal{B'B}}.
+\]
+
+\begin{figure}[H]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U \arrow[rrr, "A"] \arrow[ddd, "\id_U"'] \arrow[dr, "\Phi_{\mathcal{B}}"] &
+&
+&
+V \arrow[ddd, "\id_V"] \arrow[dl, "\Phi_{\mathcal{C}}"']
+\\
+&
+\F^n \arrow[r, "A_{\mathcal{CB}}"] \arrow[d, "P_\mathcal{B'B}"']
+&
+\F^m \arrow[d, "P_\mathcal{C'C}"]
+\\
+&
+\F^n \arrow[r, "A_{\mathcal{C'B'}}"']
+&
+\F^m
+\\
+U \arrow[rrr, "A"'] \arrow[ur, "\Phi_{\mathcal{B'}}"]
+&
+&
+&
+V \arrow[ul, "\Phi_{\mathcal{C'}}"']
+\end{tikzcd}
+\]
+\vspace{-30pt}\\
+\caption{Wtf}
+\end{figure}
+
+\begin{definicija}
+Naj bosta $A,B\in\F^{m\times n}$ matriki. Pravimo, da sta $A$ in $B$ \emph{ekvivalentni}\index{Matrika!Ekvivalentna}, če obstajata obrnljivi matriki $P\in\F^{m\times m}$ in $Q\in\F^{n\times n}$, da je
+\[
+B=PAQ.
+\]
+Označimo $A\sim B$.
+\end{definicija}
+
+\begin{opomba}
+Če linearni preslikavi priredimo matriki glede na različna para baz, sta ti matriki vedno ekvivalentni.
+\end{opomba}
+
+\begin{posledica}
+$\sim$ je ekvivalenčna.
+\end{posledica}
+
+\obvs
+
+\begin{lema}
+Naj bo $A\in\F^{m\times n}$ in $P\in\F^{m\times m}$ ter $Q\in\F^{n\times n}$ obrnljivi matriki. Potem je
+
+\begin{enumerate}[label=\alph*)]
+\item $\rang PA=\rang A$
+\item $\rang AQ=\rang A$
+\item Če je $A\sim B$, je $\rang B=\rang A$
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Matrike gledamo kot linearne preslikave. Naj bo $\set{v_1,v_2,\dots,v_r}$ baza $\im A$. Potem je $\set{Pv_1,Pv_2,\dots,Pv_r}$ baza $\im PA$, saj je $P$ obrnljiva, torej injektivna.
+
+Spomnimo se, da je $\rang(AQ)=\rang(AQ)^\top=\rang Q^\top A^\top$, kar dokaže drugo točko, saj je $Q^\top$ tudi obrnljiva.
+
+Tretja točka je direktna posledica prvih dveh.
+\end{proof}
+
+\begin{lema}
+Recimo, da je $A\colon U\to V$ linearna. Potem obstajata bazi $\mathcal{B}$ za $U$ in $\mathcal{C}$ za $V$, da je
+\[
+A=\begin{bmatrix}
+1 &        &   &   \\ 
+  & \ddots &   &   \\ 
+  &        & 1 &   \\ 
+  &        &   &  
+\end{bmatrix}.
+\]
+\end{lema}
+
+\begin{proof}
+Naj bo $\set{w_1,w_2,\dots,w_k}$ baza $\ker A$. To bazo dopolnimo do baze $U$
+\[
+\mathcal{B}=\set{u_1,u_2,\dots,u_l,w_1,w_2,\dots,w_k}.
+\]
+Potem je $\set{Au_1,Au_2,\dots,Au_l}$ baza $\im A$. Če jo dopolnimo do baze $\mathcal{C}$ prostora $V$, sta $\mathcal{B}$ in $\mathcal{C}$ ravno iskani bazi.
+\end{proof}
+
+\begin{izrek}
+$m\times n$ matriki $A$ in $B$ sta ekvivalentni natanko tedaj, ko je $\rang A=\rang B$.
+\end{izrek}
+
+%----ERROR 404---- multilinearna algebra
+
+% 1-linearne = linearne
+% 2-linearne = bilinearne
+%
+%
+%
+%
+
+\begin{definicija}
+Naj bo $F\colon U^n\to V$ $n$-linearna. Pravimo, da je $F$ \emph{antisimetrična}, če velja
+\[
+F(u_1,\dots,u_i,\dots,u_j,\dots,u_n)=-F(u_1,\dots,u_j,\dots,u_i,\dots,u_n).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $F\colon U^n\to V$ $n$-linearna antisimetrična preslikava. Recimo, da so $u_1,u_2,\dots,u_n\in U$ in $u_i=u_j$ za neka $i\ne j$. Potem je
+\[
+F(u_1,u_2,\dots,u_n)=0.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $F\colon U^n\to V$ $n$-linearna antisimetrična preslikava. Potem
+\[
+F(u_1,\dots,u_i,\dots,u_j+\alpha u_i,\dots,u_n)=F(u_1,\dots,u_i,\dots,u_j,\dots,u_n)
+\]
+\end{trditev}
+
+\obvs
+
+Zdaj se omejimo na primer $U=\F^n$, $V=\F$. Naj bo
+\[
+F\colon (\F^n)^n\to\F
+\]
+$n$-linearna antisimetrična preslikava (funkcional). Elemente $(\F^n)^n$ lahko identificiramo z matrikami. Označimo
+\[
+e_i=\begin{bmatrix}
+0      \\ 
+\vdots \\ 
+0      \\ 
+1      \\ 
+0      \\ 
+\vdots \\ 
+0
+\end{bmatrix}.
+\]
+Potem je
+\begin{align*}
+F(A)&=F(Ae_1,Ae_2,\dots,Ae_n)
+\\
+&=\sum_{\sigma\in S_n} F(a_{\sigma(1),1}e_{\sigma(1)},\dots,a_{\sigma(n),n}e_{\sigma(n)})
+\\
+&=\sum_{\sigma\in S_n} \left(\prod_{i=1}^n a_{\sigma(i),i}\cdot F(e_{\sigma(1)},\dots,e_{\sigma(n)})\right)
+\\
+&=\sum_{\sigma\in S_n} \left(\sgn\sigma\cdot\prod_{i=1}^n a_{\sigma(i),i}\right)\cdot F(I).
+\end{align*}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $A=[a_{i,j}]_{i,j=1,\dots,n}$ matrika v $\F^{n\times n}$. Skalarju
+\[
+\det A=\sum_{\sigma\in S_n} \left(\sgn\sigma\cdot\prod_{i=1}^n a_{\sigma(i),i}\right)
+\]
+pravimo \emph{determinanta matrike}\index{Matrika!Determinanta} $A$.
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Če je $F\colon (\F^n)^n\to\F$ antisimetrična $n$-linearna preslikava, je
+\[
+F(A)=\det A\cdot F(I).
+\]
+\end{opomba}
+
+\begin{trditev}
+Velja $\det A=\det A^\top$.
+\end{trditev}
+
+\begin{proof}
+Determinanto lahko zapišemo tudi kot
+\begin{align*}
+\det A&=\sum_{\sigma\in S_n} \left(\sgn\sigma\cdot\prod_{i=1}^n a_{i,\sigma^{-1}(i)}\right)
+\\
+&=\sum_{\sigma\in S_n} \left(\sgn\sigma^{-1}\cdot\prod_{i=1}^n a_{i,\sigma(i)}\right)
+\\
+&=\sum_{\sigma\in S_n} \left(\sgn\sigma\cdot\prod_{i=1}^n a_{i,\sigma(i)}\right)
+\\
+&=\det A^\top.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{opomba}
+Če je
+\[
+A=\begin{bmatrix}
+a_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+a_{2,1} & a_{2,2} & \dots  & a_{2,n} \\ 
+\vdots  & \vdots  & \ddots & \vdots \\ 
+a_{n,1} & a_{n,2} & \dots  & a_{n,n}
+\end{bmatrix} 
+\]
+pišemo
+\[
+\det A=\begin{vmatrix}
+a_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+a_{2,1} & a_{2,2} & \dots  & a_{2,n} \\ 
+\vdots  & \vdots  & \ddots & \vdots \\ 
+a_{n,1} & a_{n,2} & \dots  & a_{n,n}
+\end{vmatrix} 
+\]
+\end{opomba}
+
+\begin{izrek}
+Preslikava $\det\colon\F^{n\times n}\to\F$ je $n$-linearen antisimetričen funkcional.
+\end{izrek}
+
+\obvs
+
+\begin{opomba}
+Iz izreka sledi
+\[
+\begin{vmatrix}
+b_{1,1}+c_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+b_{2,1}+c_{2,1} & a_{2,2} & \dots  & a_{2,n} \\ 
+\vdots          & \vdots  & \ddots & \vdots \\ 
+b_{n,1}+c_{n,1} & a_{n,2} & \dots  & a_{n,n}
+\end{vmatrix}
+=
+\begin{vmatrix}
+b_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+b_{2,1} & a_{2,2} & \dots  & a_{2,n} \\ 
+\vdots  & \vdots  & \ddots & \vdots \\ 
+b_{n,1} & a_{n,2} & \dots  & a_{n,n}
+\end{vmatrix} 
++
+\begin{vmatrix}
+c_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+c_{2,1} & a_{2,2} & \dots  & a_{2,n} \\ 
+\vdots  & \vdots  & \ddots & \vdots \\ 
+c_{n,1} & a_{n,2} & \dots  & a_{n,n}
+\end{vmatrix} 
+\]
+Podobno velja za ostale stolpce in vrstice. Če v matriki zamenjamo poljubna stolpca oziroma vrstici, je $\det$ nove matrike enaka nasprotni vrednosti $\det$ začetne matrike. Če ima $A$ dva enaka stolpca oziroma vrstici, je tako $\det A=0$.
+\end{opomba}
+
+\begin{izrek}
+$\det\colon\F^{n\times n}\to\F^n$ je multiplikativna.
+\end{izrek}
+
+\begin{proof}
+Definirajmo preslikavo $F\colon\F^{n\times n}\to\F$ kot
+\[
+F(v_1,v_2,\dots,v_n)=\det(Av_1,Av_2,\dots,Av_n).
+\]
+Vidimo, da je $F$ $n$-linearna in antisimetrična. Ker je $F(I)=\det A$, pa je
+\[
+\det(AB)=F(B)=\det A\cdot\det B.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $A=\left[a_{i,j}\right]_{i,j=1,\dots,n}$. Označimo z $A_{i,j}$ matriko, ki jo dobimo, če v $A$ odstranimo $i$-to vrstico in $j$-ti stolpec. \emph{$(i,j)$-ti kofaktor}\index{Matrika!Kofaktor} definiramo kot
+\[
+\widetilde{a}_{i,j}=(-1)^{i+j}\cdot\det A_{i,j}.
+\]
+\end{definicija}
+
+\begin{izrek}
+Naj bo $A=\left[a_{i,j}\right]_{i,j=1,\dots,n}$ matrika. Potem je za vse $i$
+\[
+\det A=\sum_{j=1}^n a_{i,j}\cdot\widetilde{a}_{i,j}.
+\]
+Simetrično velja za stolpce.
+\end{izrek}
+
+\begin{proof}
+Oglejmo si $\det(A^{(1)},\dots,A^{(j-1)},e_i,A^{(j+1)},\dots)$. Očitno je enaka $\widetilde{a}_{i,j}$, saj lahko $a_{i,j}$ z menjavami stolpcev in vrstic prestavimo na zadnje mesto v matriki, pri tem pa se predznak spremeni $2n-i-j$-krat. Zdaj upoštevamo, da je $\det$ $n$-linearna s čemer smo končali. 
+\end{proof}
+
+\begin{opomba}
+Zgornji vsoti pravimo \emph{razvoj determinante}\index{Matrika!Razvoj determinante} po $i$-ti vrstici oziroma $j$-tem stolpcu.
+\end{opomba}
+
+\begin{okvir}
+\begin{posledica}
+Pri računanju determinant si lahko pomagamo z naslednjimi dejstvi:
+
+\begin{enumerate}[label=\arabic*)]
+\item Če v matriki zamenjamo dve vrstici ali stolpca, se determinanti spremeni le predznak
+\item Izpostavljamo lahko skupne faktorje
+\item Če v matriki nekemu stolpcu oziroma vrstici prištejemo večkratnik nekega drugega stolpca oziramo vrstice, se determinanta ne spremeni
+\end{enumerate}
+\end{posledica}
+\end{okvir}
+
+\begin{trditev}
+Naj bo $A$ $n\times n$ matrika, $B$ pa $m\times m$ matrika. Potem je
+\[
+\begin{vmatrix}
+A & C \\
+0 & B
+\end{vmatrix} = \det A\cdot\det B.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Matrikam oblike
+\[
+\begin{bmatrix}
+a_{1,1} & a_{1,2} & \dots  & a_{1,n} \\ 
+        & a_{2,2} & \dots  & a_{2,n} \\ 
+        &         & \ddots & \vdots  \\ 
+        &         &        & a_{n,n}
+\end{bmatrix} 
+\]
+pravimo \emph{zgornjetrikotne matrike}\index{Matrika!Zgornjetrikotna}. Matrikam oblike 
+\[
+\begin{bmatrix}
+a_{1,1} &         &        &        \\ 
+        & a_{2,2} &        &        \\ 
+        &         & \ddots &        \\ 
+        &         &        & a_{n,n}
+\end{bmatrix} 
+\]
+pravimo \emph{diagonalne matrike}\index{Matrika!Diagonalna}.
+\end{definicija}
+
+\begin{posledica}
+Determinanta zgornjetrikotnih in diagonalnih matrik je kar produkt diagonalnih elementov.
+\end{posledica}
+
+\obvs
+
+\begin{definicija}
+Naj bo $A=\left[a_{i,j}\right]$ $n\times n$ matrika. Matriki
+\[
+\widetilde{A}=\begin{bmatrix}
+\widetilde{a}_{1,1} & \widetilde{a}_{1,2} & \dots  & \widetilde{a}_{1,n} \\ 
+\widetilde{a}_{2,1} & \widetilde{a}_{2,2} & \dots  & \widetilde{a}_{2,n} \\ 
+\vdots              & \vdots              & \ddots & \vdots              \\ 
+\widetilde{a}_{n,1} & \widetilde{a}_{n,2} & \dots  & \widetilde{a}_{n,n}
+\end{bmatrix} 
+\]
+pravimo \emph{prirejenka}\index{Matrika!Prirejenka} matrike $A$.
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+A\cdot\widetilde{A}^\top = \det A\cdot I.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\sum_{k=1}^n a_{i,k}\widetilde{a}_{i,1} = \det A
+\]
+in
+\[
+\sum_{k=1}^n a_{i,k}\widetilde{a}_{j,k}=0,
+\]
+saj je to ravno determinanta matrike z dvema enakima vrsticama.
+\end{proof}
+
+\begin{izrek}
+Naj bo $A\in\F^{n\times n}$. Potem je $A$ obrnljiva natanko tedaj, ko je $\det A\ne 0$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $AB=I$. Potem je $\det A\cdot\det B=\det (AB)=\det I=1$, zato je $\det A\ne 0$.
+
+Če je $\det A\ne 0$, pa je
+\[
+A\cdot\frac{1}{\det A}\widetilde{A}^\top=I.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Cramerjevo pravilo]\index{Cramerjevo pravilo}
+Naj bo $A\in\F^{n\times n}$ in $b\in\F^n$. Recimo, da je $A$ obrnljiva. Naj bo $A_i$ matrika, ki jo dobimo, če v matriki $A$ $i$-ti stolpec zamenjamo s stolpcem $b$. Potem rešitve sistema $Ax=b$ dobimo iz formule
+\[
+x_i=\frac{\det A_i}{\det A}.
+\]
+\end{izrek}
+
+\begin{proof}
+Sistem je ekvivalenten
+\[
+\det A\cdot x=\widetilde{A}^\top b.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Če sta $A$ in $B$ podobni matriki, je $\det A=\det B$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $V$ končnorazsežen vektorski prostor nad $\F$ in $A\colon V\to V$ linearna preslikava. Naj bo $\mathcal{B}$ baza prostora $V$. \emph{Determinanta endomorfizma}\index{Endomorfizem!Determinanta} $A$ je
+\[
+\det A=\det A_{\mathcal{BB}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Po prejšnji trditvi je $\det A$ dobro definirana.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $A\in\F^{m\times n}$ in $1\leq k\leq \min\set{m,n}$. \emph{Minor}\index{Matrika!Minor} reda $k$ je determinanta matrike, katere členi se nahajajo v izbranih $k$ vrsticah in $k$ stolpcih matrike $A$.
+\end{definicija}
+
+\begin{lema}
+Naj bo $A$ $m\times n$ matrika. Če so vsi minorji reda $k$ enaki $0$, so tudi vsi minorji večjih redov enaki $0$.
+\end{lema}
+
+\begin{izrek}
+Naj bo $A$ $m\times n$ matrika. Potem je $\rang A$ enak največji vrednosti $k$, za katero obstaja neničelni minor reda k.
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\section{Lastne vrednosti in lastni vektorji}
+
+\subsection{Lastne vrednosti}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $V$ vektorski prostor nad poljem $\F$ in $A\colon V\to V$ linearna preslikava. Za neničeln vektor $v\in V$ pravimo, da je \emph{lasten vektor}\index{Lastna vrednost!Lasten vektor} endomorfizma $A$, če obstaja $\lambda\in\F$, da velja
+\[
+Av=\lambda v.
+\]
+Skalarju $\lambda$ pravimo \emph{lastna vrednost}\index{Lastna vrednost} preslikave $A$.
+\end{definicija}
+\begin{definicija}
+Naj bo $A\in\F^{n\times n}$. Pravimo, da je $v\in\F^n\setminus\set{0}$ \emph{lasten vektor} endomorfizma $A$, če obstaja $\lambda\in\F$, da velja
+\[
+Av=\lambda v.
+\]
+Skalarju $\lambda$ pravimo \emph{lastna vrednost} matrike $A$.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Lastni vektorji preslikave $A$ za lastno vrednost $\lambda$ so natanko neničelni elementi iz $\ker(A-\lambda I)$.
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+$\lambda$ je lastna vrednost za $A$ natanko tedaj, ko je $\det(A-\lambda I)=0$.
+\end{posledica}
+
+\begin{definicija}
+Če je $\lambda$ lastna vrednost preslikave $A$, podprostoru $\ker(A-\lambda I)$ pravimo \emph{lastni podprostor}\index{Lastna vrednost!Lastni podprostor} za lastno vrednost $\lambda$.
+\end{definicija}
+
+\begin{definicija}
+Polinomu $p_A(\lambda)=\det(A-\lambda I)$ pravimo \emph{karakteristični polinom}\index{Lastna vrednost!Karakteristični polinom}.
+\end{definicija}
+
+\begin{trditev}
+Podobni matriki imata isti karakterističen polinom.
+\end{trditev}
+
+\begin{proof}
+Naj bo $B=PAP^{-1}$. Velja
+\[
+p_B(\lambda)=\det(B-\lambda I)=\det(PAP^{-1}-\lambda PP^{-1})=\det P\cdot \det(A-\lambda I)\cdot P^{-1}=p_A(\lambda).\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $\lambda$ lastna vrednost preslikave $A$.
+\begin{enumerate}[label=\alph*)]
+\item $g(\lambda)=\dim\ker(A-\lambda I)$ imenujemo \emph{geometrijska večkratnost}\index{Lastna vrednost!Geometrijska večkratnost} lastne vrednosti $\lambda$.
+\item Večkratnosti $\lambda$ kot ničle karakterističnega polinoma pravimo \emph{algebraična večkratnost} lastne vrednosti $\lambda$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A\colon V\to V$. Pravimo, da se da $A$ \emph{diagonalizirati}\index{Lastna vrednost!Diagonalizacija}, če obstaja baza $\mathcal{B}$ prostora $V$, da je $A_{\mathcal{BB}}$ diagonalna.
+
+Naj bo $A\in\F{n\times n}$. Pravimo, da se da $A$ \emph{diagonalizirati}, če je podobna neki diagonalni matriki.
+\end{definicija}
+
+\begin{trditev}
+Lastne vrednosti diagonalne matrike so ravno elementi na diagonali te matrike.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Naj bo $A\colon V\to V$. $A$ se da diagonalizirati natanko tedaj, ko obstaja baza prostora $V$, sestavljena iz lastnih vektorjev preslikave $A$.
+\end{izrek}
+
+\obvs
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ linearna in $v_1,v_2,\dots,v_m\in V$ neničelni vektorji, za katere velja $Av_i=\lambda_i v_i$ za paroma različne $\lambda_i$. Potem so $v_1,v_2,\dots,v_m$ linearno neodvisni.
+\end{trditev}
+
+\begin{proof}
+Predpostavimo nasprotno. Naj bo $k$ najmanjše število, za katerega je $v_k=\alpha_1v_1+\dots+\alpha_{k-1}v_{k-1}$. Potem je
+\[
+\lambda_kv_k=\lambda_1\alpha_1v_1+\dots+\lambda_{k-1}\alpha_{k-1}v_{k-1}.
+\]
+Tako dobimo
+\[
+(\lambda_k-\lambda_1)\alpha_1v_1+\dots+(\lambda_k-\lambda_{k-1})\alpha_{k-1}v_{k-1}=0,
+\]
+kar je seveda protislovje.
+\end{proof}
+
+\newpage
+
+\subsection{Karakteristični in minimalni polinomi}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Matrični polinom}\index{Matrični polinom} je izraz
+\[
+p(\lambda)=A_k\lambda^k+A_{k-1}\lambda^{k-1}+\dots+A_1\lambda+A_0,
+\]
+kjer so $A_i\in\F^{n\times n}$.
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+$\lambda$ lahko v zgornji definiciji zamenjamo tudi z vektorjem ali matriko.
+\end{opomba}
+
+\begin{definicija}
+Matrika $B\in\F^{n\times n}$ je \emph{ničla}\index{Matrični polinom!Ničla} matričnega polinoma $p$, če je $p(B)=0$.
+\end{definicija}
+
+\begin{izrek}[Bezout]\index{Izrek!Bezout}
+Naj bo $A\in\F^{n\times n}$ in $p$ matrični polinom iz $\F^{n\times n}$ stopnje $k$. Potem obstajata matrični polinom $q$ stopnje $k-1$ in matrika $R\in\F^{n\times n}$, da je
+\[
+p(\lambda)=q(\lambda)\cdot(A-\lambda I)+R.
+\]
+Pri tem sta $q$ in $R$ enolično določena.
+\end{izrek}
+
+\begin{proof}
+Koeficiente $q$ lahko po vrsti izrazimo z nastavkom. Na koncu dobimo $R=p(A)$.
+\end{proof}
+
+\begin{izrek}[Cayley-Hamilton]\index{Izrek!Cayley-Hamilton}
+Naj bo $A\in\F^{n\times n}$ matrika. Potem je
+\[
+p_A(A)=0.
+\]
+\end{izrek}
+
+\begin{proof}
+Oglejmo si $\left(\widetilde{A-\lambda I}\right)^\top$. Elementi matrike so polinomi v $\lambda$. Velja
+\[
+\left(\widetilde{A-\lambda I}\right)^\top\cdot (A-\lambda I)=\det(A-\lambda I)\cdot I.
+\]
+Sledi
+\[
+p_A(\lambda)=\left(\widetilde{A-\lambda I}\right)^\top\cdot(A-\lambda I).
+\]
+Po Bezoutovem izreku je $0=R=p_A(A)$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $A\in\F^{n\times n}$. Polinom $m_A(\lambda)$ je \emph{minimalni polinom}\index{Matrični polinom!Minimalni} matrike $A$, če velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item Vodilni koeficient $m_A$ je 1,
+\item $m_A(A)=0$,
+\item Za vsak neničeln polinom $q$ nižje stopnje je $q(A)\ne 0$.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Minimalni polinom matrike je enolično določen.
+\end{izrek}
+
+\begin{proof}
+Če sta $p$ in $q$ minimalna polinoma, je $(p-q)(A)=0$.
+\end{proof}
+
+\begin{trditev}
+Minimalni polinom matrike $A$ deli njen karakteristični polinom.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+p_A(\lambda)=q(\lambda)\cdot m_A(\lambda)+r(\lambda).
+\]
+Sledi, da je $r(A)=0$, torej je $r\equiv 0$.
+\end{proof}
+
+\begin{izrek}
+V $\C$ ima $m_A$ iste ničle kot $p_A$.
+\end{izrek}
+
+\begin{proof}
+Ničle $p_A$ so ravno lastne vrednosti matrike. Ker je $m_A(A)=0$, je
+\[
+0=m_A(A)x=m_A(\lambda_i)x
+\]
+za lastni vektor $x$. Ker je $Ix=x\ne 0$, je $m_A(\lambda_i)=0$.
+\end{proof}
+
+\begin{trditev}
+Podobni matriki imata isti minimalni polinom.
+\end{trditev}
+
+\begin{proof}
+Naj bo $B=P^{-1}AP$. Recimo, da je $p(A)=0$. Potem je $p(B)=0$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $A\colon V\to V$. Minimalni polinom endomorfizma $A$ je minimalni polinom matrike $A_{\mathcal{BB}}$, kjer je $\mathcal{B}$ baza prostora $V$.
+\end{definicija}
+
+\newpage
+
+\section{Struktura endomorfizmov končnorazsežnih vetorskih prostorov nad $\C$}
+
+\subsection{Korenski podprostori}
+
+\begin{definicija}
+Naj bo $A\colon V\to V$ linearna preslikava. Podprostor $U\leq V$ je \emph{invarianten}\index{Vektorski prostor!Invarianten podprostor} za $A$, če velja
+\[
+A(U)\subseteq U.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $A\colon V\to V$ in je podprostor $U$ invarianten za $A$, potem je $\eval{A}{U}{}$ endomorfizem prostora $U$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $V=V_1\oplus\dots\oplus V_r$, kjer so $V_i$ invariantni podporostori za linearno preslikavo $A\colon V\to V$. Naj bodo $\mathcal{B}_i$ baze podprostorov $V_i$ in $\mathcal{B}=\bigcup\mathcal{B}_i$ baza prostora $V$. Potem je $A_{\mathcal{BB}}$ bločna diagonalna matrika.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $A\colon V\to V$ endomorfizem, kjer je $V$ vektorski prostor nad $\C$, in naj bo
+\[
+p_A(\lambda)=(-1)^n\prod_{i=1}^n(\lambda-\lambda_i)^{n_i}
+\]
+njegov karakteristični polinom,
+\[
+m_A(\lambda)=\prod_{i=1}^n(\lambda-\lambda_i)^{m_i}
+\]
+pa njegov minimalni polinom. Prostor
+\[
+W_i=\ker(A-\lambda_i I)^{m_i}
+\]
+imenujemo \emph{korenski podprostor}\index{Lastna vrednost!Korenski podprostor} prostora $V$, ki pripada endomorfizmu $A$ za lastno vrednot $\lambda_i$.
+\end{definicija}
+
+\begin{trditev}
+Podprostori $W_1,W_2,\dots,W_k$ so invariantni za $A$ in velja
+\[
+V=W_1\oplus W_2\oplus\dots\oplus W_k.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $x\in W_i$. Sledi, da je $(A-\lambda_i I)^{m_i}x=0$, zato je tudi $(A-\lambda_i I)^{m_i}(Ax)=A\cdot (A-\lambda_i I)^{m_i}x=0$, saj $A$ in $(A-\lambda_i I)$ komutirata. Sledi, da so $W_i$ invariantni za $A$.
+
+Označimo
+\[
+p_i(\lambda)=\prod_{\substack{1\leq j\leq n \\ j\ne i}}(\lambda-\lambda_j I)^{m_j}.
+\]
+Tej polinomi so si seveda tuji. Po Bezoutovi lemi sledi, da obstajajo kompleksni polinomi $q_1,q_2,\dots,q_k$, da velja
+\[
+\sum_{i=1}^k p_iq_i=1.
+\]
+Označimo $x_i=p_i(A)q_i(A)x$. Potem je
+\[
+\sum_{i=1}^k x_i=\sum_{i=1}^n p_i(A)q_i(A)x=x.
+\]
+Ker velja
+\[
+(A-\lambda_i I)^{m_i}x_i=(A-\lambda_i I)^{m_i}p_i(A)q_i(A)x=m_A(A)q_i(A)x=0,
+\]
+se da vsak $x\in V$ zapisati kot vsota vektorjev iz $W_i$. Dokazati moramo še, da je ta zapis enoličen. Predpostavimo, da je
+\[
+x=\sum_{i=1}^k x_i=\sum_{i=1}^k x'_i.
+\]
+Naj bo $y_i=x_i-x'_i$. Dovolj je tako pokazati, da je $y_i=0$ za vse $i$. Opazimo, da za $i\ne j$ velja $p_i(A)y_j=0$, saj je $y_i\in W_i$, saj je $(\lambda-\lambda_i)^{m_j}$ faktor $p_i$. Ker je
+\[
+\sum_{i=1}^k y_i=0,
+\]
+je tudi $p_i(A)y_i=0$. Velja pa
+\[
+y_i=Iy_i=\left(\sum_{i=1}^k p_i(A)q_i(A)\right)y_i=0,
+\]
+saj $p_i$ in $q_i$ komutirata.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A_i=\eval{A}{W_i}{}$. Potem je
+\[
+p_{A_i}(\lambda)=\pm(\lambda-\lambda_i)^{n_i}\quad\text{in}\quad m_{A_i}(\lambda)=\pm(\lambda-\lambda_i)^{m_i}.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $I_i=\eval{I}{i}{}$. Potem je $(A_i-\lambda_iI_i)^{m_i}$ ničelna preslikava. Za $q(\lambda)=(\lambda-\lambda_i)^{m_i}$ tako velja $q(A_i)=0$, zato $m_{A_i}$ deli $q$. Naj bo $m_{A_i}(\lambda)=(\lambda-\lambda_i)^{s_i}$. Naj bo
+\[
+f(\lambda)=\prod_{i=1}^k(\lambda-\lambda_i)^{s_i}.
+\]
+Zaradi minimalnosti $m_A$ je dovolj dokazati $f(A)=0$. Vidimo pa, da za poljuben $x\in V$ velja $f(A)x=0$.
+
+Ker $m_{A-i}$ deli $p_{A_i}$ in imata polinoma isto množico ničel, velja
+\[
+p_{A_i}(\lambda)=\pm(\lambda-\lambda_i)^{r_i}.
+\]
+Ker lahko $A$ bločno diagonaliziramo, pa velja
+\[
+p_A(\lambda)=\pm\prod_{i=1}^n(\lambda-\lambda_i)^{r_i},
+\]
+zato je $r_i=n_i$.
+\end{proof}
+
+\newpage
+
+\subsection{Endomorfizmi z eno samo lastno vrednostjo}
+
+Naj bo $A\colon V\to V$ endomorfizem z eno samo lastno vrednostjo $\rho$ in dimenzijo $n$. Naj bosta $p_A(\lambda)=(-1)^n(\lambda-\rho)^n$ in $m_A(\lambda)=(\lambda-\rho)^m$ njegov karakteristični in minimalni polinom.
+
+\begin{trditev}
+Naj bo $B=A-\rho I$. Potem je
+\[
+p_B(\lambda)=(-1)^n\lambda^n\quad\text{in}\quad m_B(\lambda)=\lambda^m.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Endomorfizem $A$ je \emph{nilpotenten}\index{Endomorfizem!Nilpotenten}, če obstaja tak $m$, da je $A^m=0$.
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+\set{0}\subset\ker B\subset\ker B^2\subset\dots\subset\ker B^m=V.
+\]
+\end{trditev}
+
+\begin{proof}
+Očitno je $\ker B^i\subseteq \ker B^{i+1}$. Recimo, da je $\ker B^i=\ker B^{i+1}$ Naj bo $x\in\ker B^{i+2}$. Sledi, da je
+\[
+0=B^{i+1}(Bx)=B^i(Bx)=B^{i+1}x,
+\]
+zato je $\ker B^{i+2}=\ker B^{i+1}$. Induktivno sledi, da je $\ker B^m=\ker B^i$, kar je seveda protislovje.
+\end{proof}
+
+\begin{trditev}
+Velja $x\in\ker B^i\iff Bx\in\ker B^{i-1}$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $X$ neprazna množica vektorjev iz $V$. Pravimo, da je $X$ \emph{$i$-linearno neodvisna}, če velja:
+
+\begin{enumerate}[label=\roman*)]
+\item $X\subseteq \ker B^i$,
+\item Vektorji iz $X$ so linearno neodvisni,
+\item $\Lin X\cap\ker B^{i-1}=\set{0}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Če je množica $X$ $i$-linearno neodvisna, je množica
+\[
+BX=\set{Bx\mid x\in X}
+\]
+$(i-1)$-linearno neodvisna.
+\end{trditev}
+
+\begin{proof}
+Očitno je $BX\subseteq\ker B^{i-1}$. Recimo, da je
+\[
+\sum_{i=1}^k \alpha_i\cdot B x_i = 0.
+\]
+Sledi, da je
+\[
+B\left(\sum_{i=1}^k \alpha_ix_i\right)=0.
+\]
+Sledi, da je
+\[
+\sum_{i=1}^k \alpha_ix_i=0,
+\]
+torej so vse $\alpha_i$ enake $0$.
+
+Naj bo $y\in\Lin(BX)\cap\ker B^{i-2}$. Sledi, da je
+\[
+0=B^{i-2}y=B^{i-2}\left(B\left(\sum_{i=1}^k \alpha_ix_i\right)\right).
+\]
+Sledi, da je $y=0$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $B$ nilpotenten endomorfizem, za katerega je $B^m=0$. Obstaja podprostor $U_i$ v $V$, da je
+\[
+\ker B^{m-i+1}=\ker B^{m-i}\oplus U_i.
+\]
+Naj bo
+\[
+\mathcal{U}_i=\set{u_1^{(i)}, u_2^{(i)},\dots, u_{s_i}^{(i)}}
+\]
+baza prostora $U_i$, za katero je $B\mathcal{U}_{i-1}\subseteq\mathcal{U}_i$. Množici
+\[
+\mathcal{U}=\bigcup_{i=1}^m\mathcal{U}_i
+\]
+pravimo \emph{Jordanova baza}\index{Vektorski prostor!Baza!Jordanova} endomorfizma $B$.
+\end{definicija}
+
+\begin{opomba}
+Množica $\mathcal{U}_i$ je $m-i+1$-linearno neodvisna.
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+V=U_1\oplus U_2\oplus\dots\oplus U_m.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Jordanova baza je baza prostora $V$.
+\end{posledica}
+
+\begin{definicija}
+\emph{Jordanova forma}\index{Jordanova forma} je matrika
+\[
+J(B)=B_{\mathcal{UU}},
+\]
+pri čemer $\mathcal{U}$ vzamemo v vrstnem redu
+\[
+\mathcal{U}=\set{u_1^{(m)},u_1^{(m-1)},\dots,u_1^{(1)},u_2^{(m)},\dots}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Jordanova forma je oblike
+\[
+J(B)=\begin{bmatrix}
+& \tikzmark{l1}0 & 1 & 0 & \dots & 0 & & & & & & & \\ 
+& 0 & 0 & 1 & \dots & 0 & & & & & & & \\ 
+& \vdots & \vdots & \vdots & \ddots & \vdots & & & & & & & \\ 
+& 0 & 0 & 0 & \dots & 1 & & & & & & & \\ 
+& 0 & 0 & 0 & \dots & 0\tikzmark{r1} & & & & & & & \\ 
+& & & & & & \ddots & & & & & & \\ 
+& & & & & & & \tikzmark{l2}0 & 1 & 0 & \dots & 0 & \\ 
+& & & & & & & 0 & 0 & 1 & \dots & 0 & \\ 
+& & & & & & & \vdots & \vdots & \vdots & \ddots & \vdots & \\ 
+& & & & & & & 0 & 0 & 0 & \dots & 1 & \\ 
+& & & & & & & 0 & 0 & 0 & \dots & 0\tikzmark{r2} &
+\end{bmatrix}
+\DrawBox[thick, blue,fill=yellow!20, fill opacity=0.2]{l1}{r1}{\textcolor{black}{\footnotesize \emph{Jordanova kletka}}}
+\DrawBox[thick, blue,fill=yellow!20, fill opacity=0.2]{l2}{r2}{}
+\]
+\end{opomba}
+
+\begin{posledica}
+Matrika endomorfizma $A$ z edino lastno vrednostjo $\rho$ v Jordanovi bazi je oblike
+\[
+J(A)=\begin{bmatrix}
+& \tikzmark{l1}\rho & 1 & & & & & & & & \\ 
+& & \rho & \ddots & & & & & & & \\ 
+& & & \ddots & 1 & & & & & & \\ 
+& & & & \rho\tikzmark{r1} & & & & & & \\ 
+& & & & & \ddots & & & & & \\ 
+& & & & & & \tikzmark{l2}\rho & 1 & & & \\ 
+& & & & & & & \rho & \ddots & & \\ 
+& & & & & & & & \ddots & 1 & \\ 
+& & & & & & & & & \rho\tikzmark{r2} &
+\end{bmatrix} 
+\DrawBox[thick, blue,fill=yellow!20, fill opacity=0.2]{l1}{r1}{}
+\DrawBox[thick, blue,fill=yellow!20, fill opacity=0.2]{l2}{r2}{}
+\]
+Tej matriki pravimo \emph{Jordanova forma} endomorfizma $A$.
+\end{posledica}
+
+\begin{definicija}
+\emph{Jordanova forma} endomorfizma $A$ je diagonalno bločna matrika Jordanovih form zožitev endomorfizma na korenske podprostore.
+\end{definicija}
+
+\begin{opomba}
+Če je $A\in\C^{n\times n}$, lahko $A$ gledamo kot endomorfizem. Jordanovi formi tega endomorfizma pravimo \emph{Jordanova forma} matrike $A$. Če je $\mathcal{U}$ Jordanova baza, je $J(A)=A_{\mathcal{UU}}$ in
+\[
+A=P_{\mathcal{SU}}J(A)P_{\mathcal{US}}.
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Spektralna razčlenitev endomorfizma}
+
+\begin{definicija}
+Preslikava $P\colon V\to V$ je \emph{projektor}\index{Endomorfizem!Projektor}, če obstajata podprostora $V_1$ in $V_2$ v $V$, da velja:
+
+\begin{enumerate}[label=\arabic*)]
+\item $V=V_1\oplus V_2$
+\item $\forall x\in V_1\colon Px=x$
+\item $\forall x\in V_2\colon Px=0$
+\end{enumerate}
+
+Pravimo, da je $P$ projektor na $V_1$ vzdolž $V_2$.
+\end{definicija}
+
+\begin{trditev}
+$P$ je projektor natanko tedaj, ko je $P^2=P$. V tem primeru $P$ projicira na $\im P$ vzdolž $\ker P$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo
+\[
+V=V_1\oplus V_2\oplus\dots\oplus V_k.
+\]
+Naj bo $P_i$ projektor na $V_i$ vzdolž direktne vsote preostalih prostorov $V_i'$. Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\sum_{i=1}^k P_i=I$
+\item Če je $i\ne j$, je $P_iP_j=0$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $P$ projektor in $A$ endomorfizem prostora $V$. Recimo, da sta $\ker P$ in $\im P$ invariantna za $A$. Potem je
+\[
+AP=PA.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ endomorfizem nad $\C$ in
+\[
+m_A=\prod_{i=1}^k(\lambda-\lambda_i)^{m_i}
+\]
+njegov minimalni polinom. Naj bodo $W_i=\ker(A-\lambda_iI)^{m_i}$ korenski podprostori prostora $V$. Naj bo $P_i$ projektor na $W_i$ vzdolž $W_i'$. naj bo $N_i=(A-\lambda_iI)P_i$. Velja
+
+\begin{enumerate}[label=\roman*)]
+\item $N_iP_i=P_iN_i=N_i$
+\item $N_iP_j=P_jN_i=0$ za $i\ne j$
+\item $N_i^{m_i}=0$, $N_i^{m_i-1}\ne 0$
+\item $N_iN_j=0$ za $i\ne j$
+\item $(\lambda_iP_i+N_i)(\lambda_jP_j+N_j)=0$ za $i\ne j$
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Uporabimo prejšnje trditve o projektorjih:
+
+\begin{enumerate}[label=\roman*)]
+\item Velja
+\[
+N_iP_i=(A-\lambda_iI)P_i^2=N_i
+\]
+in
+\[
+P_iN_i=P_iAP_i-\lambda_iP_i^2=(A-\lambda_iI)P_i=N_i.
+\]
+\item Velja $N_iP_j=(A-\lambda_iI)P_iP_j=0$ in
+\[
+P_jN_i=P_j(A-\lambda_iI)P_i=AP_jP_i=0.
+\]
+\item Ker $A-\lambda_iI$ in $P_i$ komutirata, je $N_i^{m}=(A-\lambda_iI)^{m}P_i$. S tem je trditev dokazana, saj je minimalni polinom zožitve $A-\lambda_iI$ na $W_i$ enak $\lambda^{m_i}$.
+\item Podobno kot pri prejšnjih točkah je
+\[
+N_iN_j=(A-\lambda_iI)(A-\lambda_jI)P_iP_j=0.
+\]
+\item Sledi direktno iz ii) in iv).\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{trditev}
+Velja
+\[
+A=\sum_{i=1}^k (N_i+\lambda_iI)P_i=\sum_{i=1}^k N_i+\lambda_iP_i.
+\]
+Takemu zapisu pravimo \emph{spektralna razčlenitev endomorfizma}\index{Endomorfizem!Spektralna razčlenitev}.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Velja
+\[
+A^n=\sum_{i=1}^k \left(N_i+\lambda_iP_i\right)^n.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Če potenciramo Jordanovo formo, lahko potenciramo vsako kletko posebej.
+\end{posledica}
+
+\newpage
+
+\subsection{Funkcije matrik in endomorfizmov}
+
+\begin{trditev}
+Naj bo
+\[
+J=\begin{bmatrix}
+\rho & 1    &        &      \\ 
+     & \rho & \ddots &      \\ 
+     &      & \ddots & 1    \\ 
+     &      &        & \rho \\ 
+\end{bmatrix} 
+\]
+Jordanova kletka. Potem je
+\[
+J^n=\begin{bmatrix}
+\binom{n}{0}\rho^n & \binom{n}{1}\rho^{n-1} & \dots & \\ 
+& \binom{n}{0}\rho^n & \ddots & \vdots \\ 
+& & \ddots & \binom{n}{1}\rho^{n-1} \\ 
+& & & \binom{n}{0}\rho^n
+\end{bmatrix} 
+\]
+\end{trditev}
+
+\begin{proof}
+Razpišemo lahko
+\[
+J^n=(N+\rho I)^n=\sum_{k=0}^n\binom{n}{k}\rho^{n-k}N^k.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+p(A)=P\cdot p(J(A))\cdot P^{-1}.
+\]
+\end{posledica}
+
+\begin{trditev}
+Naj bo $J$ Jordanova kletka in $P$ polinom. Potem je
+\[
+p(J)=\begin{bmatrix}
+p(\rho) & \frac{p'(\rho)}{1!} & \frac{p''(\rho)}{2!} & \dots & \\ 
+& p(\rho) & \frac{p'(\rho)}{1!} & \ddots & \vdots \\ 
+& & p(\rho) & \ddots & \frac{p''(\rho)}{2!} \\ 
+& & & \ddots & \frac{p'(\rho)}{1!} \\ 
+& & & & p(\rho)
+\end{bmatrix} 
+\]
+\end{trditev}
+
+\begin{proof}
+$p$ lahko razpišemo kot Taylorjev polinom v okolici točke $\rho$.
+\end{proof}
+
+\begin{opomba}
+Podobno lahko za dovolj gladko funkcijo $f$ definiramo $f(J)$ in s tem $f(A)$ za poljubno matriko $A$.
+\end{opomba}
+
+\newpage
+
+\section{Vektorski prostori s skalarnim produktom}
+
+\subsection{Skalarni produkt}
+
+\begin{definicija}
+Naj bo $\F\in\set{\R,\C}$ in $V$ vektorski prostor nad $\F$. \emph{Skalarni produkt}\index{Skalarni produkt} na $V$ je preslikava $\skl{\;,}\colon V\times V\to\F$, ki vektorjema $(u,v)$ priredi skalar $\skl{u,v}$, ki zadošča naslednjim pogojem:
+
+\begin{enumerate}[label=\arabic*)]
+\item  Pozitivna definitnost:
+
+\begin{itemize}
+\item $\forall x\in V\colon \skl{x,x}\geq 0$
+\item $\skl{x,x}=0\iff x=0$\end{itemize}
+
+\item Aditivnost v 1. faktorju: $\forall x,y,z\in V\colon \skl{x+y,z}=\skl{x,z}+\skl{y,z}$
+\item Homogenost v 1. faktorju: $\forall x,y\in V,~\forall\alpha\in\F\colon \skl{\alpha x,y}=\alpha\skl{x,y}$
+\item Poševna komutativnost: $\forall x,y\in V\colon \skl{x,y}=\overline{\skl{y,x}}$
+\end{enumerate}
+\end{definicija}
+
+\begin{posledica}
+Naj bo $\skl{\;,}$ skalarni produkt na $V$. Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $\forall x,y,z\in V\colon \skl{x,y+z}=\skl{x,y}+\skl{x,z}$
+\item $\forall x,y\in V,~\forall\alpha\in\F\colon \skl{x,\alpha y}=\overline{\alpha}\skl{x,y}$
+\end{enumerate}
+\end{posledica}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor s skalarnim produktom in $x\in V$. Potem
+\[
+\norm{x}=\sqrt{\skl{x,x}}
+\]
+imenujemo \emph{norma}\index{Skalarni produkt!Norma} vektorja $x$.
+\end{definicija}
+
+\begin{izrek}[Cauchy--Schwarzova neenakost]\index{Neenakost!Cauchy--Schwarzova}
+Naj bo $V$ vektorski prostor s skalarnim produktom. Potem je
+\[
+\norm{x}\cdot\norm{y}\geq\abs{\skl{x,y}}.
+\]
+Enakost velja natanko tedaj, ko sta $x$ in $y$ linearno odvisna.
+\end{izrek}
+
+\begin{proof}
+Opazimo, da je\footnote{V tretji vrstici se preostala dva člena pokrajšata.}
+\begin{align*}
+0&\leq\norm{\skl{y,y}x-\skl{x,y}y}^2
+\\
+&=\skl{\skl{y,y}x-\skl{x,y}y,\skl{y,y}x-\skl{x,y}y}
+\\
+&=\skl{y,y}\cdot\overline{\skl{y,y}}\cdot\skl{x,x}-\skl{y,y}\cdot\overline{\skl{x,y}}\cdot\skl{x,y}
+\\
+&=\norm{y}^4\cdot\norm{x}^2-\norm{y}^2\cdot\abs{\skl{x,y}}^2
+\\
+&=\norm{y}^2\left(\norm{y}^2\cdot\norm{x}^2-\abs{\skl{x,y}}^2\right).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}\label{trd:norma}
+Naj bo $V$ vektorski prostor s skalarnim produktom. Potem velja:
+
+\begin{enumerate}[label=\alph*)]
+\item $\norm{x}\geq 0$ z enakostjo natanko tedaj, ko je $x=0$
+\item $\norm{\alpha x}=\abs{\alpha}\cdot\norm{x}$
+\item $\norm{x+y}\leq\norm{x}+\norm{y}$
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo trikotniško neenakost. Po Cauchyjevi neenakosti je
+\[
+\norm{x+y}^2=\norm{x}+\norm{y}+2\cdot\Re(\skl{x,y})\leq\norm{x}^2+2\cdot\norm{x}\cdot\norm{y}+\norm{y}^2\leq\left(\norm{x}+\norm{y}\right)^2.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $V$ poljuben vektorski prostor. \emph{Norma}\index{Vektorski prostor!Norma} na $V$ je preslikava $\norm{\cdot}\colon V\to\F$, ki zadošča lastnostim trditve \ref{trd:norma}. Pravimo, da je $V$ \emph{normiran prostor}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $V$ normiran prostor in $x,y\in V$. \emph{Razdalja}\index{Vektorski prostor!Razdalja} med vektorjema $x$ in $y$ je
+\[
+d(x,y)=\norm{x-y}.
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Ortogonalnost}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom.
+
+\begin{definicija}
+Vektorja $u,v\in V$ sta \emph{ortogonalna}\index{Skalarni produkt!Ortogonalnost}, če je $\skl{u,v}=0$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Kot med vektorjema}\index{Skalarni produkt!Kot} $u$ in $v$ je definiran s predpisom
+\[
+\cos\varphi=\Re\left(\frac{\skl{u,v}}{\norm{u}\cdot\norm{v}}\right).
+\]
+\end{definicija}
+
+\begin{trditev}
+Če so $v_1,v_2,\dots,v_k$ neničelni paroma pravokotni vektorji, so linearno neodvisni.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+0=\skl{0,v_i}=\skl{\sum_{j=1}^k\alpha_jv_j,v_i}=\alpha_i\cdot\skl{v_i,v_i}.\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Če je $\dim V=n$, ima vsaka množica neničelnih pravokotnih vektorjev kvečjemu $n$ elementov.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $X$ podmnožica v $V$. Pravimo, da je $X$ \emph{ortogonalna}\index{Množica!Ortogonalna} množica, če velja
+\[
+\forall x,y\in X\colon \skl{x,y}=0.
+\]
+\end{definicija}
+
+\begin{izrek}[Pitagora]\index{Izrek!Pitagora}
+Naj bo $V$ vektorski prostor s skalarnim produktom in $u,v\in V$ ortogonalna vektorja. Potem je
+\[
+\norm{u+v}^2=\norm{u}^2+\norm{v}^2.
+\]
+\end{izrek}
+
+\obvs
+
+\begin{definicija}
+Naj bo $X$ podmnožica v $V$. Pravimo, da je $X$ \emph{ortonomirana}\index{Množica!Ortonormirana} množica, če je ortogonalna in velja
+\[
+\forall x\in X\colon \norm{x}=1.
+\]
+\end{definicija}
+
+\begin{izrek}
+Recimo, da so vektorji $v_1,v_2,\dots,v_k$ linearno neodvisni vektorji v $V$. Potem obstajajo paroma ortogonalni vektorji $u_1,u_2,\dots,u_k$, za katere je
+\[
+\Lin\set{u_1,u_2,\dots,u_k}=\Lin\set{v_1,v_2,\dots,v_k}.
+\]
+\end{izrek}
+
+\begin{proof}
+Indukcija (\emph{Gram--Schmidtova ortogonalizacija}\index{Gram--Schmidtova ortogonalizacija}).
+\end{proof}
+
+\begin{posledica}
+Vsak končnorazsežen vektorski prostor s skalarnim produktom ima ortonormirano bazo.
+\end{posledica}
+
+\begin{trditev}
+Naj bo $\set{u_1,\dots,u_n}$ ortonormirana baza vektorskega prostora $V$ in $v\in V$. Potem je
+\[
+v=\sum_{i=1}^n\skl{v,u_i}\cdot u_i.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bosta $V_1$ in $V_2$ vektorska prostora nad $\F$ s skalarnima produktoma $\skl{\;,}_1$ in $\skl{\;,}_2$. \emph{Izomorfizem vektorskih prostorov s skalarnim produktom}\index{Skalarni produkt!Izomorfizem} je preslikava $A\colon V_1\to V_2$, za katero velja:
+
+\begin{enumerate}[label=\roman*)]
+\item $A$ je izomorfizem vektorskih prostorov
+\item $\forall x,y\in V_1\colon \skl{Ax,Ay}_2=\skl{x,y}_1$
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Naj bo $V$ vektorski prostor s skalarnim produktom in dimenzijo $n$. Potem je $V$ izomorfen $\F^n$ z običajnim skalarnim produktom.
+\end{izrek}
+
+\begin{proof}
+Vzamemo izomorfizem, ki ortonormirani bazi priredi standardno bazo.
+\end{proof}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor s  skalarnim produktom in $X$ ter $Y$ neprazni množici v $V$. Pravimo, da sta množici $X$ in $Y$ \emph{ortogonalni}\index{Množica!Ortogonalna}, če velja
+\[
+\forall x\in X,\forall y\in Y\colon \skl{x,y}=0.
+\]
+Pišemo $X\perp Y$.
+\end{definicija}
+
+\begin{trditev}
+Če je $X\perp Y$, je tudi $\Lin X\perp\Lin Y$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor s skalarnim produktom in $V_1,V_2,\dots,V_k$ podprostori v $V$. Vsota
+\[
+V_1+V_2+\dots+V_k
+\]
+je \emph{pravokotna vsota}\index{Skalarni produkt!Pravokotna vsota}, če za vse $i\ne j$ velja $V_i\perp V_j$.
+\end{definicija}
+
+\begin{trditev}
+Vsaka pravokotna vsota je direktna vsota.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor s skalarnim produktom in $X$ neprazna podmnožica v $V$. Množici
+\[
+X^\bot=\setb{v\in V}{\forall x\in X\colon\skl{v,x}=0}
+\]
+pravimo \emph{ortogonalni komplement}\index{Skalarni produkt!Ortogonalni komplement} množice $X$ v $V$.
+\end{definicija}
+
+\begin{trditev}
+Ob zgornjih oznakah je $X^\bot$ vedno podprostor v $V$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}\label{td:ortg}
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\set{v_1,\dots,v_n}$ njegova ortonormirana baza. Naj bo
+\[
+V_1=\Lin\set{v_1,\dots,v_k}\quad\text{in}\quad V_2=\Lin\set{v_{k+1},\dots,v_n}.
+\]
+Potem je $V=V_1\oplus V_2$, $V_1^\bot=V_2$ in $V_2^\bot=V_1$.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Naj bo $V$ vektorski prostor s skalarnimi produktom in $U$ podprostor v $V$. Potem velja
+
+\begin{enumerate}[label=\roman*)]
+\item $V=U\oplus U^\bot$
+\item $\left(U^\bot\right)^\bot$
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Za $U$ izberemo ortonormirano bazo. To bazo lahko razširimo do ortonormirane baze $V$ in uporabimo trditev \ref{td:ortg}.
+\end{proof}
+
+\newpage
+
+\subsection{Pravokotne projekcije}
+
+\begin{definicija}
+Projektorju $P\colon V\to V$ na $U$ vzdolž $U^\bot$ pravimo \emph{pravokotni projektor}\index{Endomorfizem!Projektor!Pravokotni} na podprostor $U$.
+\end{definicija}
+
+\begin{opomba}
+Naj bo $P$ pravokoten projektor na $U$. Naj bo $\set{u_1,\dots,u_m}$ ortonormirana baza $U$. Potem je
+\[
+Px=\sum_{i=1}^m\skl{x,u_i}u_i.
+\]
+\end{opomba}
+
+\begin{izrek}
+Če je $P$ pravokotni projektor na podprostor $U$ vektorskega prostora $V$ in $v\in V$, potem je $Pv$ tisti vektor v $U$, ki je najbližji vektorju $v$.
+\end{izrek}
+
+\begin{proof}
+Naj bosta $v\in V$ in $u\in U$ vektorja. Potem je po Pitagorovem izreku
+\[
+\norm{v-u}^2=\norm{v-Pv+Pv-u}^2=\norm{v-Pv}^2+\norm{Pv-u}^2.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Adjungirani prostor}
+
+\begin{izrek}[Riesz]\index{Izrek!Riesz}
+Naj bo $\varphi_z\colon V\to\F$ za $z\in V$ linearen funkcional, za katerega je
+\[
+\varphi_z(v)=\skl{v,z}.
+\]
+Naj bo $\Phi\colon V\to V^*$ preslikava, za katero je $\Phi(z)=\varphi_z$.\footnote{Ta preslikava je \emph{poševno linearna} -- aditivna in poševno homogena.} Preslikava $\Phi$ je bijekcija (poševni izomorfizem) prostorov $V$ in $V^*$.
+\end{izrek}
+
+\begin{proof}
+Če je $\Phi(z)=\Phi(w)$, dobimo $\skl{v,z-w}=0$ za vse $v\in V$. Če vstavimo $v=z-w$, dobimo $z=w$, zato je $\Phi$ injektivna. Vidimo še, da je
+\[
+\varphi(v)=\skl{v,\sum_{i=1}^n\overline{\varphi(e_i)}\cdot e_i},
+\]
+kjer je $\set{e_1,\dots,e_n}$ ortonormirana baza $V$.
+\end{proof}
+
+\begin{definicija}
+Naj bosta $U$ in $V$ končnorazsežna vektorska prostora s skalarnima produktoma $\skl{\;,}_U$ in $\skl{\;,}_V$ ter naj bo $A\colon U\to V$ linearna preslikava. Za vektor $v\in V$ naj bo $\varphi\colon U\to\F$ preslikava, za katero je $\varphi(u)=\skl{Au,v}_V$. Po Rieszovem izreku obstaja tak vektor $x\in U$, da je
+\[
+\skl{Au,v}_V=\skl{u,x}_U.
+\]
+Preslikavi $A^*\colon V\to U$, za katero je pri zgornjih oznakah $A^*v=x$, pravimo \emph{adjungirana preslikava}\index{Preslikava!Adjungirana}.
+\end{definicija}
+
+\begin{trditev}
+$A^*$ je linearna.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bodo $U$, $V$ in $W$ vektorski prostori s skalarnim produktom.
+
+\begin{enumerate}[label=\alph*)]
+\item Če $A,B\colon U\to V$, potem $(A+B)^*=A^*+B^*$.
+\item Če $A\colon U\to V$ in $\alpha\in\F$, potem $(\alpha A)^*=\overline{\alpha}\cdot A^*$.
+\item Če $A\colon U\to V$, potem $(A^*)^*=A$.
+\item Naj bo $I\colon U\to U$. Potem je $I^*=I$.
+\item Recimo, da $A\colon U\to V$ in $B\colon V\to W$. Potem je $(BA)^*=A^*B^*$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo točko e). Za $w\in W$ in $u\in U$ velja
+\begin{align*}
+\skl{u,(BA)^*w}_U&=\skl{BAu,w}_W
+\\
+&=\skl{Au,B^*w}_V
+\\
+&=\skl{u,A^*B^*w}_U.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}\label{diagram:3}
+Naj bo $A\colon U\to V$ homomorfizem vektorskih prostorov s skalarnim produktom. Naj bosta $A^*\colon V\to U$ in $A^d\colon V^*\to U^*$ njena adjungirana in dualna preslikava. Naj bosta $\Phi_U\colon U\to U^*$ in $\Phi_V\colon V\to V^*$ poševna izomorfizma iz Rieszovega izreka. Potem je
+\[
+\Phi_U\circ A^*=A^d\circ \Phi_V.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $v\in V$. Potem je
+\[
+\left(\Phi_U\circ A^*\right)v=\Phi_U\left(A^*v\right)=\varphi_{A^*v}.
+\]
+Za poljuben $u\in U$ je
+\[
+\varphi_{A^*v}=\skl{Au,v}_V.
+\]
+Po drugi strani pa je
+\[
+\left(A^d\circ \Phi_V\right)v=A^d\circ\varphi_v=\varphi_v\circ A,
+\]
+za poljuben $u\in U$ pa je
+\[
+\varphi_v\circ Au=\skl{Au,v}.\qedhere
+\]
+\end{proof}
+
+\begin{figure}[H]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+V
+\arrow[r, "A^*"]
+\arrow[d, "\Phi_V"'] & U \arrow[d, "\Phi_U"] \\
+V^* \arrow[r, "A^d"'] & U^*
+\end{tikzcd}
+\]
+\vspace{-20pt}\\
+\caption{Izrek~\ref{diagram:3} -- ">diagram komutira"<}
+\end{figure}
+
+\begin{trditev}
+Če je $\set{v_1,\dots,v_n}$ ortonormirana baza, je $\Phi\set{v_1,\dots,v_n}$ dualna baza.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Naj bo $A\colon U\to V$ linearna preslikava in $A^*$ njena adjungirana preslikava. Naj bosta $\mathcal{B}$ in $\mathcal{C}$ ortonormirani bazi prostorov $U$ in $V$ ter $A_{\mathcal{CB}}$ matrika preslikave $A$ v teh bazah. Potem je
+\[
+A^*_{\mathcal{BC}}=\overline{A_{\mathcal{CB}}}^\top.
+\]
+To matriko označimo z $A_{\mathcal{CB}}^{\mathsf{H}}$.\footnote{$A$ \emph{hermitsko}.}
+\end{izrek}
+
+\begin{proof}
+Naj bo $\mathcal{B}=\set{u_1,\dots,u_n}$ in $\mathcal{C}=\set{v_1,\dots,v_n}$. Velja
+\[
+Au_i=\sum_{j=1}^m\skl{Au_i,v_j}_Vv_j
+\]
+in
+\[
+A^*v_i=\sum_{j=1}^m\skl{A^*v_i,u_j}_Uu_j=\sum_{j=1}^m\overline{\skl{Au_j,v_i}_V}u_j.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Ednomorfizmi prostorov s skalarnim produktom}
+
+\begin{izrek}[Schur]\index{Izrek!Schur}
+Za $A\colon V\to V$ obstaja taka ortonormirana baza $\mathcal{BB}$, da je $A_{\mathcal{BB}}$ zgornje trikotna matrika.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\mathcal{C}$ Jordanova baza prostora $V$ za preslikavo $A$. Na $\mathcal{C}$ naredimo Gram--Schmidtovo ortogonalizacijo, s tem pa očitno ohranimo ničle pod diagonalo.
+\end{proof}
+
+\begin{opomba}
+Recimo, da se da endomorfizem $A\colon V\to V$ diagonalizirati v ortonormirani bazi. Potem je
+\[
+AA^*=A^*A.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $V$ vektorski prostor s skalarnim produktom. Endomorfizem $A\colon V\to V$ je \emph{normalen}\index{Endomorfizem!Normalen}, če velja $AA^*=A^*A$.
+\end{definicija}
+
+\begin{definicija}
+Matrija $A\in\F^{n\times n}$ je \emph{normalna}\index{Matrika!Normalna}, če je $AA^\mathsf{H}=A^\mathsf{H}A$.
+\end{definicija}
+
+\begin{trditev}
+$A$ je normalna preslikava natanko tedaj, ko za vse $x,y\in V$ velja
+\[
+\skl{Ax,Ay}=\skl{A*x,A*y}.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj ob $A$ normalna. Potem je
+\[
+\skl{Ax,Ay}=\skl{x,A^*Ay}=\skl{A^*x,a^*y}.
+\]
+Če velja zgornja enakost, pa dobimo
+\[
+\skl{A^*Ax,y}=\skl{Ax,Ay}=\skl{A^*x,A^*y}=\skl{AA^*x,y}.
+\]
+Sledi, da je $A^*A=AA^*$.
+\end{proof}
+
+\begin{posledica}
+Če je $A$ normalna, velja
+
+\begin{enumerate}[label=\alph*)]
+\item $\norm{Ax}=\norm{A^*x}$.
+\item $\ker A=\ker A^*$.
+\end{enumerate}
+\end{posledica}
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ normalna in $v\in V$ lastni vektor $A$ za lastno vrednost $\lambda$. Potem je $v$ tudi lasten vektor za $A^*$ z lastno vrednostjo $\overline{\lambda}$.
+\end{trditev}
+
+\begin{proof}
+Opazimo, da je tudi $A-\lambda I$ normalna. Sledi, da je $\ker(A-\lambda I)=\ker(A^*-\overline{\lambda}I)$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ normalna in $\lambda_1,\lambda_2$ različni lastni vrednosti s pripadajočima vektorjema $v_1$ in $v_2$. Potem je $v_1\perp v_2$.
+\end{trditev}
+
+\begin{proof}
+Velja $Av_1=\lambda_1v_1$ in $Av_2=\lambda_2v_2$. Sledi, da je
+\[
+\lambda_2\skl{v_1,v_2}=\skl{v_1,A^*v_2}=\skl{Av_1,v_2}=\lambda_1\skl{v_1,v_2}.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $A$ endomorfizem nad $V$ in $U\leq V$ podprostor. Potem je $U$ invarianten za $A$ natanko tedaj, ko je $U^\bot$ invarianten za $A^*$.
+\end{trditev}
+
+\begin{proof}
+Oboje je ekvivalentno
+\[
+0=\skl{Ax,y}=\skl{x,A^*y}.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $A\colon V\to V$ normalna preslikava. Potem obstaja ortonormirana baza prostora $V$, sestavljena iz lastnih vektorjev preslikave $A$.
+\end{izrek}
+
+\begin{proof}
+Karakteristični polinom $A$ je nekonstanten kompleksni polinom z vsaj eno ničlo $\lambda_1$, ki je lastna vrednost $A$ z lastnim vektrojem $v_1$. Potem je
+\[
+U=\Lin\set{v_1}
+\]
+invarianten za $A$, prav tako pa je invarianten za $A^*$. Sledi, da je $U^\bot$ invariatnen za $A^*$ in $A$. Ker je $V=U\oplus U^\bot$ in je $\eval{A}{U^\bot}{}$ prav tako normalna, lahko zaključimo z indukcijo.
+\end{proof}
+
+\newpage
+
+\subsection{Sebi adjungirani endomorfizmi, hermitske oziroma simetrične matrike}
+
+\begin{definicija}
+$A\colon V\to V$ je \emph{sebiadjungirana}\index{Endomorfizem!Sebiadjungiran}, če velja $A^*=A$.
+\end{definicija}
+
+\begin{definicija}
+$A\in\C^{n\times n}$ je \emph{hermitska}\index{Matrika!Hermitska}, če je $A^\mathsf{H}=A$.
+\end{definicija}
+
+\begin{definicija}
+$A\in\R^{n\times n}$ je \emph{simetrična}\index{Matrika!Simetrična}, če je $A^\top=A$.
+\end{definicija}
+
+\begin{opomba}
+Če je $A$ sebiadjungirana, je tudi normalna.
+\end{opomba}
+
+\begin{trditev}
+Če je $A\colon V\to V$ sebiadjungirana, so vse lastne vrednosti realne.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\lambda v=Av=A^*v=\overline{\lambda}v.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}\label{td:sadj}
+Naj bo $A\colon V\to V$ sebiadjungirana. Recimo, da za vse $v\in V$ velja
+\[
+\skl{Av,v}=0.
+\]
+Potem je $A=0$.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $x,y\in V$ poljubna. Potem je
+\[
+0=\skl{A(x+y),x+y}=\skl{Ax,y}+\skl{Ay,x}=\skl{Ax,y}+\skl{y,Ax}.
+\]
+S substitucijo $y\to Ax$ dobimo $Ax=0$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ linearna preslikava. Potem obstajata enolično določeni sebiadjungirani linearni preslikavi $B,C\colon V\to V$, za kateri je
+\[
+A=B+iC.
+\]
+\end{trditev}
+
+\begin{proof}
+Zgornjo enakost adjungiramo. Dobimo
+\[
+B=\frac{A+A^*}{2}\quad\text{in}\quad C=\frac{A-A^*}{2i},
+\]
+ki sta očitno sebiadjungirani.
+\end{proof}
+
+\begin{trditev}
+Preslikava $A\colon V\to V$ je sebiadjungirana natanko tedaj, ko za vsak $v\in V$ velja
+\[
+\skl{Av,v}\in\R.
+\]
+\end{trditev}
+
+\begin{proof}
+Oboje je ekvivalentno
+\[
+\skl{Av,v}=\skl{v,A^*v}=\skl{v,Av}=\overline{\skl{Av,v}}.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Unitarni endomorfizmi, unitarne in ortogonalne matrike}
+
+\begin{definicija}
+Naj bo $A\colon V\to V$. Pravimo, da je $A$ \emph{unitarna}\index{Endomorfizem!Unitaren}, če velja
+\[
+AA^*=A^*A=I.
+\]
+\end{definicija}
+
+\begin{definicija}
+Matrika $A\in\C^{n\times n}$ je \emph{unitarna}\index{Matrika!Unitarna}, če velja
+\[
+A^\mathsf{H}A=AA^\mathsf{H}=T.
+\]
+\end{definicija}
+
+\begin{definicija}
+Matrika $A\in\R^{n\times n}$ je \emph{ortogonalna}\index{Matrika!Ortogonalna}, če velja
+\[
+A^\top A=AA^\top=T.
+\]
+\end{definicija}
+
+\begin{opomba}
+$\operatorname{GL}(V)=\setb{A\colon V\to V}{\text{$A$ je obrnljiva}}$ je grupa za kompozitum. Pravimo ji \emph{splošna linearna grupa avtomorfizmov prostora $V$}. Podobno je tudi
+\[
+\operatorname{GL}_n(\F)=\setb{A\in\F^{n\times n}}{\text{$A$ je obrnljiva}}
+\]
+grupa. Velja, da je
+\[
+\operatorname{U}(V)=\setb{A\colon V\to V}{\text{$A$ je unitarna}}
+\]
+podgrupa v $\operatorname{GL}(V)$.
+\end{opomba}
+
+\begin{trditev}
+Za $A\colon V\to V$ so ekvivalentne naslednje trditve:
+
+\begin{enumerate}
+\item $A$ je unitarna
+\item Za vse $x,y\in V$ velja $\skl{Ax,Ay}=\skl{x,y}$
+\item $A$ je \emph{izometrija}\index{Endomorfizem!Izometrija}: Za vse $x\in V$ je $\norm{Ax}=\norm{x}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če je $A$ unitarna, je za vse $x,y\in V$
+\[
+\skl{Ax,Ay}=\skl{x,A^*Ay}=\skl{x,y}.
+\]
+Iz te enakosti očitno sledi, da je $A$ izometrija. Če je $A$ izometrija, naj bo $B=A^*A-I$. Potem je
+\[
+B^*=(A^*A-I)^*=A^*-I=B,
+\]
+zato je $B$ sebiadjungirana. Velja pa
+\[
+\skl{B,x}=\skl{A^*Ax,x}-\skl{x,x}=\norm{Ax}^2-\norm{x}^2=0,
+\]
+zato je po trditvi \ref{td:sadj} $B=0$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ in $\set{v_1,\dots,v_n}$ ortonormirana baza prostora $V$. Potem je
+\[
+\set{Av_1,\dots,Av_n}
+\]
+ortonormirana baza prostora $V$ natanko tedaj, ko je $A$ unitarna.
+\end{trditev}
+
+\begin{proof}
+Če je $A$ unitarna, je
+\[
+\skl{Av_i,Av_j}=\begin{cases}
+0, & i\ne j
+\\
+1, & i = j
+\end{cases}
+\]
+Naj bo $\set{Av_1,\dots,Av_n}$ ortonormirana baza in $v\in V$ poljuben. Naj bo
+\[
+v=\sum_{i=1}^n \alpha_iv_i.
+\]
+Sledi
+\[
+\norm{v}^2=\skl{v,v}=\sum_{i=1}^n\alpha_i\overline{\alpha_i}
+\]
+in
+\[
+\norm{Av}^2=\skl{Av,Av}=\skl{\sum_{i=1}^n \alpha_i Av_i,\sum_{i=1}^n \alpha_i Av_i}=\sum_{i=1}^n\alpha_i\overline{\alpha_i}.\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $A\colon V\to V$ unitarna. Potem vse lastne vrednosti $A$ ležijo na enotski krožnici.
+\end{izrek}
+
+\begin{proof}
+Za lastno vrednost $\lambda$ z lastnim vektorjem $v$ velja
+\[
+\norm{v}=\norm{Av}=\norm{\lambda v}=\abs{\lambda}\cdot\norm{v}.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Matrika $A\in\C^{n\times n}$ je unitarna natanko tedaj, ko njeni stolpci tvorijo ortonormirano bazo prostora $\C^n$ z običajnim skalarnim produktom.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bosta $A$ in $B$ $n\times n$ matriki. Pravimo, da sta $A$ in $B$ \emph{unitarno podobni}\index{Matrika!Unitarna podobnost}, če obstaja taka unitarna matrika $P$, da je\footnote{Matriko $B$ lahko dobimo tako, da naredimo prehod na ortonormirano bazo.}
+\[
+A=PBP^\mathsf{H}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Relacija unitarne podobnosti je ekvivalenčna.
+\end{opomba}
+
+\begin{posledica}
+Vsaka normalna matrika je unitarno podobna diagonalni matriki.
+\end{posledica}
+
+\newpage
+
+\subsection{Pozitivno definitni endomorfimi in matrike}
+
+\begin{definicija}
+Naj bo $A\colon V\to V$ sebiadjungiran endomorfizem. Pravimo, da je $A$ \emph{pozitivno definiten}\index{Endomorfizem!Pozitivno definiten}, če za vsak neničelni $v\in V$ velja
+\[
+\skl{Av,v}>0.
+\]
+\end{definicija}
+
+\begin{opomba}
+Lahko definiramo tudi \emph{pozitivno semidefiniten} endomorfizem, za katerega za vsak $v\in V$ velja $\skl{Av,v}\geq 0$. Podobni definiciji uvedemo za matrike.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $A\colon V\to V$ sebiadjungiran endomorfizem. Potem je $A$ pozitivno definiten natanko tedaj, ko so vse lastne vrednosti preslikave $A$ pozitivne.
+\end{izrek}
+
+\begin{proof}
+Če je $A$ pozitivno definiten, je
+\[
+0<\skl{\lambda v,v}=\lambda\cdot\norm{v}^2
+\]
+za lastno vrednost $\lambda$ z lastnim vektorjem $v$.
+
+Recimo, da so vse lastne vrednosti preslikave $A$ pozitivne. Naj bo $\set{v_1,\dots,v_n}$ ortonormirana baza prostora $V$, sestavljena iz lastnih vektorjev $A$. Sledi, da je
+\[
+\skl{Av,v}=\skl{\sum_{i=1}^n\alpha_i\lambda_iv_i,\sum_{i=1}^n\alpha_iv_i}=\sum_{i=1}^n\alpha_i\overline{\alpha_i}\cdot\lambda_i\cdot\skl{v_1,v_1}>0.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $A\in\F^{n\times n}$ pozitivno definitna matrika. Potem veljajo naslednje trditve:
+
+\begin{enumerate}
+\item Vsi diagonalni elementi $A$ so pozitivni.
+\item $\det A>0$.
+\item Vse matrike $A_k$ so pozitivno definitne, kjer $A_k$ označuje $k\times k$ matriko v prvik $k$ vrsticah in $k$ stolpcih matrike $A$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}\phantom{.}
+\begin{enumerate}
+\item Naj bo $\set{e_i,\dots,e_n}$ standardna baza $\F^n$. Vemo, da je $\skl{Ae_i,e_i}>0$, kar smo želeli.
+\item Vietova formula.
+\item Vidimo, da je $A_k^\mathsf{H}=A_k$. Naj bo $v\in\F^k\setminus\set{0}$. Dokazujemo, da je $\skl{A_kv,v}>0$, kar je ekvivalentno $\skl{A\widetilde{v},\widetilde{v}}>0$, kjer je $\widetilde{v}\in\F^n$ vektor, ki ga dobimo, če vektorju $v$ dodamo $n-k$ ničel.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{trditev}
+Naj bo $A$ hermitska. Potem je $A$ pozitivno definitna natanko tedaj, ko je $\det A_k>0$ za vsak $k$.
+\end{trditev}
+
+\begin{izrek}
+Naj bo $A$ hermitska matrika. Potem je $A$ pozitivno definitna natanko tedaj, ko predznaki koeficientov njenega karakterističnega polinoma alternirajo.
+\end{izrek}
+
+\begin{proof}
+Predznaki koeficientov karakterističnega polinoma pozitivno definitnih matrik očitno alternirajo po Vietovih formulah. Recimo, da predznaki karakterističnega polinoma matrike $A$ alternirajo. Naj bo $\alpha\leq 0$ poljubno število. Potem je $p_A(\alpha)>0$, zato so vse ničle pozitivne.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A\colon V\to V$ hermitska. Potem je preslikava $F(u,v)=\skl{Au,v}$ skalarni produkt na $V$ natanko tedaj, ko je $A$ pozitivno definitna.
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\section{Kvadratne forme}
+
+\subsection{Definicija}
+
+\begin{definicija}
+Naj bo $\R^n$ opremljen z običajnim skalarnim produktom in $A\in\R^{n\times n}$ simetrična matrika. \emph{Kvadratna forma}\index{Kvadratna forma}, ki pripada matriki $A$, je preslikava $K\colon\R^n\to\R$ s predpisom
+\[
+K(x)=\skl{Ax,x}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Naj bo $\set{e_1,\dots,e_n}$ standardna baza $\R^n$. Potem je
+\[
+K(x)=\sum_{\substack{i=1 \\ j=1}}^n x_ix_ja_{i,j}.
+\]
+\end{opomba}
+
+\begin{opomba}
+Naj bo $K$ kvadratna forma matrike $A$. Obstaja ortonormirana baza prostora $\R^n$, sestavljena iz lastnih vektorjev $A$. Torej obstajata ortogonalna matrika $P$ in diagonalna matrika $D$, za kateri je $A=PDP^\top$. Sledi, da je
+\[
+K(x)=\skl{Ax,x}=\skl{DP^\top x,P^\top x}=\widetilde{K}(y),
+\]
+kjer je $\widetilde{K}$ kvadratna forma matrike $D$ in $y=P^\top x$. Tako dobimo
+\[
+\widetilde{K}(y)=\sum_{i=1}^n\lambda_i y_i^2.
+\]
+Opazimo še, da so elementi nove baze ortonormirani lastni vektorji $A$.
+\end{opomba}
+
+%------------SNEMANJE------------
+
+\newpage
+\printindex
+
+\end{document}
