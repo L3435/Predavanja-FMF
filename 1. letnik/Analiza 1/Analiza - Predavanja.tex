@@ -2455,7 +2455,7 @@ R(f,D,\mathcal{T})=\sum_{j=1}^n f(t_j)(x_j-x_{j-1})=\sum_{j=1}^n f(t_j)\Delta x_
 
 \begin{okvir}
 \begin{definicija}
-Naj bo $f\colon[a,b]\to\R$. $f$ je \emph{integrabilna po Riemannu}\index{Integral!Integrabilnost po Reimannu} na $[a,b]$, če obstaja tako število $I$, da za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsako delitev $D$ intervala $[a,b]$, ki zadošča pogoju $\displaystyle\max_{j}\Delta x_j<\delta$ in za poljuben izbor $\mathcal{T}$ velja
+Naj bo $f\colon[a,b]\to\R$. $f$ je \emph{integrabilna po Riemannu}\index{Integral!Integrabilnost po Riemannu} na $[a,b]$, če obstaja tako število $I$, da za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsako delitev $D$ intervala $[a,b]$, ki zadošča pogoju $\displaystyle\max_{j}\Delta x_j<\delta$ in za poljuben izbor $\mathcal{T}$ velja
 \[
 \abs{R(f,D,\mathcal{T})-I}<\varepsilon.
 \]
@@ -4074,6 +4074,78 @@ kar je po absolutni vrednosti manjše od
 \]
 kar prav tako konvergira k $0$.
 \end{proof}
+
+\newpage
+
+\section{Metrični prostori}
+
+\subsection{Definicija}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $M\ne\emptyset$. \emph{Metrični prostor}\index{Metrični prostor} je urejeni par $(M,d)$, kjer je $d\colon M\times M\to\R$ funkcija z naslednjimi lastnostmi:
+
+\begin{enumerate}
+\item Pozitivna definitnost:
+
+\begin{itemize}
+\item $\forall x,y\in M\colon d(x,y)\geq 0$
+\item $d(x,y)=0\iff x=y$
+\end{itemize}
+
+\item Simetričnost: $\forall x,y\in M\colon d(x,y)=d(y,x)$
+\item Trikotniška neenakost: $\forall x,y,z\in M\colon d(x,y)\leq d(x,z)+d(z,y)$
+\end{enumerate}
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Za vse $x,y,z\in M$ velja
+\[
+d(x,y)\geq\abs{d(x,z)-d(z,y)}.
+\]
+\end{opomba}
+
+\begin{opomba}
+Če je $(M,d)$ metrični prostor in $N\subseteq M$ neprazna podmnožica, je tudi $(N,d)$ metrični prostor.
+\end{opomba}
+
+\begin{opomba}
+Primer metrike na vektorskem prostoru je norma razlike vektorjev $x$ in $y$.\footnote{Glej zapiske Algebre 1.}
+\end{opomba}
+
+\begin{definicija}
+Naj bo $(M,d)$ metrični prostor. Naj bo $a\in M$ in $r>0$. \emph{Odprta krogla}\index{Metrični prostor!Krogla} s središčem v $a$ in polmerom $r$ je množica
+\[
+\mathcal{K}=(a,r)=\setb{x\in M}{d(x,a)<r}.
+\]
+Podobno definiramo \emph{zaprto kroglo} kot
+\[
+\overline{\mathcal{K}}(a,r)=\setb{x\in M}{d(x,a)\leq r}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Okolica}\index{Metrični prostor!Okolica} točke $a$ je vsaka množica $U$, za katero obstaja tak $r>0$, da je $\mathcal{K}(a,r)\subseteq U$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A\subseteq M$, kjer je $(M,d)$ metrični prostor.
+
+\begin{enumerate}[label=\roman*)]
+\item točka $a$ je \emph{notranja} točka množice $A$, če obstaja tak $r>0$, da je $\mathcal{K}(a,r)\subseteq A$. \emph{Notranjost} množice označimo z $\Int(A)$.
+\item točka $a$ je \emph{zunanja} točka množice $A$, če obstaja tak $r>0$, da je $\mathcal{K}(a,r)\cap A=\emptyset$.
+\item točka $a$ je \emph{robna} točka množice $A$, če za vsak $r>0$ velja $\mathcal{K}(a,r)\cap A\ne\emptyset$ in  $\mathcal{K}(a,r)\cap A^\mathsf{c}\ne\emptyset$. Vse robne točke tvorijo \emph{rob} ali \emph{mejo} množice $A$, ki jo označimo z $\partial A$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Velja $\Int(A)\cup\partial A\cup\Int(A^\mathsf{c})=M$. Te množice so paroma disjunktne.
+\end{opomba}
+
+\begin{opomba}
+Velja $\partial(A^\mathsf{c})=\partial A$.
+\end{opomba}
 
 \newpage
 \printindex
