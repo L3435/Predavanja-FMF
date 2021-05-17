@@ -851,9 +851,9 @@ Z_f=\setb{f(x)}{x\in D_f}.
 Naj bo $f\colon X\to Y$ preslikava. $f$ je
 
 \begin{itemize}
-\item \emph{injektivna}\index{Funkcija!Injektivna, surjektivna, bijektivna}, če iz $x_1,x_2\in X$ in $x_1\ne x_2$ sledi $f(x_1)\ne f(x_2)$
+\item \emph{injektivna}\index{Funkcija!Injektivna, surjektivna}, če iz $x_1,x_2\in X$ in $x_1\ne x_2$ sledi $f(x_1)\ne f(x_2)$
 \item \emph{surjektivna}, če je $Z_f=Y$
-\item \emph{bijektivna}, če je injektivna in surjektivna
+\item \emph{bijektivna}\index{Funkcija!Bijektivna}, če je injektivna in surjektivna
 \end{itemize}
 \end{definicija}
 
@@ -3286,7 +3286,7 @@ Naj bo $0\leq a_n\leq b_n$. Če konvergira vrsta $\displaystyle\sum_{n=1}^\infty
 Vrsti $\displaystyle\sum_{n=1}^\infty a_n$ pravimo \emph{minoranta}\index{Vrsta!Minoranta, majoranta}, vrsti $\displaystyle\sum_{n=1}^\infty b_n$ pa \emph{majoranta}.
 \end{opomba}
 
-\begin{izrek}[D'Alembertov kvocientni kriterij]\index{Izrek!D'Alembertov kvocientni kriterij}
+\begin{izrek}[D'Alembertov kriterij]\index{Izrek!D'Alembertov kriterij}
 Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ vrsta s pozitivnimi členi in naj bo
 \[
 q_n=\frac{a_{n+1}}{a_n}.
@@ -4146,6 +4146,117 @@ Velja $\Int(A)\cup\partial A\cup\Int(A^\mathsf{c})=M$. Te množice so paroma dis
 \begin{opomba}
 Velja $\partial(A^\mathsf{c})=\partial A$.
 \end{opomba}
+
+\begin{definicija}
+Podmnožica $O\subseteq(M,d)$ je \emph{odprta}\index{Metrični prostor!Odprta množica}, če je $\Int(O)=O$.
+\end{definicija}
+
+\begin{definicija}
+Podmnožica $Z\subseteq(M,d)$ je \emph{zaprta}\index{Metrični prostor!Zaprta množica}, če je $Z^\mathsf{c}$ odprta.
+\end{definicija}
+
+\begin{trditev}
+Vsaka odprta krogla je odprta podmnožica.
+\end{trditev}
+
+\begin{proof}
+Naj bo $x\in\mathcal{K}(a,r)$. Potem je $\mathcal{K}(x,r-d(a,x))\subseteq\mathcal{K}(a,r)$, saj po trikotniški neenakosti za $y\in\mathcal{K}(x,r-d(a,x))$ velja
+\[
+d(y,a)\leq d(y,x)+d(a,x)<r.\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Vsaka zaprta krogla je zaprta podmnožica.
+\end{trditev}
+
+\begin{proof}
+Analogen zgornjemu.
+\end{proof}
+
+\begin{opomba}
+Za vse $A\subseteq(M,d)$ je $\Int(A)$ največja odprta množica, vsebovana v $A$.
+\end{opomba}
+
+\begin{izrek}[Topologija]\index{Topologija}
+Naj bo $(M,d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(M,d)$.\footnote{Družini $\tau$ pravimo \emph{topologija}.} Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $M,\emptyset\in\tau$
+\item Poljubna unija odprtih množic je odprta množica
+\item Presek končno mnogo odprtih množic je odprta množica.
+\end{enumerate}
+\end{izrek}
+
+\obvs
+
+\begin{posledica}
+Naj bo $(M,d)$ metrični prostor in $\mathcal{Z}$ družina vseh zaprtih podmnožic $(M,d)$. Potem velja
+
+\begin{enumerate}[label=\arabic*)]
+\item $M,\emptyset\in\mathcal{Z}$
+\item Poljuben presek zaprtih množic je zaprta množica.
+\item Unija končno mnogo zaprtih množic je zaprta množica.
+\end{enumerate}
+\end{posledica}
+
+\obvs
+
+\begin{definicija}
+\emph{Zaprtje}\index{Metrični prostor!Zaprtje} množice $A$ je najmanjša zaprta množica, ki vsebuje $A$. Označimo jo z $\overline{A}$.
+\end{definicija}
+
+\begin{trditev}
+Velja $\overline{A}=A\cup\partial A=\Int(A)\cup\partial A$.
+\end{trditev}
+
+\begin{proof}
+Z uporabo $\Int(A)\cup\partial A=\left(\Int(A^\mathsf{c})\right)^\mathsf{c}$ dobimo, da velja drugi enačaj in da sta množici zaprti. Če je $F$ zaprta in $A\subseteq F$, pa velja $F^\mathsf{c}\subseteq A^\mathsf{c}$, zato je $F^\mathsf{c}\subseteq\Int(A^\mathsf{c})$, saj je $F^\mathsf{c}$ odprta. Sledi, da je
+\[
+\Int(A^\mathsf{c})^\mathsf{c}\subseteq F.\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Podmnožica $A$ metričnega prostora $(M,d)$ je \emph{omejena}\index{Metrični prostor!Omejena množica}, če obstajata takšna $a\in M$ in $r\in\R^+$, da je $A\subseteq\mathcal{K}(a,r)$.
+\end{definicija}
+
+\newpage
+
+\subsection{Zaporedja točk v metričnih prostorih}
+
+\begin{definicija}
+Točka $a\in M$ je \emph{stekališče}\index{Metrični prostor!Stekališče} zaporedja $(a_n)_{n=1}^\infty$ iz $M$, če za vsak $\varepsilon>0$ in $n_0\in\N$ obstaja tak $n\geq n_0$, da je $d(a_n,a)<\varepsilon$.
+\end{definicija}
+
+\begin{definicija}
+Točka $a\in M$ je \emph{limita}\index{Metrični prostor!Limita} zaporedja $(a_n)_{n=1}^\infty$ iz $M$, če za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $n\geq n_0$ velja $d(a_n,a)<\varepsilon$.
+\end{definicija}
+
+\begin{trditev}
+Če je $a=\displaystyle\lim_{n\to\infty}a_n$, je $a$ edino stekališče $(a_n)_{n=1}^\infty$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Zaporedje $(a_n)_{n=1}^\infty$ je \emph{Cauchyjevo}\index{Metrični prostor!Cauchyjevo zaporedje}, če za vse $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $m,n\geq n_0$ velja
+\[
+d(a_n,a_m)<\varepsilon.
+\]
+\end{definicija}
+
+\begin{trditev}
+Vsako konvergentno metrično zaporedje je Cauchyjevo.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Metrični prostor $(M,d)$ je \emph{poln}\index{Metrični prostor!Poln}, če je v njem vsako Cauchyjevo zaporedje konvergentno.
+\end{definicija}
+
+
 
 \newpage
 \printindex
