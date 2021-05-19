@@ -3073,7 +3073,7 @@ Recimo, da so vektorji $v_1,v_2,\dots,v_k$ linearno neodvisni vektorji v $V$. Po
 \end{izrek}
 
 \begin{proof}
-Indukcija (\emph{Gram--Schmidtova ortogonalizacija}\index{Gram--Schmidtova ortogonalizacija}).
+Indukcija (\emph{Gram--Schmidt ortogonalizacija}\index{Gram--Schmidt ortogonalizacija}).
 \end{proof}
 
 \begin{posledica}
@@ -3715,6 +3715,91 @@ kjer je $\widetilde{K}$ kvadratna forma matrike $D$ in $y=P^\top x$. Tako dobimo
 \widetilde{K}(y)=\sum_{i=1}^n\lambda_i y_i^2.
 \]
 Opazimo še, da so elementi nove baze ortonormirani lastni vektorji $A$.
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $A$ in $B$ simetrični matriki v $\R^{n\times n}$. Pravimo, da sta $A$ in $B$ \emph{kongruentni}\index{Matrika!Kongruentna}, če obstaja taka obrnljiva matrika $P$, da je
+\[
+B=P^\top AP.
+\]
+Kvadratni formi $F$ in $\widetilde{F}$ sta kongruentni, če sta pripadajoči matriki kongruentni.
+\end{definicija}
+
+\begin{opomba}
+Relacija kongruentnosti je ekvivalenčna na množici simetričnih $n\times n$ matrik. Vsaka simetrična matrika je kongruentna neki diagonalni matriki, vsaka kvadratna forma pa je kongruentna neki kvadratni formi brez mešanih členov.
+\end{opomba}
+
+\begin{izrek}[Sylvester]\index{Izrek!Sylvester}
+Vsaka simetrična matrika je kongruentna matriki oblike
+\[
+B=\begin{bmatrix}
+1 & & & & & & & & \\ 
+& \ddots & & & & & & & \\ 
+& & 1 & & & & & & \\ 
+& & & -1 & & & & & \\ 
+& & & & \ddots & & & & \\ 
+& & & & & -1 & & & \\ 
+& & & & & & 0 & & \\ 
+& & & & & & & \ddots & \\ 
+& & & & & & & & 0
+\end{bmatrix}.
+\]
+Pri tem sta število $1$ in $-1$ enolično določena za vse matrike iz danega ekvivalenčnega razreda glede na relacijo kongruentnosti.
+\end{izrek}
+
+\begin{proof}
+Naj bo $A$ $n\times n$ simetrična matrika. Sledi, da je $A=PDP^\top$, kjer je $D$ diagonalna matrika. Pri tem si lahko elemente $D$ izberemo tako, da so na začetku pozitivne lastne vrednosti $A$, za njimi negativne, na koncu pa še $0$. $D$ lahko dalje zapišemo kot
+\[
+D=\begin{bmatrix}
+\sqrt{\lambda_1} & & & & & & & \\
+& \ddots & & & & & & \\
+& & \sqrt{-\lambda_{p+1}} &  & & & \\
+& & & \ddots & & & \\
+& & & & 1 & \\
+& & & & & \ddots \\
+\end{bmatrix}
+\cdot B\cdot
+\begin{bmatrix}
+\sqrt{\lambda_1} & & & & & & & \\
+& \ddots & & & & & & \\
+& & \sqrt{-\lambda_{p+1}} &  & & & \\
+& & & \ddots & & & \\
+& & & & 1 & \\
+& & & & & \ddots \\
+\end{bmatrix}.
+\]
+Predpostavimo, da obstajata dve različni matriki $B$ in $C$ zgornje oblike, ki sta kongruentni. S $p$, $q$, $p'$ in $q'$ označimo število $1$ in $-1$ v posamični matriki. Predpostavimo, da je $p>p'$. Naj bo $V_1=\Lin\set{e_1,\dots,e_p}$ in $V_2=\Lin\set{P^{-1}e_p,\dots,P^{-1}e_n}$. Potem je $\dim V_1=p$ in $\dim V_2=n-p+1$. Sledi, da je $\dim(V_1\cap V_2)>0$. Naj bo $x\in V_1\cap V_2$ neničeln vektor. Potem je
+\[
+\skl{Bx,x}=x_1^2+\dots+x_p^2>0.
+\]
+Po drugi strani pa velja
+\[
+\skl{Bx,x}=\skl{P^\top CPx,x}=\skl{CPx,Px}=\skl{Cy,y}=-y_p^2-\dots-y_n^2\leq 0,
+\]
+kar je očitno protislovje. Sledi, da je $p=p'$.. S primerjavo rangov dobimo še $q=q'$.
+\end{proof}
+
+\begin{posledica}
+Vsaka kvadratna forma je kongruentna kvadratni formi oblike
+\[
+\widetilde{K}(y)=y_1^2+\dots+y_p^2-y_{p+1}^2-\dots-y_{p+q}^2.
+\]
+Paru $(p,q)$ pravimo \emph{signatura}\index{Kvadratna forma!Signatura}. Dve kvadratni formi sta kongruentni natanko tedaj, ko imata enako signaturo.
+\end{posledica}
+
+\newpage
+
+\subsection{Krivulje drugega reda}
+
+\begin{definicija}
+\emph{Krivulja drugega reda}\index{Krivulja drugega reda} je množica točk v $\R^2$, ki zadoščajo enačbi
+\[
+ax^2+2bxy+cy^2+dx+ey+f=0.
+\]
+\end{definicija}
+
+\begin{opomba}
+Z uporabo Sylvestrovega izreka lahko naredimo prehod na bazo, v kateri bo $b$ v zgornji enačbi enak $0$, s tem pa lahko krivuljo narišemo.
 \end{opomba}
 
 %------------SNEMANJE------------
