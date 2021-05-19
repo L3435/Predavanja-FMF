@@ -4256,6 +4256,58 @@ Vsako konvergentno metrično zaporedje je Cauchyjevo.
 Metrični prostor $(M,d)$ je \emph{poln}\index{Metrični prostor!Poln}, če je v njem vsako Cauchyjevo zaporedje konvergentno.
 \end{definicija}
 
+\begin{opomba}
+Za vsak metrični prostor $M$ obstaja \emph{napolnitev} prostora $\widetilde{M}$ -- najmanjši metrični prostor, ki vsebuje $M$ in je poln.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $(M,d)$ poln metrični prostor. Podmnožica $A\subseteq M$ je zaprta natanko tedaj, ko za vsako konvergentno zaporedje $(a_n)_{n=1}^\infty$ iz $A$ množica $A$ vsebuje limito.
+\end{trditev}
+
+\begin{proof}
+Če je $A$ zaprta, ima zaradi polnosti $M$ zaporedje $(a_n)_{n=1}^\infty$ limito $a\in M$. Če $a\not\in A$, pa zaradi odprtosti $A^\mathsf{c}$ pridemo do protislovja.
+
+Naj bo $a\in\partial A$. Potem lahko po definiciji najdemo zaporedje $(a_n)_{n=1}^\infty$, za katerega je $a_i\in\mathcal{K}\left(a,\frac{1}{n}\right)\cap A$, njegova limita pa je enaka $a$. Sledi, da je $\partial A\subseteq A$, zato je $A$ zaprta.
+\end{proof}
+
+\begin{posledica}
+Če je $(M,d)$ poln metrični prostor in $A\subseteq M$ zaprta podmnožica, je tudi $(A,d)$ poln prostor.
+\end{posledica}
+
+\newpage
+
+\subsection{Preslikave med metričnimi prostori}
+
+\begin{definicija}
+Naj bosta $(M,d)$ in $(N,\rho)$ metrična prostora. Preslikava $f\colon M\to N$ je \emph{zvezna}\index{Metrični prostor!Zvezna preslikava} v $x_0$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da velja
+\[
+\forall x\in\mathcal{K}(x_0,\delta)\implies f(x)\in\mathcal{K}(f(x_0),\varepsilon).
+\]
+Preslikava je \emph{zvezna na $(M,d)$}, če je zvezna v vsaki točki $x\in M$.
+\end{definicija}
+
+\begin{trditev}
+Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna v $x_0\in M$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$, ki konvergira k $x_0$, zaporedje $f(x_i)$ konvergira k $f(x_0)$.
+\end{trditev}
+
+\begin{proof}
+Podoben kot na $\R$.
+\end{proof}
+
+\begin{izrek}
+Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vsake odprte množice v $(N,\rho)$ odprta v $(M,d)$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $f$ zvezna. Naj bo $V$ odprta v $(N,\rho)$ in $U=f^{-1}(V)$. Naj bo $x\in U$. Iz zveznosti v $x$ hitro sledi, da obstaja okolica $x$, katere slika je vsebovana v $V$. Sledi, da je ta okolica vsebovana v $U$, zato je $U$ odprta.
+
+Naj bo $x\in M$ in $\varepsilon>0$. Krogla $\mathcal{K}(f(x),\varepsilon)$ je odprta v $(N,\rho)$. Njena praslika je odprta, zato obstaja krogla s središčem v $x$, katere slika je vsebovana v $\mathcal{K}(f(x),\varepsilon)$.
+\end{proof}
+
+\begin{posledica}
+Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vsake zaprte množice v $(N,\rho)$ zaprta v $(M,d)$.
+\end{posledica}
+
 
 
 \newpage
