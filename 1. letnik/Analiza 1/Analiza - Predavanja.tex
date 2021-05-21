@@ -4308,7 +4308,36 @@ Naj bo $x\in M$ in $\varepsilon>0$. Krogla $\mathcal{K}(f(x),\varepsilon)$ je od
 Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vsake zaprte množice v $(N,\rho)$ zaprta v $(M,d)$.
 \end{posledica}
 
+\newpage
 
+\subsection{Banachovo skrčitveno načelo}
+
+\begin{definicija}
+Naj bo $(M,d)$ metrični prostor. Preslikava $f\colon(M,d)\to(M,d)$ je \emph{skrčitev}\index{Metrični prostor!Skrčitev}, če obstaja tak $q\in[0,1)$, da za vse $x,y\in M$ velja
+\[
+d(f(x),f(y))\leq q\cdot d(x,y).
+\]
+\end{definicija}
+
+\begin{opomba}
+Vsaka skrčitev je zvezna preslikava.
+\end{opomba}
+
+\begin{izrek}[Banach]\index{Izrek!Banach}
+Naj bo $(M,d)$ poln metrični prostor in $f$ skrčitev tega prostora. Potem obstaja natanko ena fiksna točka preslikave $f$ na $M$.
+\end{izrek}
+
+\begin{proof}
+Očitno imamo največ eno fiksno točko. Opazimo, da za zaporedje, podano z rekurzivno zvezo $a_{n+1}=f(a_n)$ velja
+\[
+d(a_n,a_m)\leq q^n\cdot\frac{1-q^{m-n}}{1-q}\cdot d(a_0,a_1)<\frac{q^n}{1-q}\cdot d(a_0,a_1),
+\]
+kjer je $m\geq n$. Sledi, da je zaporedje Cauchyjevo, zato ima limito $a$, za katero velja
+\[
+a=\lim_{n\to\infty}a_{n+1}=\lim_{n\to\infty}f(a_n)=f(a),
+\]
+saj je $f$ zvezna.
+\end{proof}
 
 \newpage
 \printindex
