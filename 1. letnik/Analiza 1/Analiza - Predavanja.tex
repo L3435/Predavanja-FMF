@@ -4340,6 +4340,68 @@ saj je $f$ zvezna.
 \end{proof}
 
 \newpage
+
+\subsection{Kompaktnost}
+
+\begin{definicija}
+Naj bo $(M,d)$ metrični prostor in in $\mathcal{K}\subseteq M$. Družina $\setb{\mathcal{A}_\gamma}{\gamma\in\Gamma}$ podmnožic $M$ je \emph{pokritje}\index{Metrični prostor!Pokritje} za $\mathcal{K}$, če je
+\[
+\mathcal{K}\subseteq\bigcup_{\gamma\in\Gamma}A_\gamma.
+\]
+Če so vse množice v družini odprte, je pokritje \emph{odprto}, če so vse zaprte, pa \emph{zaprto}. Če je v družini le končno množic, je pokritje \emph{končno}.
+\end{definicija}
+
+\begin{definicija}
+Podmnožica $\mathcal{K}$ metričnega prostora $(M,d)$ je \emph{kompaktna}\index{Metrični prostor!Kompaktna množica}, če vsako odprto pokritje množice $\mathcal{K}$ vsebuje končno podpokritje.
+\end{definicija}
+
+\begin{opomba}
+Vsaka končna množica je kompaktna.
+\end{opomba}
+
+\begin{trditev}
+Vsak zaprt interval v $(\R,d_2)$ je kompakten.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\setb{O_\gamma}{\gamma\in\Gamma}$ pokritje $[a,b]$ in
+\[
+\alpha=\sup\setb{x\in[a,b]}{\text{interval $[a,x]$ ima končno podpokritje}}.
+\]
+Trdimo, da je $\alpha\in A$. Obstaja namreč interval, ki vsebuje $\alpha$, ki ga lahko dodamo k pokritju $[a,\alpha-\varepsilon)$. Če je $\alpha<b$, očitno ni zgornja meja množice, kar je protislovje. Sledi, da je $\alpha=b$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $\mathcal{K}\subseteq(M,d)$ kompaktna podmnožica. Potem je $\mathcal{K}$ zaprta in omejena.
+\end{trditev}
+
+\begin{proof}
+Za poljuben $a$ je družina $\setb{\mathcal{K}(a,r)}{r\in\R^+}$ pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi omejenost (vzamemo največji $r$ končnega podpokritja). Podobno je za $a\in\mathcal{K}^\mathsf{c}$ družina $\setb{x}{d(a,x)>r,~r\in\R^+}$ pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi odprtost $\mathcal{K}^\mathsf{c}$ (vzamemo najmanjši $r$ končnega podpokritja).
+\end{proof}
+
+\begin{trditev}
+Naj bo $\mathcal{Z}$ zaprta podmnožica kompaktne množice $\mathcal{K}$. Potem je $\mathcal{Z}$ kompaktna.
+\end{trditev}
+
+\begin{proof}
+Pokritju $\mathcal{Z}$ lahko dodamo $\mathcal{Z}^\mathsf{c}$. Dobimo pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi želeno.
+\end{proof}
+
+\begin{posledica}
+Podmnožica $\mathcal{K}$ v $(\R,d_2)$ je kompaktna natanko tedaj, ko je $\mathcal{K}$ omejena in zaprta.
+\end{posledica}
+
+\begin{proof}
+Ker je $\mathcal{K}$ omejena, leži v dovolj velikem zaprtem intervalu.
+\end{proof}
+
+\begin{izrek}
+Podmnožica v $(\R^n,d_2)$ je kompaktna natanko tedaj, ko je omejena in zaprta.
+\end{izrek}
+
+%----Dokaz izpuščen----
+
+\newpage
 \printindex
 
 \end{document}
