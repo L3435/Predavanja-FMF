@@ -4399,7 +4399,91 @@ Ker je $\mathcal{K}$ omejena, leži v dovolj velikem zaprtem intervalu.
 Podmnožica v $(\R^n,d_2)$ je kompaktna natanko tedaj, ko je omejena in zaprta.
 \end{izrek}
 
-%----Dokaz izpuščen----
+\begin{proof}
+Dovolj je dokazati, da so zaprti $n$ dimenzionalni kvadri kompaktni. Naj bo $\setb{O_\gamma}{\gamma\in\Gamma}$ odprto pokritje kvadra. Kvader lahko razdelimo na $2^n$ skladnih kvadrov. Sledi, da vsaj en izmed teh kvadrov nima končnega podpokritja. Algoritem nato ponovimo na tem kvadru. V limiti dobimo eno točko, ki je vsebovana v neki množici pokritja, ta pa zagotovo pokrije enega izmed kvadrov zaporedja. Prišli smo do protislovja.
+\end{proof}
+
+\begin{izrek}
+Naj bo $\mathcal{K}$ kompaktna podmnožica $(M,d)$ in naj bo $(a_n)_{n=1}^\infty\in\mathcal{K}$ zaporedje. Potem ima zaporedje $(a_n)_{n=1}^\infty$ stekališče v $\mathcal{K}$.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo nasprotno. Za vsako točko $x\in\mathcal{K}$ obstaja tak $r$, da krogla $\mathcal{K}(x,r)$ vsebuje le končno členov zaporedja. Te krogle so pokritje $\mathcal{K}$, zato lahko najdemo končno podpokritje, kar implicira, da ima zaporedje končno členov.
+\end{proof}
+
+\begin{posledica}
+Vsako zaporedje v kompaktni množici ima konvergentno podzaporedje.
+\end{posledica}
+
+\begin{proof}
+Vzamemo poljubno stekališče in člene zaporedja iz njegovih okolic.
+\end{proof}
+
+\begin{posledica}
+Vsak kompakten prostor je poln.
+\end{posledica}
+
+\begin{proof}
+Vsako Cauchyjevo zaporedje ima stekališče, zaradi Cauchyjevega pogoja pa je stekališče samo eno. Ni težko videti, da je to stekališče tudi limita.
+\end{proof}
+
+\begin{opomba}
+V metričnih prostorih sta lastnosti
+
+\begin{enumerate}[label=\roman*)]
+\item $\mathcal{K}$ je kompaktna podmnožica
+\item Vsako zaporedje v $\mathcal{K}$ ima stekališče v $\mathcal{K}$
+\end{enumerate}
+
+ekvivalentni.
+\end{opomba}
+
+\begin{proof}
+Trditev dokažimo v primeru števnega pokritja $\mathcal{K}$. Za vsak $n$ tako obstaja
+\[
+a_n\in\mathcal{K}\setminus\bigcup_{i=1}^nO_i.
+\]
+Po predpostavki ima zaporedje stekališče, ki leži v eni izmed množic pokritja, kar je seveda protislovje.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f\colon (M,d)\to(N,\rho)$ zvezna in $\mathcal{K}\subseteq(M,d)$ kompaktna. Potem je $f(\mathcal{K})$ kompaktna v $(N,\rho)$.
+\end{izrek}
+
+\begin{proof}
+Vzemimo poljubno pokritje $f(\mathcal{K})$. $\mathcal{K}$ lahko pokrijemo s praslikami tega pokrijta, zvezne funkcije pa ohranjajo odprtost. Sledi, da ostaja končno podpokritje $\mathcal{K}$, katerega slika je končno podpokritje $f(\mathcal{K})$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f\colon (M,d)\to(\R,d_2)$ zvezna preslikava in $\mathcal{K}\subseteq(M,d)$ kompaktna podmnožica. Potem je $\eval{f}{\mathcal{K}}{}$ omejena in na $\mathcal{K}$ zavzame minimum in maksimum.
+\end{posledica}
+
+\begin{proof}
+$f(\mathcal{K})$ je kompaktna, zato je omejena in zaprta. Sledi, da je $\eval{f}{\mathcal{K}}{}$ omejena, ni pa težko videti, da sta zaradi zaprtosti njen supremum in infimum v zalogi vrednosti.
+\end{proof}
+
+\begin{definicija}
+Naj bo $f\colon (M,d)\to(N,\rho)$ preslikava. Preslikava $f$ je \emph{enakomerno zvezna}\index{Metrični prostor!Enakomerno zvezna preslikava} na $D\subseteq M$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vse $x,y\in D$, za katere je $d(x,y)<\delta$, velja
+\[
+\rho(f(x),f(y))<\varepsilon.
+\]
+\end{definicija}
+
+\begin{opomba}
+Enakomerna zveznost implicira zveznost.
+\end{opomba}
+
+\begin{izrek}
+Če je $\mathcal{K}$ v $(M,d)$ kompaktna in $f\colon\mathcal{K}\to(N,\rho)$ zvezna, je $f$ enakomerno zvezna na $\mathcal{K}$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\varepsilon>0$. Za vsak $x\in\mathcal{K}$ obstaja tak $\delta_x>0$, da je
+\[
+f(\mathcal{K}(x,\delta_x))\subseteq\mathcal{K}\left(f(x),\frac{\varepsilon}{2}\right).
+\]
+To je odprto pokritje za $\mathcal{K}$, zato lahko vzamemo končno podpokritje, za $\delta$ pa preprosto vzamemo polovico najmanjšega $\delta_x$ tega podpokritja.
+\end{proof}
 
 \newpage
 \printindex
