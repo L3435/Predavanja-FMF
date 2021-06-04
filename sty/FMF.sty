@@ -70,11 +70,7 @@
     \apptocmd{\@epitext}{\em}{}{}
     \setlength{\epigraphrule}{0pt}
 
-\RequirePackage[parfill]{parskip}
-\patchcmd\deferred@thm@head
-  {\addvspace{-\parskip}}
-  {}
-  {}{\typeout{\string\deferred@thm@head patch failed!}}
+\RequirePackage{parskip}
 
 \RequirePackage[unicode]{hyperref}
 \hypersetup{
@@ -159,4 +155,4 @@
 
 \setcounter{tocdepth}{2}
 
-\overfullrule=5pt
+%\overfullrule=5pt
