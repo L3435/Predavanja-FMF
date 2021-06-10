@@ -66,7 +66,7 @@ Tudi ta sistem ni popoln, saj operacija $\cdot$ nima inverzov (ne znamo rešiti 
 \begin{definicija}
 Aksiomi seštevanja:
 
-\begin{enumerate}[label=A\arabic*:]
+\begin{enumerate}[label=A\arabic*.]
 \item Asociativnost: $\forall a,b,c\colon(a+b)+c=a+(b+c)$
 \item Komutativnost: $\forall a,b\colon a+b=b+a$
 \item Obstoj nevtralnega elementa: $\exists 0~\forall a\colon a+0=a$
@@ -94,7 +94,7 @@ Za dani $a$ je nasprotni element enoličen.
 \begin{proof}
 Obstoj zagotavlja 4. aksiom. Naj bosta $a'$ in $a''$ nasprotna elementa $a$. Potem velja
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\roman*)]
 \item $a+a'=0$ in
 \item $a+a''=0$.
 \end{enumerate}
@@ -163,7 +163,7 @@ Tak $x$ res reši enačbo, saj je
 \begin{definicija}
 Aksiomi množenja:
 
-\begin{enumerate}[label=A\arabic*:]
+\begin{enumerate}[label=A\arabic*.]
 \setcounter{enumi}{4}
 \item Asociativnost: $\forall a, b, c\colon(a\cdot b)\cdot c=a\cdot(b\cdot c)$
 \item Komutativnost: $\forall a, b\colon a\cdot b=b\cdot a$
@@ -256,7 +256,7 @@ Množica, na kateri sta definirani operaciji $+$ in $\cdot$ in zadošča zgornji
 \begin{definicija}
 Aksioma urejenosti:
 
-\begin{enumerate}[label=A\arabic*:]
+\begin{enumerate}[label=A\arabic*.]
 \setcounter{enumi}{10}
 \item Če je $a\ne 0$, je natanko eno od števil $a$ in $-a$ pozitivno, drugo pa negativno.
 \item Usklajenost operacij z urejenostjo: Če sta $a$ in $b$ pozitivni števili, sta tudi $a+b$ in $a\cdot b$ pozitivni.
@@ -355,7 +355,7 @@ $S$ naj bo neprazna množica z linearno urejenostjo. Neprazna podmnožica $A\sub
 \begin{definicija}
 Naj bo $A$ navzgor omejena neprazna podmnožica $S$ ($S\in\set{\Q,~\R}$). Število $b\in S$ je \emph{natančna zgornja meja} ali \emph{najmanjša zgornja meja} ali \emph{supremum}\index{Supremum} množice $A$ ($b=\sup A$), če velja
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\roman*)]
 \item $\forall a\in A$ je $a\geq b$ in
 \item $\forall b'<b~\exists a'\in A$, da je $b'<a'$.
 \end{enumerate}
@@ -368,13 +368,13 @@ Druga točka je ekvivalentna $\forall\varepsilon>0~\exists a'\in A$, da je $b-\v
 \begin{opomba}
 Naj bo za $r\in\Q$
 \[
-r*=\setb{x\in\Q}{x<r}.
+r^*=\setb{x\in\Q}{x<r}.
 \]
-Potem je $r=\sup r*$.
+Potem je $r=\sup r^*$.
 \end{opomba}
 
 \begin{proof}
-Vidimo, da je $r$ očitno zgornja meja, za poljuben $x<r$ pa je $\frac{x+r}{2}<r$ element $r*$.
+Vidimo, da je $r$ očitno zgornja meja, za poljuben $x<r$ pa je $\frac{x+r}{2}<r$ element $r^*$.
 \end{proof}
 
 \begin{opomba}
@@ -403,7 +403,7 @@ si lahko izberemo kar $h=\frac{b^2-2}{2b}$, s tem pa bodo zadoščeni vsi pogoji
 \begin{definicija}
 Dedekindov aksiom:
 
-\begin{enumerate}[label=A\arabic*:]
+\begin{enumerate}[label=A\arabic*.]
 \setcounter{enumi}{12}
 \item Vsaka neprazna navzgor omejena množica ima supremum.
 \end{enumerate}
@@ -425,7 +425,7 @@ Tak urejen obseg je natanko določen do izomorfizma natančno.
 \begin{definicija}
 \emph{Rez}\index{Rez} je taka neprazna podmnožica $A\subset\Q$, da velja:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je $a\in A$ in $a'<a$, je tudi $a'\in A$
 \item Če je $a\in A$ obstaja $a'>a$, za katerega je $a'\in A$
 \end{enumerate}
@@ -433,12 +433,8 @@ Tak urejen obseg je natanko določen do izomorfizma natančno.
 $\R$ je množica vseh rezov.
 \end{definicija}
 
-\begin{zgled}
-Za $r\in\Q$ je $r*=\setb{x\in\Q}{x<r}$ rez, ki mu ga lahko priredimo. Tako je $\Q\subseteq\R$.
-\end{zgled}
-
 \begin{opomba}
-Za rez $A$ velja $A>0*\iff 0\in A$, torej vsebuje tudi kakšno pozitivno število.
+Za rez $A$ velja $A>0^*\iff 0\in A$, torej vsebuje tudi kakšno pozitivno število.
 \end{opomba}
 
 \begin{definicija}
@@ -449,9 +445,9 @@ Na $\R$ vpeljemo operaciji $+,\cdot$ in relacijo $<$, za katere velja vseh 13 ak
 \item[$\bullet$ Operacija $\cdot$] Produkt rezov $A,B$ je definiran kot
 
 \begin{description}[font=\normalfont, align=left, labelwidth=3.5cm]
-\item [a) $A,B>0$] $A\cdot B=\setb{a\cdot b}{a\in A,~a\geq 0,~b\in B,~b\geq 0}\cup 0*$
-\item[b) $A>0,B<0$] $A\cdot B=-(A\cdot(-B))$
-\item [c) $A<0$] $A\cdot B=-((-A)\cdot B)$
+\item [i) $A,B>0$] $A\cdot B=\setb{a\cdot b}{a\in A,~a\geq 0,~b\in B,~b\geq 0}\cup 0^*$
+\item[ii) $A>0,B<0$] $A\cdot B=-(A\cdot(-B))$
+\item [iii) $A<0$] $A\cdot B=-((-A)\cdot B)$
 \end{description}
 \item[$\bullet$ Relacija $<$] Za reza $A,B$ je $A<B\iff A\subset B$
 \end{description}
@@ -468,7 +464,7 @@ Za urejen obseg rezov z operacijama $+$, $\cdot$ in ureditvijo $<$ velja aksiom 
 \begin{proof}
 Naj bo $\mathcal{A}$ neprazna navzgor omejena množica rezov. Naj bo $\displaystyle C=\bigcup_{A\in\mathcal{A}}A.$
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $C$ je rez. Očitno je $C\ne \emptyset$ in $C\ne\Q$, saj je $\mathcal{A}$ navzgor omejena. Prav tako vidimo, da za vsak $c\in C$ in $c'<c$ velja $c'\in C$ in obstaja  $c''>c$, ki je element $C$, saj je $c$ element nekega reza v $\mathcal{A}$.
 \item $C$ je zgornja meja, saj za vsak rez $A$ iz $\mathcal{A}$  velja $A\subseteq C$.
 \item $C$ je najmanjša zgornja meja, saj za vsak $C'<C$ obstaja nek $x\in C$ in $x\not\in C'$, kar pomeni, da je $x$ element nekega reza $A$ iz $\mathcal{A}$. Sledi $C'<A$, kar pomeni, da $C'$ ni zgornja meja.\qedhere
@@ -486,7 +482,7 @@ $\forall a,b>0~\exists n\in\N\colon an>b$.
 \begin{definicija}
 Naj bo $A$ neprazna navzdol omejena množica realnih števil. $m$ je \emph{infimum}\index{Infimum} $A$, če velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $\forall a\in A$ je $a\geq m$ in
 \item $\forall m'>m~\exists a\in A$, da je $m'>a$.
 \end{enumerate}
@@ -573,12 +569,6 @@ Za poljubna $x,y\in\R$ veljajo naslednje lastnosti:
 \end{enumerate}
 \end{posledica}
 
-\begin{zgled}
-Kaj so rešitve neenačbe $|x-a|<r$ za $a\in\R,~r>0$?
-
-Rešitve so vsi $x$, za katere je $-r<x-a<r$, oziroma $x\in(a-r,a+r)$.
-\end{zgled}
-
 \begin{opomba}
 Za vse realne $x,y$ velja tudi
 \[|x-y|\geq\left||x|-|y|\right|.\]
@@ -621,13 +611,11 @@ od koder sledi
 kar je protislovje.
 \end{proof}
 
-\begin{zgled}
-Velja
+Opazimo, da velja
 \[
 1,0000\ldots=0,9999\dots
 \]
 Z zgornjo konstrukcijo smo vsakemu številu, ki bi lahko imel dva možna decimalna zapisa, priredili tisto, ki se končajo z neskončno mnogo ničlami. Zapisov, ki se končajo z neskončno mnogo deveticami, ne dobimo.
-\end{zgled}
 
 \newpage
 
@@ -726,7 +714,7 @@ Za $b>0$ in $\frac{p}{q}\in\Q$ je $b^\frac{p}{q}=\sqrt[q]{b}^n$.
 
 Izkaže se, da za tako definirane potence veljajo osnovna pravila potenciranja:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $b^r\cdot b^s=b^{r+s}$
 \item $(b^r)^s=b^{rs}$
 \item $(a\cdot b)^r=a^r\cdot b^r$
@@ -778,7 +766,7 @@ z^{-1}=\frac{\overline{z}}{|z|^2}.
 
 Lastnosti absolutne vrednosti:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $|z|\geq 0~\forall z$
 \item $|z|=0\iff z=0$
 \item $|z\cdot w|=|z|\cdot|w|$
@@ -878,7 +866,7 @@ Za množici $A$ in $B$ je $|A|=|B|$, če obstaja bijekcija $f\colon A\to B$. Pra
 \begin{opomba}
 Velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $|A|=|A|$, saj je $\id$ bijekcija
 \item $|A|=|B|\iff |B|=|A|$, saj lahko izberemo inverzno preslikavo
 \item če je $|A|=|B|$ in $|B|=|C|$, je tudi $|A|=|C|$, saj lahko izberemo kompozitum.
@@ -976,7 +964,7 @@ f_A(x)=\begin{cases}
 \]
 Naj bo $\mathcal{F}=\setb{f_a}{A\subseteq X}$. Dokazali bomo, da je $|X|<|\mathcal{F}|$.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $|X|\leq|\mathcal{F}|$: $x\mapsto f_{\set{x}}$ je injektivna preslikava.
 \item Predpostavimo, da je $\Phi:X\to\mathcal{F}$ bijekcija. Definiramo
 \[
@@ -1070,7 +1058,7 @@ Po prej dokazanem vemo, da za je za vse $\varepsilon$ izven intervala $(a-\varep
 \begin{izrek}
 Za zaporedje $(a_n)_{n=1}^\infty$ sta naslednji izjavi ekvivalentni:
 
-\begin{enumerate}[label=(\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Število $a$ je stekališče zaporedja
 \item Obstaja podzaporedje $(a_{n_j})_{j=1}^\infty$, ki konvergira k $a$
 \end{enumerate}
@@ -1089,7 +1077,7 @@ Vsako omejeno zaporedje realnih števil ima konvergentno podzaporedje.
 \begin{definicija}
 Naj bo $(a_n)_{n=1}^\infty$ zaporedje realnih števil.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item To zaporedje je \emph{naraščajoče}, če je $a_n\leq a_{n+1}$ za vse $n$.
 \item To zaporedje je \emph{padajoče}, če je $a_n\geq a_{n+1}$ za vse $n$.
 \item Zaporedje je \emph{monotono}\index{Zaporedje!Monotono}, če je naraščajoče ali padajoče.
@@ -1099,7 +1087,7 @@ Naj bo $(a_n)_{n=1}^\infty$ zaporedje realnih števil.
 \begin{izrek}
 Če je zaporedje $(a_n)_{n=1}^\infty$ monotono in omejeno, ima limito.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je zaporedje naraščajoče in navzgor omejeno, je
 \[
 \lim_{n\to\infty}=\sup_na_n.
@@ -1116,7 +1104,7 @@ Naj bo $(a_n)_{n=1}^\infty$ zaporedje realnih števil.
 \begin{izrek}[O sendviču]\index{Izrek!O sendviču}
 Naj bodo $(a_n)_{n=1}^\infty$, $(b_n)_{n=1}^\infty$ in $(c_n)_{n=1}^\infty$ zaporedja realnih števil, za katere velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $a_n\leq b_n\leq c_n$ za vse $n$
 \item $\displaystyle\lim_{n\to\infty}a_n=\lim_{n\to\infty}c_n$
 \end{enumerate}
@@ -1146,7 +1134,7 @@ Naj bosta $(a_n)_{n=1}^\infty$ in $(b_n)_{n=1}^\infty$ konvergentni zaporedji z 
 \begin{posledica}
 Naj bo $\displaystyle\lim_{n\to\infty}a_n=a$.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Naj bo $k\in\Z$, pri čemer je $k>0$ ali $a_n\ne 0$ in $a\ne 0$. Potem je
 \[
 \lim_{n\to\infty}a_n^k=a^k.
@@ -1165,7 +1153,7 @@ Naj bo $\displaystyle\lim_{n\to\infty}a_n=a$.
 \begin{posledica}
 Veljajo naslednje lastnosti:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je $|x|<1$, je $\displaystyle\lim_{n\to\infty}x^n=0$.
 \item Za $s>0$ in $a_n=n^{-s}$ je $a=0$.
 \item Za $x>0$ je $\displaystyle\lim_{n\to\infty}\sqrt[n]{x}=1$.
@@ -1195,7 +1183,7 @@ Zaporedje $(a_n)_{n=1}^\infty$ je konvergentno natanko tedaj, ko za vsak $\varep
 \begin{definicija}
 Naj bo $(a_n)_{n=1}^\infty$ zaporedje.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Pravimo, da to zaporedje \emph{konvergira k $+\infty$}, če za vsak $M\in\R$ obstaja tak $n_0\in\N$, da za vsak $n\geq n_0$ velja
 \[
 M<a_n.
@@ -1214,19 +1202,19 @@ Z $\overline{\R}=\R\cup\set{+\infty,-\infty}$ označimo \emph{razširjen sistem 
 \begin{definicija}
 Naj bo $(a_n)_{n=1}^\infty$ zaporedje in $E$ množica vseh stekališč tega zaporedja.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $\displaystyle\limsup_{n\to\infty}a_n=+\infty$, če zaporedje ni navzgor omejeno.
 \item $\displaystyle\liminf_{n\to\infty}a_n=-\infty$, če zaporedje ni navzdol omejeno.
 \item Če je zaporedje navzgor omejeno, je
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\roman*)]
 \item $\displaystyle\limsup_{n\to\infty}a_n=\sup E$, če je $E\ne\emptyset$.
 \item $\displaystyle\limsup_{n\to\infty}a_n=-\infty$, če je $E=\emptyset$.
 \end{enumerate}
 
 \item Če je zaporedje navzdol omejeno, je
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\roman*)]
 \item $\displaystyle\liminf_{n\to\infty}a_n=\inf E$, če je $E\ne\emptyset$.
 \item $\displaystyle\liminf_{n\to\infty}a_n=+\infty$, če je $E=\emptyset$.
 \end{enumerate}
@@ -1253,7 +1241,7 @@ Naj bo $(z_n=a_n+ib_n)_{n=1}^\infty$ zaporedje kompleksnih števil, kjer so $a_n
 \begin{posledica}
 Naj bosta $(z_n)_{n=1}^\infty$ in $(w_n)_{n=1}^\infty$ konvergentni zaporedji kompleksnih števil z limitama $z$ in $w$. Potem so konvergentna naslednja zaporedja z limitami
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $\displaystyle\lim_{n\to\infty}(z_n+w_n)=z+w$
 \item $\displaystyle\lim_{n\to\infty}(z_n-w_n)=z-w$
 \item $\displaystyle\lim_{n\to\infty}(z_n\cdot w_n)=z\cdot w$
@@ -1319,7 +1307,7 @@ Velja $G(f^{-1})=\tau(G(f))$.
 \begin{definicija}
 Naj bosta $f, g\colon D\to\R$ funkciji. Potem definiramo naslednje funkcije:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $(f+g)(x)\equiv f(x)+g(x)$
 \item $(f-g)(x)\equiv f(x)-g(x)$
 \item $(f\cdot g)(x)\equiv f(x)\cdot g(x)$
@@ -1401,7 +1389,7 @@ Dovolj je dokazati zveznost $\sin$, kar lahko z adicijskimi izreki pretvorimo na
 \begin{definicija}
 Funkcija $f\colon D\to\R$ je
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item \emph{naraščajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1\leq x_2$, velja $f(x_1)\leq f(x_2)$
 \item \emph{padajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1\leq x_2$, velja $f(x_1)\geq f(x_2)$
 \item \emph{strogo naraščajoča}, če je za vse $x_1,x_2\in D$, za katere je $x_1<x_2$, velja $f(x_1)<f(x_2)$
@@ -1562,7 +1550,7 @@ Označimo $\displaystyle\lim_{x\to a}f(x)=A$.
 \begin{posledica}
 Očitno velja naslednje:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item če je $f$ definirana na $(a-r,a+r)$ in zvezna v $a$, je $\displaystyle\lim_{x\to a}f(x)=f(a)$
 \item če je $A=\displaystyle\lim_{x\to a}f(x)$, je funkcija
 \[
@@ -1579,7 +1567,7 @@ zvezna v $a$.
 \begin{izrek}
 Naslednji trditvi sta ekvivalentni za funkcijo $f\colon(a-r,a+r)\setminus\set{a}\to\R$:
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $\displaystyle\lim_{x\to a}f(x)=A$
 \item za vsako zaporedje $(x_n)_{n=1}^\infty$ iz $(a-r,a+r)\setminus\set{a}$, za katerega velja, da je $\displaystyle\lim_{n\to\infty}x_n=a$, velja $\displaystyle\lim_{n\to\infty}f\left(x_n\right)=A$
 \end{enumerate}
@@ -1967,7 +1955,7 @@ g(x)=f(x)-\frac{f(b)-f(a)}{b-a}\cdot (x-a)-f(a).\qedhere
 \begin{posledica}\label{psl:lag}
 Naj bo $f\in C\left([a,b]\right)$ odvedljiva na $(a,b)$.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je $f'(x)=0$ na $(a,b)$, je $f$ konstantna funkcija
 \item $f$ je naraščajoča na $[a,b]$ natanko tedaj, ko je $f'\geq 0$ na $(a,b)$
 \item $f$ je padajoča na $[a,b]$ natanko tedaj, ko je $f'\leq 0$ na $(a,b)$
@@ -1979,7 +1967,7 @@ Naj bo $f\in C\left([a,b]\right)$ odvedljiva na $(a,b)$.
 \begin{posledica}
 Naj bo $f\colon(a,b)\to\R$ odvedljiva funkcija in naj bo $c\in(a,b)$ izolirana ničla odvoda $f'$.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če odvod pri prehodu točke $x=c$ od leve proti desni spremeni predznak iz $+$ v $-$, ima $f$ v $c$ lokalni maksimum.
 \item Če odvod pri prehodu točke $x=c$ od leve proti desni spremeni predznak iz $-$ v $+$, ima $f$ v $c$ lokalni minimum.
 \item Če odvod pri prehodu točke $x=c$ ne spremeni predznaka, $c$ ni lokalni ekstrem.
@@ -1989,7 +1977,7 @@ Naj bo $f\colon(a,b)\to\R$ odvedljiva funkcija in naj bo $c\in(a,b)$ izolirana n
 \begin{opomba}
 Naj bo $f\in C\left([a,b]\right)$ odvedljiva na $(a,b)$.
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je na $(a,a+\delta)$ $f'<0$, ima $f$ v $a$ lokalni maksimum.
 \item Če je na $(a,a+\delta)$ $f'>0$, ima $f$ v $a$ lokalni minimum.
 \item Če je na $(b,b-\delta)$ $f'>0$, ima $f$ v $a$ lokalni maksimum.
@@ -2127,7 +2115,7 @@ V nasprotnem primeru je $f$ v okolici $a$ konveksna ali konkavna.
 \begin{posledica}
 Naj bo $F$ dvakrat odvedljiva v okolici točke $c\in\R$. Naj bo $c$ stacionarna točka za $f$.
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\roman*)]
 \item Če je $f''(c)>0$, ima $f$ v $c$ strogi lokalni minimum.
 \item Če je $f''(c)<0$, ima $f$ v $c$ strogi lokalni maksimum.
 \end{enumerate}
@@ -2157,7 +2145,7 @@ kjer je $k=\frac{f(b)-f(a)}{g(b)-g(a)}$ (po Rollu namreč $g(a)\ne g(b)$). Potem
 \begin{izrek}[L'Hôpital]\index{Izrek!L'Hôpital}
 Naj bosta $f$ in $g$ odvedljivi funkciji na intervalu $(a,b)$. Naj velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $g(x)\ne 0$ in $g'(x)\ne 0$ na $(a,b)$
 \item $\displaystyle\lim_{x\downarrow a}f(x)=\lim_{x\downarrow a}g(x)=0$
 \end{enumerate}
@@ -3306,7 +3294,7 @@ Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ vrsta s pozitivnimi členi in naj bo
 q_n=\frac{a_{n+1}}{a_n}.
 \]
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če obstajata taka $q<1$ in $n_0\in\N$, da je za vse $n\geq n_0$
 \[
 q_n\leq q,
@@ -3338,7 +3326,7 @@ Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ z nenegativnimi členi in naj bo
 q_n=\sqrt[n]{a_n}.
 \]
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če obstajata taka $q<1$ in $n_0\in\N$, da je za vse $n\geq n_0$
 \[
 q_n\leq q,
@@ -3388,7 +3376,7 @@ Naj bo $\displaystyle\sum_{n=1}^\infty a_n$ s pozitivnimi členi in naj bo
 R_n=n\left(\frac{a_n}{a_{n+1}}-1\right).
 \]
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item Če obstajata taka $r>1$ in $n_0\in\N$, da je za vse $n\geq n_0$
 \[
 1<r\leq R_n,
@@ -3611,7 +3599,7 @@ konvergira, konvergirajo vse in velja, da vrste
 \[
 \sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right),\quad \sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right),\quad\text{in}\quad\sum_{i=1}^\infty a_{\pi(i)}
 \]
-konvergirajo in so enake.\footnote{Izrek na predavanjih ni bil dokazan, dokaz se nahaja v zapiskih predavanj dne 14.~4.~2021.}
+konvergirajo in so enake.\footnote{Izrek na predavanjih ni bil dokazan, dokaz se nahaja v \href{https://ucilnica.fmf.uni-lj.si/pluginfile.php/95794/mod_folder/content/0/Ana1-predavanje48.pdf?forcedownload=1}{zapiskih predavanj dne 14.~4.~2021} (strani 481--485).}
 \end{izrek}
 
 \newpage
@@ -4201,7 +4189,7 @@ Za vse $A\subseteq(M,d)$ je $\Int(A)$ največja odprta množica, vsebovana v $A$
 \begin{izrek}[Topologija]\index{Topologija}
 Naj bo $(M,d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(M,d)$.\footnote{Družini $\tau$ pravimo \emph{topologija}.} Potem velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $M,\emptyset\in\tau$
 \item Poljubna unija odprtih množic je odprta množica
 \item Presek končno mnogo odprtih množic je odprta množica.
@@ -4213,7 +4201,7 @@ Naj bo $(M,d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(M,
 \begin{posledica}
 Naj bo $(M,d)$ metrični prostor in $\mathcal{Z}$ družina vseh zaprtih podmnožic $(M,d)$. Potem velja
 
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=\roman*)]
 \item $M,\emptyset\in\mathcal{Z}$
 \item Poljuben presek zaprtih množic je zaprta množica.
 \item Unija končno mnogo zaprtih množic je zaprta množica.
