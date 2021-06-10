@@ -22,13 +22,15 @@
 
 V tem dokumentu so zbrani moji zapiski s predavanj predmeta Analiza 1 v letu 2020/21. Predavatelj v tem letu je bil prof.~dr.~Miran Černe.
 
-Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem ga označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
+Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem kakšnega označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
 
 Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravki so vselej dobrodošli.
 
 \newpage
 
 \section{Števila}
+
+\epigraph{">Če ne študiraš matematike je precej očitno, da je $\sqrt{2}\cdot\sqrt{2}=2$."<}{---asist.~dr.~Jure Kališnik}
 
 \subsection{Množice števil}
 
@@ -804,6 +806,8 @@ Vsak polinom $P$ stopnje $n$ s kompleksnimi koeficienti ima $n$ ničel. $P$ lahk
 
 \section{Številska zaporedja}
 
+\epigraph{">Priporočil bi vam, da vam internet ne pade."<}{---prof.~dr.~Miran Černe}
+
 \subsection{Množice in preslikave}
 
 Uporabljamo sistem aksiomov ZFC.
@@ -825,8 +829,6 @@ Osnovni pojmi teorije množic:
 \item $\mathcal{P}(X)=\setb{A}{A\subseteq X}$ je potenčna množica
 \end{itemize}
 \end{definicija}
-
-\subsection{Preslikave med množicami}
 
 \begin{okvir}
 \begin{definicija}
@@ -1269,6 +1271,8 @@ Zaporedje $(z_n)_{n=1}^\infty$ kompleksnih števil je konvergentno natanko tedaj
 
 \section{Realne funkcije realne spremenljivke}
 
+\epigraph{">Lahko daste primer konstantne funkcije?"<}{---Jan Kamnikar}
+
 \subsection{Funkcije, grafi in operacije}
 
 \begin{okvir}
@@ -1562,7 +1566,7 @@ Očitno velja naslednje:
 \item če je $f$ definirana na $(a-r,a+r)$ in zvezna v $a$, je $\displaystyle\lim_{x\to a}f(x)=f(a)$
 \item če je $A=\displaystyle\lim_{x\to a}f(x)$, je funkcija
 \[
-\tilde{f}(x)=\begin{cases}
+\widetilde{f}(x)=\begin{cases}
 f(x), &x\ne a
 \\
 A, &x=a
@@ -1670,6 +1674,8 @@ Obe strani konvergirata k $e$, ker pa imamo poljubno velike $x$, smo končali.
 \newpage
 
 \section{Odvod}
+
+\epigraph{">Profesor Černe je dober v tem, da naredi odvod občutka znanja matematike po času zelo negativen."<}{---asist.~dr.~Jure Kališnik}
 
 Odvod prestavlja hitrost spreminjanja funkcije glede na neodvisno spremenljivko.
 
@@ -2314,6 +2320,8 @@ Ker sta $Y$ in $\tau$ zvezno odvedljivi, je tudi njun kompozitum zvezno odvedlji
 
 \section{Integral}
 
+\epigraph{">Če pogledate integral tako, z očmi, so to tiste funkcije, v katerih nastopajo samo $x$ in koreni ulomljenih linearnih funkcij."<}{---asist.~dr.~Jure Kališnik}
+
 \subsection{Nedoločeni integral}
 
 \begin{okvir}
@@ -2357,8 +2365,9 @@ f(x)=\begin{cases}
 \]
 \end{opomba}
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
+\caption{Tabela osnovnih nedoločenih integralov}
 \begin{tabular}{c|c}
 $f(x)$                   & $\displaystyle\int f(x)\;dx$ \\ \hline
 $x^n$, $n\ne -1$         & $\frac{1}{n+1}x^{n+1}+c$     \\
@@ -2372,7 +2381,6 @@ $\frac{1}{1+x^2}$        & $\arctan x+c$                \\
 $\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x+c$                \\
 $\frac{1}{\sqrt{x^2+a}}$ & $\ln(x+\sqrt{x+a})+c$
 \end{tabular}
-\caption{Tabela osnovnih nedoločenih integralov}
 \end{table}
 
 \begin{trditev}
@@ -2889,6 +2897,8 @@ mg(a)\leq \int_a^bf(x)g(x)\;dx\leq Mg(a).\qedhere
 \]
 \end{proof}
 
+\newpage
+
 \subsection{Posplošeni Riemannov integral}
 
 \begin{definicija}
@@ -2954,7 +2964,21 @@ Naj bo $g\colon[a,b]\to[0,\infty)$ zvezna in naj bo $g(a)>0$. Potem
 obstaja natanko tedaj, ko je $s<1$.
 \end{trditev}
 
-% Dodaj dokaz ko se ti bo dalo
+\begin{proof}
+Vemo, da je $g(a)>0$. Ker je $g$ zvezna, obstaja tak $\widetilde{b}\in(a,b)$, da je
+\[
+\frac{g(a)}{2}\leq g(x)\leq 2g(a)
+\]
+za vse $x\in[a,\widetilde{b}]$. Ker je
+\[
+\int_a^b\frac{g(a)}{(x-a)^s}=\int_a^{\widetilde{b}}\frac{g(a)}{(x-a)^s}+\int_{\widetilde{b}}^b\frac{g(a)}{(x-a)^s},
+\]
+drugi integral pa obstaja, je dovolj dokazati obstoj prvega integrala na desni strani. Velja pa
+\[
+\frac{g(a)}{2(x-a)^s}\leq\frac{g(a)}{(x-a)^s}\leq\frac{2g(a)}{2(x-a)^s},
+\]
+integrala teh dveh funkcij pa obstajata natanko tedaj, ko je $s<1$. Sledi, da takrat obstaja tudi prvotni integral.
+\end{proof}
 
 \begin{trditev}[Cauchyjev pogoj]\index{Izrek!Cauchyjev pogoj konvergence!Funkcije}
 Naj bo $f\colon(b-r,b)\to\R$ funkcija. Limita $\displaystyle\lim_{x\uparrow b} f(x)$ obstaja natanko tedaj, ko za vse $\varepsilon>0$ obstaja tak $\delta>0$, da za vse $x,y\in(b-\delta, b)$ velja
@@ -3116,8 +3140,7 @@ Naj bosta $\vv{r}\colon[a,b]\to\R^2$ in $\vv{\rho}\colon[\alpha,\beta]\to\R^2$ r
 \end{izrek}
 
 \begin{proof}
-Naj bo $h\colon[\alpha,\beta]\to[a,b]$ bijekcija. Velja
-% Tu načeloma loči pozitivne in negativne h'
+Naj bo $h\colon[\alpha,\beta]\to[a,b]$ bijekcija. Velja\footnote{Substitucija deluje za naraščajoče in padajoče funkcije $h$.}
 \begin{align*}
 \lambda_{\vv{\rho}}(\Gamma)&=\int_\alpha^\beta \abs{\dot{\vv{\rho}}(\tau)}\;d\tau
 \\
@@ -3125,7 +3148,7 @@ Naj bo $h\colon[\alpha,\beta]\to[a,b]$ bijekcija. Velja
 \\
 &=\int_a^b\abs{\dot{\vv{r}}(t)}\;dt
 \\
-&=\lambda_{\vv{r}}(\Gamma).
+&=\lambda_{\vv{r}}(\Gamma).\qedhere
 \end{align*}
 \end{proof}
 
@@ -3141,22 +3164,17 @@ Naj bo $D$ delitev intervala $[a,b]$. Potem je po Lagrangevem izreku
 \begin{align*}
 \lambda(D)&=\sum_{i=1}^n\abs{\vv{r}\left(t_i\right)-\vv{r}\left(t_{i-1}\right)}
 \\
-&=\sum_{i=1}^n\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tilde{\tau}_i)}\Delta t_i,
+&=\sum_{i=1}^n\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}\Delta t_i,
 \end{align*}
-kjer $\tau_i,\tilde{\tau}_i\in(t_{i-1},t_i)$. Vidimo, da je zadnja vsota omejena med Riemannovi vsoti za delitvi % WRONG
-\[
-p_i=\begin{cases}
-\tau_i, & \abs{\dot{\vv{r}}(\tau_i)}\geq \abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+kjer $\tau_i,\widetilde{\tau}_i\in(t_{i-1},t_i)$. Velja pa
+\begin{align*}
+\abs{\lambda(D)-R(\sqrt{\dot{x}^2+\dot{y}^2},D,\mathcal{T})}&=\abs{\sum_{i=1}^n\left(\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}-\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tau_i)^2}\right)\Delta t_i}
 \\
-\tilde{\tau}_i, & \abs{\dot{\vv{r}}(\tau_i)}<\abs{\dot{\vv{r}}(\tilde{\tau}_i)}
-\end{cases}
-\quad\text{in}\quad
-q_i=\begin{cases}
-\tilde{\tau}_i, & \abs{\dot{\vv{r}}(\tau_i)}\geq \abs{\dot{\vv{r}}(\tilde{\tau}_i)}
+&=\abs{\sum_{i=1}^n\frac{(\dot{y}(\widetilde{\tau}_i)-\dot{y}(\tau_i))(\dot{y}(\widetilde{\tau}_i)+\dot{y}(\tau_i))}{\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}+\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tau_i)^2}}\Delta t_i}
 \\
-\tau_i, & \abs{\dot{\vv{r}}(\tau_i)}<\abs{\dot{\vv{r}}(\tilde{\tau}_i)}
-\end{cases}\qedhere
-\]
+&\leq 2\sum_{i=1}^n\abs{\dot{y}(\widetilde{\tau}_i)-\dot{y}(\tau_i)}\Delta t_i.
+\end{align*}
+Zaključimo z enakomerno zveznostjo.
 \end{proof}
 
 \begin{posledica}
@@ -3175,8 +3193,6 @@ Naj bo $r\colon[a,b]\to\R$ krivulja v polarnem zapisu. Njeno dolžino lahko izra
 
 \obvs
 
-% Poglej si nastavke za integriranje
-
 \subsubsection{Prostornina in površina vrtenine}
 
 \begin{trditev}
@@ -3192,8 +3208,6 @@ Naj bo $f\colon[a,b]\to[0,\infty)$. Površina plašča vrtenine, ki jo dobimo, k
 2\pi\int_a^b f(x)\;ds=2\pi\int_a^b f(x)\cdot\sqrt{1+f'(x)^2}\;dx.
 \]
 \end{trditev}
-
-% Fizicc
 
 \subsubsection{Težišče homogene plošče}
 
@@ -3482,6 +3496,7 @@ Zaporedje $s_{2n}$ je padajoče, $s_{2n-1}$ pa naraščajoče. Ker je $s_{2n}\ge
 
 \subsection{Preureditev vrste}
 
+\begin{okvir}
 \begin{definicija}
 Naj bo $\displaystyle\sum_{i=1}^\infty a_i$ vrsta in $\pi\colon\N\to\N$ bijekcija. Vrsti
 \[
@@ -3489,6 +3504,7 @@ Naj bo $\displaystyle\sum_{i=1}^\infty a_i$ vrsta in $\pi\colon\N\to\N$ bijekcij
 \]
 pravimo \emph{preureditev}\index{Vrsta!Preureditev} vrste. 
 \end{definicija}
+\end{okvir}
 
 \begin{izrek}
 Naj bo $\displaystyle\sum_{i=1}^\infty a_i$ absolutno konvergentna vrsta. Potem konvergira tudi vsaka njena preureditev, vsota vrste pa je neodvisna od bijekcije $\pi$.
@@ -3595,10 +3611,8 @@ konvergira, konvergirajo vse in velja, da vrste
 \[
 \sum_{i=1}^\infty\left(\sum_{j=1}^\infty a_{i,j}\right),\quad \sum_{j=1}^\infty\left(\sum_{i=1}^\infty a_{i,j}\right),\quad\text{in}\quad\sum_{i=1}^\infty a_{\pi(i)}
 \]
-konvergirajo in so enake.
+konvergirajo in so enake.\footnote{Izrek na predavanjih ni bil dokazan, dokaz se nahaja v zapiskih predavanj dne 14.~4.~2021.}
 \end{izrek}
-
-% Dokaz v zapiskih, 14. 4. 2021
 
 \newpage
 
@@ -3631,9 +3645,11 @@ V zgornjem izreku vrstni red seštevanja členov $a_ib_j$ ni pomembna.
 
 \subsection{Funkcijska zaporedja in vrste}
 
+\begin{okvir}
 \begin{definicija}
 \emph{Funkcijsko zaporedje}\index{Zaporedje!Funkcijsko} je zaporedje, katerega elementi so funkcije, definirane na isti množici.
 \end{definicija}
+\end{okvir}
 
 \begin{definicija}
 Funkcijsko zaporedje $(f_n)_{n=1}^\infty$ funkcij na $D$ \emph{konvergira po točkah}\index{Zaporedje!Funkcijsko!Konvergenca po točkah} k funkciji $f\colon D\to\R$, če za vsak $x\in D$ velja
@@ -3791,12 +3807,14 @@ Naj bodo $(f_n)_{n=1}^\infty$ zvezno odvedljive funkcije na $[a,b]$. Naj funkcij
 
 \subsection{Potenčne vrste}
 
+\begin{okvir}
 \begin{definicija}
 \emph{Potenčna vrsta}\index{Vrsta!Potenčna} s središčem v $a$ je funkcijska vrsta oblike
 \[
 \sum_{n=0}^\infty a_n(x-a)^n.
 \]
 \end{definicija}
+\end{okvir}
 
 \begin{izrek}[O konvergenčnem polmeru]\index{Izrek!O konvergenčnem polmeru}
 Naj bo $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$ potenčna vrsta. Potem obstaja tak $R\in[0,\infty]$,\footnote{Takemu $R$ pravimo \emph{konvergenčni polmer}\index{Vrsta!Potenčna!Konvergenčni polmer} te potenčne vrste.} da vrsta absolutno konvergira za vsak $x$, kjer je $\abs{x-a}<R$ in divergira za vsak $x$, za katerega je $\abs{x-a}>R$. Za vsak $0\leq r<R$ vrsta konvergira enakomerno na $[a-r,a+r]$.
@@ -4013,7 +4031,7 @@ e^{i\pi}+1=0.
 \begin{opomba}
 Velja
 \[
-\sinh(ix)=\sin(ix),\quad \sin(ix)=i\sinh(x),\quad \cosh(ix)=\cos(x)\quad\text{in}\quad \cos(ix)=\cosh(x).
+\sinh(ix)=i\sin(x),\quad \sin(ix)=i\sinh(x),\quad \cosh(ix)=\cos(x)\quad\text{in}\quad \cos(ix)=\cosh(x).
 \]
 \end{opomba}
 
@@ -4078,6 +4096,8 @@ kar prav tako konvergira k $0$.
 \newpage
 
 \section{Metrični prostori}
+
+\epigraph{">A gre kdo v Ameriko letos?"<}{---asist.~dr.~Jure Kališnik}
 
 \subsection{Definicija}
 
@@ -4278,6 +4298,7 @@ Naj bo $a\in\partial A$. Potem lahko po definiciji najdemo zaporedje $(a_n)_{n=1
 
 \subsection{Preslikave med metričnimi prostori}
 
+\begin{okvir}
 \begin{definicija}
 Naj bosta $(M,d)$ in $(N,\rho)$ metrična prostora. Preslikava $f\colon M\to N$ je \emph{zvezna}\index{Metrični prostor!Zvezna preslikava} v $x_0$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da velja
 \[
@@ -4285,6 +4306,7 @@ Naj bosta $(M,d)$ in $(N,\rho)$ metrična prostora. Preslikava $f\colon M\to N$ 
 \]
 Preslikava je \emph{zvezna na $(M,d)$}, če je zvezna v vsaki točki $x\in M$.
 \end{definicija}
+\end{okvir}
 
 \begin{trditev}
 Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna v $x_0\in M$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$, ki konvergira k $x_0$, zaporedje $f(x_i)$ konvergira k $f(x_0)$.
@@ -4351,9 +4373,11 @@ Naj bo $(M,d)$ metrični prostor in in $\mathcal{K}\subseteq M$. Družina $\setb
 Če so vse množice v družini odprte, je pokritje \emph{odprto}, če so vse zaprte, pa \emph{zaprto}. Če je v družini le končno množic, je pokritje \emph{končno}.
 \end{definicija}
 
+\begin{okvir}
 \begin{definicija}
 Podmnožica $\mathcal{K}$ metričnega prostora $(M,d)$ je \emph{kompaktna}\index{Metrični prostor!Kompaktna množica}, če vsako odprto pokritje množice $\mathcal{K}$ vsebuje končno podpokritje.
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 Vsaka končna množica je kompaktna.
@@ -4372,7 +4396,7 @@ Trdimo, da je $\alpha\in A$. Obstaja namreč interval, ki vsebuje $\alpha$, ki g
 \end{proof}
 
 \begin{trditev}
-Naj bo $\mathcal{K}\subseteq(M,d)$ kompaktna podmnožica. Potem je $\mathcal{K}$ zaprta in omejena.
+Vsaka kompaktna množica  je zaprta in omejena.
 \end{trditev}
 
 \begin{proof}

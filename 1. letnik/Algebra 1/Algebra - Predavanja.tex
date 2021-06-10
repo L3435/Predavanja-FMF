@@ -25,7 +25,7 @@
 
 V tem dokumentu so zbrani moji zapiski s predavanj predmeta Algebra 1 v letu 2020/21. Predavatelj v tem letu je bil prof.~dr.~Primož Moravec.
 
-Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem ga označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
+Zapiski niso popolni. Manjka večina zgledov, ki pomagajo pri razumevanju definicij in izrekov. Poleg tega nisem dokazoval čisto vsakega izreka, pogosto sem kakšnega označil kot očitnega ali pa le nakazal pomembnejše korake v dokazu.
 
 Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravki so vselej dobrodošli.
 
@@ -2607,7 +2607,7 @@ se da vsak $x\in V$ zapisati kot vsota vektorjev iz $W_i$. Dokazati moramo še, 
 \[
 x=\sum_{i=1}^k x_i=\sum_{i=1}^k x'_i.
 \]
-Naj bo $y_i=x_i-x'_i$. Dovolj je tako pokazati, da je $y_i=0$ za vse $i$. Opazimo, da za $i\ne j$ velja $p_i(A)y_j=0$. Velja namreč $y_i\in W_i$, saj je $(\lambda-\lambda_j)^{m_j}$ faktor $p_i$. Ker je
+Naj bo $y_i=x_i-x'_i$. Dovolj je tako pokazati, da je $y_i=0$ za vse $i$. Opazimo, da za $i\ne j$ velja $p_i(A)y_j=0$. Velja namreč $y_j\in W_j$, $(\lambda-\lambda_j)^{m_j}$ pa je faktor $p_i$. Ker je
 \[
 \sum_{i=1}^k y_i=0,
 \]
@@ -2632,13 +2632,13 @@ f(\lambda)=\prod_{i=1}^k(\lambda-\lambda_i)^{s_i}.
 \]
 Zaradi minimalnosti $m_A$ je dovolj dokazati $f(A)=0$. Vidimo pa, da za poljuben $x\in V$ velja $f(A)x=0$ ($x$ razpišemo po korenskih podprostorih).
 
-Ker $m_{A-i}$ deli $p_{A_i}$ in imata polinoma isto množico ničel, velja
+Ker $m_{A_i}$ deli $p_{A_i}$ in imata polinoma isto množico ničel, velja
 \[
 p_{A_i}(\lambda)=\pm(\lambda-\lambda_i)^{r_i}.
 \]
 Ker lahko $A$ bločno diagonaliziramo, pa velja
 \[
-p_A(\lambda)=\pm\prod_{i=1}^n(\lambda-\lambda_i)^{r_i},
+p_A(\lambda)=\pm\prod_{i=1}^k(\lambda-\lambda_i)^{r_i},
 \]
 zato je $r_i=n_i$.
 \end{proof}
@@ -2756,6 +2756,7 @@ V=U_1\oplus U_2\oplus\dots\oplus U_m.
 Jordanova baza je baza prostora $V$.
 \end{posledica}
 
+\begin{okvir}
 \begin{definicija}
 \emph{Jordanova forma}\index{Jordanova forma} je matrika
 \[
@@ -2766,6 +2767,7 @@ pri čemer $\mathcal{U}$ vzamemo v vrstnem redu
 \mathcal{U}=\set{u_1^{(m)},u_1^{(m-1)},\dots,u_1^{(1)},u_2^{(m)},\dots}.
 \]
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 Jordanova forma je oblike
@@ -3003,8 +3005,11 @@ Podobno definiramo $f(A)=Pf(J(A))P^{-1}$, pri čemer $f$ uporabimo na vsaki klet
 
 \section{Vektorski prostori s skalarnim produktom}
 
+\epigraph{">Hotelo je biti roža, ratalo je pa kot štruca kruha z luknjo."}{---prof. dr. Primož Moravec}
+
 \subsection{Skalarni produkt}
 
+\begin{okvir}
 \begin{definicija}
 Naj bo $\F\in\set{\R,\C}$ in $V$ vektorski prostor nad $\F$. \emph{Skalarni produkt}\index{Skalarni produkt} na $V$ je preslikava $\skl{\cdot,\cdot}\colon V\times V\to\F$, ki vektorjema $(u,v)$ priredi skalar $\skl{u,v}$, ki zadošča naslednjim pogojem:
 
@@ -3020,9 +3025,10 @@ Naj bo $\F\in\set{\R,\C}$ in $V$ vektorski prostor nad $\F$. \emph{Skalarni prod
 \item Poševna komutativnost: $\forall x,y\in V\colon \skl{x,y}=\overline{\skl{y,x}}$
 \end{enumerate}
 \end{definicija}
+\end{okvir}
 
 \begin{posledica}
-Naj bo $\skl{\;,}$ skalarni produkt na $V$. Potem velja
+Naj bo $\skl{\cdot,\cdot}$ skalarni produkt na $V$. Potem velja
 
 \begin{enumerate}[label=\roman*)]
 \item $\forall x,y,z\in V\colon \skl{x,y+z}=\skl{x,y}+\skl{x,z}$
@@ -3095,9 +3101,11 @@ d(x,y)=\norm{x-y}.
 
 Naj bo $V$ vektorski prostor s skalarnim produktom.
 
+\begin{okvir}
 \begin{definicija}
 Vektorja $u,v\in V$ sta \emph{ortogonalna}\index{Skalarni produkt!Ortogonalnost}, če je $\skl{u,v}=0$.
 \end{definicija}
+\end{okvir}
 
 \begin{definicija}
 \emph{Kot med vektorjema}\index{Skalarni produkt!Kot} $u$ in $v$ je definiran s predpisom
@@ -3296,6 +3304,7 @@ Naj bo $\Phi\colon V\to V^*$ preslikava, za katero je $\Phi(z)=\varphi_z$.\footn
 kjer je $\set{e_1,\dots,e_n}$ ortonormirana baza $V$.
 \end{proof}
 
+\begin{okvir}
 \begin{definicija}
 Naj bosta $U$ in $V$ končnorazsežna vektorska prostora s skalarnima produktoma $\skl{\cdot,\cdot}_U$ in $\skl{\cdot,\cdot}_V$ ter naj bo $A\colon U\to V$ linearna preslikava. Za vektor $v\in V$ naj bo $\varphi\colon U\to\F$ preslikava, za katero je $\varphi(u)=\skl{Au,v}_V$. Po Rieszovem izreku obstaja tak vektor $x\in U$, da je
 \[
@@ -3303,6 +3312,7 @@ Naj bosta $U$ in $V$ končnorazsežna vektorska prostora s skalarnima produktoma
 \]
 Preslikavi $A^*\colon V\to U$, za katero je pri zgornjih oznakah $A^*v=x$, pravimo \emph{adjungirana preslikava}\index{Preslikava!Adjungirana}.
 \end{definicija}
+\end{okvir}
 
 \begin{trditev}
 $A^*$ je linearna.
@@ -3415,6 +3425,7 @@ AA^*=A^*A.
 \]
 \end{opomba}
 
+\begin{okvir}
 \begin{definicija}
 Naj bo $V$ vektorski prostor s skalarnim produktom. Endomorfizem $A\colon V\to V$ je \emph{normalen}\index{Endomorfizem!Normalen}, če velja $AA^*=A^*A$.
 \end{definicija}
@@ -3422,6 +3433,7 @@ Naj bo $V$ vektorski prostor s skalarnim produktom. Endomorfizem $A\colon V\to V
 \begin{definicija}
 Matrika $A\in\F^{n\times n}$ je \emph{normalna}\index{Matrika!Normalna}, če je $AA^\mathsf{H}=A^\mathsf{H}A$.
 \end{definicija}
+\end{okvir}
 
 \begin{trditev}
 $A$ je normalna preslikava natanko tedaj, ko za vse $x,y\in V$ velja
@@ -3497,6 +3509,7 @@ invarianten za $A$, prav tako pa je invarianten za $A^*$. Sledi, da je $U^\bot$ 
 
 \subsection{Sebiadjungirani endomorfizmi, hermitske in simetrične matrike}
 
+\begin{okvir}
 \begin{definicija}
 $A\colon V\to V$ je \emph{sebiadjungirana}\index{Endomorfizem!Sebiadjungiran}, če velja $A^*=A$.
 \end{definicija}
@@ -3508,6 +3521,7 @@ $A\in\C^{n\times n}$ je \emph{hermitska}\index{Matrika!Hermitska}, če je $A^\ma
 \begin{definicija}
 $A\in\R^{n\times n}$ je \emph{simetrična}\index{Matrika!Simetrična}, če je $A^\top=A$.
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 Če je $A$ sebiadjungirana, je tudi normalna.
@@ -3573,6 +3587,7 @@ Oboje je ekvivalentno
 
 \subsection{Unitarni endomorfizmi, unitarne in ortogonalne matrike}
 
+\begin{okvir}
 \begin{definicija}
 Naj bo $A\colon V\to V$. Pravimo, da je $A$ \emph{unitarna}\index{Endomorfizem!Unitaren}, če velja
 \[
@@ -3593,6 +3608,7 @@ Matrika $A\in\R^{n\times n}$ je \emph{ortogonalna}\index{Matrika!Ortogonalna}, �
 A^\top A=AA^\top=I.
 \]
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 $\operatorname{GL}(V)=\setb{A\colon V\to V}{\text{$A$ je obrnljiva}}$ je grupa za kompozitum. Pravimo ji \emph{splošna linearna grupa avtomorfizmov prostora $V$}. Podobno je tudi
@@ -3699,12 +3715,14 @@ Vsaka normalna matrika je unitarno podobna diagonalni matriki.
 
 \subsection{Pozitivno definitni endomorfimi in matrike}
 
+\begin{okvir}
 \begin{definicija}
 Naj bo $A\colon V\to V$ sebiadjungiran endomorfizem. Pravimo, da je $A$ \emph{pozitivno definiten}\index{Endomorfizem!Pozitivno definiten}, če za vsak neničelni $v\in V$ velja
 \[
 \skl{Av,v}>0.
 \]
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 Lahko definiramo tudi \emph{pozitivno semidefiniten} endomorfizem, za katerega za vsak $v\in V$ velja $\skl{Av,v}\geq 0$. Podobni definiciji uvedemo za matrike.
@@ -3765,18 +3783,16 @@ Naj bo $A\colon V\to V$ hermitska. Potem je preslikava $F(u,v)=\skl{Au,v}$ skala
 
 \newpage
 
-\section{Kvadratne forme}
+\subsection{Kvadratne forme}
 
-\epigraph{">Hotelo je biti roža, ratalo je pa kot štruca kruha z luknjo."}{---prof. dr. Primož Moravec}
-
-\subsection{Definicija}
-
+\begin{okvir}
 \begin{definicija}
 Naj bo $\R^n$ opremljen z običajnim skalarnim produktom in $A\in\R^{n\times n}$ simetrična matrika. \emph{Kvadratna forma}\index{Kvadratna forma}, ki pripada matriki $A$, je preslikava $K\colon\R^n\to\R$ s predpisom
 \[
 K(x)=\skl{Ax,x}.
 \]
 \end{definicija}
+\end{okvir}
 
 \begin{opomba}
 Naj bo $\set{e_1,\dots,e_n}$ standardna baza $\R^n$. Potem je
