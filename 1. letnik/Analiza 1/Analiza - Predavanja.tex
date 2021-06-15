@@ -356,7 +356,7 @@ $S$ naj bo neprazna množica z linearno urejenostjo. Neprazna podmnožica $A\sub
 Naj bo $A$ navzgor omejena neprazna podmnožica $S$ ($S\in\set{\Q,~\R}$). Število $b\in S$ je \emph{natančna zgornja meja} ali \emph{najmanjša zgornja meja} ali \emph{supremum}\index{Supremum} množice $A$ ($b=\sup A$), če velja
 
 \begin{enumerate}[label=\roman*)]
-\item $\forall a\in A$ je $a\geq b$ in
+\item $\forall a\in A$ je $a\leq b$ in
 \item $\forall b'<b~\exists a'\in A$, da je $b'<a'$.
 \end{enumerate}
 \end{definicija}
@@ -427,14 +427,14 @@ Tak urejen obseg je natanko določen do izomorfizma natančno.
 
 \begin{enumerate}[label=\roman*)]
 \item Če je $a\in A$ in $a'<a$, je tudi $a'\in A$
-\item Če je $a\in A$ obstaja $a'>a$, za katerega je $a'\in A$
+\item Če je $a\in A$, obstaja $a'>a$, za katerega je $a'\in A$
 \end{enumerate}
 
 $\R$ je množica vseh rezov.
 \end{definicija}
 
 \begin{opomba}
-Za rez $A$ velja $A>0^*\iff 0\in A$, torej vsebuje tudi kakšno pozitivno število.
+Za rez $A$ velja $A>0^*\iff 0\in A$, torej kadar vsebuje tudi kakšno pozitivno število.
 \end{opomba}
 
 \begin{definicija}
@@ -498,7 +498,7 @@ A^-=\setb{-a}{a\in A}.
 \begin{trditev}
 Če je $A$ navzdol omejena, je $A^-$ navzgor omejena in velja
 \[
-c\inf A=-\sup(A^-).
+\inf A=-\sup(A^-).
 \]
 \end{trditev}
 
@@ -709,7 +709,7 @@ Za lihe $n$ izrek velja tudi za $x<0$, pri čemer je $y<0$.
 \end{opomba}
 
 \begin{definicija}
-Za $b>0$ in $\frac{p}{q}\in\Q$ je $b^\frac{p}{q}=\sqrt[q]{b}^n$.
+Za $b>0$ in $\frac{p}{q}\in\Q$ je $b^\frac{p}{q}=\sqrt[q]{b}^p$.
 \end{definicija}
 
 Izkaže se, da za tako definirane potence veljajo osnovna pravila potenciranja:
@@ -962,7 +962,7 @@ f_A(x)=\begin{cases}
 0, &x\not\in A
 \end{cases}
 \]
-Naj bo $\mathcal{F}=\setb{f_a}{A\subseteq X}$. Dokazali bomo, da je $|X|<|\mathcal{F}|$.
+Naj bo $\mathcal{F}=\setb{f_A}{A\subseteq X}$. Dokazali bomo, da je $|X|<|\mathcal{F}|$.
 
 \begin{enumerate}[label=\roman*)]
 \item $|X|\leq|\mathcal{F}|$: $x\mapsto f_{\set{x}}$ je injektivna preslikava.
@@ -996,7 +996,7 @@ Naj bo $n_1<n_2<\dots$ strogo naraščajoče zaporedje naravnih števil. Potem j
 \end{definicija}
 
 \begin{definicija}
-Naj bo $(a_n)_{n=1}^\infty$ zaporedje števil. $a\in\R$ je \emph{stekališče}\index{Zaporedje!Stekališče} tega zaporedja, če za vsak $\varepsilon>0$ in vsaj $n_0\in\N$ obstaja tako naravno število $n>n_0$, da je
+Naj bo $(a_n)_{n=1}^\infty$ zaporedje števil. $a\in\R$ je \emph{stekališče}\index{Zaporedje!Stekališče} tega zaporedja, če za vsak $\varepsilon>0$ in vsak $n_0\in\N$ obstaja tako naravno število $n>n_0$, da je
 \[
 |a_n-a|<\varepsilon.
 \]
@@ -1173,7 +1173,7 @@ Zaporedje $(a_n)_{n=1}^\infty$ je konvergentno natanko tedaj, ko za vsak $\varep
 \begin{proof}
 Če je konvergentno z limito $a$, si izberemo $n_0$, za katerega za vse $n\geq n_0$ velja $|a_n-a|<\frac{\varepsilon}{2}$.
 
-Če je zaporedje Cauchyjevo, je očitno omejeno. To pomeni, da ima stekališče. Če sta stekališči vsaj dve, recimo $\alpha$ in $\beta$, za vse $\varepsilon$ obstaja neskončno $m$ in $n$, da je $|a_m-\alpha|<\varepsilon$ in $|a_n-\beta|<\varepsilon$ in $|a_n-a_m|<\varepsilon$. To pomeni, da je $|a_m-a_n|>|\alpha-\beta|-2\varepsilon$, kar je za $\varepsilon=\frac{|\alpha-\beta|}{3}$ protislovje, saj dobimo $\varepsilon>|a_n-a_m|>\varepsilon$. To pomeni, da je stekališče samo eno, torej mora biti limita.
+Če je zaporedje Cauchyjevo, je očitno omejeno. To pomeni, da ima stekališče. Če sta stekališči vsaj dve, recimo $\alpha$ in $\beta$, za vse $\varepsilon$ obstaja neskončno $m$ in $n$, da je $|a_m-\alpha|<\varepsilon$, $|a_n-\beta|<\varepsilon$ in $|a_n-a_m|<\varepsilon$. To pomeni, da je $|a_m-a_n|>|\alpha-\beta|-2\varepsilon$, kar je za $\varepsilon=\frac{|\alpha-\beta|}{3}$ protislovje, saj dobimo $\varepsilon>|a_n-a_m|>\varepsilon$. To pomeni, da je stekališče samo eno, torej mora biti limita.
 \end{proof}
 
 \newpage
@@ -1274,7 +1274,7 @@ Funkcija je \emph{omejena navzgor (navzdol)}\index{Funkcija!Omejena}, če je nje
 \end{definicija}
 
 \begin{definicija}
-\emph{Graf funkcije}\index{Funkcija!Graf} $f$ je množica $G(f)\subset\R^2$, za katero je
+\emph{Graf funkcije}\index{Funkcija!Graf} $f$ je množica $G(f)\subset\R^2$, podana s predpisom
 \[
 G(f)=\setb{(x,f(x))}{x\in D_f}.
 \]
@@ -1475,7 +1475,7 @@ Naj bo $D=[a,b]$ zaprt omejen interval in $f\colon D\to\R$ zvezna funkcija. Pote
 \begin{proof}
 Predpostavimo nasprotno in fiksiramo ">slab"< $\varepsilon$. Naj bosta $x_n,x_n'\in D$ taki števili, da je $|x_n-x_n'|<\frac{1}{n}$ in $|f(x_n)-f(x_n')|>\varepsilon$. Vzemimo podzaporedje $\left(x_{n_j}\right)_{j=1}^\infty$, ki konvergira k $\alpha$. Potem obstaja podzaporedje
 \[
-\left(x_{n_{j_k}}'\right)_{j=1}^\infty,
+\left(x_{n_{j_k}}'\right)_{k=1}^\infty,
 \]
 ki konvergira k $\beta$.
 
@@ -1622,7 +1622,7 @@ Vsak skok vsebuje racionalno število.
 \end{proof}
 
 \begin{definicija}
-Pravimo, da $f$ \emph{konvergira k $+\infty$} ko gre $x$ proti $a$, če za $\forall M\in\R$ obstaja $\delta>0$, da iz $0<x<\delta$ sledi $|x-a|<\delta$ $f(x)>M$. Pišemo
+Pravimo, da $f$ \emph{konvergira k $+\infty$} ko gre $x$ proti $a$, če $\forall M\in\R$ obstaja $\delta>0$, da iz $0<x<\delta$ sledi $|x-a|<\delta$ $f(x)>M$. Pišemo
 \[
 \lim_{x\to a}f(x)=+\infty.
 \]
@@ -1735,7 +1735,7 @@ Funkcija $f$, definirana v okolici točke $a$, je v $a$ diferenciabilna natanko 
 \begin{opomba}
 Naj bo $f$ diferenciabilna v $a$. Potem je
 \[
-df_a(h)=f'(a)\cdot h=f'(a) d\id_a(h).
+df_a(h)=f'(a)\cdot h=f'(a)\;d\id_a(h).
 \]
 Od tod dobimo notacijo
 \[
@@ -2293,7 +2293,7 @@ Vektor $\vv{n}=(-\dot{y},\dot{x})$ je \emph{normalni vektor} na krivuljo $\Gamma
 \end{definicija}
 
 \begin{izrek}
-Naj bo $\vv{r}(t)=\left(X(t),Y(t)\right)$ zvezno odvedljiva pot v $\R^2$ $\vv{r}\colon I\to\R^2$. Naj bo $t_0\in I$ notranja točka $I$ in naj bo $\dot{\vv{r}}(t_0)\ne\vv{0}$. Potem obstaja okolica $U\subseteq I$ točke $t_0$, da lahko množico $\vv{r}(U)\subseteq\R^2$ predstavimo kot graf neke $C^1$ funkcije $f$ na $x$ osi ali kot graf neke $C^1$ funkcije $g$ na $y$ osi.\footnote{Če je $\dot{x}(t_0)\ne 0$, je $\vv{r}(U)=\setb{(x,f(x))}{x\in J_x}$, če je $\dot{y}(t_9)\ne 0$, pa je $\vv{r}(U)=\setb{(g(y),y)}{y\in J_y}$.}
+Naj bo $\vv{r}(t)=\left(X(t),Y(t)\right)$ zvezno odvedljiva pot v $\R^2$ $\vv{r}\colon I\to\R^2$. Naj bo $t_0\in I$ notranja točka $I$ in naj bo $\dot{\vv{r}}(t_0)\ne\vv{0}$. Potem obstaja taka okolica $U\subseteq I$ točke $t_0$, da lahko množico $\vv{r}(U)\subseteq\R^2$ predstavimo kot graf neke $C^1$ funkcije $f$ na $x$ osi ali kot graf neke $C^1$ funkcije $g$ na $y$ osi.\footnote{Če je $\dot{x}(t_0)\ne 0$, je $\vv{r}(U)=\setb{(x,f(x))}{x\in J_x}$, če je $\dot{y}(t_9)\ne 0$, pa je $\vv{r}(U)=\setb{(g(y),y)}{y\in J_y}$.}
 \end{izrek}
 
 \begin{proof}
@@ -2353,24 +2353,6 @@ f(x)=\begin{cases}
 \]
 \end{opomba}
 
-\begin{table}[!ht]
-\centering
-\caption{Tabela osnovnih nedoločenih integralov}
-\begin{tabular}{c|c}
-$f(x)$                   & $\displaystyle\int f(x)\;dx$ \\ \hline
-$x^n$, $n\ne -1$         & $\frac{1}{n+1}x^{n+1}+c$     \\
-$\frac{1}{x}$            & $\ln\abs{x}+c$               \\
-$e^x$                    & $e^x+c$                      \\
-$\sin x$                 & $-\cos x+c$                  \\
-$\cos x$                 & $\sin x + c$                 \\
-$\frac{1}{\cos(x)^2}$    & $\tan x+c$                   \\
-$\frac{1}{\sin(x)^2}$    & $-\cot x+c$                  \\
-$\frac{1}{1+x^2}$        & $\arctan x+c$                \\
-$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x+c$                \\
-$\frac{1}{\sqrt{x^2+a}}$ & $\ln(x+\sqrt{x+a})+c$
-\end{tabular}
-\end{table}
-
 \begin{trditev}
 Naj bosta $f,g\colon I\to\R$ funkciji z nedoločenima integraloma in $\lambda\in\R$. Potem velja
 \begin{align*}
@@ -2392,6 +2374,24 @@ Naj bosta $u, v\colon I\to\R$ odvedljivi funkciji. Potem je
 \begin{proof}
 Integriramo $(u\cdot v)'=u'v+uv'$.
 \end{proof}
+
+\begin{table}[!ht]
+\centering
+\caption{Tabela osnovnih nedoločenih integralov}
+\begin{tabular}{c|c}
+$f(x)$                   & $\displaystyle\int f(x)\;dx$ \\ \hline
+$x^n$, $n\ne -1$         & $\frac{1}{n+1}x^{n+1}+c$     \\
+$\frac{1}{x}$            & $\ln\abs{x}+c$               \\
+$e^x$                    & $e^x+c$                      \\
+$\sin x$                 & $-\cos x+c$                  \\
+$\cos x$                 & $\sin x + c$                 \\
+$\frac{1}{\cos(x)^2}$    & $\tan x+c$                   \\
+$\frac{1}{\sin(x)^2}$    & $-\cot x+c$                  \\
+$\frac{1}{1+x^2}$        & $\arctan x+c$                \\
+$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin x+c$                \\
+$\frac{1}{\sqrt{x^2+a}}$ & $\ln(x+\sqrt{x+a})+c$
+\end{tabular}
+\end{table}
 
 \begin{trditev}[Vpeljava nove spremenljivke]
 Naj bo $\varphi\colon J_t\to I_x$ odvedljiva, strogo monotona funkcija in $\varphi'(t)\ne 0$. Naj bo
@@ -2451,13 +2451,13 @@ R(f,D,\mathcal{T})=\sum_{j=1}^n f(t_j)(x_j-x_{j-1})=\sum_{j=1}^n f(t_j)\Delta x_
 
 \begin{okvir}
 \begin{definicija}
-Naj bo $f\colon[a,b]\to\R$. $f$ je \emph{integrabilna po Riemannu}\index{Integral!Integrabilnost po Riemannu} na $[a,b]$, če obstaja tako število $I$, da za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsako delitev $D$ intervala $[a,b]$, ki zadošča pogoju $\displaystyle\max_{j}\Delta x_j<\delta$ in za poljuben izbor $\mathcal{T}$ velja
+Naj bo $f\colon[a,b]\to\R$. $f$ je \emph{integrabilna po Riemannu}\index{Integral!Integrabilnost po Riemannu} na $[a,b]$, če obstaja tako število $I$, da za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsako delitev $D$ intervala $[a,b]$, ki zadošča pogoju $\displaystyle\max_{j}\Delta x_j<\delta$, in za poljuben izbor točk $\mathcal{T}$ velja
 \[
 \abs{R(f,D,\mathcal{T})-I}<\varepsilon.
 \]
 To označimo kot
 \[
-\lim_{\max \Delta x_j\to 0} R(f,d,\mathcal{T})=I.
+\lim_{\max \Delta x_j\to 0} R(f,D,\mathcal{T})=I.
 \]
 Številu $I$ pravimo \emph{Riemannov} oziroma \emph{določeni integral}\index{Integral!Riemannov} funkcije $f$ na intervalu $[a,b]$ in ga označimo kot
 \[
@@ -2473,11 +2473,11 @@ I=\int_a^b f(x)\;dx.
 \begin{definicija}
 Naj bo $f\colon[a,b]\to\R$ omejena in $D$ delitev intervala $[a,b]$. Naj bo 
 \[
-m_j=\inf_{[x_{j-1},x_j]} f(x)\quad\text{in}\quad M_j=\sum_{[x_{j-1},x_j]} f(x).
+m_j=\inf_{[x_{j-1},x_j]} f(x)\quad\text{in}\quad M_j=\sup_{[x_{j-1},x_j]} f(x).
 \]
 Podobno naj bo
 \[
-m=\inf_{[a,b]} f(x)\quad\text{in}\quad M=\sum_{[a,b]} f(x).
+m=\inf_{[a,b]} f(x)\quad\text{in}\quad M=\sup_{[a,b]} f(x).
 \]
 \emph{Spodnja Darbouxjeva vsota}\index{Integral!Darbouxjeva vsota} funkcije $f$ za delitev $D$ je
 \[
@@ -2549,7 +2549,7 @@ zato njuna unija zadošča pogoju.
 \end{proof}
 
 \begin{izrek}
-Naj bo $f\colon[a,b]\to\R$ omejena. Funkcija $f$ je na $[a,b]$ Riemannovo integrabilna, natanko tedaj, ko je integrabilna po Darbouxju in sta integrala enaka.
+Naj bo $f\colon[a,b]\to\R$ omejena. Funkcija $f$ je na $[a,b]$ Riemannovo integrabilna natanko tedaj, ko je integrabilna po Darbouxju, integrala pa sta enaka.
 \end{izrek}
 
 \begin{proof}
@@ -2610,7 +2610,7 @@ Naj bo $f\colon[a,b]\to\R$ omejena in zvezna na $(a,b)$. Potem je $f$ integrabil
 \begin{proof}
 Naj bo $\varepsilon>0$, $a'=a+\frac{\varepsilon}{3(M-m)}$ in $b'=b-\frac{\varepsilon}{3(M-m)}$, pri čemer je $a'<b'$. Potem obstaja delitev $D'$ intervala $[a',b']$, da je $S(D')-s(D')<\frac{\varepsilon}{3}$. Naj bo $D=D'\cup\set{a,b}$. Potem je
 \[
-S(D)-s(D)\leq S(D')-s(D')+2(M-m)\frac{\varepsilon}{3}<\varepsilon.\qedhere
+S(D)-s(D)\leq S(D')-s(D')+2(M-m)\frac{\varepsilon}{3(M-m)}<\varepsilon.\qedhere
 \]
 \end{proof}
 
@@ -2879,7 +2879,7 @@ Sledi, da je
 \[
 m\int_a^b-g'(x)\;dx\leq \int_a^b F(x)(-g'(x))\;dx\leq M\int_a^b-g'(x)\;dx.
 \]
-Sledi, da je
+Dobimo
 \[
 mg(a)\leq \int_a^bf(x)g(x)\;dx\leq Mg(a).\qedhere
 \]
@@ -2963,7 +2963,7 @@ za vse $x\in[a,\widetilde{b}]$. Ker je
 \]
 drugi integral pa obstaja, je dovolj dokazati obstoj prvega integrala na desni strani. Velja pa
 \[
-\frac{g(a)}{2(x-a)^s}\leq\frac{g(a)}{(x-a)^s}\leq\frac{2g(a)}{2(x-a)^s},
+\frac{g(a)}{2(x-a)^s}\leq\frac{g(x)}{(x-a)^s}\leq\frac{2g(a)}{(x-a)^s},
 \]
 integrala teh dveh funkcij pa obstajata natanko tedaj, ko je $s<1$. Sledi, da takrat obstaja tudi prvotni integral.
 \end{proof}
@@ -3737,7 +3737,7 @@ Za dovolj velike $m$ je po trikotniški neenakosti
 \[
 \abs{\sum_{i=m+1}^{m+k} f_i(x)}\leq\sum_{i=m+1}^{m+k} a_n<\varepsilon,
 \]
-po Cauchyjevem pogoju za konvergenco vrste.
+torej zaporedje enakomerno konvergira po Cauchyjevem pogoju.
 \end{proof}
 
 \newpage
@@ -3907,7 +3907,7 @@ Potenčna vrsta s konvergenčnim polmerom $R$ je gladka na $(a-R,a+R)$.
 \begin{definicija}
 Naj bo funkcija $f$, definirana v okolici točke $a$, v točki $a$ $n$-krat odvedljiva. Polinom
 \[
-T_n(x)=\sum_{i=0}^n \frac{f^{(i)}(a)}{i!}
+T_n(x)=\sum_{i=0}^n \frac{f^{(i)}(a)}{i!}(x-a)^i
 \]
 imenujemo $n$-ti \emph{Taylorjev polinom}\index{Taylorjev polinom}.
 \end{definicija}
@@ -3923,7 +3923,7 @@ kjer je $R_n=f-T_n$.
 \begin{proof}
 Naj bo $b\in I$ in
 \[
-F(x)=\sum_{i=0}^n\frac{f^{(i)}(x)}{i!}(b-x)+\left(\frac{b-x}{b-a}\right)^p R_n(b).
+F(x)=\sum_{i=0}^n\frac{f^{(i)}(x)}{i!}(b-x)^i+\left(\frac{b-x}{b-a}\right)^p R_n(b).
 \]
 Vidimo, da je $F$ odvedljiva na $I$. Ker je $F(b)=f(b)$ in
 \[
@@ -4091,31 +4091,31 @@ kar prav tako konvergira k $0$.
 
 \begin{okvir}
 \begin{definicija}
-Naj bo $M\ne\emptyset$. \emph{Metrični prostor}\index{Metrični prostor} je urejeni par $(M,d)$, kjer je $d\colon M\times M\to\R$ funkcija z naslednjimi lastnostmi:
+Naj bo $\mathcal{M}\ne\emptyset$. \emph{Metrični prostor}\index{Metrični prostor} je urejeni par $(\mathcal{M},d)$, kjer je $d\colon \mathcal{M}\times \mathcal{M}\to\R$ funkcija z naslednjimi lastnostmi:
 
 \begin{enumerate}
 \item Pozitivna definitnost:
 
 \begin{itemize}
-\item $\forall x,y\in M\colon d(x,y)\geq 0$
+\item $\forall x,y\in \mathcal{M}\colon d(x,y)\geq 0$
 \item $d(x,y)=0\iff x=y$
 \end{itemize}
 
-\item Simetričnost: $\forall x,y\in M\colon d(x,y)=d(y,x)$
-\item Trikotniška neenakost: $\forall x,y,z\in M\colon d(x,y)\leq d(x,z)+d(z,y)$
+\item Simetričnost: $\forall x,y\in \mathcal{M}\colon d(x,y)=d(y,x)$
+\item Trikotniška neenakost: $\forall x,y,z\in \mathcal{M}\colon d(x,y)\leq d(x,z)+d(z,y)$
 \end{enumerate}
 \end{definicija}
 \end{okvir}
 
 \begin{opomba}
-Za vse $x,y,z\in M$ velja
+Za vse $x,y,z\in \mathcal{M}$ velja
 \[
 d(x,y)\geq\abs{d(x,z)-d(z,y)}.
 \]
 \end{opomba}
 
 \begin{opomba}
-Če je $(M,d)$ metrični prostor in $N\subseteq M$ neprazna podmnožica, je tudi $(N,d)$ metrični prostor.
+Če je $(\mathcal{M},d)$ metrični prostor in $N\subseteq \mathcal{M}$ neprazna podmnožica, je tudi $(N,d)$ metrični prostor.
 \end{opomba}
 
 \begin{opomba}
@@ -4123,13 +4123,13 @@ Primer metrike na vektorskem prostoru je norma razlike vektorjev $x$ in $y$.\foo
 \end{opomba}
 
 \begin{definicija}
-Naj bo $(M,d)$ metrični prostor. Naj bo $a\in M$ in $r>0$. \emph{Odprta krogla}\index{Metrični prostor!Krogla} s središčem v $a$ in polmerom $r$ je množica
+Naj bo $(\mathcal{M},d)$ metrični prostor. Naj bo $a\in \mathcal{M}$ in $r>0$. \emph{Odprta krogla}\index{Metrični prostor!Krogla} s središčem v $a$ in polmerom $r$ je množica
 \[
-\mathcal{K}=(a,r)=\setb{x\in M}{d(x,a)<r}.
+\mathcal{K}=(a,r)=\setb{x\in \mathcal{M}}{d(x,a)<r}.
 \]
 Podobno definiramo \emph{zaprto kroglo} kot
 \[
-\overline{\mathcal{K}}(a,r)=\setb{x\in M}{d(x,a)\leq r}.
+\overline{\mathcal{K}}(a,r)=\setb{x\in \mathcal{M}}{d(x,a)\leq r}.
 \]
 \end{definicija}
 
@@ -4138,7 +4138,7 @@ Podobno definiramo \emph{zaprto kroglo} kot
 \end{definicija}
 
 \begin{definicija}
-Naj bo $A\subseteq M$, kjer je $(M,d)$ metrični prostor.
+Naj bo $A\subseteq \mathcal{M}$, kjer je $(\mathcal{M},d)$ metrični prostor.
 
 \begin{enumerate}[label=\roman*)]
 \item točka $a$ je \emph{notranja} točka množice $A$, če obstaja tak $r>0$, da je $\mathcal{K}(a,r)\subseteq A$. \emph{Notranjost} množice označimo z $\Int(A)$.
@@ -4148,7 +4148,7 @@ Naj bo $A\subseteq M$, kjer je $(M,d)$ metrični prostor.
 \end{definicija}
 
 \begin{opomba}
-Velja $\Int(A)\cup\partial A\cup\Int(A^\mathsf{c})=M$. Te množice so paroma disjunktne.
+Velja $\Int(A)\cup\partial A\cup\Int(A^\mathsf{c})=\mathcal{M}$. Te množice so paroma disjunktne.
 \end{opomba}
 
 \begin{opomba}
@@ -4156,11 +4156,11 @@ Velja $\partial(A^\mathsf{c})=\partial A$.
 \end{opomba}
 
 \begin{definicija}
-Podmnožica $O\subseteq(M,d)$ je \emph{odprta}\index{Metrični prostor!Odprta množica}, če je $\Int(O)=O$.
+Podmnožica $O\subseteq(\mathcal{M},d)$ je \emph{odprta}\index{Metrični prostor!Odprta množica}, če je $\Int(O)=O$.
 \end{definicija}
 
 \begin{definicija}
-Podmnožica $Z\subseteq(M,d)$ je \emph{zaprta}\index{Metrični prostor!Zaprta množica}, če je $Z^\mathsf{c}$ odprta.
+Podmnožica $Z\subseteq(\mathcal{M},d)$ je \emph{zaprta}\index{Metrični prostor!Zaprta množica}, če je $Z^\mathsf{c}$ odprta.
 \end{definicija}
 
 \begin{trditev}
@@ -4183,14 +4183,14 @@ Analogen zgornjemu.
 \end{proof}
 
 \begin{opomba}
-Za vse $A\subseteq(M,d)$ je $\Int(A)$ največja odprta množica, vsebovana v $A$.
+Za vse $A\subseteq(\mathcal{M},d)$ je $\Int(A)$ največja odprta množica, vsebovana v $A$.
 \end{opomba}
 
 \begin{izrek}[Topologija]\index{Topologija}
-Naj bo $(M,d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(M,d)$.\footnote{Družini $\tau$ pravimo \emph{topologija}.} Potem velja
+Naj bo $(\mathcal{M},d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(\mathcal{M},d)$.\footnote{Družini $\tau$ pravimo \emph{topologija}.} Potem velja
 
 \begin{enumerate}[label=\roman*)]
-\item $M,\emptyset\in\tau$
+\item $\mathcal{M},\emptyset\in\tau$
 \item Poljubna unija odprtih množic je odprta množica
 \item Presek končno mnogo odprtih množic je odprta množica.
 \end{enumerate}
@@ -4199,10 +4199,10 @@ Naj bo $(M,d)$ metrični prostor in $\tau$ družina vseh odprtih podmnožic $(M,
 \obvs
 
 \begin{posledica}
-Naj bo $(M,d)$ metrični prostor in $\mathcal{Z}$ družina vseh zaprtih podmnožic $(M,d)$. Potem velja
+Naj bo $(\mathcal{M},d)$ metrični prostor in $\mathcal{Z}$ družina vseh zaprtih podmnožic $(\mathcal{M},d)$. Potem velja
 
 \begin{enumerate}[label=\roman*)]
-\item $M,\emptyset\in\mathcal{Z}$
+\item $\mathcal{M},\emptyset\in\mathcal{Z}$
 \item Poljuben presek zaprtih množic je zaprta množica.
 \item Unija končno mnogo zaprtih množic je zaprta množica.
 \end{enumerate}
@@ -4226,7 +4226,7 @@ Z uporabo $\Int(A)\cup\partial A=\left(\Int(A^\mathsf{c})\right)^\mathsf{c}$ dob
 \end{proof}
 
 \begin{definicija}
-Podmnožica $A$ metričnega prostora $(M,d)$ je \emph{omejena}\index{Metrični prostor!Omejena množica}, če obstajata takšna $a\in M$ in $r\in\R^+$, da je $A\subseteq\mathcal{K}(a,r)$.
+Podmnožica $A$ metričnega prostora $(\mathcal{M},d)$ je \emph{omejena}\index{Metrični prostor!Omejena množica}, če obstajata takšna $a\in \mathcal{M}$ in $r\in\R^+$, da je $A\subseteq\mathcal{K}(a,r)$.
 \end{definicija}
 
 \newpage
@@ -4234,11 +4234,11 @@ Podmnožica $A$ metričnega prostora $(M,d)$ je \emph{omejena}\index{Metrični p
 \subsection{Zaporedja točk v metričnih prostorih}
 
 \begin{definicija}
-Točka $a\in M$ je \emph{stekališče}\index{Metrični prostor!Stekališče} zaporedja $(a_n)_{n=1}^\infty$ iz $M$, če za vsak $\varepsilon>0$ in $n_0\in\N$ obstaja tak $n\geq n_0$, da je $d(a_n,a)<\varepsilon$.
+Točka $a\in \mathcal{M}$ je \emph{stekališče}\index{Metrični prostor!Stekališče} zaporedja $(a_n)_{n=1}^\infty$ iz $\mathcal{M}$, če za vsak $\varepsilon>0$ in $n_0\in\N$ obstaja tak $n\geq n_0$, da je $d(a_n,a)<\varepsilon$.
 \end{definicija}
 
 \begin{definicija}
-Točka $a\in M$ je \emph{limita}\index{Metrični prostor!Limita} zaporedja $(a_n)_{n=1}^\infty$ iz $M$, če za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $n\geq n_0$ velja $d(a_n,a)<\varepsilon$.
+Točka $a\in \mathcal{M}$ je \emph{limita}\index{Metrični prostor!Limita} zaporedja $(a_n)_{n=1}^\infty$ iz $\mathcal{M}$, če za vsak $\varepsilon>0$ obstaja tak $n_0\in\N$, da za vse $n\geq n_0$ velja $d(a_n,a)<\varepsilon$.
 \end{definicija}
 
 \begin{trditev}
@@ -4261,25 +4261,25 @@ Vsako konvergentno metrično zaporedje je Cauchyjevo.
 \obvs
 
 \begin{definicija}
-Metrični prostor $(M,d)$ je \emph{poln}\index{Metrični prostor!Poln}, če je v njem vsako Cauchyjevo zaporedje konvergentno.
+Metrični prostor $(\mathcal{M},d)$ je \emph{poln}\index{Metrični prostor!Poln}, če je v njem vsako Cauchyjevo zaporedje konvergentno.
 \end{definicija}
 
 \begin{opomba}
-Za vsak metrični prostor $M$ obstaja \emph{napolnitev} prostora $\widetilde{M}$ -- najmanjši metrični prostor, ki vsebuje $M$ in je poln.
+Za vsak metrični prostor $\mathcal{M}$ obstaja \emph{napolnitev} prostora $\widetilde{\mathcal{M}}$ -- najmanjši metrični prostor, ki vsebuje $\mathcal{M}$ in je poln.
 \end{opomba}
 
 \begin{trditev}
-Naj bo $(M,d)$ poln metrični prostor. Podmnožica $A\subseteq M$ je zaprta natanko tedaj, ko za vsako konvergentno zaporedje $(a_n)_{n=1}^\infty$ iz $A$ množica $A$ vsebuje limito.
+Naj bo $(\mathcal{M},d)$ metrični prostor. Podmnožica $A\subseteq \mathcal{M}$ je zaprta natanko tedaj, ko za vsako konvergentno zaporedje $(a_n)_{n=1}^\infty$ iz $A$ množica $A$ vsebuje limito.
 \end{trditev}
 
 \begin{proof}
-Če je $A$ zaprta, ima zaradi polnosti $M$ zaporedje $(a_n)_{n=1}^\infty$ limito $a\in M$. Če $a\not\in A$, pa zaradi odprtosti $A^\mathsf{c}$ pridemo do protislovja.
+Če je $A$ zaprta, ima zaradi polnosti $\mathcal{M}$ zaporedje $(a_n)_{n=1}^\infty$ limito $a\in \mathcal{M}$. Če $a\not\in A$, pa zaradi odprtosti $A^\mathsf{c}$ pridemo do protislovja.
 
 Naj bo $a\in\partial A$. Potem lahko po definiciji najdemo zaporedje $(a_n)_{n=1}^\infty$, za katerega je $a_i\in\mathcal{K}\left(a,\frac{1}{n}\right)\cap A$, njegova limita pa je enaka $a$. Sledi, da je $\partial A\subseteq A$, zato je $A$ zaprta.
 \end{proof}
 
 \begin{posledica}
-Če je $(M,d)$ poln metrični prostor in $A\subseteq M$ zaprta podmnožica, je tudi $(A,d)$ poln prostor.
+Če je $(\mathcal{M},d)$ poln metrični prostor in $A\subseteq \mathcal{M}$ zaprta podmnožica, je tudi $(A,d)$ poln prostor.
 \end{posledica}
 
 \newpage
@@ -4288,16 +4288,16 @@ Naj bo $a\in\partial A$. Potem lahko po definiciji najdemo zaporedje $(a_n)_{n=1
 
 \begin{okvir}
 \begin{definicija}
-Naj bosta $(M,d)$ in $(N,\rho)$ metrična prostora. Preslikava $f\colon M\to N$ je \emph{zvezna}\index{Metrični prostor!Zvezna preslikava} v $x_0$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da velja
+Naj bosta $(\mathcal{M},d)$ in $(\mathcal{N},\rho)$ metrična prostora. Pravimo, da je preslikava $f\colon \mathcal{M}\to \mathcal{N}$ \emph{zvezna}\index{Metrični prostor!Zvezna preslikava} v $x_0$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsak $x$ velja
 \[
-\forall x\in\mathcal{K}(x_0,\delta)\implies f(x)\in\mathcal{K}(f(x_0),\varepsilon).
+d(x,x_0)<\delta\implies \rho(f(x),f(x_0))<\varepsilon.
 \]
-Preslikava je \emph{zvezna na $(M,d)$}, če je zvezna v vsaki točki $x\in M$.
+Preslikava je \emph{zvezna na $(\mathcal{M},d)$}, če je zvezna v vsaki točki $x\in \mathcal{M}$.
 \end{definicija}
 \end{okvir}
 
 \begin{trditev}
-Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna v $x_0\in M$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$, ki konvergira k $x_0$, zaporedje $f(x_i)$ konvergira k $f(x_0)$.
+Preslikava $f\colon (\mathcal{M},d)\to(\mathcal{N},\rho)$ je zvezna v $x_0\in \mathcal{M}$ natanko tedaj, ko za vsako zaporedje $(x_n)_{n=1}^\infty$, ki konvergira k $x_0$, zaporedje $f(x_i)$ konvergira k $f(x_0)$.
 \end{trditev}
 
 \begin{proof}
@@ -4305,17 +4305,17 @@ Podoben kot na $\R$.
 \end{proof}
 
 \begin{izrek}
-Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vsake odprte množice v $(N,\rho)$ odprta v $(M,d)$.
+Preslikava $f\colon (\mathcal{M},d)\to(\mathcal{N},\rho)$ je zvezna natanko tedaj, ko je praslika vsake odprte množice v $(\mathcal{N},\rho)$ odprta v $(\mathcal{M},d)$.
 \end{izrek}
 
 \begin{proof}
-Naj bo $f$ zvezna. Naj bo $V$ odprta v $(N,\rho)$ in $U=f^{-1}(V)$. Naj bo $x\in U$. Iz zveznosti v $x$ hitro sledi, da obstaja okolica $x$, katere slika je vsebovana v $V$. Sledi, da je ta okolica vsebovana v $U$, zato je $U$ odprta.
+Naj bo $f$ zvezna. Naj bo $V$ odprta v $(\mathcal{N},\rho)$ in $U=f^{-1}(V)$. Naj bo $x\in U$. Iz zveznosti v $x$ hitro sledi, da obstaja okolica $x$, katere slika je vsebovana v $V$. Sledi, da je ta okolica vsebovana v $U$, zato je $U$ odprta.
 
-Naj bo $x\in M$ in $\varepsilon>0$. Krogla $\mathcal{K}(f(x),\varepsilon)$ je odprta v $(N,\rho)$. Njena praslika je odprta, zato obstaja krogla s središčem v $x$, katere slika je vsebovana v $\mathcal{K}(f(x),\varepsilon)$.
+Naj bo $x\in \mathcal{M}$ in $\varepsilon>0$. Krogla $\mathcal{K}(f(x),\varepsilon)$ je odprta v $(\mathcal{N},\rho)$. Njena praslika je odprta, zato obstaja krogla s središčem v $x$, katere slika je vsebovana v $\mathcal{K}(f(x),\varepsilon)$.
 \end{proof}
 
 \begin{posledica}
-Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vsake zaprte množice v $(N,\rho)$ zaprta v $(M,d)$.
+Preslikava $f\colon (\mathcal{M},d)\to(\mathcal{N},\rho)$ je zvezna natanko tedaj, ko je praslika vsake zaprte množice v $(\mathcal{N},\rho)$ zaprta v $(\mathcal{M},d)$.
 \end{posledica}
 
 \newpage
@@ -4323,7 +4323,7 @@ Preslikava $f\colon (M,d)\to(N,\rho)$ je zvezna natanko tedaj, ko je praslika vs
 \subsection{Banachovo skrčitveno načelo}
 
 \begin{definicija}
-Naj bo $(M,d)$ metrični prostor. Preslikava $f\colon(M,d)\to(M,d)$ je \emph{skrčitev}\index{Metrični prostor!Skrčitev}, če obstaja tak $q\in[0,1)$, da za vse $x,y\in M$ velja
+Naj bo $(\mathcal{M},d)$ metrični prostor. Preslikava $f\colon(\mathcal{M},d)\to(\mathcal{M},d)$ je \emph{skrčitev}\index{Metrični prostor!Skrčitev}, če obstaja tak $q\in[0,1)$, da za vse $x,y\in \mathcal{M}$ velja
 \[
 d(f(x),f(y))\leq q\cdot d(x,y).
 \]
@@ -4334,7 +4334,7 @@ Vsaka skrčitev je zvezna preslikava.
 \end{opomba}
 
 \begin{izrek}[Banach]\index{Izrek!Banach}
-Naj bo $(M,d)$ poln metrični prostor in $f$ skrčitev tega prostora. Potem obstaja natanko ena fiksna točka preslikave $f$ na $M$.
+Naj bo $(\mathcal{M},d)$ poln metrični prostor in $f$ skrčitev tega prostora. Potem obstaja natanko ena fiksna točka preslikave $f$ na $\mathcal{M}$.
 \end{izrek}
 
 \begin{proof}
@@ -4354,16 +4354,16 @@ saj je $f$ zvezna.
 \subsection{Kompaktnost}
 
 \begin{definicija}
-Naj bo $(M,d)$ metrični prostor in in $\mathcal{K}\subseteq M$. Družina $\setb{\mathcal{A}_\gamma}{\gamma\in\Gamma}$ podmnožic $M$ je \emph{pokritje}\index{Metrični prostor!Pokritje} za $\mathcal{K}$, če je
+Naj bo $(\mathcal{M},d)$ metrični prostor in in $\mathcal{K}\subseteq M$. Družina $\setb{\mathcal{A}_\gamma}{\gamma\in\Gamma}$ podmnožic $\mathcal{M}$ je \emph{pokritje}\index{Metrični prostor!Pokritje} za $\mathcal{K}$, če je
 \[
-\mathcal{K}\subseteq\bigcup_{\gamma\in\Gamma}A_\gamma.
+\mathcal{K}\subseteq\bigcup_{\gamma\in\Gamma}\mathcal{A}_\gamma.
 \]
 Če so vse množice v družini odprte, je pokritje \emph{odprto}, če so vse zaprte, pa \emph{zaprto}. Če je v družini le končno množic, je pokritje \emph{končno}.
 \end{definicija}
 
 \begin{okvir}
 \begin{definicija}
-Podmnožica $\mathcal{K}$ metričnega prostora $(M,d)$ je \emph{kompaktna}\index{Metrični prostor!Kompaktna množica}, če vsako odprto pokritje množice $\mathcal{K}$ vsebuje končno podpokritje.
+Podmnožica $K$ metričnega prostora $(\mathcal{M},d)$ je \emph{kompaktna}\index{Metrični prostor!Kompaktna množica}, če vsako odprto pokritje množice $K$ vsebuje končno podpokritje.
 \end{definicija}
 \end{okvir}
 
@@ -4384,27 +4384,27 @@ Trdimo, da je $\alpha\in A$. Obstaja namreč interval, ki vsebuje $\alpha$, ki g
 \end{proof}
 
 \begin{trditev}
-Vsaka kompaktna množica  je zaprta in omejena.
+Vsaka kompaktna množica je zaprta in omejena.
 \end{trditev}
 
 \begin{proof}
-Za poljuben $a$ je družina $\setb{\mathcal{K}(a,r)}{r\in\R^+}$ pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi omejenost (vzamemo največji $r$ končnega podpokritja). Podobno je za $a\in\mathcal{K}^\mathsf{c}$ družina $\setb{x}{d(a,x)>r,~r\in\R^+}$ pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi odprtost $\mathcal{K}^\mathsf{c}$ (vzamemo najmanjši $r$ končnega podpokritja).
+Za poljuben $a$ je družina $\setb{\mathcal{K}(a,r)}{r\in\R^+}$ pokritje $K$, od koder iz kompaktnosti sledi omejenost (vzamemo največji $r$ končnega podpokritja). Podobno je za $a\in K^\mathsf{c}$ družina $\setb{x}{d(a,x)>r,~r\in\R^+}$ pokritje $K$, od koder iz kompaktnosti sledi odprtost $K^\mathsf{c}$ (vzamemo najmanjši $r$ končnega podpokritja).
 \end{proof}
 
 \begin{trditev}
-Naj bo $\mathcal{Z}$ zaprta podmnožica kompaktne množice $\mathcal{K}$. Potem je $\mathcal{Z}$ kompaktna.
+Naj bo $Z$ zaprta podmnožica kompaktne množice $K$. Potem je $Z$ kompaktna.
 \end{trditev}
 
 \begin{proof}
-Pokritju $\mathcal{Z}$ lahko dodamo $\mathcal{Z}^\mathsf{c}$. Dobimo pokritje $\mathcal{K}$, od koder iz kompaktnosti sledi želeno.
+Pokritju $Z$ lahko dodamo $Z^\mathsf{c}$. Dobimo pokritje $K$, od koder iz kompaktnosti sledi želeno.
 \end{proof}
 
 \begin{posledica}
-Podmnožica $\mathcal{K}$ v $(\R,d_2)$ je kompaktna natanko tedaj, ko je $\mathcal{K}$ omejena in zaprta.
+Podmnožica $K$ v $(\R,d_2)$ je kompaktna natanko tedaj, ko je $K$ omejena in zaprta.
 \end{posledica}
 
 \begin{proof}
-Ker je $\mathcal{K}$ omejena, leži v dovolj velikem zaprtem intervalu.
+Ker je $K$ omejena, leži v dovolj velikem zaprtem intervalu.
 \end{proof}
 
 \begin{izrek}
@@ -4416,11 +4416,11 @@ Dovolj je dokazati, da so zaprti $n$ dimenzionalni kvadri kompaktni. Naj bo $\se
 \end{proof}
 
 \begin{izrek}
-Naj bo $\mathcal{K}$ kompaktna podmnožica $(M,d)$ in naj bo $(a_n)_{n=1}^\infty\in\mathcal{K}$ zaporedje. Potem ima zaporedje $(a_n)_{n=1}^\infty$ stekališče v $\mathcal{K}$.
+Naj bo $K$ kompaktna podmnožica $(\mathcal{M},d)$ in naj bo $(a_n)_{n=1}^\infty\in K$ zaporedje. Potem ima zaporedje $(a_n)_{n=1}^\infty$ stekališče v $K$.
 \end{izrek}
 
 \begin{proof}
-Predpostavimo nasprotno. Za vsako točko $x\in\mathcal{K}$ obstaja tak $r$, da krogla $\mathcal{K}(x,r)$ vsebuje le končno členov zaporedja. Te krogle so pokritje $\mathcal{K}$, zato lahko najdemo končno podpokritje, kar implicira, da ima zaporedje končno členov.
+Predpostavimo nasprotno. Za vsako točko $x\in K$ obstaja tak $r$, da krogla $\mathcal{K}(x,r)$ vsebuje le končno členov zaporedja. Te krogle so pokritje $K$, zato lahko najdemo končno podpokritje, kar implicira, da ima zaporedje končno členov.
 \end{proof}
 
 \begin{posledica}
@@ -4443,39 +4443,39 @@ Vsako Cauchyjevo zaporedje ima stekališče, zaradi Cauchyjevega pogoja pa je st
 V metričnih prostorih sta lastnosti
 
 \begin{enumerate}[label=\roman*)]
-\item $\mathcal{K}$ je kompaktna podmnožica
-\item Vsako zaporedje v $\mathcal{K}$ ima stekališče v $\mathcal{K}$
+\item $K$ je kompaktna podmnožica
+\item Vsako zaporedje v $K$ ima stekališče v $K$
 \end{enumerate}
 
 ekvivalentni.
 \end{opomba}
 
 \begin{proof}
-Trditev dokažimo v primeru števnega pokritja $\mathcal{K}$. Za vsak $n$ tako obstaja
+Trditev dokažimo v primeru števnega pokritja $K$. Za vsak $n$ tako obstaja
 \[
-a_n\in\mathcal{K}\setminus\bigcup_{i=1}^nO_i.
+a_n\in K\setminus\bigcup_{i=1}^nO_i.
 \]
 Po predpostavki ima zaporedje stekališče, ki leži v eni izmed množic pokritja, kar je seveda protislovje.
 \end{proof}
 
 \begin{izrek}
-Naj bo $f\colon (M,d)\to(N,\rho)$ zvezna in $\mathcal{K}\subseteq(M,d)$ kompaktna. Potem je $f(\mathcal{K})$ kompaktna v $(N,\rho)$.
+Naj bo $f\colon (\mathcal{M},d)\to(\mathcal{N},\rho)$ zvezna in $K\subseteq(\mathcal{M},d)$ kompaktna. Potem je $f(K)$ kompaktna v $(\mathcal{N},\rho)$.
 \end{izrek}
 
 \begin{proof}
-Vzemimo poljubno pokritje $f(\mathcal{K})$. $\mathcal{K}$ lahko pokrijemo s praslikami tega pokrijta, zvezne funkcije pa ohranjajo odprtost. Sledi, da ostaja končno podpokritje $\mathcal{K}$, katerega slika je končno podpokritje $f(\mathcal{K})$.
+Vzemimo poljubno pokritje $f(K)$. $K$ lahko pokrijemo s praslikami tega pokrijta, zvezne funkcije pa ohranjajo odprtost. Sledi, da ostaja končno podpokritje $K$, katerega slika je končno podpokritje $f(K)$.
 \end{proof}
 
 \begin{posledica}
-Naj bo $f\colon (M,d)\to(\R,d_2)$ zvezna preslikava in $\mathcal{K}\subseteq(M,d)$ kompaktna podmnožica. Potem je $\eval{f}{\mathcal{K}}{}$ omejena in na $\mathcal{K}$ zavzame minimum in maksimum.
+Naj bo $f\colon (\mathcal{M},d)\to(\R,d_2)$ zvezna preslikava in $K\subseteq(\mathcal{M},d)$ kompaktna podmnožica. Potem je $\eval{f}{K}{}$ omejena in na $K$ zavzame minimum in maksimum.
 \end{posledica}
 
 \begin{proof}
-$f(\mathcal{K})$ je kompaktna, zato je omejena in zaprta. Sledi, da je $\eval{f}{\mathcal{K}}{}$ omejena, ni pa težko videti, da sta zaradi zaprtosti njen supremum in infimum v zalogi vrednosti.
+$f(K)$ je kompaktna, zato je omejena in zaprta. Sledi, da je $\eval{f}{K}{}$ omejena, ni pa težko videti, da sta zaradi zaprtosti njen supremum in infimum v zalogi vrednosti.
 \end{proof}
 
 \begin{definicija}
-Naj bo $f\colon (M,d)\to(N,\rho)$ preslikava. Preslikava $f$ je \emph{enakomerno zvezna}\index{Metrični prostor!Enakomerno zvezna preslikava} na $D\subseteq M$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vse $x,y\in D$, za katere je $d(x,y)<\delta$, velja
+Naj bo $f\colon (\mathcal{M},d)\to(\mathcal{N},\rho)$ preslikava. Preslikava $f$ je \emph{enakomerno zvezna}\index{Metrični prostor!Enakomerno zvezna preslikava} na $D\subseteq \mathcal{M}$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vse $x,y\in D$, za katere je $d(x,y)<\delta$, velja
 \[
 \rho(f(x),f(y))<\varepsilon.
 \]
@@ -4486,15 +4486,15 @@ Enakomerna zveznost implicira zveznost.
 \end{opomba}
 
 \begin{izrek}
-Če je $\mathcal{K}$ v $(M,d)$ kompaktna in $f\colon\mathcal{K}\to(N,\rho)$ zvezna, je $f$ enakomerno zvezna na $\mathcal{K}$.
+Če je $K$ v $(\mathcal{M},d)$ kompaktna in $f\colon K\to(\mathcal{N},\rho)$ zvezna, je $f$ enakomerno zvezna na $K$.
 \end{izrek}
 
 \begin{proof}
-Naj bo $\varepsilon>0$. Za vsak $x\in\mathcal{K}$ obstaja tak $\delta_x>0$, da je
+Naj bo $\varepsilon>0$. Za vsak $x\in K$ obstaja tak $\delta_x>0$, da je
 \[
 f(\mathcal{K}(x,\delta_x))\subseteq\mathcal{K}\left(f(x),\frac{\varepsilon}{2}\right).
 \]
-To je odprto pokritje za $\mathcal{K}$, zato lahko vzamemo končno podpokritje, za $\delta$ pa preprosto vzamemo polovico najmanjšega $\delta_x$ tega podpokritja.
+To je odprto pokritje za $K$, zato lahko vzamemo končno podpokritje, za $\delta$ pa preprosto vzamemo polovico najmanjšega $\delta_x$ tega podpokritja.
 \end{proof}
 
 \newpage
