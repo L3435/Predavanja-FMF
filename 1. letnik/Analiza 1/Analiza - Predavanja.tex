@@ -388,7 +388,7 @@ A=\setb{a\in\Q}{\text{$a\geq 0$ in $a^2<2$}}.
 \]
 Vidimo, da je $A$ neprazna ($1\in A$). Ker $\forall x>2$ velja  $x^2>4$, je $2$ zgornja meja za $A$ in je $A$ navzgor omejena. Zdaj predpostavimo, da je $b=\sup A$. Potem velja natanko ena izmed možnosti $b^2=2$, $b^2<2$ ali $b^2>2$.
 
-Prva možnost ne velja zaradi opombe \ref{o3}.
+Prva možnost ne velja zaradi trditve \ref{o3}.
 
 Če je $b^2<2$, lahko najdemo tak $1>h>0$, da je $b+h\in A$. Ker je
 \[(b+h)^2=b^2+2bh+h^2<b^2+2bh+h,\]
@@ -615,7 +615,7 @@ Opazimo, da velja
 \[
 1,0000\ldots=0,9999\dots
 \]
-Z zgornjo konstrukcijo smo vsakemu številu, ki bi lahko imel dva možna decimalna zapisa, priredili tisto, ki se končajo z neskončno mnogo ničlami. Zapisov, ki se končajo z neskončno mnogo deveticami, ne dobimo.
+Z zgornjo konstrukcijo smo vsakemu številu, ki bi lahko imel dva možna decimalna zapisa, priredili tisto, ki se konča z neskončno mnogo ničlami. Zapisov, ki se končajo z neskončno mnogo deveticami, ne dobimo.
 
 \newpage
 
@@ -1622,7 +1622,7 @@ Vsak skok vsebuje racionalno število.
 \end{proof}
 
 \begin{definicija}
-Pravimo, da $f$ \emph{konvergira k $+\infty$} ko gre $x$ proti $a$, če $\forall M\in\R$ obstaja $\delta>0$, da iz $0<x<\delta$ sledi $|x-a|<\delta$ $f(x)>M$. Pišemo
+Pravimo, da $f$ \emph{konvergira k $+\infty$} ko gre $x$ proti $a$, če $\forall M\in\R$ obstaja $\delta>0$, da iz $|x-a|<\delta$ sledi $f(x)>M$. Pišemo
 \[
 \lim_{x\to a}f(x)=+\infty.
 \]
@@ -1839,9 +1839,9 @@ Dovolj je tako dokazati, da je
 \]
 Velja pa
 \begin{align*}
-\lim_{h\to 0}\frac{o(h)}{h}&=\lim_{h\to 0}\frac{g'(f(a))\cdot h\eta_f(h)+(f'(a)h+h\eta_f(a))\eta_g(k(h))}{h}
+\lim_{h\to 0}\frac{o(h)}{h}&=\lim_{h\to 0}\frac{g'(f(a))\cdot h\eta_f(h)+(f'(a)h+h\eta_f(h))\eta_g(k(h))}{h}
 \\
-&=\lim_{h\to 0}\left(g'(f(a))\cdot \eta_f(h)+(f'(a)+\eta_f(a))\eta_g(k(h))\right)
+&=\lim_{h\to 0}\left(g'(f(a))\cdot \eta_f(h)+(f'(a)+\eta_f(h))\eta_g(k(h))\right)
 \\
 &=0.\qedhere
 \end{align*}
@@ -2563,7 +2563,7 @@ za vsak $\mathcal{T}$. Zdaj izberemo tak $\mathcal{T}$, da je $f(t_j)$ poljubno 
 \]
 Podobno sledi za spodnjo Darbouxjevo vsoto, zato je
 \[
-S(D)-s(d)\leq\frac{2\varepsilon}{3}<\varepsilon.
+S(D)-s(D)\leq\frac{2\varepsilon}{3}<\varepsilon.
 \]
 Sledi, da je $f$ integrabilna po Darbouxju z enakim integralom.
 
@@ -3156,7 +3156,7 @@ Naj bo $D$ delitev intervala $[a,b]$. Potem je po Lagrangevem izreku
 \end{align*}
 kjer $\tau_i,\widetilde{\tau}_i\in(t_{i-1},t_i)$. Velja pa
 \begin{align*}
-\abs{\lambda(D)-R(\sqrt{\dot{x}^2+\dot{y}^2},D,\mathcal{T})}&=\abs{\sum_{i=1}^n\left(\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}-\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tau_i)^2}\right)\Delta t_i}
+\abs{\lambda(D)-R\left(\sqrt{\dot{x}^2+\dot{y}^2},D,\mathcal{T}\right)}&=\abs{\sum_{i=1}^n\left(\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}-\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tau_i)^2}\right)\Delta t_i}
 \\
 &=\abs{\sum_{i=1}^n\frac{(\dot{y}(\widetilde{\tau}_i)-\dot{y}(\tau_i))(\dot{y}(\widetilde{\tau}_i)+\dot{y}(\tau_i))}{\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\widetilde{\tau}_i)^2}+\sqrt{\dot{x}(\tau_i)^2+\dot{y}(\tau_i)^2}}\Delta t_i}
 \\
@@ -3175,7 +3175,7 @@ Dolžino grafa funkcije $f\in C^1([a,b])$ izračunamo kot
 \begin{posledica}
 Naj bo $r\colon[a,b]\to\R$ krivulja v polarnem zapisu. Njeno dolžino lahko izračunamo kot
 \[
-\lambda=\int_a^b\sqrt{r'(t)^2+r^2(t)}\;dt.
+\lambda=\int_a^b\sqrt{r'(t)^2+r(t)^2}\;dt.
 \]
 \end{posledica}
 
@@ -3831,7 +3831,7 @@ R=\sup\setb{\abs{x_0}}{\sum_{n=0}^\infty a_nx^n~\text{konvergira v}~x_0}.\qedher
 Vsota potenčne vrste s konvergenčnim polmerom $R>0$ je zvezna funkcija na intervalu $(a-R,a+R)$.
 \end{posledica}
 
-\begin{izrek}[Cauchy-Hadamardova formula]\index{Izrek!Cauchy-Hadamarnova formul}
+\begin{izrek}[Cauchy--Hadamardova formula]\index{Izrek!Cauchy--Hadamardova formula}
 Naj bo $\displaystyle\sum_{n=0}^\infty a_n(x-a)^n$ potenčna vrsta. Tedaj je
 \[
 \frac{1}{R}=\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}},
@@ -3862,7 +3862,7 @@ Naj bodo $a_n\ne 0$ za vse $n\in\N_0$. Za konvergenčni polmer potenčne vrste $
 \begin{proof}
 Brez škode za splošnost vzemimo $a=0$. Uporabimo kvocientni kriterij. Velja
 \[
-\lim_{n\to\infty}\frac{\abs{a_{n+1}}\cdot\abs{x}^{n+1}}{\abs{a_n}\cdot\abs{x}^n}=\abs{x}\lim\frac{\abs{a_{n+1}}}{\abs{a_n}}.
+\lim_{n\to\infty}\frac{\abs{a_{n+1}}\cdot\abs{x}^{n+1}}{\abs{a_n}\cdot\abs{x}^n}=\abs{x}\lim_{n\to\infty}\frac{\abs{a_{n+1}}}{\abs{a_n}}.
 \]
 Zaključimo s podobnim sklepom kot pri prejšnjem izreku.
 \end{proof}
