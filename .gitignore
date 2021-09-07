@@ -7,6 +7,11 @@
 1. letnik/Logika in množice/List za izpit.pdf
 1. letnik/Računalniški Praktikum/
 1. letnik/Uvod v programiranje/
+
+
+# TexMaker session files:
+*.tks
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
