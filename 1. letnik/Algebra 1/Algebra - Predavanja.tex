@@ -32,7 +32,7 @@ Zelo verjetno se mi je pri pregledu zapiskov izmuznila kakšna napaka -- popravk
 
 \section{Vektorji v prostoru}
 
-\epigraph{">Pravila so mislim da taka da če padete ustni izpit potem morate še enkrat na pisnega, neko grozno pravilo je pa mogoče se bomo tega celo držali."<}{---prof.~dr.~Primož Moravec}
+\epigraph{">Če so dali ta predmet meni učit potem je najbrž lahek."<}{---prof.~dr.~Primož Moravec}
 
 \subsection{Krajevni vektorji}
 
@@ -1482,9 +1482,7 @@ Naj bo $A\colon U\to V$ linearna preslikava in $\varphi\in V^*$ linearen funkcio
 $A^*$ je linearna preslikava.
 \end{trditev}
 
-\begin{proof}
-$A^*$ je kompozitum dveh linearnh preslikav, kar je linearna preslikava po trditvi~\ref{td:komp}.
-\end{proof}
+\obvs
 
 \begin{izrek}\label{iz:rang}
 Naj bo $A\colon U\to V$ linearna.
@@ -1542,7 +1540,7 @@ $A^*_{\mathcal{B}^*\mathcal{C}^*}=[b_{i,j}]_{
 \]
 po drugi strani pa je
 \[
-(A^*\psi_j)u_i=(\psi_k\circ A)u_i
+(A^*\psi_j)u_i=(\psi_j\circ A)u_i
 =\psi_j\left(\sum_{k=1}^m a_{k,i}v_i\right)
 =\sum_{k=1}^m a_{k,i}\psi_j(v_i)
 =a_{j,i}.\qedhere
@@ -2257,7 +2255,7 @@ A\cdot\widetilde{A}^\top = \det A\cdot I.
 \begin{proof}
 Velja
 \[
-\sum_{k=1}^n a_{i,k}\widetilde{a}_{i,1} = \det A
+\sum_{k=1}^n a_{i,k}\widetilde{a}_{i,k} = \det A
 \]
 in
 \[
