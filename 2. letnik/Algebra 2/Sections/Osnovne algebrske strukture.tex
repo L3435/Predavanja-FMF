@@ -1,0 +1,91 @@
+\section{Osnovne algebrske strukture}
+
+\subsection{Linearne operacije}
+
+\begin{definicija}
+\emph{Binarna operacija}\index{Binarna operacija} $*$ na neprazni množici $S$ je preslikava $*\colon S\times S\to S$. Po dogovoru namesto $*(x,y)$ pišemo $x*y$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je \emph{nevtralni element}\index{Binarna operacija!Nevtralni element} ali \emph{enota}, če za vsak $x\in S$ velja
+\[
+x*e=e*x=x.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je \emph{levi nevtralni element}, če za vsak $x\in S$ velja
+\[
+e*x=x.
+\]
+Podobno je $e$ \emph{desni nevtralni element}, če za vsak $x\in S$ velja
+\[
+x*e=x.
+\]
+\end{definicija}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Če je $e'$ levi in $e''$ desni nevtralni element, je $e'=e''=e$, kjer je $e$ nevtralni element.
+\item Če nevtralni element obstaja, je enolično določen.
+\item Levih/desnih nevtralnih elementov je lahko več.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Za prvo točko preprosto opazimo, da je
+\[
+e'=e'*e''=e''.
+\]
+Sledi, da je $e'$ levi in desni nevtralni element, torej je $e'=e$.
+
+Druga točka je direktna posledica prve. Če sta $e$ in $f$ nevtralna elementa, je namreč $e$ levi, $f$ pa desni nevtralni element, zato je $e=f$.
+
+Za dokaz tretje trditve si oglejmo operaciji $*_1,*_2\colon\N\to\N$, ki delujeta s predpisi $x*_1y=x$ in $x*_2y=y$ za vse naravne $x$ in $y$. Vidimo, da so vsa naravna števila desni nevtralni element prve in levi nevtralni element druge operacije.
+\end{proof}
+
+\begin{definicija}
+Operacija $*$ na $S$ je:
+\begin{enumerate}[i)]
+\item \emph{asociativna}\index{Binarna operacija!Asociativna}, če za vse $a,b,c\in S$ velja $a*(b*c)=(a*b)*c$,
+\item \emph{komutativna}\index{Binarna operacija!Komutativna}, če za vse $a,b\in S$ velja $a*b=b*a$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $T\subseteq S$ in $*$ operacija na $S$. Množica $T$ je \emph{zaprta}\index{Binarna operacija!Zaprta množica} za $*$, če za vse $t_1,t_2\in T$ velja $t_1*t_2\in T$. Pravimo, da je $*$ \emph{notranja}\index{Binarna operacija!Notranja, zunanja}\footnote{\emph{Zunanja} binarna operacija je preslikava $*\colon K\times S\to S$.} binarna operacija za $T$.
+\end{definicija}
+
+\newpage
+
+\subsection{Polgrupe in monoidi}
+
+\begin{definicija}
+\emph{Algebrske strukture}\index{Algebrska struktura} so množice, opremljene z eno ali več binarnimi operacijami, ki izpolnjujejo določene aksiome.
+\end{definicija}
+
+\begin{definicija}
+Množica $S$ z operacijo $*$ je \emph{polgrupa}\index{Algebrska struktura!Polgrupa, monoid, grupa}, če je $*$ asociativna. Polgrupam z nevtralnim elementom pravimo \emph{monoid}.
+\end{definicija}
+
+\begin{opomba}
+Če je $S$ polgrupa, oklepajev ni potrebno postavljati.
+\end{opomba}
+
+\begin{opomba}
+V polgrupah z $x^n$ označujemo $\underbrace{x*\dots *x}_{n}$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $(S,*)$ monoid z enoto $e$.
+
+\begin{enumerate}[i)]
+\item $y\in S$ je \emph{levi inverz}\index{Binarna operacija!Inverz} $x\in S$, če je $y*x=e$.
+\item $z\in S$ je \emph{desni inverz} $x\in S$, če je $x*z=e$.
+\item $w\in S$ je \emph{inverz} $x\in S$, če je $x*w=w*x=e$.
+\end{enumerate}
+
+Pravimo, da je $x$ \emph{obrnljiv}, če ima inverz.
+\end{definicija}
