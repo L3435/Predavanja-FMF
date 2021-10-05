@@ -1,0 +1,121 @@
+% ---- 5. 10. 2021 ----
+
+\section{Funkcije več spremenljivk}
+
+\subsection{Prostor $\R^n$}
+
+\begin{definicija}
+\emph{Prostor $\R^n$} je kartezični produkt $\underbrace{\R\times\dots\times\R}_n$. Na njem definiramo seštevanje in množenje s skalarjem po komponentah. S tema operacijama je $(\R,+,\cdot)$ vektorski prostor nad $\R$. Posebej definiramo še skalarni produkt
+\[
+x\cdot y=\sum_{i=1}^n x_iy_i,
+\]
+ki nam da normo $\norm{x}=\sqrt{x\cdot x}$ in metriko $d(x,y)=\norm{x-y}$. $(\R^n,d)$ je tako metrični prostor.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $a,b\in\R^n$ vektorja, za katera je $a_i\leq b_i$ za vse $i\in\set{1,\dots,n}$. \emph{Zaprt kvader}\index{Kvader}, ki ga določata $a$ in $b$, je množica
+\[
+[a,b]=\setb{x\in\R^n}{\forall i\in\set{1,\dots,n}\colon a_i\leq x_i\leq b_i}.
+\]
+Podobno definiramo \emph{odprt kvader} kot
+\[
+(a,b)=\setb{x\in\R^n}{\forall i\in\set{1,\dots,n}\colon a_i<x_i<b_i}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Odprte množice v normah $\norm{x}_\infty$ in $\norm{x}_2$ so iste.
+\end{opomba}
+
+\begin{izrek}
+Množica $K\subseteq\R^n$ je kompaktna natanko tedaj, ko je zaprta in omejena.\footnote{Za dokaz glej izrek 7.5.6 v zapiskih predmeta Analiza 1 prvega letnika.}
+\end{izrek}
+
+\newpage
+
+\subsection{Zaporedja v $\R^n$}
+
+\begin{trditev}
+Zaporedje $\set{a_m}$ v $\R^n$ konvergira natanko tedaj, ko za vse $1\leq j\leq n$ konvegira zaporedje koordinat $\set{a_j^m}$. Tedaj velja
+\[
+\lim_{m\to\infty} a_m=\left(\lim_{m\to\infty} a_1^m,\dots,\lim_{m\to\infty} a_n^m\right).
+\]
+\end{trditev}
+
+\begin{proof}
+Predpostavimo, da zaporedje konvergira k točki $a$. Za vsak $\varepsilon>0$ tako obstaja tak $m_0\in\N$, da je $d(a_m,a)<\varepsilon$ za vse $m\geq m_0$. Sledi, da je
+\[
+\sqrt{\sum_{i=1}^n \left(a_i^m-a_i\right)^2}<\varepsilon,
+\]
+zato je $\abs{a_j^m-a_j}<\varepsilon$.
+
+Če konvergirajo zaporedja koordinat, pa za vsak $\varepsilon>0$ obstaja tak $m_j\in\N$, da je $\abs{a_j^m-a_j}<\frac{\varepsilon}{\sqrt{n}}$ za vse $m\geq m_j$. Naj bo $m_0=\max\set{m_1,\dots,m_n}$. Potem za vsak $m\geq m_0$ velja
+\[
+d(a^m,a)=\sqrt{\sum_{i=1}^n (a_i^m-a_i)^2}<\sqrt{n\cdot\frac{\varepsilon^2}{n}}=\varepsilon.\qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Zveznost preslikav iz $\R^n$ v $\R^m$}
+
+\begin{definicija}
+Naj bo $D\subseteq\R^n$ in $f\colon D\to\R^m$ preslikava. Pravimo, da je $f$ \emph{zvezna}\index{Preslikava!Zvezna} v točki $a\in D$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsak $x\in D$, za katerega je $\norm{x-a}<\delta$, velja
+\[
+\norm{f(x)-f(a)}<\varepsilon.
+\]
+Pravimo, da je $f$ zvezna na $D$, če je zvezna v vsaki točki $a\in D$.
+\end{definicija}
+
+\begin{definicija}
+Preslikava $f$ je \emph{enakomerno zvezna na $D$}\index{Preslikava!Enakomerno zvezna}, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsaka $x,y\in D$, za katera je $\norm{x-y}<\delta$, velja
+\[
+\norm{f(x)-f(y)}<\varepsilon.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $m=1$, pravimo, da je $f$ \emph{funkcija $n$ spremenljivk}\index{Preslikava!Funkcija več spremenljivk} na $D$. Pišemo $f(x)=f(x_1,\dots,x_n)$.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $D\subseteq\R^n$ in $f,g\colon D\to\R$ funkciji, zvezni v točki $a$. Tedaj so v točki $a$ zvezne tudi funkcije $f+g$, $f-g$ in $\lambda f$ za $\lambda\in\R$ in $f\cdot g$. Če je $g(x)\ne 0$ na $D$, je tudi $\frac{f}{g}$ zvezna v $a$.
+\end{izrek}
+
+\obvs
+
+\begin{opomba}
+Seveda so vse konstantne in koordinatne funkcije zvezne (projekcije). Sledi, da so vse racionalne funkcije zvezne, kjer so definirane.
+\end{opomba}
+
+\begin{opomba}
+Kompozitum zvenih preslikav je zvezen.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ funkcija, zvezna v notranji točki $a\in D$. Tedaj je v točki $a$ funkcija $f$ zvezna kot funkcija vsake spremenljivke posebej.\footnote{To pomeni, da je funkcija $f_i(t)=f(a_1,\dots,t,\dots,a_n)$ zvezna.}
+\end{izrek}
+
+\obvs
+
+\begin{opomba}
+Obratno ne velja. Protiprimer je funkcija
+\[
+f(x,y)=\begin{cases}
+\frac{2xy}{x^2+y^2},& x^2+y^2\ne 0 \\
+0,& x=y=0.
+\end{cases}
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Preslikave iz $\R^n$ v $\R^m$}
+
+\begin{trditev}
+Naj bo $D\subseteq\R^n$ in $f\colon D\to\R^m$. Označimo
+\[
+f(x_1\dots,x_n)=\left(f_1(x_1,\dots,x_n),\dots,f_m(x_1,\dots,x_n)\right).
+\]
+Preslikava $f$ je zvezna v $a\in D$ natanko tedaj, ko so vse funkcije $f_1,\dots,f_m$ zvezne v $a$.
+\end{trditev}
