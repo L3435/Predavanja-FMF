@@ -2,6 +2,7 @@
 
 \subsection{Linearne operacije}
 
+\datum{2021-10-1}
 \begin{definicija}
 \emph{Binarna operacija}\index{Binarna operacija} $*$ na neprazni množici $S$ je preslikava $*\colon S\times S\to S$. Po dogovoru namesto $*(x,y)$ pišemo $x*y$.
 \end{definicija}
@@ -89,3 +90,69 @@ Naj bo $(S,*)$ monoid z enoto $e$.
 
 Pravimo, da je $x$ \emph{obrnljiv}, če ima inverz.
 \end{definicija}
+
+\datum{2021-10-8}
+\begin{trditev}
+Naj bo $S$ monoid. Če obstajata taka $l,d\in S$, da za nek $x\in S$ velja $lx=xd=e$, velja $l=d$.
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Obrnljiv element ima samo en inverz. Če je $x$ obrnljiv, je $xy=e\iff yx=e$.
+\end{posledica}
+
+\begin{opomba}
+Inverz elementa $x$ označimo z $x^{-1}$. Očitno je $(x^{-1})^{-1}=x$. Označimo še $x^{-n}=(x^{-1})^n=(x^n)^{-1}$ in $x^0=e$.
+\end{opomba}
+
+\begin{trditev}
+Če sta $x,y\in S$ obrnljiva, je obrnljiv tudi $xy$ z inverzom $y^{-1}x^{-1}$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $x\in S$ obrnljiv. Potem za vse $y,z\in S$ velja
+\[
+xy=xz\implies y=z\quad\text{in}\quad yx=zx\implies y=z.
+\]
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Grupe}
+
+\begin{definicija}
+Monoidu, v katerem so vsi elementi obrnljivi, pravimo \emph{grupa}\index{Algebrska struktura!Grupa}.
+\end{definicija}
+
+\begin{definicija}
+Grupi, v kateri je operacija komutativna, pravimo \emph{abelova}\index{Algebrska struktura!Grupa!Abelova}.
+\end{definicija}
+
+\begin{definicija}
+Grupa $G$ je \emph{končna}\index{Algebrska struktura!Grupa!Končna}, če obstaja tak $n\in\N$, da je $\abs{G}=n$. Številu $n$ pravimo \emph{red}\index{Algebrska struktura!Grupa!Red} grupe $G$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $S$ monoid. Potem je $\setb{x}{x\in S\land\text{$x$ je obrnljiv}}$ grupa.
+\end{trditev}
+
+\begin{definicija}
+Grupam reda $1$ pravimo \emph{trivialne grupe}\index{Algebrska struktura!Grupa!Trivialna}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Simetrična grupa}\index{Algebrska struktura!Grupa!Simetrična} množice $X$ je množica
+\[
+\Sim(X)=\setb{f}{f\colon X\to X\land\text{$f$ je bijektivna}}
+\]
+z operacijo kompozitum. Če je $\abs{X}=n$, označimo $\Sim(X)=S_n$.
+\end{definicija}
+
+\begin{opomba}
+V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije pišemo $\cdot$, razen v abelovih grupah, kjer jo označimo s $+$.
+\end{opomba}
