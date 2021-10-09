@@ -1,9 +1,8 @@
-% ---- 5. 10. 2021 ----
-
 \section{Funkcije več spremenljivk}
 
 \subsection{Prostor $\R^n$}
 
+\datum{2021-10-5}
 \begin{definicija}
 \emph{Prostor $\R^n$} je kartezični produkt $\underbrace{\R\times\dots\times\R}_n$. Na njem definiramo seštevanje in množenje s skalarjem po komponentah. S tema operacijama je $(\R,+,\cdot)$ vektorski prostor nad $\R$. Posebej definiramo še skalarni produkt
 \[
@@ -92,8 +91,7 @@ Seveda so vse konstantne in koordinatne funkcije zvezne (projekcije). Sledi, da 
 Kompozitum zvenih preslikav je zvezen.
 \end{opomba}
 
-% ---- 6. 10. 2021 ----
-
+\datum{2021-10-6}
 \begin{izrek}
 Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ funkcija, zvezna v notranji točki $a\in D$. Tedaj je v točki $a$ funkcija $f$ zvezna kot funkcija vsake spremenljivke posebej.\footnote{To pomeni, da je funkcija $f_i(t)=f(a_1,\dots,t,\dots,a_n)$ zvezna.}
 \end{izrek}
@@ -173,7 +171,7 @@ to limito imenujemo \emph{parcialni odvod}\index{Preslikava!Parcialni odvod} fun
 \end{definicija}
 
 \begin{definicija}
-Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ preslikava, $a$ pa notranja točka množice $D$. Pravimo, da je $f$ \emph{diferenciabilna}\index{Preslikava!Diferenciabilna} v točki $a$, če obstaja taka linearna preslikava $L\colon\R^n\to\R$, da je
+Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ preslikava, $a$ pa notranja točka množice $D$. Pravimo, da je $f$ \emph{diferenciabilna}\index{Preslikava!Diferenciabilna, diferencial} v točki $a$, če obstaja taka linearna preslikava $L\colon\R^n\to\R$, da je
 \[
 f(a+h)=f(a)+L(h)+o(h),
 \]
@@ -218,3 +216,117 @@ Ker pa je
 \]
 kjer je $\ell_i$ koeficient pred $i$-to spremenljivko v $L_1-L_2$, sledi, da je $L_1-L_2=0$.
 \end{proof}
+
+\datum{2021-10-7}
+
+\begin{opomba}
+Preslikavi $L$ pravimo \emph{diferencial} funkcije $f$ v točki $a$ in označimo $L=d_af$. Funkcija $h\mapsto f(a)+d_af(h)$ je najboljša afina aproksimacija funkcije $h\mapsto f(a+h)$ v okolici točke $a$.
+\end{opomba}
+
+\begin{izrek}
+Če je $f$ v notranji točki $a\in D$ diferenciabilna, je v $a$ zvezna in parcialno odvedljiva glede na vse spremenljivke, diferencial $f$ v točki $a$ pa je enak
+\[
+(d_af)(h)=\sum_{i=1}^n \frac{\partial f}{\partial x_i}(a) h_i.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $L$ diferencial $f$ v točki $a$. Sledi, da je
+\[
+f(a+h)=f(a)+L(h)+o(h)\quad\text{in}\quad\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+\]
+Velja
+\[
+L(h)=\sum_{i=1}^n \ell_i h_i,
+\]
+zato je $L$ zvezna v $0$. Tako je
+\[
+\lim_{h\to 0}f(a+h)=f(a)+\lim_{h\to 0} L(h)+\lim_{h\to 0}o(h)=f(a).
+\]
+Naj bo sedaj $h=(0,\dots,h_i,\dots,0)$. Velja $\norm{h}=\abs{h_i}$, zato je
+\[
+\frac{f(a+h)-f(a)}{h_i}=\frac{L(h)}{h_i}+\frac{o(h)}{h_i}=\ell_i+\frac{o(h)}{h_i}.
+\]
+V limiti je to enako $\ell_i$, zato ima $f$ parcialni odvod. Očitno velja tudi navedena enakost.
+\end{proof}
+
+\begin{opomba}
+Obratno ne velja. Protiprimer je funkcija
+\[
+f(x,y)=\begin{cases}
+\frac{x^2y}{x^2+y^2},& x^2+y^2\ne 0 \\
+0,& x=y=0.
+\end{cases}
+\]
+\end{opomba}
+
+\begin{opomba}
+Diferencial $d_af$ lahko identificiramo z vektorjem
+\[
+\left(\frac{\partial f}{\partial x_1}(a),\dots,\frac{\partial f}{\partial x_n}(a)\right),
+\]
+ki ga imenujemo \emph{gradient}\index{Preslikava!Gradient} in označimo z $\grad f$. Velja $(d_af)(h)=(\grad f)(a)\cdot h$.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $f$ v okolici $a$ parcialno odvedljiva glede na vse spremenljivke in naj bodo parcialni odvodi zvezni v $a$. Potem je $f$ v $a$ diferenciabilna.
+\end{izrek}
+
+\begin{proof}
+Naj bo $h\in\R^n$ vektor z dovolj majhno normo, da je točka $a+h$ v konveksni\footnote{Če okolica ni konveksna, lahko pri uporabi Lagrangevega izreka ">pademo ven"< iz nje.} okolici točke $a$, kjer veljajo zgornje predpostavke.\footnote{Na predavanjih je bil predstavljen dokaz za $n=2$, to pa je njegova splošna oblika.} Po Lagrangevem izreku je
+\begin{align*}
+I&=f(a+h)-f(a)
+\\
+&=\sum_{i=1}^n\left(f(a_1,\dots, a_i+h_i,\dots,a_n+h_n)-f(a_1,\dots, a_i,a_{i+1}+h_{i+1},\dots,a_n+h_n)\right)
+\\
+&=\sum_{i=1}^n f_{x_i}(a_1,\dots,a_i',a_{i+1}+h_{i+1},\dots,a_n+h_n)\cdot h_i,
+\end{align*}
+kjer je $a_i'$ med $a_i$ in $a_i+h_i$ za vse $i$. Ker so parcialni odvodi zvezni, za
+\[
+\eta_i(h)=f_{x_i}(a_1,\dots,a_i',a_{i+1}+h_{i+1},\dots,a_n+h_n)-f_{x_i}(a)
+\]
+velja
+\[
+\lim_{h\to 0}\eta_i(h)=0.
+\]
+Naj bo
+\[
+o(h)=\sum_{i=1}^n\eta_i(h)\cdot h_i.
+\]
+Dobimo
+\[
+f(a+h)=f(a)+\sum_{i=1}^n f_{x_i}(a)\cdot h_i+o(h).
+\]
+Za dokaz obstoja diferenciala je tako dovolj dokazati, da je
+\[
+\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+\]
+Velja pa
+\[
+\frac{\abs{o(h)}}{\norm{h}}\leq\sum_{i=1}^n\frac{\abs{h_i}}{\norm{h}}\cdot\abs{\eta_i(h)}\leq\sum_{i=1}^n \abs{\eta_i(h)},
+\]
+kar je v limiti enako $0$.
+\end{proof}
+
+\begin{posledica}
+Vse elementarne funkcije so diferenciabilne, kjer so definirane.
+\end{posledica}
+
+\newpage
+
+\subsection{Višji parcialni odvodi}
+
+\begin{izrek}
+Naj bosta parcialna odvoda $\frac{\partial f}{\partial x_i}$ in $\frac{\partial f}{\partial x_j}$ v okolici $a$ zvezna in naj na tek okolici obstajata
+\[
+\frac{\partial}{\partial x_i}\left(\frac{\partial f}{\partial x_j}\right)\quad\text{ter}\quad\frac{\partial}{\partial x_j}\left(\frac{\partial f}{\partial x_i}\right),
+\]
+ki sta zvezna v $a$. Tedaj velja
+\[
+\frac{\partial}{\partial x_i}\left(\frac{\partial f}{\partial x_j}\right)(a)=\frac{\partial}{\partial x_j}\left(\frac{\partial f}{\partial x_i}\right)(a).
+\]
+\end{izrek}
+
+\begin{opomba}
+Pravimo, da parcialni odvodi komutirajo in pišemo $\frac{\partial^2f}{\partial x_i\partial x_j}$.
+\end{opomba}
