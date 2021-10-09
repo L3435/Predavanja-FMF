@@ -125,6 +125,7 @@
 \DeclareMathOperator{\enm}{End}
 \DeclareMathOperator{\aut}{Aut}
 \DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\grad}{grad}
 \providecommand{\pot}{\mathcal{P}}
 \providecommand{\rel}[1]{\mathrel{#1}}
 \providecommand{\set}[1]{\left\{#1\right\}}
@@ -151,6 +152,8 @@
 \rhead{Luka Horjak}
 \cfoot{\thepage}
 
+\RequirePackage[useregional]{datetime2}
+\newcommand{\datum}[1]{\marginpar{\vspace{\baselineskip}\rotatebox{-90}{\color{gray}{\DTMdate{#1}}}}}
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 
 \setcounter{tocdepth}{2}
