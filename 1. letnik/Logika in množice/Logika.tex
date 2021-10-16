@@ -606,7 +606,7 @@ Naj $P(x)$ označuje ">$p$ je praštevilo"< in naj $V(x,y)$ označuje $x>y$. Dol
 \]
 \item Naravno število $n$ je praštevilo, če in samo če ima natanko dva naravna delitelja.
 
-Naj $E(x)$ označuje ">$x=y$"< in $f(x,y)$ označuje $x\cdot y$. Zgornjo izjavo lahko tako prevedemo v
+Naj $E(x, y)$ označuje ">$x=y$"< in $f(x,y)$ označuje $x\cdot y$. Zgornjo izjavo lahko tako prevedemo v
 
 \[
 \forall x\colon(P(x)\iff V(x,1)\land \forall u~\forall v\colon (E(x,f(u,v))\implies E(u,1)\lor E(v,1))),
@@ -1594,7 +1594,7 @@ Relacija $R\subseteq A\times A$ je \emph{ekvivalenčna}\index{Relacija!Ekvivalen
 Naj bo $R\subseteq A\times A$ ekvivalenčna relacija.
 
 \begin{enumerate}
-\item Vsakemu $x\in A$ priredimo \emph{ekvivalenčni razred}\index{Ekvivalenčni razred} $R[x]=\set{y\in A\mid y\rel{R}x}$. Elementu $x$ je \emph{predstavnik} $R[x]$.
+\item Vsakemu $x\in A$ priredimo \emph{ekvivalenčni razred}\index{Ekvivalenčni razred} $R[x]=\set{y\in A\mid y\rel{R}x}$. Element $x$ je \emph{predstavnik} $R[x]$.
 \item \emph{Faktorska} ali \emph{kvocientna množica}\index{Faktorska množica} $A$ po $R$ je množica vseh ekvivalenčnih razredov $R$ v $A$:
 \[
 A/R=\set{R[x]\mid x\in A}.
@@ -1699,7 +1699,7 @@ Za poljubne $R,S,T\subseteq A\times A$ velja
 \begin{multicols}{2}
 \begin{itemize}
 \item $R\circ(S\cup T)=R\circ S\cup R\circ T$
-\item $(R\cup S)\circ T=T\circ T\cup S\circ T$
+\item $(R\cup S)\circ T=R\circ T\cup S\circ T$
 \end{itemize}
 \end{multicols}
 \vspace{-12pt}
