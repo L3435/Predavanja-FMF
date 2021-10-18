@@ -1,31 +1,135 @@
-% ---- 5. 10. 2021 ----
-
 \section{Prostori in preslikave}
 
 \subsection{Topološki prostori}
 
+\datum{2021-10-5}
+
 \begin{okvir}
 \begin{definicija}
-Naj bo $X$ množica. \emph{Topologija}\index{Topologija} na $X$ je družina $\mathcal{T}$ podmnožic $X$, ki zadošča pogojem:
+Naj bo $X$ množica. \emph{Topologija}\index{Topologija} na $X$ je
+družina $\mathcal{T}$ podmnožic $X$, ki zadošča pogojem:
 
 \begin{enumerate}[i)]
-\item $\emptyset, X\in\mathcal{T}$,
-\item poljubna unija elementov $\mathcal{T}$ je element $\mathcal{T}$,
-\item poljuben končen presek elementov $\mathcal{T}$ je element $\mathcal{T}$.
+\item $\emptyset, X \in \mathcal{T}$,
+\item poljubna unija elementov $\mathcal{T}$ je element
+$\mathcal{T}$,
+\item poljuben končen presek elementov $\mathcal{T}$ je element
+$\mathcal{T}$.
 \end{enumerate}
 
-\emph{Topološki prostor}\index{Topološki prostor} je par $(X,\mathcal{T})$. Elementom $\mathcal{T}$ pravimo \emph{odprte množice}\index{Topologija!Odprte množice}.
+\emph{Topološki prostor}\index{Topološki prostor} je par
+$(X,\mathcal{T})$. Elementom $\mathcal{T}$ pravimo
+\emph{odprte množice}\index{Topologija!Odprte, zaprte množice},
+njihovim komplementom pa \emph{zaprte}.
 \end{definicija}
 \end{okvir}
 
 \begin{opomba}
-V metričnih prostorih $(X,d)$ odprte množice\footnote{Tu vzamemo definicijo odprtih množic v metričnih prostorih.} tvorijo topologijo $\mathcal{T}_d$.
+V metričnih prostorih $(X,d)$ odprte množice\footnote{Tu vzamemo
+definicijo odprtih množic v metričnih prostorih.} tvorijo
+topologijo $\mathcal{T}_d$.
 \end{opomba}
 
 \begin{definicija}
-Topološki prostor $(X,\mathcal{T})$ je \emph{metrizabilen}\index{Topološki prostor!Metrizabilen}, če obstaja taka metrika $d$ na $X$, da je $\mathcal{T}=\mathcal{T}_d$ pri zgornjih oznakah.
+Topološki prostor $(X,\mathcal{T})$ je
+\emph{metrizabilen}\index{Topološki prostor!Metrizabilen}, če
+obstaja taka metrika $d$ na $X$, da je
+$\mathcal{T} = \mathcal{T}_d$ pri zgornjih oznakah.
 \end{definicija}
 
 \begin{opomba}
-Za metriko $d'(x,x')=\min\set{d(x,x'),1}$ velja $\mathcal{T}_d=\mathcal{T}_{d'}$.
+Za metriko $d'(x,x') = \min \set{d(x,x'),1}$ velja
+$\mathcal{T}_d = \mathcal{T}_{d'}$.
 \end{opomba}
+
+\newpage
+
+\subsection{Zvezne preslikave}
+
+\datum{2021-10-12}
+
+\begin{okvir}
+\begin{definicija}
+Preslikava $f \colon (X,\mathcal{T})\to(X',\mathcal{T}')$ je
+\emph{zvezna}\index{Preslikava!Zvezna}, če je praslika vsake odprte
+množice odprta, oziroma
+\[
+V\in\mathcal{T}' \implies f^{-1}(V) \in \mathcal{T}.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Zvezne preslikave med metričnimi prostori so zvezne tudi glede na z
+metrikami porojene topologije.
+\end{opomba}
+
+\begin{opomba}
+Identiteta $\id \colon (X,\mathcal{T}) \to (X,\mathcal{T}')$ je
+zvezna natanko tedaj, ko je $\mathcal{T}' \subseteq \mathcal{T}$.
+Pravimo, da je topologija $\mathcal{T}$
+\emph{finejša}\index{Topologija!Finejša, bolj groba},
+$\mathcal{T}'$ pa
+\emph{bolj groba}.
+\end{opomba}
+
+\begin{trditev}
+Kompozitum zveznih preslikav je zvezna preslikava.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $f \colon (X,\mathcal{T}) \to (X',\mathcal{T}')$ in
+$g \colon (X',\mathcal{T}') \to (X'',\mathcal{T}'')$ zvezni. Sledi
+\[
+V \in \mathcal{T}'' \implies g^{-1}(V) \in \mathcal{T}' \implies
+(g \circ f)^{-1}(V) \in \mathcal{T}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Množico vseh zveznih preslikav med $(X,\mathcal{T})$ in
+$(Y,\mathcal{T}')$ označimo z $\mathcal{C}((X,\mathcal{T}),
+(Y,\mathcal{T}'))$, oziroma $\mathcal{C}(X,Y)$.
+\end{opomba}
+
+\begin{izrek}
+Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $f \colon (X,\mathcal{T}) \to (Y,\mathcal{T}')$ je zvezna,
+\item $V \in \mathcal{T}' \implies f^{-1}(V) \in \mathcal{T}$,
+\item $B^\mathsf{c} \in \mathcal{T}' \implies
+(f^{-1}(B))^\mathsf{c} \in \mathcal{T}$,
+\item $\forall A \subseteq X \colon f(\overline{A}) \subseteq
+\overline{f(A)}$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Prvi dve trditvi sta očitno ekvivalentni po definiciji zveznosti.
+2. in 3. trditev sta očitno ekvivalentni, saj velja
+$f^{-1}(B^\mathsf{c}) = f^{-1}(B)^\mathsf{c}$. Dokažimo še
+ekvivalenco 3. in 4. trditve.
+
+Naj bo $A\subseteq X$ poljubna in predpostavimo, da velja 3.
+trditev. Sledi, da je
+\[
+A \subseteq f^{-1}(f(A)) \subseteq f^{-1}(\overline{f(A)}).
+\]
+Desna stran je zaprta množica, zato je
+$\overline{A} \subseteq f^{-1}(\overline{f(A)})$ in
+\[
+f(\overline{A}) \subseteq \overline{f(A)}.
+\]
+Sedaj predpostavimo, da velja 4. točka. Naj bo $B$ poljubna zaprta
+podmnožica $Y$. Potem je
+\[
+f(\overline{f^{-1}(B)}) \subseteq \overline{f(f^{-1}(B))}
+\subseteq \overline{B} = B.
+\]
+Sledi, da je
+\[
+\overline{f^{-1}(B)} \subseteq f^{-1}(B),
+\]
+zato je $f^{-1}(B)$ zaprta.
+\end{proof}
