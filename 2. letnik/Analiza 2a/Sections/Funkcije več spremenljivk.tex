@@ -4,21 +4,30 @@
 
 \datum{2021-10-5}
 \begin{definicija}
-\emph{Prostor $\R^n$} je kartezični produkt $\underbrace{\R\times\dots\times\R}_n$. Na njem definiramo seštevanje in množenje s skalarjem po komponentah. S tema operacijama je $(\R,+,\cdot)$ vektorski prostor nad $\R$. Posebej definiramo še skalarni produkt
+\emph{Prostor $\R^n$} je kartezični produkt
+$\underbrace{\R \times \dots \times \R}_n$. Na njem definiramo
+seštevanje in množenje s skalarjem po komponentah. S tema
+operacijama je $(\R,+,\cdot)$ vektorski prostor nad $\R$. Posebej
+definiramo še skalarni produkt
 \[
-x\cdot y=\sum_{i=1}^n x_iy_i,
+x \cdot y = \sum_{i=1}^n x_iy_i,
 \]
-ki nam da normo $\norm{x}=\sqrt{x\cdot x}$ in metriko $d(x,y)=\norm{x-y}$. $(\R^n,d)$ je tako metrični prostor.
+ki nam da normo $\norm{x}=\sqrt{x \cdot x}$ in metriko
+$d(x,y) = \norm{x-y}$. $(\R^n,d)$ je tako metrični prostor.
 \end{definicija}
 
 \begin{definicija}
-Naj bosta $a,b\in\R^n$ vektorja, za katera je $a_i\leq b_i$ za vse $i\in\set{1,\dots,n}$. \emph{Zaprt kvader}\index{Kvader}, ki ga določata $a$ in $b$, je množica
+Naj bosta $a,b \in \R^n$ vektorja, za katera je $a_i \leq b_i$ za
+vse $i \in \set{1,\dots,n}$. \emph{Zaprt kvader}\index{Kvader}, ki
+ga določata $a$ in $b$, je množica
 \[
-[a,b]=\setb{x\in\R^n}{\forall i\in\set{1,\dots,n}\colon a_i\leq x_i\leq b_i}.
+[a,b] = \setb{x\in\R^n}{\forall i \in \set{1,\dots,n} \colon
+a_i \leq x_i \leq b_i}.
 \]
 Podobno definiramo \emph{odprt kvader} kot
 \[
-(a,b)=\setb{x\in\R^n}{\forall i\in\set{1,\dots,n}\colon a_i<x_i<b_i}.
+(a,b) = \setb{x\in\R^n}{\forall i \in \set{1,\dots,n} \colon
+a_i < x_i < b_i}.
 \]
 \end{definicija}
 
@@ -27,7 +36,9 @@ Odprte množice v normah $\norm{x}_\infty$ in $\norm{x}_2$ so iste.
 \end{opomba}
 
 \begin{izrek}
-Množica $K\subseteq\R^n$ je kompaktna natanko tedaj, ko je zaprta in omejena.\footnote{Za dokaz glej izrek 7.5.6 v zapiskih predmeta Analiza 1 prvega letnika.}
+Množica $K\subseteq\R^n$ je kompaktna natanko tedaj, ko je zaprta
+in omejena.\footnote{Za dokaz glej izrek 7.5.6 v zapiskih predmeta
+Analiza 1 prvega letnika.}
 \end{izrek}
 
 \newpage
@@ -35,22 +46,32 @@ Množica $K\subseteq\R^n$ je kompaktna natanko tedaj, ko je zaprta in omejena.\f
 \subsection{Zaporedja v $\R^n$}
 
 \begin{trditev}
-Zaporedje $\set{a_m}$ v $\R^n$ konvergira natanko tedaj, ko za vse $1\leq j\leq n$ konvegira zaporedje koordinat $\set{a_j^m}$. Tedaj velja
+Zaporedje $\set{a_m}$ v $\R^n$ konvergira natanko tedaj, ko za vse
+$1 \leq j \leq n$ konvegira zaporedje koordinat $\set{a_j^m}$.
+Tedaj velja
 \[
-\lim_{m\to\infty} a_m=\left(\lim_{m\to\infty} a_1^m,\dots,\lim_{m\to\infty} a_n^m\right).
+\lim_{m\to\infty} a_m = \left(\lim_{m\to\infty} a_1^m, \dots,
+\lim_{m\to\infty} a_n^m\right).
 \]
 \end{trditev}
 
 \begin{proof}
-Predpostavimo, da zaporedje konvergira k točki $a$. Za vsak $\varepsilon>0$ tako obstaja tak $m_0\in\N$, da je $d(a_m,a)<\varepsilon$ za vse $m\geq m_0$. Sledi, da je
+Predpostavimo, da zaporedje konvergira k točki $a$. Za vsak
+$\varepsilon>0$ tako obstaja tak $m_0 \in \N$, da je
+$d(a_m,a) < \varepsilon$ za vse $m \geq m_0$. Sledi, da je
 \[
-\sqrt{\sum_{i=1}^n \left(a_i^m-a_i\right)^2}<\varepsilon,
+\sqrt{\sum_{i=1}^n \left(a_i^m - a_i\right)^2} < \varepsilon,
 \]
-zato je $\abs{a_j^m-a_j}<\varepsilon$.
+zato je $\abs{a_j^m - a_j} < \varepsilon$.
 
-Če konvergirajo zaporedja koordinat, pa za vsak $\varepsilon>0$ obstaja tak $m_j\in\N$, da je $\abs{a_j^m-a_j}<\frac{\varepsilon}{\sqrt{n}}$ za vse $m\geq m_j$. Naj bo $m_0=\max\set{m_1,\dots,m_n}$. Potem za vsak $m\geq m_0$ velja
+Če konvergirajo zaporedja koordinat, pa za vsak $\varepsilon>0$
+obstaja tak $m_j \in \N$, da je
+$\abs{a_j^m - a_j} < \frac{\varepsilon}{\sqrt{n}}$ za vse
+$m \geq m_j$. Naj bo $m_0 = \max\set{m_1, \dots, m_n}$. Potem za
+vsak $m \geq m_0$ velja
 \[
-d(a^m,a)=\sqrt{\sum_{i=1}^n (a_i^m-a_i)^2}<\sqrt{n\cdot\frac{\varepsilon^2}{n}}=\varepsilon.\qedhere
+d(a^m,a) = \sqrt{\sum_{i=1}^n (a_i^m - a_i)^2}
+< \sqrt{n \cdot \frac{\varepsilon^2}{n}} = \varepsilon. \qedhere
 \]
 \end{proof}
 
@@ -59,32 +80,46 @@ d(a^m,a)=\sqrt{\sum_{i=1}^n (a_i^m-a_i)^2}<\sqrt{n\cdot\frac{\varepsilon^2}{n}}=
 \subsection{Zveznost preslikav iz $\R^n$ v $\R^m$}
 
 \begin{definicija}
-Naj bo $D\subseteq\R^n$ in $f\colon D\to\R^m$ preslikava. Pravimo, da je $f$ \emph{zvezna}\index{Preslikava!Zvezna} v točki $a\in D$, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsak $x\in D$, za katerega je $\norm{x-a}<\delta$, velja
+Naj bo $D \subseteq \R^n$ in $f \colon D\to\R^m$ preslikava.
+Pravimo, da je $f$ \emph{zvezna}\index{Preslikava!Zvezna} v točki
+$a\in D$, če za vsak $\varepsilon > 0$ obstaja tak $\delta > 0$, da
+za vsak $x \in D$, za katerega je $\norm{x - a} < \delta$, velja
 \[
-\norm{f(x)-f(a)}<\varepsilon.
+\norm{f(x) - f(a)} < \varepsilon.
 \]
-Pravimo, da je $f$ zvezna na $D$, če je zvezna v vsaki točki $a\in D$.
+Pravimo, da je $f$ zvezna na $D$, če je zvezna v vsaki točki
+$a \in D$.
 \end{definicija}
 
 \begin{definicija}
-Preslikava $f$ je \emph{enakomerno zvezna na $D$}\index{Preslikava!Enakomerno zvezna}, če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da za vsaka $x,y\in D$, za katera je $\norm{x-y}<\delta$, velja
+Preslikava $f$ je \emph{enakomerno zvezna na $D$}\index{Preslikava!
+Enakomerno zvezna}, če za vsak $\varepsilon > 0$ obstaja tak
+$\delta > 0$, da za vsaka $x,y \in D$, za katera je
+$\norm{x - y} < \delta$, velja
 \[
-\norm{f(x)-f(y)}<\varepsilon.
+\norm{f(x) - f(y)} < \varepsilon.
 \]
 \end{definicija}
 
 \begin{opomba}
-Če je $m=1$, pravimo, da je $f$ \emph{funkcija $n$ spremenljivk}\index{Preslikava!Funkcija več spremenljivk} na $D$. Pišemo $f(x)=f(x_1,\dots,x_n)$.
+Če je $m = 1$, pravimo, da je $f$
+\emph{funkcija $n$ spremenljivk}\index{Preslikava!Funkcija več
+spremenljivk} na $D$. Pišemo $f(x) = f(x_1, \dots, x_n)$.
 \end{opomba}
 
 \begin{izrek}
-Naj bo $D\subseteq\R^n$ in $f,g\colon D\to\R$ funkciji, zvezni v točki $a$. Tedaj so v točki $a$ zvezne tudi funkcije $f+g$, $f-g$ in $\lambda f$ za $\lambda\in\R$ in $f\cdot g$. Če je $g(x)\ne 0$ na $D$, je tudi $\frac{f}{g}$ zvezna v $a$.
+Naj bo $D \subseteq \R^n$ in $f, g \colon D \to \R$ funkciji,
+zvezni v točki $a$. Tedaj so v točki $a$ zvezne tudi funkcije
+$f + g$, $f - g$ in $\lambda f$ za $\lambda \in \R$ in $f\cdot g$.
+Če je $g(x) \ne 0$ na $D$, je tudi $\frac{f}{g}$ zvezna v $a$.
 \end{izrek}
 
 \obvs
 
 \begin{opomba}
-Seveda so vse konstantne in koordinatne funkcije zvezne (projekcije). Sledi, da so vse racionalne funkcije zvezne, kjer so definirane.
+Seveda so vse konstantne in koordinatne funkcije zvezne
+(projekcije). Sledi, da so vse racionalne funkcije zvezne, kjer so
+definirane.
 \end{opomba}
 
 \begin{opomba}
@@ -93,7 +128,10 @@ Kompozitum zvenih preslikav je zvezen.
 
 \datum{2021-10-6}
 \begin{izrek}
-Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ funkcija, zvezna v notranji točki $a\in D$. Tedaj je v točki $a$ funkcija $f$ zvezna kot funkcija vsake spremenljivke posebej.\footnote{To pomeni, da je funkcija $f_i(t)=f(a_1,\dots,t,\dots,a_n)$ zvezna.}
+Naj bo $D \subseteq \R^n$ in $f \colon D \to \R$ funkcija, zvezna v
+notranji točki $a \in D$. Tedaj je v točki $a$ funkcija $f$ zvezna
+kot funkcija vsake spremenljivke posebej.\footnote{To pomeni, da je
+funkcija $f_i(t) = f(a_1, \dots, t, \dots, a_n)$ zvezna.}
 \end{izrek}
 
 \obvs
@@ -113,19 +151,31 @@ f(x,y)=\begin{cases}
 \subsection{Preslikave iz $\R^n$ v $\R^m$}
 
 \begin{trditev}
-Naj bo $D\subseteq\R^n$ in $f\colon D\to\R^m$. Označimo
+Naj bo $D \subseteq \R^n$ in $f \colon D \to \R^m$. Označimo
 \[
-f(x_1\dots,x_n)=\left(f_1(x_1,\dots,x_n),\dots,f_m(x_1,\dots,x_n)\right).
+f(x_1, \dots, x_n) =
+\left(f_1(x_1, \dots, x_n), \dots, f_m(x_1, \dots, x_n)\right).
 \]
-Preslikava $f$ je zvezna v $a\in D$ natanko tedaj, ko so vse funkcije $f_1,\dots,f_m$ zvezne v $a$.
+Preslikava $f$ je zvezna v $a \in D$ natanko tedaj, ko so vse
+funkcije $f_1, \dots, f_m$ zvezne v $a$.
 \end{trditev}
 
 \begin{proof}
-Če je $f$ zvezna v $a$, za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da iz $\norm{x-a}<\delta$ sledi $\norm{f(x)-f(a)}<\varepsilon$. Sledi, da je $\abs{f_j(x)-f_j(a)}<\varepsilon$.
+Če je $f$ zvezna v $a$, za vsak $\varepsilon > 0$ obstaja tak
+$\delta > 0$, da iz $\norm{x - a} < \delta$ sledi
+$\norm{f(x) - f(a)} < \varepsilon$. Sledi, da je
+$\abs{f_j(x) - f_j(a)} < \varepsilon$.
 
-Sedaj predpostavimo, da so vse koordinatne funkcije zvezne. Naj bo $\varepsilon>0$. Za vsak $j$ obstaja tak $\delta_j$, da iz $\norm{x-a}<\delta_j$ sledi $\abs{f_j(x)-f_j(a)}<\frac{\varepsilon}{\sqrt{m}}$. Naj bo $\delta=\min\set{\delta_1,\dots,\delta_m}$. Potem za vse $\norm{x-a}<\delta$ velja
+Sedaj predpostavimo, da so vse koordinatne funkcije zvezne. Naj bo
+$\varepsilon > 0$. Za vsak $j$ obstaja tak $\delta_j$, da iz
+$\norm{x - a} < \delta_j$ sledi
+$\abs{f_j(x) - f_j(a)} < \frac{\varepsilon}{\sqrt{m}}$. Naj bo
+$\delta = \min\set{\delta_1, \dots, \delta_m}$. Potem za vse
+$\norm{x - a} < \delta$ velja
 \[
-\norm{f(x)-f(a)}=\sqrt{\sum_{i=1}^n\left(f_i(x)-f_i(a)\right)^2}<\sqrt{m\cdot\frac{\varepsilon^2}{m}}=\varepsilon.\qedhere
+\norm{f(x) - f(a)} =
+\sqrt{\sum_{i=1}^n \left(f_i(x) - f_i(a)\right)^2} <
+\sqrt{m \cdot \frac{\varepsilon^2}{m}} = \varepsilon. \qedhere
 \]
 \end{proof}
 
@@ -134,24 +184,32 @@ Vsaka linearna preslikava je zvezna.
 \end{posledica}
 
 \begin{trditev}
-Naj bo $A\colon\R^n\to\R^m$ linearna preslikava. Potem obstaja tak $M\in\R$, da je
+Naj bo $A \colon \R^n \to \R^m$ linearna preslikava. Potem obstaja
+tak $M \in \R$, da je
 \[
-\frac{\norm{Ax}}{\norm{x}}\leq M
+\frac{\norm{Ax}}{\norm{x}} \leq M
 \]
-za vse $x\in\R^n$ in obstaja supremum
+za vse $x \in \R^n$ in obstaja supremum
 \[
-\sup_{x\ne 0}\frac{\norm{Ax}}{\norm{x}}=\sup_{\norm{x}=1}\norm{Ax}=\norm{A}.
+\sup_{x \ne 0} \frac{\norm{Ax}}{\norm{x}} =
+\sup_{\norm{x} = 1}\norm{Ax} =
+\norm{A}.
 \]
 \end{trditev}
 
 \begin{proof}
-Naj bo $A=[a_{i,j}]$ in $C=\max_{i,j}\abs{a_{i,j}}$. Za vsako komponentno funkcijo $A_i$ je po Cauchyjevi neenakosti
+Naj bo $A = [a_{i,j}]$ in $C = \max_{i,j}\abs{a_{i,j}}$. Za vsako
+komponentno funkcijo $A_i$ je po Cauchyjevi neenakosti
 \[
-\abs{A_i(x)}\leq C\cdot\sum_{i=1}^n \abs{x_i}\leq C\sqrt{n}\cdot \norm{x}.
+\abs{A_i(x)} \leq
+C \cdot \sum_{i=1}^n \abs{x_i} \leq
+C\sqrt{n} \cdot \norm{x}.
 \]
 Sledi, da je
 \[
-\norm{Ax}=\sqrt{\sum_{i=1}^m L_i(x)^2}\leq C\sqrt{nm}\cdot\norm{x}.\qedhere
+\norm{Ax} =
+\sqrt{\sum_{i=1}^m L_i(x)^2} \leq
+C \sqrt{nm} \cdot \norm{x}. \qedhere
 \]
 \end{proof}
 
@@ -160,29 +218,37 @@ Sledi, da je
 \subsection{Parcialni odvodi in diferenciabilnost}
 
 \begin{definicija}
-Naj bo $a$ notranja točka množice $D\subseteq\R^n$ in $f\colon D\to\R$ funkcija. Če obstaja limita
+Naj bo $a$ notranja točka množice $D \subseteq \R^n$ in
+$f \colon D \to \R$ funkcija. Če obstaja limita
 \[
-\lim_{h\to 0}\frac{f(a_1,\dots,a_{i-1},a_i+h,\dots)-f(a)}{h},
+\lim_{h \to 0}\frac{f(a_1, \dots, a_{i-1}, a_i+h, \dots) - f(a)}{h},
 \]
-to limito imenujemo \emph{parcialni odvod}\index{Preslikava!Parcialni odvod} funkcije $f$ po spremenljivki $x_i$ v točki $a$ in ga označimo z
+to limito imenujemo \emph{parcialni odvod}\index{Preslikava!
+Parcialni odvod} funkcije $f$ po spremenljivki $x_i$ v točki $a$ in
+ga označimo z
 \[
-\frac{\partial f}{\partial x_i}(a)=f_{x_i}(a)=(D_if)(a).
+\frac{\partial f}{\partial x_i}(a) = f_{x_i}(a) = (D_if)(a).
 \]
 \end{definicija}
 
 \begin{definicija}
-Naj bo $D\subseteq\R^n$ in $f\colon D\to\R$ preslikava, $a$ pa notranja točka množice $D$. Pravimo, da je $f$ \emph{diferenciabilna}\index{Preslikava!Diferenciabilna, diferencial} v točki $a$, če obstaja taka linearna preslikava $L\colon\R^n\to\R$, da je
+Naj bo $D \subseteq \R^n$ in $f \colon D \to \R$ preslikava, $a$ pa
+notranja točka množice $D$. Pravimo, da je $f$
+\emph{diferenciabilna}\index{Preslikava!Diferenciabilna} v točki
+$a$, če obstaja taka linearna preslikava
+$L \colon \R^n \to \R$, da je
 \[
-f(a+h)=f(a)+L(h)+o(h),
+f(a+h) = f(a) + L(h) + o(h),
 \]
 kjer je
 \[
-\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+\lim_{h \to 0}\frac{\abs{o(h)}}{\norm{h}} = 0.
 \]
 \end{definicija}
 
 \begin{opomba}
-Pri $n=1$ je ta definicija ekvivalentna odvedljivosti $f$ v točki $a$.
+Pri $n=1$ je ta definicija ekvivalentna odvedljivosti $f$ v točki
+$a$.
 \end{opomba}
 
 \begin{trditev}
@@ -190,64 +256,80 @@ Pri $n=1$ je ta definicija ekvivalentna odvedljivosti $f$ v točki $a$.
 \end{trditev}
 
 \begin{proof}
-Predpostavimo, da sta $L_1$ in $L_2$ linearni funkciji, za kateri je
+Predpostavimo, da sta $L_1$ in $L_2$ linearni funkciji, za kateri
+je
 \[
-f(a+h)=f(a)+L_1(h)+o_1(h)=f(a)+L_2(h)+o_2(h),
+f(a+h) = f(a) + L_1(h) + o_1(h) = f(a) + L_2(h) + o_2(h),
 \]
 pri čemer velja
 \[
-\lim_{h\to 0}\frac{\abs{o_1(h)}}{\norm{h}}=\lim_{h\to 0}\frac{\abs{o_2(h)}}{\norm{h}}=0.
+\lim_{h \to 0}\frac{\abs{o_1(h)}}{\norm{h}} =
+\lim_{h \to 0}\frac{\abs{o_2(h)}}{\norm{h}} = 0.
 \]
 Potem velja
 \[
-(L_1-L_2)(h)=(o_2(h)-o_1(h))=o(h),
+(L_1 - L_2)(h) = (o_2(h) - o_1(h)) = o(h),
 \]
 kjer je
 \[
-\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+\lim_{h \to 0}\frac{\abs{o(h)}}{\norm{h}} = 0.
 \]
 Sledi, da je
 \[
-\lim_{h\to 0}\frac{(L_1-L_2)(h)}{\norm{h}}=0.
+\lim_{h \to 0}\frac{(L_1 - L_2)(h)}{\norm{h}} = 0.
 \]
 Ker pa je
 \[
-\frac{(L_1-L_2)(0,\dots,h,\dots)}{\abs{h}}=\ell_i,
+\frac{(L_1 - L_2)(0, \dots, h, \dots)}{\abs{h}} = \ell_i,
 \]
-kjer je $\ell_i$ koeficient pred $i$-to spremenljivko v $L_1-L_2$, sledi, da je $L_1-L_2=0$.
+kjer je $\ell_i$ koeficient pred $i$-to spremenljivko v
+$L_1 - L_2$, sledi, da je $L_1 - L_2 = 0$.
 \end{proof}
 
 \datum{2021-10-7}
 
 \begin{opomba}
-Preslikavi $L$ pravimo \emph{diferencial} funkcije $f$ v točki $a$ in označimo $L=d_af$. Funkcija $h\mapsto f(a)+d_af(h)$ je najboljša afina aproksimacija funkcije $h\mapsto f(a+h)$ v okolici točke $a$.
+Preslikavi $L$ pravimo \emph{diferencial} funkcije $f$ v točki $a$
+in ga označimo z $L = d_af$. Funkcija $h \mapsto f(a) + d_af(h)$ je
+najboljša afina aproksimacija funkcije $h \mapsto f(a+h)$ v okolici
+točke $a$.
 \end{opomba}
 
 \begin{izrek}
-Če je $f$ v notranji točki $a\in D$ diferenciabilna, je v $a$ zvezna in parcialno odvedljiva glede na vse spremenljivke, diferencial $f$ v točki $a$ pa je enak
+Če je $f$ v notranji točki $a \in D$ diferenciabilna, je v $a$
+zvezna in parcialno odvedljiva glede na vse spremenljivke,
+diferencial $f$ v točki $a$ pa je enak
 \[
-(d_af)(h)=\sum_{i=1}^n \frac{\partial f}{\partial x_i}(a) h_i.
+(d_af)(h) = \sum_{i=1}^n \frac{\partial f}{\partial x_i}(a) h_i.
 \]
 \end{izrek}
 
 \begin{proof}
 Naj bo $L$ diferencial $f$ v točki $a$. Sledi, da je
 \[
-f(a+h)=f(a)+L(h)+o(h)\quad\text{in}\quad\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+f(a+h) = f(a) + L(h) + o(h)
+\quad \text{in} \quad
+\lim_{h \to 0}\frac{\abs{o(h)}}{\norm{h}} = 0.
 \]
 Velja
 \[
-L(h)=\sum_{i=1}^n \ell_i h_i,
+L(h) = \sum_{i=1}^n \ell_i h_i,
 \]
 zato je $L$ zvezna v $0$. Tako je
 \[
-\lim_{h\to 0}f(a+h)=f(a)+\lim_{h\to 0} L(h)+\lim_{h\to 0}o(h)=f(a).
+\lim_{h \to 0}f(a+h) =
+f(a) + \lim_{h \to 0} L(h) + \lim_{h \to 0}o(h) =
+f(a).
 \]
-Naj bo sedaj $h=(0,\dots,h_i,\dots,0)$. Velja $\norm{h}=\abs{h_i}$, zato je
+Naj bo sedaj $h = (0,\dots, h_i, \dots,0)$. Velja
+$\norm{h} = \abs{h_i}$, zato je
 \[
-\frac{f(a+h)-f(a)}{h_i}=\frac{L(h)}{h_i}+\frac{o(h)}{h_i}=\ell_i+\frac{o(h)}{h_i}.
+\frac{f(a+h) - f(a)}{h_i} =
+\frac{L(h)}{h_i} + \frac{o(h)}{h_i} =
+\ell_i + \frac{o(h)}{h_i}.
 \]
-V limiti je to enako $\ell_i$, zato ima $f$ parcialni odvod. Očitno velja tudi navedena enakost.
+V limiti je to enako $\ell_i$, zato ima $f$ parcialni odvod. Očitno
+velja tudi navedena enakost.
 \end{proof}
 
 \begin{opomba}
@@ -263,47 +345,69 @@ f(x,y)=\begin{cases}
 \begin{opomba}
 Diferencial $d_af$ lahko identificiramo z vektorjem
 \[
-\left(\frac{\partial f}{\partial x_1}(a),\dots,\frac{\partial f}{\partial x_n}(a)\right),
+\left(
+	\frac{\partial f}{\partial x_1}(a),
+	\dots,
+	\frac{\partial f}{\partial x_n}(a)
+\right),
 \]
-ki ga imenujemo \emph{gradient}\index{Preslikava!Gradient} in označimo z $\grad f$. Velja $(d_af)(h)=(\grad f)(a)\cdot h$.
+ki ga imenujemo \emph{gradient}\index{Preslikava!Gradient} in
+označimo z $\grad f$. Velja $(d_af)(h) = (\grad f)(a) \cdot h$.
 \end{opomba}
 
 \begin{izrek}
-Naj bo $f$ v okolici $a$ parcialno odvedljiva glede na vse spremenljivke in naj bodo parcialni odvodi zvezni v $a$. Potem je $f$ v $a$ diferenciabilna.
+Naj bo $f$ v okolici $a$ parcialno odvedljiva glede na vse
+spremenljivke in naj bodo parcialni odvodi zvezni v $a$. Potem je
+$f$ v $a$ diferenciabilna.
 \end{izrek}
 
 \begin{proof}
-Naj bo $h\in\R^n$ vektor z dovolj majhno normo, da je točka $a+h$ v konveksni\footnote{Če okolica ni konveksna, lahko pri uporabi Lagrangevega izreka ">pademo ven"< iz nje.} okolici točke $a$, kjer veljajo zgornje predpostavke.\footnote{Na predavanjih je bil predstavljen dokaz za $n=2$, to pa je njegova splošna oblika.} Po Lagrangevem izreku je
+Naj bo $h \in \R^n$ vektor z dovolj majhno normo, da je točka $a+h$
+v konveksni\footnote{Če okolica ni konveksna, lahko pri uporabi
+Lagrangevega izreka ">pademo ven"< iz nje.} okolici točke $a$, kjer
+veljajo zgornje predpostavke.\footnote{Na predavanjih je bil
+predstavljen dokaz za $n=2$, to pa je njegova splošna oblika.} Po
+Lagrangevem izreku je
 \begin{align*}
-I&=f(a+h)-f(a)
+I &= f(a+h) - f(a)
 \\
-&=\sum_{i=1}^n\left(f(a_1,\dots, a_i+h_i,\dots,a_n+h_n)-f(a_1,\dots, a_i,a_{i+1}+h_{i+1},\dots,a_n+h_n)\right)
+&= \sum_{i=1}^n \left(
+	f(a_1, \dots, a_i + h_i, \dots, a_n + h_n) - 
+	f(a_1, \dots, a_i, a_{i+1} + h_{i+1}, \dots, a_n + h_n)
+\right)
 \\
-&=\sum_{i=1}^n f_{x_i}(a_1,\dots,a_i',a_{i+1}+h_{i+1},\dots,a_n+h_n)\cdot h_i,
+&=\sum_{i=1}^n f_{x_i}(
+	a_1, \dots, a_i', a_{i+1} + h_{i+1}, \dots, a_n + h_n
+) \cdot h_i,
 \end{align*}
-kjer je $a_i'$ med $a_i$ in $a_i+h_i$ za vse $i$. Ker so parcialni odvodi zvezni, za
+kjer je $a_i'$ med $a_i$ in $a_i + h_i$ za vse $i$. Ker so
+parcialni odvodi zvezni, za
 \[
-\eta_i(h)=f_{x_i}(a_1,\dots,a_i',a_{i+1}+h_{i+1},\dots,a_n+h_n)-f_{x_i}(a)
+\eta_i(h) =
+f_{x_i}(a_1, \dots, a_i', a_{i+1} + h_{i+1}, \dots, a_n + h_n)
+- f_{x_i}(a)
 \]
 velja
 \[
-\lim_{h\to 0}\eta_i(h)=0.
+\lim_{h \to 0}\eta_i(h) = 0.
 \]
 Naj bo
 \[
-o(h)=\sum_{i=1}^n\eta_i(h)\cdot h_i.
+o(h) = \sum_{i=1}^n \eta_i(h) \cdot h_i.
 \]
 Dobimo
 \[
-f(a+h)=f(a)+\sum_{i=1}^n f_{x_i}(a)\cdot h_i+o(h).
+f(a+h) = f(a) + \sum_{i=1}^n f_{x_i}(a) \cdot h_i + o(h).
 \]
 Za dokaz obstoja diferenciala je tako dovolj dokazati, da je
 \[
-\lim_{h\to 0}\frac{\abs{o(h)}}{\norm{h}}=0.
+\lim_{h \to 0}\frac{\abs{o(h)}}{\norm{h}} = 0.
 \]
 Velja pa
 \[
-\frac{\abs{o(h)}}{\norm{h}}\leq\sum_{i=1}^n\frac{\abs{h_i}}{\norm{h}}\cdot\abs{\eta_i(h)}\leq\sum_{i=1}^n \abs{\eta_i(h)},
+\frac{\abs{o(h)}}{\norm{h}} \leq
+\sum_{i=1}^n \frac{\abs{h_i}}{\norm{h}} \cdot \abs{\eta_i(h)} \leq
+\sum_{i=1}^n \abs{\eta_i(h)},
 \]
 kar je v limiti enako $0$.
 \end{proof}
@@ -317,16 +421,169 @@ Vse elementarne funkcije so diferenciabilne, kjer so definirane.
 \subsection{Višji parcialni odvodi}
 
 \begin{izrek}
-Naj bosta parcialna odvoda $\frac{\partial f}{\partial x_i}$ in $\frac{\partial f}{\partial x_j}$ v okolici $a$ zvezna in naj na tek okolici obstajata
+Naj bosta parcialna odvoda $\frac{\partial f}{\partial x_i}$ in
+$\frac{\partial f}{\partial x_j}$ v okolici $a$ zvezna in naj na
+tej okolici obstajata
 \[
-\frac{\partial}{\partial x_i}\left(\frac{\partial f}{\partial x_j}\right)\quad\text{ter}\quad\frac{\partial}{\partial x_j}\left(\frac{\partial f}{\partial x_i}\right),
+\frac{\partial}{\partial x_i}\left(
+	\frac{\partial f}{\partial x_j}
+\right)
+\quad \text{ter} \quad
+\frac{\partial}{\partial x_j}\left(
+	\frac{\partial f}{\partial x_i}
+\right),
 \]
 ki sta zvezna v $a$. Tedaj velja
 \[
-\frac{\partial}{\partial x_i}\left(\frac{\partial f}{\partial x_j}\right)(a)=\frac{\partial}{\partial x_j}\left(\frac{\partial f}{\partial x_i}\right)(a).
+\frac{\partial}{\partial x_i}\left(
+	\frac{\partial f}{\partial x_j}
+\right)(a) =
+\frac{\partial}{\partial x_j}\left(
+	\frac{\partial f}{\partial x_i}
+\right)(a).
 \]
 \end{izrek}
 
+\datum{2021-10-12}
+
+\begin{proof}
+Dovolj je dokazati izrek za $n=2$, saj so preostale spremenljivke
+pri parcialnem odvajanju konstantne. Naj na $f$, definirani v
+okolici $(a,b)$, obstajata odvoda $f_x,f_y$, ki sta na tej okolici
+zvezna, in parcialna odvoda $(f_x)_y$ ter $(f_y)_x$, ki sta zvezna
+v $(a,b)$. Naj bo $(h,k)$ po normi dovolj majhen. Označimo
+\[
+\varphi(x) = f(x, b+k) - f(x, b).
+\]
+Potem je
+\[
+J =
+f(a+h, b+k) - f(a, b+k) - f(a+h, b) + f(a, b) =
+\varphi(a+h) - \varphi(a),
+\]
+kar je po Lagrangeu enako
+\[
+\varphi'(a') \cdot h = \left(
+	f_x(a', b+h) - f_x(a', b)
+\right) \cdot h
+\]
+za nek $a'$ med $a$ in $h$. S ponovno uporabo Lagrangevega izreka
+dobimo, da je
+\[
+J = (f_x)_y(a', b')\cdot hk
+\]
+za nek $b'$ med $b$ in $b+h$. Simetrično dobimo, da je
+\[
+J = (f_y)_x(a'', b'')\cdot hk
+\]
+za $a''$ med $a$ in $a+h$ ter $b''$ med $b$ in $b+k$. Sledi, da je
+\[
+(f_x)_y(a', b') = (f_y)_x(a'', b'').
+\]
+Sedaj preprosto vzamemo limito $(h, k) \ to (0, 0)$ in upoštevamo
+zveznost.
+\end{proof}
+
 \begin{opomba}
-Pravimo, da parcialni odvodi komutirajo in pišemo $\frac{\partial^2f}{\partial x_i\partial x_j}$.
+Pravimo, da parcialni odvodi komutirajo in pišemo
+$\frac{\partial^2 f}{\partial x_i\partial x_j}$.
 \end{opomba}
+
+\begin{definicija}
+Naj bo $D$ odprta podmnožica $\R^n$. Vektorski prostor vseh
+$k$-krat zvezno parcialno odvedljivih funkcij na $D$ označimo s
+$\mathcal{C}^k(D)$. Prostor
+\emph{gladkih funkcij}\index{Preslikava!Gladka} na $D$ je
+\[
+\mathcal{C}^\infty(D) = \bigcap_{k=1}^\infty \mathcal{C}^k(D).
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Diferenciabilnost preslikav iz $\R^n$ v $\R^m$}
+
+\begin{okvir}
+\begin{definicija}
+Naj bo $D \subseteq \R^n$ z notranjo točko $a$ in
+$F \colon D \to \R^m$ preslikava, definirana v okolici točke $a$.
+Pravimo, da je $F$
+\emph{diferenciabilna}\index{Preslikava!Diferenciabilna} v točki
+$a$, če obstaja taka linearna preslikava $A \colon \R^n \to \R^m$,
+da je
+\[
+F(a+h) = F(a) + A(h) + o(h),
+\]
+kjer je
+\[
+\lim_{h \to 0} \frac{\norm{o(h)}}{\norm{h}} = 0.
+\]
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Podobno kot pri funkcijah je tak $A$, če obstaja, enolično določen
+in mu pravimo \emph{diferencial} $F$ v točki $a$, kar označimo z
+$d_aF$ ali $(DF)(a)$.
+\end{opomba}
+
+\begin{izrek}
+Preslikava $F$ je diferenciabilna v $a$ natanko tedaj, ko so njene
+koordinatne funkcije diferenciabilne v $a$. Tedaj velja
+\[
+(DF)(a) = 
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &
+\dots                             &
+\frac{\partial f_1}{\partial x_n} \\ 
+\vdots                            &
+\ddots                            &
+\vdots                            \\ 
+\frac{\partial f_m}{\partial x_1} &
+\dots                             &
+\frac{\partial f_m}{\partial x_n}
+\end{bmatrix} 
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $F$ diferenciabilna v $a$. Obstaja matrika $A$, za katero je
+\[
+F(a+h) = F(a) + A(h) + o(h)
+\quad \text{in} \quad
+\lim_{h \to 0} \frac{\norm{o(h)}}{\norm{h}} = 0.
+\]
+Sledi
+\[
+f_j(a+h) = f_j(a) + \left(\sum_{i=1}^n A_{j,i} h_i\right) + o_j(h).
+\]
+Ker je drugi člen na desni strani linearna funkcija v $h$ in
+\[
+\lim_{h \to 0} \frac{\abs{o_j(h)}}{\norm{h}} = 0,
+\]
+je $f_j$ diferenciabilna v $a$.
+
+Predpostavimo sedaj, da so $f_1, \dots, f_m$ diferenciabilne.
+Sledi, da obstajajo taki $A_{i,j}$, da je
+\[
+f_j(a+h) = f_j(a) + \left(\sum_{i=1}^n A_{j,i} h_i\right) + o_j(h),
+\]
+kjer je
+\[
+\lim_{h \to 0} \frac{\abs{o_j(h)}}{\norm{h}} = 0.
+\]
+Sedaj ni težko videti, da za $A = [A_{j,i}]$ in
+$o = (o_1, \dots, o_m)$ velja
+\[
+F(a+h) = F(a) + A(h) + o(h)
+\quad \text{in} \quad
+\lim_{h \to 0} \frac{\norm{o(h)}}{\norm{h}} = 0.
+\]
+Sledi, da je $F$ res diferenciabilna v $a$, parcialni odvodi pa so
+elementi matrike $A$.
+\end{proof}
+
+\begin{posledica}
+Če so vsi parcialni odvodi funkcij $f_1, \dots, f_m$ zvezni v $a$,
+je $F$ diferenciabilna v $a$.
+\end{posledica}
