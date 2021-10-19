@@ -133,3 +133,93 @@ Sledi, da je
 \]
 zato je $f^{-1}(B)$ zaprta.
 \end{proof}
+
+\newpage
+
+\subsection{Homeomorfizmi}
+
+\datum{2021-10-19}
+
+\begin{okvir}
+\begin{definicija}
+Funkcija $f \colon X \to X'$ določa
+\emph{homeomorfizem}\index{Topologija!Homeomorfizem}
+med prostoroma $(X,\mathcal{T})$ in $(X',\mathcal{T}')$, če je $f$
+bijekcija in obenem inducirana bijekcija
+$f \colon \mathcal{T} \to \mathcal{T}'$. Pišemo
+$(X,\mathcal{T}) \approx (X',\mathcal{T})$ in pravimo, da sta
+prostora \emph{homeomorfna}\index{Topološki prostor!Homeomorfen}.
+\end{definicija}
+\end{okvir}
+
+\begin{definicija}
+Preslikava je \emph{odprta}\index{Preslikava!Odprta, zaprta}, če je
+slika vsake odprte podmnožice $X$ odprta v $X'$. Simetrično
+definiramo \emph{zaprte} preslikave.
+\end{definicija}
+
+\begin{trditev}
+Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $f \colon X \to X'$ je homeomorfizem,
+\item $f$ je bijekcija, $f$ in $f^{-1}$ sta zvezni,
+\item $f$ je zvezna, odprta bijekcija,
+\item $f$ je zvezna, zaprta bijekcija.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Topološka lastnost}\index{Topologija!Topološka lastnost} je
+vsaka lastnost topologije, ki se ohranja pri homeomorfizmih.
+\end{definicija}
+
+\begin{opomba}
+Kompaktnost in povezanost sta topološki lastnosti, polnost pa ne.
+\end{opomba}
+
+\begin{definicija}
+Definiramo naslednje množice:
+
+\begin{enumerate}[i)]
+\item $B^n = \setb{\vv{x} \in \R^n}{\norm{\vv{x}} \leq 1}$
+-- zaprta enotska krogla
+\item $\mathring{B}^n = \setb{\vv{x} \in \R^n}{\norm{\vv{x}} < 1}$
+-- odprta enotska krogla
+\item $S^{n-1} = \setb{\vv{x} \in \R^n}{\norm{\vv{x}} = 1}$
+-- enotska sfera
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Velja $\mathring{B}^n \approx \R^n$.
+\end{trditev}
+
+\begin{proof}
+Vzamemo bijekcijo
+\[
+f(\vv{x}) = \frac{\vv{x}}{1 - \norm{\vv{x}}}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Velja $S^{n-1} \setminus \set{(0,0,\dots,1)} \approx \R^{n-1}$.
+\end{trditev}
+
+\begin{proof}
+Naredimo inverzijo v točki $(0,0,\dots,1)$.
+\end{proof}
+
+\begin{opomba}
+Zgornji preslikavi pravimo
+\emph{stereografska projekcija}\index{Preslikava!Stereografska
+projekcija}.
+\end{opomba}
+
+\begin{opomba}
+Posebej velja $S^2 \approx \C \cup \set{\infty}$. Temu prostoru
+pravimo
+\emph{Riemannova sfera}\index{Topološki prostor!Riemannova sfera}.
+\end{opomba}
