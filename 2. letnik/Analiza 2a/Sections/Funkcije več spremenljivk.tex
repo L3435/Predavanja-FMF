@@ -531,18 +531,18 @@ $d_aF$ ali $(DF)(a)$.
 Preslikava $F$ je diferenciabilna v $a$ natanko tedaj, ko so njene
 koordinatne funkcije diferenciabilne v $a$. Tedaj velja
 \[
-(DF)(a) = 
+(DF)(a) =
 \begin{bmatrix}
-\frac{\partial f_1}{\partial x_1} &
+\dfrac{\partial f_1}{\partial x_1} &
 \dots                             &
-\frac{\partial f_1}{\partial x_n} \\ 
+\dfrac{\partial f_1}{\partial x_n} \\ 
 \vdots                            &
 \ddots                            &
 \vdots                            \\ 
-\frac{\partial f_m}{\partial x_1} &
+\dfrac{\partial f_m}{\partial x_1} &
 \dots                             &
-\frac{\partial f_m}{\partial x_n}
-\end{bmatrix} 
+\dfrac{\partial f_m}{\partial x_n}
+\end{bmatrix}
 \]
 \end{izrek}
 
@@ -587,3 +587,181 @@ elementi matrike $A$.
 Če so vsi parcialni odvodi funkcij $f_1, \dots, f_m$ zvezni v $a$,
 je $F$ diferenciabilna v $a$.
 \end{posledica}
+
+\datum{2021-10-19}
+
+\begin{izrek}
+Naj bosta $D \subseteq \R^n$ in $\Omega \subseteq \R^m$ ter
+$a \in D$ in $b \in \Omega$ notranji. Naj bo
+$F \colon D \to \Omega$ diferenciabilna v $a$ z $F(a)=b$ in naj bo
+$G \colon \Omega \to \R^k$ diferenciabilna v $b$. Potem je za
+$\Phi = G \circ F$ diferenciabilna v $a$ in velja
+\[
+(D \Phi)(a) = (DG)(b)(DF)(a) =
+\begin{bmatrix}
+\dfrac{\partial g_1}{\partial x_1} &
+\dots                             &
+\dfrac{\partial g_1}{\partial x_m} \\ 
+\vdots                            &
+\ddots                            &
+\vdots                            \\ 
+\dfrac{\partial g_k}{\partial x_1} &
+\dots                             &
+\dfrac{\partial g_k}{\partial x_m}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\dfrac{\partial f_1}{\partial x_1} &
+\dots                             &
+\dfrac{\partial f_1}{\partial x_n} \\ 
+\vdots                            &
+\ddots                            &
+\vdots                            \\ 
+\dfrac{\partial f_m}{\partial x_1} &
+\dots                             &
+\dfrac{\partial f_m}{\partial x_n}
+\end{bmatrix}.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+F(a+h) = F(a) + (DF)(a) \cdot h + o_F(h),
+\quad \text{kjer je} \quad
+\lim_{h \to 0}\frac{\norm{o_F(h)}}{\norm{h}} = 0,
+\]
+in
+\[
+G(b+k) = G(b) + (DG)(b) \cdot h + o_G(h),
+\quad \text{kjer je} \quad
+\lim_{h \to 0}\frac{\norm{o_G(h)}}{\norm{h}} = 0.
+\]
+Sledi
+\begin{align*}
+\Phi(a+h) &= G(F(a+h))
+\\
+&= G(b + (DF)(a) \cdot h + o_F(h))
+\\
+&= \Phi(a) + (DG)(b) \cdot ((DF)(a) \cdot h +
+o_F(h)) + o_G((DF)(a) \cdot h + o_F(h))
+\\
+&= \Phi(a) + (DG)(b)(DF)(a) \cdot h +
+(DG)(b) \cdot o_F(h) + o_G((DF)(a) \cdot h + o_F(h))
+\end{align*}
+Dovolj je tako dokazati, da je
+\[
+\lim_{h \to 0}\frac{
+\norm{(DG)(b) \cdot o_F(h) + o_G((DF)(a) \cdot h + o_F(h))}
+}{\norm{h}} = 0.
+\]
+Velja
+\[
+\lim_{h \to 0}\frac{\norm{(DG)(b) \cdot o_F(h)}}{\norm{h}} = 0,
+\]
+saj obstaja tak $M$, da je
+$\norm{(DG)(b) v} \leq M \cdot \norm{v}$ in
+$\norm{(DF)(a) v} \leq M \cdot \norm{v}$.
+Naj bo $\varepsilon > 0$. Potem obstaja tak $\delta > 0$, da za vse
+$k$, za katere je $\norm{k} < \delta$, velja
+\[
+\norm{o_G(k)} \leq \varepsilon \cdot \norm{h}.
+\]
+Ker je
+\[
+\lim_{h \to 0} \norm{(DF)(a) \cdot h + o_F(h)} = 0,
+\]
+je za $\norm{h} < \delta_1$ zgornji izraz manjši od $\delta$.
+Sledi, da je za dovolj majhne $h$
+\[
+\norm{o_G((DF)(a) \cdot h + o_F(h))} \leq
+\varepsilon \cdot \norm{(DF)(a) \cdot h + o_F(h)}.
+\]
+Dobimo, da je
+\[
+\frac{\norm{o_G((DF)(a) \cdot h + o_F(a)}}{\norm{h}} \leq
+\varepsilon \cdot
+\frac{\norm{(DF)(a) \cdot h + o_F(h)}}{\norm{h}} \leq
+\varepsilon \cdot \left(M + \frac{\norm{o_F(h)}}{\norm{h}}\right),
+\]
+torej je limita res enaka $0$.
+\end{proof}
+
+\newpage
+
+\subsection{Izrek o implicitni funkciji}
+
+\begin{izrek}[O implicitni funkciji]\index{Izrek!O implicitni
+funkciji}
+Naj bo $D \subseteq \R^2$ odprta množica in
+$f \in \mathcal{C}^1(D)$. Naj bo $(a,b) \in D$ taka točka, da
+velja:
+
+\begin{enumerate}[i)]
+\item $f(a,b) = 0$
+\item $f_y(a,b) \ne 0$
+\end{enumerate}
+
+Tedaj obstajata okolica točke $a$ $I=(a-\delta, a+\delta)$ in okolica
+točke $b$ $J=(b-\varepsilon, b+\varepsilon)$, kjer je
+$I \times J \subseteq D$, za kateri za vse $x \in I$ obstaja
+enoličen $y\in J$, za katera je $f(x,y) = 0$. Obstaja enolična
+funkcija $\varphi \colon I \to J$, za katero velja
+
+\begin{enumerate}[i)]
+\item $\varphi(a) = b$
+\item $\forall x \in I \colon f(x,\varphi(x)) = 0$
+\item $\varphi \in \mathcal{C}^1(I)$ in
+\[
+\varphi'(x) = - \frac{f_x(x,\varphi(x))}{f_y(x,\varphi(x))}.
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $f_y(a,b) > 0$. Sledi, da obstajata
+taka $\delta_1 > 0$ in $\varepsilon > 0$, da je
+\[
+\overline{(a-\delta_1,a+\delta_1)} \times
+\overline{(b-\varepsilon,b+\varepsilon)} \subseteq D,
+\]
+in je $f_y(x,y) > 0$ na tej okolici. Sledi, da je
+$y \mapsto f(a,y)$ na tem intervalu strogo naraščajoča. Sledi, da
+obstaja tak $0 < \delta \leq \delta_1$, za katerega za vse
+$x \in (a-\delta, a+\delta)$ velja
+\[
+f(x, b+\varepsilon) > 0
+\quad \text{in} \quad
+f(x, b-\varepsilon) < 0.
+\]
+Ker je $y \mapsto f(x,y)$ strogo naraščajoča in zvezna, ima na
+$(b-\varepsilon,b+\varepsilon)$ natanko eno ničlo.
+
+Preostane nam dokaz, da je $\varphi$ odvedljiva. Naj bosta
+$x, x+\Delta x \in I$ in naj bo
+$y = \varphi(x), y + \Delta y = \varphi(x + \Delta x)$. z uporabo
+Lagrangevega izreka dobimo
+\[
+0 = f(x + \Delta x, y + \Delta y) - f(x, y + \Delta y) +
+f(x, y + \Delta y) - f(x, y) =
+f_x(x', y + \Delta y) + f_y(x, y'),
+\]
+kjer je $x'$ med $x$ in $x + \Delta x$ ter $y'$ med $y$ in
+$y + \Delta y$. Dobimo
+\[
+\Delta y = - \frac{f_x(x', y + \Delta y)}{f_y(x, y')} \Delta x.
+\]
+Obstajata taka $M$ in $m$, da je $\abs{f_x(x,y)} \leq M$ za vse
+$(x,y) \in I \times J$ in
+$f_y(\widetilde{x},\widetilde{y}) \geq m > 0$, saj sta parcialna
+odvoda zvezna, $I \times J$ pa kompakt. Tako dobimo
+\[
+\Delta y \leq \frac{M}{m} \cdot \Delta x,
+\]
+zato je $\varphi$ zvezna. Velja pa
+\[
+\lim_{\Delta x \to 0}\frac{\Delta y}{\Delta x} =
+\lim_{\Delta x \to 0} - \frac{f_x(x', y + \Delta y)}{f_y(x, y')} =
+- \frac{f_x(x,\varphi(x))}{f_y(x,\varphi(x))}. \qedhere
+\]
+\end{proof}
