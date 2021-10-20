@@ -221,7 +221,8 @@ C \sqrt{nm} \cdot \norm{x}. \qedhere
 Naj bo $a$ notranja točka množice $D \subseteq \R^n$ in
 $f \colon D \to \R$ funkcija. Če obstaja limita
 \[
-\lim_{h \to 0}\frac{f(a_1, \dots, a_{i-1}, a_i+h, \dots) - f(a)}{h},
+\lim_{h \to 0}
+\frac{f(a_1, \dots, a_{i-1}, a_i+h, \dots) - f(a)}{h},
 \]
 to limito imenujemo \emph{parcialni odvod}\index{Preslikava!
 Parcialni odvod} funkcije $f$ po spremenljivki $x_i$ v točki $a$ in
@@ -702,8 +703,8 @@ velja:
 \item $f_y(a,b) \ne 0$
 \end{enumerate}
 
-Tedaj obstajata okolica točke $a$ $I=(a-\delta, a+\delta)$ in okolica
-točke $b$ $J=(b-\varepsilon, b+\varepsilon)$, kjer je
+Tedaj obstajata okolica točke $a$ $I=(a-\delta, a+\delta)$ in
+okolica točke $b$ $J=(b-\varepsilon, b+\varepsilon)$, kjer je
 $I \times J \subseteq D$, za kateri za vse $x \in I$ obstaja
 enoličen $y\in J$, za katera je $f(x,y) = 0$. Obstaja enolična
 funkcija $\varphi \colon I \to J$, za katero velja
@@ -765,3 +766,133 @@ zato je $\varphi$ zvezna. Velja pa
 - \frac{f_x(x,\varphi(x))}{f_y(x,\varphi(x))}. \qedhere
 \]
 \end{proof}
+
+\datum{2021-10-20}
+
+\begin{opomba}
+Če je $f \in \mathcal{C}^k$, je tudi $\varphi \in \mathcal{C}^k$.
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $D, \Omega \subseteq \R^n$ odprti. Preslikava
+$F \colon D \to \Omega$ je \emph{difeomorfizem}\index{Preslikava!
+Difeomorfizem}, če je
+
+\begin{enumerate}[i)]
+\item $F$ bijekcija,
+\item $F \in \mathcal{C}^1(D)$,
+\item $F^{-1} \in \mathcal{C}^1(\Omega)$.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Če je $F \colon D \to \Omega$ difeomorfizem, je $(DF)(x)$ obrnljiva
+za vse $x$ in velja
+\[
+(DF^{-1})(F(x)) = (DF)^{-1}(x).
+\]
+\end{trditev}
+
+\begin{proof}
+Velja $F^{-1} \circ F = \id$, kar nam z odvajanjem da
+\[
+(DF^{-1})(F(x)) \cdot (DF)(x) = I. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $F \colon D \to \Omega$. Če je $F$ difeomorfizem, je
+$\det(DF)(x) \ne 0$ na $D$.
+\end{posledica}
+
+\begin{izrek}[O inverzni preslikavi]\index{Izrek!O inverzni
+preslikavi}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
+$F \in \mathcal{C}^1(D)$ in $\det(DF)(a) \ne 0$. Tedaj obstajata
+okolica $U \subseteq D$ točke $a$ in okolica $V \subseteq \R^n$
+točke $b=F(a)$, za kateri je $F \colon U \to V$ difeomorfizem.
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $0 = a = F(a)$ in $(DF)(0) = I$.
+% To be continued . . .
+\end{proof}
+
+\begin{opomba}
+Če je $F \in \mathcal{C}^k(D)$, je $F^{-1} \in \mathcal{C}^k(V)$.
+\end{opomba}
+
+\begin{opomba}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
+$F \in \mathcal{C}^1(D)$ in $\det(DF)(x) \ne 0$ za vse $x \in D$.
+Potem je $F$ \emph{lokalni difeomorfizem}.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $F \colon \R^{n+m} \to \R^m$ in $F \in \mathcal{C}^1$.
+Če je preslikava $x \mapsto F(x,y)$ za fiksen $y \in \R^m$
+odvedljiva, označimo
+\[
+\frac{\partial F}{\partial x}(x,y) = (D_x F)(x,y) =
+\begin{bmatrix}
+\dfrac{\partial f_1}{\partial x_1} &
+\dots                             &
+\dfrac{\partial f_1}{\partial x_n} \\ 
+\vdots                            &
+\ddots                            &
+\vdots                            \\ 
+\dfrac{\partial f_m}{\partial x_1} &
+\dots                             &
+\dfrac{\partial f_m}{\partial x_n}
+\end{bmatrix}.
+\]
+Podobno označimo odvod po $y$.
+\end{definicija}
+
+\begin{izrek}[O implicitni preslikavi]\index{Izrek!O implicitni
+preslikavi}
+Naj bo $D \subseteq \R^n \times \R^m$ odprta in $(a,b) \in D$.
+Naj bo $F \colon D\to \R^m$ in $D \in \mathcal{C}^1(D)$. Če velja
+
+\begin{enumerate}[i)]
+\item $F(a,b) = 0$ in
+\item $\det \frac{\partial F}{\partial y}(a,b) \ne 0$,
+\end{enumerate}
+
+potem obstajata taki okolici $U$ točke $a$ in $V$ točke $b$, pri
+čemer je $U \times V \subseteq D$, in obstaja enolično določena
+preslikava $\varphi \colon U \to V$, za katero velja
+$\varphi \in \mathcal{C}^1(U)$ in
+\begin{enumerate}[i)]
+\item $\varphi(a) = b$
+\item $\forall (x,y) \in U \times V \colon F(x,y) = 0 \iff
+y = \varphi(x)$
+\item $(D\varphi)(x) = -(D_yF)^{-1}(x,y) (D_xF)(x,y)$
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Oglejmo si preslikavo $\Phi \colon D \to \R^n \times \R^m$, za
+katero je
+\[
+\Phi(x,y) = (x, F(x,y)).
+\]
+Velja $\Phi(a,b) = (a,0)$ in
+\[
+(D\Phi)(a,b) =
+\begin{bmatrix}
+I_{\R^n}    & 0           \\ 
+(D_xF)(a,b) & (D_yF)(a,b)
+\end{bmatrix},
+\]
+zato je $\det(D\Phi)(a,b) = \det (D_yF)(a,b) \ne 0$ in je $\Phi$
+lokalni difeomorfizem iz okolice $(a,b)$ v okolico $(a,0)$. Sledi,
+da obstaja inverzna preslikava na okolici $(a,0)$, ki slika po
+predpisu $\Phi^{-1} \colon (x,w) \mapsto (x, G(x,w))$. Sedaj lahko
+preprosto vzamemo $\varphi \equiv G(x,0)$ na dovolj majhnih
+okolicah.
+\end{proof}
+
+\begin{opomba}
+Če je $F \in \mathcal{C}^k(D)$, je $\varphi \in \mathcal{C}^k(U)$.
+\end{opomba}
