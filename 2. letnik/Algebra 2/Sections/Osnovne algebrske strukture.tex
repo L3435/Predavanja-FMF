@@ -130,7 +130,7 @@ Monoidu, v katerem so vsi elementi obrnljivi, pravimo \emph{grupa}\index{Algebrs
 \end{definicija}
 
 \begin{definicija}
-Grupi, v kateri je operacija komutativna, pravimo \emph{abelova}\index{Algebrska struktura!Grupa!Abelova}.
+Grupi, v kateri je operacija komutativna, pravimo \emph{Abelova}\index{Algebrska struktura!Grupa!Abelova}.
 \end{definicija}
 
 \begin{definicija}
@@ -154,5 +154,83 @@ z operacijo kompozitum. Če je $\abs{X}=n$, označimo $\Sim(X)=S_n$.
 \end{definicija}
 
 \begin{opomba}
-V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije pišemo $\cdot$, razen v abelovih grupah, kjer jo označimo s $+$.
+V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije pišemo $\cdot$, razen v Abelovih grupah, kjer jo označimo s $+$.
 \end{opomba}
+
+\newpage
+
+\subsection{Kolobarji in polja}
+
+\datum{2021-10-15}
+
+\begin{definicija}
+Množica $K$ z binarnima operacijama seštevanja in množenja je \emph{kolobar}\index{Algebrska struktura!Kolobar}, če velja:
+
+\begin{enumerate}[i)]
+\item za seštevanje je $K$ Abelova grupa,
+\item za množenje je $K$ monoid in
+\item veljata leva in desna distributivnost.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+V poljubnem kolobarju $K$ velja:
+
+\begin{enumerate}[i)]
+\item $\forall x \in K \colon 0x = x0 = 0$,
+\item $\forall x, y \in K \colon (-x)y = x(-y) = -(xy)$,
+\item $\forall x, y, z \in K \colon (x-y)z = xz - yz$,
+\item $\forall x, y \in K \colon (-x)(-y) = xy$ in
+\item $\forall x \in K \colon (-1)x = x(-1) = -x$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Kolobarju s komutativnim množenjem pravimo \emph{komutativen kolobar}\index{Algebrska struktura!Kolobar!Komutativen}.
+\end{definicija}
+
+\begin{definicija}
+Element $x$ kolobarja $K$ je \emph{delitelj niča}\index{Algebrska struktura!Kolobar!Delitelj niča}, če je $x \ne 0$ in obstaja tak $y \ne 0$ iz $K$, da je $xy = 0$ ali $yx = 0$.
+\end{definicija}
+
+\begin{definicija}
+Neničelnemu kolobarju, v katerem je vsak neničelni element obrnljiv, pravimo \emph{obseg}\index{Algebrska struktura!Obseg}. Komutativnemu obsegu pravimo \emph{polje}\index{Algebrska struktura!Polje}.
+\end{definicija}
+
+\begin{trditev}
+Obrnljiv element kolobarja ni delitelj niča.
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Obseg je kolobar brez deliteljev niča.
+\end{posledica}
+
+\newpage
+
+\subsection{Vektorski prostori in algebre}
+
+\begin{definicija}
+Naj bo $\F$ polje. Množica $V$ s seštevanjem in množenjem s skalarjem je \emph{vektorski prostor}\index{Algebrska struktura!Vektorski prostor} nad $\F$, če velja:
+
+\begin{enumerate}[i)]
+\item $V$ je Abelova grupa za seštevanje,
+\item $\forall \lambda \in \F, u,v \in V \colon \lambda(u+v) = \lambda u + \lambda v$,
+\item $\forall \lambda, \mu \in \F, v \in V \colon (\lambda + \mu)v = \lambda v + \mu v$,
+\item $\forall \lambda, \mu \in \F, v \in V \colon \lambda(\mu v) = (\lambda \mu)v$ in
+\item $\forall v \in V \colon 1v = v$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\F$ polje. Množica $A$ s seštevanjem in množenjem ter množenjem s skalari iz $\F$ imenujemo \emph{algebra}\index{Algebrska struktura!Algebra} nad $\F$, če velja:
+
+\begin{enumerate}[i)]
+\item $A$ je vektorski prostor nad $\F$ za seštevanje in množenje s skalarji,
+\item $A$ je za seštevanje in množenje kolobar in
+\item $\forall \lambda \in \F, x,y \in A \colon \lambda(xy) = (\lambda x)y = x(\lambda y)$.
+\end{enumerate}
+\end{definicija}
