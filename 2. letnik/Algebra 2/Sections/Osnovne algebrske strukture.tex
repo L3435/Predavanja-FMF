@@ -234,3 +234,124 @@ Naj bo $\F$ polje. Množica $A$ s seštevanjem in množenjem ter množenjem s sk
 \item $\forall \lambda \in \F, x,y \in A \colon \lambda(xy) = (\lambda x)y = x(\lambda y)$.
 \end{enumerate}
 \end{definicija}
+
+\newpage
+
+\subsection{Podstrukture}
+
+\datum{2021-10-22}
+
+\begin{definicija}
+Podmnožica $H$ grupe $G$ je \emph{podgrupa}\index{Algebrska struktura!Podstruktura} grupe $G$, če je grupa isto operacijo.\footnote{S tem je seveda mišljena skrčitev operacije na $H \times H$.} Pišemo $H \leq G$.
+\end{definicija}
+
+\begin{opomba}
+Za vsako podgrupo $H$ je $1 \in H$.
+\end{opomba}
+
+\begin{trditev}
+Za neprazno podmnožico $H$ grupe $G$ so naslednje izjave ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $H \leq G$
+\item $\forall x, y \in H \colon xy^{-1} \in H$
+\item $\forall x, y \in H \colon xy \in H \land x^{-1} \in H$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Center}\index{Algebrska struktura!Grupa!Center} grupe $G$ je množica
+\[
+Z(G) = \setb{c \in G}{\forall x \in G \colon cx = xc}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja $Z(G) \leq G$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $H \leq G$ podgrupa. $aHa^{-1}$ za $a \in G$ je \emph{konjugirana podgrupa}\index{Algebrska struktura!Grupa!Konjugirana podgrupa}\footnote{Elementa $x,y \in G$ sta si \emph{konjugirana}, če je $y=axa^{-1}$ za nek $a \in G$.} grupe $G$.
+\end{definicija}
+
+\begin{definicija}
+Podmnožica $L$ kolobarja $K$ je \emph{podkolobar}, če je kolobar za isti operaciji in vsebuje enoto $1$ kolobarja $K$.
+\end{definicija}
+
+\begin{trditev}
+Podmnožica $L$ kolobarja $K$ je podkolobar natanko tedaj, ko $1 \in L$ in velja $\forall x,y \in L \colon xy \in L \land x-y \in L$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Center}\index{Algebrska struktura!Kolobar!Center} kolobarja $K$ je množica
+\[
+Z(K) = \setb{c \in K}{\forall x \in K \colon cx = xc}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Center kolobarja je podkolobar.
+\end{opomba}
+
+\begin{definicija}
+Podmnožica $U$ vektorskega prostora $V$ je \emph{podprostor} prostora $V$, če je za isti operaciji tudi sama vektorski prostor.
+\end{definicija}
+
+\begin{trditev}
+Za podmnožico $U$ vektorskega prostora $V$ so naslednje izjave ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $U$ je podprostor $V$
+\item $\forall u,v \in U, \lambda \in \F \colon u+v \in U \land \lambda u \in U$
+\item $\forall u,v \in U, \lambda, \mu \in \F \colon \lambda u + \mu v \in U$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Podmnožica $B$ algebre $A$ je \emph{podalgebra}, če je algebra za iste operacije in vsebuje enoto $A$.
+\end{definicija}
+
+\begin{trditev}
+$B$ je podalgebra $A$ natanko tedaj, ko je $B$ podkolobar in podprostor.
+\end{trditev}
+
+\begin{definicija}
+Podmnožica $\F$ polja $\mathbb{E}$ je \emph{podpolje}, če je $\F$ polje za isti operaciji. Polju $\mathbb{E}$ pravimo \emph{razširitev}\index{Algebrska struktura!Polje!Razširitev} polja $\F$.
+\end{definicija}
+
+\begin{trditev}
+Podmnožica $\F$ polja $\mathbb{E}$ je podpolje natanko tedaj, ko velja $1 \in \F$,
+\[
+\forall x,y \in \F \colon x-y \in \F \land xy \in \F
+\]
+in $\forall x \in \F \colon x \ne 0 \implies x^{-1} \in \F$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Presek podstruktur neke strukture je znova podstruktura.
+\end{trditev}
+
+\newpage
+
+\subsection{Generatorji}
+
+\begin{definicija}
+Naj bo $G$ grupa in $X$ neka njena podmnožica. Z $\skl{X}$ označimo najmanjšo podgrupo $G$, ki vsebuje $X$ in jo imenujemo podgrupa, \emph{generirana z $X$}.
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+\skl{X} = \setb{\prod_{i=1}^n y_i}{\forall i \colon y_i \in X \lor y_i^{-1} \in X}.
+\]
+\end{trditev}
+
+\obvs
