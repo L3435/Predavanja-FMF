@@ -183,7 +183,7 @@ $\norm{x - a} < \delta$ velja
 Vsaka linearna preslikava je zvezna.
 \end{posledica}
 
-\begin{trditev}
+\begin{trditev}\label{td:1}
 Naj bo $A \colon \R^n \to \R^m$ linearna preslikava. Potem obstaja
 tak $M \in \R$, da je
 \[
@@ -481,7 +481,7 @@ za $a''$ med $a$ in $a+h$ ter $b''$ med $b$ in $b+k$. Sledi, da je
 \[
 (f_x)_y(a', b') = (f_y)_x(a'', b'').
 \]
-Sedaj preprosto vzamemo limito $(h, k) \ to (0, 0)$ in upoštevamo
+Sedaj preprosto vzamemo limito $(h, k) \to (0, 0)$ in upoštevamo
 zveznost.
 \end{proof}
 
@@ -530,7 +530,8 @@ $d_aF$ ali $(DF)(a)$.
 
 \begin{izrek}
 Preslikava $F$ je diferenciabilna v $a$ natanko tedaj, ko so njene
-koordinatne funkcije diferenciabilne v $a$. Tedaj velja
+koordinatne funkcije diferenciabilne v $a$. Tedaj velja\footnote{
+Tej matriki pravimo \emph{Jacobijeva matrika}.}
 \[
 (DF)(a) =
 \begin{bmatrix}
@@ -739,14 +740,16 @@ Ker je $y \mapsto f(x,y)$ strogo naraščajoča in zvezna, ima na
 $(b-\varepsilon,b+\varepsilon)$ natanko eno ničlo.
 
 Preostane nam dokaz, da je $\varphi$ odvedljiva. Naj bosta
-$x, x+\Delta x \in I$ in naj bo
-$y = \varphi(x), y + \Delta y = \varphi(x + \Delta x)$. z uporabo
+$x, x+\Delta x \in I$ in označimo
+$y = \varphi(x)$, $y + \Delta y = \varphi(x + \Delta x)$. Z uporabo
 Lagrangevega izreka dobimo
-\[
-0 = f(x + \Delta x, y + \Delta y) - f(x, y + \Delta y) +
-f(x, y + \Delta y) - f(x, y) =
-f_x(x', y + \Delta y) + f_y(x, y'),
-\]
+\begin{align*}
+0 &=
+f(x + \Delta x, y + \Delta y) - f(x, y + \Delta y) +
+f(x, y + \Delta y) - f(x, y)
+\\
+&= f_x(x', y + \Delta y) \Delta x + f_y(x, y') \Delta y,
+\end{align*}
 kjer je $x'$ med $x$ in $x + \Delta x$ ter $y'$ med $y$ in
 $y + \Delta y$. Dobimo
 \[
@@ -804,19 +807,6 @@ Velja $F^{-1} \circ F = \id$, kar nam z odvajanjem da
 Naj bo $F \colon D \to \Omega$. Če je $F$ difeomorfizem, je
 $\det(DF)(x) \ne 0$ na $D$.
 \end{posledica}
-
-\begin{izrek}[O inverzni preslikavi]\index{Izrek!O inverzni
-preslikavi}
-Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
-$F \in \mathcal{C}^1(D)$ in $\det(DF)(a) \ne 0$. Tedaj obstajata
-okolica $U \subseteq D$ točke $a$ in okolica $V \subseteq \R^n$
-točke $b=F(a)$, za kateri je $F \colon U \to V$ difeomorfizem.
-\end{izrek}
-
-\begin{proof}
-Brez škode za splošnost naj bo $0 = a = F(a)$ in $(DF)(0) = I$.
-% To be continued . . .
-\end{proof}
 
 \begin{opomba}
 Če je $F \in \mathcal{C}^k(D)$, je $F^{-1} \in \mathcal{C}^k(V)$.
@@ -885,14 +875,175 @@ I_{\R^n}    & 0           \\
 (D_xF)(a,b) & (D_yF)(a,b)
 \end{bmatrix},
 \]
-zato je $\det(D\Phi)(a,b) = \det (D_yF)(a,b) \ne 0$ in je $\Phi$
-lokalni difeomorfizem iz okolice $(a,b)$ v okolico $(a,0)$. Sledi,
-da obstaja inverzna preslikava na okolici $(a,0)$, ki slika po
-predpisu $\Phi^{-1} \colon (x,w) \mapsto (x, G(x,w))$. Sedaj lahko
-preprosto vzamemo $\varphi \equiv G(x,0)$ na dovolj majhnih
-okolicah.
+zato je $\det(D\Phi)(a,b) = \det (D_yF)(a,b) \ne 0$. Po izreku
+\ref{iz:inv} sledi, da obstaja inverzna preslikava na okolici
+$(a,0)$, ki slika po predpisu
+$\Phi^{-1} \colon (x,w) \mapsto (x, G(x,w))$. Sedaj lahko
+preprosto vzamemo $\varphi \equiv G(x,0)$ na dovolj majhni
+okolici $a$.
 \end{proof}
 
 \begin{opomba}
 Če je $F \in \mathcal{C}^k(D)$, je $\varphi \in \mathcal{C}^k(U)$.
 \end{opomba}
+
+\datum{2021-10-26}
+
+\begin{lema}
+Naj bo $f \colon D \to \R$, $f \in \mathcal{C}^1$. Naj bosta
+$a,b \in D$ taki točki, da celotna daljica $(1-t)a + tb$ leži v
+$D$.
+Potem obstaja tak $\xi$ s te daljice, da velja
+\[
+f(b) - f(a) = (Df)(\xi) \cdot (b-a).
+\]
+\end{lema}
+
+\begin{proof}
+$\varphi \colon t \mapsto f((1-t)a + tb)$ zadošča Lagrangevem
+izreku. Sledi, da obstaja tak $\tau$, da je
+\[
+f(b) - f(a) =
+\varphi(1) - \varphi(0) =
+\varphi'(\tau) =
+(Df)((1-\tau)a + \tau b) \cdot (b - a). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}\label{pos:1}
+Če obstaja tak $M$, da za vse $x$ in $j$ velja
+\[
+\abs{\frac{\partial f}{\partial x_j}(x)} \leq M,
+\]
+velja
+\[
+\abs{f(b) - f(a)} \leq M \sqrt{n} \cdot \abs{b - a}.
+\]
+\end{posledica}
+
+\begin{proof}
+Po Cauchyju je
+\[
+\abs{f(b) - f(a)} =
+\abs{(DF)(\xi) \cdot (b - a)} \leq
+\abs{(Df)(\xi)} \cdot \abs{b - a} \leq
+M \sqrt{n} \cdot \abs{b - a}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}\label{pos:2}
+Naj bo $F \colon D \to \R^m$, $F \in \mathcal{C}^1$ in
+$F = (f_1, \dots, f_m)$. Denimo, da obstaja tak $M$, da za vse $x$
+in $j$ velja
+\[
+\abs{\frac{\partial f}{\partial x_j}(x)} \leq M.
+\]
+Tedaj je
+\[
+\norm{f(b) - f(a)} \leq M \sqrt{m \cdot n} \cdot \norm{b - a}.
+\]
+\end{posledica}
+
+\begin{proof}
+Po posledici \ref{pos:1} velja
+\[
+\norm{f(b) - f(a)} =
+\sqrt{\sum_{i=1}^m \left(f_i(b) - f_i(a)\right)^2} \leq
+M \sqrt{m \cdot n} \cdot \norm{b - a}. \qedhere
+\]
+\end{proof}
+
+\begin{lema}\label{lm:1}
+Naj bo $H \colon D \to \R^n$ in $H \in \mathcal{C}^1(D)$, kjer je
+$D \subseteq \R^n$ odprta. Če je $H(0)=0$ in $(DH)(0)=0$, obstaja
+tak $r>0$, da za vse $x_1, x_2 \in \overline{\mathcal{K}(0,r)}$
+velja
+\[
+\norm{H(x_1) - H(x_2)} \leq \frac{1}{2} \norm{x_1 - x_2}.
+\]
+\end{lema}
+
+\begin{proof}
+Ker je $H \in \mathcal{C}^1(D)$, obstaja tak $r > 0$, da na
+$\overline{\mathcal{K}(0,r)}$ velja
+\[
+\abs{\frac{\partial h_i}{\partial x_j}(x)} \leq \frac{1}{2n}.
+\]
+Po posledici \ref{pos:2} dobimo, da je
+\[
+\norm{H(x_1) - H(x_2)} \leq
+\frac{1}{2n} \cdot n \cdot \norm{x_1 - x_2} =
+\frac{1}{2} \norm{x_1 - x_2}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[O inverzni preslikavi]\index{Izrek!O inverzni
+preslikavi}\label{iz:inv}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
+$F \in \mathcal{C}^1(D)$ in $\det(DF)(a) \ne 0$. Tedaj obstajata
+okolica $U \subseteq D$ točke $a$ in okolica $V \subseteq \R^n$
+točke $b=F(a)$, za kateri je $F \colon U \to V$ difeomorfizem.
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $0 = a = F(a)$ in $(DF)(0) = I$ in
+označimo $F(x) = x + H(x)$. Sledi, da je
+\[
+\lim_{x \to 0}\frac{\norm{H(x)}}{\norm{x}} = 0.
+\]
+
+Po lemi \ref{lm:1} obstaja tak $r>0$, da na
+$\overline{\mathcal{K}(0,r)}$ velja
+\[
+\norm{F(x_1) - F(x_2)} =
+\norm{x_1 - x_2 + H(x_1) - H(x_2)} \geq
+\frac{1}{2} \norm{x_1 - x_2},
+\]
+zato je $F$ na tej okolici injektivna, njen inverz pa je zvezen.
+
+Trdimo, da je
+$\mathcal{V} = \overline{\mathcal{K}\left(0,\frac{r}{2}\right)}
+\subseteq F(\overline{\mathcal{K}(0,r)})$. Za
+$y \in \mathcal{V}$ tako iščemo
+$x \in \overline{\mathcal{K}(0,r)}$, za katerega je
+$x = -H(x) + y = T_y(x)$. Iščemo torej fiksno točko preslikave
+$T_y$, ki slika iz $\overline{\mathcal{K}(0,r)}$ v
+$\overline{\mathcal{K}(0,r)}$, saj je
+\[
+\norm{T_y(x)} = \norm{-H(x) + y} \leq r.
+\]
+Sledi, da je $T_y$ skrčitev za $q=\frac{1}{2}$, saj je $H$ skrčitev
+z istim koeficientom. Tak $x$ torej obstaja po Banachovem
+skrčitvenem načelu.\footnote{Izrek 7.4.2 v zapiskih predmeta
+Analiza 1 prvega letnika.}
+
+Naj bo $\mathcal{U} = F^{-1}(\mathcal{V}) \cap \mathcal{K}(0,r)$.
+Vidimo, da je $F \colon \mathcal{U} \to \mathcal{V}$ bijekcija z
+zveznim inverzom $G$. Preostane le še dokaz, da je $G$
+diferenciabilna z diferencialom
+\[
+(DG)(y) = (DF)^{-1}(G(y)).
+\]
+Naj bo $y \in \mathcal{V}$ in $k \in \R^n$ dovolj majhen. Označimo
+$G(y) = x$ in $G(y + k) = x + h$. Sledi, da je $y = F(x)$ in
+\[
+y + k = F(x + h) = F(x) + (DF)(x)\cdot h + o_F(h).
+\]
+Iz leme \ref{lm:1} sledi, da je
+$\norm{k} \geq \frac{1}{2} \norm{h}$. Sedaj si oglejmo
+\begin{align*}
+\lim_{k \to 0}
+\frac{\norm{G(y+k) - G(y) - (DF)^{-1}(x) \cdot h}}{\norm{k}}
+&= \lim_{k \to 0}
+\frac{\norm{h - (DF)^{-1}(x)((DF)(x)\cdot h + o_F(h))}}{\norm{k}}
+\\
+&= \lim_{k \to 0}
+\frac{\norm{h}}{\norm{k}} \cdot
+\frac{\norm{(DF)^{-1}(x)o_F(h)}}{\norm{h}}
+\\
+&\leq \lim_{k \to 0} 2M \cdot \frac{\norm{o_F(h)}}{\norm{h}},
+\end{align*}
+kjer je $M$ supremum iz trditve \ref{td:1} za $(DF)^{-1}(x)$. Ko
+$k$ limitira proti $0$, tudi $h$ limitira proti $0$, s tem pa je
+izrek dokazan.
+\end{proof}
