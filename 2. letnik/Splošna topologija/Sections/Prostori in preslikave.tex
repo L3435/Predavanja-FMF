@@ -7,18 +7,18 @@
 \begin{okvir}
 \begin{definicija}
 Naj bo $X$ množica. \emph{Topologija}\index{Topologija} na $X$ je
-družina $\mathcal{T}$ podmnožic $X$, ki zadošča pogojem:
+družina $\tau$ podmnožic $X$, ki zadošča pogojem:
 
 \begin{enumerate}[i)]
-\item $\emptyset, X \in \mathcal{T}$,
-\item poljubna unija elementov $\mathcal{T}$ je element
-$\mathcal{T}$,
-\item poljuben končen presek elementov $\mathcal{T}$ je element
-$\mathcal{T}$.
+\item $\emptyset, X \in \tau$,
+\item poljubna unija elementov $\tau$ je element
+$\tau$,
+\item poljuben končen presek elementov $\tau$ je element
+$\tau$.
 \end{enumerate}
 
 \emph{Topološki prostor}\index{Topološki prostor} je par
-$(X,\mathcal{T})$. Elementom $\mathcal{T}$ pravimo
+$(X,\tau)$. Elementom $\tau$ pravimo
 \emph{odprte množice}\index{Topologija!Odprte, zaprte množice},
 njihovim komplementom pa \emph{zaprte}.
 \end{definicija}
@@ -27,19 +27,19 @@ njihovim komplementom pa \emph{zaprte}.
 \begin{opomba}
 V metričnih prostorih $(X,d)$ odprte množice\footnote{Tu vzamemo
 definicijo odprtih množic v metričnih prostorih.} tvorijo
-topologijo $\mathcal{T}_d$.
+topologijo $\tau_d$.
 \end{opomba}
 
 \begin{definicija}
-Topološki prostor $(X,\mathcal{T})$ je
+Topološki prostor $(X,\tau)$ je
 \emph{metrizabilen}\index{Topološki prostor!Metrizabilen}, če
 obstaja taka metrika $d$ na $X$, da je
-$\mathcal{T} = \mathcal{T}_d$ pri zgornjih oznakah.
+$\tau = \tau_d$ pri zgornjih oznakah.
 \end{definicija}
 
 \begin{opomba}
 Za metriko $d'(x,x') = \min \set{d(x,x'),1}$ velja
-$\mathcal{T}_d = \mathcal{T}_{d'}$.
+$\tau_d = \tau_{d'}$.
 \end{opomba}
 
 \newpage
@@ -50,11 +50,11 @@ $\mathcal{T}_d = \mathcal{T}_{d'}$.
 
 \begin{okvir}
 \begin{definicija}
-Preslikava $f \colon (X,\mathcal{T})\to(X',\mathcal{T}')$ je
+Preslikava $f \colon (X,\tau)\to(X',\tau')$ je
 \emph{zvezna}\index{Preslikava!Zvezna}, če je praslika vsake odprte
 množice odprta, oziroma
 \[
-V\in\mathcal{T}' \implies f^{-1}(V) \in \mathcal{T}.
+V\in\tau' \implies f^{-1}(V) \in \tau.
 \]
 \end{definicija}
 \end{okvir}
@@ -65,11 +65,11 @@ metrikami porojene topologije.
 \end{opomba}
 
 \begin{opomba}
-Identiteta $\id \colon (X,\mathcal{T}) \to (X,\mathcal{T}')$ je
-zvezna natanko tedaj, ko je $\mathcal{T}' \subseteq \mathcal{T}$.
-Pravimo, da je topologija $\mathcal{T}$
+Identiteta $\id \colon (X,\tau) \to (X,\tau')$ je
+zvezna natanko tedaj, ko je $\tau' \subseteq \tau$.
+Pravimo, da je topologija $\tau$
 \emph{finejša}\index{Topologija!Finejša, bolj groba},
-$\mathcal{T}'$ pa
+$\tau'$ pa
 \emph{bolj groba}.
 \end{opomba}
 
@@ -78,28 +78,28 @@ Kompozitum zveznih preslikav je zvezna preslikava.
 \end{trditev}
 
 \begin{proof}
-Naj bosta $f \colon (X,\mathcal{T}) \to (X',\mathcal{T}')$ in
-$g \colon (X',\mathcal{T}') \to (X'',\mathcal{T}'')$ zvezni. Sledi
+Naj bosta $f \colon (X,\tau) \to (X',\tau')$ in
+$g \colon (X',\tau') \to (X'',\tau'')$ zvezni. Sledi
 \[
-V \in \mathcal{T}'' \implies g^{-1}(V) \in \mathcal{T}' \implies
-(g \circ f)^{-1}(V) \in \mathcal{T}. \qedhere
+V \in \tau'' \implies g^{-1}(V) \in \tau' \implies
+(g \circ f)^{-1}(V) \in \tau. \qedhere
 \]
 \end{proof}
 
 \begin{opomba}
-Množico vseh zveznih preslikav med $(X,\mathcal{T})$ in
-$(Y,\mathcal{T}')$ označimo z $\mathcal{C}((X,\mathcal{T}),
-(Y,\mathcal{T}'))$, oziroma $\mathcal{C}(X,Y)$.
+Množico vseh zveznih preslikav med $(X,\tau)$ in
+$(Y,\tau')$ označimo z $\mathcal{C}((X,\tau),
+(Y,\tau'))$, oziroma $\mathcal{C}(X,Y)$.
 \end{opomba}
 
 \begin{izrek}
 Naslednje izjave so ekvivalentne:
 
 \begin{enumerate}[i)]
-\item $f \colon (X,\mathcal{T}) \to (Y,\mathcal{T}')$ je zvezna,
-\item $V \in \mathcal{T}' \implies f^{-1}(V) \in \mathcal{T}$,
-\item $B^\mathsf{c} \in \mathcal{T}' \implies
-(f^{-1}(B))^\mathsf{c} \in \mathcal{T}$,
+\item $f \colon (X,\tau) \to (Y,\tau')$ je zvezna,
+\item $V \in \tau' \implies f^{-1}(V) \in \tau$,
+\item $B^\mathsf{c} \in \tau' \implies
+(f^{-1}(B))^\mathsf{c} \in \tau$,
 \item $\forall A \subseteq X \colon f(\overline{A}) \subseteq
 \overline{f(A)}$.
 \end{enumerate}
@@ -144,10 +144,10 @@ zato je $f^{-1}(B)$ zaprta.
 \begin{definicija}
 Funkcija $f \colon X \to X'$ določa
 \emph{homeomorfizem}\index{Topologija!Homeomorfizem}
-med prostoroma $(X,\mathcal{T})$ in $(X',\mathcal{T}')$, če je $f$
+med prostoroma $(X,\tau)$ in $(X',\tau')$, če je $f$
 bijekcija in obenem inducirana bijekcija
-$f \colon \mathcal{T} \to \mathcal{T}'$. Pišemo
-$(X,\mathcal{T}) \approx (X',\mathcal{T})$ in pravimo, da sta
+$f \colon \tau \to \tau'$. Pišemo
+$(X,\tau) \approx (X',\tau)$ in pravimo, da sta
 prostora \emph{homeomorfna}\index{Topološki prostor!Homeomorfen}.
 \end{definicija}
 \end{okvir}
@@ -223,3 +223,120 @@ Posebej velja $S^2 \approx \C \cup \set{\infty}$. Temu prostoru
 pravimo
 \emph{Riemannova sfera}\index{Topološki prostor!Riemannova sfera}.
 \end{opomba}
+
+\newpage
+
+\subsection{Baze in predbaze}
+
+\datum{2021-10-26}
+
+\begin{okvir}
+\begin{definicija}
+Družina odprtih množic $\mathcal{B} \subseteq \tau$ je
+\emph{baza}\index{Topologija!Baza} topologije $\tau$, če lahko vsak
+element $\tau$ dobimo kot unijo elementov $\mathcal{B}$.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Naj bo $\mathcal{B}$ baza topologije $\tau$ množice $x$.
+$A \subseteq X$ je odprta natanko tedaj, ko za vsak $x \in A$
+obstaja $B \in \mathcal{B}$, za katero je $x \in B$ in
+$B \subseteq A$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $f \colon (X,\tau) \to (X',\tau')$, $\mathcal{B}$ baza
+$\tau$ in $\mathcal{B}'$ baza $\tau'$. Potem velja
+
+\begin{enumerate}[i)]
+\item $f$ je zvezna natanko tedaj, ko je
+$f^{-1}(\mathcal{B}') \subseteq \tau$ in
+\item $f$ je odprta natanko tedaj, ko je
+$f(\mathcal{B}) \subseteq \tau'$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $\mathcal{B}_x \subseteq \tau$ neka poddružina topologije,
+katere elementi vsebujejo $x$. Pravimo, da je $\mathcal{B}_x$
+\emph{lokalna baza}\index{Topologija!Baza!Lokalna} okolice pri $x$,
+če za vsak $U \in \tau$, ki vsebuje $x$, obstaja
+$B \in \mathcal{B}_x$, za katero je $B \subseteq U$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\mathcal{B}$ družina podmnožic $X$ in $\tau$ množica unij
+elementov $\mathcal{B}$. Potem je $\tau$ topologija natanko tedaj,
+ko je $\mathcal{B}$ pokritje $X$ in velja
+\[
+\forall B_1, B_2 \in \mathcal{B}, x \in B_1 \cap B_2 \;
+\exists B \in \mathcal{B} \colon x \in B \land
+B \subseteq B_1 \cap B_2.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $\mathcal{P}$ neka družina podmnožic $X$. Množica
+$\mathcal{B}$ vseh končnih presekov elementov $\mathcal{P}$ je
+baza. Družini $\mathcal{P}$ pravimo
+\emph{predbaza}\index{Topologija!Baza!Predbaza} baze $\mathcal{B}$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f \colon (X,\tau) \to (X',\tau')$ in $\mathcal{P}'$ podbaza
+za $\tau'$. Potem je $f$ zvezna natanko tedaj, ko je
+$f^{-1}(\mathcal{P}') \subseteq \tau$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Preslikava $f \colon Z \to X_1 \times \dots \times X_n$ je zvezna
+za produktno topologijo\footnote{Produktna topologija je
+topologija, ki jo dobimo iz predbaze
+$\setb{U_1 \times \dots \times U_n}
+{\forall i \colon U_i \in \tau_i}$.}
+natanko tedaj, ko so zvezne vse komponente
+$f$.
+\end{trditev}
+
+\begin{proof}
+Očitno je trditev dovolj dokazati za $n=2$. Naj bo
+$f \colon Z \to X \times Y$ zvezna. Potem sta komponenti kartezični
+produkt projekcije z $f$, ki sta obe zvezni.
+
+Če sta obe komponenti zvezni, pa ni težko videti, da so praslike
+pasov odprte, ti pa tvorijo predbazo.
+\end{proof}
+
+\begin{definicija}
+Prostor je \emph{1-števen}\index{Topološki prostor!1, 2-števen}, če
+za vsak $x$ obstaja števna lokalna baza pri $x$. Prostor je
+\emph{2-števen}, če ima števno bazo.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $X$ 1-števen. Potem za vsak $A \in x$ velja, da je 
+$\overline{A} = L(A) =
+\setb{x}{\text{$x$ je limita zaporejda v $A$}}$.
+\end{trditev}
+
+\begin{proof}
+Za vsak $x \in \overline{A}$ obstaja lokalna baza, zato lahko za
+vsak člen zaporedja preprosto izberemo poljuben
+\[
+a_n \in A \cap \bigcap_{i=1}^n B_i. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+$f \colon X \to Y$ je zvezna natanko tedaj, ko za vsak
+$A \subseteq X$ velja $f(L(A)) \subseteq L(f(A))$.
+\end{trditev}

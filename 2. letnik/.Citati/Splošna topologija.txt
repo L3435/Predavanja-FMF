@@ -1,0 +1,5 @@
+"Topologija je umetnost pravilnega sklepanja iz popolnoma napačnih slik."
+ - Avtor prvega članka o topologiji
+
+"Tu lahko vse odprte množice izberete za bazo. Sam to je butasta izbira baze."
+ - prof. dr. Petar Pavešić, 26. 10. 2021
