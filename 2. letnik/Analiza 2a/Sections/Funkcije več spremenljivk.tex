@@ -808,16 +808,6 @@ Naj bo $F \colon D \to \Omega$. Če je $F$ difeomorfizem, je
 $\det(DF)(x) \ne 0$ na $D$.
 \end{posledica}
 
-\begin{opomba}
-Če je $F \in \mathcal{C}^k(D)$, je $F^{-1} \in \mathcal{C}^k(V)$.
-\end{opomba}
-
-\begin{opomba}
-Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
-$F \in \mathcal{C}^1(D)$ in $\det(DF)(x) \ne 0$ za vse $x \in D$.
-Potem je $F$ \emph{lokalni difeomorfizem}.
-\end{opomba}
-
 \begin{definicija}
 Naj bo $F \colon \R^{n+m} \to \R^m$ in $F \in \mathcal{C}^1$.
 Če je preslikava $x \mapsto F(x,y)$ za fiksen $y \in \R^m$
@@ -840,7 +830,7 @@ Podobno označimo odvod po $y$.
 \end{definicija}
 
 \begin{izrek}[O implicitni preslikavi]\index{Izrek!O implicitni
-preslikavi}
+preslikavi}\label{iz:imp}
 Naj bo $D \subseteq \R^n \times \R^m$ odprta in $(a,b) \in D$.
 Naj bo $F \colon D\to \R^m$ in $D \in \mathcal{C}^1(D)$. Če velja
 
@@ -1047,3 +1037,178 @@ kjer je $M$ supremum iz trditve \ref{td:1} za $(DF)^{-1}(x)$. Ko
 $k$ limitira proti $0$, tudi $h$ limitira proti $0$, s tem pa je
 izrek dokazan.
 \end{proof}
+
+\begin{opomba}
+Če je $F \in \mathcal{C}^k(D)$, je $F^{-1} \in \mathcal{C}^k(V)$.
+\end{opomba}
+
+\begin{opomba}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
+$F \in \mathcal{C}^1(D)$ in $\det(DF)(x) \ne 0$ za vse $x \in D$.
+Potem je $F$ \emph{lokalni difeomorfizem}.
+\end{opomba}
+
+\datum{2021-10-27}
+
+\begin{definicija}
+Naj bo $D \subseteq \R^n$ odprta in $F \colon D \to \R^m$,
+$F \in \mathcal{C}^1$. \emph{Rang}\index{Preslikava!Rang}
+preslikave $F$ v točki $a \in D$ je $r = \rang DF(a)$. če je rang
+konstanten na $D$, pravimo, da je preslikava $F$ ranga $r$ na $D$.
+\end{definicija}
+
+\begin{opomba}
+Pravimo, da je $F$ \emph{maksimalnega ranga}, če je
+$r = \min\set{m,n}$. 
+\end{opomba}
+
+\begin{posledica}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^m$,
+$F \in \mathcal{C}^1$ in $m < n$. Naj bo $F$ v $a \in D$
+maksimalnega ranga in $F(a)=0$. Tedaj obstajajo indeksi
+\[
+i_1,\dots,i_{n-m}, \quad j_1,\dots,j_m \quad \text{in} \quad
+\forall k,l \colon i_k \ne j_l
+\]
+in take $\mathcal{C}^1$ funkcije $\varphi_1,\dots,\varphi_m$,
+definirane v okolici $(a_{i_1},\dots,a_{i_{n-m}})$, da je v neki
+okolici $\mathcal{U}$ točke $a$ enačba $F(X)=0$ ekvivalentna
+sistemu
+\[
+\forall k \colon x_{j_k} = \varphi_k(x_{i_1},\dots,x_{i_{n-m}}).
+\]
+\end{posledica}
+
+\begin{proof}
+Z ustrezno permutacijo koordinat se trditev reducira na izrek
+o implicitni preslikavi.
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^m$,
+$F \in \mathcal{C}^1$ in $m \leq n$. Naj bo $F$ v $a \in D$
+maksimalnega ranga. Potem obstaja taka okolica $\mathcal{V}$
+točke $b = F(a)$ v $\R^m$ in okolica $\mathcal{U}$ točke $a$ v $D$,
+da je $F \colon \mathcal{U} \to \mathcal{V}$ surjektivna.
+\end{posledica}
+
+\begin{proof}
+Za $n=m$ je to posledica izreka o inverzni preslikavi. Za $m < n$
+si oglejmo preslikavo $\Phi(x,y) = F(x) - y$. Velja $\Phi(a,b)=0$
+in
+\[
+(D\Phi)(x,y) =
+\begin{bmatrix}
+(DF)(x) & -I
+\end{bmatrix}.
+\]
+Brez škode za splošnost naj bo zadnjih $m$ stolpcev $(DF)(a)$
+linearno neodvisnih. Po izreku o implicitni preslikavi lahko enačbo
+\[
+F(x) - y = 0
+\]
+razrešimo na $x_{n-m+1},\dots,x_n$ kot funkcije $x_1,\dots,x_{n-m}$
+in $y_1,\dots,y_m$ v okolici $(a,b)$.
+\end{proof}
+
+\newpage
+
+\subsection{Taylorjeva formula}
+
+\begin{izrek}
+Naj bo $f \in \mathcal{C}^{k+1}(D)$, kjer je $D \subseteq \R^n$
+odprta. Naj bosta $a \in D$ in $h \in \R^n$ taki točki, da celotna
+daljica $a+th$ za $t \in [0,1]$ leži v $D$. Potem obstaja tak
+$\theta \in (0,1)$, da je
+\[
+f(a+h) = \sum_{i=0}^k \frac{(D_h^if)(a)}{i!} + R_k,
+\]
+kjer je
+\[
+R_n = \frac{(D_h^{k+1}f)(a + \theta h)}{(k+1)!}
+\quad \text{in} \quad
+D_h = \sum_{i=1}^n \frac{\partial}{\partial x_i} h_i.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $\varphi(t) = f(a + th)$. Po Taylorju za $\varphi$ velja
+\[
+\varphi(1) = \sum_{i=0}^k \frac{\varphi^{(i)}(0)}{i!} \cdot(1-0)^i
++ \frac{\varphi^{(k+1)}(\theta)}{(k+1)!} \cdot (1-0)^{k+1}.
+\]
+Ker velja
+\[
+\varphi^{(i)}(t) = (D_h^if)(a+th),
+\]
+je izrek dokazan.
+\end{proof}
+
+\begin{opomba}
+Če je $f \in \mathcal{C}^\infty(D)$, lahko tvorimo Taylorjevo vrsto
+\[
+f(a+h) = \sum_{i=0}^\infty \frac{(D_h^if)(a)}{i!}.
+\]
+Če ta vrsta konvergira k $f(a+h)$ za nek $a$ in vse dovolj majhne
+$h$, pravimo, da je $f$ \emph{realno analitična}\index{Preslikava!
+Analitična} funkcija.
+\end{opomba}
+
+\begin{posledica}
+Naj bo $f \in \mathcal{C}^{k+1}(D)$, kjer je $D \subseteq \R^n$
+odprta. Naj bosta $a \in D$ in $h \in \R^n$ taki točki, da celotna
+daljica $a+th$ za $t \in [0,1]$ leži v $D$. Tedaj velja\footnote{
+Velja $O(\norm{h}^{k+1}) \leq M \cdot \norm{h}^{k+1}$ za vse
+$\norm{h} < \delta$.}
+\begin{align*}
+f(a+h) &= \sum_{i=0}^k \frac{(D_h^if)(a)}{i!} + o(\norm{h}^k)
+\\
+&= \sum_{i=0}^k \frac{(D_h^if)(a)}{i!} + O(\norm{h}^{k+1})
+\end{align*}
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+R_n = \frac{(D_h^{k+1}f)(a + \theta h)}{(k+1)!}.
+\]
+Ker je $f \in \mathcal{C}^{k+1}(D)$, so odvodi $f$ zvezni na $D$,
+zato so na $\overline{mathcal{K}(0,r)} \subseteq D$ omejeni. Sedaj
+lahko preprosto razpišemo $(D_h^{k+1}f)$ in uporabimo
+$\abs{h_i} \leq \norm{h}$.
+\end{proof}
+
+\newpage
+
+\subsection{Ekstremi}
+
+\begin{definicija}
+Naj bo $D \subseteq \R^n$ in $f \colon D \to \R$ funkcija.
+
+\begin{enumerate}[i)]
+\item $f$ ima v $a \in D$ \emph{lokalni maksimum}, če obstaja tak
+$r > 0$,
+da je
+\[
+\forall x \in D \cap \mathcal{K}(0,r) \colon f(a) \geq f(x).
+\]
+\item $f$ ima v $a \in D$ \emph{globalni maksimum}, če velja
+\[
+\forall x \in D \colon f(a) \geq f(x).
+\]
+\end{enumerate}
+
+Simetrično definiramo \emph{lokalni} in \emph{globalni minimum} ter
+\emph{lokalni} in \emph{globalni ekstrem}\index{Preslikava!
+Ekstrem}.
+\end{definicija}
+
+\begin{opomba}
+Če je $D$ kompakt in $f$ zvezna, ima $f$ globalna ekstrema.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $f \colon D \to \R$ funkcija, $a \in D $ notranja točka in naj bo $f$ v $a$ diferenciabilna. Če je $(Df)(a) = 0$, je $a$
+\emph{stacionarna točka}\index{Preslikava!Stacionarna točka} za
+$f$.
+\end{definicija}
