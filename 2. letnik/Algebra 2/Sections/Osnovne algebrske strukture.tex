@@ -4,22 +4,28 @@
 
 \datum{2021-10-1}
 \begin{definicija}
-\emph{Binarna operacija}\index{Binarna operacija} $*$ na neprazni množici $S$ je preslikava $*\colon S\times S\to S$. Po dogovoru namesto $*(x,y)$ pišemo $x*y$.
+\emph{Binarna operacija}\index{Binarna operacija} $*$ na neprazni
+množici $S$ je preslikava $*\colon S\times S\to S$. Po dogovoru
+namesto $*(x,y)$ pišemo $x*y$.
 \end{definicija}
 
 \begin{definicija}
-Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je \emph{nevtralni element}\index{Binarna operacija!Nevtralni element} ali \emph{enota}, če za vsak $x\in S$ velja
+Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je
+\emph{nevtralni element}\index{Binarna operacija!Nevtralni element}
+ali \emph{enota}, če za vsak $x\in S$ velja
 \[
 x*e=e*x=x.
 \]
 \end{definicija}
 
 \begin{definicija}
-Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je \emph{levi nevtralni element}, če za vsak $x\in S$ velja
+Naj bo $*$ binarna operacija na $S$. Element $e\in S$ je \emph{levi
+nevtralni element}, če za vsak $x\in S$ velja
 \[
 e*x=x.
 \]
-Podobno je $e$ \emph{desni nevtralni element}, če za vsak $x\in S$ velja
+Podobno je $e$ \emph{desni nevtralni element}, če za vsak $x\in S$
+velja
 \[
 x*e=x.
 \]
@@ -29,7 +35,8 @@ x*e=x.
 Veljajo naslednje trditve:
 
 \begin{enumerate}[i)]
-\item Če je $e'$ levi in $e''$ desni nevtralni element, je $e'=e''=e$, kjer je $e$ nevtralni element.
+\item Če je $e'$ levi in $e''$ desni nevtralni element, je
+$e'=e''=e$, kjer je $e$ nevtralni element.
 \item Če nevtralni element obstaja, je enolično določen.
 \item Levih/desnih nevtralnih elementov je lahko več.
 \end{enumerate}
@@ -42,21 +49,34 @@ e'=e'*e''=e''.
 \]
 Sledi, da je $e'$ levi in desni nevtralni element, torej je $e'=e$.
 
-Druga točka je direktna posledica prve. Če sta $e$ in $f$ nevtralna elementa, je namreč $e$ levi, $f$ pa desni nevtralni element, zato je $e=f$.
+Druga točka je direktna posledica prve. Če sta $e$ in $f$ nevtralna
+elementa, je namreč $e$ levi, $f$ pa desni nevtralni element, zato
+je $e=f$.
 
-Za dokaz tretje trditve si oglejmo operaciji $*_1,*_2\colon\N\to\N$, ki delujeta s predpisi $x*_1y=x$ in $x*_2y=y$ za vse naravne $x$ in $y$. Vidimo, da so vsa naravna števila desni nevtralni element prve in levi nevtralni element druge operacije.
+Za dokaz tretje trditve si oglejmo operaciji
+$*_1,*_2\colon\N\to\N$, ki delujeta s predpisi $x*_1y=x$ in
+$x*_2y=y$ za vse naravne $x$ in $y$. Vidimo, da so vsa naravna
+števila desni nevtralni element prve in levi nevtralni element
+druge operacije.
 \end{proof}
 
 \begin{definicija}
 Operacija $*$ na $S$ je:
 \begin{enumerate}[i)]
-\item \emph{asociativna}\index{Binarna operacija!Asociativna}, če za vse $a,b,c\in S$ velja $a*(b*c)=(a*b)*c$,
-\item \emph{komutativna}\index{Binarna operacija!Komutativna}, če za vse $a,b\in S$ velja $a*b=b*a$.
+\item \emph{asociativna}\index{Binarna operacija!Asociativna}, če
+za vse $a,b,c\in S$ velja $a*(b*c)=(a*b)*c$,
+\item \emph{komutativna}\index{Binarna operacija!Komutativna}, če
+za vse $a,b\in S$ velja $a*b=b*a$.
 \end{enumerate}
 \end{definicija}
 
 \begin{definicija}
-Naj bo $T\subseteq S$ in $*$ operacija na $S$. Množica $T$ je \emph{zaprta}\index{Binarna operacija!Zaprta množica} za $*$, če za vse $t_1,t_2\in T$ velja $t_1*t_2\in T$. Pravimo, da je $*$ \emph{notranja}\index{Binarna operacija!Notranja, zunanja}\footnote{\emph{Zunanja} binarna operacija je preslikava $*\colon K\times S\to S$.} binarna operacija za $T$.
+Naj bo $T\subseteq S$ in $*$ operacija na $S$. Množica $T$ je
+\emph{zaprta}\index{Binarna operacija!Zaprta množica} za $*$, če za
+vse $t_1,t_2\in T$ velja $t_1*t_2\in T$. Pravimo, da je $*$
+\emph{notranja}\index{Binarna operacija!Notranja, zunanja}\footnote{
+\emph{Zunanja} binarna operacija je preslikava
+$*\colon K\times S\to S$.} binarna operacija za $T$.
 \end{definicija}
 
 \newpage
@@ -64,11 +84,16 @@ Naj bo $T\subseteq S$ in $*$ operacija na $S$. Množica $T$ je \emph{zaprta}\ind
 \subsection{Polgrupe in monoidi}
 
 \begin{definicija}
-\emph{Algebrske strukture}\index{Algebrska struktura} so množice, opremljene z eno ali več binarnimi operacijami, ki izpolnjujejo določene aksiome.
+\emph{Algebrske strukture}\index{Algebrska struktura} so množice,
+opremljene z eno ali več binarnimi operacijami, ki izpolnjujejo
+določene aksiome.
 \end{definicija}
 
 \begin{definicija}
-Množica $S$ z operacijo $*$ je \emph{polgrupa}\index{Algebrska struktura!Polgrupa, monoid, grupa}, če je $*$ asociativna. Polgrupam z nevtralnim elementom pravimo \emph{monoid}.
+Množica $S$ z operacijo $*$ je
+\emph{polgrupa}\index{Algebrska struktura!Polgrupa, monoid, grupa},
+če je $*$ asociativna. Polgrupam z nevtralnim elementom pravimo
+\emph{monoid}.
 \end{definicija}
 
 \begin{opomba}
@@ -83,7 +108,9 @@ V polgrupah z $x^n$ označujemo $\underbrace{x*\dots *x}_{n}$.
 Naj bo $(S,*)$ monoid z enoto $e$.
 
 \begin{enumerate}[i)]
-\item $y\in S$ je \emph{levi inverz}\index{Binarna operacija!Inverz} $x\in S$, če je $y*x=e$.
+\item $y\in S$ je
+\emph{levi inverz}\index{Binarna operacija!Inverz} $x\in S$, če je
+$y*x=e$.
 \item $z\in S$ je \emph{desni inverz} $x\in S$, če je $x*z=e$.
 \item $w\in S$ je \emph{inverz} $x\in S$, če je $x*w=w*x=e$.
 \end{enumerate}
@@ -93,21 +120,26 @@ Pravimo, da je $x$ \emph{obrnljiv}, če ima inverz.
 
 \datum{2021-10-8}
 \begin{trditev}
-Naj bo $S$ monoid. Če obstajata taka $l,d\in S$, da za nek $x\in S$ velja $lx=xd=e$, velja $l=d$.
+Naj bo $S$ monoid. Če obstajata taka $l,d\in S$, da za nek $x\in S$
+velja $lx=xd=e$, velja $l=d$.
 \end{trditev}
 
 \obvs
 
 \begin{posledica}
-Obrnljiv element ima samo en inverz. Če je $x$ obrnljiv, je $xy=e\iff yx=e$.
+Obrnljiv element ima samo en inverz. Če je $x$ obrnljiv, je
+$xy=e\iff yx=e$.
 \end{posledica}
 
 \begin{opomba}
-Inverz elementa $x$ označimo z $x^{-1}$. Očitno je $(x^{-1})^{-1}=x$. Označimo še $x^{-n}=(x^{-1})^n=(x^n)^{-1}$ in $x^0=e$.
+Inverz elementa $x$ označimo z $x^{-1}$. Očitno je
+$(x^{-1})^{-1}=x$. Označimo še $x^{-n}=(x^{-1})^n=(x^n)^{-1}$ in
+$x^0=e$.
 \end{opomba}
 
 \begin{trditev}
-Če sta $x,y\in S$ obrnljiva, je obrnljiv tudi $xy$ z inverzom $y^{-1}x^{-1}$.
+Če sta $x,y\in S$ obrnljiva, je obrnljiv tudi $xy$ z inverzom
+$y^{-1}x^{-1}$.
 \end{trditev}
 
 \obvs
@@ -126,27 +158,34 @@ xy=xz\implies y=z\quad\text{in}\quad yx=zx\implies y=z.
 \subsection{Grupe}
 
 \begin{definicija}
-Monoidu, v katerem so vsi elementi obrnljivi, pravimo \emph{grupa}\index{Algebrska struktura!Grupa}.
+Monoidu, v katerem so vsi elementi obrnljivi, pravimo
+\emph{grupa}\index{Algebrska struktura!Grupa}.
 \end{definicija}
 
 \begin{definicija}
-Grupi, v kateri je operacija komutativna, pravimo \emph{Abelova}\index{Algebrska struktura!Grupa!Abelova}.
+Grupi, v kateri je operacija komutativna, pravimo
+\emph{Abelova}\index{Algebrska struktura!Grupa!Abelova}.
 \end{definicija}
 
 \begin{definicija}
-Grupa $G$ je \emph{končna}\index{Algebrska struktura!Grupa!Končna}, če obstaja tak $n\in\N$, da je $\abs{G}=n$. Številu $n$ pravimo \emph{red}\index{Algebrska struktura!Grupa!Red} grupe $G$.
+Grupa $G$ je \emph{končna}\index{Algebrska struktura!Grupa!Končna},
+če obstaja tak $n\in\N$, da je $\abs{G}=n$. Številu $n$ pravimo
+\emph{red}\index{Algebrska struktura!Grupa!Red} grupe $G$.
 \end{definicija}
 
 \begin{trditev}
-Naj bo $S$ monoid. Potem je $\setb{x}{x\in S\land\text{$x$ je obrnljiv}}$ grupa.
+Naj bo $S$ monoid. Potem je
+$\setb{x}{x\in S\land\text{$x$ je obrnljiv}}$ grupa.
 \end{trditev}
 
 \begin{definicija}
-Grupam reda $1$ pravimo \emph{trivialne grupe}\index{Algebrska struktura!Grupa!Trivialna}.
+Grupam reda $1$ pravimo
+\emph{trivialne grupe}\index{Algebrska struktura!Grupa!Trivialna}.
 \end{definicija}
 
 \begin{definicija}
-\emph{Simetrična grupa}\index{Algebrska struktura!Grupa!Simetrična} množice $X$ je množica
+\emph{Simetrična grupa}\index{Algebrska struktura!Grupa!Simetrična}
+množice $X$ je množica
 \[
 \Sim(X)=\setb{f}{f\colon X\to X\land\text{$f$ je bijektivna}}
 \]
@@ -154,7 +193,8 @@ z operacijo kompozitum. Če je $\abs{X}=n$, označimo $\Sim(X)=S_n$.
 \end{definicija}
 
 \begin{opomba}
-V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije pišemo $\cdot$, razen v Abelovih grupah, kjer jo označimo s $+$.
+V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije
+pišemo $\cdot$, razen v Abelovih grupah, kjer jo označimo s $+$.
 \end{opomba}
 
 \newpage
@@ -164,7 +204,8 @@ V nadaljevanju namesto z $e$ enoto označimo z $1$. Za operacije pišemo $\cdot$
 \datum{2021-10-15}
 
 \begin{definicija}
-Množica $K$ z binarnima operacijama seštevanja in množenja je \emph{kolobar}\index{Algebrska struktura!Kolobar}, če velja:
+Množica $K$ z binarnima operacijama seštevanja in množenja je
+\emph{kolobar}\index{Algebrska struktura!Kolobar}, če velja:
 
 \begin{enumerate}[i)]
 \item za seštevanje je $K$ Abelova grupa,
@@ -188,15 +229,22 @@ V poljubnem kolobarju $K$ velja:
 \obvs
 
 \begin{definicija}
-Kolobarju s komutativnim množenjem pravimo \emph{komutativen kolobar}\index{Algebrska struktura!Kolobar!Komutativen}.
+Kolobarju s komutativnim množenjem pravimo
+\emph{komutativen kolobar}\index{Algebrska struktura!Kolobar!Komutativen}.
 \end{definicija}
 
 \begin{definicija}
-Element $x$ kolobarja $K$ je \emph{delitelj niča}\index{Algebrska struktura!Kolobar!Delitelj niča}, če je $x \ne 0$ in obstaja tak $y \ne 0$ iz $K$, da je $xy = 0$ ali $yx = 0$.
+Element $x$ kolobarja $K$ je
+\emph{delitelj niča}\index{Algebrska struktura!Kolobar!Delitelj niča},
+če je $x \ne 0$ in obstaja tak $y \ne 0$ iz $K$, da je $xy = 0$ ali
+$yx = 0$.
 \end{definicija}
 
 \begin{definicija}
-Neničelnemu kolobarju, v katerem je vsak neničelni element obrnljiv, pravimo \emph{obseg}\index{Algebrska struktura!Obseg}. Komutativnemu obsegu pravimo \emph{polje}\index{Algebrska struktura!Polje}.
+Neničelnemu kolobarju, v katerem je vsak neničelni element
+obrnljiv, pravimo \emph{obseg}\index{Algebrska struktura!Obseg}.
+Komutativnemu obsegu pravimo
+\emph{polje}\index{Algebrska struktura!Polje}.
 \end{definicija}
 
 \begin{trditev}
@@ -214,24 +262,35 @@ Obseg je kolobar brez deliteljev niča.
 \subsection{Vektorski prostori in algebre}
 
 \begin{definicija}
-Naj bo $\F$ polje. Množica $V$ s seštevanjem in množenjem s skalarjem je \emph{vektorski prostor}\index{Algebrska struktura!Vektorski prostor} nad $\F$, če velja:
+Naj bo $\F$ polje. Množica $V$ s seštevanjem in množenjem s
+skalarjem je
+\emph{vektorski prostor}\index{Algebrska struktura!Vektorski prostor}
+nad $\F$, če velja:
 
 \begin{enumerate}[i)]
 \item $V$ je Abelova grupa za seštevanje,
-\item $\forall \lambda \in \F, u,v \in V \colon \lambda(u+v) = \lambda u + \lambda v$,
-\item $\forall \lambda, \mu \in \F, v \in V \colon (\lambda + \mu)v = \lambda v + \mu v$,
-\item $\forall \lambda, \mu \in \F, v \in V \colon \lambda(\mu v) = (\lambda \mu)v$ in
+\item $\forall \lambda \in \F, u,v \in V \colon
+\lambda(u+v) = \lambda u + \lambda v$,
+\item $\forall \lambda, \mu \in \F, v \in V \colon
+(\lambda + \mu)v = \lambda v + \mu v$,
+\item $\forall \lambda, \mu \in \F, v \in V \colon
+\lambda(\mu v) = (\lambda \mu)v$ in
 \item $\forall v \in V \colon 1v = v$.
 \end{enumerate}
 \end{definicija}
 
 \begin{definicija}
-Naj bo $\F$ polje. Množica $A$ s seštevanjem in množenjem ter množenjem s skalari iz $\F$ imenujemo \emph{algebra}\index{Algebrska struktura!Algebra} nad $\F$, če velja:
+Naj bo $\F$ polje. Množica $A$ s seštevanjem in množenjem ter
+množenjem s skalari iz $\F$ imenujemo
+\emph{algebra}\index{Algebrska struktura!Algebra} nad $\F$, če
+velja:
 
 \begin{enumerate}[i)]
-\item $A$ je vektorski prostor nad $\F$ za seštevanje in množenje s skalarji,
+\item $A$ je vektorski prostor nad $\F$ za seštevanje in množenje s
+skalarji,
 \item $A$ je za seštevanje in množenje kolobar in
-\item $\forall \lambda \in \F, x,y \in A \colon \lambda(xy) = (\lambda x)y = x(\lambda y)$.
+\item $\forall \lambda \in \F, x,y \in A \colon
+\lambda(xy) = (\lambda x)y = x(\lambda y)$.
 \end{enumerate}
 \end{definicija}
 
@@ -242,7 +301,10 @@ Naj bo $\F$ polje. Množica $A$ s seštevanjem in množenjem ter množenjem s sk
 \datum{2021-10-22}
 
 \begin{definicija}
-Podmnožica $H$ grupe $G$ je \emph{podgrupa}\index{Algebrska struktura!Podstruktura} grupe $G$, če je grupa isto operacijo.\footnote{S tem je seveda mišljena skrčitev operacije na $H \times H$.} Pišemo $H \leq G$.
+Podmnožica $H$ grupe $G$ je
+\emph{podgrupa}\index{Algebrska struktura!Podstruktura} grupe $G$,
+če je grupa isto operacijo.\footnote{S tem je seveda mišljena
+skrčitev operacije na $H \times H$.} Pišemo $H \leq G$.
 \end{definicija}
 
 \begin{opomba}
@@ -250,7 +312,8 @@ Za vsako podgrupo $H$ je $1 \in H$.
 \end{opomba}
 
 \begin{trditev}
-Za neprazno podmnožico $H$ grupe $G$ so naslednje izjave ekvivalentne:
+Za neprazno podmnožico $H$ grupe $G$ so naslednje izjave
+ekvivalentne:
 
 \begin{enumerate}[i)]
 \item $H \leq G$
@@ -262,7 +325,8 @@ Za neprazno podmnožico $H$ grupe $G$ so naslednje izjave ekvivalentne:
 \obvs
 
 \begin{definicija}
-\emph{Center}\index{Algebrska struktura!Grupa!Center} grupe $G$ je množica
+\emph{Center}\index{Algebrska struktura!Grupa!Center} grupe $G$ je
+množica
 \[
 Z(G) = \setb{c \in G}{\forall x \in G \colon cx = xc}.
 \]
@@ -273,21 +337,28 @@ Velja $Z(G) \leq G$.
 \end{opomba}
 
 \begin{definicija}
-Naj bo $H \leq G$ podgrupa. $aHa^{-1}$ za $a \in G$ je \emph{konjugirana podgrupa}\index{Algebrska struktura!Grupa!Konjugirana podgrupa}\footnote{Elementa $x,y \in G$ sta si \emph{konjugirana}, če je $y=axa^{-1}$ za nek $a \in G$.} grupe $G$.
+Naj bo $H \leq G$ podgrupa. $aHa^{-1}$ za $a \in G$ je
+\emph{konjugirana podgrupa}\index{Algebrska struktura!Grupa!Konjugirana podgrupa}\footnote{
+Elementa $x,y \in G$ sta si \emph{konjugirana}, če je $y=axa^{-1}$
+za nek $a \in G$.} grupe $G$.
 \end{definicija}
 
 \begin{definicija}
-Podmnožica $L$ kolobarja $K$ je \emph{podkolobar}, če je kolobar za isti operaciji in vsebuje enoto $1$ kolobarja $K$.
+Podmnožica $L$ kolobarja $K$ je \emph{podkolobar}, če je kolobar za
+isti operaciji in vsebuje enoto $1$ kolobarja $K$.
 \end{definicija}
 
 \begin{trditev}
-Podmnožica $L$ kolobarja $K$ je podkolobar natanko tedaj, ko $1 \in L$ in velja $\forall x,y \in L \colon xy \in L \land x-y \in L$.
+Podmnožica $L$ kolobarja $K$ je podkolobar natanko tedaj, ko
+$1 \in L$ in velja
+$\forall x,y \in L \colon xy \in L \land x-y \in L$.
 \end{trditev}
 
 \obvs
 
 \begin{definicija}
-\emph{Center}\index{Algebrska struktura!Kolobar!Center} kolobarja $K$ je množica
+\emph{Center}\index{Algebrska struktura!Kolobar!Center} kolobarja
+$K$ je množica
 \[
 Z(K) = \setb{c \in K}{\forall x \in K \colon cx = xc}.
 \]
@@ -298,35 +369,45 @@ Center kolobarja je podkolobar.
 \end{opomba}
 
 \begin{definicija}
-Podmnožica $U$ vektorskega prostora $V$ je \emph{podprostor} prostora $V$, če je za isti operaciji tudi sama vektorski prostor.
+Podmnožica $U$ vektorskega prostora $V$ je \emph{podprostor}
+prostora $V$, če je za isti operaciji tudi sama vektorski prostor.
 \end{definicija}
 
 \begin{trditev}
-Za podmnožico $U$ vektorskega prostora $V$ so naslednje izjave ekvivalentne:
+Za podmnožico $U$ vektorskega prostora $V$ so naslednje izjave
+ekvivalentne:
 
 \begin{enumerate}[i)]
 \item $U$ je podprostor $V$
-\item $\forall u,v \in U, \lambda \in \F \colon u+v \in U \land \lambda u \in U$
-\item $\forall u,v \in U, \lambda, \mu \in \F \colon \lambda u + \mu v \in U$
+\item $\forall u,v \in U, \lambda \in \F \colon
+u+v \in U \land \lambda u \in U$
+\item $\forall u,v \in U, \lambda, \mu \in \F \colon
+\lambda u + \mu v \in U$
 \end{enumerate}
 \end{trditev}
 
 \obvs
 
 \begin{definicija}
-Podmnožica $B$ algebre $A$ je \emph{podalgebra}, če je algebra za iste operacije in vsebuje enoto $A$.
+Podmnožica $B$ algebre $A$ je \emph{podalgebra}, če je algebra za
+iste operacije in vsebuje enoto $A$.
 \end{definicija}
 
 \begin{trditev}
-$B$ je podalgebra $A$ natanko tedaj, ko je $B$ podkolobar in podprostor.
+$B$ je podalgebra $A$ natanko tedaj, ko je $B$ podkolobar in
+podprostor.
 \end{trditev}
 
 \begin{definicija}
-Podmnožica $\F$ polja $\mathbb{E}$ je \emph{podpolje}, če je $\F$ polje za isti operaciji. Polju $\mathbb{E}$ pravimo \emph{razširitev}\index{Algebrska struktura!Polje!Razširitev} polja $\F$.
+Podmnožica $\F$ polja $\mathbb{E}$ je \emph{podpolje}, če je $\F$
+polje za isti operaciji. Polju $\mathbb{E}$ pravimo
+\emph{razširitev}\index{Algebrska struktura!Polje!Razširitev} polja
+$\F$.
 \end{definicija}
 
 \begin{trditev}
-Podmnožica $\F$ polja $\mathbb{E}$ je podpolje natanko tedaj, ko velja $1 \in \F$,
+Podmnožica $\F$ polja $\mathbb{E}$ je podpolje natanko tedaj, ko
+velja $1 \in \F$,
 \[
 \forall x,y \in \F \colon x-y \in \F \land xy \in \F
 \]
@@ -344,13 +425,16 @@ Presek podstruktur neke strukture je znova podstruktura.
 \subsection{Generatorji}
 
 \begin{definicija}
-Naj bo $G$ grupa in $X$ neka njena podmnožica. Z $\skl{X}$ označimo najmanjšo podgrupo $G$, ki vsebuje $X$ in jo imenujemo podgrupa, \emph{generirana z $X$}.
+Naj bo $G$ grupa in $X$ neka njena podmnožica. Z $\skl{X}$ označimo
+najmanjšo podgrupo $G$, ki vsebuje $X$ in jo imenujemo podgrupa,
+\emph{generirana z $X$}.
 \end{definicija}
 
 \begin{trditev}
 Velja
 \[
-\skl{X} = \setb{\prod_{i=1}^n y_i}{\forall i \colon y_i \in X \lor y_i^{-1} \in X}.
+\skl{X} = \setb{\prod_{i=1}^n y_i}{\forall i \colon
+y_i \in X \lor y_i^{-1} \in X}.
 \]
 \end{trditev}
 
