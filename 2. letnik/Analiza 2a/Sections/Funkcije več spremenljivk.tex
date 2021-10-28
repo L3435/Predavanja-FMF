@@ -3,6 +3,7 @@
 \subsection{Prostor $\R^n$}
 
 \datum{2021-10-5}
+
 \begin{definicija}
 \emph{Prostor $\R^n$} je kartezični produkt
 $\underbrace{\R \times \dots \times \R}_n$. Na njem definiramo
@@ -1208,7 +1209,155 @@ Ekstrem}.
 \end{opomba}
 
 \begin{definicija}
-Naj bo $f \colon D \to \R$ funkcija, $a \in D $ notranja točka in naj bo $f$ v $a$ diferenciabilna. Če je $(Df)(a) = 0$, je $a$
+Naj bo $f \colon D \to \R$ funkcija, $a \in D $ notranja točka in
+naj bo $f$ v $a$ diferenciabilna. Če je $(Df)(a) = 0$, je $a$
 \emph{stacionarna točka}\index{Preslikava!Stacionarna točka} za
 $f$.
 \end{definicija}
+
+\datum{2021-10-28}
+
+\begin{trditev}
+Naj bo $D \subseteq \R^n$, $f \colon D \to \R$, $a \in D$
+notranja in $f$ diferenciabilna v $a$. Če ima $f$ lokalni ekstrem
+v $a$, je $a$ stacionarna točka za $f$.
+\end{trditev}
+
+\begin{proof}
+Funkcije $\varphi_i(t) = f(a_1,\dots,t,\dots,a_n)$ imajo lokalni
+ekstrem v $a_i$, zato so vsi parcialni odvodi pri $a$ enaki $0$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $f \in \mathcal{C}^2(D)$. \emph{Hessejeva matrika}\index{
+Preslikava!Hessejeva matrika} funkcije $f$ je matrika
+\[
+H_f(x) = \begin{bmatrix}
+\dfrac{\partial^2 f}{\partial x_i \partial x_j}(x)
+\end{bmatrix}.
+\]
+\end{definicija}
+
+\begin{opomba}
+V stacionarni točki $a$ je Taylorjev razvoj funkcije $f$ enak
+\[
+f(a+h) = f(a) + \frac{1}{2} \skl{H_f(a + \theta h)h,h}.
+\]
+\end{opomba}
+
+\begin{trditev}\label{td:2}
+Naj bo $f \in \mathcal{C}^2(D)$, kjer je $D \subseteq \R^n$ odprta,
+in $a \in D$.
+
+\begin{enumerate}[i)]
+\item Če ima $f$ v $a$ lokalni minimum, je
+$H_f(a) \geq 0$.\footnote{$H_f(a)$ je \emph{pozitivno
+semidefinitna}, glej definicijo 7.8.1 v zapiskih predmeta Algebra 1
+prvega letnika.}
+\item Če ima $f$ v $a$ lokalni maksimum, je $H_f(a) \leq 0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj ima $f$ v $a$ lokalni minimum. Sledi, da je $(DF)(a) = 0$. Za
+$h \in \R^n$ opazujemo preslikavo $\varphi(t)=f(a + th)$. Dobimo,
+da je $\varphi'(t) = 0$ in $\varphi''(t) \geq 0$, zato je
+\[
+0 \leq \varphi''(t) = \skl{H_f(a + th)h, h}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $D \subseteq \R^n$ odprta, $f \in \mathcal{C}^2(D)$ in
+$a \in D$ stacionarna točka $f$.
+
+\begin{enumerate}[i)]
+\item Če je $H_f(a) > 0$, ima $f$ v $a$ strogi lokalni minimum.
+\item Če je $H_f(a) < 0$, ima $f$ v $a$ strogi lokalni maksimum.
+\item Če ima $H_f(a)$ pozitivne in negativne lastne vrednosti, $f$
+v $a$ nima lokalnega ekstrema.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Tretja točka sledi direktno iz trditve \ref{td:2}.
+
+Naj bo $H_f(a) > 0$ in $h$ dovolj majhen. Potem je
+\begin{align*}
+f(a+h) - f(a) &= \frac{1}{2} \skl{H_f(a + \theta h)h,h}
+\\
+&= \frac{1}{2} \norm{h}^2
+\left(\skl{H_f(a)v,v} + \skl{E(h)v,v}\right)
+\end{align*}
+za $v = \frac{h}{\norm{h}}$ in $E(h) = H_f(a + \theta h) - H_f(a)$.
+Ker je $\setb{v \in \R^n}{\norm{v} = 1}$ kompaktna, obstaja tak
+$m > 0$, da je $\skl{H_f(a)v,v} \geq m$. Ker je
+$f \in \mathcal{C}^2(D)$, je $H_f$ zvezna, zato za dovolj majhne
+$h$ velja $\abs{\skl{E(h)v,v}} \leq \frac{m}{2}$ in
+\[
+f(a+h) - f(a) \geq
+\frac{1}{2} \norm{h}^2 \cdot \frac{m}{2}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \R^2$ odprta, $f \in \mathcal{C}^2(D)$ in
+$a \in D$ stacionarna točka $f$.
+
+\begin{enumerate}[i)]
+\item Če je $\det H_f(a) > 0$, ima $f$ v $a$ lokalni ekstrem.
+
+\begin{enumerate}[a)]
+\item Če je $f_{xx}(a) > 0$, ima $f$ v $a$ lokalni minimum.
+\item Če je $f_{xx}(a) < 0$, ima $f$ v $a$ lokalni maksimum.
+\end{enumerate}
+
+\item Če je $\det H_f(a) < 0$, $f$ v $a$ nima lokalnega ekstrema.
+\end{enumerate}
+\end{posledica}
+
+\obvs
+
+\newpage
+
+\subsection{Vezani ekstremi}
+
+\begin{izrek}
+Naj bo $m < n$ in $D \subseteq \R^n$ odprta. Naj bo
+$G \colon D \to \R^m$ $\mathcal{C}^1$ preslikava na $D$ ranga $m$
+in $G = (g_1,\dots,g_m)$. Naj bo $M = G^-1({0}) \ne \emptyset$ in
+$f \in \mathcal{C}^1(D)$. Če ima $f$ v $p \in M$ lokalni ekstrem
+kot funkcija $f \colon M \to \R$, obstajajo take konstante
+$\lambda_1,\dots,\lambda_m \in \R$, da je
+\[
+(Df)(p) = \sum_{i=1}^m \lambda_i (Dg_i)(p).
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $\Phi(x) = (f(x), G(x))$. Velja $\Phi(p) = (f(p),0)$. Če je
+$\rang(D\Phi)(p) = m+1$, je $(D\Phi)(p)$ maksimalnega ranga, zato
+je $\Phi$ iz okolice $p$ v okolico $(f(p),0)$ surjektivna, zato so
+v zalogi vrednosti tako točke oblike $(f(p)+\varepsilon,0)$ kot
+$(f(p)-\varepsilon,0)$, zato $f$ v $p$ nima lokalnega ekstrema.
+Sledi, da je
+\[
+\rang(D\Phi)(p) = \rang(DG)(p),
+\]
+zato je $(Df)(p)$ linearna kombinacija $(Dg_i)(p)$.
+\end{proof}
+
+\begin{opomba}[Lagrangeva metoda]\index{Lagrangeva metoda}
+Številom $\lambda_i$ pravimo \emph{Lagrangevi multiplikatorji}.
+Za vsak ekstrem $f$ na $M$ obstaja tak $\lambda$, da za
+\[
+F(x, \lambda) = f(x) - \sum_{i = 1}^m \lambda_i g_i(x)
+\]
+velja $(DF)(x,\lambda) = 0$. Dobimo sistem
+\[
+\frac{\partial f}{\partial x_j} -
+\sum_{i=1}^m \lambda_i \frac{\partial g_i(x)}{\partial x_j} = 0
+\quad \text{in} \quad
+g_i(x) = 0.
+\]
+\end{opomba}
