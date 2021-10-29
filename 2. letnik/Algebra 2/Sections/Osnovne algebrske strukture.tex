@@ -91,7 +91,7 @@ določene aksiome.
 
 \begin{definicija}
 Množica $S$ z operacijo $*$ je
-\emph{polgrupa}\index{Algebrska struktura!Polgrupa, monoid, grupa},
+\emph{polgrupa}\index{Algebrska struktura!Polgrupa, monoid},
 če je $*$ asociativna. Polgrupam z nevtralnim elementom pravimo
 \emph{monoid}.
 \end{definicija}
@@ -427,8 +427,14 @@ Presek podstruktur neke strukture je znova podstruktura.
 \begin{definicija}
 Naj bo $G$ grupa in $X$ neka njena podmnožica. Z $\skl{X}$ označimo
 najmanjšo podgrupo $G$, ki vsebuje $X$ in jo imenujemo podgrupa,
-\emph{generirana z $X$}.
+\emph{generirana z $X$}, elementom $X$ pa pravimo
+\emph{generatorji}\index{Grupa!Generatorji}.
 \end{definicija}
+
+\begin{opomba}
+Podobno definiramo generatorje ostalih algebrskih struktur.\footnote{
+Notacijo $\skl{X}$ uporabljamo le pri grupah.}
+\end{opomba}
 
 \begin{trditev}
 Velja
@@ -439,3 +445,59 @@ y_i \in X \lor y_i^{-1} \in X}.
 \end{trditev}
 
 \obvs
+
+\begin{definicija}
+Grupa $G$ je
+\emph{končno generirana}\index{Algebrska struktura!Grupa!Končno generirana},
+če obstaja končna množica $X$, za katero je $\skl{X} = G$.
+\end{definicija}
+
+\begin{opomba}
+Grupam, generiranim z enim elementom, pravimo
+\emph{ciklične grupe}.
+\end{opomba}
+
+\begin{trditev}
+Podkolobar, generiran z $X$, je množica\footnote{Oznaka
+$\overline{X}$ ni standardna.}
+\[
+\overline{X} =
+\setb{\sum_{i=1}^n \left(n_i \prod_{j=1}^{m_i} x_{i,j}\right)}
+{n,m_i \in \N_0, n_i \in \Z, x_{i,j} \in X}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Podpolje, generirano z $X$, je množica
+\[
+\setb{uv^{-1}}{u,v \in \overline{X}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Dovolj je preveriti zaprtost za seštevanje, kar pa lahko zapišemo
+kot
+\[
+ab^{-1} + cd^{-1} = (ad + bc)(bd)^{-1}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Podprostor, generiran z $X$, je $\Lin X$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Podalgebra, generirana z $X$, je množica
+\[
+\overline{X} =
+\setb{
+\sum_{i=1}^n \left(\lambda_i \prod_{j=1}^{m_i} x_{i,j}\right)
+}{
+n,m_i \in \N_0, \lambda_i \in \F, x_{i,j} \in X
+}.
+\]
+\end{trditev}
