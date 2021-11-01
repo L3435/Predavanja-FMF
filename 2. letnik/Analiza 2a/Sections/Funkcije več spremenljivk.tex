@@ -124,7 +124,7 @@ definirane.
 \end{opomba}
 
 \begin{opomba}
-Kompozitum zvenih preslikav je zvezen.
+Kompozitum zveznih preslikav je zvezen.
 \end{opomba}
 
 \datum{2021-10-6}
@@ -422,6 +422,8 @@ Vse elementarne funkcije so diferenciabilne, kjer so definirane.
 
 \subsection{Višji parcialni odvodi}
 
+\datum{2021-10-12}
+
 \begin{izrek}
 Naj bosta parcialna odvoda $\frac{\partial f}{\partial x_i}$ in
 $\frac{\partial f}{\partial x_j}$ v okolici $a$ zvezna in naj na
@@ -445,8 +447,6 @@ ki sta zvezna v $a$. Tedaj velja
 \right)(a).
 \]
 \end{izrek}
-
-\datum{2021-10-12}
 
 \begin{proof}
 Dovolj je dokazati izrek za $n=2$, saj so preostale spremenljivke
@@ -708,7 +708,7 @@ velja:
 Tedaj obstajata okolica točke $a$ $I=(a-\delta, a+\delta)$ in
 okolica točke $b$ $J=(b-\varepsilon, b+\varepsilon)$, kjer je
 $I \times J \subseteq D$, za kateri za vse $x \in I$ obstaja
-enoličen $y\in J$, za katera je $f(x,y) = 0$. Obstaja enolična
+enoličen $y\in J$, za katerega je $f(x,y) = 0$. Obstaja enolična
 funkcija $\varphi \colon I \to J$, za katero velja
 
 \begin{enumerate}[i)]
@@ -917,18 +917,18 @@ velja
 Po Cauchyju je
 \[
 \abs{f(b) - f(a)} =
-\abs{(DF)(\xi) \cdot (b - a)} \leq
+\abs{(Df)(\xi) \cdot (b - a)} \leq
 \abs{(Df)(\xi)} \cdot \abs{b - a} \leq
 M \sqrt{n} \cdot \abs{b - a}. \qedhere
 \]
 \end{proof}
 
 \begin{posledica}\label{pos:2}
-Naj bo $F \colon D \to \R^m$, $F \in \mathcal{C}^1$ in
-$F = (f_1, \dots, f_m)$. Denimo, da obstaja tak $M$, da za vse $x$
-in $j$ velja
+Naj bo $f \colon D \to \R^m$, $f \in \mathcal{C}^1$ in
+$f = (f_1, \dots, f_m)$. Denimo, da obstaja tak $M$, da za vse $x$,
+$i$ in $j$ velja
 \[
-\abs{\frac{\partial f}{\partial x_j}(x)} \leq M.
+\abs{\frac{\partial f_i}{\partial x_j}(x)} \leq M.
 \]
 Tedaj je
 \[
