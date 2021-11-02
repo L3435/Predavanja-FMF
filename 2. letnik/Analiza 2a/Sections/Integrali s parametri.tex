@@ -1,2 +1,183 @@
 \section{Integrali s parametri}
 
+\subsection{Eulerjeva gama}
+
+\datum{2021-11-2}
+
+\begin{definicija}
+\emph{Eulerjeva funkcija gama}\index{Eulerjeva gama} je funkcija
+\[
+\Gamma(s) = \int_0^\infty x^{s-1} e^{-x}\;dx.
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja $\Gamma(s+1) = s \cdot \Gamma(s)$.
+\end{trditev}
+
+\begin{proof}
+Z integriranjem po delih dobimo
+\[
+\Gamma(s+1) =
+\int_0^\infty x^s e^{-x}\;dx =
+\eval{-x^s e^{-x}}{0}{\infty} +
+s \cdot \int_0^\infty x^{s-1} e^{-x}\;dx =
+s \cdot \Gamma(s). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Velja $\Gamma(n+1) = n!$.
+\end{posledica}
+
+\begin{definicija}
+\emph{Eulerjeva funkcija beta}\index{Eulerjeva beta} je funkcija
+\[
+\beta(p,q) = \int_0^1 x^{p-1}(1-x)^{q-1}\;dx
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Zveznost in odvedljivost integralov s parametri}
+
+\begin{definicija}
+Množica $Y \subseteq \R^n$ je
+\emph{lokalno kompaktna}\index{Množica!Lokalno kompaktna}, če za
+vse $y \in Y$ obstaja tak $r>0$, da je
+$Y \cap \overline{\mathcal{K}(y,r)}$ kompaktna.
+\end{definicija}
+
+\begin{opomba}
+Zaprte in odprte množica so lokalno kompaktne.
+\end{opomba}
+
+\begin{opomba}
+Zvezne funkcije na lokalno kompaktnih množicah so lokalno omejene in enakomerno zvezne.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $I = [a,b]$ in $Y \subseteq \R^n$ lokalno kompaktna. Naj bo
+$f \colon I \times Y \colon \R$ zvezna. Potem je funkcija
+$F \colon I \times I \times Y \to \R$, podana s predpisom
+\[
+F(u,v,y) = \int_u^v f(x,y)\;dx,
+\]
+zvezna.
+\end{izrek}
+
+\begin{proof}
+Ker je $Y$ lokalno kompaktna, obstaja tak $r>0$, da je
+$A = Y \cap \overline{\mathcal{K}(y_0,r)}$ kompaktna, zato je
+$I \times A$ kompaktna in je $f$ na tej množici enakomerno zvezna.
+Naj bo $\varepsilon > 0$. Sledi, da obstaja tak $\delta$, da za vse
+$y_1,y_2 \in A$, za katere velja $\norm{y_1 - y_2} < \delta$, velja
+\[
+\abs{f(x,y_1) - f(x,y_2)} < \frac{\varepsilon}{3 \cdot (b-a)}.
+\]
+Ker je $I \times A$ kompaktna, je $f$ na $I \times A$ omejena z
+$M$. Sedaj za
+$\abs{u-u_0},\abs{v-v_0} < \frac{\varepsilon}{3(b-a)}$ dobimo
+\begin{align*}
+&\abs{F(u,v,y) - F(u_0,v_0,y_0)}
+\\
+= &\abs{\int_u^v f(x,y)\;dx - \int_{u_0}^{v_0} f(x,y_0)\;dx}
+\\
+\leq &\abs{\int_u^{u_0} f(x,y)\;dx} +
+\abs{\int_v^{v_0} f(x,y)\;dx} +
+\abs{\int_{v_0}^{u_0} \left(f(x,y) - f(x,y_0)\right)\;dx}
+\\
+\leq &M \cdot \abs{u-u_0} + M \cdot \abs{v-v_0} +
+\frac{\varepsilon}{3(b-a)} \cdot (b-a) < \varepsilon. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bo $Y \subseteq \R^n$ lokalno kompaktna in
+$f \colon [a,b] \times Y \to \R$ zvezna. Potem je
+\[
+F(y) = \int_a^b f(x,y)\;dx
+\]
+zvezna na $Y$.
+\end{posledica}
+
+\begin{izrek}
+Naj bodo $a<b$ in $c<d$ realna in $D = [a,b] \times (c,d)$. Naj bo
+$f \colon D \to \R$ zvezna in v vsaki točki $(x,y) \in D$ parcialno
+odvedljiva po $y$ z zveznim parcialnim odvodom. Tedaj je
+\[
+F(y) = \int_a^b f(x,y)\;dx
+\]
+zvezno odvedljiva in velja
+\[
+F'(y) = \int_a^b f_y(x,y)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $y \in (c,d)$ in $[y-r,y+r] \subseteq (c,d)$. Naj bo
+$h \ne 0$, $\abs{h} < r$ in $\varepsilon > 0$. Potem je po
+Lagrangevem izreku
+\begin{align*}
+\abs{\frac{F(y+h) - F(y)}{h} - \int_a^b f_y(x,y)\;dx} &=
+\abs{\frac{1}{h} \int_a^b \left(f(x,y+h) - f(x,y)\right)\;dx -
+\int_a^b f_y(x,y)\;dx}
+\\
+&= \abs{\int_a^b \left(f(x,y^*) - f_y(x,y)\right)\;dx},
+\end{align*}
+kjer $y^*$ leži med $y$ in $y+h$. Ker je $f_y$ na
+$[a,b] \times [y-r,y+r]$ enakomerno zvezna, obstaja tak
+$\delta > 0$, da za $\abs{h} < \delta$ velja
+\[
+\abs{f_y(x,y^*) - f_y(x,y)} < \frac{\varepsilon}{b-a},
+\]
+zato je
+\[
+\abs{\int_a^b \left(f(x,y^*) - f_y(x,y)\right)\;dx} < \varepsilon.
+\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bosta $\alpha,\beta \colon (c,d) \to [a,b]$ zvezno odvedljivi.
+Tedaj je
+\[
+F(y) = \int_{\alpha(y)}^{\beta(y)} f(x,y)\;dx
+\]
+zvezno odvedljiva na $(c,d)$ z odvodom
+\[
+F'(y) = \int_{\alpha(y)}^{\beta(y)} f_y(x,y)\;dx +
+\beta(y) f(\beta(y),y) - \alpha(y) f(\alpha(y),y).
+\]
+\end{posledica}
+
+\begin{proof}
+Naj bo
+\[
+\Phi(u,v,y) = \int_u^v f(x,y)\;dx.
+\]
+Velja
+\[
+\frac{\partial \Phi}{\partial v} = f(v,y),
+\quad
+\frac{\partial \Phi}{\partial u} = -f(u,y)
+\quad \text{in} \quad
+\frac{\partial \Phi}{\partial y} = \int_u^v f_y(x,y)\;dx.
+\]
+Z odvajanjem zveze $F(y) = \Phi(\alpha(y),\beta(y),y)$ dobimo
+iskano enakost.
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \R^n$ odprta in
+$f \colon [a,b] \times D \to \R$ zvezna. Naj za vsak
+$(x,y) \in [a,b] \times D$ obstajajo zvezni parcialni odvodi
+$f_{y_j}(x,y)$. Tedaj je
+\[
+F(y) = \int_a^b f(x,y)\;dx
+\]
+$\mathcal{C}^1(D)$ z odvodi
+\[
+F_{y_j}(y) =  \int_a^b f_{y_j}(x,y)\;dx.
+\]
+\end{posledica}
