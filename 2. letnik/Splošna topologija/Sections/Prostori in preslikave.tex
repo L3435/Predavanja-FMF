@@ -322,14 +322,14 @@ za vsak $x$ obstaja števna lokalna baza pri $x$. Prostor je
 \end{definicija}
 
 \begin{trditev}
-Naj bo $X$ 1-števen. Potem za vsak $A \in x$ velja, da je 
-$\overline{A} = L(A) =
+Naj bo $X$ 1-števen topološki prostor. Potem za vsak $A \in x$
+velja, da je $\overline{A} = L(A) =
 \setb{x}{\text{$x$ je limita zaporejda v $A$}}$.
 \end{trditev}
 
 \begin{proof}
-Za vsak $x \in \overline{A}$ obstaja lokalna baza, zato lahko za
-vsak člen zaporedja preprosto izberemo poljuben
+Za vsak $x \in \overline{A}$ obstaja števna lokalna baza, zato
+lahko za vsak člen zaporedja preprosto izberemo poljuben
 \[
 a_n \in A \cap \bigcap_{i=1}^n B_i. \qedhere
 \]
@@ -339,3 +339,68 @@ a_n \in A \cap \bigcap_{i=1}^n B_i. \qedhere
 $f \colon X \to Y$ je zvezna natanko tedaj, ko za vsak
 $A \subseteq X$ velja $f(L(A)) \subseteq L(f(A))$.
 \end{trditev}
+
+\datum{2021-11-2}
+
+\begin{definicija}
+Množica $A \subseteq X$ je \emph{gosta}\index{Gosta množica}, če je
+$\overline{A} = X$.
+\end{definicija}
+
+\begin{definicija}
+Prostor $(X, \tau)$ je
+\emph{separabilen}\index{Topološki prostor!Separabilen}, če v njem
+obstaja števna gosta množica.
+\end{definicija}
+
+\begin{izrek}
+Metrični prostor je 2-števen natanko tedaj, ko je separabilen.
+\end{izrek}
+
+\begin{proof}
+Naj bo $Q$ števna in gosta podmnožica $X$. Sedaj preprosto vzamemo
+\[
+\mathcal{B} = \setb{\mathcal{K}(q,r)}{q \in Q, r \in \Q}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Podprostori}
+
+\begin{definicija}
+Naj bo $(X, \tau)$ topološki prostor in $A \subseteq X$. Množica
+\[
+\tau_A = \setb{A \cap U}{U \in \tau}
+\]
+je topologija na $A$, ki ji pravimo \emph{inducirana} ali
+\emph{podedovana topologija}\index{Topologija!Inducirana}. Prostor
+$(A, \tau_A)$ je
+\emph{podprostor}\index{Topološki prostor!Podprostor} prostora
+$(X, \tau)$.
+\end{definicija}
+
+\begin{trditev}
+Zaprte množice v $A$ so preseki $A$ z zaprtimi množicami $X$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $\mathcal{B}$ baza $\tau$. Potem je
+\[
+\mathcal{B}_A = \setb{B \cap A}{B \in \mathcal{B}}
+\]
+baza inducirane topologije.
+\end{trditev}
+
+\begin{definicija}
+Topološka lastnost je
+\emph{dedna}\index{Topologija!Topološka lastnost!Dedna}, če se
+prenaša na podprostore.
+\end{definicija}
+
+\begin{opomba}
+Separabilnost ni dedna lastnost, a se deduje na odprte podprostore.
+Podobno se kompaktnost deduje na zaprte podprostore.
+\end{opomba}
