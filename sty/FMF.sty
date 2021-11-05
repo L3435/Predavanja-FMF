@@ -89,13 +89,12 @@
 \begin{tcolorbox}[colback=yellow!40!white,colframe=red!75!white,parbox=false]}
 {\end{tcolorbox}\vspace{0.2cm}}
 
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\F}{\mathbb{F}}
-\renewcommand{\P}{\mathbb{P}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\F}{\mathbb{F}}
 
 \newenvironment{rešitev}{\begin{proof}[Rešitev]}{\end{proof}}
 \theoremstyle{definition}
@@ -136,6 +135,22 @@
 \providecommand{\floor}[1]{\left\lfloor #1\right\rfloor}
 \providecommand{\eval}[3]{\left. #1\right|_{#2}^{#3}}
 \providecommand{\skl}[1]{\left\langle #1\right\rangle}
+
+\providecommand{\kvoc}[2]{
+\mathchoice
+{% \displaystyle
+\left.\text{\raise0.5ex\hbox{$\textstyle#1$}}\middle/\text{\lower0.5ex\hbox{$\textstyle#2$}}\right.%
+}
+{% \textstyle
+\left.\text{\raise0.25ex\hbox{$#1$}}\middle/\text{\lower0.25ex\hbox{$#2$}}\right.
+}
+{% \scriptstyle
+\left.\text{\raise0.15ex\hbox{$#1$}}\middle/\text{\lower0.15ex\hbox{$#2$}}\right.
+}
+{% \scriptscriptstyle
+\left.#1\middle/#2\right.
+}
+}
 
 \newcommand*\dashline{\rel{\rotatebox[origin=c]{90}{$\dabar@\dabar@\dabar@$}}}
 \RequirePackage{arydshln}

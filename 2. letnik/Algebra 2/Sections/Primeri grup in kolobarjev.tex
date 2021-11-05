@@ -1,0 +1,85 @@
+\section{Primeri grup in kolobarjev}
+
+\subsection{Cela števila}
+
+\begin{izrek}[Osnovni izrek o deljenju]
+\index{Izrek!Osnovni izrek o deljenju}
+Naj bo $m \in \Z$ in $n \in \N$. Potem obstajata taki enolični
+števili $q$ in $r$, za kateri je
+\[
+m = qn + r \quad \text{in} \quad 0 \leq r < n.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+S = \setb{k \in \Z}{kn \leq m}.
+\]
+$S$ je navzgor omejena, zato ima največji element $q$, ki ustreza
+zgornjim pogojem.
+\end{proof}
+
+\begin{posledica}
+Podmnožica $H$ aditivne grupe $\Z$ je podgrupa natanko tedaj, ko je
+$H$ oblike $n \Z$ za $n \in \N_0$.
+\end{posledica}
+
+\begin{proof}
+$n \Z$ je očitno grupa za vsak $n$, opazimo pa, da najmanjši
+naravni element $H$ deli vse ostale.
+\end{proof}
+
+\begin{definicija}
+$d \in \N$ je
+\emph{največji skupni delitelj}\index{Cela števila!Največji skupni delitelj}
+celih števil $m$ in $n$, če $d \mid n$, $d \mid m$ in vsak skupni
+delitelj $m$ in $n$ deli tudi $d$. Označimo $d = \gcd(m,n)$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $G$ aditivna grupa in $H, K \leq G$. Potem je tudi
+\[
+H + K = \setb{h + k}{h \in H \land k \in K}
+\]
+podgrupa $G$.
+\end{trditev}
+
+\obvs
+
+\begin{posledica}
+Za vse pare celih števil $m$ in $n$, ki nista obe $0$, obstaja
+enoličen največji skupni delitelj, ki je oblike
+\[
+d = mx + ny
+\]
+za neka $x, y \in \Z$.
+\end{posledica}
+
+\begin{proof}
+Grupa $n \Z + m \Z$ je grupa oblike $d \Z$.
+\end{proof}
+
+\begin{definicija}
+Če je $\gcd(m,n) = 1$ pravimo, da sta si $m$ in $n$
+\emph{tuji}\index{Cela števila!Tujost}.
+\end{definicija}
+
+\begin{lema}[Evklid]\index{Izrek!Evklidova lema}
+Naj bo $p \in \mathbb{P}$ in $m, n \in \Z$. Potem velja
+\[
+p \mid m \cdot n \implies p \mid n \lor p \mid m.
+\]
+\end{lema}
+
+\begin{proof}
+Če $p \nmid m$, je $\gcd(p,m) = 1$, zato obstajata taka $x$ in $y$,
+da je
+\[
+px + my = 1.
+\]
+Sledi, da je
+\[
+p \cdot \left(nx + \frac{mn}{p} \right) = n. \qedhere
+\]
+\end{proof}
