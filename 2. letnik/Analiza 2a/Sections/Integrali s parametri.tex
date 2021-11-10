@@ -33,7 +33,7 @@ Velja $\Gamma(n+1) = n!$.
 \begin{definicija}
 \emph{Eulerjeva funkcija beta}\index{Eulerjeva beta} je funkcija
 \[
-\beta(p,q) = \int_0^1 x^{p-1}(1-x)^{q-1}\;dx
+B(p,q) = \int_0^1 x^{p-1}(1-x)^{q-1}\;dx.
 \]
 \end{definicija}
 
@@ -449,3 +449,282 @@ Sledi, da je
 \varepsilon. \qedhere
 \end{align*}
 \end{proof}
+
+\datum{2021-11-10}
+
+\begin{izrek}
+Naj bo $f \colon [a,\infty) \times (c,d) \to \R$ zvezna in v vsaki
+točki parcialno odvedljiva glede na $y$ z odvodom $f_y$, ki je prav
+tako zvezen na $[a,\infty) \times (c,d)$. Naj
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+obstaja za vse $y \in (c,d)$. Naj
+\[
+y \mapsto \int_a^\infty f_y(x,y)\;dx
+\]
+konvergira lokalno enakomerno na $(c,d)$. Potem je
+$F \in \mathcal{C}^1((c,d))$ in velja
+\[
+F'(y) = \int_a^\infty f_y(x,y)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Označimo
+\[
+G(y) = \int_a^\infty f_y(x,y)\;dx
+\]
+in naj bo $y_0 \in (c,d)$. Definiramo funkcijo
+\[
+\Phi(y) = \int_{y_0}^y G(t)\;dt.
+\]
+Ker je $G$ zvezna, je $\Phi \in \mathcal{C}^1((c,d))$. Sledi, da je
+\begin{align*}
+\Phi(y) &= \int_{y_0}^y \left(\int_a^\infty f_y(x,t)\;dx\right)dt
+\\
+&=
+\int_a^\infty \left(\int_{y_0}^y f_y(x,t)\;dt\right)dx
+\\
+&=
+\int_a^\infty (f(x,y) - f(x,y_0))\;dx = F(y) - F(y_0). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \R^n$ odprta in
+$f \colon [a,\infty) \times D \to \R$. Naj obstajajo zvezni
+parcialni odvodi $f_{y_i}$ za vse $i$. Naj
+\[
+F(y) = \int_a^\infty f(x,y)\;dx 
+\]
+obstaja za vse $y \in D$ in naj bodo
+\[
+G_i = \int_a^\infty f_{y_i}(x,y)\;dx
+\]
+lokalno enakomerno konvergentni za vse $i$. Tedaj je
+$F \in \mathcal{C}^1(D)$ in velja
+\[
+\frac{\partial F}{\partial y_i}(y) =
+\int_a^\infty f_{y_i}(x,y)\;dx.
+\]
+\end{posledica}
+
+\begin{izrek}
+Velja
+\[
+\int_0^\infty \frac{\sin x}{x}\;dx = \frac{\pi}{2}.
+\]
+\end{izrek}
+
+\begin{proof}
+Poglejmo
+\[
+F(a) = \int_0^\infty e^{-ax} \frac{\sin x}{x}\;dx.
+\]
+$F$ konvergira enakomerno na $[c,\infty)$, saj je
+\[
+\abs{e^{-ax} \frac{\sin x}{x}} \leq e^{-ax} \leq e^{-cx}.
+\]
+Naj bo $0 \leq \alpha < \beta$, $f(x) = \sin x$ in
+$g(x) = \frac{e^{-ax}}{x}$. Po izreku~5.2.25\ iz zapiskov Analize 1
+obstaja tak $\gamma$, da je
+\[
+\int_\alpha^\beta \frac{e^{-ax}}{x} \sin x\;dx =
+\frac{e^{-a\alpha}{\alpha}} \int_\alpha^\gamma \sin x\;dx =
+\frac{e^{-a\alpha}}{\alpha} \eval{(-\cos x}{\alpha}{\gamma}.
+\]
+Sledi, da je
+\[
+\abs{\int_\alpha^\beta \frac{e^{-ax}}{x} \sin x\;dx} \leq
+\frac{2}{\alpha},
+\]
+zato $F$ konvergira enakomerno na $[0,\infty)$ in je zvezna. Sledi
+\[
+\int_0^\infty \frac{\sin x}{x}\;dx = F(0) = \lim_{a \to 0} F(a).
+\]
+Kandidat za odvod $F$ je
+\[
+-\int_0^\infty e^{-ax} \sin x\;dx,
+\]
+ta integral pa je lokalno enakomerno konvergenten na $(0,\infty)$,
+saj za $0 < c \leq a$ velja
+\[
+\abs{e^{-a} \sin x} \leq e^{-cx}.
+\]
+Sledi, da je $F$ res odvedljiva z zgornjim odvodom, ki ga lahko
+integriramo po delih in dobimo
+\[
+F'(a) = -\frac{1}{a^2 + 1}.
+\]
+Sledi, da je
+\[
+F(a) = -\arctan(a) + C
+\]
+in
+\[
+0 \leq \abs{F(a)} \leq \int_0^\infty e^{-ax}\;dx = \frac{1}{a},
+\]
+zato je
+\[
+\lim_{a \to \infty} F(a) = 0
+\]
+in $C = \frac{\pi}{2} = F(0)$.
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+\frac{2}{\pi} \int_0^\infty \frac{\sin (ax)}{x}\;dx = \sgn(a).
+\]
+\end{posledica}
+
+\begin{trditev}
+Za $k \in \N$ velja
+\[
+\Gamma^{(k)}(s) = \int_0^\infty x^{s-1} (\ln x)^k e^{-x}\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja, da je $\Gamma$ zvezna in na $(0,\infty)$ konvergira
+enakomerno. Velja pa, da
+\[
+\int_0^1 x^{s-1} (\ln x)^k e^{-x}\;dx
+\]
+konvergira lokalno enakomerno na $(0,\infty)$,
+\[
+\int_1^\infty x^{s-1} (\ln x)^k e^{-x}\;dx
+\]
+pa lokalno enakomerno na $\R$.
+\end{proof}
+
+\begin{posledica}
+$\Gamma$ je gladka.
+\end{posledica}
+
+\begin{posledica}
+$\Gamma$ je konveksna.
+\end{posledica}
+
+\begin{posledica}
+$\ln\Gamma$ je konveksna.
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+\Gamma\left(\frac{s_1 + s_2}{2}\right) =
+\int_0^\infty \left(x^{\frac{s_1-1}{2}} e^{\frac{x}{2}}\right)
+\cdot \left(x^{\frac{s_1-1}{2}} e^{\frac{x}{2}}\right)dx.
+\]
+Po Cauchyju\footnote{Vzamemo skalarni produkt
+$\displaystyle\skl{f,g} = \abs{\int_0^\infty f(x)g(x)\;dx}$.}
+sledi
+\[
+\Gamma\left(\frac{s_1 + s_2}{2}\right) \leq
+\sqrt{\Gamma(s_1)} \cdot \sqrt{\Gamma(s_2}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Funkcija $\Gamma$ je enolično določena z naslednjimi lastnostmi:
+
+\begin{enumerate}[i)]
+\item $\Gamma(1) = 1$,
+\item $\Gamma(s+1) = s \cdot \Gamma(s)$,
+\item $\Gamma > 0$,
+\item $\Gamma \in \mathcal{C}^1(\R^+)$ in
+\item $\ln\Gamma$ je konveksna.
+\end{enumerate}
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+\int_0^{\frac{\pi}{2}} \sin^\alpha(t) \cos^\beta(t)\;dt =
+\frac{1}{2} \cdot
+B\left(\frac{\alpha+1}{2}, \frac{\beta+1}{2}\right).
+\]
+\end{trditev}
+
+\begin{proof}
+Naredimo substitucijo $x = \sin^2 t$.
+\end{proof}
+
+\begin{trditev}
+Velja
+\[
+B(p,q) = \int_0^\infty \frac{t^{p-1}}{(1+t)^{p+q}}\;dt.
+\]
+\end{trditev}
+
+\begin{proof}
+Naredimo substitucijo $t = \frac{x}{1-x}$.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+B(p,q) = \frac{\Gamma(p) \cdot \Gamma(q)}{\Gamma(p+q)}.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\begin{align*}
+B(p,y) \cdot \Gamma(p+q) &=
+\left(\int_0^\infty \frac{t^{p-1}}{(1+t)^{p+q}}\;dt\right) \cdot
+\left(\int_0^\infty x^{p+q-1} e^{-x}\;dx\right)
+\\
+&=
+\int_0^\infty \left(\int_0^\infty x^{p+q-1} e^{-x}\;dx\right)
+\frac{t^{p-1}}{(1+t)^{p+q}}\;dt
+\\
+&=
+\int_0^\infty \left(\int_0^\infty
+\left(\frac{x}{1+t}\right)^{p+q-1}\frac{t^{p-1} e^{-x}}{1+t}\;dx
+\right)dt
+\intertext{Sedaj naredimo substitucijo $x = (1+t)u$. Sledi, da je
+zgornji izraz enak}
+&=
+\int_0^\infty \left(\int_0^\infty
+u^{p+q-1} t^{p-1} e^{-u} e^{-tu}\;dx \right)dt
+\intertext{S Fubinijevim izrekom dobimo}
+&=
+\int_0^\infty \left(
+\int_0^\infty u^{p+q-1} t^{p-1} e^{-u} e^{-tu}\;dt
+\right)dx
+\\
+&=
+\int_0^\infty u^{s-1} e^{-u} \left(\int_0^\infty (ut)^{p-1} e^{-ut} u\;dt\right)du
+\intertext{Sedaj naredimo še substitucijo $ut=v$}
+&=
+\int_0^\infty u^{q-1}e^{-u} \Gamma(p)\;du
+\\
+&=
+\Gamma(p) \cdot \Gamma(q). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}.
+\]
+\end{posledica}
+
+\begin{posledica}
+Velja
+\[
+\frac{1}{\sqrt{2\pi}\sigma}
+\int_{-\infty}^{\infty} e^{-\frac{(x-a)^2}{2\sigma^2}}\;dx = 1.
+\]
+\end{posledica}
+
+\begin{trditev}
+Velja
+\[
+\lim_{s \to \infty} \frac{\Gamma(s+1)}{s^s e^{-s}\sqrt{2\pi s}} = 1.
+\]
+\end{trditev}
