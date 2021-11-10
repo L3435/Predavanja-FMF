@@ -101,7 +101,7 @@ F(y) = \int_a^b f(x,y)\;dx
 zvezna na $Y$.
 \end{posledica}
 
-\begin{izrek}
+\begin{izrek}\label{iz:odv_int}
 Naj bodo $a<b$ in $c<d$ realna in $D = [a,b] \times (c,d)$. Naj bo
 $f \colon D \to \R$ zvezna in v vsaki točki $(x,y) \in D$ parcialno
 odvedljiva po $y$ z zveznim parcialnim odvodom. Tedaj je
@@ -181,3 +181,271 @@ $\mathcal{C}^1(D)$ z odvodi
 F_{y_j}(y) =  \int_a^b f_{y_j}(x,y)\;dx.
 \]
 \end{posledica}
+
+\datum{2021-11-9}
+
+\begin{izrek}[Fubini]\index{Izrek!Fubini}\label{iz:fub1}
+Naj bo $f \colon [a,b] \times [c,d] \to \R$ zvezna. Potem je
+\[
+\int_c^d \left(\int_a^b f(x,y)\;dx\right) dy =
+\int_a^b \left(\int_c^d f(x,y)\;dy\right) dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+\Phi(y) = \int_c^y \left(\int_a^b f(x,t)\;dx\right) dt
+\]
+in
+\[
+\Psi(y) = \int_a^b \left(\int_c^y f(x,t)\;dt\right) dx.
+\]
+Dokazujemo, da je $\Phi \equiv \Psi$. Označimo
+\[
+g(x,y) = \int_c^y f(x,t)\;dt.
+\]
+Očitno je $\Phi(c) = \Psi(c) = 0$, zato je dovolj dokazati
+$\Phi' \equiv \Psi'$. Velja
+\[
+\Phi'(y) = \int_a^b f(x,y)\;dx,
+\]
+po izreku \ref{iz:odv_int} pa dobimo še
+\[
+\Psi'(y) =
+\frac{d}{dy} \left(\int_a^b g(x,y)\;dx\right) =
+\int_a^b \frac{\partial g}{\partial y}(x,y)\;dx =
+\int_a^b f(x,y)\;dx. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Posplošeni integrali s parametrom}
+
+\begin{definicija}
+Integral
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+\emph{konvergira enakomerno}\index{Integral!Enakomerna konvergenca}
+na $Y$, če za vsak $\varepsilon > 0$ obstaja tak $b_0$, da za vse
+$b > b_0$ in $y \in Y$ velja
+\[
+\abs{\int_b^\infty f(x,y)\;dx} < \varepsilon.
+\]
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno integrali
+\[
+F_b(y) = \int_a^b f(x,y)\;dx
+\]
+konvergirajo enakomerno na $Y$ proti $F$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $f \colon [a,\infty) \times Y \to \R$ funkcija, ki je za
+vsak $y \in Y$ zvezna kot funkcija $x$. Predpostavimo, da obstaja
+taka zvezna funkcija $\varphi \colon [a,\infty) \to [0,\infty)$,
+da velja:
+
+\begin{enumerate}[i)]
+\item $\forall (x,y) \in [a,\infty) \times Y \colon
+\abs{f(x,y)} \leq \varphi(x)$ in
+\item $\displaystyle \int_a^\infty \varphi(x)\;dx < \infty$
+obstaja.
+\end{enumerate}
+
+Tedaj
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+konvergira enakomerno na $Y$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\abs{\int_b^\infty f(x,y)\;dx} \leq
+\int_b^\infty \abs{f(x,y)}\;dx \leq
+\int_b^\infty \varphi(x)\;dx. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Zveznost in odvedljivost sta lokalni lastnosti, zato je pogosto
+dovolj zahtevati \emph{lokalno enakomerno konvergenco}: za $Y$, ki
+so lokalno kompaktne, je to ekvivalentno:
+
+\begin{enumerate}[i)]
+\item za vse $y \in Y$ obstaja tak $r > 0$, da na
+$\mathcal{K}(y,r)$ integral konvergira enakomerno ali
+\item na kompaktnih podmnožicah $Y$ imamo enakomerno konvergenco.
+\end{enumerate}
+\end{opomba}
+
+\begin{izrek}
+Naj bo $Y \subseteq \R^n$ lokalno kompaktna in
+$f \colon [a,\infty) \times Y \to \R$ zvezna. Če integral
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+konvergira lokalno enakomerno na $Y$, je $F$ zvezna na $Y$.
+\end{izrek}
+
+\begin{proof}
+Označimo
+\[
+F_b(y) = \int_a^b f(x,y)\;dx.
+\]
+Te funkcije so zvezne na $Y$ in konvergirajo lokalno enakomerno na
+$Y$ k $F$. Sledi, da je $F$ lokalno zvezna, zato je zvezna.
+\end{proof}
+
+\begin{posledica}
+$\Gamma$ je zvezna.
+\end{posledica}
+
+\begin{izrek}[Fubini]\index{Izrek!Fubini}
+Naj bo $f \colon [a,\infty) \times [c,d] \to \R$ zvezna in
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+konvergira enakomerno na $[c,d]$. Tedaj velja
+\[
+\int_c^d \left(F(y)\right)\;dy =
+\int_a^\infty \left(\int_c^d f(x,y)\;dy\right) dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Vemo, da
+\[
+\lim_{b \to \infty} F_b(y) = F(y)
+\]
+konvergira enakomerno na $[c,d]$. Po izreku \ref{iz:fub1} sledi, da
+je
+\begin{align*}
+\int_c^d F(y)\;dy &=
+\lim_{b \to \infty} \int_c^d F_b(y)\;dy
+\\
+&=
+\lim_{b \to \infty} \int_a^b \left(\int_c^d f(x,y)\;dy\right) dx
+\\
+&=
+\int_a^\infty \left(\int_c^d f(x,y)\;dy\right) dx. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}[Fubini]
+Naj bo $f \colon [a,\infty) \times [c,\infty) \to [0,\infty)$
+zvezna. Predpostavimo, da integral
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+konvergira enakomerno na $[c,\infty)$ in integral
+\[
+G(x) = \int_c^\infty f(x,y)\;dy
+\]
+konvergira enakomerno na $[a,\infty)$. Če je
+\[
+\int_c^\infty F(y)\;dy < \infty,
+\]
+je tudi
+\[
+\int_a^\infty G(x)\;dx < \infty,
+\]
+in velja
+\[
+\int_c^\infty F(y)\;dy = \int_a^\infty G(x)\;dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\begin{align*}
+\int_a^b G(x)\;dx &=
+\int_a^b \left(\int_c^\infty f(x,y)\;dy \right)dx
+\\
+&=
+\int_c^\infty \left(\int_a^b f(x,y)\;dx\right)dy
+\\
+&\leq
+\int_c^\infty F(y)\;dy < \infty. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}[Fubini]
+Naj bo $f \colon [a,\infty) \times [c,\infty) \to \R$ zvezna.
+Predpostavimo, da je
+\[
+y \mapsto \int_a^\infty \abs{f(x,y)}\;dx
+\]
+lokalno enakomerno konvergenten na $[c,\infty)$ in
+\[
+x \mapsto \int_c^\infty \abs{f(x,y)}\;dy
+\]
+lokalno enakomerno konvergenten na $[a,\infty)$. Naj bo
+\[
+\int_c^\infty \left(\int_a^\infty \abs{f(x,y)}\;dx\right)dy < \infty.
+\]
+Tedaj je
+\[
+\int_c^\infty \left(\int_a^\infty f(x,y)\;dx\right)dy =
+\int_a^\infty \left(\int_c^\infty f(x,y)\;dy\right)dx.
+\]
+\end{izrek}
+
+\begin{proof}
+Ker je
+\[
+\abs{\int_b^\infty f(x,y)\;dx} \leq \int_b^\infty \abs{f(x,y)}\;dx,
+\]
+tudi
+\[
+F(y) = \int_a^\infty f(x,y)\;dx
+\]
+konvergira lokalno enakomerno na $[c,\infty)$ in
+\[
+G(y) = \int_c^\infty f(x,y)\;dy
+\]
+konvergira lokalno enakomerno na $[a,\infty)$. Sledi, da je
+\[
+\lim_{b \to \infty}\int_a^b G(x)\;dx =
+\lim_{b \to \infty}
+\int_c^\infty F_b(y)\;dy.
+\]
+Velja
+\begin{align*}
+\abs{\int_d^\infty F_b(y)\;dy} &\leq
+\int_d^\infty \abs{F_b(y)}\;dy
+\\
+&=
+\int_d^\infty \abs{\int_a^b f(x,y)\;dx}\;dy
+\\
+&\leq
+\int_d^\infty \left(\int_a^b \abs{f(x,y)}\;dx\right)dy
+\\
+&\leq
+\int_d^\infty \left(\int_a^\infty \abs{f(x,y)}\;dx\right)dy.
+\end{align*}
+Za vse $\varepsilon > 0$ lahko najdemo tak $d$, da je
+\[
+\abs{\int_d^\infty F(y)\;dy} \leq
+\int_d^\infty \left(\int_a^\infty \abs{f(x,y)}\;dx\right)dy <
+\frac{\varepsilon}{3}.
+\]
+Sledi, da je
+\begin{align*}
+&\abs{\int_c^\infty F_b(y)\;dy - \int_c^\infty F(y)\;dy}
+\\
+\leq&
+\abs{\int_d^\infty F_b(y)\;dy} +
+\abs{\int_d^\infty F(y)\;dy} +
+\abs{\int_c^d F_b(y)\;dy - \int_c^d F(y)\;dy}
+\\
+<&
+\varepsilon. \qedhere
+\end{align*}
+\end{proof}
