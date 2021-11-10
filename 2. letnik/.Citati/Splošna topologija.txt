@@ -3,3 +3,6 @@
 
 "Tu lahko vse odprte množice izberete za bazo. Sam to je butasta izbira baze."
  - prof. dr. Petar Pavešić, 26. 10. 2021
+
+"Poiščite na wikipediji kako to deluje in poskusite napisati dokaz, gremo mi naprej."
+ - asist. dr. Davorin Lešnik
