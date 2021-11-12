@@ -83,3 +83,105 @@ Sledi, da je
 p \cdot \left(nx + \frac{mn}{p} \right) = n. \qedhere
 \]
 \end{proof}
+
+\datum{2021-11-12}
+
+\begin{izrek}[Osnovni aritmetike]\index{Izrek!Osnovni aritmetike}
+Vsako naravno število lahko zapišemo kot produkt praštevil na
+enoličen način do vrstnega reda natančno.
+\end{izrek}
+
+\begin{proof}
+Obstoj faktorizacije dokažemo z indukcijo. Če ima $n$ dve različni
+faktorizaciji, pa lahko pokrajšamo skupne faktorje in pridemo do
+protislovja.
+\end{proof}
+
+\begin{izrek}[Evklid]
+Praštevil je neskončno.
+\end{izrek}
+
+\begin{proof}
+V nasprotnem primeru števila
+\[
+\prod_{p \in \mathbb{P}} p + 1
+\]
+ne moremo faktorizirati.
+\end{proof}
+
+\newpage
+
+\subsection{Modularna aritmetika}
+
+\begin{okvir}
+\begin{definicija}
+Pravimo, da sta celi števili $a$ in $b$
+\emph{kongruentni po modulu $n$}\index{Kongruence}, če velja
+$n \mid a-b$. Pišemo $a \equiv b \pmod{n}$.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Kongruentnost je ekvivalenčna.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Z
+\[
+\Z_n = \setb{[x]}{x \in \Z}
+\]
+označimo množico ekvivalenčnih razredov relacije kongruentnosti
+po modulu $n$.
+\end{definicija}
+
+\begin{trditev}
+Če je $a \equiv b \pmod{n}$ in $c \equiv d \pmod{n}$, je tudi
+$a + c \equiv b + d \pmod{n}$ in $ac \equiv bd \pmod{n}$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+n \mid (a - b) + (c - d)
+\quad \text{in} \quad
+n \mid c \cdot (a - b) + b \cdot (c - d). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Na $\Z_n$ vpeljemo operaciji\footnote{Po prejšnji trditvi sta
+operaciji dobro definirani.}
+\[
++ \colon ([x],[y]) \mapsto [x+y]
+\quad \text{in} \quad
+\cdot \colon ([x],[y]) \mapsto [xy].
+\]
+\end{definicija}
+
+\begin{opomba}
+S tema operacijama je $\Z_n$ komutativen kolobar.
+\end{opomba}
+
+\begin{definicija}
+Komutativnemu kolobarju brez deliteljev niča pravimo
+\emph{cel kolobar}\index{Algebrska struktura!Kolobar!Cel}.
+\end{definicija}
+
+\begin{lema}
+Končen cel kolobar je polje.
+\end{lema}
+
+\begin{proof}
+Preslikava $x \mapsto ax$ za $a \ne 0$ je injektivna, zato je
+surjektivna.
+\end{proof}
+
+\begin{posledica}
+Za praštevila $p$ je $\Z_p$ polje.
+\end{posledica}
+
+%\newpage
+
+%\subsection{Obseg kvaternionov}
