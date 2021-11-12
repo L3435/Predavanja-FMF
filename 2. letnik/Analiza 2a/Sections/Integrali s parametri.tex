@@ -527,12 +527,12 @@ $F$ konvergira enakomerno na $[c,\infty)$, saj je
 \abs{e^{-ax} \frac{\sin x}{x}} \leq e^{-ax} \leq e^{-cx}.
 \]
 Naj bo $0 \leq \alpha < \beta$, $f(x) = \sin x$ in
-$g(x) = \frac{e^{-ax}}{x}$. Po izreku~5.2.25\ iz zapiskov Analize 1
+$g(x) = \frac{e^{-ax}}{x}$. Po izreku~5.2.25 iz zapiskov Analize 1
 obstaja tak $\gamma$, da je
 \[
 \int_\alpha^\beta \frac{e^{-ax}}{x} \sin x\;dx =
-\frac{e^{-a\alpha}{\alpha}} \int_\alpha^\gamma \sin x\;dx =
-\frac{e^{-a\alpha}}{\alpha} \eval{(-\cos x}{\alpha}{\gamma}.
+\frac{e^{-a\alpha}}{\alpha} \int_\alpha^\gamma \sin x\;dx =
+\frac{e^{-a\alpha}}{\alpha} \eval{(-\cos x)}{\alpha}{\gamma}.
 \]
 Sledi, da je
 \[
@@ -623,7 +623,7 @@ $\displaystyle\skl{f,g} = \abs{\int_0^\infty f(x)g(x)\;dx}$.}
 sledi
 \[
 \Gamma\left(\frac{s_1 + s_2}{2}\right) \leq
-\sqrt{\Gamma(s_1)} \cdot \sqrt{\Gamma(s_2}. \qedhere
+\sqrt{\Gamma(s_1)} \cdot \sqrt{\Gamma(s_2)}. \qedhere
 \]
 \end{proof}
 
@@ -673,7 +673,7 @@ B(p,q) = \frac{\Gamma(p) \cdot \Gamma(q)}{\Gamma(p+q)}.
 \begin{proof}
 Velja
 \begin{align*}
-B(p,y) \cdot \Gamma(p+q) &=
+B(p,q) \cdot \Gamma(p+q) &=
 \left(\int_0^\infty \frac{t^{p-1}}{(1+t)^{p+q}}\;dt\right) \cdot
 \left(\int_0^\infty x^{p+q-1} e^{-x}\;dx\right)
 \\
