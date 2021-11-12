@@ -404,3 +404,140 @@ prenaša na podprostore.
 Separabilnost ni dedna lastnost, a se deduje na odprte podprostore.
 Podobno se kompaktnost deduje na zaprte podprostore.
 \end{opomba}
+
+\datum{2021-11-9}
+
+\begin{trditev}
+Naj bo $B \subseteq A \subseteq X$. Potem je
+\[
+\Cl_A B = A \cap \Cl_X B, \quad
+\Int_A B \supseteq A \cap \Int_X B
+\quad \text{in} \quad
+\Fr_A B \subseteq A \cap \Fr_X B.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\begin{align*}
+\Cl_A B &=
+\bigcap\setb{F}
+{B \subseteq F \subseteq A \land \text{$F$ je zaprta v $A$}}
+\\
+&= \bigcap\setb{A \cap F}
+{B \subseteq F \subseteq X \land \text{$F$ je zaprta v $X$}}
+\\
+&= A \cap \Cl_X B.
+\end{align*}
+Podobno je
+\begin{align*}
+\Int_A B &=
+\bigcup\setb{U}
+{U \subseteq A \land U \subseteq B \land
+\text{$U$ je odprta v $A$}}
+\\
+&= \bigcup\setb{A \cap U}
+{U \subseteq X \land U \cap A \subseteq B \land
+\text{$U$ je odprta v $X$}}
+\\
+&\supseteq A \cap \left(\bigcup\setb{U}
+{U \subseteq X \land U \subseteq B \land
+\text{$U$ je odprta v $X$ in $B$}}\right)
+\\
+&= A \cap \Int_X B.
+\end{align*}
+Zadnja inkluzija je direktna posledica prejšnje enakosti in
+inkluzije.
+\end{proof}
+
+\begin{trditev}
+Če je $B$ odprta v $A$ in $A$ odprta v $X$, je $B$ odprta v $X$.
+Podobno, če je $B$ zaprta v $A$ in $A$ zaprta v $X$, je $B$ zaprta
+v $X$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Inkluzija $i \colon (A, \tau_A) \hookrightarrow (X, \tau)$ je
+zvezna.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Skrčitev zvezne funkcije na podprostor je zvezna.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Pokritjem $\set{X_\lambda}$ topološkega prostora pravimo
+\emph{atlas}\index{Topološki prostor!Atlas}.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $\set{X_\lambda}$ odprto pokritje za $X$. Potem velja
+\[
+\text{$A$ je odprta v $X$} \iff \forall \lambda \colon
+\text{$A \cap X_\lambda$ je odprta v $X_\lambda$}.
+\]
+Če je $\set{X_\lambda}$ zaprto in lokalno končno pokritje za $X$,
+velja
+\[
+\text{$A$ je zaprta v $X$} \iff \forall \lambda \colon
+\text{$A \cap X_\lambda$ je zaprta v $X_\lambda$}.
+\]
+\end{izrek}
+
+\begin{proof}
+Če je $A \cap X_\lambda$ odprta v $X$ za vse $\lambda$, je $A$
+odprta v $X$, saj je
+\[
+A = \bigcup_\lambda A \cap X_\lambda.
+\]
+Naj bo sedaj $A \cap X_\lambda$ zaprta v $X$ za vse $\lambda$.\footnote{
+Obe preostali implikaciji sta direktna posledica definicije
+inducirane topologije.} Naj bo $x \in X \setminus A$ in $U$ okolica
+$x$, ki seka končno mnogo elementov $\set{X_\lambda}$ -- naj bodo
+to $X_{\lambda_1}, \dots, X_{\lambda_n}$. Sledi, da je
+\[
+x \in U \setminus \bigcup_{i=1}^n A \cap X_{\lambda_i},
+\]
+kar je odprta okolica $x$, ki ne seka $A$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $\set{X_\lambda}$ odprto ali lokalno končno zaprto pokritje
+$X$ in $f \colon X \to Y$ funkcija. Potem velja
+\[
+\text{$f$ je zvezna} \iff \forall \lambda \colon
+\text{$\eval{f}{X_\lambda}{}$ je zvezna}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $\set{X_\lambda}$ odprto pokritje. Za odprto množico
+$U \subseteq Y$ velja
+\[
+f^{-1}(U) =
+\bigcup_\lambda f^{-1}(U) \cap X_\lambda =
+\bigcup_\lambda \left(\eval{f}{X_\lambda}{}\right)^{-1}(U),
+\]
+kar je odprto v $X$.
+
+Naj bo $\set{X_\lambda}$ lokalno končno zaprto pokritje. Za zaprto
+množico $F \subseteq Y$ velja
+\[
+f^{-1}(F) =
+\bigcup_\lambda f^{-1}(F) \cap X_\lambda =
+\bigcup_\lambda \left(\eval{f}{X_\lambda}{}\right)^{-1}(F),
+\]
+kar je zaprto v $X$.
+\end{proof}
+
+\begin{definicija}
+Preslikava $f \colon X \to Y$ je
+\emph{vložitev}\index{Preslikava!Vložitev}, če je
+$f \colon X \to f(X)$ homeomorfizem.
+\end{definicija}
