@@ -728,3 +728,171 @@ Velja
 \lim_{s \to \infty} \frac{\Gamma(s+1)}{s^s e^{-s}\sqrt{2\pi s}} = 1.
 \]
 \end{trditev}
+
+\datum{2021-11-16}
+
+\begin{proof}
+Razpišimo
+\[
+\Gamma(s+1) = \int_0^\infty x^s e^{-x}\;dx.
+\]
+Odvod funkcije $x \mapsto x^s e^{-x}$ je enak $x^{s-1}e^{-x}(s-x)$.
+S substitucijo $x = (1+u)s$ dobimo
+\[
+\Gamma(s+1) =
+\int_{-1}^{\infty} (1+u)^s s^s e^{-s} e^{-su}\;du =
+\left(s^s e^{-s} \sqrt{s}\right) \sqrt{s} \cdot
+\int_{-1}^\infty \left((1+u)e^{-u}\right)^s du.
+\]
+Sledi, da je
+\[
+\frac{\Gamma(s+1)}{s^s e^{-s}\sqrt{s}} =
+\sqrt{s} \cdot \int_{-1}^\infty \left((1+u)e^{-u}\right)^s du.
+\]
+Naj bo
+\[
+\varphi(u) = \frac{\ln((1+u)e^{-u}) + \frac{u^2}{2}}{u^3}.
+\]
+Potem s substitucijo $v = u \sqrt{s}$ dobimo
+\[
+\sqrt{s} \cdot \int_{-1}^\infty \left((1+u)e^{-u}\right)^s du =
+\sqrt{s} \cdot \int_{-1}^\infty
+e^{-\frac{su^2}{2}} \cdot e^{su^3\varphi(u)}\;du =
+\int_{-\sqrt{s}}^{\infty}
+e^{-\frac{v^2}{2}} e^{\frac{v^3}{\sqrt{s}} \cdot \varphi\left(
+\frac{v}{\sqrt{s}}
+\right)}\;dv.
+\]
+Ocenimo lahko
+\[
+\sqrt{s} \int_1^\infty \left((1+u)e^{-u}\right)du \leq
+\sqrt{s} 2^{s-1} e^{-(s-1)} M.
+\]
+Sledi, da ta integral konvergira k $0$, zato je dovolj izračunati
+\[
+\lim_{s \to \infty}
+\sqrt{s} \int_{-1}^{1} \left((1+u)e^{-u}\right)du =
+\lim_{s \to \infty} \sqrt{s} \int_{-1}^{1}
+e^{-\frac{su^2}{2}} \cdot e^{su^3\varphi(u)}\;du =
+\lim_{s \to \infty} \int_{-\sqrt{s}}^{\sqrt{s}}
+e^{-\frac{v^2}{2}} e^{\frac{v^3}{\sqrt{s}} \cdot \varphi\left(
+\frac{v}{\sqrt{s}}
+\right)}\;dv.
+\]
+Označimo $s = r^{10}$. Velja, da je
+\[
+\int_{-r^5}^{-r}
+e^{-\frac{v^2}{2}} e^{\frac{v^3}{r^5} \cdot \varphi\left(
+\frac{v}{r^5}
+\right)}\;dv \leq e^{-\frac{r^2}{2}} e^{-\frac{1}{r^2} \varphi
+\left(-\frac{1}{r^4}\right)} r^5,
+\]
+kar limitira proti 0. Podobno ocenimo integral na mejah od $r$ do
+$r^5$. Opazimo še
+\[
+e^{-\frac{M}{r^2}} \int_{-r}^{r} e^{-\frac{v^2}{2}}\;dv \leq
+\int_{-r}^{r}
+e^{-\frac{v^2}{2}} e^{\frac{v^3}{r^5} \cdot \varphi\left(
+\frac{v}{r^5}
+\right)}\;dv \leq
+e^{\frac{M}{r^2}} \int_{-r}^{r} e^{-\frac{v^2}{2}}\;dv,
+\]
+zato integral limitira proti $\sqrt{2\pi}$.
+\end{proof}
+
+\newpage
+
+\subsection{Riemannov integral}
+
+\begin{definicija}
+\emph{Delitev kvadra}\index{Delitev kvadra} je razdelitev na kvadre
+\[
+\prod_{j=1}^n \left[x_{l_j-1}^j, x_{l_j}^j\right],
+\]
+kjer je za vsaj $j$
+\[
+a_j = x_0^j < x_1^j < \dots < x_{m_j}^j = b_j.
+\]
+\end{definicija}
+
+\begin{definicija}
+Delitev $D'$ je \emph{finejša}\index{Delitev kvadra!Finejša}, če
+vsebuje vse delilne točke $D$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $K$ kvader in $f \colon K \to \R^n$ omejena funkcija.
+Označimo
+$\displaystyle m(k) = \inf_k f$ in $\displaystyle M(k) = \sup_k f$.
+Naj bo $D$ delitev $K$ s kvadri $K_1,\dots,K_N$.
+\emph{Spodnja Darbouxjeva vsota}\index{Darbouxjeva vsota} je
+\[
+s(f,D) = s(D) = \sum_{i=1}^N m(K_i) \cdot V(K_i),
+\]
+\emph{zgornja Darbouxjeva vsota} pa
+\[
+S(f,D) = S(D) = \sum_{i=1}^N M(K_i) \cdot V(K_i).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $D'$ finejša od $D$. Potem je
+\[
+s(D) \leq s(D') \leq S(D') \leq S(D).
+\]
+\end{trditev}
+
+\begin{proof}
+Indukcija.
+\end{proof}
+
+\begin{trditev}
+Naj bosta $D_1$ in $D_2$ delitvi $K$. Potem je
+\[
+s(D_1) \leq S(D_2).
+\]
+\end{trditev}
+
+\begin{proof}
+Vzamemo delitev, ki je finejša od obeh.
+\end{proof}
+
+\begin{posledica}
+Obstajata
+\[
+S = \inf S(D) \quad \text{in} \quad s = \sup s(D).
+\]
+\end{posledica}
+
+\begin{definicija}
+Omejena funkcija $f \colon K \to \R$ je na $K$
+\emph{integrabilna}\index{Integral}, če velja
+\[
+I_D = s = S.
+\]
+Označimo
+\[
+I_D = \int_K f(x)\;dx = \int_K f(x)\;dV(x) =
+\idotsint\limits_K f(x_1,\dots,x_n)\;dx_n\dots dx_1.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $D$ delitev kvadra in
+\[
+\xi = \setb{\xi_j \in k_j}{\text{$k_j$ je kvader v $D$}}.
+\]
+\emph{Riemannova vsota}\index{Riemannova vsota} je
+\[
+R(f,D,\xi) = \sum_{j=1}^n f(\xi_j) \cdot V(k_j).
+\]
+\end{definicija}
+
+\begin{definicija}
+Funkcija $f$ je na $K$ \emph{Riemannovo integrabilna}, če obstaja
+limita njenih Riemannovih vsot
+\[
+I_R = \lim_{\delta \to 0} R(f,D,\xi),
+\]
+kjer je $\delta$ največja stranica kvadrov v delitvi.
+\end{definicija}
