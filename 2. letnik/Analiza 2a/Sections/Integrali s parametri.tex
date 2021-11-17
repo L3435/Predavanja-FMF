@@ -866,14 +866,15 @@ S = \inf S(D) \quad \text{in} \quad s = \sup s(D).
 
 \begin{definicija}
 Omejena funkcija $f \colon K \to \R$ je na $K$
-\emph{integrabilna}\index{Integral}, če velja
+\emph{integrabilna po Darbouxxju}\index{Darbouxjev integral}, če
+velja
 \[
 I_D = s = S.
 \]
 Označimo
 \[
-I_D = \int_K f(x)\;dx = \int_K f(x)\;dV(x) =
-\idotsint\limits_K f(x_1,\dots,x_n)\;dx_n\dots dx_1.
+I_D = \int\limits_K f(x)\;dx = \int\limits_K f(x)\;dV(x) =
+\idotsint\limits_K f(x_1,\dots,x_n)\;dx_n\cdots dx_1.
 \]
 \end{definicija}
 
@@ -882,7 +883,7 @@ Naj bo $D$ delitev kvadra in
 \[
 \xi = \setb{\xi_j \in k_j}{\text{$k_j$ je kvader v $D$}}.
 \]
-\emph{Riemannova vsota}\index{Riemannova vsota} je
+\emph{Riemannovo vsoto}\index{Riemannova vsota} definiramo kot
 \[
 R(f,D,\xi) = \sum_{j=1}^n f(\xi_j) \cdot V(k_j).
 \]
@@ -896,3 +897,149 @@ I_R = \lim_{\delta \to 0} R(f,D,\xi),
 \]
 kjer je $\delta$ največja stranica kvadrov v delitvi.
 \end{definicija}
+
+\datum{2021-11-17}
+
+\begin{izrek}
+Naj bo $f \colon K \to \R$ omejena. Naslednje trditve so
+ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $f$ je integrabilna po Darbouxju
+\item $f$ je integrabilna po Riemannu
+\item za vse $\varepsilon > 0$ obstaja taka delitev $D$, da je
+$S(D) - s(D) < \varepsilon$.
+\end{enumerate}
+
+Če integrala obstajata, sta enaka.
+\end{izrek}
+
+\begin{proof}
+Tretja točka je očitno ekvivalentna prvi. Sedaj redpostavimo, da je
+$f$ Riemannovo integrabilna z integralom $I_R$. Naj bo
+$\varepsilon > 0$. Potem obstaja tak $\delta > 0$, da za vse
+delitve, za katere so vsi intervali krajši od $\delta$, in izbore
+točk velja
+\[
+\abs{R(f,D,\xi) - I_R} < \frac{\varepsilon}{3}.
+\]
+Sedaj točke v $\xi$ izbiramo tako, da se približujemo supremumu na
+vsakem kvadru. Sledi, da je v limiti
+\[
+\abs{S(D) - I_R} \leq \frac{\varepsilon}{3}.
+\]
+Podobno dobimo
+\[
+\abs{s(D) - I_R} \leq \frac{\varepsilon}{3},
+\]
+zato je
+\[
+S(D) - s(D) < \frac{\varepsilon}{2}.
+\]
+Sledi, da je $f$ integrabilna po Darbouxu z enakim integralom.
+
+Predpostavimo še, da je $f$ integrabilna po Darbouxju.
+
+\begin{lema*}
+Naj bo $D_0$ delitev $K$ in $\varepsilon > 0$. Potem obstaja tak
+$\delta > 0$, da za vsako delitev $D$, ki ima vse robove krajše od
+$\delta$, velja, da je vsota prostornin tistih kvadrov delitve $D$,
+ki niso vsebovani v kakšen kvadru v $D_0$, manjša od $\varepsilon$.
+\end{lema*}
+
+\begin{proof}
+Vzamemo
+\[
+\delta = \frac{\varepsilon}{V(K) \cdot \sum \frac{N_i-1}{b_i-a_i}}.
+\qedhere
+\]
+\end{proof}
+
+Naj bo $\varepsilon > 0$ in $\abs{f} \leq M$. Obstaja taka delitev
+$D_0$, da je
+\[
+I_D - \frac{\varepsilon}{2} < s(D_0) \leq
+I_D \leq S(D_0) < I_D + \frac{\varepsilon}{2}.
+\]
+Sedaj uporabimo zgornjo lemo za $\frac{\varepsilon}{2M}$. Naj bo
+$D$ delitev s kvadri $K_1,\dots,K_N$, ki imajo vse stranice manjše
+od $\delta$, kjer so $K_1,\dots,K_m$ tisti, ki niso vsebovani v
+nobenem kvadru $D_0$. Sledi, da je
+\[
+\abs{\sum_{i=1}^m f(\xi_i) \cdot V(K_i)} \leq
+\abs{\sum_{i=1}^m f(\xi_i)} \cdot V(K_i) <
+M \frac{\varepsilon}{2M} = \frac{\varepsilon}{2}.
+\]
+V vseh ostalih kvadrih lahko $f$ omejimo s supremumom in infimumom
+kvadrov delitve $D_0$. Sledi, da je
+\[
+s(D_0) \leq \sum_{i=m+1}^N f(\xi_i) \cdot V(K_i) \leq S(D_0).
+\]
+S trikotniško neenakostjo dobimo
+\[
+\abs{R(f,D,\xi) - I_D} \leq
+\abs{\sum_{i=1}^m f(\xi_i) \cdot V(K_i)} +
+\abs{\sum_{i=m+1}^N f(\xi_i) \cdot V(K_i) - I_D} <
+\frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $f \colon K \to \R$ zvezna. Potem je $f$ integrabilna.
+\end{izrek}
+
+\begin{proof}
+$K$ je kompaktna, zato je $f$ enakomerno zvezna na $K$. Naj bo
+$\varepsilon > 0$. Potem obstaja tak $\delta > 0$, da velja
+\[
+\max \setb{\abs{x_i - y_i}}{i \leq n} < \delta \implies
+\abs{f(x) - f(y)} \leq \frac{\varepsilon}{V(K)}.
+\]
+Za delitev $D$ z robovi, ki so krajši od $\delta$, tako dobimo
+\begin{align*}
+S(D) - s(D) &= \sum_{i=1}^N (M(K_i) - m(K_i)) \cdot V(K_i)
+\\
+&= \sum_{i=1}^N (f(x_i) - f(y_i)) \cdot V(K_i)
+\\
+&< \frac{\varepsilon}{V(K)} \cdot V(K) = \varepsilon. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Veljajo naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Integrabilne funkcije tvorijo vektorski prostor nad $\R$,
+integral pa je linearen funkcional.
+\item Če sta $f \leq g$ integrabilni, je
+$\int\limits_K f(x)\;dx \leq \int\limits_K g(x)\;dx$.
+\item $\abs{f}$ je integrabilna in velja
+$\abs{\int\limits_K f(x)\;dx} \leq \int\limits_K \abs{f(x)}\;dx$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[Fubini]\index{Izrek!Fubini}
+Naj bosta $A \subseteq \R^n$ in $B \subseteq \R^m$ kvadra. Naj bo
+$f \colon A \times B \to \R$ integrabilna.
+
+\begin{enumerate}[i)]
+\item Denimo, da je za vse $x \in A$ funkcija
+$f^x \colon y \mapsto f(x,y)$ integrabilna na $B$. Tedaj je na $A$
+integrabilna funkcija $x \mapsto \int\limits_B f(x,y)\;dy$ in velja
+\[
+\iint\limits_{A \times B} f(x,y)\;dx\;dy =
+\int\limits_A \left(\int\limits_B f(x,y)\;dy\right) dx.
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{posledica}
+Naj bo $f \colon A \times B \to \R$ zvezna. Tedaj je
+\[
+\iint\limits_{A \times B} f(x,y)\;dx\;dy =
+\int\limits_A \left(\int\limits_B f(x,y)\;dy\right) dx.
+\]
+\end{posledica}
