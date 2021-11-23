@@ -1,0 +1,126 @@
+\section{Topološke lastnosti}
+
+\subsection{Ločljivost}
+
+\datum{2021-11-16}
+
+\begin{definicija}
+Pravimo, da topologija
+\emph{loči}\index{Topološka lastnost!Ločljivost} disjunktni množici
+$A, B \subseteq X$, če obstajata taki množici $U, V \in \tau$, da
+velja
+\[
+A \subseteq U,\quad B \subseteq V,\quad B \cap U = \emptyset
+\quad \text{in} \quad
+A \cap V = \emptyset.
+\]
+Pravimo, da topologija \emph{ostro loči} množici, če sta v zgornji
+definiciji $U$ in $V$ disjunktni.
+\end{definicija}
+
+\begin{definicija}
+Topološki prostor $(X, \tau)$ je
+\emph{Hausdorffov}\index{Topološka lastnost!Hausdorffova}, če
+$\tau$ ostro loči vse točke.
+\end{definicija}
+
+\begin{trditev}
+Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $X$ je Hausdorffov
+\item Za vse $x \ne y$ obstaja tak $U \in \tau$, da je $x \in U$ in
+$y \not \in \overline{U}$
+\item Diagonala\footnote{\emph{Diagonala} je množica
+$\Delta_x = \setb{(x,x)}{x \in X}$.} je zaprt podprostor v
+$X \times X$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če je prostor Hausdorffov, lahko preprosto vzamemo $U$ iz
+definicije. Sledi, da $y \not \in \overline{U}$. Če velja druga
+točka, pa lahko preprosto vzamemo $V = \overline{U}^{\mathsf{c}}$.
+
+Naj bo $x \ne y$, $U$ in $V$ pa taki odprti množici, da je
+$x \in U$ in $y \in V$. $U$ in $V$ sta disjunktni natanko tedaj, ko
+$U \times V$ ne seka diagonale. Če je prostor Hausdorffov, lahko
+preprosto vzamemo $U$ iz definicije. Obratno, če je diagonala
+zaprta, obstaja škatlasta okolica $(x,y)$, ki ne seka diagonale,
+iz te pa dobimo želene okolice.
+\end{proof}
+
+\begin{izrek}
+Naj bo $Y$ Hausdorffov.
+
+\begin{enumerate}[i)]
+\item Vsaka končna podmnožica $Y$ je zaprta
+\item Zaporedja v $Y$ imajo največ eno limito
+\item Če sta $f, g \colon X \to Y$ zvezni, je
+$\setb{x \in X}{f(x) = g(x)}$ zaprta v $X$
+\item Če se zvezni preslikavi $f, g \colon X \to Y$ ujemata na
+gosti podmnožici $X$, sta enaki
+\item Graf zvezne preslikave $f \colon X \to Y$ je zaprt v
+$X \times Y$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Prvi dve točki sta očitni.
+
+Vidimo, da je $(f,g)$ zvezna, velja pa
+$\setb{x \in X}{f(x) = g(x)} = (f,g)^{-1}(\Delta_x)$.
+
+4. točka sledi iz 3. -- če se preslikavi ujemata na neki množici,
+se ujemata tudi na zaprtju.
+%
+% 5. je za DN bila, dodaj pol ig
+\end{proof}
+
+\begin{izrek}
+Naj bo $X$ 1-števen in $Y$ Hausdorffov. Potem je preslikava
+$f \colon X \to Y$ zvezna natanko tedaj, ko za vsako konvergentno
+zaporedje v $X$ velja
+\[
+f\left(\lim_{n\to\infty} x_n\right) = \lim_{n\to\infty} f(x_n).
+\]
+\end{izrek}
+
+% ADD PROOF
+
+\begin{definicija}
+Prostor $(X, \tau)$ je
+\emph{Fréchetov}\index{Topološka lastnost!Fréchetova}, če $\tau$
+loči točke.
+\end{definicija}
+
+\begin{trditev}
+$X$ je Fréchetov natanko tedaj, ko $\tau$ finejša od topologije
+končnih komplementov.
+\end{trditev}
+
+\begin{proof}
+Če je prostor Fréchetov, za vse različne $x$ in $y$ obstaja tak
+$V \in \tau$, da je $y \in V$ in $x \ne \in V$, zato je $y$
+notranja v $X \setminus \set{x}$. Če pa so enojčki zaprti, pa
+$X \setminus \set{x}$ in $X \setminus \set{y}$ ločita $x$ in $y$.
+\end{proof}
+
+\begin{trditev}
+Hausdorffova in Fréchetova lastnost sta dedni in
+multiplikativni.\footnote{Lastnost je \emph{multiplikativna}, če za
+vse prostore $X$ in $Y$ s to lastnostjo velja, da jo ima tudi
+$X \times Y$.}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Prostor $(X, \tau)$ je regularen, če je Hausdorffov in $\tau$ ostro
+loči točke od zaprtih množic.
+\end{definicija}
+
+\begin{definicija}
+Prostor $(X, \tau)$ je normalen, če je Hausdorffov in $\tau$ ostro
+loči disjunktne zaprte množice.
+\end{definicija}
