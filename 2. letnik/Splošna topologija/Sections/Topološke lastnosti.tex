@@ -71,7 +71,7 @@ Prvi dve točki sta očitni.
 Vidimo, da je $(f,g)$ zvezna, velja pa
 $\setb{x \in X}{f(x) = g(x)} = (f,g)^{-1}(\Delta_x)$.
 
-4. točka sledi iz 3. -- če se preslikavi ujemata na neki množici,
+4.\ točka sledi iz 3.\ -- če se preslikavi ujemata na neki množici,
 se ujemata tudi na zaprtju.
 %
 % 5. je za DN bila, dodaj pol ig
@@ -124,3 +124,101 @@ loči točke od zaprtih množic.
 Prostor $(X, \tau)$ je normalen, če je Hausdorffov in $\tau$ ostro
 loči disjunktne zaprte množice.
 \end{definicija}
+
+\datum{2021-11-23}
+
+\begin{izrek}
+Če je $X$ metričen, je normalen.
+\end{izrek}
+
+\begin{proof}
+Očitno je $X$ Hausdorffov, zato je dovolj dokazati, da $\tau$ ostro
+loči disjunktne zaprte množice. Naj bosta $A$ in $B$ taki množici.
+Sedaj preprosto vzamemo
+\[
+U = \setb{x \in X}{d(x,A) < d(x,B)}
+\quad \text{in} \quad
+V = \setb{x \in X}{d(x,B) < d(x,A)}.
+\]
+Ni težko videti, da sta ti množici res odprti in disjunktni.
+\end{proof}
+
+\begin{trditev}
+Regularnost je dedna, normalnost pa se deduje na zaprte
+podprostore.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[Tikonov]\index{Izrek!Tikonov}
+Prostor, ki je regularen in 2-števen, je normalen.
+\end{izrek}
+
+\begin{proof}
+Naj bosta $A$ in $B$ disjunktni zaprti množici v $X$ s števno bazo
+$\mathcal{B}$.
+
+Za vsak $a \in A$ obstajata taki disjunktni odprti množici $U_a$ in
+$U_a'$, da je $a \in U_a$ in $B \subseteq U_a'$. Za $U_a$ lahko
+vzamemo kar bazično okolico. Unija
+\[
+\bigcup_{a \in A} U_a
+\]
+je tako števno pokritje $A$, ki je disjunktno $B$. Podobno lahko
+najdemo števno pokritje
+\[
+\bigcup_{b \in B} V_b
+\]
+množice $B$, ki je disjunktno $A$. Te množice lahko zapišemo v
+zaporedjih $(U_n)$ in $(V_n)$. Sedaj preprosto vzamemo
+\[
+U_i' = U_i \setminus \bigcup_{j \leq i} \overline{V_j}
+\quad \text{in} \quad
+V_i' = V_i \setminus \bigcup_{j \leq i} \overline{U_j}.
+\]
+Uniji teh množic sta disjunktni in odprti.
+\end{proof}
+
+\begin{definicija}
+Različne stopnje ločljivosti označimo na naslednji način:\footnote{
+Oznaka ni enotna.}
+
+\begin{enumerate}[label=$T_{\arabic*}$:, start=0]
+\item Za vse $x \ne y$ ima vsaj ena izmed njiju okolico, ki ne
+vsebuje druge.
+\item Prostor je Fréchetov.
+\item Prostor je Hausdorffov.
+\item Prostor je regularen.
+\item Prostor je normalen.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Prostor je $T_3$ natanko tedaj, ko za vsako odprto množico $U$ in
+$x \in U$ obstaja taka odprta množica $V$, da je $x \in V$ in
+$\overline{V} \subseteq U$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Regularnost je multiplikativna.
+\end{trditev}
+
+\begin{proof}
+Naj bo $U$ odprta množica in $x \in U$. Brez škode za splošnost
+naj bo $U$ bazična. Sedaj uporabimo regularnost na komponentah in
+vzamemo njun kartezični produkt.
+\end{proof}
+
+\begin{trditev}
+Prostor je $T_4$ natanko tedaj, ko za vsako zaprto množico $A$,
+vsebovano v odprti množici $U$, obstaja taka odprta množica $V$,
+za katero je $A \subseteq V$ in $\overline{V} \subseteq U$.
+\end{trditev}
+
+\obvs
+
+%\newpage
+
+%\subsection{Povezanost}
