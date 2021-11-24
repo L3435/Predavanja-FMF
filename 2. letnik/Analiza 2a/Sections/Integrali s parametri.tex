@@ -1081,6 +1081,10 @@ Naj bo $f \colon A \times B \to \R$ zvezna. Tedaj je
 \]
 \end{posledica}
 
+\newpage
+
+\subsection{Prostornina}
+
 \begin{definicija}
 Naj bo $A \subseteq \R^n$ množica, omejena s kvadrom $K$, in
 $f \colon A \to \R$ omejena. Naj bo
@@ -1171,7 +1175,9 @@ K_j \times [m(K_j), M(K_J)],
 kjer so $K_j$ kvadri delitve $D$.
 \end{proof}
 
-\begin{trditev}
+\datum{2021-11-24}
+
+\begin{trditev}\label{td:3}
 Omejena množica $A \subseteq \R^n$ ima prostornino natanko tedaj,
 ko je
 \[
@@ -1183,6 +1189,287 @@ V(\partial A) = 0.
 Velja, da je
 \[
 S(\chi_A,D) - s(\chi_A,D) \leq
-S(\chi_{\partial A},D) - s(\chi_{\partial A},D).
+S(\chi_{\partial A},D) - s(\chi_{\partial A},D),
+\]
+zato je $V(\partial A) = 0$ zadosten pogoj.
+
+Naj obstaja $V(A)$ in naj bo $\varepsilon > 0$. Sledi, da obstaja
+delitev $D$, za katero je
+\[
+S(\chi_A,D) - s(\chi_A,D) < \frac{\varepsilon}{6^n}.
+\]
+Sedaj lahko vzamemo tako finejšo delitev, da je razmerje med
+najdaljšim in najkrajšim robom kvadrov manjše od $2$. Sledi, da za
+vsaka dva kvadra $K_1$ in $K_2$ delitve $D'$ velja
+\[
+V(K_1) \leq 2^n V(K_2).
+\]
+Naj bo $K_0$ kvader delitve $D$, ki leži v notranjosti $K$. Vidimo,
+da ima okolico, sestavljeno iz $3^n$ sosednjih kvadrov.
+
+Zdaj vzamemo tak $K_0$, da je $K_0 \cap \partial A \ne \emptyset$.
+S $\widetilde{K}_0$ označimo unijo njegovih $3^n$ sosednjih
+kvadrov. Sledi, da $\widetilde{K}_0$ seka tako $A$ kot
+$A^\mathsf{c}$, zato vsaj eden izmed teh $3^n$ kvadrov seka tako
+$A$ kot $A^\mathsf{c}$ -- označimo ga z $K_0'$. Sledi, da je
+\[
+S(\chi_{\partial A},D) =
+\sum_{K_0 \cap \partial A \ne \emptyset} V(K_0) \leq
+2^n \cdot \sum_{K_0 \cap \partial A \ne \emptyset} V(K_0') \leq
+2^n \cdot 3^n \sum_{\substack{
+	K' \cap A \ne \emptyset \\
+	K' \cap A^\mathsf{c} \ne \emptyset}
+} V(K') <
+6^n \cdot \frac{\varepsilon}{6^n} = \varepsilon. \qedhere
 \]
 \end{proof}
+
+\begin{trditev}
+Naj ima $A \subseteq K$ prostornino, kjer je $K$ kvader. Tedaj ima
+$A^\mathsf{c}$ prostornino in velja
+\[
+V(A^\mathsf{c}) = V(K) - V(A).
+\]
+\end{trditev}
+
+\begin{proof}
+$1 - \chi_A$ je integrabilna na $K$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq K$ množica s prostornino $0$ in
+$f \colon K \to \R$ omejena in taka, da za vse
+$x \in K \setminus A$ velja $f(x) = 0$. Potem je $f$ integrabilna
+na $K$ in je
+\[
+\lint_K f(x)\;dx = 0.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $\varepsilon > 0$ in $M$ tak, da za vse $x \in K$ velja
+$\abs{f(x)} \leq M$. Ker je $V(A) = 0$, obstajajo kvadri
+$Q_1,\dots,Q_N$ s skupno prostornino največ
+$\frac{\varepsilon}{2M}$, ki pokrijejo $A$. Brez škode za splošnost
+je $A$ v notranjosti njihove unije. Sedaj poglejmo delitev $D$
+kvadra $K$, ki jo dobimo s projekcijo vseh oglišč na vsako
+koordinatno os. Dobimo, da je
+\begin{align*}
+S(f,D) &=
+\sum M(K_j) \cdot V(K_j)
+\\
+&= \sum_{\exists i \colon K_j \subseteq Q_i} M(K_j) \cdot V(K_j)
+\\
+&\leq M \cdot \sum_{i=1}^N V(Q_i)
+\\
+&< \frac{\varepsilon}{2}.
+\end{align*}
+Podobno je
+\[
+s(f,D) > -\frac{\varepsilon}{2}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bosta $f,g \colon K \to \R$ omejeni in $f$ integrabilna na $K$.
+Če je
+\[
+V(\setb{x \in K}{f(x) \ne g(x)}) = 0,
+\]
+je $g$ integrabilna in velja
+\[
+\lint_K f(x)\;dx = \lint_K g(x)\;dx.
+\]
+\end{posledica}
+
+\begin{definicija}
+Naj bo $A \subseteq \R^n$. Pravimo, da ima $A$
+\emph{mero $0$}\index{Mera $0$}, če za vsak $\varepsilon > 0$
+obstaja števno mnogo kvadrov $Q_1,Q_2,\dots$, da je
+\[
+A \subseteq \bigcup_{i=1}^\infty Q_i
+\quad \text{in} \quad
+\sum_{i=1}^\infty V(Q_i) < \varepsilon.
+\]
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno lahko za $Q_i$ vzamemo odprte kvadre.
+\end{opomba}
+
+\begin{opomba}
+Množica z ničelno prostornino ima mero $0$.
+\end{opomba}
+
+\begin{trditev}
+Števna unija množic z mero $0$ ima mero $0$.
+\end{trditev}
+
+\begin{proof}
+Prostornino pokritja vsake množice omejimo z
+$\frac{\varepsilon}{2^i}$.
+\end{proof}
+
+\begin{posledica}
+Vsaka števna množica ima mero $0$.
+\end{posledica}
+
+\begin{posledica}
+Naj bo $f \colon \R^n \to \R$ zvezna. Tedaj ima njen graf mero $0$.
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+G(f) = \bigcup_{j=1}^\infty G\left(\eval{f}{[-j,j]^n}{}\right),
+\]
+ker pa je $f$ integrabilna, imajo te množice prostornino $0$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ kompaktna. Tedaj je $V(A) = 0$ natanko
+tedaj, ko ima $A$ mero $0$.
+\end{trditev}
+
+\begin{proof}
+Naj ima $A$ mero $0$ in $\varepsilon > 0$. Tedaj obstajajo taki
+kvadri $Q_1,Q_2,\dots$, da je
+\[
+A \subseteq \bigcup_{i=1}^\infty \Int(Q_i)
+\quad \text{in} \quad
+\sum_{i=1}^\infty V(Q_i) < \varepsilon.
+\]
+Ker je $A$ kompaktna, obstaja končno podpokrijte.
+\end{proof}
+
+\begin{definicija}
+Če lastnost $L(x)$ ne velja samo za $x$ iz množice z mero $0$,
+pravimo, da $L$ velja \emph{skoraj povsod}.
+\end{definicija}
+
+\begin{opomba}
+Če ima $A$ mero $0$, $A$ nima notranjosti.
+\end{opomba}
+
+\begin{izrek}[Lebesque]\index{Izrek!Lebesque}
+Naj bo $K$ kvader in $f \colon K \to \R$ omejena. Potem je $f$
+integrabilna natanko tedaj, ko je na $K$ zvezna skoraj povsod.
+\end{izrek}
+
+\begin{opomba}
+Trditev \ref{td:3} je posledica Lebesqueovega izreka. $V(A)$ namreč
+obstaja natanko tedaj, ko je $\chi_A $ zvezna skoraj povsod,
+$\chi_A$ pa ni zvezna natanko na robu $A$, ki je kompaktna.
+\end{opomba}
+
+\begin{lema}
+Naj bo $f \colon K \to [0,\infty)$ integrabilna. Denimo, da je
+\[
+\lint_K f(x)\;dx = 0.
+\]
+Tedaj za vsak $c > 0$ velja
+\[
+V(\setb{x \in K}{f(x) \geq c}) = 0.
+\]
+\end{lema}
+
+\begin{proof}
+Naj bo $C = \setb{x \in K}{f(x) \geq c}$ in
+$S(f,D) < c \cdot \varepsilon$. Tedaj velja
+\[
+c \sum_{K_i \cap C \ne \emptyset} V(K_i) \leq
+\sum_{K_i \cap C \ne \emptyset} M(K_i) \cdot V(K_i) \leq
+\sum_{i=1}^n M(K_i) \cdot V(K_i) <
+c \cdot \varepsilon. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $f \colon K \to [0,\infty)$ integrabilna. Če je
+\[
+\lint_K f(x)\;dx = 0,
+\]
+je $f(x) = 0$ skoraj povsod.
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+\setb{x \in K}{f(x) \ne 0} =
+\bigcup_{i=1}^\infty \setb{x \in K}{f(x) \geq \frac{1}{i}}.
+\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bosta $f,g \colon K \to \R$ integrabilni in naj za vse $x$
+velja $f(x) \leq g(x)$. Če velja
+\[
+\lint_K f(x)\;dx = \lint_K g(x)\;dx,
+\]
+je $f=g$ skoraj povsod.
+\end{posledica}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ omejena in $f \colon A \to \R$
+integrabilna. Če ima $A$ mero $0$, je
+\[
+\lint_A f(x)\;dx = 0.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+\widetilde{f}(x) = \begin{cases}
+f(x), &x \in A
+\\
+0, &x \not \in A
+\end{cases}
+\]
+in $D$ delitev $K$. Za vsak kvader $K_i$ delitve $D$ velja
+$K_i \cap A^\mathsf{c} \ne 0$. Sledi, da je $M(K_i) \geq 0$ in
+$m(K_i) \leq 0$, zato je
+\[
+\inf_D S(\widetilde{f},D) \geq 0 \geq \sup_D s(\widetilde{f},D).
+\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $A$ omejena množica s prostornino in $f \colon A \to \R$
+omejena. Potem je $f$ integrabilna na $A$ natanko tedaj, ko je $f$
+zvezna skoraj povsod na $A$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $K$ kvader, ki vsebuje $A$, in
+\[
+\widetilde{f}(x) = \begin{cases}
+f(x), &x \in A
+\\
+0, &x \not \in A.
+\end{cases}
+\]
+$f$ je integrabilna na $A$ natanko tedaj, ko je $\widetilde{f}$
+integrabilna na $K$, kar pa je ekvivalentno temu, da je
+$\widetilde{f}$ zvezna skoraj povsod na $K$.
+
+Če je $f$ zvezna skoraj povsod na $A$, je $\widetilde{f}$ zvezna
+skoraj povsod na $K$, saj so vse točke nezveznosti vsebovane v
+zaprtju $A$, njen rob pa ima mero $0$. Če pa je $f$ integrabilna
+na $A$, je $\widetilde{f}$ zvezna skoraj povsod na $K$, zato je
+zvezna skoraj povsod tudi na $A$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ omejena. Integrabilne funkcije na $A$
+tvorijo vektorski prostor nad $\R$, integral pa je linearen
+funkcional. Če je $f(x) \leq g(x)$ na $A$, kjer sta $f$ in $g$
+integrabilni, velja
+\[
+\lint_A f(x)\;dx \leq \lint_A g(x)\;dx.
+\]
+\end{trditev}
+
+\obvs
