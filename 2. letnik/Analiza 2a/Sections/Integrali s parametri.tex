@@ -873,8 +873,8 @@ I_D = s = S.
 \]
 Označimo
 \[
-I_D = \int\limits_K f(x)\;dx = \int\limits_K f(x)\;dV(x) =
-\idotsint\limits_K f(x_1,\dots,x_n)\;dx_n\cdots dx_1.
+I_D = \lint_K f(x)\;dx = \lint_K f(x)\;dV(x) =
+\lidotsint_K f(x_1,\dots,x_n)\;dx_n\cdots dx_1.
 \]
 \end{definicija}
 
@@ -1013,33 +1013,176 @@ Veljajo naslednje lastnosti:
 \item Integrabilne funkcije tvorijo vektorski prostor nad $\R$,
 integral pa je linearen funkcional.
 \item Če sta $f \leq g$ integrabilni, je
-$\int\limits_K f(x)\;dx \leq \int\limits_K g(x)\;dx$.
+$\lint_K f(x)\;dx \leq \lint_K g(x)\;dx$.
 \item $\abs{f}$ je integrabilna in velja
-$\abs{\int\limits_K f(x)\;dx} \leq \int\limits_K \abs{f(x)}\;dx$.
+$\abs{\lint_K f(x)\;dx} \leq \lint_K \abs{f(x)}\;dx$.
 \end{enumerate}
 \end{trditev}
 
 \obvs
 
 \begin{izrek}[Fubini]\index{Izrek!Fubini}
-Naj bosta $A \subseteq \R^n$ in $B \subseteq \R^m$ kvadra. Naj bo
-$f \colon A \times B \to \R$ integrabilna.
-
-\begin{enumerate}[i)]
-\item Denimo, da je za vse $x \in A$ funkcija
-$f^x \colon y \mapsto f(x,y)$ integrabilna na $B$. Tedaj je na $A$
-integrabilna funkcija $x \mapsto \int\limits_B f(x,y)\;dy$ in velja
+Naj bosta $A \subseteq \R^n$ in $B \subseteq \R^m$ kvadra in
+$f \colon A \times B \to \R$ integrabilna. Denimo, da je za vse
+$x \in A$ funkcija $f^x \colon y \mapsto f(x,y)$ integrabilna na
+$B$. Tedaj je na $A$ integrabilna funkcija
+$x \mapsto \lint_B f(x,y)\;dy$ in velja
 \[
-\iint\limits_{A \times B} f(x,y)\;dx\;dy =
-\int\limits_A \left(\int\limits_B f(x,y)\;dy\right) dx.
+\liint_{A \times B} f(x,y)\;dx\;dy =
+\lint_A \left(\lint_B f(x,y)\;dy\right) dx.
 \]
-\end{enumerate}
 \end{izrek}
+
+\datum{2021-11-23}
+
+\begin{proof}
+Naj bo $D_A$ delitev množice $A$ na kvadre $A_1,\dots,A_N$ in $D_B$
+delitev množice $B$ na kvadre $B_1,\dots,B_M$. Potem je
+$K_{i,j} = A_i \times B_j$ delitev $A \times B$. Naj bo
+\[
+m_{i,j} = \inf_{K_{i,j}} f
+\quad \text{in} \quad
+M_{i,j} = \sup_{K_{i,j}} f
+\]
+Sledi, da je
+\[
+m_{i,j} \leq \inf_{B_j} f^x(y) \leq \sup_{B_j} f^x(y) \leq M_{i,j}.
+\]
+Tako dobimo
+\[
+\sum_{j=1}^M m_{i,j} \cdot V(B_j) \leq
+s(f^x,D_B) \leq
+S(f^x,D_B) \leq
+\sum_{j=1}^M M_{i,j} \cdot V(B_j)
+\]
+Naj bo $g(x) = \lint_B f^x(y)\;dy$. Sledi, da je
+\[
+\sum_{j=1}^M m_{i,j} \cdot V(B_j) \leq
+\inf_{A_i} g(x) \leq
+\sup_{A_i} g(x) \leq
+\sum_{j=1}^M M_{i,j} \cdot V(B_j).
+\]
+Sledi, da je
+\[
+s(f,D_A \times D_B) \leq
+s(g,D_A) \leq
+S(g,D_A) \leq
+s(f,D_A \times D_B).
+\]
+Sledi, da je $g$ integrabilna na $A$, integral pa je enak integralu
+$f$ na $A \times B$.
+\end{proof}
 
 \begin{posledica}
 Naj bo $f \colon A \times B \to \R$ zvezna. Tedaj je
 \[
-\iint\limits_{A \times B} f(x,y)\;dx\;dy =
-\int\limits_A \left(\int\limits_B f(x,y)\;dy\right) dx.
+\liint_{A \times B} f(x,y)\;dx\;dy =
+\lint_A \left(\lint_B f(x,y)\;dy\right) dx.
 \]
 \end{posledica}
+
+\begin{definicija}
+Naj bo $A \subseteq \R^n$ množica, omejena s kvadrom $K$, in
+$f \colon A \to \R$ omejena. Naj bo
+\[
+\widetilde{f}(x) = \begin{cases}
+f(x), &x \in A
+\\
+0, &x \not \in A.
+\end{cases}
+\]
+Pravimo, da je $f$ \emph{integrabilna} na $A$, če obstaja integral
+\[
+\lint_A f(x)\;dx = \lint_K \widetilde{f}(x)\;dx.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Karakteristična funkcija}\index{Karakteristična funkcija}
+množice $A$ je funkcija
+\[
+\chi_A(x) = \begin{cases}
+1, &x \in A
+\\
+0, &x \not \in A.
+\end{cases}
+\]
+\end{definicija}
+
+\begin{definicija}
+Omejena množica $A \subseteq \R^n$ ima
+\emph{Jordanovo prostornino}\index{Jordanova prostornina}, če je
+$1$ integrabilna na $A$. Tedaj označimo
+\[
+V(A) = \lint_A 1\;dx.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za $a, b \in \R^n$ velja
+\[
+V([a,b]) = V([a,b)) = V((a,b]) = V((a,b)).
+\]
+\end{opomba}
+
+\begin{trditev}
+Naj bo $B \subseteq \R^n$ omejena. Množica $B$ ima prostornino $0$
+natanko tedaj, ko za vse $\varepsilon > 0$ obstajajo taki kvadri
+$Q_1,\dots,Q_N$, da velja
+\[
+B \subseteq \bigcup_{i=1}^n Q_i
+\quad \text{in} \quad
+\sum_{i=1}^n V(Q_i) < \varepsilon.
+\]
+\end{trditev}
+
+\begin{proof}
+Če ima $B$ prostornino $0$, preprosto vzamemo tiste kvadre iz
+dovolj fine delitve v Darbouxjevi vsoti, ki vsebujejo kakšno točko
+iz $B$.
+
+Naj bo $C$ unija kvadrov $Q_i$. Sledi, da je
+\[
+\inf_D S(\chi_B,D) \leq
+\inf_D S(\chi_C,D) \leq
+V(C) < \varepsilon. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bodo $B_1,\dots,B_M$ množice s prostornino $0$. Tedaj ima
+njihova unija prostornino $0$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $K \subseteq \R^n$ kvader in $f \colon K \to \R$
+integrabilna. Tedaj ima njen graf prostornino $0$ v $\R^{n+1}$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\varepsilon > 0$. Potem obstaja taka delitev $D$ kvadra
+$K$, da je $S(D) - s(D) < \varepsilon$. Sedaj preprosto izberemo
+pokritje
+\[
+K_j \times [m(K_j), M(K_J)],
+\]
+kjer so $K_j$ kvadri delitve $D$.
+\end{proof}
+
+\begin{trditev}
+Omejena množica $A \subseteq \R^n$ ima prostornino natanko tedaj,
+ko je
+\[
+V(\partial A) = 0.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja, da je
+\[
+S(\chi_A,D) - s(\chi_A,D) \leq
+S(\chi_{\partial A},D) - s(\chi_{\partial A},D).
+\]
+\end{proof}
