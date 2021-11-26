@@ -182,6 +182,113 @@ surjektivna.
 Za praštevila $p$ je $\Z_p$ polje.
 \end{posledica}
 
-%\newpage
+\newpage
 
-%\subsection{Obseg kvaternionov}
+\subsection{Obseg kvaternionov}
+
+\datum{2021-11-19}
+
+\begin{okvir}
+\begin{definicija}
+S $\HH$ označimo štiri razsežen vektorski prostor z bazo
+$\set{1,i,j,k}$. Z vpeljanim množenjem
+\[
+i^2=j^2=k^2=ijk=-1
+\]
+je $\HH$ realna algebra. Tej množici pravimo
+\emph{kvaternioni}\index{Kvaternioni}.\footnote{Odkril jih je
+W.\ R.\ Hamilton, od tod tudi oznaka $\HH$.}
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+$\HH$ je obseg.
+\end{trditev}
+
+\begin{proof}
+Vidimo, da je
+\[
+\frac{\overline{h}}{\abs{h}^2}
+\]
+inverz $h$.
+\end{proof}
+
+\begin{opomba}
+$\HH$ lahko ekvivalentno definiramo kot $\R \times \R^3$ z vpeljanim
+množenjem
+\[
+(\alpha,\vv{u}) \cdot (\beta, \vv{v}) =
+(\alpha \beta - \skl{\vv{u},\vv{v}},
+\alpha \vv{v} + \beta \vv{u} + \vv{u} \times \vv{v}).
+\]
+\end{opomba}
+
+\begin{definicija}
+Grupi
+\[
+Q = \set{\pm 1, \pm i, \pm j, \pm k}
+\]
+pravimo \emph{kvaternionska grupa}\index{Grupa!Kvaternionska}.
+\end{definicija}
+
+\newpage
+
+\subsection{Matrični kolobarji in linearne grupe}
+
+\begin{definicija}
+Element $e$ kolobarja $K$ je
+\emph{idempotent}\index{Kolobar!Idempotent, nilpotent}, če velja
+$e^2 = e$.
+\end{definicija}
+
+\begin{definicija}
+Element $a$ kolobarja $K$ je \emph{nilpotent}, če obstaja tak
+$k \in \N$, da je $a^k = 0$.
+\end{definicija}
+
+\begin{definicija}
+Grupi
+\[
+\GL_n(\F) = M_n^*(\F) =
+\setb{A \in M_n(\F)}{\det A \ne 0}
+\]
+pravimo
+\emph{splošna linearna grupa}\index{Grupa!Splošna linearna}.
+\end{definicija}
+
+\begin{definicija}
+Definiramo še naslednje grupe:
+
+\begin{description}[labelwidth=\widthof{\bfseries Posebna ortogonalna:}]
+\item[Posebna linearna:]
+$\operatorname{SL}_n(\F) = \setb{A \in \GL_n(\F)}{\det A = 1}$
+\item[Ortogonalna:]
+$\operatorname{O}_n(\F) = \setb{A \in \GL_n(\F)}{A^{-1} = A^\top}$
+\item[Posebna ortogonalna:]
+$\operatorname{SO}_n(\F) =
+\setb{A \in \operatorname{O}_n(\F)}{\det A = 1}$
+\item[Unitarna:]
+$\operatorname{U}_n = \setb{A \in \GL_n(\C)}{A^{-1} = A^*}$
+\item[Posebna unitarna:]
+$\operatorname{SU}_n =
+\setb{A \in \operatorname{U}_n}{\det A = 1}$
+\end{description}
+\end{definicija}
+
+\newpage
+
+\subsection{Kolobarji funkcij}
+
+\begin{definicija}
+Naj bo $X$ množica. Množica
+\[
+K = \setb{f}{f \colon X \to \R}
+\]
+s seštevanjem in množenjem po točkah postane kolobar. Z množenjem
+s skalarjem postane tudi algebra nad $\R$.
+\end{definicija}
+
+\begin{definicija}
+V primeru $X = \N$ s $c$ označimo podalgebro konvergentnih
+zaporedij, z $\ell^\infty$ pa podalgebro omejenih zaporedij.
+\end{definicija}
