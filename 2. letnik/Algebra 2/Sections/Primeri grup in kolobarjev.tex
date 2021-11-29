@@ -292,3 +292,77 @@ s skalarjem postane tudi algebra nad $\R$.
 V primeru $X = \N$ s $c$ označimo podalgebro konvergentnih
 zaporedij, z $\ell^\infty$ pa podalgebro omejenih zaporedij.
 \end{definicija}
+
+\newpage
+
+\subsection{Diedrske grupe}
+
+\datum{2021-11-26}
+
+\begin{definicija}
+\emph{Diedrska grupa}\index{Grupa!Diedrska} reda $2n$ je grupa
+simetrij pravilnega $n$-kotnika. Generirana je z rotacijo $r$ za
+kot $\frac{2\pi}{n}$ in zrcaljenjem $z$, za katera velja
+\[
+r^n = z^2 = (rz)^2 = 1.
+\]
+Označimo jo z
+\[
+D_{2n} = \setb{r^a z^b}{0 \leq a < n \land 0 \leq b \leq 1}.
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Kolobarji polinomov}
+
+\begin{definicija}
+Naj bo $K$ kolobar. \emph{Polinom}\index{Kolobar!Polinom} s
+koeficienti iz $K$ je formalna vsota
+\[
+f(x) = \sum_{k=0}^n a_k X^k.
+\]
+Množica $K[X]$ vseh polinomov s koeficienti iz $K$ postane kolobar
+s seštevanjem
+\begin{align*}
+\sum_{k=0}^n a_k X^k + \sum_{k=0}^m b_k X^k
+&= \sum_{k=0}^{\max(n,m)} \left(a_k + b_k\right) X^k
+\intertext{in množenjem}
+\left(\sum_{k=0}^n a_k X^k\right) \cdot
+\left(\sum_{k=0}^m b_k X^k\right)
+&= \sum_{k=0}^{n + m} \left(\sum_{l=0}^k a_l b_{k-l}\right) X^k.
+\end{align*}
+\end{definicija}
+
+\begin{opomba}
+Kolobar polinomov lahko razširimo na kolobar formalnih potenčnih
+vrst $K[[X]]$.
+\end{opomba}
+
+\begin{trditev}
+Če $K$ nima deliteljev niča, za vse $f,g \in K[X]$ velja
+\[
+\deg(f \cdot g) = \deg f + \deg g.
+\]
+\end{trditev}
+
+\begin{definicija}
+Naj bo $K$ komutativen kolobar.
+\emph{Vrednost polinoma}\index{Kolobar!Polinom!Vrednost} v točki
+$x \in K$ je element
+\[
+f(x) = \sum_{k=0}^n a_k x^k.
+\]
+Ustrezna polinomska funkcija je preslikava $x \mapsto f(x)$. $x$ je
+\emph{ničla}\index{Kolobar!Polinom!Ničla} ali \emph{koren}
+polinoma, če velja $f(x) = 0$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $K$ kolobar. \emph{Polinom več spremenljivk} je
+\[
+K[X_1,\dots,X_n] = (K[X_1,\dots,X_{n-1}])[X_n].
+\]
+Če je $K$ komutativen, definiramo vrednost v točki $x \in K^n$
+podobno kot pri polinomih v eni spremenljivki.
+\end{definicija}
