@@ -73,8 +73,12 @@ $\setb{x \in X}{f(x) = g(x)} = (f,g)^{-1}(\Delta_x)$.
 
 4.\ točka sledi iz 3.\ -- če se preslikavi ujemata na neki množici,
 se ujemata tudi na zaprtju.
-%
-% 5. je za DN bila, dodaj pol ig
+
+Za dokaz 5.\ točke definirajmo preslikavi $u, v: X \times Y \to Y$
+z $u(x,y) = f(x)$ in $v(x,y) = y$. Množica točk ujemanja $u$ in $v$
+je ravno graf
+$\Gamma_f = \setb{(x,y) \in X \times Y}{y = f(x)} \subseteq
+X \times Y$ funkcije $f$, ki je po 3.\ točki zaprt.
 \end{proof}
 
 \begin{izrek}
@@ -86,7 +90,32 @@ f\left(\lim_{n\to\infty} x_n\right) = \lim_{n\to\infty} f(x_n).
 \]
 \end{izrek}
 
-% ADD PROOF
+\begin{proof}
+Privzemimo, da je $f$ zvezna in opazujmo zaporedje $(x_n)$ v $X$,
+ki konvergira proti $x$. Za poljubno okolico $U$ točke $f(x)$ je
+zaradi zveznosti $f^{-1}(U)$ okolica točke $x$, kar pomeni, da so v
+$f^{-1}(U)$ skoraj vsi elementi zaporedja $(x_n)$. Od tod pa sledi,
+da so v $U$ skoraj vsi elementi zaporedja $(f(x_n))$, torej je
+$\lim_{n \to \infty} f(x_n) = f(x)$.
+
+Predpostavimo sedaj, da $f$ ohranja limite. Naj bo $x$ točka, ki je
+v zaprtju množice $A \subseteq X$, in naj bo $U_1, U_2, \dots$ neka
+baza okolic za $x$. Tedaj za vsak $n$ lahko izberemo točko
+$x_n \in A \cap U_1 \cap \dots \cap U_n$ (ker je ta množica
+neprazna, saj je $U_1 \cap \dots \cap U_n$ odprta okolica $x$, ki
+je iz zaprtja $A$). Tako smo konstruirali zaporedje $(x_n)$, ki
+konvergira proti točki $x$ in so obenem vsi $f(x_n) \in f(A)$. Po
+predpostavki je
+\[
+f(x) =
+f\left(\lim_{n \to \infty} x_n\right) =
+\lim_{n \to \infty} f(x_n)
+\in \overline{f(A)}.
+\]
+To pa pomeni, da za poljuben $A \subseteq X$ velja
+$f(\overline{A}) \subseteq \overline{f(A)}$, torej je $f$ zvezna po
+izreku \ref{iz:1}.
+\end{proof}
 
 \begin{definicija}
 Prostor $(X, \tau)$ je
