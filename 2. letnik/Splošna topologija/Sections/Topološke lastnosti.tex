@@ -74,9 +74,9 @@ $\setb{x \in X}{f(x) = g(x)} = (f,g)^{-1}(\Delta_x)$.
 4.\ točka sledi iz 3.\ -- če se preslikavi ujemata na neki množici,
 se ujemata tudi na zaprtju.
 
-Za dokaz 5.\ točke definirajmo preslikavi $u, v: X \times Y \to Y$
-z $u(x,y) = f(x)$ in $v(x,y) = y$. Množica točk ujemanja $u$ in $v$
-je ravno graf
+Za dokaz 5.\ točke definirajmo preslikavi
+$u, v \colon X \times Y \to Y$ z $u(x,y) = f(x)$ in $v(x,y) = y$.
+Množica točk ujemanja $u$ in $v$ je ravno graf
 $\Gamma_f = \setb{(x,y) \in X \times Y}{y = f(x)} \subseteq
 X \times Y$ funkcije $f$, ki je po 3.\ točki zaprt.
 \end{proof}
@@ -249,6 +249,105 @@ za katero je $A \subseteq V$ in $\overline{V} \subseteq U$.
 
 \obvs
 
-%\newpage
+\newpage
 
-%\subsection{Povezanost}
+\subsection{Povezanost}
+
+\datum{2021-11-30}
+
+\begin{okvir}
+\begin{definicija}
+Prostor $(X, \tau)$ je \emph{nepovezan}, če ga lahko razcepimo kot
+disjunktno unijo dveh nepraznih, odprtih množic. Prostor je
+\emph{povezan}\index{Topološka lastnost!Povezanost}, če ni
+nepovezan.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $X$ je nepovezan
+\item $X$ lahko predstavimo kot disjunktno unijo dveh nepraznih,
+zaprtih množic
+\item V $X$ obstaja netrivialna podmnožica, ki je odprta in zaprta
+\item Obstaja zvezna surjekcija $f \colon X \to \set{0,1}$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+$A \subseteq \R$ je povezana natanko tedaj, ko je $A$ interval.
+\end{izrek}
+
+\begin{proof}
+Če $A$ ni interval, vzamemo
+\[
+\setb{x \in \R}{x<t} \quad \text{in} \quad \setb{x \in \R}{x>t},
+\]
+kjer je $t \ne \in A$ in sta zgornji množici neprazni.
+
+Naj bo $A$ interval, ki ga lahko zapišemo kot $U+V$. Naj bo
+$a \in U$, $c \in V$ in $a < c$. Naj bo
+\[
+b = \sup \setb{x \in \R}{[a,x) \subseteq U}.
+\]
+Sledi, da je $b \in A$, saj je $b < c$. Tako je $b \in \Cl_A U$,
+zato je tudi v $U$, saj je $U$ zaprt v $A$, to pa je v protislovju
+z odprtostjo $U$ in definicijo $b$.
+\end{proof}
+
+\begin{izrek}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Naj bo $f \colon X \to Y$ zvezna. Če je $X$ povezan, je tudi
+$f(X)$ povezan.
+\item Če so $\set{A_\lambda}$ povezane podmnožice $X$ z nepraznim
+presekom, je njihova unija povezana.
+\item Povezanost je multiplikativna.
+\item Če za vsaka $a, b \in A$ obstaja pot\footnote{\emph{Pot} med
+$a$ in $b$ je zvezna preslikava $\gamma \colon [0,1] \to A$, za
+katero je $\gamma(0) = a$ in $\gamma(1) = b$.} med njima, je $A$
+povezan
+\item Če je $A \subseteq X$ povezan in
+$A \subseteq B \subseteq \overline{A}$, je tudi $B$ povezan.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Uporabimo karakterizacijo s surjekcijo $f \colon X \to \set{0,1}$.
+\end{proof}
+
+\begin{izrek}[O vmesni vrednosti]\index{Izrek!O vmesni vrednosti}
+Naj bo $X$ povezana in $f \colon X \to \R$. Potem je $f(X)$
+interval.
+\end{izrek}
+
+\obvs
+
+\begin{definicija}
+Prostor $X$ je \emph{povezan s potmi}, če med vsakima točkama
+prostora obstaja pot.
+\end{definicija}
+
+\begin{definicija}
+\emph{Komponente} prostora $X$ so maksimalne povezane podmnožice
+$X$. Če so vse komponente $X$ enojčki, pravimo, da je $X$
+\emph{povsem nepovezan}.
+\end{definicija}
+
+\begin{izrek}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Komponente tvorijo particijo prostora.
+\item Komponente $X$ so zaprti prostori.
+\item Slika komponente z zvezno preslikavo je vsebovana v
+eni komponenti kodomene.
+\end{enumerate}
+\end{izrek}
+
+\obvs
