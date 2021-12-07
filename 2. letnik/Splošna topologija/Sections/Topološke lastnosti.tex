@@ -334,9 +334,10 @@ prostora obstaja pot.
 \end{definicija}
 
 \begin{definicija}
-\emph{Komponente} prostora $X$ so maksimalne povezane podmnožice
-$X$. Če so vse komponente $X$ enojčki, pravimo, da je $X$
-\emph{povsem nepovezan}.
+\emph{Komponente}\index{Topološka lastnost!Povezanost!Komponenta}
+prostora $X$ so maksimalne povezane podmnožice $X$. Komponento, ki
+vsebuje $x$, označimo z $C(x)$. Če so vse komponente $X$ enojčki,
+pravimo, da je $X$ \emph{povsem nepovezan}.
 \end{definicija}
 
 \begin{izrek}
@@ -351,3 +352,118 @@ eni komponenti kodomene.
 \end{izrek}
 
 \obvs
+
+\datum{2021-12-7}
+
+\begin{definicija}
+Prostor je \emph{lokalno
+povezan}\index{Topološka lastnost!Povezanost!Lokalna}, če ima bazo
+iz povezanih množic.
+\end{definicija}
+
+\begin{trditev}
+Prostor $X$ je lokalno povezan natanko tedaj, ko so komponente
+vsake odprte podmnožice $X$ odprte.
+\end{trditev}
+
+\begin{proof}
+Če je $X$ lokalno povezan, preprosto vzamemo bazno okolico vsake
+točke, če pa so komponente odprte, pa preprosto vzamemo komponente
+vseh odprtih množic.
+\end{proof}
+
+\begin{definicija}
+\emph{Potne komponente} prostora $X$ so maksimalne podmnožice $X$,
+ki so povezane s potmi. Komponento, ki vsebuje $x$, označimo z
+$C'(x)$.
+\end{definicija}
+
+\begin{trditev}
+Veljata naslednji trditvi:
+
+\begin{enumerate}[i)]
+\item Potne komponente tvorijo particijo prostora.
+\item Slika potne komponente z zvezno preslikavo je vsebovana v
+eni potni komponenti kodomene.
+\end{enumerate}
+\end{trditev}
+
+\begin{definicija}
+Prostor je \emph{lokalno povezan s potmi}, če ima bazo iz odprtih
+množic, ki so povezane s potmi.
+\end{definicija}
+
+\begin{izrek}
+V prostoru, ki je lokalno povezan s potmi, so komponente enake
+komponentam s potmi.
+\end{izrek}
+
+\begin{proof}
+Za vse $x$ velja $C'(x) \subseteq C(x)$. Ker je $C'(x)$ odprta v
+$X$, je odprta tudi v $C(x)$. Če je $C'(x) \ne C(x)$, velja, da
+lahko $C(x)$ zapišemo kot unijo $C'(x)$ in njenega komplementa, ki
+je prav tako odprt, sam je unija potnih komponent.
+\end{proof}
+
+\begin{posledica}
+Če je $x$ povezan in lokalno povezan s potmi, je povezan s potmi.
+\end{posledica}
+
+\newpage
+
+\subsection{Kompaktnost}
+
+\begin{okvir}
+\begin{definicija}
+Prostor je \emph{kompakten}\index{Topološka lastnost!Kompaktnost},
+če ima vsako njegovo odprto pokritje končno podpokritje.
+\end{definicija}
+\end{okvir}
+
+\begin{trditev}
+$X$ je kompakten natanko tedaj, ko ima vsako bazično pokritje
+končno podpokritje.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Vsak kompakten metrični prostor je omejen.
+\end{izrek}
+
+\obvs
+
+\begin{izrek}
+Zaprti intervali so kompaktni.
+\end{izrek}
+
+\begin{proof}
+Glej trditev 7.5.3.\ v zapiskih Analize 1 prvega letnika.
+\end{proof}
+
+\begin{izrek}
+Zvezna slika kompakta je kompakt.
+\end{izrek}
+
+\begin{proof}
+Praslika pokritja slike ima končno podpokritje.
+\end{proof}
+
+\begin{trditev}
+Zaprt podprostor kompaktnega prostora je kompakten.
+\end{trditev}
+
+\begin{proof}
+Pokritju dodamo komplement podprostora.
+\end{proof}
+
+\begin{izrek}
+Kompaktnost je multiplikativna.
+\end{izrek}
+
+\begin{proof}
+Za vsako pokritje obstaja končno podpokritje množice
+$\set{x} \times Y$. Tega lahko projeciramo na $X$ in dobimo odprto
+okolico $x$. Ko to naredimo za vse $x \in X$, dobimo pokritje $X$,
+ki ima končno podpokritje.
+\end{proof}
