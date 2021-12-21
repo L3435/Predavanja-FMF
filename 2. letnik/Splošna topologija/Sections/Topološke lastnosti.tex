@@ -457,6 +457,8 @@ Zaprt podprostor kompaktnega prostora je kompakten.
 Pokritju dodamo komplement podprostora.
 \end{proof}
 
+\datum{2021-12-14}
+
 \begin{izrek}
 Kompaktnost je multiplikativna.
 \end{izrek}
@@ -466,4 +468,150 @@ Za vsako pokritje obstaja končno podpokritje množice
 $\set{x} \times Y$. Tega lahko projeciramo na $X$ in dobimo odprto
 okolico $x$. Ko to naredimo za vse $x \in X$, dobimo pokritje $X$,
 ki ima končno podpokritje.
+\end{proof}
+
+\begin{posledica}
+Vsaka omejena, zaprta podmnožica $\R^n$ je kompaktna.
+\end{posledica}
+
+\begin{trditev}
+Naj bo $K$ kompakten podprostor Hausdorffovega prostora $X$. Tedaj
+je $K$ zaprt v $X$.
+\end{trditev}
+
+\begin{proof}
+Prostor ostro loči vsako točko $K$ od poljubne točke
+$x \not \in K$. S tem dobimo pokritje $K$, ki ima končno
+podpokritje. Sledi, da njihova unija in presek pripadajočih okolic
+$x$ ostro ločita $x$ od $K$. Sledi, da za vse $X \not \in K$
+obstaja okolica, ki ne seka $K$.
+\end{proof}
+
+\begin{izrek}[Heine-Borel-Lebesque]
+Množica $A \subseteq \R^n$ je kompakten natanko tedaj, ko je $A$
+zaprta in omejena.
+\end{izrek}
+
+\begin{posledica}
+Vsaka preslikava $f \colon X \to \R$, kjer je $X$ kompakten, je
+omejena in zavzame $\min$ in $\max$.
+\end{posledica}
+
+\begin{proof}
+$f(X)$ je kompaktna, zato je zaprta in omejena.
+\end{proof}
+
+\begin{trditev}
+V kompaktu ima vsaka neskončna množica stekališče.
+\end{trditev}
+
+\begin{proof}
+Naj bo $A$ neskončna podmnožica brez stekališč. Za vsak $x \in X$
+obstaja neka njegova okolica, ki vsebuje kvečjemu končno točk $A$.
+Ker je $X$ kompakten, obstaja končno podpokritje, kar je
+protislovje z neskončnostjo $A$.
+\end{proof}
+
+\begin{posledica}[Bolzano-Weierstrass]
+Vsako omejeno zaporedje v $\R^n$ ima konvergentno podzaporedje.
+\end{posledica}
+
+\obvs
+
+\begin{izrek}
+Kompakten Hausdorffov prostor je normalen.
+\end{izrek}
+
+\begin{proof}
+Podoben kot 2.3.8.
+\end{proof}
+
+\begin{izrek}
+Kompakten metrični prostor je 2-števen in separabilen.
+\end{izrek}
+
+\begin{proof}
+Za vsak $n$ vzamemo končno podpokritje pokritja s kroglami z
+radijem $\frac{1}{n}$. Njihova unija je števna baza, središča
+krogel pa gosta podmnožica.
+\end{proof}
+
+\begin{trditev}
+$X$ je kompakten natanko tedaj, ko v vsaki družini zaprtih množic
+s praznim presekom obstaja končna poddružina, ki ima prazen presek.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[Cantor]
+Padajoča veriga zaprtih množic v kompaktnem prostoru ima neprazen
+presek.
+\end{izrek}
+
+\obvs
+
+\begin{lema}[Lebesque]
+Za vsako odprto pokritje $U$ metričnega prostora $X$ obstaja
+\emph{Lebesqueovo število} $\lambda>0$ z lastnostjo, da je vsaka
+krogla z radijem manjšim od $\lambda$ vsebovana v nekem elementu
+$U$.
+\end{lema}
+
+\begin{proof}
+Vzamemo končno podpokritje in za vsako točko vzamemo največjo
+radij, za katerega je krogla s tem radijem še vsebovana v katerem
+izmed elementov $U$. Opazimo, da je to zvezna funkcija, zato
+zavzame minimum, ki pa je pozitiven.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f \colon X \to Y$ zvezna, kjer sta $X$ in $Y$ metrična. Če
+je $X$ kompakten, je $f$ enakomerno zvezna.
+\end{posledica}
+
+\begin{proof}
+Vzamemo Lebesqueovo število praslik majhnih krogel.
+\end{proof}
+
+\begin{definicija}
+%Dodaj index
+$X$ je lokalno kompakten, če ima vsaka točka kakšno kompaktno
+okolico.
+\end{definicija}
+
+\begin{definicija}
+Odprta množica $U \subseteq X$ je \emph{relativno kompaktna}, če je
+$\overline{U}$ kompakt.
+\end{definicija}
+
+\begin{trditev}
+Hausdorffov prostor je lokalno kompakten natanko tedaj, ko ima bazo
+iz relativno kompaktnih množic.
+\end{trditev}
+
+%Add proof ig
+
+\begin{izrek}
+Vsak lokalno kompakten Hausdorffov prostor je regularen.
+\end{izrek}
+
+%Add proof later
+
+\begin{definicija}
+Prostor $X$ je \emph{Borelov}, če ga ni mogoče predstaviti kot
+števno unijo zaprtih množic s prazno notranjostjo.
+\end{definicija}
+
+\begin{izrek}
+Naj bodo $F_i$ zaprte množice s prazno notranjostjo v lokalno
+kompaktnem zaprtem prostoru $X$. Potem ima tudi njihova unija
+prazno notranjost.
+\end{izrek}
+
+\begin{proof}
+Naj bo $U_1 \subseteq \bigcup F_i$ odprta. Tedaj obstaja
+$x \in U_1 \setminus F_1$ in njegova relativno kompaktna okolica,
+ki ne seka $F_1$. Če ta postopek nadaljujemo, dobimo zaporedje
+$\overline{U_i}$ zaprtih množic, ki so vsebovane ena v drugi, zato
+imajo neprazen presek, kar je protislovje.
 \end{proof}
