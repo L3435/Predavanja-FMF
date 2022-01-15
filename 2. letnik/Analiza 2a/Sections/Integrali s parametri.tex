@@ -1,5 +1,7 @@
 \section{Integrali s parametri}
 
+\epigraph{">No glej kakšen revček si."<}{-- doc. dr. Gregor Cigler}
+
 \subsection{Eulerjeva gama}
 
 \datum{2021-11-2}
@@ -1076,8 +1078,8 @@ $f$ na $A \times B$.
 \begin{posledica}
 Naj bo $f \colon A \times B \to \R$ zvezna. Tedaj je
 \[
-\liint_{A \times B} f(x,y)\;dx\;dy =
-\lint_A \left(\lint_B f(x,y)\;dy\right) dx.
+\lint_A \left(\lint_B f(x,y)\;dy\right) dx =
+\lint_B \left(\lint_A f(x,y)\;dx\right) dy.
 \]
 \end{posledica}
 
@@ -1351,17 +1353,6 @@ pravimo, da $L$ velja \emph{skoraj povsod}.
 Če ima $A$ mero $0$, $A$ nima notranjosti.
 \end{opomba}
 
-\begin{izrek}[Lebesque]\index{Izrek!Lebesque}
-Naj bo $K$ kvader in $f \colon K \to \R$ omejena. Potem je $f$
-integrabilna natanko tedaj, ko je na $K$ zvezna skoraj povsod.
-\end{izrek}
-
-\begin{opomba}
-Trditev \ref{td:3} je posledica Lebesqueovega izreka. $V(A)$ namreč
-obstaja natanko tedaj, ko je $\chi_A $ zvezna skoraj povsod,
-$\chi_A$ pa ni zvezna natanko na robu $A$, ki je kompaktna.
-\end{opomba}
-
 \begin{lema}
 Naj bo $f \colon K \to [0,\infty)$ integrabilna. Denimo, da je
 \[
@@ -1436,6 +1427,171 @@ $m(K_i) \leq 0$, zato je
 \]
 \end{proof}
 
+\datum{2021-11-30}
+
+\begin{izrek}
+Naj bosta $A, B \subseteq \R^n$ omejena in $f, g \colon A \to \R$
+integrabilni.
+
+\begin{enumerate}[i)]
+\item Integrabilne funkcije na $A$ tvorijo vektroski prostor nad
+$\R$, integral pa je linearen funkcional.
+\item Če je $f(x) \leq g(x)$ na $A$, velja
+\[
+\lint_A f(x)\;dx \leq \lint_A g(x)\;dx.
+\]
+\item $\abs{f}$ je integrabilna in velja
+\[
+\abs{\lint_A f(x)\;dx} \leq \lint_A \abs{f(x)}\;dx.
+\]
+\item Če ima $A$ prostornino in je $m \leq f(x) \leq M$, je
+\[
+m \cdot V(A) \leq \lint_A f(x)\;dx \leq M \cdot V(A).
+\]
+\item Če je $A$ kompaktna, povezana množica s prostornino in $f$
+zvezna, obstaja tak $x_0$, da je
+\[
+\lint_A f(x)\;dx = f(x_0) V(A).
+\]
+\item Naj bo $f \colon A \cup B \to \R$ integrabilna na $A$ in $B$
+ter $V(A \cap B) = 0$. Tedaj je $f$ integrabilna na $A \cup B$ in
+velja
+\[
+\lint_{A \cup B} f(x)\;dx = \lint_A f(x)\;dx + \lint_B f(x)\;dx.
+\]
+\end{enumerate} 
+\end{izrek}
+
+\begin{proof}
+Dokažimo 5.\ lastnost. Če je $V(A) = 0$, lahko vzamemo poljuben
+$x_0$. V nasprotnem primeru pa velja
+\[
+\min_A f \leq \frac{1}{V(A)} \lint_A f(x)\;dx \leq \max_A f
+\]
+in lahko uporabimo izrek o vmesni vrednosti.
+\end{proof}
+
+\begin{izrek}[Lebesque]\index{Izrek!Lebesque}
+Naj bo $K$ kvader in $f \colon K \to \R$ omejena. Potem je $f$
+integrabilna natanko tedaj, ko je na $K$ zvezna skoraj povsod.
+\end{izrek}
+
+\begin{proof}
+Naj bo $f$ zvezna skoraj povsod. Naj bo $E$ taka podmnožica $K$ z
+mero $0$, da je $f$ zvezna na $K \setminus E$. Naj bo
+$\varepsilon > 0$ in $\abs{f(x)} \leq M$.
+
+Obstajajo taki kvadri $Q_1,Q_2,\dots$, da velja
+\[
+E \subseteq \bigcup_{i=1}^\infty \Int(Q_i)
+\quad \text{in} \quad
+\sum_{i=1}^\infty V(Q_i) < \frac{\varepsilon}{4M}.
+\]
+Naj bo $x \in K \setminus E$. Ker je $f$ tam zvezna, obstaja kvader
+$Q_x$, v katerem je
+\[
+\abs{f(y)-f(z)} < \frac{\varepsilon}{2 V(K)}.
+\]
+Sledi, da je
+\[
+K \subseteq
+\bigcup_{i=1}^\infty \Int(Q_i) \cup
+\bigcup_{x \in K \setminus E} \Int(Q_x).
+\]
+Ker so kvadri kompaktni sledi, da obstaja končno podpokritje. Ti
+kvadri porodijo delitev $D$ kvadra $K$, za katero je vsak izmed
+njih unija nekaj kvadrov delitve $D$. Sledi, da je
+\begin{align*}
+S(D) - s(D) &=
+\sum_{i=1}^N (M(K_i)-m(K_i)) V(K_i)
+\\
+&=
+\sum_{\exists l \colon K_i \subseteq Q_l}(M(K_i)-m(K_i)) V(K_i) +
+\sum_{\forall l \colon K_i \not\subseteq Q_l}(M(K_i)-m(K_i)) V(K_i)
+\\
+&<
+2M \cdot \frac{\varepsilon}{4M} + \frac{\varepsilon}{2 V(K)} V(K)
+\\
+&=
+\varepsilon.
+\end{align*}
+
+Sedaj naj bo $f$ integrabilna. Naj bo $D$ delitev $K$ s kvadri
+$K_1,\dots,K_N$, kjer je $K_i = [a_i,b_i]$. Označimo
+$K_i' = [a_i,b_i)$. Naj bo
+\[
+U_D = \sum_{i=1}^N M(K_i) \chi_{K_i'}
+\quad \text{in} \quad
+L_D = \sum_{i=1}^N m(K_i) \chi_{K_i'}
+\]
+Sledi, da je $L_D \leq f \leq U_D$ na $K'$. Opazimo še, da je
+\[
+\lint_K L_D(x)\;dx = s(D)
+\quad \text{in} \quad
+\lint_K U_D(x)\;dx = S(D).
+\]
+Naj bo $(D_l)_{l=1}^\infty$ zaporedje vedno finejših delitev $K$,
+katerih dolžine robov gredo proti $0$. Sledi, da je
+\[
+\lim_{l \to \infty} s(D_l) = s = S = \lim_{l \to \infty} S(D_l).
+\]
+Riemannove vsote namreč konvergirajo proti integralu, zato tudi
+$s$ in $S$. Ker pa $L_{D_i}$ po točkah naraščajo in $U_{D_l}$ po
+točkah padajo, hkrati pa so omejene, obstajata limiti
+\[
+L(x) = \lim_{l \to \infty} L_{D_l}
+\quad \text{in} \quad
+U(x) = \lim_{l \to \infty} U_{D_l},
+\]
+za kateri velja
+\[
+L \leq f \leq U.
+\]
+Za vsako delitev $D$ velja
+\[
+s(L_{D_l},D) \leq s(L,D) \leq S(L,D) \leq S(U,D) \leq S(U_{D_l},D)
+\]
+in
+\[
+s(L_{D_l},D) \leq s(L,D) \leq s(U,D) \leq S(U,D) \leq S(U_{D_l},D).
+\]
+Ker pa je
+\[
+\lim_{l \to \infty} \lint_K L_{D_l}(x)\;dx = s
+\]
+in
+\[
+\lim_{l \to \infty} \lint_K U_{D_l}(x)\;dx = S
+\]
+ter vemo, da je $f$ integrabilna, sledi, da sta tudi $L$ in $U$
+integrabilni z enakim integralom. Ker je $L \leq U$ sledi, da sta
+enaki skoraj povsod.
+
+Naj bo
+\[
+E =
+\setb{x \in K}{L(x) \ne U(x)} \cup \set{\text{meje delitev $D_i$}}.
+\]
+Tedaj ima $E$ mero $0$. Naj bo $x_0 \in K \setminus E$ in
+$\varepsilon > 0$. Sledi, da je $U(x_0) = L(x_0)$ in obstaja tak
+$i_0$, da za vse $i \leq i_0$ velja
+\[
+U_{D_i}(x_0) - L_{D_i}(x_0) < \varepsilon.
+\]
+Ker pa $x_0$ ne pripada robu delitve $D_j$, je pripadajoč delilni
+kvader njegova okolica, v tem kvadru pa velja
+\[
+U_{D_i}(x)-L_{D_i}(x) = U_{D_i}(x_0)-L_{D_i}(x_0) < \varepsilon.
+\]
+Sledi, da je $f$ zvezna v $x_0$.
+\end{proof}
+
+\begin{opomba}
+Trditev \ref{td:3} je posledica Lebesqueovega izreka. $V(A)$ namreč
+obstaja natanko tedaj, ko je $\chi_A $ zvezna skoraj povsod,
+$\chi_A$ pa ni zvezna natanko na robu $A$, ki je kompaktna.
+\end{opomba}
+
 \begin{trditev}
 Naj bo $A$ omejena množica s prostornino in $f \colon A \to \R$
 omejena. Potem je $f$ integrabilna na $A$ natanko tedaj, ko je $f$
@@ -1462,14 +1618,402 @@ na $A$, je $\widetilde{f}$ zvezna skoraj povsod na $K$, zato je
 zvezna skoraj povsod tudi na $A$.
 \end{proof}
 
+\newpage
+
+\subsection{Posledica Fubinijevega izreka}
+
 \begin{trditev}
-Naj bo $A \subseteq \R^n$ omejena. Integrabilne funkcije na $A$
-tvorijo vektorski prostor nad $\R$, integral pa je linearen
-funkcional. Če je $f(x) \leq g(x)$ na $A$, kjer sta $f$ in $g$
-integrabilni, velja
+Naj bo $K$ kvader v $\R^{n}$ in
+$\varphi, \psi \colon K \to \R$ zvezni funkciji, za kateri je
+$\varphi(x) \leq \psi(x)$ za vse $x \in K$. Naj bo
 \[
-\lint_A f(x)\;dx \leq \lint_A g(x)\;dx.
+A = \setb{(x,y) \in K \times \R}{\varphi(x) \leq y \leq \psi(x)}.
+\]
+Naj bo $f \colon A \to \R$ zvezna. Tedaj je
+\[
+\lint_A f(x)\;dx =
+\lint_K \left( \int_{\varphi(x)}^{\psi(x)} f(x,y)\;dy\right)dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $a \leq \varphi \leq \psi \leq b$. Sledi, da je
+\[
+A \subseteq K \times [a,b] = Q.
+\]
+Naj bo $\widetilde{f} = f \cdot \chi_A$. Sledi, da je $f$ zvezna na
+\[
+\setb{(x,y) \in Q}{\varphi(x) < y < \psi(x)}
+\]
+in na
+\[
+\setb{(x,y) \in Q}{y < \varphi(x) \lor \psi(x) < y}.
+\]
+Sledi, da je $\widetilde{f}$ nezvezna kvečjemu na grafih $\varphi$
+in $\psi$, ki pa imata mero $0$, zato je integrabilna na $Q$. Za
+vse $x$ pa je $y \mapsto f(x,y)$ odsekoma zvezna in zato
+integrabilna. Sledi, da je
+\[
+\liint_A f(x,y)\;dx\;dy =
+\liint_Q \widetilde{f}(x,y)\;dx\;dy =
+\lint_K \left(\lint_{[a,b]} \widetilde{f}(x,y)\;dy\right)dx =
+\lint_K \left( \int_{\varphi(x)}^{\psi(x)} f(x,y)\;dy\right)dx.
+\qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Če ima množica $B \subseteq \R^n$ prostornino $0$, ima za vsako
+omejeno množico $E \subseteq \R$ množica $B \times E$ prostornino
+$0$ v $\R^{n+1}$.
+\end{lema}
+
+\begin{proof}
+Naj bo $E \subseteq = [a,b]$. Naj bo $\varepsilon > 0$. Ker je
+$V(B) = 0$, obstajajo kvadri $Q_1,\dots,Q_N \subseteq \R^n$, za
+katere je
+\[
+B \subseteq \bigcup_{i=1}^N Q_i
+\quad \text{in} \quad
+\sum_{i=1}^N V(Q_i) < \frac{\varepsilon}{b-a}.
+\]
+Sedaj preprosto vzamemo kvadre $Q_i \times [a,b]$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $D \subseteq \R^n$ omejena množica s prostornino. Naj bosta
+$\varphi,\psi \colon D \to \R$ omejeni, zvezni funkciji, za kateri
+je $\varphi(x) \leq \psi(x)$ za vse $x \in D$. Naj bo
+\[
+A = \setb{(x,y) \in D \times \R}{\varphi(x) \leq y \leq \psi(x)}.
+\]
+Naj bo $f \colon A \to \R$ omejena, zvezna funkcija. Tedaj je $f$
+integrabilna na $A$ in velja
+\[
+\lint_A f(x)\;dx =
+\lint_D \left( \int_{\varphi(x)}^{\psi(x)} f(x,y)\;dy\right)dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $D \subseteq K$ in $a \leq \varphi \leq \psi \leq b$. Potem
+je $A \subseteq K \times [a,b]$.
+
+Oglejmo si vse možne točke nezveznosti funkcije
+$\widetilde{f} = f \cdot \chi_A$. Te so lahko le na robu $A$, saj
+je $\widetilde{f}$ v notranjosti zvezna, v zunanjosti pa enaka $0$.
+Velja pa, da je
+\[
+\partial A \subseteq
+\partial D \times [a,b] \cup \Gamma_\varphi \cup \Gamma_\psi.
+\]
+$\varphi$ in $\psi$ razširimo na $K$ z $0$. Sledi, da imata točke
+nezveznosti le na $\partial D$, ki ima prostornino $0$, zato sta
+integrabilni na $K$. Sledi, da imata njuna grafa v $\R^{n+1}$
+prostornino $0$. Dobimo, da ima $\partial A$ v $\R^{n+1}$
+prostornino $0$ in je $\widetilde{f}$ integrabilna na
+$K \times [a,b]$.
+
+Za vsak $x$ je funkcija $\widetilde{f}$ integrabilna na $[a,b]$,
+saj je tam odsekoma zvezna. Sledi, da je
+\begin{align*}
+\liint_A f(x,y)\;dx\;dy &=
+\lint_K \left(\int_a^b \widetilde{f}(x,y)\;dy\right)dx
+\\
+&=
+\lint_D \left(\int_a^b \widetilde{f}(x,y)\;dy\right)dx
+\\
+&=
+\lint_D \left(
+\int_{\varphi(x)}^{\psi(x)} \widetilde{f}(x,y)\;dy\right)dx.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ omejena. Če ima $A$ prostornino, jo imata
+tudi $\Int A$ in $\overline{A}$ in velja
+\[
+V(A) = V(\Int A) = V(\overline{A}).
+\]
+\end{trditev}
+
+\begin{proof}
+Ker ima $A$ prostornino, je $V(\partial A) = 0$. Sledi, da je tudi
+$V(\partial \Int A) = 0$ in $V(\partial\overline{A}) = 0$, saj
+velja $\partial \Int A \subseteq \partial A$ in
+$\partial \overline{A} \subseteq \partial A$. Sledi, da imata
+množici prostornino in je
+\[
+V(\Int A) \leq V(A) \leq V(\overline{A}),
+\]
+velja pa
+\[
+V(\overline{A}) = V(\Int A) + V(\partial A) = V(\Int A). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Podobno ima vsaka množica
+$\Int A \subseteq B \subseteq \overline{A}$ prostornino enako
+$V(A)$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ omejena množica s prostornino in
+$f \colon \overline{A} \to \R$ omejena. Če je $f$ integrabilna na
+$A$, je integrabilna tudi na $\Int A$ in $\overline{A}$ in velja
+\[
+\lint_A f(x)\;dx = \lint_{\Int A} f(x)\;dx =
+\lint_{\overline{A}} f(x)\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $\overline{A} \subseteq K$. Velja $V(\partial A) = 0$, saj
+ima $A$ prostornino. Ker je $f$ omejena, je tako
+\[
+\lint_{\partial A} f(x)\;dx = 0.
+\]
+Dovolj je tako dokazati, da obstaja integral po $\Int A$ in je
+\[
+\lint_A f(x)\;dx = \lint_{\Int A} f(x)\;dx.
+\]
+Oglejmo si potencialne točke nezveznosti $\chi_{\Int A} \cdot f$.
+Lahko so na $\partial \Int A \subseteq \partial A$, zato imajo mero
+$0$, ali pa so to točke nezveznosti $f$ na $\Int A$, ki imajo prav
+tako mero $0$, saj je $f$ integrabilna na $A$. Ker ima $\partial A$
+prostornino in mero $0$, tako sledi
+\[
+\lint_A f(x)\;dx =
+\lint_{A \setminus \Int A} f(x)\;dx + \lint_{\Int A} f(x)\;dx =
+\lint_{\Int A} f(x)\;dx. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Podobno velja za vse množice
+$\Int A \subseteq B \subseteq \overline{A}$.
+\end{opomba}
+
+\newpage
+
+\subsection{Vpeljava nove spremenljivke}
+
+\begin{lema}
+Naj bo $A \subseteq \R^n$ omejena odprta množica in naj bo
+$E \subseteq A$ množica z mero $0$. Če je $\Phi \colon A \to \R^n$
+$\mathcal{C}^1$ difeomorfizem, ima $\Phi(E)$ mero $0$.
+\end{lema}
+
+\begin{proof}
+Vsako odprto monžico $A$ lahko zapišemo kot števno unijo zaprtih
+krogel. Dovolj je tako za poljubno kroglo
+\[
+\overline{K(a,R)} \subseteq \overline{K(a,R')} \subseteq A
+\]
+pokazati, da ima $\Phi(E \cap \overline{K(a,R)})$ mero $0$. Na
+$\overline{K(a,R')}$ so vsi odvodi $D\Phi$ enakomerno omejeni.
+Sledi, da obstaja tak $c > 0$, da za
+$t_1,t_2 \in \overline{K(a,R')}$ velja
+\[
+\abs{\Phi(t_1) - \Phi(t_2)} \leq c \cdot \abs{t_1 - t_2}.
+\]
+Naj bo $\varepsilon > 0$. Obstajajo krogle $B_1,B_2,\dots$ v
+$\overline{K(a,R')}$, da velja
+\[
+E \cap \overline{K(a,R)} \subseteq \bigcup_{i=1}^\infty B_i
+\quad \text{in} \quad
+\sum_{i=1}^\infty V(B_i) < \frac{\varepsilon}{c^n}.
+\]
+Oglejmo si
+\[
+\Phi(E \cap \overline{K(a,R)}) \subseteq
+\Phi(\bigcup_{i=1}^\infty B_i).
+\]
+Velja, da je $B_i \subseteq \overline{K(a_i, cr_i)}$, zato je
+\[
+\Phi(E \cap \overline{K(a,R)}) \subseteq
+\Phi(\bigcup_{i=1}^\infty \overline{K(a_i, cr_i)}),
+\]
+volumen desne strani pa je manjši od $\varepsilon$. Sledi, da ima
+$\Phi(E \cap \overline{K(a,R)})$ mero $0$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $U \subseteq \R^n$ odprta množica in naj bo
+$A \subseteq \overline{A} \subseteq U$ množica s prostornino. Naj
+bo $\Phi \colon U \to V$ difeomorfizem, kjer je $V$ odprta
+podmnožica $\R^n$. Tedaj ima $\Phi(A)$ prostornino.
+\end{posledica}
+
+\begin{proof}
+Velja $V(\partial A) = 0$. Ker je $\Phi$ difeomorfizem in
+$\overline{A} \subseteq U$, je
+$\Phi(\partial A) = \partial \Phi(A)$. Sledi, da ima
+$\partial \Phi(A)$ mero $0$, ker pa je kompakt, ima tudi
+prostornino enako $0$.
+\end{proof}
+
+\datum{2021-12-7}
+
+\begin{lema}
+Vsaka nesingularna matrika je produkt elementarnih matrik (menjava
+vrstic, prištevanje ene vrstice drugi, množenje vrstice s
+konstanto).
+\end{lema}
+
+\begin{proof}
+Gaussova eliminacija.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq \R^n$ množica s prostornino in
+$T \colon \R^n \to \R^n$ obrnljiva afina preslikava, oziroma
+$T = L + d$, kjer je $L$ obrnljiva linearna. Tedaj je
+\[
+V(T(A)) = \abs{\det L} \cdot V(A).
+\]
+\end{trditev}
+
+\begin{proof}
+Ker translacija ohranja volumen, je trditev dovolj dokazati za
+elementarne preslikave, kar pa je (bolj ali manj) očitno.
+\end{proof}
+
+\datum{2021-12-14}
+
+\begin{trditev}
+Naj bo $\Phi \colon U \to V$ $\mathcal{C}^1$ difeomorfizem. Naj bo
+$E \subseteq U$ kompaktna podmnožica in $\varepsilon > 0$. Potem
+obstaja tak $\delta > 0$, da za vsak kvader $K_0$ v $E$, katerega
+razmerje med najdaljšim in najkrajšim robom je manjši od $2$ in
+vsemi robovi manjšimi od $\delta$ velja
+\[
+V(\Phi(K_0)) - V(\Phi(a)+D\Phi(a)(K_0-a)) < \epsilon \cdot V(K_0),
+\]
+kjer je $a$ središče $K_0$.
+\end{trditev}
+
+\begin{izrek}
+Naj bo $A \subseteq \R^n$ omejena odprta množica s prostornino. Naj
+bo $\Phi \colon A \to B$, kjer je $B = \Phi(A) \subseteq \R^n$,
+$\mathcal{C}^1$ difeomorfizem. Denimo, da ima $B$ prostornino in da
+je $J\Phi = \det D\Phi$ omejena funkcija na $A$. Naj bo
+$f \colon B \to \R$ omejena in zvezna skoraj povsod. Potem je
+\[
+\lint_B f(x)\;dx = \lint_A f(\Phi(t)) \abs{J\Phi(t)}\;dt.
+\]
+\end{izrek}
+
+\begin{proof}
+Kvadri Riemannove vsote, ki sekajo rob $A$, imajo poljubno majhno
+prostornino. Dovolj je tako izrek dokazati za kvadre.
+
+Velja pa
+\begin{align*}
+R((f \circ \Phi) \cdot \abs{J\Phi},D,\xi) &=
+\sum_{i=1}^N f(\Phi(a_i)) \cdot \abs{J\Phi} \cdot V(K_i)
+\\
+&=
+\sum_{i=1}^N f(\Phi(a_i)) \cdot \abs{J\Phi} \cdot V(K_i - a_i)
+\\
+&=
+\sum_{i=1}^N f(\Phi(a_i)) \cdot V(\Phi(a_i)+D\Phi(t_i)(K_i-a_i))
+\\
+&\doteq \sum_{i=1}^N f(\Phi(a_i)) \cdot V(\Phi(K_i))
+\\
+&\doteq \sum_{i=1}^N \lint_{\Phi(K_i)} f(\Phi(a_i))\;dx
+\\
+&\doteq \sum_{i=1}^N \lint_{\Phi(K_i)} f(x)\;dx
+\\
+&= \lint_K f(x)\;dx.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bo $\Phi \colon U \to V$ $\mathcal{C}^1$ difeomorfizem odprtih
+podmnožic $U, V \subseteq \R^n$ s prostornino. Naj bo
+$J \Phi = \det D\Phi$ omejena na $U$. Naj bo $B \subseteq V$,
+$A = \Phi^{-1}(B) \subseteq U$ in $f \colon B \to \R$ integrabilna.
+Tedaj je
+\[
+\lint_B f(x)\;dx = \lint_A f(\Phi(t)) \abs{J\Phi(t)}\;dt.
+\]
+\end{posledica}
+
+\begin{proof}
+$f$ razširimo na $V$ z $0$.
+\end{proof}
+
+\newpage
+
+\subsection{Posplošeni $n$-terni integral}
+
+\begin{definicija}
+Naj bo $A \subseteq \R^n$ in naj ima $\partial A$ mero $0$. Naj bo
+$f \colon A \to \R$ zvezna skoraj povsod. $f$ razširimo na $\R^n$ z
+$0$. Naj bo\footnote{$P$ je zaprta podmnožica $\R^n$ z mero $0$.}
+\[
+P = \setb{x \in \R^n}{\text{$f$ ni omejena v nobeni okolici $x$}}
+\]
+Z $\mathcal{K}_f$ označimo množico kompaktnih podmnožic
+$\R^n \setminus P$ s prostornino.
+\end{definicija}
+
+\begin{trditev}
+Če je $Q \in \mathcal{K}_f$, obstaja
+\[
+\lint_Q f(x)\;dx.
+\]
+\end{trditev}
+
+\begin{proof}
+Na $Q$ je $f$ omejena, saj je $Q$ kompaktna. Ker ima $Q$
+prostornino in je $f$ zvezna skoraj povsod, integral res obstaja.
+\end{proof}
+
+\begin{definicija}
+Naj bo $f \geq 0$ na $A$. Definiramo
+\[
+\lint_A f(x)\;dx = \sup_{Q \in \mathcal{K}} \lint_Q f(x)\;dx.
+\]
+\end{definicija}
+
+\begin{definicija}
+Zaporedje kompaktnih množic $Q_n$ v odprti množici $\Omega$
+\emph{izčrpa} $\Omega$, če velja
+\[
+Q_1 \subseteq \Int Q_2 \subseteq Q_2 \subseteq \dots
+\quad \text{in} \quad
+\bigcup_{i=1}^\infty Q_i = \Omega.
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+\lint_A f(x)\;dx =
+\lim_{i \to \infty} \lint_{Q_i} f(x)\;dx.
 \]
 \end{trditev}
 
 \obvs
+
+\begin{definicija}
+Funkcija $f$ je
+\emph{absolutno integrabilna}\index{Integral!Absolutna integrabilnost},
+če je
+\[
+\lint_A \abs{f}\;dx < \infty.
+\]
+\end{definicija}
+
+\begin{opomba}
+Množica $\mathcal{L}^1(A)$ absolutno integrabilnih funkcij na $A$
+je vektorski prostor nad $\R$. Če na $\mathcal{L}^1$ uvedemo
+ekvivalenčno relacijo, za katero je $f \sim g$ natanko tedaj, ko je
+$f = g$ skoraj povsod, integral na njem inducira normo in s tem
+metriko. Označimo $L^1(A) = \kvoc{\mathcal{L}^1(A)}{\sim}$.
+\end{opomba}

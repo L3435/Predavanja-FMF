@@ -1,0 +1,943 @@
+\section{Furierova vrsta}
+
+\epigraph{">Tako kot bi odvijali tele naše babuške nazaj."<}
+{-- prof.~dr.~Miran Černe}
+
+\subsection{Hilbertov prostor}
+
+\datum{2021-12-15}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor nad $\R$ (ali $\C$).
+\emph{Skalarni produkt}\index{Skalarni produkt} je preslikava
+$\skl{\;,\;} \colon X \times X \to \R$ (ali $\C$), za katero je
+
+\begin{enumerate}[i)]
+\item $\skl{x,x} \geq 0$,
+\item $\skl{x,x} = 0 \iff x = 0$,
+\item $\skl{x,y} = \overline{\skl{y,x}}$,
+\item $\skl{\lambda x + \mu y, z} =
+\lambda \skl{x,z} + \mu \skl{y,z}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor. \emph{Norma}\index{Norma} je
+preslikava $\norm{\;} \colon X \to \R$, za katero je
+
+\begin{enumerate}[i)]
+\item $\norm{x} \geq 0$,
+\item $\norm{x} = 0 \iff x = 0$,
+\item $\norm{\lambda x} = \abs{\lambda} \norm{x}$,
+\item $\norm{x+y} \leq \norm{x} + \norm{y}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Cauchyjeva neenakost]
+\index{Izrek!Cauchyjeva neenakost}
+Velja
+\[
+\abs{\skl{x,y}} \leq \norm{x} \norm{y}.
+\]
+\end{izrek}
+
+\begin{proof}
+Glej izrek 7.1.3 v zapiskih Algebre 1.
+\end{proof}
+
+\begin{posledica}
+Skalarni produkt je zvezna preslikava.
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+\abs{\skl{x,a} - \skl{y,a}} \leq \norm{a} \cdot \norm{x - y}.
+\]
+\end{proof}
+
+\begin{opomba}
+Skalarni produkt inducira normo $\norm{x} = \sqrt{\skl{x,x}}$,
+norma pa metriko $d(x,y) = \norm{x - y}$. Posledično skalarni
+produkt inducira metriko.
+\end{opomba}
+
+\begin{definicija}
+\emph{Hilbertov prostor}\index{Hilbertov prostor} je vektorski
+prostor s skalarnim produktom, ki je v inducirani metriki poln
+metrični prostor.
+\end{definicija}
+
+\begin{definicija}
+Napolnitev prostora $\mathcal{C}([a,b])$ za
+\[
+d(f,g) = \sqrt{\int_a^b \abs{f-g}^2\;dx}
+\]
+označimo z $L^2([a,b])$.
+\end{definicija}
+
+\begin{opomba}
+Označimo
+\[
+\mathcal{L}^2([a,b]) =
+\setb{f \colon [a,b] \to \R}{\int_a^b \abs{f}^2\;dx < \infty}.
+\]
+$\mathcal{L}^2([a,b])$ je vektorski prostor. S skalarnim produktom
+\[
+\skl{f,g} = \int_a^b f(x)g(x)\;dx
+\]
+je tako $\kvoc{\mathcal{L}^2([a,b])}{\sim}$ Hilbertov. Izkaže se,
+da je to ravno $L^2([a,b])$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor s skalarnim produktom. Pravimo, da sta
+vektorja $x, y \in X$ \emph{pravokotna}\index{Pravokotnost}, če
+velja
+\[
+\skl{x,y} = 0.
+\]
+\end{definicija}
+
+\datum{2021-12-21}
+
+\begin{definicija}
+\emph{Ortogonalni komplement}\index{Pravokotnost!Ortogonalni komplement}
+množice $A$ je podprostor\footnote{Ortogonalni komplement je zaprt,
+saj vsebuje vse svoje limite.}
+\[
+A^\bot = \setb{x \in X}{\forall a \in A \colon \skl{x,a} = 0}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $Y \leq X$. \emph{Pravokotna projekcija} vektorja $x$ na $Y$
+je vektor $P_Y(x) \in Y$, za katerega je $x-P_Y(x) \in Y^\bot$, če
+obstaja.
+\end{definicija}
+
+\begin{opomba}
+Projekcija je dobro definirana. Če sta $u$ in $v$ projekciji, je
+namreč $\skl{u-v,u-v}=0$. 
+\end{opomba}
+
+\begin{definicija}
+Zaporedje $(e_n)_{n=1}^\infty$ neničelnih vektorjev je
+\emph{ortogonalni sistem}\index{Hilbertov prostor!Ortonormiran sistem},
+če za vse $i \ne j$ velja
+$\skl{e_i,e_j}=0$. Sistem je \emph{ortonormiran}, če velja
+$\skl{e_i,e_j}=\delta_{i,j}$.
+\end{definicija}
+
+\begin{trditev}[Besselova neenakost]
+\index{Izrek!Besselova neenakost}
+Naj bo $x \in X$ element vektorskega prostora s skalarnim produktom
+in $(e_n)_{n=1}^\infty$ ortonormiran sistem. Tedaj je
+\[
+\sum_{n=1}^\infty \abs{\skl{x,e_n}}^2 \leq \norm{x}^2.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $Y_n = \Lin(\setb{e_i}{i \leq n})$. Sledi, da ti vektorji
+tvorijo ortonormirano bazo $Y_n$. Sledi, da za vse $x \in X$ velja
+\[
+P_{Y_n}(x) = \sum_{i=1}^n \skl{x,e_i} e_i.
+\]
+Po Pitagorovem izreku je tako
+\[
+\norm{x}^2 \geq
+\norm{P_{Y_n}(x)}^2 =
+\sum_{i=1}^n \abs{\skl{x,e_i}}^2. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Številom $\skl{x,e_n}$ pravimo
+\emph{Fourierovi koeficienti}\index{Fourierova vrsta!Fourierovi koeficienti}.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $X$ Hilbertov prostor. Naj bo $(c_n)_{n=1}^\infty$ zaporedje
+števil, za katere je vrsta
+\[
+\sum_{n=1}^\infty \abs{c_n}^2
+\]
+konvergentna. Naj bo $(e_n)_{n=1}^\infty$ ortonormiran sistem.
+Tedaj obstaja tak $x \in X$, da je
+\[
+x = \sum_{n=1}^\infty c_n e_n.
+\]
+\end{trditev}
+
+\begin{proof}
+Z $x_n$ označimo $n$-to delno vsoto. Velja
+\[
+\norm{x_{n+p} - x_n}^2 =
+\norm{\sum_{i=n+1}^{n+p} c_ie_i}^2 =
+\sum_{i=n+1}^{n+p} \abs{c_i}^2.
+\]
+Ker je $\left(\abs{c_n}^2\right)$ Cauchyjevo, je tako tudi $(x_n)$
+Cauchyjevo, zato ima limito.
+\end{proof}
+
+\begin{definicija}
+Ortonormiran sistem v Hilbertovem prostoru je
+\emph{kompleten}\index{Hilbertov prostor!Ortonormiran sistem!Kompleten},
+če za vse $x \in X$ velja
+\[
+x = \sum_{n=1}^\infty \skl{x,e_n}e_n.
+\]
+\end{definicija}
+
+\begin{izrek}
+\label{iz:kons:kar}
+Naj bo $X$ Hilbertov in $(e_n)_{n=1}^\infty$ ortonormiran sistem.
+Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item
+\label{iz:kons:1}
+$(e_n)_{n=1}^\infty$ je kompleten.
+\item
+\label{iz:kons:2}
+$\forall x,y \in X \colon
+\skl{x,y} = \sum_{n=1}^\infty \skl{x,e_n} \overline{\skl{y,e_n}}$.
+\item
+\label{iz:kons:3}
+$\forall x \in X \colon \norm{x}^2 =
+\sum_{n=1}^\infty \abs{\skl{x,e_n}}^2$.\footnote{Tej enakosti
+pravimo \emph{Parsevalova enakost}.}
+\item
+\label{iz:kons:4}
+$(e_n)_{n=1}^\infty$ ni vsebovan v nobenem strogo večjem
+ortonormiranem sistemu.
+\item
+\label{iz:kons:5}
+Edini vektor, ki je pravokoten na vse $e_i$, je $0$.
+\item
+\label{iz:kons:6}
+Končne linearne kombinacije vektorjev $e_i$ so goste v $X$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Če velja \ref{iz:kons:1}, dobimo
+\[
+\skl{x,y} =
+\skl{\sum_{n=1}^\infty \skl{x,e_n}e_n,y} =
+\sum_{n=1}^\infty \skl{x,e_n} \skl{e_n,y},
+\]
+saj je $\skl{\;,\;}$ zvezen, zato velja \ref{iz:kons:2}.
+
+Če v \ref{iz:kons:2} vstavimo $x=y$, dobimo \ref{iz:kons:3}.
+
+Denimo, da obstaja normiran $e_0$, ki je pravokoten na vse
+ostale. Če vstavimo $e_0$ v \ref{iz:kons:3}, dobimo
+$0 = \norm{e_0}^2 = 1$, kar je protislovje.
+
+Če obstaja neničelni $x$, ki je pravokoten na vse v ortonormiranem
+sistemu, ga normiramo in dobimo prostislovje s \ref{iz:kons:4}.
+
+Predpostavimo, da velja \ref{iz:kons:5}. Velja
+\[
+\skl{x-\sum_{i=1}^\infty \skl{x,e_i}e_i,e_n} =
+\skl{x,e_n} - \skl{\sum_{i=1}^\infty \skl{x,e_i}e_i,e_n} =
+0,
+\]
+zato sledi \ref{iz:kons:1}.
+
+Dokažimo še ekvivalenco z \ref{iz:kons:6}. Če velja
+\ref{iz:kons:1}, lahko zapišemo
+\[
+x = \sum_{n=1}^\infty \skl{x,e_n} e_n
+\]
+in vzamemo dovolj veliko delno vsoto. Sedaj predpostavimo še, da
+velja \ref{iz:kons:6}. Naj bo $x$ pravokoten na vse $e_i$.
+Obstajajo take $\lambda_1,\dots,\lambda_n$, da je
+\[
+\norm{x-\sum_{i=1}^n \lambda_i e_i} < \varepsilon.
+\]
+Sledi, da je
+\[
+\norm{x}^2 =
+\skl{x,x} =
+\skl{x-\sum_{i=1}^n \lambda_i e_i,x} \leq
+\norm{x-\sum_{i=1}^n \lambda_i e_i} \cdot \norm{x}.
+\]
+Sledi, da je $\norm{x} < \varepsilon$.
+\end{proof}
+
+\begin{trditev}
+Prostor $\ell^2$ je Hilbertov.\footnote{Vektorski prostor
+zaporedij, za katera so vrste kvadratov njihovih členov
+konvergentne.}
+\end{trditev}
+
+\begin{proof}
+Naj bo $\alpha_i$ Cauchyjevo in
+\[
+d(\alpha_i,\alpha_j) = \sum_{n=-\infty}^\infty \abs{a_n^i-a_n^j}^2.
+\]
+Sledi, da so zaporedja $\set{\alpha_n^i}_i$ Cauchyjeva, zato imajo
+limite $a_n$. Opazimo, da je
+\[
+\sum_{n=1}^\infty a_n^2
+\]
+konvergentna, zato je zaporedje element $\ell^2$. Ni težko videti,
+da je dobljeno zaporedje limita $\alpha_i$.
+\end{proof}
+
+\newpage
+
+\subsection{Klasične Fourierove vrste}
+
+\datum{2021-12-22}
+
+\begin{definicija}
+Naj bo $f \in L^2([-\pi,\pi])$. \emph{Klasični Fourierovi
+koeficienti}\index{Fourierova vrsta!Klasični koeficienti} so
+števila
+\[
+a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x)\cos(nx)\;dx
+\quad \text{in} \quad
+b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x)\sin(nx)\;dx.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f \in L^2([-\pi,\pi])$ funkcija.
+
+\begin{enumerate}[i)]
+\item Njena pripadajoča
+\emph{Fourierova vrsta}\index{Fourierova vrsta} je
+\[
+\frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(nx) + b_n \sin(nx).
+\]
+\item Velja enakost
+\[
+\frac{1}{\pi} \int_{-\pi}^\pi \abs{f(x)}^2\;dx =
+\frac{\abs{a_0}}{2} + \sum_{n=1}^\infty \abs{a_n}^2 + \abs{b_n}^2.
+\]
+\label{iz:fou:par}
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\ref{iz:fou:par} je le transformirana Parsevalova enakost.
+\end{proof}
+
+\begin{lema}[Riemann-Lebesque]\index{Lema!Riemann-Lebesque}
+Velja
+\[
+\lim_{n \to \infty} a_n = 0
+\quad \text{in} \quad
+\lim_{n \to \infty} b_n = 0.
+\]
+\end{lema}
+
+\begin{proof}
+Besselova neenakost.
+\end{proof}
+
+\begin{lema}
+Naj bo $f$ periodična s periodo $p$. Tedaj je
+\[
+\int_a^{a+p} f(x)\;dx = \int_0^p f(x)\;dx.
+\]
+\end{lema}
+
+\obvs
+
+\begin{lema}
+Velja\footnote{Funkciji $D_N$ pravimo
+\emph{Dirichletovo jedro}\index{Jedro!Dirichletovo}.}
+\[
+D_N(x) =
+\frac{1}{2} + \sum_{n=1}^N \cos(nx) =
+\frac{1}{2} \frac{\sin\left(\left(N + \frac{1}{2}\right)x\right)}
+{\sin\left(\frac{x}{2}\right)}.
+\]
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+D_N(x) =
+\frac{1}{2} + \sum_{n=1}^N \frac{e^{inx} + e^{-inx}}{2} =
+\frac{1}{2} \frac{
+e^{\left(N+\frac{1}{2}\right)ix}-e^{-\left(N+\frac{1}{2}\right)ix}}
+{e^{\frac{1}{2}ix}-e^{-\frac{1}{2}ix}}. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Velja
+\[
+\frac{1}{\pi} \int_{-\pi}^\pi D_N(x)\;dx = 1.
+\]
+\end{lema}
+
+\obvs
+
+\begin{lema}
+Velja
+\[
+D_N(x) =
+\frac{1}{2} \left(
+\frac{\cos\left(\frac{x}{2}\right)}{\sin\left(\frac{x}{2}\right)}
+\sin(Nx) + \cos(Nx)\right).
+\]
+\end{lema}
+
+\begin{proof}
+Adicijski izrek.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f \colon \R \to \R$ funkcija s periodo $2\pi$, ki je
+odsekoma zvezna\footnote{Na vsakem končnem intervalu ima $f$ končno
+mnogo točk nezveznosti in za vse $x \in \R$ obstajata leva in desna
+limita v $x$.} in odsekoma odvedljiva.\footnote{Za vsak $x \in \R$
+obstajata levi in desni odvod v $x$.} Potem za vse $x \in \R$
+pripadajoča Fourierova vrsta konvergira v $x$ in je enaka
+\[
+\frac{\displaystyle
+\lim_{t \uparrow x} f(t) + \lim_{t \downarrow x} f(t)}{2}.
+\]
+\end{izrek}
+
+\begin{proof}
+Ker je $f$ odsekoma zvezna, je v $L^2([-\pi,\pi])$. Naj bo
+\begin{align*}
+S_N(x) &= \frac{a_0}{2} + \sum_{n=1}^N a_n \cos(nx) + b_n \sin(nx)
+\\
+&=
+\frac{a_0}{2} + \sum_{n=1}^N \frac{1}{\pi}\int_{-\pi}^\pi f(t)
+\left(\cos(nt)\cos(nx) + \sin(nt)\sin(nx)\right)dt.
+\intertext{Sledi, da je}
+S_N(x) &=
+\frac{1}{\pi} \int_{-\pi}^\pi f(t)
+\left(\frac{1}{2} + \sum_{n=1}^N \cos(n(x-t))\right)dt
+\\
+&=
+\frac{1}{\pi} \int_{-\pi}^\pi f(t) D_N(x-t)\;dt
+\\
+&=
+\frac{1}{\pi} \int_{x-\pi}^{x+\pi} f(x-v) D_N(v)\;dv
+\\
+&=
+\frac{1}{\pi} \int_{-\pi}^{\pi} f(x-v) D_N(v)\;dv
+\\
+&=
+\frac{1}{\pi} \left(\int_{-\pi}^0 f(x-v)D_N(v)\;dv +
+\int_0^\pi f(x-v)D_N(v)\;dv\right)
+\\
+&=
+\frac{1}{\pi} \int_0^\pi \left(f(x+v) + f(x-v)\right) D_N(v)\;dv.
+\end{align*}
+Poglejmo razliko
+\[
+S_N(x) - \frac{f_+(x) + f_-(x)}{2} =
+\frac{1}{\pi} \int_0^\pi (f(x+v)-f_+(x)+f(x-v)-f_-(x))D_N(v)dv.
+\]
+Velja
+\[
+\frac{1}{\pi} \int_0^\pi \underbrace{
+\frac{f(x+v)-f_+(x)}{v} \cdot
+\frac{v}{\sin\left(\frac{v}{2}\right)}
+\cos\left(\frac{v}{2}\right)
+}_g \sin(Nv)\;dv
+= b_N,
+\]
+kjer je $b_N$ Fourierov koeficient funkcije, ki je za pozitivne $x$
+enaka $g$, za negativne pa $0$. Sledi, da je v limiti integral enak
+$0$. Podobno izrazimo še ostale člene.
+\end{proof}
+
+\datum{2022-1-4}
+
+\begin{definicija}
+\emph{Fejérjevo jedro}\index{Jedro!Fejérjevo} je
+\[
+F_N(x) = \frac{1}{N} \sum_{n=0}^{N-1} D_n(x).
+\]
+\end{definicija}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Velja enakost
+\[
+F_N(x) = \frac{1}{N} \left(\frac
+{\sin\left(\frac{Nx}{2}\right)}
+{\sin\left(\frac{x}{2}\right)}\right)^2.
+\]
+\item Velja
+\[
+\frac{1}{\pi} \int_{-\pi}^\pi F_n(x)\;dx = 1.
+\]
+\item $F_n$ je soda in nenegativna.
+\item Za vse $a \in (0,\pi)$ zaporedje $F_N(x)$ na $[a,\pi]$
+konvergira enakomerno proti $0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Velja
+\begin{align*}
+F_N(x) &= \frac{1}{N} \sum_{n=0}^{N-1}
+\frac{1}{2} \frac{\sin\left(\left(n + \frac{1}{2}\right)x\right)}
+{\sin\left(\frac{x}{2}\right)}
+\\
+&=
+\frac{1}{2N \left(\sin\left(\frac{x}{2}\right)\right)^2} \cdot
+\sum_{n=0}^{N-1} \sin\left(\left(n + \frac{1}{2}\right)x\right)
+\cdot \sin\left(\frac{x}{2}\right)
+\\
+&=
+\frac{1}{2N \left(\sin\left(\frac{1}{2}\right)\right)^2} \cdot
+\sum_{n=0}^{N-1} \left(\cos(nx)-\cos(nx+x)\right)
+\\
+&=
+\frac{1-\cos(Nx)}{2N\left(\sin\left(\frac{1}{2}\right)\right)^2}.
+\end{align*}
+Druga in tretja trditev sta trivialni. Opazimo še, da velja
+\[
+F_N(x) \leq
+\frac{1}{N} \cdot \left(\frac
+{\sin\left(\frac{Nx}{2}\right)}
+{\abs{x}}\cdot \pi\right)^2 \leq
+\frac{1}{N} \frac{\pi^2}{a^2}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $f$ zvezna funkcija s periodo $2\pi$. Potem \emph{Cesárjeve
+delne vsote}
+\[
+\sigma_N(x) = \frac{1}{N} \sum_{n=0}^{N-1} S_n(x)
+\]
+konvergirajo k $f$ enakomerno na $\R$.
+\end{izrek}
+
+\begin{proof}
+Opazimo, da velja
+\[
+\sigma_N(x) = \frac{1}{\pi} \int_{-\pi}^\pi f(x+y) F_N(y)\;dy.
+\]
+Naj bo $\varepsilon >0$. Ker je $f$ enakomerno zvezna, obstaja tak
+$\delta > 0$, da za vse $\abs{y} < \delta$ velja
+\[
+\abs{f(x+y) - f(x)} < \frac{\varepsilon}{2}
+\]
+za vse $x \in \R$. Sledi, da za dovolj velike $N$ velja
+\begin{align*}
+\abs{\sigma_N(x) - f(x)} &=
+\abs{\frac{1}{\pi} \int_{-\pi}^\pi (f(x+y) - f(x)) F_N(y)\;dy}
+\\
+&\leq
+\frac{1}{\pi} \int_{-\pi}^\pi \abs{f(x+y) - f(x)} F_N(y)\;dy
+\\
+&=
+\frac{1}{\pi} \int_{-\delta}^\delta \abs{f(x+y) - f(x)} F_N(y)\;dy
++ \frac{1}{\pi} \lint_{\delta \leq \abs{x} \leq \pi}
+\abs{f(x+y) - f(x)} F_N(y)\;dy
+\\
+&< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} =
+\varepsilon. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Množica
+\[
+\set{\frac{1}{\sqrt{2\pi}}} \cup
+\setb{\frac{1}{\sqrt{\pi}} \cos(nx)}{n \in \N} \cup
+\setb{\frac{1}{\sqrt{\pi}} \sin(nx)}{n \in \N}
+\]
+je kompleten ortonormiran sistem v $L^2([-\pi,\pi])$.
+\end{posledica}
+
+\begin{proof}
+Z adicijskimi izreki preverimo, da je sistem res ortonormiran.
+Po izreku \ref{iz:kons:kar} je dovolj pokazati, da lahko vsako
+zvezno funkcijo poljubno dobro aproksimiramo s tem sistemom, saj so
+zvezne funkcije goste v $L^2$. Ker smo zgoraj dokazali, da lahko
+poljubno dobro aproksimiramo zvezne funkcije (na majhnih
+intervalih jih priredimo tako, da se vrednosti v krajiščih
+ujemata), ki pa so goste v $L^2$.
+\end{proof}
+
+\begin{izrek}[Weierstrass]\index{Izrek!Weierstrass}
+Naj bo $f \in \mathcal{C}([a,b])$ in $\varepsilon > 0$. Potem
+obstaja tak polinom $p$, da je
+\[
+\max_{[a,b]} \abs{f(x) - p(x)} < \varepsilon.
+\]
+\end{izrek}
+
+\begin{proof}
+Dovolj je opazovati interval
+$\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$. $f$ zvezno razširimo
+na $[-\pi,\pi]$ tako, da je $f(-\pi)=f(\pi)=0$. Sedaj lahko $f$
+poljubno dobro aproksimiramo s trigonometričnimi polinomi, ki jih
+lahko poljubno dobro aproksimiramo s Taylorjevimi polinomi.
+\end{proof}
+
+\newpage
+
+\subsection{Fourierova transformacija}
+
+\begin{okvir}
+\begin{definicija}
+\emph{Fourierova transformacija}\index{Fourierova vrsta!Fourierova transformacija}
+je preslikava iz $L^1(\R)$ v $L^\infty(\R)$,\footnote{Skoraj povsod
+omejene funkcije.} definirana kot
+\[
+\mathcal{F}(f)(\xi) = \hat{f}(\xi) =
+\int_{-\infty}^\infty e^{-2\pi i \xi t} f(t)\;dt.
+\]
+Funkciji $\hat{f}$ pravimo
+\emph{Fourierova transformiranka $f$}\index{Fourierova vrsta!Fourierova transformiranka}.
+\end{definicija}
+\end{okvir}
+
+\begin{opomba}
+Res velja $\hat{f} \in L^\infty(\R)$, saj je
+\[
+\abs{\hat{f}(\xi)} \leq
+\int_{-\infty}^\infty \abs{e^{-2\pi i \xi t} f(t)}\;dt =
+\norm{f}_1.
+\]
+\end{opomba}
+
+\begin{opomba}
+$\mathcal{F}$ je linearna.
+\end{opomba}
+
+\begin{opomba}
+Fourierova transformacija je na nek način razširitev Fourierove
+vrste, ki jo dobimo s kompletnim ortonormiranim sistemom
+\[
+\setb{\frac{1}{\sqrt{2\pi}} e^{inx}}{n \in \Z}.
+\]
+Integracijski interval smo razširili na cel $\R$, $n$ pa zamenjali
+s poljubnim realnim številom $\xi$.
+\end{opomba}
+
+\datum{2022-1-11}
+
+\begin{lema}[Riemann-Lebesque]\index{Lema!Riemann-Lebesque}
+Naj bo $f \in L^1(\R)$. Tedaj je
+\[
+\lim_{\abs{\xi} \to \infty} \hat{f}(\xi) = 0.
+\]
+\end{lema}
+
+\begin{proof}
+Velja, da je $L^1(\R)$ napolnitev prostora
+$\mathcal{C}(R) \cap L^1(\R)$ v metriki
+\[
+d_1(f,g) = \int_{-\infty}^\infty \abs{f(t)-g(t)}\;dt.
+\]
+Naj bo $f \in L^1(\R)$ in $\varepsilon > 0$. Tedaj obstaja tak
+$\tilde{f} \in \mathcal{C}(\R) \cap L^1(\R)$, da je
+\[
+\int_{-\infty}^\infty \abs{f(t) - \tilde{f}(t)}\;dt <
+\frac{\varepsilon}{2}.
+\]
+Funkcijo $\tilde{f}$ lahko aproksimiramo s funkcijo
+\[
+g = \chi_{[-N,N]} \cdot \tilde{f}.
+\]
+Vsak tak $g$ lahko poljubno dobro enakomerno aproksimiramo s
+funkcijo
+\[
+\chi_{[-N,N]} \cdot p.
+\]
+S pravilom per partes pa dobimo
+\begin{align*}
+\widehat{\chi_{[-N,N]} p}(\xi) &=
+\int_{-N}^N e^{-2 \pi i \xi t} p(t)\;dt
+\\
+&=
+\eval{\frac{-p(t)}{2 \pi i \xi} e^{-2 \pi i \xi t}}{-N}{N} +
+\int_{-N}^N \frac{p'(t) e^{-2 \pi i \xi t}}{2 \pi i \xi}\;dt
+\end{align*}
+Opazimo, da gresta oba člena proti $0$ ko gre $\xi$ proti $\infty$.
+
+Ker je zgornja funkcija poljubno dobra aproksimacija $f$, velja
+lema tudi za $f$.
+\end{proof}
+ 
+\begin{trditev}
+Fourierova transformacija ima naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item $\norm{\mathcal{F}(f)}_\infty \leq \norm{f}_1$.
+\item $\mathcal{F}(f)$ je enakomerno zvezna na $\R$.
+\item Če je $f$ odvedljiva z absolutno integrabilnim odvodom, je
+\[
+\mathcal{F}(f')(\xi) = 2\pi \xi \mathcal{F}(f)(\xi).
+\]
+\item Če je $f$ taka funkcija, da je tudi $t \cdot f(t)$ absolutno
+integrabilna, je $\hat{f}$ odvedljiva in velja
+\[
+\mathcal{F}(f)'(\xi) = -2 \pi i \mathcal{F}(tf(t))(\xi).
+\]
+\item Naj bo $f$ odsekoma zvezna in odsekoma odvedljiva. Tedaj za
+vse $t \in \R$ velja
+\[
+\lim_{R \to \infty} \int_{-R}^R \hat{f}(\xi)e^{2 \pi i \xi t}\;d\xi
+= \frac{f_+(t) + f_-(t)}{2}.
+\]
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj bo $\varepsilon > 0$. Ker je $f \in L^1(\R)$, obstaja tak
+$N > 0$, da je
+\[
+\int_N^\infty \abs{f(t)}\;dt + \int_{-\infty}^{-N} \abs{f(t)}\;dt
+< \frac{\varepsilon}{4}.
+\]
+Sledi, da je
+\begin{align*}
+\abs{\hat{f}(\xi_1) - \hat{f}(\xi_2)} &\leq
+\int_{-\infty}^\infty
+\abs{e^{-2\pi i \xi_1 t} - e^{-2\pi i \xi_2 t}} \abs{f(t)}\;dt
+\\
+&\leq
+\int_{-\infty}^{-N} 2 \abs{f(t)}\;dt +
+\int_{-N}^N \abs{e^{-2\pi i (\xi_1-\xi_2) t} - 1} \abs{f(t)}\;dt +
+\int_N^\infty 2 \abs{f(t)}\;dt
+\\
+&<
+\frac{\varepsilon}{2} +
+\int_{-N}^N \abs{e^{-2\pi i (\xi_1-\xi_2) t} - 1} \abs{f(t)}\;dt.
+\end{align*}
+Ker je $e^x$ zvezna v $0$, obstaja tak $\delta > 0$, da za vse
+$\abs{x} < \delta$ sledi
+\[
+\abs{e^x - 1} < \frac{\varepsilon}{2 (\norm{f}_1 + 1}.
+\]
+Če je $\abs{-2\pi i (\xi_1-\xi_2) t} < \delta$, je zgornji izraz
+tako manjši od $\varepsilon$.
+
+Tretja točka sledi iz odvajanja po parametru, četrta pa iz pravila
+per partes.
+
+Po Fubinijevem izreku je
+\begin{align*}
+\int_{-R}^R \hat{f}(\xi) e^{2\pi i \xi t}\;d\xi
+&=
+\int_{-R}^R \left(
+\int_{-\infty}^\infty e^{-2\pi i \xi \tau} f(t)\;d\tau
+\right) e^{2\pi i \xi t}\;d\xi
+\\
+&=
+\int_{-\infty}^\infty f(\tau) \left(
+\int_{-R}^R e^{2\pi i \xi (t-\tau)}\;d\xi
+\right)d\tau
+\\
+&=
+\frac{1}{\pi} \int_{-\infty}^\infty f(\tau)
+\frac{\sin(2 \pi R (t - \tau))}{t - \tau}\;d\tau
+\\
+&=
+\frac{1}{\pi} \left(
+\int_{-\infty}^t f(\tau)
+\frac{\sin(2 \pi R (t - \tau))}{t - \tau}\;d\tau
++
+\int_t^\infty f(\tau)
+\frac{\sin(2 \pi R (t - \tau))}{t - \tau}\;d\tau
+\right)
+\\
+&=
+\frac{1}{\pi} \left(
+\int_0^\infty f(t - u)
+\frac{\sin(2 \pi R u)}{u}\;du
++
+\int_0^\infty f(t + u)
+\frac{\sin(2 \pi R u)}{u}\;du
+\right).
+\end{align*}
+Sledi, da je
+\begin{align*}
+&\int_{-R}^R \hat{f}(\xi)e^{2 \pi i \xi t}\;d\xi -
+\frac{f_+(t) + f_-(t)}{2}
+\\
+=
+&\frac{1}{\pi} \left(
+\int_0^\infty \frac{f(t - u) - f_-(t)}{u} \sin(2 \pi R u)\;du
++
+\int_0^\infty \frac{f(t + u) - f_+(t)}{u} \sin(2 \pi R u)\;du
+\right).
+\end{align*}
+Velja pa
+\begin{align*}
+&\int_0^\infty \frac{f(t + u) - f_+(t)}{u} \sin(2 \pi R u)\;du
+\\
+=
+&\int_0^1 \frac{f(t + u) - f_+(t)}{u} \sin(2 \pi R u)\;du +
+\int_1^\infty \frac{f(t + u)}{u} \sin(2 \pi R u)\;du
+\\
+-
+&f_+(t) \int_1^\infty \frac{\sin(2 \pi R u)}{u}\;du.
+\end{align*}
+Opazimo, da lahko prva dva integrala zapišemo kot
+\[
+\int_{-\infty}^\infty F(u) \sin(2 \pi R u)\;du,
+\]
+kjer je $F \in L^1(\R)$. Po Riemann-Lebesqueovi lemi zato
+konvergirata proti $0$ ko $R$ limitira v $\infty$.\footnote{Lemo
+smo dokazali za $e^{-2 \pi i \xi t}$, a je $\sin$ le linearna
+kombinacija takih funkcij.} Opazimo pa še, da je
+\[
+\lim_{R \to \infty} \int_1^\infty \frac{\sin(2 \pi R u)}{u}\;du =
+\lim_{R \to \infty} \int_{2 \pi R}^\infty \frac{\sin(v}{v}\;dv = 0.
+\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bosta $f,g \in L^1(\R)$ funkciji.
+\emph{Konvolucija}\index{Konvolucija} funkcij $f$ in $g$ je
+funkcija
+\[
+(f * g)(t) = \int_{-\infty}^\infty f(s) g(t - s)\;ds.
+\]
+\end{definicija}
+
+\begin{opomba}
+$f * g \in L^1(\R)$, saj je po Fubiniju
+\begin{align*}
+\int_{-\infty}^\infty \abs{f*g}(t)\;dt &=
+\int_{-\infty}^\infty
+\abs{\int_{-\infty}^\infty f(s) g(t - s)\;ds}dt
+\\
+&\leq
+\int_{-\infty}^\infty \left(
+\int_{-\infty}^\infty \abs{f(s)} \abs{g(t - s)}\;ds
+\right)dt
+\\
+&=
+\int_{-\infty}^\infty \abs{f(s)} \left(
+\int_{-\infty}^\infty \abs{g(t - s)}\;dt
+\right)ds
+\\
+&=
+\norm{f}_1 \cdot \norm{g}_1
+\end{align*}
+\end{opomba}
+
+\begin{trditev}
+Za konvolucijo veljajo naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item $\norm{f*g}_1 \leq \norm{f}_1 \cdot \norm{g}_1$.
+\item Komutativnost.
+\item Distributivnost.
+\item Asociativnost.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Po Fubiniju je
+\begin{align*}
+((f*g)*h)(t) &=
+\int_{-\infty}^\infty \left(
+\int_{-\infty}^\infty f(u) g(s - u)\;du
+\right) \cdot h(t - s)\;ds
+\\
+&=
+\int_{-\infty}^\infty f(u) \left(
+\int_{-\infty}^\infty g(s - u) h(t - s)\;ds
+\right)\;du
+\\
+&=
+\int_{-\infty}^\infty f(u) (g * h)(t - u)\;du
+\\
+&= (f*(g*h))(t). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Fourierova transformacija je homomorfizem algeber\footnote{S
+$\mathcal{C}_B(\R)$ označujemo omejene zvezne funkcije.}
+\[
+\mathcal{F} \colon (L^1(\R),*) \to (\mathcal{C}_B(\R),\cdot),
+\]
+oziroma
+\[
+\mathcal{F}(f*g)(\xi) =
+\mathcal{F}(f)(\xi) \cdot \mathcal{F}(g)(\xi).
+\]
+\end{trditev}
+
+\begin{proof}
+Po Fubiniju je
+\begin{align*}
+\mathcal{F}(f*g)(\xi) &=
+\int_{-\infty}^\infty e^{-2 \pi i \xi t} (f*g)(t)\;dt
+\\
+&=
+\int_{-\infty}^\infty e^{-2 \pi i \xi t} \left(
+\int_{-\infty}^\infty f(s) g(t-s)\;ds
+\right)dt
+\\
+&=
+\int_{-\infty}^\infty e^{-2 \pi i \xi s} f(s) \left(
+\int_{-\infty}\infty e^{-2 \pi i Xi (t - s)} g(t-s)\;dt
+\right)ds
+\\
+&=
+\mathcal{F}(f)(\xi) \cdot \mathcal{F}(g)(\xi). \qedhere
+\end{align*}
+\end{proof}
+
+\datum{2022-1-12}
+
+\begin{izrek}[Plancherel]\index{Izrek!Plancherel}
+Za $f \in L^1(\R) \cap L^2(\R) \cap \mathcal{C}^1(\R)$ velja
+\[
+\norm{f}_2 = \norm{\hat{f}}_2.
+\]
+Fourierova transformacija je izometrija na prostoru $L^2(\R)$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $g(t)=\overline{f(-t)}$. Sledi, da je
+\[
+\hat{g}(\xi) =
+\overline{\int_{-\infty}^\infty e^{2 \pi i \xi t} f(-t)\;dt} =
+\overline{\hat{f}(\xi)}.
+\]
+Tako sledi
+\begin{align*}
+\int_{-\infty}^\infty \abs{f}^2\;dt
+&=
+\int_{-\infty}^\infty f(t) \overline{f(t)}\;dt
+\\
+&=
+\int_{-\infty}^\infty f(t) g(-t)\;dt
+\\
+&=
+(f*g)(0)
+\\
+&=
+\lim_{R \to \infty} \int_{-R}^R
+\widehat{f*g}(\xi) e^{2 \pi i \xi \cdot 0}\;d\xi
+\\
+&=
+\lim_{R \to \infty} \int_{-R}^R \hat{f}(\xi) \hat{g}(\xi)\;d\xi
+\\
+&=
+\lim_{R \to \infty} \int_{-R}^R \abs{\hat{f}(\xi)}^2\;d\xi
+\\
+&=
+\norm{\hat{f}}_2^2. \qedhere
+\end{align*}
+\end{proof}

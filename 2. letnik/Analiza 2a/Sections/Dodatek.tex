@@ -1,0 +1,72 @@
+\section{Dodatek}
+
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\arraystretch}{2.5}
+
+\subsection{Nekatere pogoste substitucije v večkratne integrale}
+
+\begin{enumerate}[i)]
+\item Polarne koordinate:
+Za $(x, y) = (r\cos\phi, r\sin\phi)$ je
+\[
+\iint f(x, y)\;dx\;dy =
+\iint f(r\cos\phi, r\sin\phi) \cdot r\;dr\;d\phi.
+\]
+\item Cilindrične koordinate:
+Za $(x, y, z) = (r\cos\phi, r\sin\phi, z)$ je
+\[
+\iiint f(x, y, z)\;dx\;dy\;dz =
+\iiint f(r\cos\phi, r\sin\phi, z) \cdot r\;dr\;d\phi\;dz.
+\]
+\item Sferične koordinate:
+Za $(x, y, z) =
+(r\cos\phi\sin\theta, r\sin\phi\sin\theta, r\cos\theta)$
+je
+\[
+\iiint f(x, y, z)\;dx\;dy\;dz =
+\iiint f(r\cos\phi\sin\theta, r\sin\phi\sin\theta, r\cos\theta)
+\cdot r^2 \sin \theta \;dr\;d\phi\;d\theta.
+\]
+\end{enumerate}
+
+\newpage
+
+\subsection{Nekatere pogoste Fourierjeve transformacije}
+
+\begin{table}[!h]
+\centering
+\caption{Pogoste Fourierjeve transformacije}
+\begin{tabular}{c|c}
+$f(t)$ & $\hat{f}(\xi)$
+\\ 
+\hline 
+$\displaystyle \begin{cases}
+a, & t \in \left(-\frac{\ell}{2},\frac{\ell}{2}\right)
+\\
+0, & t \not\in \left(-\frac{\ell}{2},\frac{\ell}{2}\right)
+\end{cases}$
+&
+$\dfrac{a}{\pi \xi} \sin(\pi \xi \ell)$
+\\ 
+\hline 
+$e^{-a \abs{t}}$
+&
+$\dfrac{2a}{a^2 + 4 \pi^2 \xi^2}$
+\\ 
+\hline 
+$e^{-a t^2}$
+&
+$\sqrt{\dfrac{\pi}{a}} e^{-\frac{\pi^2 \xi^2}{a}}$
+\\ 
+\hline 
+$\dfrac{a}{\pi} \sin(\pi \ell t)$
+&
+$\begin{cases}
+a, & \xi \in \left(-\frac{\ell}{2},\frac{\ell}{2}\right)
+\\
+\frac{a}{2}, & t \in \set{-\frac{\ell}{2},\frac{\ell}{2}}
+\\
+0, & t \not\in \left[-\frac{\ell}{2},\frac{\ell}{2}\right]
+\end{cases}$
+\end{tabular} 
+\end{table}
