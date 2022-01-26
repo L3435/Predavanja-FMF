@@ -22,7 +22,7 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
           filters: |
             tex_file:
-              - '**/.tex'
+              - '**.tex'
     
   compile_pdf:
     name: Compile document
@@ -57,9 +57,9 @@ jobs:
           working-directory: ${{ matrix.tex_file.path }}
           filters: |
             tex_file:
-              - '**/.tex'
+              - '**.tex'
             pdf_file:
-              - '**/.pdf'
+              - '**.pdf'
           
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
@@ -119,7 +119,7 @@ jobs:
           base: HEAD
           filters: |
             pdf_file:
-              - '**/.pdf'
+              - '**.pdf'
           
       - name: Push compiled pdfs
         if: steps.filter.outputs.pdf_file == 'true'
