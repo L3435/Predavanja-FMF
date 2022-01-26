@@ -61,12 +61,10 @@ jobs:
             pdf_file:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
           
-      - name: Premik v pravi directory
-        run: cd "${{ matrix.tex_file.path }}"
-          
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
+        working-directory: "${{ matrix.tex_file.path }}"
         with:
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
@@ -75,6 +73,7 @@ jobs:
       - name: Stvarno kazalo
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
+        working-directory: "${{ matrix.tex_file.path }}"
         with:
           root_file: "${{ matrix.tex_file.file }}.idx"
           compiler: texindy
@@ -83,6 +82,7 @@ jobs:
       - name: Drugi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
+        working-directory: "${{ matrix.tex_file.path }}"
         with:
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
@@ -91,6 +91,7 @@ jobs:
       - name: Tretji pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
+        working-directory: "${{ matrix.tex_file.path }}"
         with:
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
@@ -98,6 +99,7 @@ jobs:
           
       - name: Push pdf file
         if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
+        working-directory: "${{ matrix.tex_file.path }}"
         run: |
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
