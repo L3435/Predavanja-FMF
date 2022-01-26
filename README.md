@@ -9,12 +9,12 @@ Nastajali so med predavanji, zato je možno, da vsebujejo kako napako. Popravki 
 
 ## Navodila za sestavljanje pdf datotek
 
-Datotek `tex` LaTeX brez datoteke `FMF.sty` ne bo znal prevesti, zato jo je potrebno prestaviti na mesto, kjer mu bo dostopna. Ena možnost je,
-da jo dodamo med preostale pakete, kjer jo lahko LaTeX samodejno poišče. Hitrejša, a malce neučinkovita rešitev pa je, da jo preprosto dodamo v
-isti directory kot datoteka `tex`, ki jo želimo prevesti.
-
 Za stvarno kazalo uporabljam program `xindy`, ki samodejno uredi kazalo po slovenski abecedi. Za uporabo z `latexmk` uporabimo ukaz
 ```latexmk -pdf -e "$makeindex='texindy -L slovenian -C utf8';" <ime tex datoteke>```.
+
+pdf datotek vam ni potrebno sestavljati lokalno - za vsako posodobljeno tex datoteko bo ob pull requestu github action preveril, ali mora
+posodobiti še pdf, in ga v tem primeru samodejno dodal k pull requestu (skratka, pull requesti, v katerih so bile spremenjene le .tex
+datoteke, so popolnoma sprejemljivi).
 
 ---
 
