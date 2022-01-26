@@ -61,11 +61,14 @@ jobs:
             pdf_file:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
           
+      - name: Premik v pravi directory
+        run: cd ${{ matrix.tex_file.path }}
+          
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -73,7 +76,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.idx
+          root_file: ${{ matrix.tex_file.file }}.idx
           compiler: texindy
           args: -L slovenian -C utf8
           
@@ -81,7 +84,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -89,17 +92,18 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
-      - name: Add pdf file
+      - name: Push pdf file
         if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
-        run: git add ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.pdf
-        
-      - name: Restore pdf file
-        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'true'
-        run: git restore ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.pdf
+        run: |
+            git config --global user.name "Luka Horjak"
+            git config --global user.email "luka1.horjak@gmail.com"
+            git add ${{ matrix.tex_file.file }}.pdf
+            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
+            git push origin ${{ github.event.pull_request.head.ref }}
   
   finish_job:
     name: Finish
@@ -111,23 +115,6 @@ jobs:
       - name: Fail if compilation failed
         if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
-    
-      - name: Check for pdf updates
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          base: HEAD
-          filters: |
-            pdf_file:
-              - '**.pdf'
-          
-      - name: Push compiled pdfs
-        if: steps.filter.outputs.pdf_file == 'true'
-        run: |
-            git config --global user.name "Luka Horjak"
-            git config --global user.email "luka1.horjak@gmail.com"
-            git commit -m "Dodan pdf"
-            git push origin ${{ github.event.pull_request.head.ref }}
             
       - name: Finish
         run: echo "Action complete"
