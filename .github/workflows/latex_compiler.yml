@@ -64,8 +64,8 @@ jobs:
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
-        working-directory: "${{ matrix.tex_file.path }}"
         with:
+          working_directory: "${{ matrix.tex_file.path }}"
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
@@ -73,8 +73,8 @@ jobs:
       - name: Stvarno kazalo
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
-        working-directory: "${{ matrix.tex_file.path }}"
         with:
+          working_directory: "${{ matrix.tex_file.path }}"
           root_file: "${{ matrix.tex_file.file }}.idx"
           compiler: texindy
           args: -L slovenian -C utf8
@@ -82,8 +82,8 @@ jobs:
       - name: Drugi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
-        working-directory: "${{ matrix.tex_file.path }}"
         with:
+          working_directory: "${{ matrix.tex_file.path }}"
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
@@ -91,8 +91,8 @@ jobs:
       - name: Tretji pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
-        working-directory: "${{ matrix.tex_file.path }}"
         with:
+          working_directory: "${{ matrix.tex_file.path }}"
           root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
