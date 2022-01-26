@@ -1,0 +1,133 @@
+name: Build LaTeX document
+on: pull_request_target
+jobs:
+  check_file_changes:
+    name: Preveri spremembe datotek
+    runs-on: ubuntu-latest
+    outputs:
+      updated_tex_file: ${{ steps.changes.outputs.tex_file }}
+    steps:
+    
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.COMPILING_TOKEN }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          
+      - name: Create filter
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          filters: |
+            tex_file:
+              - '*.tex'
+    
+  compile_pdf:
+    name: Compile document
+    needs: check_file_changes
+    if: needs.check_file_changes.outputs.updated_tex_file == 'true'
+        
+    strategy:
+      matrix:
+        tex_file: [
+          {path: '1. letnik/Algebra 1', file: 'Algebra'},
+          {path: '1. letnik/Analiza 1', file: 'Analiza'},
+          {path: '1. letnik/Logika in množice', file: 'Logika'},
+          {path: '2. letnik/Algebra 2', file: 'Algebra'},
+          {path: '2. letnik/Analiza 2a', file: 'Analiza'},
+          {path: '2. letnik/Splošna topologija', file: 'Topologija'}
+        ]
+    
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.COMPILING_TOKEN }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          
+      - name: Check if compiling is needed
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          working-directory: ${{ matrix.tex_file.path }}
+          filters: |
+            tex_file:
+              - '*.tex'
+            pdf_file:
+              - '*.pdf'
+          
+      - name: Prvi pdflatex
+        if: steps.filter.outputs.tex_file == 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: ${{ matrix.tex_file.file }}.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Stvarno kazalo
+        if: steps.filter.outputs.tex_file == 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: ${{ matrix.tex_file.file }}.idx
+          compiler: texindy
+          args: -L slovenian -C utf8
+          
+      - name: Drugi pdflatex
+        if: steps.filter.outputs.tex_file == 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: ${{ matrix.tex_file.file }}.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Tretji pdflatex
+        if: steps.filter.outputs.tex_file == 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: ${{ matrix.tex_file.file }}.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Add pdf file
+        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
+        run: git add ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.pdf
+        
+      - name: Restore pdf file
+        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'true'
+        run: git restore ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.pdf
+  
+  finish_job:
+    name: Finish
+    runs-on: ubuntu-latest
+    needs: compile_pdf
+    if: always()
+    steps:
+    
+      - name: Fail if compilation failed
+        if: ${{ needs.compile_pdf.result == 'failure' }}
+        run: exit 1
+    
+      - name: Check for pdf updates
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          base: HEAD
+          filters: |
+            pdf_file:
+              - '*.pdf'
+          
+      - name: Push compiled pdfs
+        if: steps.filter.outputs.pdf_file == 'true'
+        run: |
+            git config --global user.name "Luka Horjak"
+            git config --global user.email "luka1.horjak@gmail.com"
+            git commit -m "Dodan pdf"
+            git push origin ${{ github.event.pull_request.head.ref }}
+            
+      - name: Finish
+        run: echo "Action complete"
