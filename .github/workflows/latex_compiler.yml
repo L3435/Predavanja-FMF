@@ -57,9 +57,9 @@ jobs:
           working-directory: ${{ matrix.tex_file.path }}
           filters: |
             tex_file:
-              - '**.tex'
+              - '${{ matrix.tex_file.path }}/**.tex'
             pdf_file:
-              - '**.pdf'
+              - '${{ matrix.tex_file.path }}/**.pdf'
           
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
