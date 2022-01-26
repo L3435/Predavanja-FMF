@@ -62,13 +62,13 @@ jobs:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
           
       - name: Premik v pravi directory
-        run: cd ${{ matrix.tex_file.path }}
+        run: cd "${{ matrix.tex_file.path }}"
           
       - name: Prvi pdflatex
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -76,7 +76,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.idx
+          root_file: "${{ matrix.tex_file.file }}.idx"
           compiler: texindy
           args: -L slovenian -C utf8
           
@@ -84,7 +84,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -92,7 +92,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: "${{ matrix.tex_file.file }}.tex"
           compiler: pdflatex
           args: -interaction=nonstopmode
           
