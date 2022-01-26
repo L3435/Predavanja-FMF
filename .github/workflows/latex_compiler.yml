@@ -65,7 +65,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -73,7 +73,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.idx
+          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.idx
           compiler: texindy
           args: -L slovenian -C utf8
           
@@ -81,7 +81,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -89,7 +89,7 @@ jobs:
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ${{ matrix.tex_file.file }}.tex
+          root_file: ${{ matrix.tex_file.path }}/${{ matrix.tex_file.file }}.tex
           compiler: pdflatex
           args: -interaction=nonstopmode
           
