@@ -1,0 +1,53 @@
+name: Check LaTeX syntax
+on:
+  push:
+    branches:
+      - main
+jobs:
+
+  compile_pdf:
+  
+    name: Compile document
+    strategy:
+      matrix:
+        tex_file: [
+          {path: '1. letnik/Algebra 1', file: 'Algebra'},
+          {path: '1. letnik/Analiza 1', file: 'Analiza'},
+          {path: '1. letnik/Logika in množice', file: 'Logika'},
+          {path: '2. letnik/Algebra 2', file: 'Algebra'},
+          {path: '2. letnik/Analiza 2a', file: 'Analiza'},
+          {path: '2. letnik/Splošna topologija', file: 'Topologija'}
+        ]
+    
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.COMPILING_TOKEN }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          
+      - name: pdflatex
+        uses: dante-ev/latex-action@latest
+        with:
+          working_directory: "${{ matrix.tex_file.path }}"
+          root_file: "${{ matrix.tex_file.file }}.tex"
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+  
+  finish_job:
+  
+    name: Results
+    runs-on: ubuntu-latest
+    needs: compile_pdf
+    if: always()
+    steps:
+    
+      - name: Fail if compilation failed
+        if: ${{ needs.compile_pdf.result == 'failure' }}
+        run: exit 1
+            
+      - name: Finish
+        run: echo ".tex datoteke so spisane pravilno."
