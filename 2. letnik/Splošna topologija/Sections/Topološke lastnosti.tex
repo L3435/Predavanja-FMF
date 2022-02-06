@@ -1,12 +1,14 @@
 \section{Topološke lastnosti}
 
+\epigraph{">Saj to je standardno -- fakultetna snov je lahka,
+osnovnošolska je tista težka."<}{-- asist.~dr.~Davorin Lešnik}
+
 \subsection{Ločljivost}
 
 \datum{2021-11-16}
 
 \begin{definicija}
-Pravimo, da topologija
-\emph{loči}\index{Topološka lastnost!Ločljivost} disjunktni množici
+Pravimo, da topologija \emph{loči} disjunktni množici
 $A, B \subseteq X$, če obstajata taki množici $U, V \in \tau$, da
 velja
 \[
@@ -45,9 +47,9 @@ točka, pa lahko preprosto vzamemo $V = \overline{U}^{\mathsf{c}}$.
 Naj bo $x \ne y$, $U$ in $V$ pa taki odprti množici, da je
 $x \in U$ in $y \in V$. $U$ in $V$ sta disjunktni natanko tedaj, ko
 $U \times V$ ne seka diagonale. Če je prostor Hausdorffov, lahko
-preprosto vzamemo $U$ iz definicije. Obratno, če je diagonala
-zaprta, obstaja škatlasta okolica $(x,y)$, ki ne seka diagonale,
-iz te pa dobimo želene okolice.
+preprosto vzamemo $U$ in $V$ iz definicije. Obratno, če je
+diagonala zaprta, obstaja škatlasta okolica $(x,y)$, ki ne seka
+diagonale, iz te pa dobimo želene okolice.
 \end{proof}
 
 \begin{izrek}
@@ -77,8 +79,9 @@ se ujemata tudi na zaprtju.
 Za dokaz 5.\ točke definirajmo preslikavi
 $u, v \colon X \times Y \to Y$ z $u(x,y) = f(x)$ in $v(x,y) = y$.
 Množica točk ujemanja $u$ in $v$ je ravno graf
-$\Gamma_f = \setb{(x,y) \in X \times Y}{y = f(x)} \subseteq
-X \times Y$ funkcije $f$, ki je po 3.\ točki zaprt.
+$\Gamma_f =
+\setb{(x,y) \in X \times Y}{y = f(x)} \subseteq X \times Y$
+ funkcije $f$, ki je po 3.\ točki zaprt.
 \end{proof}
 
 \begin{izrek}
@@ -100,7 +103,7 @@ $\lim_{n \to \infty} f(x_n) = f(x)$.
 
 Predpostavimo sedaj, da $f$ ohranja limite. Naj bo $x$ točka, ki je
 v zaprtju množice $A \subseteq X$, in naj bo $U_1, U_2, \dots$ neka
-baza okolic za $x$. Tedaj za vsak $n$ lahko izberemo točko
+baza okolic za $x$. Tedaj lahko za vsak $n$ izberemo točko
 $x_n \in A \cap U_1 \cap \dots \cap U_n$ (ker je ta množica
 neprazna, saj je $U_1 \cap \dots \cap U_n$ odprta okolica $x$, ki
 je iz zaprtja $A$). Tako smo konstruirali zaporedje $(x_n)$, ki
@@ -179,7 +182,7 @@ podprostore.
 
 \obvs
 
-\begin{izrek}
+\begin{izrek}[Tihon]\index{Izrek!Tihon}
 Prostor, ki je regularen in 2-števen, je normalen.
 \end{izrek}
 
@@ -201,9 +204,9 @@ najdemo števno pokritje
 množice $B$, ki je disjunktno $A$. Te množice lahko zapišemo v
 zaporedjih $(U_n)$ in $(V_n)$. Sedaj preprosto vzamemo
 \[
-U_i' = U_i \setminus \bigcup_{j \leq i} \overline{V_j}
+U_i' = U_i \bigsetminus \bigcup_{j \leq i} \overline{V_j}
 \quad \text{in} \quad
-V_i' = V_i \setminus \bigcup_{j \leq i} \overline{U_j}.
+V_i' = V_i \bigsetminus \bigcup_{j \leq i} \overline{U_j}.
 \]
 Uniji teh množic sta disjunktni in odprti.
 \end{proof}
@@ -236,9 +239,9 @@ Regularnost je multiplikativna.
 \end{trditev}
 
 \begin{proof}
-Naj bo $U$ odprta množica in $x \in U$. Brez škode za splošnost
-naj bo $U$ bazična. Sedaj uporabimo regularnost na komponentah in
-vzamemo njun kartezični produkt.
+Naj bo $U$ odprta podmnožica $X \times Y$ in $x \in U$. Brez škode
+za splošnost naj bo $U$ bazična. Sedaj uporabimo regularnost na
+komponentah in vzamemo njun kartezični produkt.
 \end{proof}
 
 \begin{trditev}
@@ -335,10 +338,14 @@ prostora obstaja pot.
 
 \begin{definicija}
 \emph{Komponente}\index{Topološka lastnost!Povezanost!Komponenta}
-prostora $X$ so maksimalne povezane podmnožice $X$. Komponento, ki
-vsebuje $x$, označimo z $C(x)$. Če so vse komponente $X$ enojčki,
-pravimo, da je $X$ \emph{povsem nepovezan}.
+prostora $X$, ki vsebuje $x$, je unija vseh povezanih podmnožic,
+ki vsebujejo $X$. Označimo jo z $C(x)$. Če so vse komponente $X$
+enojčki, pravimo, da je $X$ \emph{povsem nepovezan}.
 \end{definicija}
+
+\begin{opomba}
+$C(x)$ je največja povezana podmnožica $X$, ki vsebuje $x$.
+\end{opomba}
 
 \begin{izrek}
 Veljajo naslednje trditve:
@@ -351,7 +358,11 @@ eni komponenti kodomene.
 \end{enumerate}
 \end{izrek}
 
-\obvs
+\begin{proof}
+Prvi točki sta posledici maksimalnosti -- če se $C(x)$ in $C(y)$
+sekata, je njuna unija povezana. Ker je zaprtje povezane množice
+povezano, so komponente zaprte.
+\end{proof}
 
 \datum{2021-12-7}
 
@@ -367,16 +378,20 @@ vsake odprte podmnožice $X$ odprte.
 \end{trditev}
 
 \begin{proof}
-Če je $X$ lokalno povezan, preprosto vzamemo bazno okolico vsake
-točke, če pa so komponente odprte, pa preprosto vzamemo komponente
-vseh odprtih množic.
+Če je $X$ lokalno povezan, za vsako odprto množico $U$ in točko
+$x \in U$ obstaja povezana okolica $x$ v $U$, zato je $x$ notranja
+v svoji komponenti. Če pa so komponente odprte, pa za bazo
+preprosto vzamemo komponente vseh odprtih množic.
 \end{proof}
 
 \begin{definicija}
-\emph{Potne komponente} prostora $X$ so maksimalne podmnožice $X$,
-ki so povezane s potmi. Komponento, ki vsebuje $x$, označimo z
-$C'(x)$.
+\emph{Potna komponenta} $C'(x)$ prostora $X$ je unija vseh s potmi
+povezanih podmnožic $X$, ki vsebujejo $x$.
 \end{definicija}
+
+\begin{opomba}
+$C'(x)$ je največja s potmi povezana množica $X$, ki vsebuje $x$.
+\end{opomba}
 
 \begin{trditev}
 Veljata naslednji trditvi:
@@ -388,9 +403,13 @@ eni potni komponenti kodomene.
 \end{enumerate}
 \end{trditev}
 
+\begin{proof}
+Enak razmislek kot pri povezanosti.
+\end{proof}
+
 \begin{definicija}
-Prostor je \emph{lokalno povezan s potmi}, če ima bazo iz odprtih
-množic, ki so povezane s potmi.
+Prostor je \emph{lokalno povezan s potmi}, če ima bazo iz s potmi
+povezanih množic.
 \end{definicija}
 
 \begin{izrek}
@@ -402,7 +421,7 @@ komponentam s potmi.
 Za vse $x$ velja $C'(x) \subseteq C(x)$. Ker je $C'(x)$ odprta v
 $X$, je odprta tudi v $C(x)$. Če je $C'(x) \ne C(x)$, velja, da
 lahko $C(x)$ zapišemo kot unijo $C'(x)$ in njenega komplementa, ki
-je prav tako odprt, sam je unija potnih komponent.
+je prav tako odprt, saj je unija potnih komponent.
 \end{proof}
 
 \begin{posledica}
@@ -446,7 +465,9 @@ Zvezna slika kompakta je kompakt.
 \end{izrek}
 
 \begin{proof}
-Praslika pokritja slike ima končno podpokritje.
+S praslikami pokritja $f(X)$ lahko pokrijemo $X$, to pokritje pa
+ima končno podpokritje. S tem smo dobili tudi končno podpokritje
+$f(X)$.
 \end{proof}
 
 \begin{trditev}
@@ -456,8 +477,6 @@ Zaprt podprostor kompaktnega prostora je kompakten.
 \begin{proof}
 Pokritju dodamo komplement podprostora.
 \end{proof}
-
-\datum{2021-12-14}
 
 \begin{izrek}
 Kompaktnost je multiplikativna.
@@ -470,11 +489,10 @@ okolico $x$. Ko to naredimo za vse $x \in X$, dobimo pokritje $X$,
 ki ima končno podpokritje.
 \end{proof}
 
-\begin{posledica}
-Vsaka omejena, zaprta podmnožica $\R^n$ je kompaktna.
-\end{posledica}
+\datum{2021-12-14}
 
 \begin{trditev}
+\label{td:1}
 Naj bo $K$ kompakten podprostor Hausdorffovega prostora $X$. Tedaj
 je $K$ zaprt v $X$.
 \end{trditev}
@@ -483,14 +501,21 @@ je $K$ zaprt v $X$.
 Prostor ostro loči vsako točko $K$ od poljubne točke
 $x \not \in K$. S tem dobimo pokritje $K$, ki ima končno
 podpokritje. Sledi, da njihova unija in presek pripadajočih okolic
-$x$ ostro ločita $x$ od $K$. Sledi, da za vse $X \not \in K$
+$x$ ostro ločita $x$ od $K$. Sledi, da za vse $x \not \in K$
 obstaja okolica, ki ne seka $K$.
 \end{proof}
 
-\begin{izrek}[Heine-Borel-Lebesque]
-Množica $A \subseteq \R^n$ je kompakten natanko tedaj, ko je $A$
+\begin{izrek}[Heine-Borel-Lebesgue]
+\index{Izrek!Heine-Borel-Lebesgue}
+Množica $A \subseteq \R^n$ je kompaktna natanko tedaj, ko je $A$
 zaprta in omejena.
 \end{izrek}
+
+\begin{proof}
+Če je $A$ omejena, je vsebovana v produktu zaprtih intervalov, ki
+je kompakten. Ker je $\R^n$ Hausdorffov, je tudi zaprta, zato je
+kompaktna.
+\end{proof}
 
 \begin{posledica}
 Vsaka preslikava $f \colon X \to \R$, kjer je $X$ kompakten, je
@@ -513,6 +538,7 @@ protislovje z neskončnostjo $A$.
 \end{proof}
 
 \begin{posledica}[Bolzano-Weierstrass]
+\index{Izrek!Bolzano-Weierstrass}
 Vsako omejeno zaporedje v $\R^n$ ima konvergentno podzaporedje.
 \end{posledica}
 
@@ -523,7 +549,9 @@ Kompakten Hausdorffov prostor je normalen.
 \end{izrek}
 
 \begin{proof}
-Podoben kot 2.3.8.
+Po trditvi~\ref{td:1} zaprte množice sovpadajo s kompaktnimi, zato
+je dovolj dokazati, da topologija loči kompakte. Zaključimo podobno
+kot v dokazu te trditve.
 \end{proof}
 
 \begin{izrek}
@@ -544,15 +572,17 @@ s praznim presekom obstaja končna poddružina, ki ima prazen presek.
 \obvs
 
 \begin{izrek}[Cantor]
+\index{Izrek!Cantor}
 Padajoča veriga zaprtih množic v kompaktnem prostoru ima neprazen
 presek.
 \end{izrek}
 
 \obvs
 
-\begin{lema}[Lebesque]
+\begin{lema}[Lebesgue]
+\index{Lema!Lebesgue}
 Za vsako odprto pokritje $U$ metričnega prostora $X$ obstaja
-\emph{Lebesqueovo število} $\lambda>0$ z lastnostjo, da je vsaka
+\emph{Lebesgueovo število} $\lambda>0$ z lastnostjo, da je vsaka
 krogla z radijem manjšim od $\lambda$ vsebovana v nekem elementu
 $U$.
 \end{lema}
@@ -570,13 +600,14 @@ je $X$ kompakten, je $f$ enakomerno zvezna.
 \end{posledica}
 
 \begin{proof}
-Vzamemo Lebesqueovo število praslik majhnih krogel.
+Vzamemo Lebesgueovo število praslik krogel z radijem
+$\frac{\varepsilon}{2}$.
 \end{proof}
 
 \begin{definicija}
-%Dodaj index
-$X$ je lokalno kompakten, če ima vsaka točka kakšno kompaktno
-okolico.
+$X$ je
+\emph{lokalno kompakten}\index{Topološka lastnost!Kompaktnost!Lokalna},
+če ima vsaka točka kakšno kompaktno okolico.
 \end{definicija}
 
 \begin{definicija}
@@ -589,29 +620,116 @@ Hausdorffov prostor je lokalno kompakten natanko tedaj, ko ima bazo
 iz relativno kompaktnih množic.
 \end{trditev}
 
-%Add proof ig
+\begin{proof}
+Naj bo $U$ poljubna odprta okolica $x$ in $K$ kompakt, ki vsebuje
+$x$. $K$ je normalen, zato je $K \cap U$ regularen. Sledi, da
+obstaja odprta množica $V \subseteq K$, za katero je
+\[
+x \in V \subseteq \overline{V} \subseteq K \cap U.
+\]
+Sledi, da je $V$ relativno kompaktna.
+\end{proof}
 
 \begin{izrek}
 Vsak lokalno kompakten Hausdorffov prostor je regularen.
 \end{izrek}
 
-%Add proof later
+\begin{proof}
+Naj bo $U$ odprta okolica točke $x$. Po prejšnji trditvi obstaja
+relativno kompaktna množica $V \subseteq U$. Ker je $\overline{V}$
+kompakten in Hausdorffov, je normalen, zato je $V$ regularen.
+Sledi, da obstaja odprta okolica $W$ točke $x$, za katero je
+\[
+W \subseteq \overline{W} \subseteq V \subseteq U. \qedhere
+\]
+\end{proof}
 
 \begin{definicija}
-Prostor $X$ je \emph{Borelov}, če ga ni mogoče predstaviti kot
+Prostor $X$ je \emph{Baireov}, če ga ni mogoče predstaviti kot
 števno unijo zaprtih množic s prazno notranjostjo.
 \end{definicija}
 
-\begin{izrek}
+\begin{izrek}[Baire]\index{Izrek!Baire}
 Naj bodo $F_i$ zaprte množice s prazno notranjostjo v lokalno
 kompaktnem zaprtem prostoru $X$. Potem ima tudi njihova unija
 prazno notranjost.
 \end{izrek}
 
 \begin{proof}
-Naj bo $U_1 \subseteq \bigcup F_i$ odprta. Tedaj obstaja
-$x \in U_1 \setminus F_1$ in njegova relativno kompaktna okolica,
-ki ne seka $F_1$. Če ta postopek nadaljujemo, dobimo zaporedje
-$\overline{U_i}$ zaprtih množic, ki so vsebovane ena v drugi, zato
-imajo neprazen presek, kar je protislovje.
+Naj bo $U_0 \subseteq \bigcup F_i$ odprta. Tedaj obstaja
+$x \in U_0 \setminus F_1$ in njegova relativno kompaktna okolica
+$U_1$, ki ne seka $F_1$, saj ima $F_1$ prazno notranjost. Postopek
+nadaljujemo na tej množici. Dobimo zaporedje $\overline{U_i}$
+zaprtih množic, ki so vsebovane ena v drugi, zato imajo neprazen
+presek, kar je protislovje.
 \end{proof}
+
+\begin{opomba}
+Podoben izrek velja za polne metrične prostore. Na podoben način
+lahko skonstruiramo padajoče zaporedje zaprtih krogel, poleg tega
+pa poskrbimo, da polmeri limitirajo k $0$. Zaporedje središč krogel
+tako tvori Cauchyjevo zaporedje, ki ima limito, ta pa mora biti
+vsebovana v vseh kroglah.
+\end{opomba}
+
+\begin{definicija}
+\emph{Kompaktifikacija}\index{Preslikava!Kompaktifikacija} prostora
+$X$ je gosta vložitev $h \colon X \hookrightarrow \hat{X}$, kjer je
+$\hat{X}$ kompakten Hausdorffov prostor.\footnote{Kompaktifikacije
+na predavanjih nismo obdelali. Ta del zapiskov je povzet po knjigi
+Splošna topologija~\cite{stop}.}
+\end{definicija}
+
+\begin{opomba}
+Edina kompaktifikacija kompaktnega Hausdorffovega prostora je
+identiteta.
+\end{opomba}
+
+\begin{opomba}
+Ker je vsak kompakten Hasudorffov prostor regularen, regularnost pa
+je dedna, lahko kompaktificiramo le regularne prostore.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $(X, \tau)$ lokalno kompakten Hausdorffov prostor. Naj bo
+$X^+ = X \cup \set{\infty}$ prostor s topologijo $\tau^+$, ki jo
+definiramo kot unijo $\tau$ in družino množic $U \subseteq X^+$, za
+katere $\infty \in U$ in je $X^+ \setminus U$ kompaktna v $X$. Če
+$X$ ni kompakten, je inkluzija $i \colon X \hookrightarrow X^+$
+kompaktifikacija.
+\end{izrek}
+
+\begin{proof}
+Najprej pokažimo, da je $\tau^+$ topologija. Očitno sta $\emptyset$
+in $X^+$ elementa $\tau^+$. Poljubna unija elementov $\tau^+$ je
+prav tako element $\tau^+$ -- če $\infty$ ni element nobene množice
+unije, je unija element $\tau$ in s tem tudi $\tau^+$. Če pa je
+$\infty \in U_{\lambda_0}$ za nek $\lambda_0$, pa je
+\[
+\left(\bigcup_\lambda U_\lambda\right)^{\mathsf{c}} =
+\bigcap_\lambda U_\lambda^{\mathsf{c}},
+\]
+zaprt podprostor kompakta in zato tudi sam kompakt. Preostanejo nam
+še končni preseki, dovolj je preveriti presek dveh elementov
+$\tau^+$. Če oba vsebujeta $\infty$, je njun komplement unija dveh
+kompaktov, kar je spet kompakt. Če pa kvečjemu en vsebuje $\infty$, 
+pa je presek enak preseku dveh odprtih množic v $X$ in spet odprt.
+
+Prostor $X^+$ je kompakten, saj vsako odprto pokritje vsebuje
+množico z $\infty$, katere komplement je kompakt in ga lahko
+pokrijemo s končno mnogo elementi pokritja.
+
+Prostor $X^+$ je Hausdorffov, saj lahko $\infty$ ločimo od vseh
+točk v $X$. Vsaka točka $x \in X$ ima namreč relativno kompaktno
+okolico $U$, zato $U$ in $X^+ \setminus \overline{U}$ ločita $x$ in
+$\infty$.
+
+Preostane še dokaz, da je $X$ gost v $X^+$, kar pa je posledica
+tega, da $X$ ni kompakten, zato $\set{\infty}$ ni odprta.
+\end{proof}
+
+\begin{definicija}
+Zgornji kompaktifikaciji pravimo \emph{kompaktifikacija z eno
+točko} oziroma
+\emph{kompaktifikacija Aleksandrova}\index{Preslikava!Kompaktifikacija!Aleksandrova}.
+\end{definicija}
