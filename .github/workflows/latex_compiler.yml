@@ -70,6 +70,14 @@ jobs:
           compiler: pdflatex
           args: -interaction=nonstopmode
           
+      - name: Bibliografija
+        if: steps.filter.outputs.tex_file == 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          working_directory: "${{ matrix.tex_file.path }}"
+          root_file: "${{ matrix.tex_file.file }}"
+          compiler: biber
+
       - name: Stvarno kazalo
         if: steps.filter.outputs.tex_file == 'true'
         uses: dante-ev/latex-action@latest
