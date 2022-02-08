@@ -53,6 +53,7 @@ Skalarni produkt je zvezna preslikava.
 Velja
 \[
 \abs{\skl{x,a} - \skl{y,a}} \leq \norm{a} \cdot \norm{x - y}.
+\qedhere
 \]
 \end{proof}
 
@@ -247,7 +248,7 @@ Predpostavimo, da velja \ref{iz:kons:5}. Velja
 \]
 zato sledi \ref{iz:kons:1}.
 
-Dokažimo še ekvivalenco z \ref{iz:kons:6}. Če velja
+Dokažimo še ekvivalenco s \ref{iz:kons:6}. Če velja
 \ref{iz:kons:1}, lahko zapišemo
 \[
 x = \sum_{n=1}^\infty \skl{x,e_n} e_n
@@ -284,8 +285,16 @@ limite $a_n$. Opazimo, da je
 \[
 \sum_{n=1}^\infty a_n^2
 \]
-konvergentna, zato je zaporedje element $\ell^2$. Ni težko videti,
-da je dobljeno zaporedje limita $\alpha_i$.
+konvergentna, saj so zaporedja omejena. Sledi, da je zaporedje
+element $\ell^2$. Ni težko videti, da je dobljeno zaporedje limita
+$\alpha_i$, saj iz
+\[
+\sum_{n=-\infty}^\infty \abs{a_n^i - a_n^j}^2 < \varepsilon^2
+\]
+sledi
+\[
+\sum_{n=-N}^N \abs{a_n - a_n^j}^2 \leq \varepsilon^2. \qedhere
+\]
 \end{proof}
 
 \newpage
@@ -317,7 +326,7 @@ Naj bo $f \in L^2([-\pi,\pi])$ funkcija.
 \item Velja enakost
 \[
 \frac{1}{\pi} \int_{-\pi}^\pi \abs{f(x)}^2\;dx =
-\frac{\abs{a_0}}{2} + \sum_{n=1}^\infty \abs{a_n}^2 + \abs{b_n}^2.
+\frac{\abs{a_0}^2}{2} + \sum_{n=1}^\infty \abs{a_n}^2+\abs{b_n}^2.
 \]
 \label{iz:fou:par}
 \end{enumerate}
@@ -476,9 +485,9 @@ F_N(x) = \frac{1}{N} \left(\frac
 \]
 \item Velja
 \[
-\frac{1}{\pi} \int_{-\pi}^\pi F_n(x)\;dx = 1.
+\frac{1}{\pi} \int_{-\pi}^\pi F_N(x)\;dx = 1.
 \]
-\item $F_n$ je soda in nenegativna.
+\item $F_N$ je soda in nenegativna.
 \item Za vse $a \in (0,\pi)$ zaporedje $F_N(x)$ na $[a,\pi]$
 konvergira enakomerno proti $0$.
 \end{enumerate}
@@ -488,8 +497,8 @@ konvergira enakomerno proti $0$.
 Velja
 \begin{align*}
 F_N(x) &= \frac{1}{N} \sum_{n=0}^{N-1}
-\frac{1}{2} \frac{\sin\left(\left(n + \frac{1}{2}\right)x\right)}
-{\sin\left(\frac{x}{2}\right)}
+\frac{\sin\left(\left(n + \frac{1}{2}\right)x\right)}
+{2 \cdot \sin\left(\frac{x}{2}\right)}
 \\
 &=
 \frac{1}{2N \left(\sin\left(\frac{x}{2}\right)\right)^2} \cdot
@@ -497,11 +506,11 @@ F_N(x) &= \frac{1}{N} \sum_{n=0}^{N-1}
 \cdot \sin\left(\frac{x}{2}\right)
 \\
 &=
-\frac{1}{2N \left(\sin\left(\frac{1}{2}\right)\right)^2} \cdot
+\frac{1}{2N \left(\sin\left(\frac{x}{2}\right)\right)^2} \cdot
 \sum_{n=0}^{N-1} \left(\cos(nx)-\cos(nx+x)\right)
 \\
 &=
-\frac{1-\cos(Nx)}{2N\left(\sin\left(\frac{1}{2}\right)\right)^2}.
+\frac{1-\cos(Nx)}{2N\left(\sin\left(\frac{x}{2}\right)\right)^2}.
 \end{align*}
 Druga in tretja trditev sta trivialni. Opazimo še, da velja
 \[
@@ -542,7 +551,7 @@ za vse $x \in \R$. Sledi, da za dovolj velike $N$ velja
 \\
 &=
 \frac{1}{\pi} \int_{-\delta}^\delta \abs{f(x+y) - f(x)} F_N(y)\;dy
-+ \frac{1}{\pi} \lint_{\delta \leq \abs{x} \leq \pi}
++ \frac{1}{\pi} \lint_{\delta \leq \abs{y} \leq \pi}
 \abs{f(x+y) - f(x)} F_N(y)\;dy
 \\
 &< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} =
@@ -564,10 +573,9 @@ je kompleten ortonormiran sistem v $L^2([-\pi,\pi])$.
 Z adicijskimi izreki preverimo, da je sistem res ortonormiran.
 Po izreku \ref{iz:kons:kar} je dovolj pokazati, da lahko vsako
 zvezno funkcijo poljubno dobro aproksimiramo s tem sistemom, saj so
-zvezne funkcije goste v $L^2$. Ker smo zgoraj dokazali, da lahko
-poljubno dobro aproksimiramo zvezne funkcije (na majhnih
-intervalih jih priredimo tako, da se vrednosti v krajiščih
-ujemata), ki pa so goste v $L^2$.
+zvezne funkcije goste v $L^2$. To pa je res, saj jih lahko na
+majhnih intervalih priredimo tako, da se vrednosti v krajiščih
+ujemata.
 \end{proof}
 
 \begin{izrek}[Weierstrass]\index{Izrek!Weierstrass}
@@ -734,7 +742,7 @@ Po Fubinijevem izreku je
 \int_{-R}^R \hat{f}(\xi) e^{2\pi i \xi t}\;d\xi
 &=
 \int_{-R}^R \left(
-\int_{-\infty}^\infty e^{-2\pi i \xi \tau} f(t)\;d\tau
+\int_{-\infty}^\infty e^{-2\pi i \xi \tau} f(\tau)\;d\tau
 \right) e^{2\pi i \xi t}\;d\xi
 \\
 &=
@@ -791,14 +799,15 @@ Opazimo, da lahko prva dva integrala zapišemo kot
 \[
 \int_{-\infty}^\infty F(u) \sin(2 \pi R u)\;du,
 \]
-kjer je $F \in L^1(\R)$. Po Riemann-Lebesgueovi lemi zato
-konvergirata proti $0$ ko $R$ limitira v $\infty$.\footnote{Lemo
-smo dokazali za $e^{-2 \pi i \xi t}$, a je $\sin$ le linearna
-kombinacija takih funkcij.} Opazimo pa še, da je
+kjer je $F \in L^1(\R)$ (funkciji v integralu razširimo z $0$ na
+$\R$). Po Riemann-Lebesgueovi lemi zato konvergirata proti $0$ ko
+$R$ limitira v $\infty$.\footnote{Lemo smo dokazali za
+$e^{-2 \pi i \xi t}$, a je $\sin$ le linearna kombinacija takih
+funkcij.} Opazimo pa še, da je
 \[
 \lim_{R \to \infty} \int_1^\infty \frac{\sin(2 \pi R u)}{u}\;du =
-\lim_{R \to \infty} \int_{2 \pi R}^\infty \frac{\sin(v}{v}\;dv = 0.
-\qedhere
+\lim_{R \to \infty} \int_{2 \pi R}^\infty \frac{\sin(v)}{v}\;dv =
+0. \qedhere
 \]
 \end{proof}
 
@@ -890,7 +899,7 @@ Po Fubiniju je
 \\
 &=
 \int_{-\infty}^\infty e^{-2 \pi i \xi s} f(s) \left(
-\int_{-\infty}\infty e^{-2 \pi i Xi (t - s)} g(t-s)\;dt
+\int_{-\infty}^\infty e^{-2 \pi i Xi (t - s)} g(t-s)\;dt
 \right)ds
 \\
 &=
