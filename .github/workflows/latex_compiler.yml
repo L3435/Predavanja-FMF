@@ -103,21 +103,6 @@ jobs:
           compiler: texindy
           args: -L slovenian -C utf8
           
-      - name: Debug
-        run: |
-          ls
-          cd '1. letnik/Algebra 1'
-          ls
-          
-      - name: Move ind files
-        run: |
-            mv 'Algebra 1.ind' '1. letnik/Algebra 1'
-            mv 'Analiza 1.ind' '1. letnik/Analiza 1'
-            mv 'Logika in množice.ind' '1. letnik/Logika in množice'
-            mv 'Algebra 2.ind' '2. letnik/Algebra 2'
-            mv 'Analiza 2.ind' '2. letnik/Analiza 2'
-            mv 'Splošna topologija.ind' '2. letnik/Splošna topologija'
-          
       - name: Drugi pdflatex
         uses: xu-cheng/latex-action@v2
         with:
@@ -157,9 +142,6 @@ jobs:
             2. letnik/Algebra 2/Algebra 2.pdf
             2. letnik/Analiza 2a/Analiza 2.pdf
             2. letnik/Splošna topologija/Splošna topologija.pdf
-            Algebra 2.pdf
-            Analiza 2.pdf
-            Splošna topologija.pdf
           
   push_pdfs:
     runs-on: ubuntu-latest
