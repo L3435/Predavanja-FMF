@@ -52,83 +52,88 @@ jobs:
               
       - name: Prvi pdflatex
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-            cd '1. letnik/Algebra 1'
-            pdflatex -interaction=nonstopmode 'Algebra 1.tex'
-            cd '../../1. letnik/Analiza 1'
-            pdflatex -interaction=nonstopmode 'Analiza 1.tex'
-            cd '../../1. letnik/Logika in množice'
-            pdflatex -interaction=nonstopmode 'Logika in množice.tex'
-            cd '../../2. letnik/Algebra 2'
-            pdflatex -interaction=nonstopmode 'Algebra 2.tex'
-            cd '../../2. letnik/Analiza 2a'
-            pdflatex -interaction=nonstopmode 'Analiza 2.tex'
-            cd '../../2. letnik/Splošna topologija'
-            pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
+        with:
+          run: |
+              cd '1. letnik/Algebra 1'
+              pdflatex -interaction=nonstopmode 'Algebra 1.tex'
+              cd '../../1. letnik/Analiza 1'
+              pdflatex -interaction=nonstopmode 'Analiza 1.tex'
+              cd '../../1. letnik/Logika in množice'
+              pdflatex -interaction=nonstopmode 'Logika in množice.tex'
+              cd '../../2. letnik/Algebra 2'
+              pdflatex -interaction=nonstopmode 'Algebra 2.tex'
+              cd '../../2. letnik/Analiza 2a'
+              pdflatex -interaction=nonstopmode 'Analiza 2.tex'
+              cd '../../2. letnik/Splošna topologija'
+              pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
           
       - name: Bibliografija
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-            cd '1. letnik/Algebra 1'
-            biber -L slovenian -C utf8 'Algebra 1.bcf'
-            cd '../../1. letnik/Analiza 1'
-            biber -L slovenian -C utf8 'Analiza 1.bcf'
-            cd '../../1. letnik/Logika in množice'
-            biber -L slovenian -C utf8 'Logika in množice.bcf'
-            cd '../../2. letnik/Algebra 2'
-            biber -L slovenian -C utf8 'Algebra 2.bcf'
-            cd '../../2. letnik/Analiza 2a'
-            biber -L slovenian -C utf8 'Analiza 2.bcf'
-            cd '../../2. letnik/Splošna topologija'
-            biber -L slovenian -C utf8 'Splošna topologija.bcf'
+        with:
+          run: |
+              cd '1. letnik/Algebra 1'
+              biber -L slovenian -C utf8 'Algebra 1.bcf'
+              cd '../../1. letnik/Analiza 1'
+              biber -L slovenian -C utf8 'Analiza 1.bcf'
+              cd '../../1. letnik/Logika in množice'
+              biber -L slovenian -C utf8 'Logika in množice.bcf'
+              cd '../../2. letnik/Algebra 2'
+              biber -L slovenian -C utf8 'Algebra 2.bcf'
+              cd '../../2. letnik/Analiza 2a'
+              biber -L slovenian -C utf8 'Analiza 2.bcf'
+              cd '../../2. letnik/Splošna topologija'
+              biber -L slovenian -C utf8 'Splošna topologija.bcf'
 
       - name: Stvarno kazalo
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-            cd '1. letnik/Algebra 1'
-            texindy -L slovenian -C utf8 'Algebra 1.idx'
-            cd '../../1. letnik/Analiza 1'
-            texindy -L slovenian -C utf8 'Analiza 1.idx'
-            cd '../../1. letnik/Logika in množice'
-            texindy -L slovenian -C utf8 'Logika in množice.idx'
-            cd '../../2. letnik/Algebra 2'
-            texindy -L slovenian -C utf8 'Algebra 2.idx'
-            cd '../../2. letnik/Analiza 2a'
-            texindy -L slovenian -C utf8 'Analiza 2.idx'
-            cd '../../2. letnik/Splošna topologija'
-            texindy -L slovenian -C utf8 'Splošna topologija.idx'
+        with:
+          run: |
+              cd '1. letnik/Algebra 1'
+              texindy -L slovenian -C utf8 'Algebra 1.idx'
+              cd '../../1. letnik/Analiza 1'
+              texindy -L slovenian -C utf8 'Analiza 1.idx'
+              cd '../../1. letnik/Logika in množice'
+              texindy -L slovenian -C utf8 'Logika in množice.idx'
+              cd '../../2. letnik/Algebra 2'
+              texindy -L slovenian -C utf8 'Algebra 2.idx'
+              cd '../../2. letnik/Analiza 2a'
+              texindy -L slovenian -C utf8 'Analiza 2.idx'
+              cd '../../2. letnik/Splošna topologija'
+              texindy -L slovenian -C utf8 'Splošna topologija.idx'
           
       - name: Drugi pdflatex
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-            cd '1. letnik/Algebra 1'
-            pdflatex -interaction=nonstopmode 'Algebra 1.tex'
-            cd '../../1. letnik/Analiza 1'
-            pdflatex -interaction=nonstopmode 'Analiza 1.tex'
-            cd '../../1. letnik/Logika in množice'
-            pdflatex -interaction=nonstopmode 'Logika in množice.tex'
-            cd '../../2. letnik/Algebra 2'
-            pdflatex -interaction=nonstopmode 'Algebra 2.tex'
-            cd '../../2. letnik/Analiza 2a'
-            pdflatex -interaction=nonstopmode 'Analiza 2.tex'
-            cd '../../2. letnik/Splošna topologija'
-            pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
+        with:
+          run: |
+              cd '1. letnik/Algebra 1'
+              pdflatex -interaction=nonstopmode 'Algebra 1.tex'
+              cd '../../1. letnik/Analiza 1'
+              pdflatex -interaction=nonstopmode 'Analiza 1.tex'
+              cd '../../1. letnik/Logika in množice'
+              pdflatex -interaction=nonstopmode 'Logika in množice.tex'
+              cd '../../2. letnik/Algebra 2'
+              pdflatex -interaction=nonstopmode 'Algebra 2.tex'
+              cd '../../2. letnik/Analiza 2a'
+              pdflatex -interaction=nonstopmode 'Analiza 2.tex'
+              cd '../../2. letnik/Splošna topologija'
+              pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
           
       - name: Tretji pdflatex
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-            cd '1. letnik/Algebra 1'
-            pdflatex -interaction=nonstopmode 'Algebra 1.tex'
-            cd '../../1. letnik/Analiza 1'
-            pdflatex -interaction=nonstopmode 'Analiza 1.tex'
-            cd '../../1. letnik/Logika in množice'
-            pdflatex -interaction=nonstopmode 'Logika in množice.tex'
-            cd '../../2. letnik/Algebra 2'
-            pdflatex -interaction=nonstopmode 'Algebra 2.tex'
-            cd '../../2. letnik/Analiza 2a'
-            pdflatex -interaction=nonstopmode 'Analiza 2.tex'
-            cd '../../2. letnik/Splošna topologija'
-            pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
+        with:
+          run: |
+              cd '1. letnik/Algebra 1'
+              pdflatex -interaction=nonstopmode 'Algebra 1.tex'
+              cd '../../1. letnik/Analiza 1'
+              pdflatex -interaction=nonstopmode 'Analiza 1.tex'
+              cd '../../1. letnik/Logika in množice'
+              pdflatex -interaction=nonstopmode 'Logika in množice.tex'
+              cd '../../2. letnik/Algebra 2'
+              pdflatex -interaction=nonstopmode 'Algebra 2.tex'
+              cd '../../2. letnik/Analiza 2a'
+              pdflatex -interaction=nonstopmode 'Analiza 2.tex'
+              cd '../../2. letnik/Splošna topologija'
+              pdflatex -interaction=nonstopmode 'Splošna topologija.tex'
           
       - name: Shrani pdf datoteke
         uses: actions/upload-artifact@v2
