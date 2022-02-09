@@ -204,11 +204,6 @@ jobs:
       - name: Fail if compilation failed
         if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
-        
-      - name: Delete pdfs
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: pdf-files
             
       - name: Finish
         run: echo "Action complete"
