@@ -49,8 +49,21 @@ jobs:
               - '${{ matrix.tex_file.path }}/**/*.tex'
             pdf_file:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
+              
+      - name: Setup xindy
+        run: | 
+            ln -sf /opt/texlive/texdir/texmf-dist/scripts/xindy/xindy.pl /opt/texlive/texdir/bin/x86_64-linuxmusl/xindy
+            ln -sf /opt/texlive/texdir/texmf-dist/scripts/xindy/texindy.pl /opt/texlive/texdir/bin/x86_64-linuxmusl/texindy
+            wget https://sourceforge.net/projects/xindy/files/xindy-source-components/2.4/xindy-kernel-3.0.tar.gz
+            tar xf xindy-kernel-3.0.tar.gz
+            cd xindy-kernel-3.0/src
+            apk add make
+            apk add clisp --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+            make
+            cp -f xindy.mem /opt/texlive/texdir/bin/x86_64-linuxmusl/
+            cd ../../
           
-      - name: latexmk
+      - name: Prvi pdflatex
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
@@ -61,9 +74,65 @@ jobs:
             2. letnik/Analiza 2a/Analiza.tex
             2. letnik/Splošna topologija/Topologija.tex
           work_in_root_file_dir: true
-          compiler: latexmk
-          args: -pdf -e "$makeindex='texindy -L slovenian -C utf8';"
-        
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Bibliografija
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            1. letnik/Algebra 1/Algebra.bcf
+            1. letnik/Analiza 1/Analiza.bcf
+            1. letnik/Logika in množice/Logika.bcf
+            2. letnik/Algebra 2/Algebra.bcf
+            2. letnik/Analiza 2a/Analiza.bcf
+            2. letnik/Splošna topologija/Topologija.bcf
+          work_in_root_file_dir: true
+          compiler: biber
+          args: ''
+
+      - name: Stvarno kazalo
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            1. letnik/Algebra 1/Algebra.idx
+            1. letnik/Analiza 1/Analiza.idx
+            1. letnik/Logika in množice/Logika.idx
+            2. letnik/Algebra 2/Algebra.idx
+            2. letnik/Analiza 2a/Analiza.idx
+            2. letnik/Splošna topologija/Topologija.idx
+          work_in_root_file_dir: true
+          compiler: texindy
+          args: -L slovenian -C utf8
+          
+      - name: Drugi pdflatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            1. letnik/Algebra 1/Algebra.tex
+            1. letnik/Analiza 1/Analiza.tex
+            1. letnik/Logika in množice/Logika.tex
+            2. letnik/Algebra 2/Algebra.tex
+            2. letnik/Analiza 2a/Analiza.tex
+            2. letnik/Splošna topologija/Topologija.tex
+          work_in_root_file_dir: true
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Tretji pdflatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            1. letnik/Algebra 1/Algebra.tex
+            1. letnik/Analiza 1/Analiza.tex
+            1. letnik/Logika in množice/Logika.tex
+            2. letnik/Algebra 2/Algebra.tex
+            2. letnik/Analiza 2a/Analiza.tex
+            2. letnik/Splošna topologija/Topologija.tex
+          work_in_root_file_dir: true
+          compiler: pdflatex
+          args: -interaction=nonstopmode+
+          
       - name: Shrani pdf datoteke
         uses: actions/upload-artifact@v2
         with:
@@ -100,7 +169,7 @@ jobs:
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
           
-      - name: Check if compiling is needed
+      - name: Check if pdf required
         uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -110,7 +179,7 @@ jobs:
               - '${{ matrix.tex_file.path }}/**/*.tex'
             pdf_file:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
-
+              
       - name: Download pdf
         if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
         uses: actions/download-artifact@v2
@@ -137,6 +206,12 @@ jobs:
       - name: Fail if compilation failed
         if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
+        
+      - name: Delete pdfs
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: pdf-files
             
       - name: Finish
         run: echo "Action complete"
+        
