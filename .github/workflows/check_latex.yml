@@ -24,12 +24,12 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            "1. letnik/Algebra 1/Algebra.tex"
-            "1. letnik/Analiza 1/Analiza.tex"
-            "1. letnik/Logika in množice/Logika.tex"
-            "2. letnik/Algebra 2/Algebra.tex"
-            "2. letnik/Analiza 2a/Analiza.tex"
-            "2. letnik/Splošna topologija/Topologija"
+            1. letnik/Algebra 1/Algebra.tex
+            1. letnik/Analiza 1/Analiza.tex
+            1. letnik/Logika in množice/Logika.tex
+            2. letnik/Algebra 2/Algebra.tex
+            2. letnik/Analiza 2a/Analiza.tex
+            2. letnik/Splošna topologija/Topologija.tex
           work_in_root_file_dir: true
           compiler: pdflatex
           args: -interaction=nonstopmode
