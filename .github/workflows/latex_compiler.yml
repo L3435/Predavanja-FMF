@@ -84,13 +84,21 @@ jobs:
           pre_compile: | 
             ln -sf /opt/texlive/texdir/texmf-dist/scripts/xindy/xindy.pl /opt/texlive/texdir/bin/x86_64-linuxmusl/xindy
             ln -sf /opt/texlive/texdir/texmf-dist/scripts/xindy/texindy.pl /opt/texlive/texdir/bin/x86_64-linuxmusl/texindy
+            wget https://sourceforge.net/projects/xindy/files/xindy-source-components/2.4/xindy-kernel-3.0.tar.gz
+            tar xf xindy-kernel-3.0.tar.gz
+            cd xindy-kernel-3.0/src
+            apk add make
+            apk add clisp --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+            make
+            cp -f xindy.mem /opt/texlive/texdir/bin/x86_64-linuxmusl/
+            cd ../../
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.idx
-            1. letnik/Analiza 1/Analiza 1.idx
-            1. letnik/Logika in množice/Logika in množice.idx
-            2. letnik/Algebra 2/Algebra 2.idx
-            2. letnik/Analiza 2a/Analiza 2.idx
-            2. letnik/Splošna topologija/Splošna topologija.idx
+            '1. letnik/Algebra 1'/'Algebra 1.idx'
+            '1. letnik/Analiza 1'/'Analiza 1.idx'
+            '1. letnik/Logika in množice'/'Logika in množice.idx'
+            '2. letnik/Algebra 2'/'Algebra 2.idx'
+            '2. letnik/Analiza 2a'/'Analiza 2.idx'
+            '2. letnik/Splošna topologija'/'Splošna topologija.idx'
           work_in_root_file_dir: true
           compiler: texindy
           args: '-L slovenian -C utf8'
