@@ -32,12 +32,12 @@ jobs:
     strategy:
       matrix:
         tex_file: [
-          {path: '1. letnik/Algebra 1', file: 'Algebra'},
-          {path: '1. letnik/Analiza 1', file: 'Analiza'},
-          {path: '1. letnik/Logika in množice', file: 'Logika'},
-          {path: '2. letnik/Algebra 2', file: 'Algebra'},
-          {path: '2. letnik/Analiza 2a', file: 'Analiza'},
-          {path: '2. letnik/Splošna topologija', file: 'Topologija'}
+          {path: '1. letnik/Algebra 1', file: 'Algebra 1'},
+          {path: '1. letnik/Analiza 1', file: 'Analiza 1'},
+          {path: '1. letnik/Logika in množice', file: 'Logika in množice'},
+          {path: '2. letnik/Algebra 2', file: 'Algebra 2'},
+          {path: '2. letnik/Analiza 2a', file: 'Analiza 2'},
+          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'}
         ]
     
     runs-on: ubuntu-latest
