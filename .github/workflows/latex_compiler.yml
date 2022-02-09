@@ -72,17 +72,17 @@ jobs:
         with:
           run: |
               cd '1. letnik/Algebra 1'
-              biber -L slovenian -C utf8 'Algebra 1.bcf'
+              biber 'Algebra 1.bcf'
               cd '../../1. letnik/Analiza 1'
-              biber -L slovenian -C utf8 'Analiza 1.bcf'
+              biber 'Analiza 1.bcf'
               cd '../../1. letnik/Logika in množice'
-              biber -L slovenian -C utf8 'Logika in množice.bcf'
+              biber 'Logika in množice.bcf'
               cd '../../2. letnik/Algebra 2'
-              biber -L slovenian -C utf8 'Algebra 2.bcf'
+              biber 'Algebra 2.bcf'
               cd '../../2. letnik/Analiza 2a'
-              biber -L slovenian -C utf8 'Analiza 2.bcf'
+              biber 'Analiza 2.bcf'
               cd '../../2. letnik/Splošna topologija'
-              biber -L slovenian -C utf8 'Splošna topologija.bcf'
+              biber 'Splošna topologija.bcf'
 
       - name: Stvarno kazalo
         uses: xu-cheng/texlive-action/full@v1
