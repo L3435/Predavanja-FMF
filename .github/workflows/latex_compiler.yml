@@ -77,6 +77,9 @@ jobs:
           work_in_root_file_dir: true
           compiler: biber
           args: ''
+      
+      - name: Debug
+        run: echo "$PATH"
 
       - name: Stvarno kazalo
         run: |
