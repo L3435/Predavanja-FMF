@@ -101,6 +101,7 @@ jobs:
             2. letnik/Splošna topologija/Splošna topologija.idx
           work_in_root_file_dir: true
           compiler: texindy
+          args: ''
           
       - name: Drugi pdflatex
         uses: xu-cheng/latex-action@v2
