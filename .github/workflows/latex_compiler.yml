@@ -103,6 +103,12 @@ jobs:
           compiler: texindy
           args: -L slovenian -C utf8
           
+      - name: Debug
+        run: |
+          ls
+          cd '1. letnik/Algebra 1'
+          ls
+          
       - name: Move ind files
         run: |
             mv 'Algebra 1.ind' '1. letnik/Algebra 1'
