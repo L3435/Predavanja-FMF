@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - Optimizacija-CI
 jobs:
 
   compile_pdf:
@@ -30,7 +31,7 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}}
           
       - name: pdflatex
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
           working_directory: "${{ matrix.tex_file.path }}"
           root_file: "${{ matrix.tex_file.file }}.tex"
