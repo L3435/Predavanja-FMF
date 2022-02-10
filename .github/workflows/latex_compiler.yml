@@ -1,5 +1,5 @@
 name: Build LaTeX document
-on: pull_request_target
+on: [pull_request_target, push]
 jobs:
   check_file_changes:
     name: Preveri spremembe datotek
@@ -27,7 +27,6 @@ jobs:
   compile_pdf:
     name: Compile document
     needs: check_file_changes
-    if: needs.check_file_changes.outputs.updated_tex_file == 'true'
     
     runs-on: ubuntu-latest
     steps:
@@ -93,12 +92,12 @@ jobs:
             cp -f xindy.mem /opt/texlive/texdir/bin/x86_64-linuxmusl/
             cd ../../
           root_file: |
-            '1. letnik/Algebra 1/Algebra 1.idx'
-            '1. letnik/Analiza 1/Analiza 1.idx'
-            '1. letnik/Logika in množice/Logika in množice.idx'
-            '2. letnik/Algebra 2/Algebra 2.idx'
-            '2. letnik/Analiza 2a/Analiza 2.idx'
-            '2. letnik/Splošna topologija/Splošna topologija.idx'
+            1. letnik/Algebra 1/Algebra 1.idx
+            1. letnik/Analiza 1/Analiza 1.idx
+            1. letnik/Logika in množice/Logika in množice.idx
+            2. letnik/Algebra 2/Algebra 2.idx
+            2. letnik/Analiza 2a/Analiza 2.idx
+            2. letnik/Splošna topologija/Splošna topologija.idx
           work_in_root_file_dir: true
           compiler: texindy
           args: '-L slovenian -C utf8'
