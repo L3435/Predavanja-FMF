@@ -1,7 +1,9 @@
 name: Build LaTeX document
 on: pull_request_target
 jobs:
+
   check_file_changes:
+    if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
     name: Preveri spremembe datotek
     runs-on: ubuntu-latest
     outputs:
@@ -27,7 +29,7 @@ jobs:
   compile_pdf:
     name: Compile document
     needs: check_file_changes
-    if: needs.check_file_changes.outputs.updated_tex_file == 'true'
+    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' && !contains(github.event.head_commit.message, '[skip compiling]') }}
     
     runs-on: ubuntu-latest
     steps:
@@ -116,6 +118,7 @@ jobs:
   push_pdfs:
     runs-on: ubuntu-latest
     needs: compile_pdf
+    if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
   
     strategy:
       matrix:
@@ -161,7 +164,7 @@ jobs:
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
             git add '${{ matrix.tex_file.file }}.pdf'
-            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
+            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}" -m "[skip compiling]"
             git push origin ${{ github.event.pull_request.head.ref }}
   
   finish_job:
@@ -172,11 +175,13 @@ jobs:
     steps:
     
       - name: Delete artifacts
+        if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
         uses: geekyeggo/delete-artifact@v1
         with:
           name: pdf-files
     
       - name: Fail if compilation failed
+        if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
         if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
             
