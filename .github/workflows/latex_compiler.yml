@@ -1,6 +1,7 @@
 name: Build LaTeX document
 on: pull_request_target
 jobs:
+
   check_file_changes:
     name: Preveri spremembe datotek
     runs-on: ubuntu-latest
@@ -27,7 +28,7 @@ jobs:
   compile_pdf:
     name: Compile document
     needs: check_file_changes
-    if: needs.check_file_changes.outputs.updated_tex_file == 'true'
+    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' }}
     
     runs-on: ubuntu-latest
     steps:
@@ -54,12 +55,9 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -67,40 +65,35 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.bcf
-            1. letnik/Analiza 1/Analiza 1.bcf
-            1. letnik/Logika in množice/Logika in množice.bcf
-            2. letnik/Algebra 2/Algebra 2.bcf
-            2. letnik/Analiza 2a/Analiza 2.bcf
-            2. letnik/Splošna topologija/Splošna topologija.bcf
+            *letnik/*/*.bcf
+          work_in_root_file_dir: true
+          glob_root_file: true
           compiler: biber
           args: ''
 
       - name: Stvarno kazalo
-        uses: xu-cheng/latex-action@v2
-        with:
-          pre_compile: | 
-            ls
-          root_file: |
-            1. letnik/Algebra 1/Algebra 1.idx
-            1. letnik/Analiza 1/Analiza 1.idx
-            1. letnik/Logika in množice/Logika in množice.idx
-            2. letnik/Algebra 2/Algebra 2.idx
-            2. letnik/Analiza 2a/Analiza 2.idx
-            2. letnik/Splošna topologija/Splošna topologija.idx
-          compiler: texindy
-          args: -L slovenian -C utf8
+        run: |
+          sudo apt install xindy
+          for letnik in *letnik/ ; do
+            cd "$letnik"
+            for predmet in */ ; do
+              if [[ ${predmet:0:1} == "." ]]; then
+                continue
+              fi
+              cd "$predmet"
+              texindy -L slovenian -C utf8 *.idx
+              cd ..
+            done
+            cd ..
+          done
           
       - name: Drugi pdflatex
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -108,26 +101,18 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
-          args: -interaction=nonstopmode+
+          args: -interaction=nonstopmode
           
       - name: Shrani pdf datoteke
         uses: actions/upload-artifact@v2
         with:
           name: pdf-files
           path: |
-            Algebra 1.pdf
-            Analiza 1.pdf
-            Logika in množice.pdf
-            Algebra 2.pdf
-            Analiza 2.pdf
-            Splošna topologija.pdf
+            *letnik/*/*.pdf
           
   push_pdfs:
     runs-on: ubuntu-latest
@@ -172,12 +157,11 @@ jobs:
 
       - name: Push pdf file
         if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
+        working-directory: ${{ matrix.tex_file.path }}
         run: |
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
-            mv ${{ matrix.tex_file.file }}.pdf ${{ matrix.tex_file.path }}
-            cd ${{ matrix.tex_file.path }}
-            git add ${{ matrix.tex_file.file }}.pdf
+            git add '${{ matrix.tex_file.file }}.pdf'
             git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
             git push origin ${{ github.event.pull_request.head.ref }}
   
@@ -188,15 +172,14 @@ jobs:
     if: always()
     steps:
     
-      - name: Fail if compilation failed
-        if: ${{ needs.compile_pdf.result == 'failure' }}
-        run: exit 1
-        
-      - name: Delete pdfs
+      - name: Delete artifacts
         uses: geekyeggo/delete-artifact@v1
         with:
           name: pdf-files
+    
+      - name: Fail if compilation failed
+        if: ${{ needs.compile_pdf.result == 'failure' }}
+        run: exit 1
             
       - name: Finish
         run: echo "Action complete"
-        
