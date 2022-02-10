@@ -162,7 +162,7 @@ jobs:
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
             git add '${{ matrix.tex_file.file }}.pdf'
-            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}" -m "[skip compiling]"
+            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
             git push origin ${{ github.event.pull_request.head.ref }}
   
   finish_job:
