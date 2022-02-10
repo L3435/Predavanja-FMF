@@ -3,7 +3,6 @@ on: pull_request_target
 jobs:
 
   check_file_changes:
-    if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
     name: Preveri spremembe datotek
     runs-on: ubuntu-latest
     outputs:
@@ -29,7 +28,7 @@ jobs:
   compile_pdf:
     name: Compile document
     needs: check_file_changes
-    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' && !contains(github.event.head_commit.message, '[skip compiling]') }}
+    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' }}
     
     runs-on: ubuntu-latest
     steps:
@@ -118,7 +117,6 @@ jobs:
   push_pdfs:
     runs-on: ubuntu-latest
     needs: compile_pdf
-    if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
   
     strategy:
       matrix:
@@ -175,13 +173,12 @@ jobs:
     steps:
     
       - name: Delete artifacts
-        if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') }}
         uses: geekyeggo/delete-artifact@v1
         with:
           name: pdf-files
     
       - name: Fail if compilation failed
-        if: ${{ !contains(github.event.head_commit.message, '[skip compiling]') && needs.compile_pdf.result == 'failure' }}
+        if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
             
       - name: Finish
