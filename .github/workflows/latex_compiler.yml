@@ -1,5 +1,5 @@
 name: Build LaTeX document
-on: [pull_request_target, push]
+on: pull_request_target
 jobs:
   check_file_changes:
     name: Preveri spremembe datotek
@@ -27,6 +27,7 @@ jobs:
   compile_pdf:
     name: Compile document
     needs: check_file_changes
+    if: needs.check_file_changes.outputs.updated_tex_file == 'true'
     
     runs-on: ubuntu-latest
     steps:
