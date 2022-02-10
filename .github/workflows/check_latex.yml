@@ -23,12 +23,8 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
           work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
