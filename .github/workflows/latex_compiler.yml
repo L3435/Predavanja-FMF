@@ -54,13 +54,9 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
           work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -68,44 +64,35 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.bcf
-            1. letnik/Analiza 1/Analiza 1.bcf
-            1. letnik/Logika in množice/Logika in množice.bcf
-            2. letnik/Algebra 2/Algebra 2.bcf
-            2. letnik/Analiza 2a/Analiza 2.bcf
-            2. letnik/Splošna topologija/Splošna topologija.bcf
+            *letnik/*/*.bcf
           work_in_root_file_dir: true
+          glob_root_file: true
           compiler: biber
           args: ''
 
       - name: Stvarno kazalo
         run: |
           sudo apt install xindy
-          cd "1. letnik/Algebra 1"
-          texindy -L slovenian -C utf8 "Algebra 1.idx"
-          cd "../../1. letnik/Analiza 1"
-          texindy -L slovenian -C utf8 "Analiza 1.idx"
-          cd "../../1. letnik/Logika in množice"
-          texindy -L slovenian -C utf8 "Logika in množice.idx"
-          cd "../../2. letnik/Algebra 2"
-          texindy -L slovenian -C utf8 "Algebra 2.idx"
-          cd "../../2. letnik/Analiza 2a"
-          texindy -L slovenian -C utf8 "Analiza 2.idx"
-          cd "../../2. letnik/Splošna topologija"
-          texindy -L slovenian -C utf8 "Splošna topologija.idx"
-          cd "../.."
+          for letnik in *letnik/ ; do
+            cd "$letnik"
+            for predmet in */ ; do
+              if [[ ${predmet:0:1} == "." ]]; then
+                continue
+              fi
+              cd "$predmet"
+              texindy -L slovenian -C utf8 *.idx
+              cd ..
+            done
+            cd ..
+          done
           
       - name: Drugi pdflatex
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
           work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
@@ -113,27 +100,18 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            1. letnik/Algebra 1/Algebra 1.tex
-            1. letnik/Analiza 1/Analiza 1.tex
-            1. letnik/Logika in množice/Logika in množice.tex
-            2. letnik/Algebra 2/Algebra 2.tex
-            2. letnik/Analiza 2a/Analiza 2.tex
-            2. letnik/Splošna topologija/Splošna topologija.tex
+            *letnik/*/*.tex
           work_in_root_file_dir: true
+          glob_root_file: true
           compiler: pdflatex
-          args: -interaction=nonstopmode+
+          args: -interaction=nonstopmode
           
       - name: Shrani pdf datoteke
         uses: actions/upload-artifact@v2
         with:
           name: pdf-files
           path: |
-            1. letnik/Algebra 1/Algebra 1.pdf
-            1. letnik/Analiza 1/Analiza 1.pdf
-            1. letnik/Logika in množice/Logika in množice.pdf
-            2. letnik/Algebra 2/Algebra 2.pdf
-            2. letnik/Analiza 2a/Analiza 2.pdf
-            2. letnik/Splošna topologija/Splošna topologija.pdf
+            *letnik/*/*.pdf
           
   push_pdfs:
     runs-on: ubuntu-latest
