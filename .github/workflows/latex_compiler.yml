@@ -193,6 +193,11 @@ jobs:
     if: always()
     steps:
     
+      - name: Delete artifacts
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: pdf-files
+    
       - name: Fail if compilation failed
         if: ${{ needs.compile_pdf.result == 'failure' }}
         run: exit 1
