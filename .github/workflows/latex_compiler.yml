@@ -123,10 +123,15 @@ jobs:
         tex_file: [
           {path: '1. letnik/Algebra 1', file: 'Algebra 1'},
           {path: '1. letnik/Analiza 1', file: 'Analiza 1'},
-          {path: '1. letnik/Logika in množice', file: 'Logika in množice'},
+          {path: '1. letnik/Logika in mnozice', file: 'Logika in mnozice'},
+          {path: '2. letnik/Afina in projektivna geometrija', file: 'Afina in projektivna geometrija'},
           {path: '2. letnik/Algebra 2', file: 'Algebra 2'},
-          {path: '2. letnik/Analiza 2a', file: 'Analiza 2'},
-          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'}
+          {path: '2. letnik/Algebraicne krivulje', file: 'Algebraicne krivulje'},
+          {path: '2. letnik/Analiza 2a', file: 'Analiza 2a'},
+          {path: '2. letnik/Analiza 2b', file: 'Analiza 2b'},
+          {path: '2. letnik/Diskretna matematika 1', file: 'Diskretna matematika 1'},
+          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'},
+          {path: '2. letnik/Uvod v geometrijsko topologijo', file: 'Uvod v geometrijsko topologijo'}
         ]
         
     steps:
