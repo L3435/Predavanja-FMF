@@ -28,17 +28,6 @@ jobs:
     name: Compile document
     needs: check_file_changes
     if: needs.check_file_changes.outputs.updated_tex_file == 'true'
-        
-    strategy:
-      matrix:
-        tex_file: [
-          {path: '1. letnik/Algebra 1', file: 'Algebra 1'},
-          {path: '1. letnik/Analiza 1', file: 'Analiza 1'},
-          {path: '1. letnik/Logika in množice', file: 'Logika in množice'},
-          {path: '2. letnik/Algebra 2', file: 'Algebra 2'},
-          {path: '2. letnik/Analiza 2a', file: 'Analiza 2'},
-          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'}
-        ]
     
     runs-on: ubuntu-latest
     steps:
@@ -60,66 +49,147 @@ jobs:
               - '${{ matrix.tex_file.path }}/**/*.tex'
             pdf_file:
               - '${{ matrix.tex_file.path }}/**/*.pdf'
-          
+              
       - name: Prvi pdflatex
-        if: steps.filter.outputs.tex_file == 'true'
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
-          working_directory: "${{ matrix.tex_file.path }}"
-          root_file: "${{ matrix.tex_file.file }}.tex"
+          root_file: |
+            1. letnik/Algebra 1/Algebra 1.tex
+            1. letnik/Analiza 1/Analiza 1.tex
+            1. letnik/Logika in množice/Logika in množice.tex
+            2. letnik/Algebra 2/Algebra 2.tex
+            2. letnik/Analiza 2a/Analiza 2.tex
+            2. letnik/Splošna topologija/Splošna topologija.tex
+          work_in_root_file_dir: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
       - name: Bibliografija
-        if: steps.filter.outputs.tex_file == 'true'
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
-          working_directory: "${{ matrix.tex_file.path }}"
-          root_file: "${{ matrix.tex_file.file }}"
+          root_file: |
+            1. letnik/Algebra 1/Algebra 1.bcf
+            1. letnik/Analiza 1/Analiza 1.bcf
+            1. letnik/Logika in množice/Logika in množice.bcf
+            2. letnik/Algebra 2/Algebra 2.bcf
+            2. letnik/Analiza 2a/Analiza 2.bcf
+            2. letnik/Splošna topologija/Splošna topologija.bcf
+          work_in_root_file_dir: true
           compiler: biber
           args: ''
 
       - name: Stvarno kazalo
-        if: steps.filter.outputs.tex_file == 'true'
-        uses: dante-ev/latex-action@latest
-        with:
-          working_directory: "${{ matrix.tex_file.path }}"
-          root_file: "${{ matrix.tex_file.file }}.idx"
-          compiler: texindy
-          args: -L slovenian -C utf8
+        run: |
+          sudo apt install xindy
+          cd "1. letnik/Algebra 1"
+          texindy -L slovenian -C utf8 "Algebra 1.idx"
+          cd "../../1. letnik/Analiza 1"
+          texindy -L slovenian -C utf8 "Analiza 1.idx"
+          cd "../../1. letnik/Logika in množice"
+          texindy -L slovenian -C utf8 "Logika in množice.idx"
+          cd "../../2. letnik/Algebra 2"
+          texindy -L slovenian -C utf8 "Algebra 2.idx"
+          cd "../../2. letnik/Analiza 2a"
+          texindy -L slovenian -C utf8 "Analiza 2.idx"
+          cd "../../2. letnik/Splošna topologija"
+          texindy -L slovenian -C utf8 "Splošna topologija.idx"
+          cd "../.."
           
       - name: Drugi pdflatex
-        if: steps.filter.outputs.tex_file == 'true'
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
-          working_directory: "${{ matrix.tex_file.path }}"
-          root_file: "${{ matrix.tex_file.file }}.tex"
+          root_file: |
+            1. letnik/Algebra 1/Algebra 1.tex
+            1. letnik/Analiza 1/Analiza 1.tex
+            1. letnik/Logika in množice/Logika in množice.tex
+            2. letnik/Algebra 2/Algebra 2.tex
+            2. letnik/Analiza 2a/Analiza 2.tex
+            2. letnik/Splošna topologija/Splošna topologija.tex
+          work_in_root_file_dir: true
           compiler: pdflatex
           args: -interaction=nonstopmode
           
       - name: Tretji pdflatex
-        if: steps.filter.outputs.tex_file == 'true'
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
-          working_directory: "${{ matrix.tex_file.path }}"
-          root_file: "${{ matrix.tex_file.file }}.tex"
+          root_file: |
+            1. letnik/Algebra 1/Algebra 1.tex
+            1. letnik/Analiza 1/Analiza 1.tex
+            1. letnik/Logika in množice/Logika in množice.tex
+            2. letnik/Algebra 2/Algebra 2.tex
+            2. letnik/Analiza 2a/Analiza 2.tex
+            2. letnik/Splošna topologija/Splošna topologija.tex
+          work_in_root_file_dir: true
           compiler: pdflatex
-          args: -interaction=nonstopmode
+          args: -interaction=nonstopmode+
           
+      - name: Shrani pdf datoteke
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdf-files
+          path: |
+            1. letnik/Algebra 1/Algebra 1.pdf
+            1. letnik/Analiza 1/Analiza 1.pdf
+            1. letnik/Logika in množice/Logika in množice.pdf
+            2. letnik/Algebra 2/Algebra 2.pdf
+            2. letnik/Analiza 2a/Analiza 2.pdf
+            2. letnik/Splošna topologija/Splošna topologija.pdf
+          
+  push_pdfs:
+    runs-on: ubuntu-latest
+    needs: compile_pdf
+  
+    strategy:
+      matrix:
+        tex_file: [
+          {path: '1. letnik/Algebra 1', file: 'Algebra 1'},
+          {path: '1. letnik/Analiza 1', file: 'Analiza 1'},
+          {path: '1. letnik/Logika in množice', file: 'Logika in množice'},
+          {path: '2. letnik/Algebra 2', file: 'Algebra 2'},
+          {path: '2. letnik/Analiza 2a', file: 'Analiza 2'},
+          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'}
+        ]
+        
+    steps:
+    
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.COMPILING_TOKEN }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          
+      - name: Check if pdf required
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          working-directory: ${{ matrix.tex_file.path }}
+          filters: |
+            tex_file:
+              - '${{ matrix.tex_file.path }}/**/*.tex'
+            pdf_file:
+              - '${{ matrix.tex_file.path }}/**/*.pdf'
+              
+      - name: Download pdf
+        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
+        uses: actions/download-artifact@v2
+        with:
+          name: pdf-files
+
       - name: Push pdf file
         if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
-        working-directory: "${{ matrix.tex_file.path }}"
+        working-directory: ${{ matrix.tex_file.path }}
         run: |
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
-            git add ${{ matrix.tex_file.file }}.pdf
+            git add '${{ matrix.tex_file.file }}.pdf'
             git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
             git push origin ${{ github.event.pull_request.head.ref }}
   
   finish_job:
     name: Finish
     runs-on: ubuntu-latest
-    needs: compile_pdf
+    needs: push_pdfs
     if: always()
     steps:
     
