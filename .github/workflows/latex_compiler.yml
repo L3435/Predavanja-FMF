@@ -102,9 +102,9 @@ jobs:
         with:
           filters: |
             pdf:
-              -  *letnik/*/*.pdf
+              -  "*letnik/*/*.pdf"
             tex:
-              -  *letnik/*/*.tex
+              -  "*letnik/*/*.tex"
           list-files: shell
           
       - name: Add pdfs
