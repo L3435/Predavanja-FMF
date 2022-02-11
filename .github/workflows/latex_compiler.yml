@@ -107,17 +107,3 @@ jobs:
       - name: Push pdf files
         run: |
             git push origin ${{ github.event.pull_request.head.ref }}
-  
-  finish_job:
-    name: Finish
-    runs-on: ubuntu-latest
-    needs: compile_pdf
-    if: always()
-    steps:
-    
-      - name: Fail if compilation failed
-        if: ${{ needs.compile_pdf.result == 'failure' }}
-        run: exit 1
-            
-      - name: Finish
-        run: echo "Action complete"
