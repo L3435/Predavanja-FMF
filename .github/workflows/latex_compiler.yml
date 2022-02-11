@@ -84,32 +84,28 @@ jobs:
           
       - name: Add pdfs
         run: |
-          echo ${{ steps.filter.outputs.tex_files }}
-          for letnik in *letnik/ ; do
-            cd "$letnik"
-            for predmet in */ ; do
-              if [[ ${predmet:0:1} == "." ]]; then
-                continue
-              fi
-              cd "$predmet"
-              echo "$letnik$predmet${predmet::-1}.tex"
-              if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
-                echo Spremenjen tex
-                if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
-                  echo pdf ni posodobljen
-                  git add "${predmet::-1}".pdf
-                  git commit -m "Dodan pdf - ${predmet::-1}"
+            git config --global user.name "Luka Horjak"
+            git config --global user.email "luka1.horjak@gmail.com"
+            for letnik in *letnik/ ; do
+              cd "$letnik"
+              for predmet in */ ; do
+                if [[ ${predmet:0:1} == "." ]]; then
+                  continue
                 fi
-              fi
+                cd "$predmet"
+                if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
+                  if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
+                    git add "${predmet::-1}".pdf
+                    git commit -m "Dodan pdf - ${predmet::-1}"
+                  fi
+                fi
+                cd ..
+              done
               cd ..
             done
-            cd ..
-          done
 
       - name: Push pdf files
         run: |
-            git config --global user.name "Luka Horjak"
-            git config --global user.email "luka1.horjak@gmail.com"
             git push origin ${{ github.event.pull_request.head.ref }}
   
   finish_job:
