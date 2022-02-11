@@ -1,34 +1,9 @@
 name: Build LaTeX document
 on: pull_request_target
 jobs:
-
-  check_file_changes:
-    name: Preveri spremembe datotek
-    runs-on: ubuntu-latest
-    outputs:
-      updated_tex_file: ${{ steps.changes.outputs.tex_file }}
-    steps:
-    
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.COMPILING_TOKEN }}
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-          
-      - name: Create filter
-        uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
-          filters: |
-            tex_file:
-              - '**.tex'
     
   compile_pdf:
     name: Compile document
-    needs: check_file_changes
-    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' }}
     
     runs-on: ubuntu-latest
     steps:
@@ -39,17 +14,6 @@ jobs:
           token: ${{ secrets.COMPILING_TOKEN }}
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
-          
-      - name: Check if compiling is needed
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          working-directory: ${{ matrix.tex_file.path }}
-          filters: |
-            tex_file:
-              - '${{ matrix.tex_file.path }}/**/*.tex'
-            pdf_file:
-              - '${{ matrix.tex_file.path }}/**/*.pdf'
               
       - name: Prvi pdflatex
         uses: xu-cheng/latex-action@v2
@@ -106,85 +70,40 @@ jobs:
           glob_root_file: true
           compiler: pdflatex
           args: -interaction=nonstopmode
-          
-      - name: Shrani pdf datoteke
-        uses: actions/upload-artifact@v2
-        with:
-          name: pdf-files
-          path: |
-            *letnik/*/*.pdf
-          
-  push_pdfs:
-    runs-on: ubuntu-latest
-    needs: compile_pdf
-  
-    strategy:
-      matrix:
-        tex_file: [
-          {path: '1. letnik/Algebra 1', file: 'Algebra 1'},
-          {path: '1. letnik/Analiza 1', file: 'Analiza 1'},
-          {path: '1. letnik/Logika in mnozice', file: 'Logika in mnozice'},
-          {path: '2. letnik/Afina in projektivna geometrija', file: 'Afina in projektivna geometrija'},
-          {path: '2. letnik/Algebra 2', file: 'Algebra 2'},
-          {path: '2. letnik/Algebraicne krivulje', file: 'Algebraicne krivulje'},
-          {path: '2. letnik/Analiza 2a', file: 'Analiza 2a'},
-          {path: '2. letnik/Analiza 2b', file: 'Analiza 2b'},
-          {path: '2. letnik/Diskretna matematika 1', file: 'Diskretna matematika 1'},
-          {path: '2. letnik/Splošna topologija', file: 'Splošna topologija'},
-          {path: '2. letnik/Uvod v geometrijsko topologijo', file: 'Uvod v geometrijsko topologijo'}
-        ]
-        
-    steps:
-    
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.COMPILING_TOKEN }}
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-          
-      - name: Check if pdf required
+            
+      - name: Create filters
         uses: dorny/paths-filter@v2
         id: filter
         with:
-          working-directory: ${{ matrix.tex_file.path }}
           filters: |
-            tex_file:
-              - '${{ matrix.tex_file.path }}/**/*.tex'
-            pdf_file:
-              - '${{ matrix.tex_file.path }}/**/*.pdf'
-              
-      - name: Download pdf
-        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
-        uses: actions/download-artifact@v2
-        with:
-          name: pdf-files
-
-      - name: Push pdf file
-        if: steps.filter.outputs.tex_file == 'true' && steps.filter.outputs.pdf_file == 'false'
-        working-directory: ${{ matrix.tex_file.path }}
+            pdf:
+              -  "*letnik/*/*.pdf"
+            tex:
+              -  "*letnik/*/*.tex"
+          list-files: shell
+          
+      - name: Add pdfs
         run: |
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
-            git add '${{ matrix.tex_file.file }}.pdf'
-            git commit -m "Dodan pdf - ${{ matrix.tex_file.file }}"
+            for letnik in *letnik/ ; do
+              cd "$letnik"
+              for predmet in */ ; do
+                if [[ ${predmet:0:1} == "." ]]; then
+                  continue
+                fi
+                cd "$predmet"
+                if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
+                  if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
+                    git add "${predmet::-1}".pdf
+                    git commit -m "Dodan pdf - ${predmet::-1}"
+                  fi
+                fi
+                cd ..
+              done
+              cd ..
+            done
+
+      - name: Push pdf files
+        run: |
             git push origin ${{ github.event.pull_request.head.ref }}
-  
-  finish_job:
-    name: Finish
-    runs-on: ubuntu-latest
-    needs: push_pdfs
-    if: always()
-    steps:
-    
-      - name: Delete artifacts
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: pdf-files
-    
-      - name: Fail if compilation failed
-        if: ${{ needs.compile_pdf.result == 'failure' }}
-        run: exit 1
-            
-      - name: Finish
-        run: echo "Action complete"
