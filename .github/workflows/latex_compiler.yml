@@ -110,21 +110,20 @@ jobs:
       - name: Add pdfs
         run: |
           for letnik in *letnik/ ; do
-            cd "$letnik"
             for predmet in */ ; do
               if [[ ${predmet:0:1} == "." ]]; then
                 continue
               fi
-              cd "$predmet"
-              if [[ ${{ steps.filter.outputs.tex }} =~ (^|[[:space:]])"$predmet".tex($|[[:space:]]) ]] ; then
-                if [[ !${{ steps.filter.outputs.pdf }} =~ (^|[[:space:]])"$predmet".pdf($|[[:space:]]) ]] ; then
-                  git add "$predmet".pdf
+              echo "$letnik/$predmet".tex
+              if [[ ${{ steps.filter.outputs.tex }} =~ (^|[[:space:]])"$letnik/$predmet".tex($|[[:space:]]) ]] ; then
+                echo Spremenjen tex
+                if [[ !${{ steps.filter.outputs.pdf }} =~ (^|[[:space:]])"$letnik/$predmet".pdf($|[[:space:]]) ]] ; then
+                  echo pdf ni posodobljen
+                  git add "$letnik/$predmet".pdf
                   git commit -m "Dodan pdf - $predmet"
                 fi
               fi
-              cd ..
             done
-            cd ..
           done
 
       - name: Push pdf files
