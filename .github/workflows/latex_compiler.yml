@@ -109,6 +109,7 @@ jobs:
           
       - name: Add pdfs
         run: |
+          echo ${{ steps.filter.outputs.tex_files }}
           for letnik in *letnik/ ; do
             cd "$letnik"
             for predmet in */ ; do
@@ -117,9 +118,9 @@ jobs:
               fi
               cd "$predmet"
               echo "$letnik$predmet${predmet::-1}.tex"
-              if [[ ${{ steps.filter.outputs.tex }} =~ (^|[[:space:]])"$letnik$predmet${predmet::-1}.tex"($|[[:space:]]) ]] ; then
+              if [[ ${{ steps.filter.outputs.tex_files }} =~ (^|[[:space:]])"$letnik$predmet${predmet::-1}.tex"($|[[:space:]]) ]] ; then
                 echo Spremenjen tex
-                if [[ !${{ steps.filter.outputs.pdf }} =~ (^|[[:space:]])"$letnik$predmet${predmet::-1}.pdf"($|[[:space:]]) ]] ; then
+                if [[ !${{ steps.filter.outputs.pdf_files }} =~ (^|[[:space:]])"$letnik$predmet${predmet::-1}.pdf"($|[[:space:]]) ]] ; then
                   echo pdf ni posodobljen
                   git add "${predmet::-1}".pdf
                   git commit -m "Dodan pdf - ${predmet::-1}"
