@@ -1,34 +1,9 @@
 name: Build LaTeX document
 on: pull_request_target
 jobs:
-
-  check_file_changes:
-    name: Preveri spremembe datotek
-    runs-on: ubuntu-latest
-    outputs:
-      updated_tex_file: ${{ steps.changes.outputs.tex_file }}
-    steps:
-    
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.COMPILING_TOKEN }}
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-          
-      - name: Create filter
-        uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
-          filters: |
-            tex_file:
-              - '**.tex'
     
   compile_pdf:
     name: Compile document
-    needs: check_file_changes
-    if: ${{ needs.check_file_changes.outputs.updated_tex_file == 'true' }}
     
     runs-on: ubuntu-latest
     steps:
@@ -118,9 +93,9 @@ jobs:
               fi
               cd "$predmet"
               echo "$letnik$predmet${predmet::-1}.tex"
-              if [[ ${{ steps.filter.outputs.tex_files }} == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
+              if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
                 echo Spremenjen tex
-                if [[ !${{ steps.filter.outputs.pdf_files }} == *"$letnik$predmet${predmet::-1}.pdf"* ]] ; then
+                if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
                   echo pdf ni posodobljen
                   git add "${predmet::-1}".pdf
                   git commit -m "Dodan pdf - ${predmet::-1}"
