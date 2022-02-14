@@ -1,0 +1,95 @@
+\section{Kombinatorika}
+
+\subsection{Osnovna načela kombinatorike}
+
+\datum{2022-2-14}
+
+\begin{trditev}[Načelo produkta]
+\index{Načelo produkta, vsote, enakosti}
+Naj bodo $A_1, \dots, A_n$ končne množice. Tedaj je
+\[
+\abs{\prod_{i=1}^n A_i} = \prod_{i=1}^n \abs{A_i}.
+\]
+\end{trditev}
+
+\begin{trditev}[Načelo vsote]
+Naj bodo $A_1, \dots, A_n$ končne, paroma disjunktne množice. Tedaj
+je
+\[
+\abs{\bigcup_{i=1}^n A_i} = \sum_{i=1}^n \abs{A_i}.
+\]
+\end{trditev}
+
+\begin{trditev}[Načelo enakosti]
+Če obstaja bijekcija med končnima množicama $A$ in $B$, je
+\[
+\abs{A} = \abs{B}.
+\]
+\end{trditev}
+
+\begin{definicija}
+Označimo
+\[
+[n] = \setb{i \in \N}{i \leq n}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Za \emph{Eulerjev fi}\index{Eulerjev fi}
+\[
+\varphi(n) = \abs{\setb{i \in [n]}{(i,n) = 1}}
+\]
+velja rekurzivna formula
+\[
+\sum_{d \mid n} \varphi(d) = n.
+\]
+\end{trditev}
+
+\begin{proof}
+Na dva načina izračunamo moč množice
+\[
+\setb{\frac{i}{n}}{i \in [n]}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Dirichletovo načelo]
+\index{Izrek!Dirichletovo načelo}
+Če je $n > m$, potem ne obstaja injektivna preslikava
+$f \colon [n] \to [m]$.
+\end{izrek}
+
+\obvs
+
+\begin{trditev}[Načelo dvojnega preštevanja]
+\index{Načelo dvojnega preštevanja}
+Če dva izraza predstavljata število elementov iste množice, sta
+enaka.
+\end{trditev}
+
+\begin{definicija}
+Definiramo padajočo in naraščajočo potenco
+\[
+k^{\underline{n}} = \prod_{i=0}^{n-1} (k - i)
+\quad \text{in} \quad
+k^{\overline{n}} = \prod_{i=0}^{n-1} (k + i).
+\]
+\end{definicija}
+
+\begin{trditev}
+Za množico $N$ z $n$ elementi in množico $K$ s $k$ elementov velja
+
+\begin{enumerate}[i)]
+\item $\abs{K^N} = k^n$
+\item $\abs{\setb{f \colon N \to K}{\text{$f$ je injektivna}}} =
+k^{\underline{n}}$
+\item Število bijekcij med $N$ in $K$ je $n!$, če je $n = k$, sicer
+pa $0$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Če imata končni množici enako moč, je bijektivnost preslikave med
+njima ekvivalentna tako injektivnosti kot surjektivnosti.
+\end{opomba}
