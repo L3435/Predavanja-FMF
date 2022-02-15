@@ -1,0 +1,69 @@
+\section{Kvocientni prostori}
+
+\subsection{Kvocientna topologija}
+
+\datum{2022-2-15}
+
+\begin{definicija}
+Naj bo $X$ množica. Relacija $\sim$ na $X$ je
+\emph{ekvivalenčna}\index{Ekvivalenčna relacija}, če je refleksivna,
+simetrična in tranzitivna.
+\end{definicija}
+
+\begin{definicija}
+\emph{Kvocientna množica}\index{Kvocientna množica} je množica vseh
+ekvivalenčnih razredov relacije $\sim$, oziroma
+\[
+\kvoc{X}{\sim} = \setb{[x]}{x \in X}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Kvocientna projekcija}\index{Kvocientna projekcija} je
+preslikava $q \colon x \mapsto [x]$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor z ekvivalenčno relacijo $\sim$.
+\emph{Kvocientna topologija}\index{Topologija!Kvocientna}
+$\tau_\sim$ je najmočnejša topologija na $\kvoc{X}{\sim}$, za
+katero je kvocientna projekcija zvezna, oziroma
+\[
+\tau_\sim = \setb{V \subseteq \kvoc{X}{\sim}}{q^{-1}(V) \in \tau}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Odprtost in zaprtost sta invariantni za $q^{-1}$.
+\end{opomba}
+
+\begin{opomba}
+Kvocientna projekcija ni nujni odprta/zaprta.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor in $q$ kvocientna projekcija. Za
+množico $A$ definiramo \emph{nasičenje}\index{Nasičenje} kot
+\[
+q^{-1}(q(A)) \subseteq X.
+\]
+\end{definicija}
+
+\begin{trditev}
+Pri zgornjih oznakah je $q(A)$ odprta\footnote{Enako velja za
+zaprtost.} natanko tedaj, ko je njeno nasičenje odprto. $q$ je
+odprta natanko tedaj, ko je nasičenje vsake odprte množice odprto.
+\end{trditev}
+
+\obvs
+
+%\begin{figure}[H]
+%\[
+%\begin{tikzcd}[column sep=large, row sep=large]
+%X \arrow[r, "f"] \arrow[d, "q"'] & Y \\
+%\kvoc{X}{\sim} \arrow[ur, dashrightarrow, "\approx"'] &
+%\end{tikzcd}
+%\]
+%\caption{To je bilo na tabli, nekoč v prihodnosti bo najbrž
+%pomembno.}
+%\end{figure}
