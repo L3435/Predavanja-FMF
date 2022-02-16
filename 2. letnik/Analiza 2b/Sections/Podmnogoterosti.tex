@@ -79,37 +79,190 @@ ranga $n$. Potem za vsak $t_0 \in D$ obstaja njegova okolica $V$,
 da je $\Phi(V)$ podmnogoterost dimenzije $n$ v $\R^{n+m}$.
 \end{trditev}
 
-%\begin{proof}
-%Obstaja $n \times n$ poddeterminanta $D\Phi(t_0)$, različna od $0$.
-%Sledi, da lahko s permutacijo koordinat zapišemo
-%$\Phi = (\Phi_1, \Phi_2)$, kjer je $\Phi_1 \colon V \to \Phi(V)$
-%difeomorfizem. Sedaj si oglejmo preslikavo
-%\[
-%(x_1, \dots, x_n) \in \Phi(V) \mapsto \Phi \circ \Phi_1^{-1}.
-%\]
-%Opazimo, da za $\varphi = \Phi_2 \circ \Phi_1^{-1}$ velja
-%\[
-%\Phi(V) =
-%\left(\Phi \circ \Phi_1^{-1}\right)(x_1, \dots, x_n) =
-%\setb{x_1, \dots, x_n, \varphi\left(x_1, \dots, x_n\right)}
-%{(x_1, \dots, x_n) \in \Phi(V)}. \qedhere
-%\]
-%\end{proof}
-%
-%\begin{trditev}
-%Naj bo $M \subseteq \R^{n+m}$ podmnogoterost dimenzije $n$. Potem
-%za vsako točko $a \in M$ obstaja njena okolica
-%$U \subseteq \R^{n+m}$ in difeomorfizem $\Phi \colon U \to V$, za
-%katera je
-%\[
-%\Phi(U \cap M) = V \cap \left(\R^n \times \set{0}^m\right).
-%\]
-%\end{trditev}
-%
-%\begin{proof}
-%Naj bo
-%\[
-%\Phi(x_1, \dots, x_{n+m}) =
-%(x_1, \dots, x_{n+1} - \varphi_1(x_1, \dots), \dots).
-%\]
-%\end{proof}
+\begin{proof}
+Obstaja $n \times n$ poddeterminanta $D\Phi(t_0)$, različna od $0$.
+Sledi, da lahko s permutacijo koordinat zapišemo
+$\Phi = (\Phi_1, \Phi_2)$, kjer je $\Phi_1 \colon V \to \Phi(V)$
+difeomorfizem. Sedaj si oglejmo preslikavo
+\[
+(x_1, \dots, x_n) \in \Phi(V) \mapsto \Phi \circ \Phi_1^{-1}.
+\]
+Opazimo, da za $\varphi = \Phi_2 \circ \Phi_1^{-1}$ velja
+\[
+\Phi(V) =
+\left(\Phi \circ \Phi_1^{-1}\right)(x_1, \dots, x_n) =
+\setb{x_1, \dots, x_n, \varphi\left(x_1, \dots, x_n\right)}
+{(x_1, \dots, x_n) \in \Phi(V)}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $M \subseteq \R^{n+m}$ podmnogoterost dimenzije $n$. Potem
+za vsako točko $a \in M$ obstaja njena okolica
+$U \subseteq \R^{n+m}$ in difeomorfizem $\Phi \colon U \to V$, za
+katera je\footnote{$M$ lahko ">izravnamo"<.}
+\[
+\Phi(U \cap M) = V \cap \left(\R^n \times \set{0}^m\right).
+\]
+\end{trditev}
+
+\begin{proof}
+Lokalno je $M$ graf nad enem izmed $n$ dimenzionalnih podprostorov.
+Za
+\[
+\Phi(x,y) = (x, y - \varphi(x))
+\]
+je tako
+\[
+\Phi^{-1}(x,z) = (x, z + \varphi(x)),
+\]
+ki je diferennciabilna. Sledi, da je
+\[
+\Phi(M \cap U) = D \times \set{0}^m. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Tangentni prostor}
+
+\begin{definicija}
+Naj bo $M \subseteq \R^n$ podmnogoterost in $a \in M$.
+\emph{Tangentni prostor}\index{Podmnogoterost!Tangentni prostor} na
+$M$ v točki $a$ je množica
+\[
+T_aM = \setb{\dot{\gamma}(t_0)}
+{\gamma \colon (\alpha, \beta) \to M \land
+\gamma \in \mathcal{C}^1
+\land t_0 \in (\alpha, \beta) \land
+\gamma(t_0) = a}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $M \subseteq \R^{n+m}$ $n$-dimenzionalna podmnogoterost in
+$a \in M$. Potem je $T_aM$ $n$-dimenzionalni vektorski podprostor
+prostora $\R^{n+m}$.
+\end{trditev}
+
+\begin{proof}
+Obstaja okolica $U$ točke $a$, za katero je $M \cap U$ graf nad
+enim izmed $n$-dimen\-zionalnih koordinatnih podprostorov. Vsaka
+krivulja na $M \cap U$ je oblike
+\[
+t \mapsto (x(t), \varphi(x(t))).
+\]
+Naj bo pri tem $x(t_0) = x_0$ in $a = (x_0, \varphi(x_0))$.
+
+Odvod zgornje preslikave je enak
+\[
+\begin{bmatrix}
+\dot{x}(t) \\
+D\varphi(x(t)) \cdot \dot{x}(t)
+\end{bmatrix},
+\]
+kar je v $a$ enako
+\[
+\begin{bmatrix}
+I \\
+D\varphi(x_0)
+\end{bmatrix}
+\cdot \dot{x}(t_0).
+\]
+Ker pa je $\dot{x}(t_0)$ poljuben\footnote{Vzamemo
+$t \mapsto x_0 + t \cdot v$.} vektor v $\R^n$, je tangentni prostor
+kar
+\[
+\Im
+\begin{bmatrix}
+I \\
+D\varphi(x_0)
+\end{bmatrix}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Običajno si tangentni prostor predstavljamo kot afin podprostor
+$a + T_aM$.
+\end{opomba}
+
+\begin{posledica}
+Naj bo $M \subseteq \R^{n+m}$ podmnogoterost, v okolici $U$ točke
+$a \in M$ podana z definicijskimi funkcijami $F_i$. Tedaj je
+\[
+T_aM = \ker(DF)(a).
+\]
+\end{posledica}
+
+\begin{proof}
+Lokalno je $M \cap U$ graf oblike
+\[
+M \cap U = \setb{(x, \varphi(x))}
+{x \in D \subseteq \R^n \land \varphi \colon D \to \R^m}.
+\]
+Vemo, da je
+\[
+T_aM = \Im
+\begin{bmatrix}
+I \\
+D\varphi(x_0)
+\end{bmatrix}
+\]
+in
+\[
+F(x, \varphi(x)) = 0
+\]
+na $D$. Sedaj z odvajanjem dobimo
+\[
+F_x \cdot I + F_y \cdot D\varphi = 0,
+\]
+oziroma
+\[
+(DF)(a) \cdot
+\begin{bmatrix}
+I \\
+D\varphi
+\end{bmatrix},
+\]
+torej
+\[
+T_aM \leq \ker(DF)(a).
+\]
+Ker sta dimenziji enaki, sta to enaka podprostora.
+\end{proof}
+
+\begin{opomba}
+Gradienti definicijskih funkcij so pravokotni na $T_aM$.
+\end{opomba}
+
+\begin{posledica}
+Naj bo $\Phi \colon D \to \R^{n+m}$, kjer je $D \subseteq \R^n$,
+$\mathcal{C}^1$ preslikava ranga $n$. Naj bo $t_0 \in D$ in
+$M \subseteq \R^{n+m}$ podmnogoterost, za katera je
+\[
+M \cap U = \Phi(V),
+\]
+kjer je $V$ okolica $t_0$ in $U$ okolica $\Phi(t_0)$. Tedaj je
+\[
+T_{\Phi(t_0)}M = \Im(D\Phi)(t_0).
+\]
+\end{posledica}
+
+\begin{proof}
+Lokalno v oklici $a = \Phi(t_0)$ je $M \cap U = F^{-1}(\set{0})$,
+kjer je $\rang(DF)(a) = m$. Velja, da je
+\[
+T_aM = \ker(DF)(a)
+\quad \text{in} \quad
+F(\Phi(t)) = 0.
+\]
+Sledi, da je
+\[
+DF(a) \cdot D\Phi(t_0) = 0,
+\]
+oziroma
+\[
+\Im(D\Phi)(t_0) \leq \ker(DF)(a).
+\]
+S primerjanjem dimenzij vidimo, da sta podprostora enaka.
+\end{proof}
