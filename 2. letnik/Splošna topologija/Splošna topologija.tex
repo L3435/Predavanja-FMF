@@ -1,0 +1,33 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{../../sty/FMF}
+
+\newcommand{\naslov}{Splošna topologija}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
+\renewcommand{\headheight}{20pt}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+% SNOV
+% ------------
+\include{Sections/Uvod}
+\include{Sections/Prostori in preslikave}
+\include{Sections/Topološke lastnosti}
+\include{Sections/Topologije na prostorih preslikav}
+\include{Sections/Dodatek}
+% ------------
+
+\newpage
+\printbibliography
+\addcontentsline{toc}{section}{Literatura}
+
+\newpage
+\printindex
+
+\end{document}

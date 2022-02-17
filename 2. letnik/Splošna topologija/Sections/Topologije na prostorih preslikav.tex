@@ -1,0 +1,523 @@
+\section{Topologije na prostorih preslikav}
+
+\epigraph{">Kot nek quidditch."<}{-- prof.~dr.~Petar Pavešić}
+
+\datum{2021-12-21}
+
+\subsection{Prostori preslikav}
+
+\begin{definicija}
+Za $A \subseteq X$ in $U \subseteq Y$ označimo
+\[
+\skl{A,U} = \setb{f \in \mathcal{C}(X,Y)}{f(A) \subseteq U}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\tau_p$ topologija na $\mathcal{C}(X,Y)$, ki jo definira
+predbaza
+\[
+\setb{\skl{\set{x},U}}{x \in X \land U \in \tau_Y}.
+\]
+Tedaj je $f$ limita zaporedja $f_i$ v $\tau_p$ natanko tedaj, ko
+$f_i$ po točkah konvergirajo k $f$.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Topologiji $\tau_p$ pravimo
+\emph{topologija konvergence po točkah}.
+\end{opomba}
+
+\begin{definicija}
+Topologiji, ki jo generira predbaza
+\[
+\setb{\skl{K,U}}
+{K \subseteq X \land \text{$K$ je kompakt} \land U \in \tau_Y}
+\]
+pravimo
+\emph{kompaktno-odprta topologija}\index{Topologija!Kompaktno-odprta}.
+Prostor zveznih preslikav s kompaktno-odprto topologijo označimo z
+$\widehat{\mathcal{C}}(X,Y)$.
+\end{definicija}
+
+\begin{trditev}
+Če je $Y$ metričen, lahko za bazo kompaktno-odprte topologije na
+$\mathcal{C}(X,Y)$ vzamemo
+\[
+\setb{\skl{f,K,\varepsilon}}
+{f \in \mathcal{C}(X,Y) \land K \subseteq X
+\land \text{$K$ je kompakten} \land \varepsilon > 0},
+\]
+kjer je
+\[
+\skl{f,K,\varepsilon} =
+\setb{g \in \mathcal{C}(X,Y)}
+{\forall x \in K \colon d(f(x),g(x)) < \varepsilon}.
+\]
+\end{trditev}
+
+\begin{proof}
+Najprej dokažimo, da je zgornja množica baza. Očitno je pokritje.
+Naj bo
+$g \in
+\skl{f_1,K_1,\varepsilon_1} \cap \skl{f_2,K_2,\varepsilon_2}$.
+dovolj je pokazati, da ima $g$ okolico, vsebovano v tem preseku.
+Definiramo kompakt $K = K_1 \cup K_2$ in
+\[
+\varepsilon =
+\min \set{
+\varepsilon_1 - \max_{x \in K_1} \set{d(f_1(x), g(x))},
+\varepsilon_2 - \max_{x \in K_2} \set{d(f_2(x), g(x))}
+}.
+\]
+Ni težko videti, da je $\skl{g,K,\varepsilon}$ vsebovana v preseku.
+
+Opazimo, da je
+$\skl{x \mapsto y_0,K,\varepsilon} \subseteq \skl{K,U}$, zato je
+topologija iz zgornje baze kvečjemu močnejša od kompaktno-odprte.
+
+Opazimo, da je
+\[
+U_c = \setb{x \in K}{d(f(x),f(c)) < \frac{\varepsilon}{2}}
+\]
+odprto pokritje $K$, zato ima končno podpokritje. Sledi, da je
+\[
+\bigcap_{n=1}^N \skl{
+\overline{U}_{c_n},
+K\left(f(c_n), \frac{\varepsilon}{2}\right)
+}
+\]
+odprta okolica $f$ v kompaktno-odprti topologiji, ki pa je po
+trikotniški neenakosti vsebovana v $\skl{f,K,\varepsilon}$.
+\end{proof}
+
+\begin{opomba}
+Če je $X$ kompakten, topologiji iz zgornje baze pravimo
+\emph{topologija enakomerne konvergence}. Drugače ji pravimo
+\emph{topologija enakomerne konvergence na kompaktih}.
+\end{opomba}
+
+\begin{trditev}
+Preslikava $i \colon Y \to \widehat{\mathcal{C}}(X,Y)$, ki vsakemu
+$y \in Y$ priredi preslikavo $x \mapsto y$, je vložitev. Če je $Y$
+Hausdorffov, je vložitev zaprta.
+\end{trditev}
+
+\begin{proof}
+Za poljubno predbazično okolico velja $\skl{K,U} \cap i(Y) = i(U)$,
+zato je $i$ res bijekcija med topologijama.
+
+Naj bo sedaj $Y$ Hausdorffov in $f$ nekonstantna. Sledi, da
+obstajata $x_1$ in $x_2$ z različnima slikama, ki ju lahko ločimo z
+$U_1$ in $U_2$. Sledi, da je
+$\skl{\set{x_1},U_1} \cap \skl{\set{x_2},U_2}$ odprta okolica $U$,
+ki ne vsebuje konstantnih preslikav, zato je komplement $i(Y)$
+odprt.
+\end{proof}
+
+\begin{trditev}
+Prostor $\widehat{\mathcal{C}}(X,Y)$ je Hausdorffov natanko tedaj,
+ko je $Y$ Hausdorffov, in regularen natanko tedaj, ko je $Y$
+regularen.
+\end{trditev}
+
+\begin{proof}
+Če je $\widehat{\mathcal{C}}(X,Y)$ Hausdorffov, pa je po prejšnji
+trditvi tudi $Y$ Hausdorffov. Podoben razmislek velja za
+regularnost.
+
+Če je $Y$ Hausdorffov in $f, g \in \mathcal{C}(X,Y)$ funkciji, za
+kateri je $f(x) \ne g(x)$, sta $\skl{\set{x},U}$ in
+$\skl{\set{x},V}$ okolici, ki ju ostro ločita, pri čemer sta $U$ in
+$V$ množici, ki ostro ločita $f(x)$ in $g(x)$.
+
+Naj bo $f \in \mathcal{C}(X,Y)$ in $\skl{K,V}$ njena okolica.
+Dovolj je pokazati, da obstaja taka odprta množica $U$, da je
+\[
+f(K) \subseteq U \subseteq \overline{U} \subseteq V,
+\]
+saj bo tedaj
+$f \in \skl{K,U} \subseteq \overline{\skl{K,U}} \subseteq
+\skl{K,\overline{U}} \subseteq \skl{K,V}$.\footnote{Druga inkluzija
+velja, saj za $f \not \in \skl{K, \overline{U}}$ obstaja $x \in K$,
+za katerega je $f(x) \not \in \overline{U}$. Sledi, da obstaja
+okolica $V$ točke $f(x)$, disjunktna $\overline{U}$, in je
+$\skl{\set{x},V}$ okolica $f$, disjunktna $\skl{K,U}$.}
+Zaradi regularnosti lahko vsako točko $y \in f(K)$ ostro ločimo od
+$V^{\mathsf{c}}$. Vse množice, ki ločijo točko od $V^{\mathsf{c}}$,
+tvorijo pokritje $f(K)$. Ker je $K$ kompakt, je tudi $f(K)$
+kompakt, zato obstaja končno podpokritje. Ni težko videti, da
+njegova unija ustreza pogoju za množico $U$.
+\end{proof}
+
+\newpage
+
+\subsection{Preslikave na normalnih prostorih}
+
+\datum{2022-1-4}
+
+\begin{lema}[Urison]\index{Lema!Urison}
+Prostor $X$ je $T_4$ natanko tedaj, ko za vsak par zaprtih
+disjunktnih množic $A, B \subseteq X$ obstaja preslikava
+$f \colon X \to [0,1]$, za katero je $f(A)=0$ in $f(B)=1$.
+\end{lema}
+
+\begin{proof}
+Če taka preslikava obstaja, prasliki intervalov
+$\left[0,\frac{1}{2}\right)$ in $\left(\frac{1}{2},1\right]$ ločita
+$A$ in $B$. Naj bo sedaj prostor $T_4$.
+
+$T_4$ je ekvivalentna temu, da za vsako zaprto množico $A$ in
+odprto množico $U$ obstaja odprta množica $V$, za katero je
+$A \subseteq V \subseteq \overline{V} \subseteq U$. Induktivno
+lahko izberemo take množice $U_{\frac{n}{2^m}}$, da je
+$U_a \subseteq U_b \iff a \leq b$ ter $A \subset U_x \subseteq B$.
+Sedaj lahko vrednosti $f$ preprosto določimo z bisekcijo, oziroma
+\[
+f(x) = \begin{cases}
+\inf \setb{r}{x \in U_r}, & x \not\in B \\
+1                         & x \in B.
+\end{cases}
+\]
+Ni težko preveriti, da je $f$ res zvezna -- pri
+$\frac{1}{2^n} < \varepsilon$ za okolico $x$ vzamemo ustrezen pas
+">širine"< $\frac{1}{2^n}$.
+\end{proof}
+
+\begin{opomba}
+Če je $X$ metričnen, je primer Urisonove funkcije
+\[
+f(x) = \frac{d(x,A)}{d(x,A) + d(x,B)}.
+\]
+\end{opomba}
+
+\begin{posledica}
+Če je $X$ normalen, realne funkcije ločijo točke.
+\end{posledica}
+
+\begin{posledica}
+V normalnem 2-števnem prostoru $X$ obstaja števna družina funkcij v
+$\mathcal{C}(X,[0,1])$, ki loči točke $X$.
+\end{posledica}
+
+\begin{izrek}[Urison]\index{Izrek!Urison}
+Vsak normalen 2-števen prostor je metrizabilen.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\setb{f_n \colon X \to [0,1]}{n \in \N}$ števna družina
+Urisonovih funkcij, ki loči točke $X$. Naj bo\footnote{$l^2$
+označuje kvadratno sumabilna zaporedja z metriko
+$d(x,y) = \displaystyle \sqrt{\sum_{n=1}^\infty (x_n-y_n)^2}$.}
+$f \colon X \to l^2$ funkcija, podana s predpisom
+\[
+f(x) = \left(\frac{1}{n} f_n(x)\right)_{n \in \N}.
+\]
+$f$ je dobro definirana, saj je zaporedje kvadratno sumabilno po
+Weierstrassovem kriteriju. Dokažimo, da je $f$ vložitev. Opazimo,
+da je $f$ injektivna, saj loči točke.
+
+$f$ je zvezna -- naj bo $x \in X$, $\varepsilon > 0$ in $N \in \N$
+tako naravno število, da je
+\[
+\sum_{n=N+1}^\infty \frac{1}{n^2} < \frac{\varepsilon^2}{2}.
+\]
+Množice
+\[
+U_n = \setb{y \in X}{(f_n(x)-f_n(y))^2 < \frac{\varepsilon^2}{2N}}
+\]
+so odprte, zato je odprta tudi
+\[
+U = \bigcap_{n=1}^N U_n.
+\]
+Za $y \in U$ tako sledi
+\[
+d(f(x),f(y))^2 =
+\sum_{n=1}^\infty \frac{1}{n^2} (f_n(x)-f_n(y))^2 \leq
+N \cdot \frac{\varepsilon^2}{2N} + \frac{\varepsilon^2}{2},
+\]
+zato je $d(f(x),f(y)) < \varepsilon$.
+
+Preverimo še, da je tudi inverz zvezen. Naj bo $U$ poljubna okolica
+točke $x \in X$. Obstajata bazični okolici $B$ in $B'$, za kateri
+je
+\[
+x \in B \subseteq \overline{B} \subset B' \subseteq U.
+\]
+Naj bo $f_n$ Urisonova funkcija, prirejena paru $\overline{B}$ in
+$X \setminus B'$. Za vse $y$, za katere je
+$d(f(x),f(y)) < \frac{1}{n}$, je $f_n(y) < 1$, saj je $f_n(x) = 0$.
+Sledi, da je $y \in B' \subseteq U$, zato je $f^{-1}$ zvezen.
+
+Sledi, da je $X$ homeomorfen podprostoru $l^2$, zato je
+metrizabilen.
+\end{proof}
+
+\begin{posledica}
+2-števen prostor je metrizabilen natanko tedaj, ko je regularen.
+\end{posledica}
+
+\begin{lema}
+Naj bo $A$ zaprta podmnožica normalnega prostora $X$ in
+$f \colon A \to [-c,c]$. Tedaj obstaja taka preslikava
+$h \colon X \to \left[-\frac{c}{3},\frac{c}{3}\right]$, za katero
+je $\abs{f(a) - h(a)} \leq \frac{2}{3} c$ za vse $a \in A$.
+\end{lema}
+
+\begin{proof}
+Naj bosta
+\[
+A_+ = \setb{a \in A}{f(a) \geq \frac{c}{3}}
+\quad \text{in} \quad
+A_- = \setb{a \in A}{f(a) \leq -\frac{c}{3}}.
+\]
+Naj bo sedaj $g$ Urisonova funkcija množic $A_+$ in $A_-$. Za $h$
+preprosto vzamemo $\frac{2}{3}c \cdot g - \frac{1}{3}c$.
+\end{proof}
+
+\begin{izrek}[Tietze]\label{iz:tietze}\index{Izrek!Tietze}
+Naj bo $A$ zaprta podmnožica normalnega prostora $X$. Tedaj lahko
+vsako preslikavo $f \colon A \to J$, kjer je $J$ interval,
+razširimo  do preslikave $F \colon X \to J$.
+\end{izrek}
+
+\begin{figure}[H]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+A \arrow[r, "f"] \arrow[d, hook'] & J \\
+X \arrow[ur, "F"']                &
+\end{tikzcd}
+\]
+\caption{Izrek~\ref{iz:tietze}.}
+\end{figure}
+
+\begin{proof}
+Brez škode za splošnost naj bo $J=[-1,1]$. Po zgornji lemi obstaja
+preslikava
+$h_1 \colon X \to \left[-\frac{1}{3},\frac{1}{3}\right]$, za katero
+funkcija $f_1 = f - h_1$ slika elemente $A$ v interval
+$\left[-\frac{2}{3},\frac{2}{3}\right]$. Sedaj lahko induktivno
+skonstruiramo funkcije $h_n$ in $f_n$, nato pa preprosto vzamemo
+\[
+F = \sum_{n=1}^\infty h_n,
+\]
+ki je zvezna po Weierstrassovem kriteriju. Ker je
+\[
+\abs{f_n(x)} \leq \left(\frac{2}{3}\right)^2
+\]
+za vse $x \in A$, je $F(x)=f(x)$ na $A$.
+\end{proof}
+
+\begin{definicija}
+Prostor $E$ je
+\emph{absolutni ekstenzor}\index{Topološki prostor!Absolutni ekstenzor},\footnote{Ekstenzorjev
+in retraktov na predavanjih nismo obdelali. Ta del zapiskov je
+povzet po knjigi Splošna topologija \cite{stop}.}
+če lahko vsako preslikavo $f \colon A \to E$ iz zaprtega
+podprostora $A$ normalnega prostora $X$ razširimo do preslikave, ki
+je definirana na celem $X$.
+\end{definicija}
+
+\begin{definicija}
+Podprostor $A \subseteq X$ je
+\emph{retrakt}\index{Topološki prostor!Retrakt} prostora $X$, če
+obstaja preslikava $r \colon X \to A$ z lastnostjo $r(a) = a$ za
+vse $a \in A$. Taki preslikavi pravimo \emph{retrakcija}.
+\end{definicija}
+
+\begin{opomba}
+Ker je $A$ množica ujemanja $\id$ in $i \circ r$, je retrakt
+Hausdorffovega prostora vedno zaprt podprostor.
+\end{opomba}
+
+\begin{trditev}
+Retrakt absolutnega ekstenzorja je absolutni ekstenzor.
+\end{trditev}
+
+\begin{proof}
+Razširitev funkcije komponiramo z retrakcijo.
+\end{proof}
+
+\begin{definicija}
+\emph{Nosilec}\index{Preslikava!Nosilec} preslikave
+$f \colon X \to \R$ je množica $\overline{f^{-1}(\R^*)}$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Razčlenitev enote}, podrejena pokritju $\setb{U_i}{i \leq n}$
+prostora $X$, je družina preslikav $\rho_i \colon X \to I$, za
+katere je nosilec $\rho_i$ vsebovan v $U_i$ za vse $i$ in je
+\[
+\sum_{i=1}^n \rho_i(x) = 1
+\]
+za vse $x \in X$.
+\end{definicija}
+
+\begin{izrek}
+Za vsako odprto pokritje $\setb{U_i}{i \leq n}$ normalnega prostora
+$X$ obstaja neka podrejena razčlenitev enote.
+\end{izrek}
+
+\begin{proof}
+Najprej dokažimo, da za vsako odprto pokritje
+$\setb{U_i}{i \leq n}$ obstaja pokritje $\setb{V_i}{i \leq n}$, za
+katerega velja $\overline{V_i} \subseteq U_i$.
+
+Ker je $X$ normalen, obstaja tak $V_1$, da je
+\[
+X \bigsetminus \bigcup_{i=2}^n U_i \subseteq V_1 \subseteq
+\overline{V_1} \subseteq U_1.
+\]
+Sledi, da lahko v pokritju $U_1$ zamenjamo z $V_1$. Ta postopek
+nadaljujemo, dokler nismo zamenjali vseh množic.
+
+Sledi, da obstajata odprti pokritji $\setb{V_i}{i \leq n}$ in
+$\setb{W_i}{i \leq n}$, za kateri velja
+\[
+\overline{W_i} \subseteq V_i \subseteq
+\overline{V_i} \subseteq U_i.
+\]
+Naj bodo $f_i$ Urisonove funkcije za množice $X \setminus V_i$
+in $\overline{W_i}$. Ker je $\setb{W_i}{i \leq n}$ pokritje, je
+\[
+f = \sum_{i=1}^n f_i
+\]
+na celem $X$ neničelna, zato so preslikave
+\[
+\rho_i = \frac{f_i}{f}
+\]
+dobro definirane. Ker je nosilec $\rho_i$ vsebovan v
+$\overline{V_i} \subseteq U_i$, tvorijo $\rho_i$ iskano razčlenitev
+enote.
+\end{proof}
+
+\newpage
+
+\subsection{Stone-Weierstrassov izrek}
+
+\datum{2022-1-11}
+
+\begin{izrek}[Weierstrass]\index{Izrek!Weierstrass}
+Vsako zvezno funkcijo lahko poljubno dobro aproskimiramo s
+polinomi.
+\end{izrek}
+
+\begin{proof}[Analitični dokaz]
+Naj bo
+\[
+B_{n,i}(x) = \binom{n}{i} x^i (1-x)^{n-i}
+\]
+Berstainova baza. Velja
+\[
+\sum_{i=0}^n B_{n,i}(x) = 1.
+\]
+Za zvezno funkcijo $f \colon [0,1] \to \R$ naj bo
+\[
+f_n(x) = \sum_{i=0}^n f\left(\frac{i}{n}\right) B_{n,i}(x)
+\]
+$n$-ti Bernsteinov polinom.
+
+Opazimo, da je
+\begin{align*}
+f_n(x) - f(x) &=
+\sum_{i=0}^n f\left(\frac{i}{n}\right) B_{n,i}(x) -
+f(x) \cdot \sum_{i=0}^n B_{n,i}(x)
+\\
+&=
+\sum_{i=0}^n
+\left(f\left(\frac{i}{n}\right) - f(x)\right) B_{n,i}(x).
+\intertext{Sledi, da je}
+\abs{f_n(x) - f(x)} &\leq
+\sum_{i=0}^n \abs{f\left(\frac{i}{n}\right) - f(x)} B_{n,i}(x).
+\end{align*}
+Ker je $f$ zvezna, ima maksimum $M$ in je enakomerno zvezna. Za vse
+$\varepsilon > 0$ tako obstaja $\delta > 0$, da za
+$\abs{x-y} < \delta$ velja $\abs{f(x)-f(y)}<\frac{\varepsilon}{2}$.
+Tako dobimo, da je\footnote{Uporabimo znano identiteto
+$\displaystyle
+\sum_{i=0}^n \left(x-\frac{i}{n}\right)^2 B_{n,i}(x) =
+\frac{x \cdot (1-x)}{n}$.}
+\begin{align*}
+&\sum_{i=0}^n \abs{f\left(\frac{i}{n}\right) - f(x)} B_{n,i}(x)
+\\
+=&
+\sum_{\abs{x-\frac{i}{n}} < \delta}
+\abs{f\left(\frac{i}{n}\right) - f(x)} B_{n,i}(x) +
+\sum_{\abs{x-\frac{i}{n}} \geq \delta}
+\abs{f\left(\frac{i}{n}\right) - f(x)} B_{n,i}(x)
+\\
+\leq&
+\frac{\varepsilon}{2} + 
+2M \cdot \sum_{\abs{x-\frac{i}{n}} \geq \delta} B_{n,i}(x)
+\\
+\leq&
+2M \cdot
+\sum_{i=0}^n \frac{\left(x-\frac{i}{n}\right)}{\delta^2} B_{n,i}(x)
+\\
+=&
+\frac{2M}{\delta^2} \cdot \frac{x \cdot (1-x)}{n}
+\\
+\leq&
+\frac{M}{2n \cdot \delta^2}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}[Stone-Weierstrass]\index{Izrek!Stone-Weierstrass}
+Če je $A \subseteq \mathcal{C}(X)$ unitalna podalgebra, ki loči
+točke $X$, potem je $A$ gosta v $\mathcal{C}(X)$ s kompaktno-odprto
+topologijo.
+\end{izrek}
+
+\begin{proof}
+Pomagamo si z naslednjo lemo:
+
+\begin{lema*}
+$f(t) = \sqrt{t}$ je na $[0,1]$ enakomerna limita polinomov.
+\end{lema*}
+
+\begin{proof}
+$f$ razvijemo v Taylorjevo vrsto okoli $1$ in opazimo, da
+konvergira za $t=0$ in je konvergenca na $[0,1]$ enakomerna.
+\end{proof}
+
+Iz leme sledi, da za $f \in A$ velja
+$\abs{f} = \sqrt{f^2} \in \overline{A}$. Sledi, da je za
+$f,g \in A$ tudi
+$\max \set{f(x),g(x)}, \min \set{f(x),g(x)} \in \overline{A}$.
+
+Ker $A$ loči točke, za vsaka $x, y \in X$ obstaja tak
+$f \in \mathcal{C}(X)$, da je $f(x) = a$ in $f(y) = b$, saj lahko
+funkcijo, ki loči $x$ in $y$, afino transformiramo.
+
+Naj bo $f \in \mathcal{C}(X)$ poljubna. Pokazati moramo, da za
+poljubna $K$ in $\varepsilon$ obstaja
+$g \in \overline{A} \cap \skl{f,K,\varepsilon}$.
+
+Za vsaka $u,v \in K$ naj bo $h_{u,v} \in A$ taka funkcija, da na
+$u$ in $v$ sovpada z $f$. Za fiksen $u$ množice
+\[
+U_v = \setb{x \in K}{h_{u,v}(x) < f(x) + \varepsilon}
+\]
+tvorijo odprto pokritje. Sledi, da obstaja končno podpokritje.
+Definiramo preslikave $h_u(x) = \min \set{h_{u,v_i}(x)}$, ki so v
+$\overline{A}$.
+
+Naj bo sedaj
+\[
+V_u = \setb{x \in K}{h_u(x) > f(x) - \varepsilon}.
+\]
+Tudi te množice tvorijo odprto pokritje, zato obstaja končno
+podpokritje, katerih maksimum po točkah $h$ je v $\overline{A}$.
+
+Ni težko videti, da je $h \in \skl{f,K,\varepsilon}$.
+\end{proof}
+
+\begin{posledica}
+Polinomi so gosti v $\mathcal{C}(X)$ za $X \subseteq \R$.
+\end{posledica}
+
+\begin{posledica}
+Fourierovi polinomi so gosti v $\mathcal{C}([-\pi,\pi])$.
+\end{posledica}

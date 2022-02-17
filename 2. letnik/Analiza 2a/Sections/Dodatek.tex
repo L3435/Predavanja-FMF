@@ -7,26 +7,50 @@
 
 \begin{enumerate}[i)]
 \item Polarne koordinate:
-Za $(x, y) = (r\cos\phi, r\sin\phi)$ je
+
+Za $(x, y) = (r\cos\varphi, r\sin\varphi)$ je
 \[
 \iint f(x, y)\;dx\;dy =
-\iint f(r\cos\phi, r\sin\phi) \cdot r\;dr\;d\phi.
+\iint f(r\cos\varphi, r\sin\varphi) \cdot r\;dr\;d\varphi.
 \]
 \item Cilindrične koordinate:
-Za $(x, y, z) = (r\cos\phi, r\sin\phi, z)$ je
+
+Za $(x, y, z) = (r\cos\varphi, r\sin\varphi, z)$ je
 \[
 \iiint f(x, y, z)\;dx\;dy\;dz =
-\iiint f(r\cos\phi, r\sin\phi, z) \cdot r\;dr\;d\phi\;dz.
+\iiint f(r\cos\varphi, r\sin\varphi, z) \cdot r\;dr\;d\varphi\;dz.
 \]
 \item Sferične koordinate:
-Za $(x, y, z) =
-(r\cos\phi\sin\theta, r\sin\phi\sin\theta, r\cos\theta)$
-je
+
+Za $(x, y, z) = (
+	r \cos\varphi \sin\theta,
+	r \sin\varphi \sin\theta,
+	r \cos\theta
+)$ je
 \[
 \iiint f(x, y, z)\;dx\;dy\;dz =
-\iiint f(r\cos\phi\sin\theta, r\sin\phi\sin\theta, r\cos\theta)
-\cdot r^2 \sin \theta \;dr\;d\phi\;d\theta.
+\iiint f(
+	r \cos\varphi \cos\theta,
+	r \sin\varphi \cos\theta,
+	r \sin\theta
+) \cdot r^2 \cos \theta \;dr\;d\varphi\;d\theta.
 \]
+\item Torusne koordinate:
+
+Za $(x, y, z) = (
+	(R + r \cos\theta) \cos\varphi,
+	(R + r \cos\theta) \sin\varphi,
+	r\sin\theta
+)$ je
+\begin{align*}
+&\iiint f(x, y, z)\;dx\;dy\;dz =
+\\
+= &\iiint f\big(
+	(R + r \cos\theta) \cos\varphi,
+	(R + r \cos\theta) \sin\varphi,
+	r\sin\theta
+\big) \cdot r \cdot (R + r \cos\theta) \;dr\;d\varphi\;d\theta.
+\end{align*}
 \end{enumerate}
 
 \newpage

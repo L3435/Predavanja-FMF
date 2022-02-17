@@ -144,11 +144,15 @@
 \providecommand{\liint}{\iint\limits}
 \providecommand{\liiint}{\iiint\limits}
 \providecommand{\lidotsint}{\idotsint\limits}
+\providecommand{\bigsetminus}{\mathbin{\big\backslash}}
+
+\providecommand{\titleR}{\texorpdfstring{$\R$}{R}}
+\providecommand{\titleRn}[1]{\texorpdfstring{$\R^{#1}$}{R\^{}#1}}
 
 \providecommand{\kvoc}[2]{
 \mathchoice
 {% \displaystyle
-\left.\text{\raise0.5ex\hbox{$\textstyle#1$}}\middle/\text{\lower0.5ex\hbox{$\textstyle#2$}}\right.%
+\left.\text{\raise0.4ex\hbox{$\textstyle#1$}}\middle/\text{\lower0.4ex\hbox{$\textstyle#2$}}\right.%
 }
 {% \textstyle
 \left.\text{\raise0.25ex\hbox{$#1$}}\middle/\text{\lower0.25ex\hbox{$#2$}}\right.
@@ -166,15 +170,18 @@
 
 \newcommand{\obvs}{\begin{proof}The proof is obvious and need not be mentioned. \end{proof}}
 
+\newcommand{\avtor}{Luka Horjak}
+\newcommand{\avtorzmailom}{Luka Horjak (\href{mailto:lukahorjak@student.uni-lj.si}{lukahorjak@student.uni-lj.si})}
+
 \title{\naslov}
-\author{Luka Horjak (\href{mailto:lukahorjak@student.uni-lj.si}{lukahorjak@student.uni-lj.si})}
+\author{\avtorzmailom}
 \date{\today}
 
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
 \lhead{\nouppercase\leftmark}
-\rhead{Luka Horjak}
+\rhead{\avtor}
 \cfoot{\thepage}
 
 \RequirePackage[useregional]{datetime2}

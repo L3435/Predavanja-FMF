@@ -51,7 +51,7 @@ $Y \cap \overline{\mathcal{K}(y,r)}$ kompaktna.
 \end{definicija}
 
 \begin{opomba}
-Zaprte in odprte množica so lokalno kompaktne.
+Zaprte in odprte množice so lokalno kompaktne.
 \end{opomba}
 
 \begin{opomba}
@@ -316,7 +316,7 @@ F(y) = \int_a^\infty f(x,y)\;dx
 \]
 konvergira enakomerno na $[c,d]$. Tedaj velja
 \[
-\int_c^d \left(F(y)\right)\;dy =
+\int_c^d F(y)\;dy =
 \int_a^\infty \left(\int_c^d f(x,y)\;dy\right) dx.
 \]
 \end{izrek}
@@ -356,7 +356,7 @@ konvergira enakomerno na $[a,\infty)$. Če je
 \]
 je tudi
 \[
-\int_a^\infty G(x)\;dx < \infty,
+\int_a^\infty G(x)\;dx < \infty
 \]
 in velja
 \[
@@ -434,20 +434,20 @@ Velja
 \end{align*}
 Za vse $\varepsilon > 0$ lahko najdemo tak $d$, da je
 \[
-\abs{\int_d^\infty F(y)\;dy} \leq
+\abs{\int_d^\infty F_b(y)\;dy} \leq
 \int_d^\infty \left(\int_a^\infty \abs{f(x,y)}\;dx\right)dy <
 \frac{\varepsilon}{3}.
 \]
 Sledi, da je
 \begin{align*}
-&\abs{\int_c^\infty F_b(y)\;dy - \int_c^\infty F(y)\;dy}
+&\abs{\int_c^\infty F(y)\;dy - \int_c^\infty F(y)\;dy}
 \\
-\leq&
+&\leq
 \abs{\int_d^\infty F_b(y)\;dy} +
 \abs{\int_d^\infty F(y)\;dy} +
 \abs{\int_c^d F_b(y)\;dy - \int_c^d F(y)\;dy}
 \\
-<&
+&<
 \varepsilon. \qedhere
 \end{align*}
 \end{proof}
@@ -620,9 +620,9 @@ Velja
 \int_0^\infty \left(x^{\frac{s_1-1}{2}} e^{\frac{x}{2}}\right)
 \cdot \left(x^{\frac{s_1-1}{2}} e^{\frac{x}{2}}\right)dx.
 \]
-Po Cauchyju\footnote{Vzamemo skalarni produkt
+Po Cauchyjevi neenakosti\footnote{Vzamemo skalarni produkt
 $\displaystyle\skl{f,g} = \abs{\int_0^\infty f(x)g(x)\;dx}$.}
-sledi
+je
 \[
 \Gamma\left(\frac{s_1 + s_2}{2}\right) \leq
 \sqrt{\Gamma(s_1)} \cdot \sqrt{\Gamma(s_2)}. \qedhere
@@ -691,18 +691,18 @@ B(p,q) \cdot \Gamma(p+q) &=
 zgornji izraz enak}
 &=
 \int_0^\infty \left(\int_0^\infty
-u^{p+q-1} t^{p-1} e^{-u} e^{-tu}\;dx \right)dt
+u^{p+q-1} t^{p-1} e^{-u} e^{-tu}\;du \right)dt
 \intertext{S Fubinijevim izrekom dobimo}
 &=
 \int_0^\infty \left(
 \int_0^\infty u^{p+q-1} t^{p-1} e^{-u} e^{-tu}\;dt
-\right)dx
+\right)du
 \\
 &=
-\int_0^\infty u^{s-1} e^{-u} \left(\int_0^\infty (ut)^{p-1} e^{-ut} u\;dt\right)du
-\intertext{Sedaj naredimo še substitucijo $ut=v$}
+\int_0^\infty u^{q-1} e^{-u} \left(\int_0^\infty (ut)^{p-1} e^{-ut} u\;dt\right)du
+\intertext{Sedaj naredimo še substitucijo $ut=v$ in dobimo}
 &=
-\int_0^\infty u^{q-1}e^{-u} \Gamma(p)\;du
+\int_0^\infty u^{q-1}e^{-u} \cdot \Gamma(p)\;du
 \\
 &=
 \Gamma(p) \cdot \Gamma(q). \qedhere
@@ -768,7 +768,7 @@ e^{-\frac{v^2}{2}} e^{\frac{v^3}{\sqrt{s}} \cdot \varphi\left(
 Ocenimo lahko
 \[
 \sqrt{s} \int_1^\infty \left((1+u)e^{-u}\right)du \leq
-\sqrt{s} 2^{s-1} e^{-(s-1)} M.
+\sqrt{s} \cdot 2^{s-1} e^{-(s-1)} M.
 \]
 Sledi, da ta integral konvergira k $0$, zato je dovolj izračunati
 \[
@@ -818,13 +818,13 @@ a_j = x_0^j < x_1^j < \dots < x_{m_j}^j = b_j.
 \end{definicija}
 
 \begin{definicija}
-Delitev $D'$ je \emph{finejša}\index{Delitev kvadra!Finejša}, če
-vsebuje vse delilne točke $D$.
+Delitev $D'$ je \emph{finejša}\index{Delitev kvadra!Finejša} od
+delitve $D$, če vsebuje vse delilne točke $D$.
 \end{definicija}
 
 \begin{definicija}
-Naj bo $K$ kvader in $f \colon K \to \R^n$ omejena funkcija.
-Označimo
+Naj bo $K \subseteq \R^n$ kvader in $f \colon K \to \R$ omejena
+funkcija. Označimo
 $\displaystyle m(k) = \inf_k f$ in $\displaystyle M(k) = \sup_k f$.
 Naj bo $D$ delitev $K$ s kvadri $K_1,\dots,K_N$.
 \emph{Spodnja Darbouxjeva vsota}\index{Darbouxjeva vsota} je
@@ -936,7 +936,7 @@ Podobno dobimo
 \]
 zato je
 \[
-S(D) - s(D) < \frac{\varepsilon}{2}.
+S(D) - s(D) < \varepsilon.
 \]
 Sledi, da je $f$ integrabilna po Darbouxu z enakim integralom.
 
@@ -968,9 +968,9 @@ $D$ delitev s kvadri $K_1,\dots,K_N$, ki imajo vse stranice manjše
 od $\delta$, kjer so $K_1,\dots,K_m$ tisti, ki niso vsebovani v
 nobenem kvadru $D_0$. Sledi, da je
 \[
-\abs{\sum_{i=1}^m f(\xi_i) \cdot V(K_i)} \leq
-\abs{\sum_{i=1}^m f(\xi_i)} \cdot V(K_i) <
-M \frac{\varepsilon}{2M} = \frac{\varepsilon}{2}.
+\abs{\sum_{i=1}^m f(\xi_i) \cdot V(K_i)} <
+\abs{\sum_{i=1}^m f(\xi_i)} \cdot \frac{\varepsilon}{2M} \leq
+M \cdot \frac{\varepsilon}{2M} = \frac{\varepsilon}{2}.
 \]
 V vseh ostalih kvadrih lahko $f$ omejimo s supremumom in infimumom
 kvadrov delitve $D_0$. Sledi, da je
@@ -1149,9 +1149,8 @@ iz $B$.
 
 Naj bo $C$ unija kvadrov $Q_i$. Sledi, da je
 \[
-\inf_D S(\chi_B,D) \leq
-\inf_D S(\chi_C,D) \leq
-V(C) < \varepsilon. \qedhere
+\inf_D S(\chi_B,D) \leq \inf_D S(\chi_C,D) =  V(C) < \varepsilon.
+\qedhere
 \]
 \end{proof}
 
@@ -1430,7 +1429,7 @@ $m(K_i) \leq 0$, zato je
 \datum{2021-11-30}
 
 \begin{izrek}
-Naj bosta $A, B \subseteq \R^n$ omejena in $f, g \colon A \to \R$
+Naj bosta $A, B \subseteq \R^n$ omejeni in $f, g \colon A \to \R$
 integrabilni.
 
 \begin{enumerate}[i)]
@@ -1471,7 +1470,7 @@ $x_0$. V nasprotnem primeru pa velja
 in lahko uporabimo izrek o vmesni vrednosti.
 \end{proof}
 
-\begin{izrek}[Lebesque]\index{Izrek!Lebesque}
+\begin{izrek}[Lebesgue]\index{Izrek!Lebesgue}
 Naj bo $K$ kvader in $f \colon K \to \R$ omejena. Potem je $f$
 integrabilna natanko tedaj, ko je na $K$ zvezna skoraj povsod.
 \end{izrek}
@@ -1587,7 +1586,7 @@ Sledi, da je $f$ zvezna v $x_0$.
 \end{proof}
 
 \begin{opomba}
-Trditev \ref{td:3} je posledica Lebesqueovega izreka. $V(A)$ namreč
+Trditev \ref{td:3} je posledica Lebesgueovega izreka. $V(A)$ namreč
 obstaja natanko tedaj, ko je $\chi_A $ zvezna skoraj povsod,
 $\chi_A$ pa ni zvezna natanko na robu $A$, ki je kompaktna.
 \end{opomba}
@@ -1620,7 +1619,7 @@ zvezna skoraj povsod tudi na $A$.
 
 \newpage
 
-\subsection{Posledica Fubinijevega izreka}
+\subsection{Posledice Fubinijevega izreka}
 
 \begin{trditev}
 Naj bo $K$ kvader v $\R^{n}$ in
@@ -1669,7 +1668,7 @@ $0$ v $\R^{n+1}$.
 \end{lema}
 
 \begin{proof}
-Naj bo $E \subseteq = [a,b]$. Naj bo $\varepsilon > 0$. Ker je
+Naj bo $E \subseteq [a,b]$. Naj bo $\varepsilon > 0$. Ker je
 $V(B) = 0$, obstajajo kvadri $Q_1,\dots,Q_N \subseteq \R^n$, za
 katere je
 \[
@@ -1807,17 +1806,17 @@ $\mathcal{C}^1$ difeomorfizem, ima $\Phi(E)$ mero $0$.
 \end{lema}
 
 \begin{proof}
-Vsako odprto monžico $A$ lahko zapišemo kot števno unijo zaprtih
+Vsako odprto množico $A$ lahko zapišemo kot števno unijo zaprtih
 krogel. Dovolj je tako za poljubno kroglo
 \[
 \overline{K(a,R)} \subseteq \overline{K(a,R')} \subseteq A
 \]
-pokazati, da ima $\Phi(E \cap \overline{K(a,R)})$ mero $0$. Na
-$\overline{K(a,R')}$ so vsi odvodi $D\Phi$ enakomerno omejeni.
-Sledi, da obstaja tak $c > 0$, da za
+pokazati, da ima $\Phi\left(E \cap \overline{K(a,R)}\right)$ mero
+$0$. Na $\overline{K(a,R')}$ so vsi odvodi $D\Phi$ enakomerno
+omejeni. Sledi, da obstaja tak $c > 0$, da za
 $t_1,t_2 \in \overline{K(a,R')}$ velja
 \[
-\abs{\Phi(t_1) - \Phi(t_2)} \leq c \cdot \abs{t_1 - t_2}.
+\norm{\Phi(t_1) - \Phi(t_2)} \leq c \cdot \norm{t_1 - t_2}.
 \]
 Naj bo $\varepsilon > 0$. Obstajajo krogle $B_1,B_2,\dots$ v
 $\overline{K(a,R')}$, da velja
@@ -1828,13 +1827,14 @@ E \cap \overline{K(a,R)} \subseteq \bigcup_{i=1}^\infty B_i
 \]
 Oglejmo si
 \[
-\Phi(E \cap \overline{K(a,R)}) \subseteq
-\Phi(\bigcup_{i=1}^\infty B_i).
+\Phi\left(E \cap \overline{K(a,R)}\right) \subseteq
+\Phi\left(\bigcup_{i=1}^\infty B_i\right).
 \]
-Velja, da je $B_i \subseteq \overline{K(a_i, cr_i)}$, zato je
+Velja, da je $\Phi(B_i) \subseteq \overline{K(\Phi(a_i), cr_i)}$,
+zato je
 \[
-\Phi(E \cap \overline{K(a,R)}) \subseteq
-\Phi(\bigcup_{i=1}^\infty \overline{K(a_i, cr_i)}),
+\Phi\left(E \cap \overline{K(a,R)}\right) \subseteq
+\bigcup_{i=1}^\infty \overline{K(\Phi(a_i), cr_i)},
 \]
 volumen desne strani pa je manjši od $\varepsilon$. Sledi, da ima
 $\Phi(E \cap \overline{K(a,R)})$ mero $0$.
@@ -1949,7 +1949,7 @@ $f$ razširimo na $V$ z $0$.
 
 \newpage
 
-\subsection{Posplošeni $n$-terni integral}
+\subsection{Posplošeni \texorpdfstring{$n$}{n}-terni integral}
 
 \begin{definicija}
 Naj bo $A \subseteq \R^n$ in naj ima $\partial A$ mero $0$. Naj bo

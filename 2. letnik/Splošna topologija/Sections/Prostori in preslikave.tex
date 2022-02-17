@@ -1,5 +1,7 @@
 \section{Prostori in preslikave}
 
+\epigraph{">Splošna topologija je LMN na steroidih."<}{-- Luka Horjak}
+
 \subsection{Topološki prostori}
 
 \datum{2021-10-5}
@@ -32,7 +34,7 @@ topologijo $\tau_d$.
 
 \begin{definicija}
 Topološki prostor $(X,\tau)$ je
-\emph{metrizabilen}\index{Topološki prostor!Metrizabilen}, če
+\emph{metrizabilen}\index{Topološka lastnost!Metrizabilnost}, če
 obstaja taka metrika $d$ na $X$, da je
 $\tau = \tau_d$ pri zgornjih oznakah.
 \end{definicija}
@@ -50,12 +52,13 @@ $\tau_d = \tau_{d'}$.
 
 \begin{okvir}
 \begin{definicija}
-Preslikava $f \colon (X,\tau)\to(X',\tau')$ je
-\emph{zvezna}\index{Preslikava!Zvezna}, če je praslika vsake odprte
+Funkcija $f \colon (X,\tau)\to(X',\tau')$ je
+\emph{zvezna}\index{Funkcija!Zvezna}, če je praslika vsake odprte
 množice odprta, oziroma
 \[
 V\in\tau' \implies f^{-1}(V) \in \tau.
 \]
+Zveznim funkcijam pravimo \emph{preslikave}.
 \end{definicija}
 \end{okvir}
 
@@ -153,9 +156,9 @@ prostora \emph{homeomorfna}\index{Topološki prostor!Homeomorfen}.
 \end{okvir}
 
 \begin{definicija}
-Preslikava je \emph{odprta}\index{Preslikava!Odprta, zaprta}, če je
+Funkcija je \emph{odprta}\index{Funkcija!Odprta, zaprta}, če je
 slika vsake odprte podmnožice $X$ odprta v $X'$. Simetrično
-definiramo \emph{zaprte} preslikave.
+definiramo \emph{zaprte} funkcija.
 \end{definicija}
 
 \begin{trditev}
@@ -172,8 +175,8 @@ Naslednje izjave so ekvivalentne:
 \obvs
 
 \begin{definicija}
-\emph{Topološka lastnost}\index{Topologija!Topološka lastnost} je
-vsaka lastnost topologije, ki se ohranja pri homeomorfizmih.
+\emph{Topološka lastnost}\index{Topološka lastnost} je vsaka
+lastnost topologije, ki se ohranja pri homeomorfizmih.
 \end{definicija}
 
 \begin{opomba}
@@ -198,7 +201,7 @@ Velja $\mathring{B}^n \approx \R^n$.
 \end{trditev}
 
 \begin{proof}
-Vzamemo bijekcijo
+Vzamemo homeomorfizem
 \[
 f(\vv{x}) = \frac{\vv{x}}{1 - \norm{\vv{x}}}. \qedhere
 \]
@@ -282,15 +285,15 @@ B \subseteq B_1 \cap B_2.
 \obvs
 
 \begin{definicija}
-Naj bo $\mathcal{P}$ neka družina podmnožic $X$. Množica
+Naj bo $\mathcal{P}$ neko pokritje množice $X$. Družina
 $\mathcal{B}$ vseh končnih presekov elementov $\mathcal{P}$ je
 baza. Družini $\mathcal{P}$ pravimo
 \emph{predbaza}\index{Topologija!Baza!Predbaza} baze $\mathcal{B}$.
 \end{definicija}
 
 \begin{trditev}
-Naj bo $f \colon (X,\tau) \to (X',\tau')$ in $\mathcal{P}'$ podbaza
-za $\tau'$. Potem je $f$ zvezna natanko tedaj, ko je
+Naj bo $f \colon (X,\tau) \to (X',\tau')$ in $\mathcal{P}'$
+predbaza za $\tau'$. Potem je $f$ zvezna natanko tedaj, ko je
 $f^{-1}(\mathcal{P}') \subseteq \tau$.
 \end{trditev}
 
@@ -301,30 +304,30 @@ Preslikava $f \colon Z \to X_1 \times \dots \times X_n$ je zvezna
 za produktno topologijo\footnote{Produktna topologija je
 topologija, ki jo dobimo iz baze
 $\setb{U_1 \times \dots \times U_n}
-{\forall i \colon U_i \in \tau_i}$.}
+{\forall i \colon U_i \in \tau_i}$.}\index{Topologija!Produktna}
 natanko tedaj, ko so zvezne vse komponente
 $f$.
 \end{trditev}
 
 \begin{proof}
 Očitno je trditev dovolj dokazati za $n=2$. Naj bo
-$f \colon Z \to X \times Y$ zvezna. Potem sta komponenti kartezični
-produkt projekcije z $f$, ki sta obe zvezni.
+$f \colon Z \to X \times Y$ zvezna. Potem sta komponenti kompozitum
+projekcije z $f$, ki sta obe zvezni.
 
 Če sta obe komponenti zvezni, pa ni težko videti, da so praslike
 pasov odprte, ti pa tvorijo predbazo.
 \end{proof}
 
 \begin{definicija}
-Prostor je \emph{1-števen}\index{Topološki prostor!1, 2-števen}, če
-za vsak $x$ obstaja števna lokalna baza pri $x$. Prostor je
+Prostor je \emph{1-števen}\index{Topološka lastnost!1, 2-števnost},
+če za vsak $x$ obstaja števna lokalna baza pri $x$. Prostor je
 \emph{2-števen}, če ima števno bazo.
 \end{definicija}
 
 \begin{trditev}
-Naj bo $X$ 1-števen topološki prostor. Potem za vsak $A \in x$
+Naj bo $X$ 1-števen topološki prostor. Potem za vsak $A \in X$
 velja, da je $\overline{A} = L(A) =
-\setb{x}{\text{$x$ je limita zaporejda v $A$}}$.
+\setb{x}{\text{$x$ je limita zaporedja v $A$}}$.
 \end{trditev}
 
 \begin{proof}
@@ -336,9 +339,14 @@ a_n \in A \cap \bigcap_{i=1}^n B_i. \qedhere
 \end{proof}
 
 \begin{trditev}
-$f \colon X \to Y$ je zvezna natanko tedaj, ko za vsak
-$A \subseteq X$ velja $f(L(A)) \subseteq L(f(A))$.
+Naj bo $X$ 1-števen topološki prostor. $f \colon X \to Y$ je zvezna
+natanko tedaj, ko za vsak $A \subseteq X$ velja
+$f(L(A)) \subseteq L(f(A))$.
 \end{trditev}
+
+\begin{proof}
+Uporabimo prejšnjo trditev in izrek~\ref{iz:1}.
+\end{proof}
 
 \datum{2021-11-2}
 
@@ -349,8 +357,8 @@ $\overline{A} = X$.
 
 \begin{definicija}
 Prostor $(X, \tau)$ je
-\emph{separabilen}\index{Topološki prostor!Separabilen}, če v njem
-obstaja števna gosta množica.
+\emph{separabilen}\index{Topološka lastnost!Separabilnost}, če v
+njem obstaja števna gosta množica.
 \end{definicija}
 
 \begin{izrek}
@@ -358,7 +366,10 @@ Metrični prostor je 2-števen natanko tedaj, ko je separabilen.
 \end{izrek}
 
 \begin{proof}
-Naj bo $Q$ števna in gosta podmnožica $X$. Sedaj preprosto vzamemo
+Vsak 2-števen prostor je očitno separabilen -- iz vsake bazične
+okolice vzamemo po eno točko.
+
+Naj bo $Q$ števna gosta podmnožica $X$. Sedaj preprosto vzamemo
 \[
 \mathcal{B} = \setb{\mathcal{K}(q,r)}{q \in Q, r \in \Q}. \qedhere
 \]
@@ -394,15 +405,16 @@ Naj bo $\mathcal{B}$ baza $\tau$. Potem je
 baza inducirane topologije.
 \end{trditev}
 
+\obvs
+
 \begin{definicija}
 Topološka lastnost je
-\emph{dedna}\index{Topologija!Topološka lastnost!Dedna}, če se
-prenaša na podprostore.
+\emph{dedna}\index{Topologija!Dedna lastnost}, če se prenaša na
+podprostore.
 \end{definicija}
 
 \begin{opomba}
 Separabilnost ni dedna lastnost, a se deduje na odprte podprostore.
-Podobno se kompaktnost deduje na zaprte podprostore.
 \end{opomba}
 
 \datum{2021-11-9}
@@ -466,17 +478,14 @@ zvezna.
 \obvs
 
 \begin{trditev}
-Skrčitev zvezne funkcije na podprostor je zvezna.
+Zožitev zvezne funkcije na podprostor je zvezna.
 \end{trditev}
 
-\obvs
+\begin{proof}
+Velja $\eval{f}{A}{} = f \circ i$.
+\end{proof}
 
-\begin{definicija}
-Pokritjem $\set{X_\lambda}$ topološkega prostora pravimo
-\emph{atlas}\index{Topološki prostor!Atlas}.
-\end{definicija}
-
-\begin{izrek}
+\begin{izrek}\label{iz:2}
 Naj bo $\set{X_\lambda}$ odprto pokritje za $X$. Potem velja
 \[
 \text{$A$ je odprta v $X$} \iff \forall \lambda \colon
@@ -502,7 +511,7 @@ inducirane topologije.} Naj bo $x \in X \setminus A$ in $U$ okolica
 $x$, ki seka končno mnogo elementov $\set{X_\lambda}$ -- naj bodo
 to $X_{\lambda_1}, \dots, X_{\lambda_n}$. Sledi, da je
 \[
-x \in U \setminus \bigcup_{i=1}^n A \cap X_{\lambda_i},
+x \in U \bigsetminus \bigcup_{i=1}^n A \cap X_{\lambda_i},
 \]
 kar je odprta okolica $x$, ki ne seka $A$.
 \end{proof}
@@ -529,11 +538,11 @@ kar je odprto v $X$.
 Naj bo $\set{X_\lambda}$ lokalno končno zaprto pokritje. Za zaprto
 množico $F \subseteq Y$ velja
 \[
-f^{-1}(F) =
-\bigcup_\lambda f^{-1}(F) \cap X_\lambda =
-\bigcup_\lambda \left(\eval{f}{X_\lambda}{}\right)^{-1}(F),
+f^{-1}(F) \cap X_\lambda =
+\left(\eval{f}{X_\lambda}{}\right)^{-1}(F),
 \]
-kar je zaprto v $X$.
+kar je zaprto v $X$. Po izreku~\ref{iz:2} je torej $f^{-1}(F)$
+zaprta.
 \end{proof}
 
 \begin{definicija}
@@ -541,3 +550,21 @@ Preslikava $f \colon X \to Y$ je
 \emph{vložitev}\index{Preslikava!Vložitev}, če je
 $f \colon X \to f(X)$ homeomorfizem.
 \end{definicija}
+
+\begin{trditev}
+Naj bo $f \colon X \to Y$ injektivna preslikava.
+
+\begin{enumerate}[i)]
+\item Če je $f(X)$ odprt v $Y$, je $f$ vložitev natanko tedaj, ko
+je odprta.
+\item Če je $f(X)$ zaprt v $Y$, je $f$ vložitev natanko tedaj, ko
+je zaprta.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če je $f(X)$ odprt podprostor, so podmnožice $f(X)$ odprte natanko
+tedaj, ko so odprte v $Y$. Sledi, da je $f \colon X \to f(X)$
+odprta natanko tedaj, ko je odprta $f \colon X \to Y$. Podobno
+velja, če je $f(X)$ zaprt.
+\end{proof}

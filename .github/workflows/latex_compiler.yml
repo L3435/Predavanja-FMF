@@ -1,0 +1,109 @@
+name: Build LaTeX document
+on: pull_request_target
+jobs:
+    
+  compile_pdf:
+    name: Compile document
+    
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.COMPILING_TOKEN }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+              
+      - name: Prvi pdflatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Bibliografija
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            *letnik/*/*.bcf
+          work_in_root_file_dir: true
+          glob_root_file: true
+          compiler: biber
+          args: ''
+
+      - name: Stvarno kazalo
+        run: |
+          sudo apt install xindy
+          for letnik in *letnik/ ; do
+            cd "$letnik"
+            for predmet in */ ; do
+              if [[ ${predmet:0:1} == "." ]]; then
+                continue
+              fi
+              cd "$predmet"
+              texindy -L slovenian -C utf8 *.idx
+              cd ..
+            done
+            cd ..
+          done
+          
+      - name: Drugi pdflatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+          
+      - name: Tretji pdflatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            *letnik/*/*.tex
+          work_in_root_file_dir: true
+          glob_root_file: true
+          compiler: pdflatex
+          args: -interaction=nonstopmode
+            
+      - name: Create filters
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            pdf:
+              -  "*letnik/*/*.pdf"
+            tex:
+              -  "*letnik/*/*.tex"
+          list-files: shell
+          
+      - name: Add pdfs
+        run: |
+            git config --global user.name "Luka Horjak"
+            git config --global user.email "luka1.horjak@gmail.com"
+            for letnik in *letnik/ ; do
+              cd "$letnik"
+              for predmet in */ ; do
+                if [[ ${predmet:0:1} == "." ]]; then
+                  continue
+                fi
+                cd "$predmet"
+                if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet${predmet::-1}.tex"* ]] ; then
+                  if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
+                    git add "${predmet::-1}".pdf
+                    git commit -m "Dodan pdf - ${predmet::-1}"
+                  fi
+                fi
+                cd ..
+              done
+              cd ..
+            done
+
+      - name: Push pdf files
+        run: |
+            git push origin ${{ github.event.pull_request.head.ref }}

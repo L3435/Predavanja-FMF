@@ -2,7 +2,7 @@
 
 \epigraph{">Lani sem dobil pripombe, da sem prehiter. Letos bo šlo še hitreje."<}{-- prof.~dr.~Miran Černe}
 
-\subsection{Prostor $\R^n$}
+\subsection{Prostor \titleRn{n}}
 
 \datum{2021-10-5}
 
@@ -46,7 +46,7 @@ Analiza 1 prvega letnika.}
 
 \newpage
 
-\subsection{Zaporedja v $\R^n$}
+\subsection{Zaporedja v \titleRn{n}}
 
 \begin{trditev}
 Zaporedje $\set{a_m}$ v $\R^n$ konvergira natanko tedaj, ko za vse
@@ -80,7 +80,7 @@ d(a^m,a) = \sqrt{\sum_{i=1}^n (a_i^m - a_i)^2}
 
 \newpage
 
-\subsection{Zveznost preslikav iz $\R^n$ v $\R^m$}
+\subsection{Zveznost preslikav iz \titleRn{n} v \titleRn{m}}
 
 \begin{definicija}
 Naj bo $D \subseteq \R^n$ in $f \colon D\to\R^m$ preslikava.
@@ -151,7 +151,7 @@ f(x,y)=\begin{cases}
 
 \newpage
 
-\subsection{Preslikave iz $\R^n$ v $\R^m$}
+\subsection{Preslikave iz \titleRn{n} v \titleRn{m}}
 
 \begin{trditev}
 Naj bo $D \subseteq \R^n$ in $f \colon D \to \R^m$. Označimo
@@ -211,7 +211,7 @@ C\sqrt{n} \cdot \norm{x}.
 Sledi, da je
 \[
 \norm{Ax} =
-\sqrt{\sum_{i=1}^m L_i(x)^2} \leq
+\sqrt{\sum_{i=1}^m A_i(x)^2} \leq
 C \sqrt{nm} \cdot \norm{x}. \qedhere
 \]
 \end{proof}
@@ -237,7 +237,7 @@ $f$ po spremenljivki $x_i$ v točki $a$ in ga označimo z
 
 \begin{definicija}
 Naj bo $D \subseteq \R^n$ in $f \colon D \to \R$ preslikava, $a$ pa
-notranja točka množice $D$. Pravimo, da je $f$
+notranja točka množice $D$. $f$ je
 \emph{diferenciabilna}\index{Preslikava!Diferenciabilna} v točki
 $a$, če obstaja taka linearna preslikava
 $L \colon \R^n \to \R$, da je
@@ -294,9 +294,9 @@ $L_1 - L_2$, sledi, da je $L_1 - L_2 = 0$.
 
 \begin{opomba}
 Preslikavi $L$ pravimo \emph{diferencial} funkcije $f$ v točki $a$
-in ga označimo z $L = d_af$. Funkcija $h \mapsto f(a) + d_af(h)$ je
-najboljša afina aproksimacija funkcije $h \mapsto f(a+h)$ v okolici
-točke $a$.
+in ga označimo z $L = d_af$. Funkcija s predpisom
+$h \mapsto f(a) + d_af(h)$ je najboljša afina aproksimacija
+funkcije $h \mapsto f(a+h)$ v okolici točke $a$.
 \end{opomba}
 
 \begin{izrek}
@@ -332,8 +332,8 @@ $\norm{h} = \abs{h_i}$, zato je
 \frac{L(h)}{h_i} + \frac{o(h)}{h_i} =
 \ell_i + \frac{o(h)}{h_i}.
 \]
-V limiti je to enako $\ell_i$, zato ima $f$ parcialni odvod. Očitno
-velja tudi navedena enakost.
+V limiti je izraz enak $\ell_i$, zato ima $f$ parcialni odvod.
+Očitno velja tudi navedena enakost.
 \end{proof}
 
 \begin{opomba}
@@ -356,7 +356,8 @@ Diferencial $d_af$ lahko identificiramo z vektorjem
 \right),
 \]
 ki ga imenujemo \emph{gradient}\index{Preslikava!Gradient} in
-označimo z $\grad f$. Velja $(d_af)(h) = (\grad f)(a) \cdot h$.
+označimo z $(\grad f)(a)$. Velja
+$(d_af)(h) = (\grad f)(a) \cdot h$.
 \end{opomba}
 
 \begin{izrek}
@@ -476,7 +477,7 @@ dobimo, da je
 \[
 J = (f_x)_y(a', b')\cdot hk
 \]
-za nek $b'$ med $b$ in $b+h$. Simetrično dobimo, da je
+za nek $b'$ med $b$ in $b+k$. Simetrično dobimo, da je
 \[
 J = (f_y)_x(a'', b'')\cdot hk
 \]
@@ -505,7 +506,7 @@ $\mathcal{C}^k(D)$. Prostor
 
 \newpage
 
-\subsection{Diferenciabilnost preslikav iz $\R^n$ v $\R^m$}
+\subsection{Diferenciabilnost preslikav iz \titleRn{n} v \titleRn{m}}
 
 \begin{okvir}
 \begin{definicija}
@@ -664,13 +665,13 @@ Velja
 \[
 \lim_{h \to 0}\frac{\norm{(DG)(b) \cdot o_F(h)}}{\norm{h}} = 0,
 \]
-saj obstaja tak $M$, da je
-$\norm{(DG)(b) v} \leq M \cdot \norm{v}$ in
-$\norm{(DF)(a) v} \leq M \cdot \norm{v}$.
+saj obstaja tak $M_1$, da je
+$\norm{(DG)(b) v} \leq M_1 \cdot \norm{v}$. Podobno obstaja tudi
+tak $M$, da je $\norm{(DF)(a) v} \leq M \cdot \norm{v}$.
 Naj bo $\varepsilon > 0$. Potem obstaja tak $\delta > 0$, da za vse
 $k$, za katere je $\norm{k} < \delta$, velja
 \[
-\norm{o_G(k)} \leq \varepsilon \cdot \norm{h}.
+\norm{o_G(k)} \leq \varepsilon \cdot \norm{k}.
 \]
 Ker je
 \[
@@ -731,7 +732,7 @@ taka $\delta_1 > 0$ in $\varepsilon > 0$, da je
 \overline{(b-\varepsilon,b+\varepsilon)} \subseteq D,
 \]
 in je $f_y(x,y) > 0$ na tej okolici. Sledi, da je
-$y \mapsto f(a,y)$ na tem intervalu strogo naraščajoča. Sledi, da
+$y \mapsto f(x,y)$ na tem intervalu strogo naraščajoča. Sledi, da
 obstaja tak $0 < \delta \leq \delta_1$, za katerega za vse
 $x \in (a-\delta, a+\delta)$ velja
 \[
@@ -742,7 +743,7 @@ f(x, b-\varepsilon) < 0.
 Ker je $y \mapsto f(x,y)$ strogo naraščajoča in zvezna, ima na
 $(b-\varepsilon,b+\varepsilon)$ natanko eno ničlo.
 
-Preostane nam dokaz, da je $\varphi$ odvedljiva. Naj bosta
+Preostane nam dokaz, da je $\varphi$ zvezno odvedljiva. Naj bosta
 $x, x+\Delta x \in I$ in označimo
 $y = \varphi(x)$, $y + \Delta y = \varphi(x + \Delta x)$. Z uporabo
 Lagrangevega izreka dobimo
@@ -758,9 +759,10 @@ $y + \Delta y$. Dobimo
 \[
 \Delta y = - \frac{f_x(x', y + \Delta y)}{f_y(x, y')} \Delta x.
 \]
-Obstajata taka $M$ in $m$, da je $\abs{f_x(x,y)} \leq M$ za vse
-$(x,y) \in I \times J$ in
-$f_y(\widetilde{x},\widetilde{y}) \geq m > 0$, saj sta parcialna
+Obstajata taka $M$ in $m$, da je
+$\abs{f_x(\widetilde{x},\widetilde{y})} \leq M$ in
+$f_y(\widetilde{x},\widetilde{y}) \geq m > 0$ za vse
+$(\widetilde{x},\widetilde{y}) \in I \times J$, saj sta parcialna
 odvoda zvezna, $I \times J$ pa kompakt. Tako dobimo
 \[
 \Delta y \leq \frac{M}{m} \cdot \Delta x,
@@ -844,7 +846,7 @@ Naj bo $F \colon D\to \R^m$ in $F \in \mathcal{C}^1(D)$. Če velja
 \end{enumerate}
 
 potem obstajata taki okolici $U$ točke $a$ in $V$ točke $b$, pri
-čemer je $U \times V \subseteq D$, in obstaja enolično določena
+čemer je $U \times V \subseteq D$, da obstaja enolično določena
 preslikava $\varphi \colon U \to V$, za katero velja
 $\varphi \in \mathcal{C}^1(U)$ in
 \begin{enumerate}[i)]
@@ -874,7 +876,19 @@ zato je $\det(D\Phi)(a,b) = \det (D_yF)(a,b) \ne 0$. Po izreku
 $(a,0)$, ki slika po predpisu
 $\Phi^{-1} \colon (x,w) \mapsto (x, G(x,w))$. Sedaj lahko
 preprosto vzamemo $\varphi \equiv G(x,0)$ na dovolj majhni
-okolici $a$.
+okolici $a$. Za dokaz tretje točke preprosto odvajamo zvezo
+$F(x,\varphi(x)) = 0$ in dobimo
+\[
+\begin{bmatrix}
+(D_xF)(x,y) & (D_yF)(x,y)
+\end{bmatrix} 
+\cdot
+\begin{bmatrix}
+I_{\R^n}    \\
+D\varphi(x)
+\end{bmatrix}
+= 0. \qedhere
+\]
 \end{proof}
 
 \begin{opomba}
@@ -911,7 +925,7 @@ f(b) - f(a) =
 \]
 velja
 \[
-\abs{f(b) - f(a)} \leq M \sqrt{n} \cdot \abs{b - a}.
+\abs{f(b) - f(a)} \leq M \sqrt{n} \cdot \norm{b - a}.
 \]
 \end{posledica}
 
@@ -920,8 +934,8 @@ Po Cauchyju je
 \[
 \abs{f(b) - f(a)} =
 \abs{(Df)(\xi) \cdot (b - a)} \leq
-\abs{(Df)(\xi)} \cdot \abs{b - a} \leq
-M \sqrt{n} \cdot \abs{b - a}. \qedhere
+\norm{(Df)(\xi)} \cdot \norm{b - a} \leq
+M \sqrt{n} \cdot \norm{b - a}. \qedhere
 \]
 \end{proof}
 
@@ -989,11 +1003,11 @@ označimo $F(x) = x + H(x)$. Sledi, da je
 
 Po lemi \ref{lm:1} obstaja tak $r>0$, da na
 $\overline{\mathcal{K}(0,r)}$ velja
-\[
+\begin{equation}\label{eq:1}
 \norm{F(x_1) - F(x_2)} =
 \norm{x_1 - x_2 + H(x_1) - H(x_2)} \geq
 \frac{1}{2} \norm{x_1 - x_2},
-\]
+\end{equation}
 zato je $F$ na tej okolici injektivna, njen inverz pa je zvezen.
 
 Trdimo, da je
@@ -1012,23 +1026,25 @@ z istim koeficientom. Tak $x$ torej obstaja po Banachovem
 skrčitvenem načelu.\footnote{Izrek 7.4.2 v zapiskih predmeta
 Analiza 1 prvega letnika.}
 
-Naj bo $\mathcal{U} = F^{-1}(\mathcal{V}) \cap \mathcal{K}(0,r)$.
-Vidimo, da je $F \colon \mathcal{U} \to \mathcal{V}$ bijekcija z
-zveznim inverzom $G$. Preostane le še dokaz, da je $G$
-diferenciabilna z diferencialom
+Naj bo $V = \mathcal{K}\left(0,\frac{r}{2}\right)$ in
+$U = F^{-1}(V)$.\footnote{$U$ je odprta, saj je $F$ zvezna.}
+Opazimo, da je $U \subseteq \mathcal{K}(0,r)$, saj za
+$\norm{y} < \frac{r}{2}$ neenakost \eqref{eq:1} postane stroga.
+Vidimo, da je $F \colon U \to V$ bijekcija z zveznim inverzom $G$.
+Preostane le še dokaz, da je $G$ diferenciabilna z diferencialom
 \[
 (DG)(y) = (DF)^{-1}(G(y)).
 \]
-Naj bo $y \in \mathcal{V}$ in $k \in \R^n$ dovolj majhen. Označimo
-$G(y) = x$ in $G(y + k) = x + h$. Sledi, da je $y = F(x)$ in
+Naj bo $y \in V$ in $k \in \R^n$ dovolj majhen. Označimo $G(y) = x$
+in $G(y + k) = x + h$. Sledi, da je $y = F(x)$ in
 \[
 y + k = F(x + h) = F(x) + (DF)(x)\cdot h + o_F(h).
 \]
-Iz leme \ref{lm:1} sledi, da je
+Iz \eqref{eq:1} sledi, da je
 $\norm{k} \geq \frac{1}{2} \norm{h}$. Sedaj si oglejmo
 \begin{align*}
 \lim_{k \to 0}
-\frac{\norm{G(y+k) - G(y) - (DF)^{-1}(x) \cdot h}}{\norm{k}}
+\frac{\norm{G(y+k) - G(y) - (DF)^{-1}(x) \cdot k}}{\norm{k}}
 &= \lim_{k \to 0}
 \frac{\norm{h - (DF)^{-1}(x)((DF)(x)\cdot h + o_F(h))}}{\norm{k}}
 \\
@@ -1047,6 +1063,14 @@ izrek dokazan.
 Če je $F \in \mathcal{C}^k(D)$, je $F^{-1} \in \mathcal{C}^k(V)$.
 \end{opomba}
 
+\begin{proof}
+Če je $F \in \mathcal{C}^k(D)$, je
+$F^{-1} \in \mathcal{C}^{k-1}(V)$ in zato
+\[
+D(F^{-1})(y) = (DF)^{-1}(F^{-1}(y)) \in \mathcal{C}^{k-1}. \qedhere
+\]
+\end{proof}
+
 \begin{opomba}
 Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^n$,
 $F \in \mathcal{C}^1(D)$ in $\det(DF)(x) \ne 0$ za vse $x \in D$.
@@ -1058,7 +1082,7 @@ Potem je $F$ \emph{lokalni difeomorfizem}.
 \begin{definicija}
 Naj bo $D \subseteq \R^n$ odprta in $F \colon D \to \R^m$,
 $F \in \mathcal{C}^1$. \emph{Rang}\index{Preslikava!Rang}
-preslikave $F$ v točki $a \in D$ je $r = \rang DF(a)$. če je rang
+preslikave $F$ v točki $a \in D$ je $r = \rang DF(a)$. Če je rang
 konstanten na $D$, pravimo, da je preslikava $F$ ranga $r$ na $D$.
 \end{definicija}
 
@@ -1077,8 +1101,7 @@ i_1,\dots,i_{n-m}, \quad j_1,\dots,j_m \quad \text{in} \quad
 \]
 in take $\mathcal{C}^1$ funkcije $\varphi_1,\dots,\varphi_m$,
 definirane v okolici $(a_{i_1},\dots,a_{i_{n-m}})$, da je v neki
-okolici $\mathcal{U}$ točke $a$ enačba $F(X)=0$ ekvivalentna
-sistemu
+okolici $U$ točke $a$ enačba $F(x)=0$ ekvivalentna sistemu
 \[
 \forall k \colon x_{j_k} = \varphi_k(x_{i_1},\dots,x_{i_{n-m}}).
 \]
@@ -1092,9 +1115,9 @@ o implicitni preslikavi.
 \begin{posledica}
 Naj bo $D \subseteq \R^n$ odprta, $F \colon D \to \R^m$,
 $F \in \mathcal{C}^1$ in $m \leq n$. Naj bo $F$ v $a \in D$
-maksimalnega ranga. Potem obstaja taka okolica $\mathcal{V}$
-točke $b = F(a)$ v $\R^m$ in okolica $\mathcal{U}$ točke $a$ v $D$,
-da je $F \colon \mathcal{U} \to \mathcal{V}$ surjektivna.
+maksimalnega ranga. Potem obstaja taka okolica $V$ točke $b = F(a)$
+v $\R^m$ in okolica $U$ točke $a$ v $D$, da je $F \colon U \to V$
+surjektivna.
 \end{posledica}
 
 \begin{proof}
@@ -1130,9 +1153,9 @@ f(a+h) = \sum_{i=0}^k \frac{(D_h^if)(a)}{i!} + R_k,
 \]
 kjer je
 \[
-R_n = \frac{(D_h^{k+1}f)(a + \theta h)}{(k+1)!}
+R_k = \frac{(D_h^{k+1}f)(a + \theta h)}{(k+1)!}
 \quad \text{in} \quad
-D_h = \sum_{i=1}^n \frac{\partial}{\partial x_i} h_i.
+D_h = \sum_{i=1}^n h_i \cdot \frac{\partial}{\partial x_i}.
 \]
 \end{izrek}
 
@@ -1345,8 +1368,8 @@ Naj bo $\Phi(x) = (f(x), G(x))$. Velja $\Phi(p) = (f(p),0)$. Če je
 $\rang(D\Phi)(p) = m+1$, je $(D\Phi)(p)$ maksimalnega ranga, zato
 je $\Phi$ iz okolice $p$ v okolico $(f(p),0)$ surjektivna, zato so
 v zalogi vrednosti tako točke oblike $(f(p)+\varepsilon,0)$ kot
-$(f(p)-\varepsilon,0)$, zato $f$ v $p$ nima lokalnega ekstrema.
-Sledi, da je
+$(f(p)-\varepsilon,0)$ in $f$ v $p$ nima lokalnega ekstrema. Sledi,
+da je
 \[
 \rang(D\Phi)(p) = \rang(DG)(p),
 \]
