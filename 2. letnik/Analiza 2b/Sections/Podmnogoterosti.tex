@@ -266,3 +266,163 @@ oziroma
 \]
 S primerjanjem dimenzij vidimo, da sta podprostora enaka.
 \end{proof}
+
+\begin{opomba}
+Podmnogoterostim, katerim dodamo robne točke, pravimo
+\emph{mnogoterosti z robom}.
+\end{opomba}
+
+\newpage
+
+\subsection{Krivulje v \titleRn{3}}
+
+\begin{definicija}
+\emph{Krivulja}\index{Krivulja} je enodimenzionalna podmnogoterost.
+\end{definicija}
+
+\begin{trditev}
+Povezane krivulje lahko parametriziramo globalno.
+\end{trditev}
+
+\begin{opomba}
+Vsaka krivulja ima neskončno mnogo regularnih parametrizacij. Velja
+\[
+\vv{\rho}' = \dot{\vv{r}}(h) \cdot h'.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\Gamma$ krivulja v $\R^3$ in
+$\vv{r} \colon [\alpha, \beta] \to \Gamma$ njena regularna
+parametrizacija. Naj bo $D$ delitev intervala $[\alpha, \beta]$.
+Naj bo
+\[
+\ell(D) =
+\sum_{i=1}^n d(\vv{r}(t_{i-1}),\vv{r}(t_i)).
+\]
+\emph{Dolžina krivulje}\index{Krivulja!Dolžina} je limita
+\[
+\lim_{\max \Delta t \to 0} \ell(D).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $\vv{r}\colon[a,b]\to\R^2$ in
+$\vv{\rho}\colon[\alpha,\beta]\to\R^2$ regularni parametrizaciji
+poti $\Gamma$. Potem je
+\[
+\int_a^b \abs{\dot{\vv{r}}(t)}\;dt =
+\int_\alpha^\beta \abs{\dot{\vv{\rho}}(t)}\;dt
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo izrek o vpeljavi nove spremenljivke.
+\end{proof}
+
+\begin{trditev}
+Naj bo $\vv{r} \in \mathcal{C}^1([\alpha, \beta])$. Tedaj je
+dolžina krivulje enaka
+\[
+\int_\alpha^\beta \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\;dt =
+\int_\alpha^\beta \abs{\dot{\vv{r}}(t)}\;dt.
+\]
+\end{trditev}
+
+\begin{proof}
+Dokaz je enak dokazu izreka 5.4.6.\ v zapiskih Analize 1 prvega
+letnika.
+\end{proof}
+
+\begin{definicija}
+Naj bo $\vv{r} \colon [\alpha, \beta] \to \Gamma$ regularna
+parametrizacija krivulje $\Gamma$. Naj bo
+\[
+S(t) = \int_\alpha^t \abs{\dot{\vv{r}}(\tau)}\;d\tau.
+\]
+Za inverzno preslikavo\footnote{Ta obstaja, saj je $S' > 0$.}
+$T=S^{-1}$ parametrizacijo
+\[
+s \mapsto \vv{r}(T(s))
+\]
+imenujemo
+\emph{naravna parametrizacija}\index{Krivulja!Naravna parametrizacija}.
+\end{definicija}
+
+\begin{trditev}
+Odvod naravne parametrizacije je normiran.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\frac{d}{ds} \left(\vv{r}(T(s))\right) =
+\dot{\vv{r}}(T(s)) \cdot T'(s) =
+\frac{\dot{\vv{r}}(T(s))}{\dot{S}(T(s))} =
+\frac{\dot{\vv{r}}(T(s))}{\abs{\dot{\vv{r}}(T(s))}}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Normalna ravnina}\index{Krivulja!Normalna ravnina} krivulje
+$\vv{r}$ v točki $t$ je ravnina skozi $\vv{r}(t)$ in normalo
+$\dot{\vv{r}}(t)$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\vv{r}$ naravna $\mathcal{C}^2$ parametrizacija.
+\emph{Spremljajoči trieder} v točki $t$ so vektorji\footnote{To ni
+nujno dobra definicija.}
+\[
+\vv{T} = \dot{\vv{r}}(t),
+\quad
+\vv{N} = \frac{\vv{T}'}{\abs{\vv{T}'}}
+\quad \text{in} \quad
+\vv{B} = \vv{T} \times \vv{N}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Vektorju $\vv{N}$ pravimo \emph{vektor glavne normale}, vektorju
+$\vv{B}$ pa vektor \emph{binormale}.
+\end{opomba}
+
+\begin{definicija}
+\emph{Pritisnjena ravnina}\index{Krivulja!Pritisnjena ravnina} v
+točki $s$ je ravnina, ki jo razpenjata tangentni in normalni
+vektor ter gre skozi $\vv{r}(s)$.
+\end{definicija}
+
+\begin{trditev}
+Pritisnjena ravnina v točki $s$ je ravnina, ki se najbolje prilega
+krivulji v okolici $\vv{r}(s)$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\vv{n} \cdot (\vv{r}(s+h)-\vv{r}(s)) =
+\vv{n} \cdot \vv{r}'(s) \cdot h +
+\vv{n} \cdot \vv{r}''(s) \cdot \frac{h^2}{2} +
+\vv{n} \cdot \vv{o}(h^3).
+\]
+Ta izraz bo najmanjši, ko bo $\vv{n} \parallel \vv{B}(s)$.
+\end{proof}
+
+\begin{trditev}
+Za regularno $\mathcal{C}^2$ parametrizacijo $\vv{r}$ krivulje
+$\Gamma$ velja
+\[
+\vv{T} = \frac{\dot{\vv{r}}(t)}{\abs{\dot{\vv{r}}(t)}},
+\quad \text{in} \quad
+\vv{N} =
+\frac{\dot{\vv{r}} \times
+\left(\ddot{\vv{r}} \times \dot{\vv{r}}\right)}
+{\abs{\dot{\vv{r}}} \cdot
+\abs{\ddot{\vv{r}} \times \dot{\vv{r}}}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo verižno pravilo.
+\end{proof}
