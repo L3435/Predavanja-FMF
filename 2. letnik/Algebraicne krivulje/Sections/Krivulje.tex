@@ -1,0 +1,74 @@
+\section{Algebraične krivulje}
+
+\subsection{Definicija}
+
+\datum{2022-2-17}
+
+\begin{definicija}
+Polinom $P \in K[x_1, \dots, x_n]$ je
+\emph{nerazcepen}\index{Polinom!Nerazcepen}, če se ga ne da zapisati
+kot produkt dveh nekonstantnih polinomov iz $K[x_1, \dots, x_n]$.
+\end{definicija}
+
+\begin{definicija}
+Za polinom $F \in K[x,y]$ označimo njegovo množico ničel
+\[
+V(F) = \setb{(a,b) \in K^2}{F(a,b) = 0}.
+\]
+\end{definicija}
+
+\begin{okvir}
+\begin{definicija}
+Množica $\mathcal{C} \subseteq K^2$ je
+\emph{algebraična krivulja}\index{Algebraična krivulja}, če obstaja
+tak nekonstanten polinom $F \in K[x,y]$, da je
+\[
+\mathcal{C} = V(F).
+\]
+Pravimo, da je krivulja
+\emph{nerazcepna}\index{Algebraična krivulja!Nerazcepna}, če je v
+zgornji definiciji $F$ nerazcepen polinom.
+\end{definicija}
+\end{okvir}
+
+\newpage
+
+\subsection{Afina ekvivalentnost krivulj}
+
+\begin{definicija}
+\emph{Afina preslikava}\index{Afina preslikava} je kompozitum
+linearne preslikave in translacije. Če je ta linearna preslikava
+obrnljiva, je tudi afina preslikava obrnljiva in ji pravimo
+\emph{afina transformacija}.
+\end{definicija}
+
+\begin{trditev}
+Kompozitum afinih transformacij je afina transformacija.
+\end{trditev}
+
+\begin{proof}
+Afine transformacije so natanko preslikave
+\[
+(x,y) \mapsto (ax + by + \alpha, cx + dy + \beta),
+\]
+kjer je $ad \ne bc$.
+\end{proof}
+
+\begin{definicija}
+Krivulji $\mathcal{C}$ in $\mathcal{D}$ sta
+\emph{afino ekvivalentni}\index{Algebraična krivulja!Afino ekvivalentna},
+če obstaja afina transformacija $\Phi$, za katero je
+$\Phi(\mathcal{C}) = \mathcal{D}$.
+\end{definicija}
+
+\begin{opomba}
+Afina ekvivalenca je ekvivalenčna relacija.
+\end{opomba}
+
+\begin{lema}[Study]
+Naj bo $G \in K[x,y]$ nerazcepen nekonstanten polinom. Tedaj za
+vsak polinom $F \in K[x,y]$ velja
+\[
+G \mid F \iff V(G) \subseteq V(F).
+\]
+\end{lema}

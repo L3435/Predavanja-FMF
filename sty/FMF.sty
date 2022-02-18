@@ -110,6 +110,19 @@
 \newtheorem{primer}{Primer}[subsection]
 \newtheorem{naloga}{Naloga}[section]
 
+\newcommand{\capt}{placeholder}
+
+\newenvironment{skica}[1]
+{
+\begin{figure}[H]
+\centering
+\renewcommand{\capt}{#1}
+}
+{
+\caption{\capt}
+\end{figure}
+}
+
 \let\Re\relax
 \let\Im\relax
 \let\hom\relax
@@ -189,5 +202,40 @@
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 
 \setcounter{tocdepth}{2}
+
+\RequirePackage[inline]{asymptote}
+
+\newcommand{\krivulja}[3][]{%
+\begin{skica}{#3}
+  \stepcounter{asy}%
+  \setkeys{ASYkeys}{#1}%
+  \ifASYattach
+    \ASYinlinefalse
+  \fi
+  \ifx\asydir\empty\else
+    \def\ASYprefix{\asydir/}%
+  \fi
+  \immediate\write\AsyPreStream{%
+    \noexpand\InputIfFileExists{%
+      \ASYprefix\noexpand\jobname-\the\c@asy.pre}{}{}%
+  }
+  \asy@write@graphic@header
+  \immediate\write\AsyStream{\detokenize{
+import contour;
+import graph;
+size(10cm);
+real f(real x , real y)
+{
+  return #2;
+}
+real [] c={0.0};
+draw(contour(f,(-2,-2),(2,2),c));
+xaxis("$x$",LeftTicks);
+yaxis("$y$",RightTicks(trailingzero));
+  }}% here asy does the writing
+  \asy@finalise@stream
+  \asy@input@graphic
+  \end{skica}
+}
 
 %\overfullrule=5pt
