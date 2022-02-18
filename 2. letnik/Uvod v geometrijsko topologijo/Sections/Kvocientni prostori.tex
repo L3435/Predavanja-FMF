@@ -57,13 +57,121 @@ odprta natanko tedaj, ko je nasičenje vsake odprte množice odprto.
 
 \obvs
 
-%\begin{figure}[H]
-%\[
-%\begin{tikzcd}[column sep=large, row sep=large]
-%X \arrow[r, "f"] \arrow[d, "q"'] & Y \\
-%\kvoc{X}{\sim} \arrow[ur, dashrightarrow, "\approx"'] &
-%\end{tikzcd}
-%\]
-%\caption{To je bilo na tabli, nekoč v prihodnosti bo najbrž
-%pomembno.}
-%\end{figure}
+\newpage
+
+\subsection{Kvocientne preslikave}
+
+\datum{2022-2-18}
+
+\begin{definicija}
+Naj bo $f \colon X \to Y$ preslikava. Preslikavi
+$\overline{f} \colon \kvoc{X}{\sim} \to Y$, ki deluje po predpisu
+$\overline{f}([x]) = f(x)$, pravimo
+\emph{inducirana preslikava}\index{Preslikava!Inducirana}.
+\end{definicija}
+
+\begin{skica}{Inducirana preslikava.}
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \arrow[r, "f"] \arrow[d, "q"']                      & Y \\
+\kvoc{X}{\sim} \arrow[ur, dashrightarrow, "\overline{f}"'] &
+\end{tikzcd}
+\]
+\end{skica}
+
+\begin{trditev}
+Naj bo $f \colon X \to Y$ preslikava, konstantna na ekvivalenčnih
+razredih.\footnote{
+$\forall x, y \in X \colon x \sim y \implies f(x) = f(y)$.}
+
+\begin{enumerate}[i)]
+\item $f$ določa inducirano preslikavo.
+\item Če je $f$ zvezna, je tudi $\overline{f}$ zvezna.
+\item $\overline{f}$ je surjektivna natanko tedaj, ko je $f$
+surjektivna.
+\item $\overline{f}$ je injektivna natanko tedaj, ko $f$ loči
+ekvivalenčne razrede.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo drugo trditev. $\overline{f}$ je zvezna natanko tedaj, ko
+je za vsako odprto množico $V \subseteq Y$ množica
+$\overline{f}^{-1}(V)$ odprta, oziroma
+\[
+q^{-1}\left(\overline{f}^{-1}(V)\right) \in \tau,
+\]
+velja pa $q^{-1}\left(\overline{f}^{-1}(V)\right) = f^{-1}(V)$.
+\end{proof}
+
+\begin{definicija}
+Surjektivna preslikava $f \colon X \to Y$ je
+\emph{kvocientna}\index{Preslikava!Kvocientna}, če za vsako
+množico $V \subseteq Y$ velja
+\[
+V \in \tau_Y \iff f^{-1}(V) \in \tau_X.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $f$ kvocientna, je njena inducirana preslikava homeomorfizem,
+zato se obnaša kot kvocientna projekcija.
+\end{opomba}
+
+\begin{opomba}
+Če je $f$ surjektivna, je kvocientna natanko tedaj, ko za vsako
+množico $V \subseteq Y$ velja
+\[
+V^{\mathsf{c}} \in \tau_Y \iff f^{-1}(V)^{\mathsf{c}} \in \tau_X.
+\]
+\end{opomba}
+
+\begin{izrek}
+Naj bo $q \colon X \to \kvoc{X}{\sim}$ kvocientna projekcija in
+$f \colon X \to Y$ kvocientnta preslikava, konstantna na
+ekvivalenčnih razredih, ki loči ekvivalenčne razrede. Potem je
+$\overline{f} \colon \kvoc{X}{\sim} \to Y$ homeomorfizem.
+\end{izrek}
+
+\obvs
+
+\begin{lema}
+Naj bo $f \colon X \to Y$ zvezna in surjektivna. Če je $f$ odprta
+ali zaprta, je kvocientna.
+\end{lema}
+
+\begin{proof}
+Naj bo $f$ zaprta. Dokažimo, da je za vsako zaprto množico
+$f^{-1}(Z)$ tudi $Z$ zaprta. Ker je $f$ zaprta, je tudi
+$f\left(f^{-1}(Z)\right) $ zaprta, velja pa
+\[
+f\left(f^{-1}(Z)\right) = Z,
+\]
+saj je $f$ surjektivna.
+\end{proof}
+
+\begin{opomba}
+Če je $f \colon X \to Y$ zvezna, $X$ kompakten in $Y$ Hausdorffov,
+je $f$ zaprta.
+\end{opomba}
+
+\begin{trditev}
+Naj bosta $f \colon X \to Y$ in $g \colon Y \to Z$ preslikavi.
+
+\begin{enumerate}[i)]
+\item Če sta $f$ in $g$ kvocientni, je $g \circ f$ kvocientna.
+\item Če je $g \circ f$ kvocientna in sta $f$ in $g$ zvezni, je $g$
+kvocientna.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če sta $f$ in $g$ kvocientni, je očitno tak tudi njun kompozitum.
+
+Če je $g \circ f$ kvocientna, je $g$ surjektivna. Velja pa
+\[
+g^{-1}(V) \in \tau_Y \implies
+f^{-1}\left(g^{-1}(V)\right) \in \tau_X \implies
+V \in \tau_Z. \qedhere
+\]
+\end{proof}

@@ -114,11 +114,11 @@
 
 \newenvironment{skica}[1]
 {
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
 \renewcommand{\capt}{#1}
 }
-{
+{%
 \caption{\capt}
 \end{figure}
 }
