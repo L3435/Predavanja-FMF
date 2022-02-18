@@ -1,0 +1,121 @@
+\section{Afina geometrija}
+
+\subsection{Afini podprostori v vektorskem prostoru}
+
+\datum{2022-2-15}
+
+\begin{definicija}
+    Naj bo $V$ končnorazsežen vektorski prostor nad obsegom $O$, $a \in V$ in $W \leq V$. Množico
+    \[
+    a + W = \setb{a + x}{x \in W}
+    \]
+    imenujemo \emph{afin podprostor} v $V$.
+    Množica $A$ je \emph{afin prostor}\index{Afin prostor}, če je afin podprostor v kakšnem vektorskem prostoru.
+\end{definicija}
+
+\begin{opomba}
+    V nadaljevanju $V$ označuje končnorazsežen vektorski prostor nad obsegom $O$, $A$ pa afin prostor v $V$.
+\end{opomba}
+
+\begin{lema}
+    Naj bo $A = a + W$ afin podprostor. Tedaj je $A = b + W$ za vse $b \in A$.
+\end{lema}
+
+\begin{proof}
+    Po definiciji je $b = a + w$ za nek $w \in W$, torej je $w = b - a$. Za vsak $x \in W$ je
+    \[
+    a + x = b + (a - b) + x = b - w + x,
+    \]
+    in ker je $W$ vektorski podprostor je $(x - w) \in W$, torej je $a + x = b + (x - w) \in b + W$. Enako pokažemo drugo smer.
+\end{proof}
+
+\begin{posledica}
+    Naj bosta $A = a + U$ in $B = b + W$ afina podprostora v $V$. Če je $A \subseteq B$, je $U \leq W$.
+\end{posledica}
+
+\begin{proof}
+	Velja
+	\[    
+    a + U = A \subseteq B = b + W = a + W. \qedhere
+    \]
+\end{proof}
+
+\begin{posledica}
+    Naj bo $A$ afin prostor v $V$. Če je $A = a + W$ in $A = a' + W'$, potem je $W = W'$.
+\end{posledica}
+
+\begin{definicija}
+    \emph{Razsežnost}\index{Razsežnost} afinega prostora $A = a + W$ je
+    \[
+    \dim A = \dim U.
+    \]
+\end{definicija}
+
+\begin{definicija}
+    Naj bodo $a_{i} \in A$ in $\alpha_{i} \in O$ za vse $1 \leq i \leq n$, in naj bo $\sum_{i=1}^{n} \alpha_{i} = 1$. Vsoto 
+    \[
+    \sum_{i=1}^{n} \alpha_{i} a_{i}
+    \]
+    imenujemo \emph{afina kombinacija}\index{Afina kombinacija} točk $a_1,\dots, a_n$.
+\end{definicija}
+
+\begin{lema}
+    Naj bo karakteristika $O$ različna od 2. Poljubna afina kombinacija dveh elementov iz $A$ je v $A$ natanko tedaj, ko je poljubna afina kombinacija poljubno elementov iz $A$ v $A$.
+\end{lema}
+
+\begin{proof}
+    Lemo dokažemo z indukcijo po številu sumandov. Primera $n = 1$ in $n = 2$ sta trivialna.
+    
+    Naj bo $n \geq 3$ in predpostavimo, da velja izrek za vse $m < n$. Ideja dokaza je, da pogledamo vsoto prvih $n - 1$ členov in pametno izpostavimo tak faktor, da postane afina in na njej uporabimo izrek
+    in zmanjšamo vsoto na afino kombinacijo dveh elementov, za katero izrek trivialno velja.
+    Označimo $\alpha = \alpha_1 + \dots + \alpha_{n-1}$. Sedaj ločimo dva primera:
+   
+    \begin{enumerate}[i)]
+    \item Velja $\alpha \neq 0.$ Sledi, da je
+    \[
+        \alpha_1 a_1 + \dots + \alpha_{n-1} a_{n-1} + \alpha_n a_n = 
+        \underbrace{\alpha \cdot \overbrace{(\alpha^{-1} \cdot \alpha_1 a_1 + \dots + \alpha^{-1} \cdot \alpha_{n-1} a_{n-1})}^{\text{afina kombinacija $n - 1$ elementov}} + \alpha_n a_n}_{\text{afina kombinacija dveh elementov}}.
+    \]
+    Po indukcijski predpostavki je torej afina kombinacija znova element $A$.
+    \item Velja $\alpha = 0$.
+    Brez škode za splošnost je $\alpha_1 + \dots + \alpha_{n-2} \neq 0$, drugače bi bil $\alpha_{n-1} = 0$ in bi imeli kombinacijo $n-1$ elementov, za katero po indukcijski predpostavki izrek drži.
+    Dokaz je isti kot zgoraj, le da vzamemo prvih $n-2$ elementov namesto $n-1$ in vsoto zmanjšamo na 3 elemente namesto 2. 
+    
+    Dovolj je tako pokazati trditev za $n=3$. Ker ima $O$ karakteristiko različno od 2, lahko izberemo taka $\alpha_1$ in $\alpha_2$, da je $\alpha_1 + \alpha_2 \neq 0$,
+    saj drugače velja
+    \[
+    \alpha_1 + \alpha_2 = \alpha_3 + \alpha_2 = \alpha_1 + \alpha_3 = 0,
+    \]
+    torej velja $\alpha_1 = \alpha_2 = \alpha_3 = 1$ in zato $\alpha_1 + \alpha_2 + \alpha_3 = 1 + 1 + 1 = 1$, oziroma $1 + 1 = 0$, kar je protislovje. Sedaj zaključimo kot v prejšnjem primeru. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{trditev}
+    Naj bo karakteristika $O$ različna od 2. $A \leq V$ je afin podprostor natanko tedaj, ko poljubna afina kombinacija dveh točk iz $A$ leži v $A$.
+\end{trditev}
+
+\begin{proof}
+    Predpostavimo, da je $A$ afin podprostor.
+    Naj bo $A = a + W$ in $a + w_1, a + w_2 \in A$, kjer sta $w_1, w_2 \in W$, ter naj bosta $\alpha_1, \alpha_2 \in O$ taka, da velja $\alpha_1 + \alpha_2 = 1$. Potem velja
+    \begin{align*}
+    \alpha_1 a_1 + \alpha_2 a_2 &= \alpha_1 (a + w_1) + \alpha_2 (a + w_2) \\
+    &= \alpha_1 a + \alpha_1 w_1 + \alpha_2 a + \alpha_1 w_2 \\
+    &= \alpha_1 a + \alpha_2 a + \alpha_1 w_1 + \alpha_1 w_2 \\
+    &= \underbrace{(\alpha_1 + \alpha_2)}_{=\: 1} a + \underbrace{(\alpha_1 w_1 + \alpha_1 w_2)}_{\text{leži v $W$}}.
+    \end{align*}
+    Sedaj predpostavimo, da poljubna afina kombinacija dveh točk iz $A$ leži v $A$.
+    $A$ je afin prostor natanko tedaj, ko obstajata nek $W \leq V$ in $a \in A$, da je $A = a + W$, oziroma ko za vsak $v \in A$ velja $v - a \in W$.
+    
+    Fiksiramo $a \in A$. Pokazali bomo da je množica $W = \setb{b-a}{b \in A}$ vektorski prostor.
+    Naj bosta $x$ in $y$ poljubna elementa $W$, torej $x = b - a$ in $y = c - a$ za neka $b, c \in A$, in naj bosta $\alpha, \beta \in O$.
+    
+    Linearna kombinacija $\alpha x + \beta y$ leži v $W$ natanko tedaj, ko za nek $d \in A$ velja
+    \[
+    \alpha x + \beta y = \alpha (b - a) + \beta (c - a) = d - a,
+    \]
+    oziroma
+    \[
+    a + \alpha (b - a) + \beta (c - a) = (1 - \alpha - \beta) a + \alpha b + \beta c = d.
+    \]
+    Ker pa velja $(1 - \alpha - \beta) + \alpha + \beta = 1$, je zgornja vsota afina kombinacija elementov $a$, $b$ in $c$ iz $A$, torej po predpostavki njihova vsota leži v $A$.
+\end{proof}
