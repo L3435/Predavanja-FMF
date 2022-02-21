@@ -34,3 +34,9 @@ tem upoštevajte naslednji format:
 
 	"Priporočil bi vam, da vam internet ne pade."
 	- prof. dr. Miran Černe, 7. 12. 2020
+
+---
+
+## Povezave
+
+[Discord](https://discord.gg/BJcTTAVFWv)
