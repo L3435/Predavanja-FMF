@@ -311,12 +311,12 @@ Naj bo
 \end{definicija}
 
 \begin{trditev}
-Naj bosta $\vv{r}\colon[a,b]\to\R^2$ in
-$\vv{\rho}\colon[\alpha,\beta]\to\R^2$ regularni parametrizaciji
+Naj bosta $\vv{r}\colon[a,b]\to\R^3$ in
+$\vv{\rho}\colon[\alpha,\beta]\to\R^3$ regularni parametrizaciji
 poti $\Gamma$. Potem je
 \[
-\int_a^b \abs{\dot{\vv{r}}(t)}\;dt =
-\int_\alpha^\beta \abs{\dot{\vv{\rho}}(t)}\;dt
+\int_a^b \norm{\dot{\vv{r}}(t)}\;dt =
+\int_\alpha^\beta \norm{\dot{\vv{\rho}}(t)}\;dt
 \]
 \end{trditev}
 
@@ -329,7 +329,7 @@ Naj bo $\vv{r} \in \mathcal{C}^1([\alpha, \beta])$. Tedaj je
 dolžina krivulje enaka
 \[
 \int_\alpha^\beta \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\;dt =
-\int_\alpha^\beta \abs{\dot{\vv{r}}(t)}\;dt.
+\int_\alpha^\beta \norm{\dot{\vv{r}}(t)}\;dt.
 \]
 \end{trditev}
 
@@ -342,7 +342,7 @@ letnika.
 Naj bo $\vv{r} \colon [\alpha, \beta] \to \Gamma$ regularna
 parametrizacija krivulje $\Gamma$. Naj bo
 \[
-S(t) = \int_\alpha^t \abs{\dot{\vv{r}}(\tau)}\;d\tau.
+S(t) = \int_\alpha^t \norm{\dot{\vv{r}}(\tau)}\;d\tau.
 \]
 Za inverzno preslikavo\footnote{Ta obstaja, saj je $S' > 0$.}
 $T=S^{-1}$ parametrizacijo
@@ -363,14 +363,14 @@ Velja
 \frac{d}{ds} \left(\vv{r}(T(s))\right) =
 \dot{\vv{r}}(T(s)) \cdot T'(s) =
 \frac{\dot{\vv{r}}(T(s))}{\dot{S}(T(s))} =
-\frac{\dot{\vv{r}}(T(s))}{\abs{\dot{\vv{r}}(T(s))}}. \qedhere
+\frac{\dot{\vv{r}}(T(s))}{\norm{\dot{\vv{r}}(T(s))}}. \qedhere
 \]
 \end{proof}
 
 \begin{definicija}
-\emph{Normalna ravnina}\index{Krivulja!Normalna ravnina} krivulje
-$\vv{r}$ v točki $t$ je ravnina skozi $\vv{r}(t)$ in normalo
-$\dot{\vv{r}}(t)$.
+\emph{Normalna ravnina}\index{Krivulja!Normalna, pritisnjena ravnina}
+krivulje $\vv{r}$ v točki $t$ je ravnina skozi $\vv{r}(t)$ in
+normalo $\dot{\vv{r}}(t)$.
 \end{definicija}
 
 \begin{definicija}
@@ -380,7 +380,7 @@ nujno dobra definicija.}
 \[
 \vv{T} = \dot{\vv{r}}(t),
 \quad
-\vv{N} = \frac{\vv{T}'}{\abs{\vv{T}'}}
+\vv{N} = \frac{\vv{T}'}{\norm{\vv{T}'}}
 \quad \text{in} \quad
 \vv{B} = \vv{T} \times \vv{N}.
 \]
@@ -392,9 +392,8 @@ $\vv{B}$ pa vektor \emph{binormale}.
 \end{opomba}
 
 \begin{definicija}
-\emph{Pritisnjena ravnina}\index{Krivulja!Pritisnjena ravnina} v
-točki $s$ je ravnina, ki jo razpenjata tangentni in normalni
-vektor ter gre skozi $\vv{r}(s)$.
+\emph{Pritisnjena ravnina} v točki $s$ je ravnina, ki jo razpenjata
+tangentni in normalni vektor ter gre skozi $\vv{r}(s)$.
 \end{definicija}
 
 \begin{trditev}
@@ -417,16 +416,115 @@ Ta izraz bo najmanjši, ko bo $\vv{n} \parallel \vv{B}(s)$.
 Za regularno $\mathcal{C}^2$ parametrizacijo $\vv{r}$ krivulje
 $\Gamma$ velja
 \[
-\vv{T} = \frac{\dot{\vv{r}}(t)}{\abs{\dot{\vv{r}}(t)}},
+\vv{T} = \frac{\dot{\vv{r}}(t)}{\norm{\dot{\vv{r}}(t)}},
 \quad \text{in} \quad
 \vv{N} =
 \frac{\dot{\vv{r}} \times
 \left(\ddot{\vv{r}} \times \dot{\vv{r}}\right)}
-{\abs{\dot{\vv{r}}} \cdot
-\abs{\ddot{\vv{r}} \times \dot{\vv{r}}}}.
+{\norm{\dot{\vv{r}}} \cdot
+\norm{\ddot{\vv{r}} \times \dot{\vv{r}}}}.
 \]
 \end{trditev}
 
 \begin{proof}
 Uporabimo verižno pravilo.
 \end{proof}
+
+\newpage
+
+\subsection{Ukrivljenost krivulj}
+
+\datum{2022-2-21}
+
+\begin{definicija}
+\emph{Fleksijska ukrivljenost}\index{Krivulja!Fleksijska, torzijska ukrivljenost}
+je definirana kot
+\[
+\kappa(s) = \norm{\vv{r}''(s)} = \norm{\vv{T}'(s)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+\kappa = \frac{\norm{\dot{\vv{r}} \times \ddot{\vv{r}}}}{\norm{\dot{\vv{r}}}^3}.
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Pritisnjena krožnica}\index{Krivulja!Pritisnjena krožnica} je
+krožnica z radijem
+\[
+\rho(s) = \frac{1}{\kappa(s)}
+\]
+in središčem v točki
+\[
+\vv{r}(s) + \rho(s) \cdot \vv{N}(s),
+\]
+ki leži v pritisnjeni ravnini.
+\end{definicija}
+
+\begin{opomba}
+Pritisnjena krožnica je parametrizirana s
+\[
+\varphi \mapsto \vv{r} + \rho \cdot \vv{N} + \rho \cdot
+\left(\vv{T} \cdot \cos \varphi + \vv{N} \cdot \sin \varphi\right).
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Torzijska ukrivljenost}\footnote{Tudi \emph{zvitost}.}
+krivulje $\vv{r} \in \mathcal{C}^3$ je definirana kot
+\[
+\omega(s) = \norm{\vv{B}'(s)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+\omega =
+\frac{\left[\dot{\vv{r}},\ddot{\vv{r}},\dddot{\vv{r}}\right]}
+{\norm{\dot{\vv{r}} \times \ddot{\vv{r}}}^2}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+\vv{N}' = - \kappa \cdot \vv{T} + \omega \cdot \vv{B}.
+\]
+\end{trditev}
+
+\begin{proof}
+Opazimo, da velja $\vv{N}' \perp \vv{N}$, saj je $\vv{N} = 1$.
+Sedaj preprosto odvajamo zvezi
+\[
+\vv{N} \cdot \vv{T} = 0
+\quad \text{in} \quad
+\vv{N} \cdot \vv{B} = 0. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Frenet-Serretov sistem]
+\index{Izrek!Frenet-Serretov sistem}
+Velja
+\[
+\begin{bmatrix}
+\vv{T} \\
+\vv{N} \\
+\vv{B}
+\end{bmatrix}' =
+\begin{bmatrix}
+0       & \kappa  & 0      \\
+-\kappa & 0       & \omega \\
+0       & -\omega & 0
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\vv{T} \\
+\vv{N} \\
+\vv{B}
+\end{bmatrix}.
+\]
+\end{izrek}
