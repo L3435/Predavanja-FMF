@@ -93,7 +93,7 @@ jobs:
                   continue
                 fi
                 cd "$predmet"
-                if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet**/*.tex"* ]] ; then
+                if [[ "${{ steps.filter.outputs.tex_files }}" == *"$letnik$predmet"* ]] ; then
                   if [[ !("${{ steps.filter.outputs.pdf_files }}" == *"$letnik$predmet${predmet::-1}.pdf"*) ]] ; then
                     git add "${predmet::-1}".pdf
                     git commit -m "Dodan pdf - ${predmet::-1}"
