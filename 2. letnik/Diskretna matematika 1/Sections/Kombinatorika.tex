@@ -76,7 +76,7 @@ k^{\overline{n}} = \prod_{i=0}^{n-1} (k + i).
 \end{definicija}
 
 \begin{trditev}
-Za množico $N$ z $n$ elementi in množico $K$ s $k$ elementov velja
+Za množico $N$ z $n$ elementi in množico $K$ s $k$ elementi velja
 
 \begin{enumerate}[i)]
 \item $\abs{K^N} = k^n$
@@ -93,3 +93,160 @@ pa $0$.
 Če imata končni množici enako moč, je bijektivnost preslikave med
 njima ekvivalentna tako injektivnosti kot surjektivnosti.
 \end{opomba}
+
+\newpage
+
+\subsection{Binomski koeficienti in binomski izrek}
+
+\datum{2022-2-21}
+
+\begin{definicija}
+Naj bo $x \in \C$ in $k \in \N_0$.
+\emph{Binomski koeficient}\index{Binomski koeficient} števil $x$ in
+$k$ je število
+\[
+\binom{x}{k} = \frac{x^{\underline{k}}}{k!}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če je $n \in \N_0$ in $k \leq n$, potem je
+\[
+\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $X$ končna množica. Označimo
+\[
+\binom{X}{k} = \setb{A \subseteq X}{\abs{A} = k}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Za končno množico $X$ velja
+\[
+\abs{\binom{X}{k}} = \binom{\abs{X}}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Na dva načina preštejemo število urejenih $k$-teric. Dobimo, da je
+\[
+k! \cdot \abs{\binom{X}{k}} = \abs{X}^{\underline{k}}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Če je $1 \leq k \leq n$, je
+\[
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Preštejmo število $k$-elementnih podmnožic $[n]$ na dva načina. Za
+število $1$ imamo dve možnosti -- lahko je v podmnožico ali ne.
+Sedaj preštejemo načine, na katere lahko izmed preostalih $n-1$
+elementov izberemo ustrezno število. V prvem primeru dobimo
+$\binom{n-1}{k-1}$ podmnožic, v drugem pa $\binom{n-1}{k}$.
+\end{proof}
+
+\begin{posledica}
+Binomski koeficienti so ravno števila v
+\emph{Pascalovem trikotniku}\index{Pascalov trikotnik}:
+\[
+\begin{array}{ccccccccccc}
+  &   &   &    & 1 &    &   &   &   \\
+  &   &   & 1  &   & 1  &   &   &   \\
+  &   & 1 &    & 2 &    & 1 &   &   \\
+  & 1 &   & 3  &   & 3  &   & 1 &   \\
+1 &   & 4 &    & 6 &    & 4 &   & 1
+\end{array}
+=
+\begin{array}{ccccccccccc}
+             &              &              &              & \binom{0}{0} &              &              &              &              \\
+             &              &              & \binom{1}{0} &              & \binom{1}{1} &              &              &              \\
+             &              & \binom{2}{0} &              & \binom{2}{1} &              & \binom{2}{2} &              &              \\
+             & \binom{3}{0} &              & \binom{3}{1} &              & \binom{3}{2} &              & \binom{3}{3} &              \\
+\binom{4}{0} &              & \binom{4}{1} &              & \binom{4}{2} &              & \binom{4}{3} &              & \binom{4}{4}
+\end{array}
+\]
+\end{posledica}
+
+\begin{izrek}[Binomski]\index{Izrek!Binomski}
+Za vse $n \in \N_0$ za $a, b \in K$, kjer je $K$ komutativen
+kolobar, velja
+\[
+(a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}.
+\]
+\end{izrek}
+
+\begin{proof}
+Uporabimo distributivnost in preštejemo število pojavitev vsakega
+monoma.
+\end{proof}
+
+\newpage
+
+\subsection{Izbori}
+
+\begin{definicija}
+Naj bo $N$ množica z $n$ elementi.
+
+\begin{enumerate}[i)]
+\item \emph{Urejen izbor s ponavljanjem}\index{Izbor} je vsaka
+urejena $k$-terica elementov $N$.
+\item \emph{Urejen izbor brez ponavljanja} je vsaka $k$-terica
+paroma različnih elementov $N$.
+\item \emph{Neurejen izbor brez ponavljanja} je vsaka podmnožica
+$k$ elementov množice $N$.
+\item \emph{Neurejen izbor s ponavljanjem} je vsaka multimnožica
+s $k$ elementi iz $N$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Urejenim izborom pravimo tudi \emph{variacije}, neurejenim pa
+\emph{kombinacije}.
+\end{opomba}
+
+\begin{trditev}
+Število neurejenih izborov s ponavljanjem je enako
+\[
+\binom{n+k-1}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo strategijo pik in pregrad. Naj $x_k$ označuje število
+pojavitev elementa $k$ v multimnožici. Tedaj lahko vsak izbor
+predstavimo kot
+\[
+\underbrace{\bullet \bullet \dots \bullet}_{x_1} \mid
+\underbrace{\bullet \bullet \dots \bullet}_{x_2} \mid
+\dots \mid
+\underbrace{\bullet \bullet \dots \bullet}_{x_n}.
+\]
+Vsak izbor natanko ustreza enemu zapisu s pikami in pregradami, teh
+pa je ravno $\binom{n+k-1}{k}$. Izmed $n+k-1$ elementov moramo
+namreč izbrati $k$ pik, preostalih $n-1$ mest pa zasedejo pregrade.
+\end{proof}
+
+\newpage
+
+\subsection{Permutacije in permutacije s ponavljanjem}
+
+\begin{definicija}
+\emph{Permutacija}\index{Permutacija} množice $A$ je bijekcija
+$f \colon A \to A$. Označimo
+\[
+S_A = \setb{f \colon A \to A}{\text{$f$ je bijekcija}},
+\]
+v posebnem primeru
+\[
+S_n = S_{[n]}.
+\]
+\end{definicija}

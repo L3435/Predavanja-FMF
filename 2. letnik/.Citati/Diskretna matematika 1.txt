@@ -3,3 +3,6 @@
 
 "Če v 10 golobov zvrtamo 11 lukenj, bomo v vsaj enega goloba zvrtali vsaj dve luknji."
  - Ljudska
+
+"Torej lahko to naredimo na tisoč in en način. To smo sicer že vedeli."
+ - prof. dr. Sandi Klavžar, 21. 2. 2022

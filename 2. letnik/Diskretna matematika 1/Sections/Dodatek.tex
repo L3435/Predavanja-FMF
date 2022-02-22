@@ -1,0 +1,17 @@
+\section{Dodatek}
+
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\arraystretch}{2}
+
+\subsection{Število izborov z omejitvami}
+
+\begin{table}[!ht]
+\centering
+\caption{Število izborov $k$ elementov iz množice z $n$ elementi}
+\begin{tabular}{c|cc}
+               & S ponavljanjem     & Brez ponavljanja    \\ 
+               \hline 
+Urejen izbor   & $\displaystyle n^k$              & $\displaystyle n^{\underline{k}}$ \\ 
+Neurejen izbor & $\displaystyle \binom{n+k-1}{k}$ & $\displaystyle \binom{n}{k}$      \\ 
+\end{tabular} 
+\end{table}
