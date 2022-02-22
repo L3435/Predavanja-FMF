@@ -138,7 +138,7 @@
     \[
     \bigcap \mathcal{A}_{\lambda} = \bigcap \set{a + W_{\lambda}} = a + \bigcap W_{\lambda},
     \]
-    kjer je $\bigcap W_{\lambda}$ vektorski prostor, torej je $\mathcal{P}$ afin podprostor.
+    ker pa je $\bigcap W_{\lambda}$ vektorski prostor, je $\mathcal{P}$ afin podprostor.
 \end{proof}
 
 \begin{definicija}
@@ -163,7 +163,7 @@
 \end{proof}
 
 \begin{lema}
-    Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ afina podprostora. Tedaj se $\mathcal{A}$ in $\mathcal{B}$ sekata natanko tedaj ko je $b - a \in W + U$.
+    Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ afina podprostora. Tedaj se $\mathcal{A}$ in $\mathcal{B}$ sekata natanko tedaj, ko je $b - a \in W + U$.
 \end{lema}
 
 \begin{proof}
@@ -201,85 +201,93 @@
     \]
     $T$ je vektorski prostor, torej je $a + T = a + (b - a) + T = b + T$ afin podprostor.
 
-    Najprej pokažemo $\Af ((a + W) \cup (b + U)) \subseteq a + T$.
-    \begin{align*}
-        a + W &\subseteq a + T \text{ in} \\
-        b + U &\subseteq b + T = a + T,
-    \end{align*}
+    Najprej pokažemo $\Af ((a + W) \cup (b + U)) \subseteq a + T$. Velja
+    \[
+        a + W \subseteq a + T
+        \quad \text{in} \quad
+        b + U \subseteq b + T = a + T,
+    \]
     torej velja
     \[
     \Af ((a + W) \cup (b + U)) \subseteq a + T.
     \]
 
-    Da dokažemo vsebovanost v drugo smer bomo pokazali, da vsak afin prostor $\mathcal{C}$ ki vsebuje $(a + W) \cup (b + U)$, vsebuje tudi $a + T$.
+    Da dokažemo vsebovanost v drugo smer bomo pokazali, da vsak afin prostor $\mathcal{C}$, ki vsebuje $(a + W) \cup (b + U)$, vsebuje tudi $a + T$.
 
-    Naj bo $(a + W) \cup (b + U) \subseteq \mathcal{C}$. Potem sta $a, b \in \mathcal{C}$, torej obstaja nek vektorski prostor $S$, da velja $a + S = b + S = \mathcal{C}$. iz
-    \begin{align*}
-        a + W \subseteq a + S, \\
-        b + U \subseteq b + S
-    \end{align*}
-    sledi $W \leq S$ in $U \leq S$. Ker je $b \in a + S$ obstaja nek $s \in S$, da je $b = a + s$, torej je $b - a \in S$, iz česar sledi $\Lin (\set{b - a}) \subseteq S$.
-    Če združimo vse to, dobimo da je $T \subseteq S$, torej je
+    Naj bo $(a + W) \cup (b + U) \subseteq \mathcal{C}$. Potem sta $a, b \in \mathcal{C}$, torej obstaja nek vektorski prostor $S$, da velja $a + S = b + S = \mathcal{C}$. Iz
     \[
-    a + T \subseteq a + S = C.
+        a + W \subseteq a + S
+        \quad \text{in} \quad
+        b + U \subseteq b + S
+    \]
+    sledi $W \leq S$ in $U \leq S$. Ker je $b \in a + S$, obstaja nek $s \in S$, da je $b = a + s$, torej je $b - a \in S$, iz česar sledi $\Lin (\set{b - a}) \subseteq S$.
+    Če združimo vse to, dobimo $T \subseteq S$, torej je
+    \[
+    a + T \subseteq a + S = C. \qedhere
     \] 
 \end{proof}
 
 \begin{trditev}
     Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ afina podprostora. Velja
     \[
-    \mathcal{A} \cap \mathcal{B} = \emptyset \Leftrightarrow \dim \Af ( \mathcal{A} \cap \mathcal{B} ) = \dim (W + U) + 1
+    \mathcal{A} \cap \mathcal{B} = \emptyset \iff \dim \Af ( \mathcal{A} \cup \mathcal{B} ) = \dim (W + U) + 1
     \]
 \end{trditev}
 
 \begin{proof}
+	Velja
+    \[
+        \mathcal{A} \cap \mathcal{B} = \emptyset \iff b - a \notin W + U,
+    \]
+    kar pa je ekvivalentno
     \begin{align*}
-        \mathcal{A} \cap \mathcal{B} = \emptyset &\Leftrightarrow b - a \notin W + U \\
-        &\Leftrightarrow \dim \Af ( \mathcal{A} \cap \mathcal{B} ) = \dim (W + U + \Lin (\set{b-a})) 
-    \end{align*}
-    in velja
-    \begin{align*}
-        \dim \Af ( \mathcal{A} \cap \mathcal{B} ) &= \dim (W + U + \Lin (\set{b-a})) \\
+        \dim \Af ( \mathcal{A} \cup \mathcal{B} ) &= \dim (W + U + \Lin (\set{b-a})) \\
         &= \dim (W + U) + \dim \Lin (\set{b-a}) - \dim ((W + U) \cap \Lin (\set{b-a})) \\
-        &= \dim (W + U) + 1.
+        &= \dim (W + U) + 1. \qedhere
     \end{align*}
 \end{proof}
 
 \begin{definicija}
-    Afina prostora $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ sta \emph{vzporedna}\index{Vzporedna}, če je $W \leq V$ ali $V \leq W$, kar označimo z $\mathcal{A} || \mathcal{B}$. 
+    Afina prostora $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ sta \emph{vzporedna}\index{Vzporedna}, če je $W \leq V$ ali $V \leq W$, kar označimo z $\mathcal{A} \parallel \mathcal{B}$. 
 \end{definicija}
 
 \begin{trditev}
     Naj bosta $\mathcal{A}$ in $\mathcal{B}$ afina podprostora. 
 
-    a) Če se $\mathcal{A}$ in $\mathcal{B}$ sekata, sta vzporedna natanko tedaj, ko je ali $\mathcal{A} \subseteq \mathcal{B}$, ali pa $\mathcal{B} \subseteq \mathcal{A}$.
+	\begin{enumerate}[a)]
+	\item Če se $\mathcal{A}$ in $\mathcal{B}$ sekata, sta vzporedna natanko tedaj, ko je ali $\mathcal{A} \subseteq \mathcal{B}$, ali pa $\mathcal{B} \subseteq \mathcal{A}$.
 
-    b) Če se $\mathcal{A}$ in $\mathcal{B}$ ne sekata, sta vzporedna natanko tedaj, ko velja 
+    \item Če se $\mathcal{A}$ in $\mathcal{B}$ ne sekata, sta vzporedna natanko tedaj, ko velja 
     \[
         \dim \Af (\mathcal{A} \cup \mathcal{B}) = \max (\dim \mathcal{A}, \dim \mathcal{B}) + 1.
     \]
+    \end{enumerate}
 \end{trditev}
 
 \begin{proof}
-    a) Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = a + U$, kjer je $a \in \mathcal{A} \cap \mathcal{B}$.
+    \begin{enumerate}[a)]
+	\item Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = a + U$, kjer je $a \in \mathcal{A} \cap \mathcal{B}$.
     \[
-    \mathcal{A} || \mathcal{B} \Leftrightarrow W \leq U \text{ ali } U \leq W \Leftrightarrow \underbrace{a + W \subseteq a + U}_{\mathcal{A} \subseteq \mathcal{B}} \text{ ali } \underbrace{a + U \subseteq a + W}_{\mathcal{B} \subseteq \mathcal{A}}.
+    \mathcal{A} \parallel \mathcal{B} \iff W \leq U \lor U \leq W \iff \underbrace{a + W \subseteq a + U}_{\mathcal{A} \subseteq \mathcal{B}} \lor \underbrace{a + U \subseteq a + W}_{\mathcal{B} \subseteq \mathcal{A}}.
     \]
 
-    b) Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$.
+    \item Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$.
     \begin{align*}
-        \mathcal{A} || \mathcal{B} &\Leftrightarrow W \leq U \text{ ali } U \leq W \\
-        &\Leftrightarrow W + U = U \text{ ali } W + U = W \\
-        &\Leftrightarrow \dim (W + U) = \dim U \text{ ali } \dim (W + U) = \dim W \\
-        &\Leftrightarrow \dim (W + U) = \max (\dim U, \dim W) \\
-        &\Leftrightarrow \dim \Af (\mathcal{A} \cup \mathcal{B}) = \dim (W + U) + 1 = \max (\dim U, \dim W) + 1.
+        \mathcal{A} \parallel \mathcal{B} &\iff W \leq U \lor U \leq W \\
+        &\iff W + U = U \lor W + U = W \\
+        &\iff \dim (W + U) = \dim U \lor \dim (W + U) = \dim W \\
+        &\iff \dim (W + U) = \max (\dim U, \dim W) \\
+        &\iff \dim \Af (\mathcal{A} \cup \mathcal{B}) = \dim (W + U) + 1 = \max (\dim U, \dim W) + 1. \qedhere
     \end{align*}
+    \end{enumerate}
 \end{proof}
 
 \begin{definicija}
-    Množica $\set{x_0, x_1, \dots, x_n}$ je \emph{afino neodvisna}\index{Afino neodvisna}, če je množica \\
-     %ta \\ je tukaj ker latex ni znal sam prestaviti enacbe v novo vrstico in se je pritozeval da ven gleda.
-    $\set{x_1 - x_0, \dots, x_n - x_0}$ linearno neodvisna.
+    Množica $\set{x_0, x_1, \dots, x_n}$ je \emph{afino neodvisna}\index{Afino neodvisna}, če je množica
+    \[
+    	\set{x_1 - x_0, \dots, x_n - x_0}
+    \]
+    linearno neodvisna.
 \end{definicija}
 
 \begin{opomba}
@@ -293,26 +301,31 @@
 \begin{izrek}
     Naj bo $\mathcal{A} = a + W$ afin podprostor.
 
-    a) $\set{x_0, \dots, x_n}$ je afina baza za $\mathcal{A}$ natanko tedaj, ko je $\set{x_1 - x_0, \dots, x_n - x_0}$ baza za $W$.
+	\begin{enumerate}[a)]
+    \item $\set{x_0, \dots, x_n}$ je afina baza za $\mathcal{A}$ natanko tedaj, ko je $\set{x_1 - x_0, \dots, x_n - x_0}$ baza $W$.
 
-    b) $\set{e_1, \dots, e_n}$ je baza za $W$ natanko tedaj, ko je $\set{a, e_1 + a, \dots, e_n + a}$ afina baza za $\mathcal{A}$
+    \item $\set{e_1, \dots, e_n}$ je baza za $W$ natanko tedaj, ko je $\set{a, e_1 + a, \dots, e_n + a}$ afina baza $\mathcal{A}$.	
+	\end{enumerate}
 \end{izrek}
 
+\newpage
 
 \subsection{Semi-linearne preslikave}
 
 \begin{definicija}
-    Naj bosta $U$ in $V$ vektorska prostora nad istim obsegom $O$. Preslikava $A: U \to V$ je \emph{semi-linearna}\index{Semi-linearna preslikava}, če je
-
-    (i) aditivna: Za vse $x,y \in U$
+    Naj bosta $U$ in $V$ vektorska prostora nad istim obsegom $O$. Preslikava $A \colon U \to V$ je \emph{semi-linearna}\index{Semi-linearna preslikava}, če je
+	
+	\begin{enumerate}[(i)]
+    \item aditivna: Za vse $x,y \in U$ je
     \[
     A(x + y) = Ax + Ay.    
     \]
 
-    (ii) semi-homogena: Obstaja nek avtomorfizem $f$ obsega $O$, da je za vsak $x \in U, \alpha \in O$
+    \item semi-homogena: Obstaja nek avtomorfizem $f$ obsega $O$, da je za vsak $x \in U, \alpha \in O$
     \[
     A(\alpha x) = f(\alpha) Ax.
     \]
+	\end{enumerate}
 \end{definicija}
 
 \begin{opomba}
