@@ -175,3 +175,132 @@ f^{-1}\left(g^{-1}(V)\right) \in \tau_X \implies
 V \in \tau_Z. \qedhere
 \]
 \end{proof}
+
+\begin{zgled}
+Naj bo $X = S^1 \times S^1$ torus in
+$A = S^1 \times \set{1} \cup \set{1} \times S^1$. Tedaj je
+$\kvoc{X}{A} \approx S^2$.
+\end{zgled}
+
+\begin{proof}
+Ker sta na spodnjem diagramu $f$ in $q_1$ kvocientni, je $F$
+kvocientna in $\overline{F}$ homeomorfizem.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+I^2 \arrow[rr, "f"] \arrow[dd, "q_2"'] \arrow[ddrr, red, "F = q_1 \circ f"] & & X \arrow[dd, "q_1"]\\
+\\
+\kvoc{I^2}{\partial I^2} \arrow[rr, dashrightarrow, "\overline{F}"'] & & \kvoc{X}{A}
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je $h \colon X \to Y$ homeomorfizem, $\sim_X$ in $\sim_Y$ pa
+ekvivalenčni relaciji, za kateri velja
+$x \sim_X y \iff h(x) \sim_Y h(y)$, velja
+\[
+\kvoc{X}{\sim_X} \approx \kvoc{Y}{\sim_Y}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Topološka lastnost $L$ je
+\emph{deljiva}\index{Topološka lastnost!Deljiva}, če se s
+poljubnega topološkega prostora prenese na vsak njegov kvocientni
+prostor.
+\end{definicija}
+
+\begin{trditev}
+Naslednje topološke lastnosti so deljive:
+
+\begin{multicols}{2}
+\begin{enumerate}[i)]
+\item Trivialnost
+\item Diskretnost
+\item Separabilnost
+\item Povezanost (s potmi)
+\item Lokalna povezanost (s potmi)
+\item Kompaktnost
+\end{enumerate}
+\end{multicols}
+\end{trditev}
+
+\begin{proof}
+Dokažimo 5.~točko -- naj bo $f \colon X \to Y$ kvocientna, kjer je
+$X$ lokalno povezan (s potmi). Ekvivalentno so komponente vsake
+odprte množice odprte.
+
+Naj bo $V \subseteq Y$ odprta s komponentami $V_\lambda$, torej
+\[
+V = \bigcap_\lambda  V_\lambda.
+\]
+Sledi, da je
+\[
+f^{-1}(V) = \bigcap_\lambda f^{-1}\left( V_\lambda \right)
+\]
+odprta. Naj bodo $W_\mu$ njene komponente. Ker je
+$f(W_\mu) \subseteq V$ povezana, je vsebovana v neki komponenti
+$V_\lambda$. Sledi, da je $f^{-1}\left( V_\lambda \right)$ unija
+odprtih množic (komponent), zato je odprta.
+\end{proof}
+
+\begin{trditev}
+Naslednje topološke lastnosti niso deljive:
+
+\begin{multicols}{2}
+\begin{enumerate}[i)]
+\item Separacijske lastnosti
+\item $1$ in $2$-števnost
+\item Lokalna kompaktnost
+\item Metrizabilnost
+\item Popolna nepovezanost
+\end{enumerate}
+\end{multicols}
+\end{trditev}
+
+\begin{proof}
+Dokažimo, da Hausdorffova lastnost ni dedna. Vzemimo
+$X = \R \times \set{0, 1}$ in $(x,0) \sim (x,1) \iff x > 0$.
+Opazimo, da ne moremo ostro ločiti slik točk $(0,0)$ in $(0,1)$.
+Primer deluje tudi za metrizabilnost.
+
+Protiprimer za $1$-števnost je naslednji: Naj bo
+$X = \N \times [0,1]$ in $A = \N \times \set{0}$. Tedaj prostor
+$\kvoc{X}{A}$ ni $1$-števen -- naj bo $\setb{V_n}{n \in \N}$ števna
+lokalna baza točke $q((1,0))$. Sedaj skonstruiramo odprto množico
+\[
+W = \bigcup_{n \in \N} \left(n \times [0, a_n)\right),
+\]
+kjer $n \times [0, a_n)$ ni vsebovana v $V_n$. Sledi, da $V_n$ ni
+lokalna baza.
+\end{proof}
+
+\begin{izrek}[Aleksandrov]\index{Izrek!Aleksandrov}
+Če je $X$ poljuben metrični kompakt, obstaja zvezna surjekcija
+$f \colon C \to X$.\footnote{$C$ označuje \emph{Cantorjevo
+množico}.}
+\end{izrek}
+
+\begin{opomba}
+Z $X = [0, 1]$ dobimo protiprimer za deljivost popolne
+nepovezanosti. $f$ je namreč kvocientna, saj slika iz kompakta v
+Hausdorffov prostor.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $R$ razdelitev prostora $X$. Tedaj velja
+\[
+\kvoc{X}{R} \in T_1 \iff \text{Elementi $R$ so zaprti v $X$}.
+\]
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Topološke grupe in delovanja}
+
+\begin{definicija}
+\emph{Topološka grupa}\index{Topološka grupa} $F$ je grupa, ki je
+hkrati topološki prostor z zveznim množenjem in invertiranjem.
+\end{definicija}
