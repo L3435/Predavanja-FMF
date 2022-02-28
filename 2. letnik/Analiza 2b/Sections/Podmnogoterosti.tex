@@ -659,9 +659,11 @@ Kot $\alpha$ med koordinatnima krivuljama na ploskvi določa zveza
 \]
 \end{trditev}
 
+\datum{2022-2-28}
+
 \begin{proof}
 Naj bosta $\Gamma_1$ in $\Gamma_2$ krivulji na ploskvi $\Sigma$ s
-parametrizacijama
+parametrizacijama\footnote{$\Gamma_i = \vv{r}(\gamma_i)$.}
 \[
 \gamma_1 \colon t \mapsto (u_1(t), v_1(t))
 \quad \text{in} \quad
@@ -679,25 +681,81 @@ tangentna vektorja v $\rho$. Tedaj je
 \[
 \cos \alpha = \frac{\skl{\dot{\vv{\Gamma_1}}, \dot{\vv{\Gamma_2}}}}{\norm{\dot{\vv{\Gamma_1}}} \cdot \norm{\dot{\vv{\Gamma_2}}}}.
 \]
+Označimo
+\[
+\skl{x,y}_\rho = \skl{
+\begin{bmatrix}
+E & F \\
+F & G
+\end{bmatrix}
+x, y}.
+\]
 Opazimo, da velja
 \[
 \skl{\dot{\vv{\Gamma_1}}, \dot{\vv{\Gamma_2}}} =
-\skl{
-\begin{bmatrix}
-E & F \\
-F & G
-\end{bmatrix}
-(u_0,v_0) \cdot \dot{\vv{\gamma_1}}, \dot{\vv{\gamma_2}}}
+\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_2}}}_\rho
 \]
 in
 \[
-\norm{\dot{\vv{\Gamma_i}}} = \sqrt{\skl{
-\begin{bmatrix}
-E & F \\
-F & G
-\end{bmatrix}
-(u_0,v_0) \cdot \dot{\vv{\gamma_i}}, \dot{\vv{\gamma_i}}}}.
+\norm{\dot{\vv{\Gamma_i}}} =
+\sqrt{\skl{\dot{\vv{\gamma_i}}, \dot{\vv{\gamma_i}}}_\rho}.
+\]
+Dobimo
+\[
+\cos \alpha =
+\frac{\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_2}}}_\rho}
+{\sqrt{\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_1}}}_\rho}
+\cdot
+\sqrt{\skl{\dot{\vv{\gamma_2}}, \dot{\vv{\gamma_2}}}_\rho}}.
 \]
 Sedaj preprosto vstavimo $\dot{\vv{\gamma_1}} = (1,0)$ in
 $\dot{\vv{\gamma_2}} = (0,1)$.
+\end{proof}
+
+\subsubsection{Površina ploskve}
+
+\begin{definicija}
+\emph{Površina ploskve}\index{Ploskev!Površina} $\Sigma$ z
+regularno parametrizacijo $\vv{r} \colon D \to \Sigma$ je integral
+\[
+\liint_D \abs{\vv{r_u} \times \vv{r_v}}\;du\;dv =
+\liint_D \sqrt{EG - F^2}\;du\;dv.
+\]
+\end{definicija}
+
+\begin{opomba}
+Množice z mero $0$ ne vplivajo na vrednost integrala.
+\end{opomba}
+
+\begin{posledica}
+Če je $\Sigma$ graf funkcije $f$, je njena površina enaka
+\[
+\liint_D \sqrt{1 + f_x^2 + f_y^2}\;dx\;dy.
+\]
+\end{posledica}
+
+\obvs
+
+\begin{trditev}
+Površina ploskve je neodvisna od regularne parametrizacije.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\vv{\rho} = \vv{r}(u(s,t), v(s,t))$. Sledi
+\[
+\dot{\vv{\rho_s}} = \vv{r_u} \cdot u_s + \vv{r_v} \cdot v_s
+\quad \text{in} \quad
+\dot{\vv{\rho_t}} = \vv{r_u} \cdot u_t + \vv{r_v} \cdot v_t.
+\]
+Sledi, da je
+\[
+\vv{\rho_s} \times \vv{\rho_t} =
+\left(\vv{r_v} \times \vv{r_u} \right) \cdot (u_s v_t - v_s u_t) =
+\abs{\left(\vv{r_v} \times \vv{r_u} \right)(\Phi(s,t))} \cdot
+\abs{J\Phi},
+\]
+kjer je $\Phi \colon \Omega \to D$ difeomorfizem s predpisom
+\[
+\Phi(s,t) = (u(s,t), v(s,t)). \qedhere
+\]
 \end{proof}
