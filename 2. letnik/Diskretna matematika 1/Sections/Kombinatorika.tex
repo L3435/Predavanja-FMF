@@ -222,8 +222,8 @@ Urejenim izborom pravimo tudi \emph{variacije}, neurejenim pa
 
 \begin{proof}
 Uporabimo strategijo pik in pregrad. Naj $x_k$ označuje število
-pojavitev elementa $k$ v multimnožici. Tedaj lahko vsak izbor
-predstavimo kot
+pojavitev elementa $k$ v multimnožici.\footnote{Definicija v
+naslednjem razdelku.} Tedaj lahko vsak izbor predstavimo kot
 \[
 \underbrace{\bullet \bullet \dots \bullet}_{x_1} \mid
 \underbrace{\bullet \bullet \dots \bullet}_{x_2} \mid
@@ -249,4 +249,128 @@ v posebnem primeru
 \[
 S_n = S_{[n]}.
 \]
+\end{definicija}
+
+\datum{2022-2-28}
+
+\begin{definicija}
+\emph{Multimnožica}\index{Multimnožica} je urejen par $(U, \mu)$,
+kjer je $U$ množica in $\mu \colon U \to \N_0$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Permutacija multimnožice}\index{Multimnožica!Permutacija}
+$M = (U, \mu)$ je vsako zaporedje elementov $(x_1, \dots, x_n)$,
+kjer so vsi $x_i \in U$ in se vsak element $x \in U$ v zaporedju
+pojavi $\mu(x)$ krat.
+\end{definicija}
+
+\begin{trditev}
+Število permutacij multimnožice
+$\set{1^{\alpha_1}, \dots, k^{\alpha_k}}$, kjer je
+$\alpha_1 + \dots + \alpha_k = n$, je natanko
+\[
+\frac{n!}{\alpha_1! \cdots \alpha_k!}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\prod_{i=1}^{n}
+\binom{n - \alpha_1 - \dots - \alpha_{i-1}}{\alpha_i} =
+\frac{n!}{\alpha_1! \cdots \alpha_k!}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Zgornjemu številu pravimo
+\emph{multinomski koeficient}\index{Multinomski koeficient} in ga
+označimo z
+\[
+\frac{n!}{\alpha_1! \dots \alpha_k!} =
+\binom{n}{\alpha_1, \dots, \alpha_k}.
+\]
+\end{opomba}
+
+\begin{izrek}[Multinomski]\index{Izrek!Multinomski}
+Za $n \geq 0$ velja
+\[
+\left(\sum_{i=1}^k x_i\right)^n =
+\sum_{\alpha_1+\dots+\alpha_k = n}
+\binom{n}{\alpha_1, \dots, \alpha_k} \prod_{i=1}^k x_i^{\alpha_i}.
+\]
+\end{izrek}
+
+\begin{proof}
+Enak kot pri binomskem.
+\end{proof}
+
+\newpage
+
+\subsection{Kompozicije in razčlenitve}
+
+\begin{definicija}
+\emph{Kompozicija}\index{Kompozicija} naravnega števila $n$ je
+zaporedje $\lambda = (\lambda_1, \dots, \lambda_l)$, kjer so
+$\lambda_i \in \N$ in velja
+\[
+\sum_{i=1}^l \lambda_i = n.
+\]
+\end{definicija}
+
+\begin{trditev}
+Število kompozicij števila $n$ je $2^{n-1}$. Število kompozicij
+dolžine $k$ je $\binom{n-1}{k-1}$.
+\end{trditev}
+
+\begin{proof}
+Pike in pregrade.
+\end{proof}
+
+\begin{definicija}
+\emph{Šibka kompozicija}\index{Kompozicija!Šibka} naravnega števila
+$n$ je kompozicija, v kateri dovolimo, da so nekateri členi enaki
+$0$.
+\end{definicija}
+
+\begin{trditev}
+Število šibkih kompozicij števila $n$ dolžine $k$ je
+$\binom{n+k-1}{k-1}$.
+\end{trditev}
+
+\begin{proof}
+Pike in pregrade.
+\end{proof}
+
+\begin{definicija}
+\emph{Razčlenitev}\index{Razčlenitev} števila $n \in \N$ je vsaka
+padajoča kompozicija števila $n$. Število razčlenitev dolžine $k$
+označimo z $p_k(n)$, število razčlenitev dolžine največ $k$ pa z
+$\overline{p}_k(n)$.
+\end{definicija}
+
+\begin{trditev}
+Veljajo naslednje zveze:
+
+\begin{enumerate}[i)]
+\item $p_k(n) = \overline{p}_k(n-k)$
+\item
+$\overline{p}_k(n) = \overline{p}_{k-1}(n) + \overline{p}_k(n-k)$
+\item $p_k(n) = p_{k-1}(n-1) + p_k(n-k)$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Stirlingova števila 1.~vrste}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je
+\emph{Stirlingovo število 1.~vrste}\index{Stirlingovo število 1.~vrste}
+$c(n,k)$ število permutacij $S_n$, ki jih lahko zapišemo kot
+produkt $k$ ciklov. Posebej naj bo $c(n,0) = 0$ za $n \geq 1$ in
+$c(0,0) = 1$.
 \end{definicija}
