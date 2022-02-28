@@ -10,15 +10,15 @@
     a + W = \setb{a + x}{x \in W}
     \]
     imenujemo \emph{afin podprostor} v $V$.
-    Množica $A$ je \emph{afin prostor}\index{Afin prostor}, če je afin podprostor v kakšnem vektorskem prostoru.
+    Množica $\mathcal{A}$ je \emph{afin prostor}\index{Afin prostor}, če je afin podprostor v kakšnem vektorskem prostoru.
 \end{definicija}
 
 \begin{opomba}
-    V nadaljevanju $V$ označuje končnorazsežen vektorski prostor nad obsegom $O$, $A$ pa afin prostor v $V$.
+    V nadaljevanju $V$ označuje končnorazsežen vektorski prostor nad komutativnim obsegom $O$.
 \end{opomba}
 
 \begin{lema}
-    Naj bo $A = a + W$ afin podprostor. Tedaj je $A = b + W$ za vse $b \in A$.
+    Naj bo $\mathcal{A} = a + W$ afin podprostor. Tedaj je $\mathcal{A} = b + W$ za vse $b \in \mathcal{A}$.
 \end{lema}
 
 \begin{proof}
@@ -30,29 +30,29 @@
 \end{proof}
 
 \begin{posledica}
-    Naj bosta $A = a + U$ in $B = b + W$ afina podprostora v $V$. Če je $A \subseteq B$, je $U \leq W$.
+    Naj bosta $\mathcal{A} = a + U$ in $\mathcal{B} = b + W$ afina podprostora v $V$. Če je $\mathcal{A} \subseteq \mathcal{B}$, je $U \leq W$.
 \end{posledica}
 
 \begin{proof}
 	Velja
 	\[    
-    a + U = A \subseteq B = b + W = a + W. \qedhere
+    a + U = \mathcal{A} \subseteq \mathcal{B} = b + W = a + W. \qedhere
     \]
 \end{proof}
 
 \begin{posledica}
-    Naj bo $A$ afin prostor v $V$. Če je $A = a + W$ in $A = a' + W'$, potem je $W = W'$.
+    Naj bo $\mathcal{A}$ afin prostor v $V$. Če je $\mathcal{A} = a + W$ in $\mathcal{A} = a' + W'$, potem je $W = W'$.
 \end{posledica}
 
 \begin{definicija}
-    \emph{Razsežnost}\index{Razsežnost} afinega prostora $A = a + W$ je
+    \emph{Razsežnost}\index{Afin prostor!Razsežnost} afinega prostora $\mathcal{A} = a + W$ je 
     \[
-    \dim A = \dim U.
+    \dim \mathcal{A} = \dim U.
     \]
 \end{definicija}
 
 \begin{definicija}
-    Naj bodo $a_{i} \in A$ in $\alpha_{i} \in O$ za vse $1 \leq i \leq n$, in naj bo $\sum_{i=1}^{n} \alpha_{i} = 1$. Vsoto 
+    Naj bodo $a_{i} \in \mathcal{A}$ in $\alpha_{i} \in O$ za vse $1 \leq i \leq n$, in naj bo $\sum_{i=1}^{n} \alpha_{i} = 1$. Vsoto 
     \[
     \sum_{i=1}^{n} \alpha_{i} a_{i}
     \]
@@ -60,7 +60,7 @@
 \end{definicija}
 
 \begin{lema}
-    Naj bo karakteristika $O$ različna od 2. Poljubna afina kombinacija dveh elementov iz $A$ je v $A$ natanko tedaj, ko je poljubna afina kombinacija poljubno elementov iz $A$ v $A$.
+    Naj bo karakteristika $O$ različna od 2. Poljubna afina kombinacija dveh elementov iz $\mathcal{A}$ je v $\mathcal{A}$ natanko tedaj, ko je poljubna afina kombinacija poljubno elementov iz $\mathcal{A}$ v $\mathcal{A}$.
 \end{lema}
 
 \begin{proof}
@@ -76,7 +76,7 @@
         \alpha_1 a_1 + \dots + \alpha_{n-1} a_{n-1} + \alpha_n a_n = 
         \underbrace{\alpha \cdot \overbrace{(\alpha^{-1} \cdot \alpha_1 a_1 + \dots + \alpha^{-1} \cdot \alpha_{n-1} a_{n-1})}^{\text{afina kombinacija $n - 1$ elementov}} + \alpha_n a_n}_{\text{afina kombinacija dveh elementov}}.
     \]
-    Po indukcijski predpostavki je torej afina kombinacija znova element $A$.
+    Po indukcijski predpostavki je torej afina kombinacija znova element $\mathcal{A}$.
     \item Velja $\alpha = 0$.
     Brez škode za splošnost je $\alpha_1 + \dots + \alpha_{n-2} \neq 0$, drugače bi bil $\alpha_{n-1} = 0$ in bi imeli kombinacijo $n-1$ elementov, za katero po indukcijski predpostavki izrek drži.
     Dokaz je isti kot zgoraj, le da vzamemo prvih $n-2$ elementov namesto $n-1$ in vsoto zmanjšamo na 3 elemente namesto 2. 
@@ -91,25 +91,28 @@
 \end{proof}
 
 \begin{trditev}
-    Naj bo karakteristika $O$ različna od 2. $A \leq V$ je afin podprostor natanko tedaj, ko poljubna afina kombinacija dveh točk iz $A$ leži v $A$.
+    Naj bo karakteristika $O$ različna od 2. $\mathcal{A} \leq V$ je afin podprostor natanko tedaj, ko poljubna afina kombinacija dveh točk iz $\mathcal{A}$ leži v $\mathcal{A}$.
 \end{trditev}
 
 \begin{proof}
-    Predpostavimo, da je $A$ afin podprostor.
-    Naj bo $A = a + W$ in $a + w_1, a + w_2 \in A$, kjer sta $w_1, w_2 \in W$, ter naj bosta $\alpha_1, \alpha_2 \in O$ taka, da velja $\alpha_1 + \alpha_2 = 1$. Potem velja
+    ($\Rightarrow$)
+    Predpostavimo, da je $\mathcal{A}$ afin podprostor.
+    Naj bo $\mathcal{A} = a + W$ in $a + w_1, a + w_2 \in \mathcal{A}$, kjer sta $w_1, w_2 \in W$, ter naj bosta $\alpha_1, \alpha_2 \in O$ taka, da velja $\alpha_1 + \alpha_2 = 1$. Potem velja
     \begin{align*}
     \alpha_1 a_1 + \alpha_2 a_2 &= \alpha_1 (a + w_1) + \alpha_2 (a + w_2) \\
     &= \alpha_1 a + \alpha_1 w_1 + \alpha_2 a + \alpha_1 w_2 \\
     &= \alpha_1 a + \alpha_2 a + \alpha_1 w_1 + \alpha_1 w_2 \\
     &= \underbrace{(\alpha_1 + \alpha_2)}_{=\: 1} a + \underbrace{(\alpha_1 w_1 + \alpha_1 w_2)}_{\text{leži v $W$}}.
     \end{align*}
-    Sedaj predpostavimo, da poljubna afina kombinacija dveh točk iz $A$ leži v $A$.
-    $A$ je afin prostor natanko tedaj, ko obstajata nek $W \leq V$ in $a \in A$, da je $A = a + W$, oziroma ko za vsak $v \in A$ velja $v - a \in W$.
+
+    ($\Leftarrow$)
+    Sedaj predpostavimo, da poljubna afina kombinacija dveh točk iz $\mathcal{A}$ leži v $\mathcal{A}$.
+    $\mathcal{A}$ je afin prostor natanko tedaj, ko obstajata nek $W \leq V$ in $a \in \mathcal{A}$, da je $\mathcal{A} = a + W$, oziroma ko za vsak $v \in \mathcal{A}$ velja $v - a \in W$.
     
-    Fiksiramo $a \in A$. Pokazali bomo da je množica $W = \setb{b-a}{b \in A}$ vektorski prostor.
-    Naj bosta $x$ in $y$ poljubna elementa $W$, torej $x = b - a$ in $y = c - a$ za neka $b, c \in A$, in naj bosta $\alpha, \beta \in O$.
+    Fiksiramo $a \in A$. Pokazali bomo da je množica $W = \setb{b-a}{b \in \mathcal{A}}$ vektorski prostor.
+    Naj bosta $x$ in $y$ poljubna elementa $W$, torej $x = b - a$ in $y = c - a$ za neka $b, c \in \mathcal{A}$, in naj bosta $\alpha, \beta \in O$.
     
-    Linearna kombinacija $\alpha x + \beta y$ leži v $W$ natanko tedaj, ko za nek $d \in A$ velja
+    Linearna kombinacija $\alpha x + \beta y$ leži v $W$ natanko tedaj, ko za nek $d \in \mathcal{A}$ velja
     \[
     \alpha x + \beta y = \alpha (b - a) + \beta (c - a) = d - a,
     \]
@@ -117,5 +120,214 @@
     \[
     a + \alpha (b - a) + \beta (c - a) = (1 - \alpha - \beta) a + \alpha b + \beta c = d.
     \]
-    Ker pa velja $(1 - \alpha - \beta) + \alpha + \beta = 1$, je zgornja vsota afina kombinacija elementov $a$, $b$ in $c$ iz $A$, torej po predpostavki njihova vsota leži v $A$.
+    Ker pa velja $(1 - \alpha - \beta) + \alpha + \beta = 1$, je zgornja vsota afina kombinacija elementov $a$, $b$ in $c$ iz $\mathcal{A}$, torej po predpostavki njihova vsota leži v $\mathcal{A}$.
 \end{proof}
+
+\datum{2022-2-22}
+
+\begin{posledica}
+    $\mathcal{A}$ je afin podprostor v $V$ natanko tedaj, ko leži poljubna afina kombinacija elementov iz $\mathcal{A}$ v $\mathcal{A}$.
+\end{posledica}
+
+\begin{trditev}
+    Če je presek $\mathcal{P}$ kake družine afinih podprostorov neprazen, je $\mathcal{P}$ afin podprostor.
+\end{trditev}
+
+\begin{proof}
+    Naj bo $\mathcal{A}_{\lambda}$ družina afinih podprostorov. Izberemo $a \in \bigcap \mathcal{A}_{\lambda} = \mathcal{P}$. Potem za vsak $\lambda$ velja $\mathcal{A}_{\lambda} = a + W_{\lambda}$ za nek vektorski prostor $W_{\lambda}$. Velja
+    \[
+    \bigcap \mathcal{A}_{\lambda} = \bigcap \set{a + W_{\lambda}} = a + \bigcap W_{\lambda},
+    \]
+    ker pa je $\bigcap W_{\lambda}$ vektorski prostor, je $\mathcal{P}$ afin podprostor.
+\end{proof}
+
+\begin{definicija}
+    \emph{Afina ogrinjača}\index{Afina ogrinjača} množice $X \subseteq V$ je presek vseh afinih podprostorov, ki vsebujejo $X$. Označimo jo z $\Af (X)$ in je afin prostor po zgornji trditvi.
+\end{definicija}
+
+\begin{opomba}
+    $\Af (X)$ je po definiciji najmanjši afin podprostor, ki vsebuje $X$.
+\end{opomba}
+
+\begin{trditev}
+    $\Af (X)$ je enaka množici vseh afinih kombinacij elementov iz $X$.
+\end{trditev}
+
+\begin{proof}
+    Z $\mathcal{A}$ označimo množico vseh afinih kombinacij elementov iz $X$.
+
+    Ker je $\Af (X)$ afin podprostor, leži poljubna linearna kombinacija elementov iz $\Af (X)$ v $\Af (X)$, torej velja $\mathcal{A} \subseteq \Af (X)$.
+
+    Ker je $X \subseteq \mathcal{A}$, je po zgornji opombi za $\Af (X) \subseteq \mathcal{A}$ dovolj pokazati, da je $\mathcal{A}$ afin podprostor. Poljubna afina kombinacija elementov iz $\mathcal{A}$ je afina kombinacija afinih kombinacij elementov iz $X$,
+    kar je spet afina kombinacija elementov iz $X$, torej leži v $\mathcal{A}$.
+\end{proof}
+
+\begin{lema}
+    Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ afina podprostora. Tedaj se $\mathcal{A}$ in $\mathcal{B}$ sekata natanko tedaj, ko je $b - a \in W + U$.
+\end{lema}
+
+\begin{proof}
+    ($\Leftarrow$)
+    Naj se $\mathcal{A}$ in $\mathcal{B}$ sekata. Potem obstajata taka $w \in W$ in $u \in U$, da za neka $a \in \mathcal{A}$ in $b \in \mathcal{B}$ velja
+    \[
+    a + w = b + u,    
+    \]
+    iz česar sledi
+    \[
+    b - a = w - u,    
+    \]
+    torej velja $b - a \in W + U$
+
+    ($\Rightarrow$)
+    Naj bo $b - a \in W + U$. Potem obstajata taka $w \in W$ in $u \in U$, da je
+    \[
+    b - a = w + u;    
+    \]
+    iz česar sledi
+    \[
+    b + (- u) = a + w,    
+    \]
+    torej se $\mathcal{A}$ in $\mathcal{B}$ sekata v nekem elementu.
+\end{proof}
+
+\begin{lema}
+    $\Af ((a + W) \cup (b + U)) = a + W + U + \Lin (\set{b - a})$.
+\end{lema}
+
+\begin{proof}
+    Naj bo 
+    \[
+    T = W + U + \Lin (\set{b - a}),
+    \]
+    $T$ je vektorski prostor, torej je $a + T = a + (b - a) + T = b + T$ afin podprostor.
+
+    Najprej pokažemo $\Af ((a + W) \cup (b + U)) \subseteq a + T$. Velja
+    \[
+        a + W \subseteq a + T
+        \quad \text{in} \quad
+        b + U \subseteq b + T = a + T,
+    \]
+    torej velja
+    \[
+    \Af ((a + W) \cup (b + U)) \subseteq a + T.
+    \]
+
+    Da dokažemo vsebovanost v drugo smer bomo pokazali, da vsak afin prostor $\mathcal{C}$, ki vsebuje $(a + W) \cup (b + U)$, vsebuje tudi $a + T$.
+
+    Naj bo $(a + W) \cup (b + U) \subseteq \mathcal{C}$. Potem sta $a, b \in \mathcal{C}$, torej obstaja nek vektorski prostor $S$, da velja $a + S = b + S = \mathcal{C}$. Iz
+    \[
+        a + W \subseteq a + S
+        \quad \text{in} \quad
+        b + U \subseteq b + S
+    \]
+    sledi $W \leq S$ in $U \leq S$. Ker je $b \in a + S$, obstaja nek $s \in S$, da je $b = a + s$, torej je $b - a \in S$, iz česar sledi $\Lin (\set{b - a}) \subseteq S$.
+    Če združimo vse to, dobimo $T \subseteq S$, torej je
+    \[
+    a + T \subseteq a + S = C. \qedhere
+    \] 
+\end{proof}
+
+\begin{trditev}
+    Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ afina podprostora. Velja
+    \[
+    \mathcal{A} \cap \mathcal{B} = \emptyset \iff \dim \Af ( \mathcal{A} \cup \mathcal{B} ) = \dim (W + U) + 1
+    \]
+\end{trditev}
+
+\begin{proof}
+	Velja
+    \[
+        \mathcal{A} \cap \mathcal{B} = \emptyset \iff b - a \notin W + U,
+    \]
+    kar pa je ekvivalentno
+    \begin{align*}
+        \dim \Af ( \mathcal{A} \cup \mathcal{B} ) &= \dim (W + U + \Lin (\set{b-a})) \\
+        &= \dim (W + U) + \dim \Lin (\set{b-a}) - \dim ((W + U) \cap \Lin (\set{b-a})) \\
+        &= \dim (W + U) + 1. \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{definicija}
+    Afina prostora $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$ sta \emph{vzporedna}\index{Vzporedna}, če je $W \leq V$ ali $V \leq W$, kar označimo z $\mathcal{A} \parallel \mathcal{B}$. 
+\end{definicija}
+
+\begin{trditev}
+    Naj bosta $\mathcal{A}$ in $\mathcal{B}$ afina podprostora. 
+
+	\begin{enumerate}[a)]
+	\item Če se $\mathcal{A}$ in $\mathcal{B}$ sekata, sta vzporedna natanko tedaj, ko je ali $\mathcal{A} \subseteq \mathcal{B}$, ali pa $\mathcal{B} \subseteq \mathcal{A}$.
+
+    \item Če se $\mathcal{A}$ in $\mathcal{B}$ ne sekata, sta vzporedna natanko tedaj, ko velja 
+    \[
+        \dim \Af (\mathcal{A} \cup \mathcal{B}) = \max (\dim \mathcal{A}, \dim \mathcal{B}) + 1.
+    \]
+    \end{enumerate}
+\end{trditev}
+
+\begin{proof}
+    \begin{enumerate}[a)]
+	\item Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = a + U$, kjer je $a \in \mathcal{A} \cap \mathcal{B}$.
+    \[
+    \mathcal{A} \parallel \mathcal{B} \iff W \leq U \lor U \leq W \iff \underbrace{a + W \subseteq a + U}_{\mathcal{A} \subseteq \mathcal{B}} \lor \underbrace{a + U \subseteq a + W}_{\mathcal{B} \subseteq \mathcal{A}}.
+    \]
+
+    \item Naj bosta $\mathcal{A} = a + W$ in $\mathcal{B} = b + U$.
+    \begin{align*}
+        \mathcal{A} \parallel \mathcal{B} &\iff W \leq U \lor U \leq W \\
+        &\iff W + U = U \lor W + U = W \\
+        &\iff \dim (W + U) = \dim U \lor \dim (W + U) = \dim W \\
+        &\iff \dim (W + U) = \max (\dim U, \dim W) \\
+        &\iff \dim \Af (\mathcal{A} \cup \mathcal{B}) = \dim (W + U) + 1 = \max (\dim U, \dim W) + 1. \qedhere
+    \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{definicija}
+    Množica $\set{x_0, x_1, \dots, x_n}$ je \emph{afino neodvisna}\index{Afino neodvisna}, če je množica
+    \[
+    	\set{x_1 - x_0, \dots, x_n - x_0}
+    \]
+    linearno neodvisna.
+\end{definicija}
+
+\begin{opomba}
+    Definicija je neodvisna od vrstnega reda elementov.
+\end{opomba}
+
+\begin{definicija}
+    Množica $X$ je \emph{afina baza}\index{Afina baza} afinega prostora $\mathcal{A}$, če je afino neodvisna in velja $\Af (X) = \mathcal{A}$.
+\end{definicija}
+
+\begin{izrek}
+    Naj bo $\mathcal{A} = a + W$ afin podprostor.
+
+	\begin{enumerate}[a)]
+    \item $\set{x_0, \dots, x_n}$ je afina baza za $\mathcal{A}$ natanko tedaj, ko je $\set{x_1 - x_0, \dots, x_n - x_0}$ baza $W$.
+
+    \item $\set{e_1, \dots, e_n}$ je baza za $W$ natanko tedaj, ko je $\set{a, e_1 + a, \dots, e_n + a}$ afina baza $\mathcal{A}$.	
+	\end{enumerate}
+\end{izrek}
+
+\newpage
+
+\subsection{Semi-linearne preslikave}
+
+\begin{definicija}
+    Naj bosta $U$ in $V$ vektorska prostora nad istim obsegom $O$. Preslikava $A \colon U \to V$ je \emph{semi-linearna}\index{Semi-linearna preslikava}, če je
+	
+	\begin{enumerate}[(i)]
+    \item aditivna: Za vse $x,y \in U$ je
+    \[
+    A(x + y) = Ax + Ay.    
+    \]
+
+    \item semi-homogena: Obstaja nek avtomorfizem $f$ obsega $O$, da je za vsak $x \in U, \alpha \in O$
+    \[
+    A(\alpha x) = f(\alpha) Ax.
+    \]
+	\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+    Obsegi $\R$, $\Q$ in $\F_p$ nimajo netrivialnih avtomorfizmov. $\mathbb{C}$ jih ima neskončno, ampak edini lahek netrivialen primer je konjugacija.
+\end{opomba}
