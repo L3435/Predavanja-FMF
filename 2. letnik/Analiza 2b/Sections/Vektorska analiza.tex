@@ -5,7 +5,7 @@
 \begin{definicija}
 Naj bo $D \subseteq \R^3$ odprta. Funkcijam oblike
 $\mathcal{U} \colon D \to \R$ pravimo
-\emph{skalarno polje}\index{Vektorska analiza!Polje}. Preslikavam
+\emph{skalarno polje}\index{Polje}. Preslikavam
 $\vv{R} \colon D \to \R^3$ oblike pravimo \emph{vektorsko polje}.
 \end{definicija}
 
@@ -36,3 +36,268 @@ Baza je pozitivno orientirana natanko tedaj, ko je
 \vv{p} \times \vv{q} = \vv{r}.
 \]
 \end{opomba}
+
+\datum{2022-3-2}
+
+\begin{definicija}
+\emph{Smerni odvod}\index{Polje!Smerni odvod} skalarnega polja
+$\mathcal{U}$ v smeri vektorja $\vv{s}$ v točki $p$ je limita
+\[
+\lim_{t \to 0}
+\frac{\mathcal{U}(\vv{p} + t \vv{s}) - \mathcal{U}(\vv{p})}{t} =
+\frac{\partial \mathcal{U}}{\partial \vv{s}}(\vv{p}),
+\]
+če obstaja.
+\end{definicija}
+
+\begin{opomba}
+Če je $\mathcal{U} \in \mathcal{C}^1(D)$, velja
+\[
+\frac{\partial \mathcal{U}}{\partial \vv{s}}(\vv{p}) =
+(D\mathcal{U})(\vv{p}) \cdot \vv{s} =
+\grad \mathcal{U} \cdot \vv{s}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Operator \emph{nabla}\index{Polje!Nabla} je operator
+\[
+\vv{\nabla} = \left(
+\frac{\partial}{\partial x},
+\frac{\partial}{\partial y},
+\frac{\partial}{\partial z}
+\right).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\mathcal{U} \in \mathcal{C}^1(D)$. V točki $\vv{p} \in D$
+skalarno polje najhitreje narašča v smeri gradienta, najhitreje pa
+pada v nasprotni smeri.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+V smereh, pravokotnih na gradient, se $\mathcal{U}$ najpočasneje
+spreminja.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{R}$ vektorsko polje.
+\emph{Divergenca}\index{Polje!Divergenca} polja je sled odvoda,
+oziroma
+\[
+\dv \vv{R} = X_x + Y_y + Z_z = \vv{\nabla} \cdot \vv{R}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\vv{R}$ vektorsko polje. \emph{Rotor}\index{Polje!Rotor}
+polja je produkt\footnote{Abuse of notation, razlike odvodov
+komponent.}
+\[
+\rot \vv{R} = \vv{\nabla} \times \vv{R}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $D$ odprta podmnožica $\R^3$,
+$\mathcal{U} \in \mathcal{C}^2(D)$ skalarno in
+$\vv{R} \in \mathcal{C}^2(D)$ vektorsko polje. Tedaj velja
+
+\begin{enumerate}[i)]
+\item $\rot(\grad \mathcal{U}) =
+\vv{\nabla} \times \vv{\nabla} \mathcal{U} = \vv{0}$ in
+\item $\dv(\rot \mathcal{U}) =
+\vv{\nabla} \cdot \left(\vv{\nabla} \times \vv{R}\right) = 0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\vv{\nabla} \times \vv{\nabla} \cdot \mathcal{U} =
+(u_{zy} - u_{yz}, u_{xz} - u_{zx}, u_{yx} - u_{xy}) =
+\vv{0}
+\]
+in
+\[
+\vv{\nabla} \cdot \left(\vv{\nabla} \times \vv{R}\right) =
+Z_{yx} - Y_{zx} + X_{zy} - Z_{xy} + Y_{xz} - X_{yz} =
+0. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Vektorsko polje je \emph{potencialno}\index{Polje!Potencialno}, če
+obstaja tako skalarno polje $\mathcal{U} \in \mathcal{C}^1(D)$, da
+je $\vv{R} = \grad U$. Polju $\mathcal{U}$ pravimo
+\emph{potencial}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\mathcal{U}$ skalarno polje.
+\emph{Laplaceov operator}\index{Polje!Laplaceov operator} je
+\[
+\Delta \mathcal{U} =
+\dv \grad \mathcal{U} =
+\mathcal{U}_{xx} + \mathcal{U}_{yy} + \mathcal{U}_{zz}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Funkcijam, ki rešijo enačbo
+\[
+\Delta \mathcal{U} = 0,
+\]
+pravimo \emph{harmonične funkcije}.
+\end{definicija}
+
+\begin{definicija}
+Množica $D \subseteq \R^3$ je
+\emph{konveksna}\index{Množica!Konveksna}, če za poljubni točki
+$\vv{a}, \vv{b} \in D$ in $t \in [0,1]$ tudi
+\[
+t \vv{a} + (1-t) \vv{b} \in D.
+\]
+\end{definicija}
+
+\begin{definicija}
+Množica $D \subseteq \R^3$ je
+\emph{zvezdasta}\index{Množica!Zvezdasta}, če obstaja taka točka
+$\vv{a} \in D$, da je za vse $\vv{b} \in D$ in $t \in [0,1]$ tudi
+\[
+t \vv{a} + (1-t) \vv{b} \in D.
+\]
+\end{definicija}
+
+\datum{2022-3-7}
+
+\begin{trditev}
+Naj bo $D \subseteq \R^3$ zvezdasto območje.\footnote{Povezana
+odprta množica.} Naj bo $\vv{R} \in \mathcal{C}^1(D)$ vektorsko
+polje.
+
+\begin{enumerate}[i)]
+\item Če je $\rot \vv{R} = 0$, je $\vv{R}$ potencialno.
+\item Če je $\dv \vv{R} = 0$, obstaja tako vektorsko polje
+$\vv{F} \in \mathcal{C}^2(D)$, da je $\vv{R} = \rot \vv{F}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Označimo $\vv{R} = (X, Y, Z)$ in $D$ zvezdasto glede na točko
+$(0, 0, 0)$.
+
+\begin{enumerate}[i)]
+\item Naj bo
+\[
+\mathcal{U}(x,y,z) = \int_0^1 \left(
+x \cdot X(tx, ty, tz) +
+y \cdot Y(tx, ty, tz) +
+z \cdot Z(tx, ty, tz)
+\right)\;dt.
+\]
+Sledi, da je
+\begin{align*}
+\mathcal{U}_x(x,y,z)
+&=
+\int_0^1 (X + tx \cdot X_x + ty \cdot Y_x + tz \cdot Z_x )\;dt
+\\
+&=
+\int_0^1 (X + tx \cdot X_x + ty \cdot X_y + tz \cdot X_z)\;dt
+\\
+&=
+\eval{t \cdot X(tx, ty, tz)}{0}{1}
+\\
+&= X.
+\end{align*}
+\item Označimo
+\[
+\alpha(x,y,z) = \int_0^1 t \cdot X(tx, ty, tz)\;dt.
+\]
+Simetrično definiramo še $\beta$ in $\gamma$. Opazimo, da velja
+\[
+\alpha_x + \beta_y + \gamma_z = 0,
+\]
+saj je $X_x + Y_y + Z_z = 0$. Sedaj naj bo
+\[
+\vv{F} =
+(\alpha, \beta, \gamma) \times (x, y, z) =
+(z \beta - y \gamma, x \gamma - z \alpha, y \alpha - x \beta).
+\]
+Sledi, da je prva komponenta $\rot \vv{F}$ enaka
+\begin{align*}
+\frac{\partial}{\partial y} (y \alpha - x \beta) -
+\frac{\partial}{\partial z} (x \gamma - z \alpha)
+&=
+\alpha + y \alpha_y - x \beta_y - x \gamma_z + \alpha + z \alpha_z
+\\
+&=
+2 \alpha + y \alpha_y + z \alpha_z - x(\beta_y + \gamma_z) =
+\\
+&=
+\int_0^1 \left(2t X + t^2x X_x + t^2y X_y + t^2z X_z\right)\;dt
+\\
+&=
+\eval{t^2 X(tx, ty, tz)}{0}{1}
+\\
+&= X(x, y, z). \qedhere
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Potencial vektorskega polja je določen do konstante natančno.
+\end{opomba}
+
+\begin{proof}
+Za $U = \mathcal{U} - \mathcal{V}$ je množica
+\[
+A = \setb{(x,y,z) \in D}{U(x,y,z) = U(x_0,y_0,z_0)}
+\]
+odprta in zaprta.
+\end{proof}
+
+\begin{opomba}
+Če je $\dv \vv{R} = 0$, so vse rešitve enačbe
+$\vv{R} = \rot \vv{F}$ oblike $\vv{F} + \grad \mathcal{U}$.
+\end{opomba}
+
+\begin{opomba}
+Vsako vektorsko polje $\vv{R} \in \mathcal{C}^1(D)$ na zvezdastem
+območju $D$ lahko zapišemo v obliki
+\[
+\vv{R} = \rot \vv{F} + \grad \mathcal{U}.
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Orientacija krivulj in ploskev}
+
+\begin{definicija}
+Naj bo $\Gamma \subseteq \R^3$ gladka krivulja.
+\emph{Orientacija}\index{Krivulja!Orientacija} krivulje $\Gamma$ je
+zvezen izbor enotskega tangentnega vektorja vzdolž $\Gamma$.
+\end{definicija}
+
+\begin{opomba}
+Če je $\Gamma$ povezana, ima natanko dve orientaciji.
+\end{opomba}
+
+\begin{definicija}
+\emph{Odsekoma gladka krivulja}\index{Krivulja!Odsekoma gladka}
+$\Gamma$ je vsaka končna unija gladkih krivulj, ki se ne sekajo,
+razen v zaporednih robnih točkah.
+\end{definicija}
+
+\begin{definicija}
+\emph{Orientacija} odsekoma gladke krivulje
+\[
+\Gamma = \bigcup_{i=1}^n \Gamma_i
+\]
+je tak izbor orientacij $\Gamma_i$, da so presečišča začetna točka
+ene in končna točka druge krivulje.
+\end{definicija}

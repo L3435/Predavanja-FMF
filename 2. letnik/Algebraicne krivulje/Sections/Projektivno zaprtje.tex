@@ -1,0 +1,110 @@
+\section{Projektivno zaprtje}
+
+\subsection{Projektivna ravnina}
+
+\datum{2022-3-3}
+
+\begin{definicija}
+Naj bo $K$ polje. \emph{Afina ravnina}\index{Afina ravnina} je
+množica $A_2(K) = K^2$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $K$ polje.
+\emph{Projektivna ravnina}\index{Projektivna ravnina} je množica
+vseh premic v $K^3$, ki potekajo skozi izhodišče. Označimo jo z
+$P_2(K)$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Projektivne koordinate}\index{Projektivna ravnina!Koordinate}
+projektivne točke je razmerje
+\[
+(x : y : z).
+\]
+\end{definicija}
+
+\begin{opomba}
+Vsakim projektivnim koordinatam, različnim od $[0 : 0 : 0]$, ustreza
+natanko ena projektivna točka.
+\end{opomba}
+
+\begin{opomba}
+Projektivno ravnino lahko identificiramo z afino ravnino, ki ji
+dodamo \emph{točke v neskončnosti}. Točkam v projektivni ravnini,
+ki so oblike $(x : y : 1)$, identificiramo s točko $(x, y)$ v afini
+ravnini in jim pravimo \emph{končne točke}.
+
+Točke $(x : y : 0)$ ustrezajo \emph{točkam v neskončnosti}, ki jih
+identificiramo s snopi vzporednic.
+\end{opomba}
+
+\begin{opomba}
+Projektivno ravnino $P_2(\R)$ lahko identificiramo tudi s sfero
+$S^2$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Projektivna premica}\index{Projektivna ravnina!Premica} je
+vsaka ravnina, ki gre skozi izhodišče. Identificiramo jo z afino
+premico, ki ji dodamo pripadajočo točko v neskončnosti, oziroma
+premico v neskončnosti.
+\end{definicija}
+
+\begin{opomba}
+V sferičnem modelu so premice glavni krogi.
+\end{opomba}
+
+\begin{opomba}
+Vsaki dve različni projektivni premici se sekata v natanko eni
+projektivni točki. Skozi vsaki dve različni projektivni premici
+poteka natanko ena projektivna premica.
+\end{opomba}
+
+\newpage
+
+\subsection{Projektivne algebraične krivulje}
+
+\begin{definicija}
+Polinom $F \in \C[x,y,z]$ je \emph{homogen}\index{Polinom!Homogen},
+če so vsi njegovi monomi iste stopnje.
+\end{definicija}
+
+\begin{opomba}
+$F$ je homogen polinom stopnje $n$ natanko tedaj, ko za vse $x$,
+$y$, $z$ in $\lambda$ velja
+\[
+F(\lambda x, \lambda y, \lambda z) = \lambda^n F(x, y, z).
+\]
+\end{opomba}
+
+\begin{definicija}
+Množica projektivnih ničel homogenega polinoma $F \in \C[x, y, z]$
+je
+\[
+V_h(F) = \setb{(a : b : c) \in P_2(\C)}{F(a, b, c) = 0}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Podmnožica $\mathcal{C} \subseteq P_2(\C)$ je
+\emph{projektivna algebraična krivulja}\index{Algebraična krivulja!Projektivna},
+če obstaja tak nekonstanten homogen polinom $F \in \C[x, y, z]$,
+da velja
+\[
+\mathcal{C} = V_h(F).
+\]
+\end{definicija}
+
+\begin{opomba}
+Množico $V_n(F)$ si lahko predstavljamo kot unijo množice
+$V(F(x,y,1))$ in nekaj točk v neskončnosti, ki jih dobimo iz
+faktorizacije polinoma $F(x,y,0)$. Podobno lahko tudi afino
+algebraično krivuljo predstavimo s projektivno krivuljo
+polinoma\footnote{Takemu polinomu pravimo \emph{homogenizacija}
+polinoma $f$.}
+\[
+F(x, y, z) =
+z^{\deg f} \cdot f\left(\frac{x}{z}, \frac{y}{z} \right).
+\]
+\end{opomba}

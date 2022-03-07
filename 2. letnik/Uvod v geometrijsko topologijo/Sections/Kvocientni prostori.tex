@@ -298,9 +298,125 @@ Naj bo $R$ razdelitev prostora $X$. Tedaj velja
 
 \newpage
 
-\subsection{Topološke grupe in delovanja}
+\subsection{Topološke grupe}
 
 \begin{definicija}
-\emph{Topološka grupa}\index{Topološka grupa} $F$ je grupa, ki je
+\emph{Topološka grupa}\index{Topološka grupa} $G$ je grupa, ki je
 hkrati topološki prostor z zveznim množenjem in invertiranjem.
 \end{definicija}
+
+\datum{2022-3-4}
+
+\begin{definicija}
+Direktni produkt topoloških grup je direktni produkt grup s
+produktno topologijo.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $G$ topološka grupa in $a \in G$.
+\emph{Leva translacija}\index{Topološka grupa!Translacija} je
+preslikava
+\[
+L_a \colon g \mapsto ag.
+\]
+Simetrično definiramo \emph{desno translacijo}.
+\end{definicija}
+
+\begin{trditev}
+Translacije so homeomorfizmi.
+\end{trditev}
+
+\begin{proof}
+Translaciji sta očitno bijektivni. Opazimo, da sta zvezni, saj sta
+definirani z množenjem. Velja $L_a^{-1} = L_{a^{-1}}$, zato je tudi
+inverz zvezen.
+\end{proof}
+
+\begin{definicija}
+Topološki prostor $X$ je
+\emph{homogen}\index{Topološki prostor!Homogen}, če za vsaka dva
+elementa $a, b \in X$ obstaja tak homeomorfizem $h \colon X \to X$,
+da je $h(a) = b$.
+\end{definicija}
+
+\begin{posledica}
+Topološka grupa $G$ je homogen prostor.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor in $G$ topološka grupa.
+\emph{Levo delovanje}\index{Topološka grupa!Delovanje} na prostoru
+$X$ je zvezna preslikava $\varphi \colon G \times X \to X$, pri
+čemer za vse $a, b \in G$ in $x \in X$ velja
+
+\begin{enumerate}[i)]
+\item $1 \cdot x = x$ in
+\item $a(bx) = (ab)x$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Za vse $a \in G$ je preslikava $x \mapsto ax$ homeomorfizem.
+\end{opomba}
+
+\begin{trditev}
+Delovanje grupe $G$ na prostoru $X$ določa ekvivalenčno relacijo
+\[
+x \sim y \iff \exists g \in G \colon gx = y.
+\]
+Pripadajoči kvocientni prostor imenujemo
+\emph{prostor orbit}\index{Topološki prostor!Prostor orbit} in ga
+označimo z
+\[
+\kvoc{X}{\sim} = \kvoc{X}{G}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Orbita}\index{Topološka grupa!Orbita} točke $x$ je množica
+\[
+[x] = G \cdot x = \setb{g \cdot x}{g \in G}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Za element $x \in X$ grupi
+\[
+G_x = \setb{g \in G}{g \cdot x = x}
+\]
+pravimo
+\emph{stabilizatorska podgrupa}\index{Stabilizatorska podgrupa}.
+\end{definicija}
+
+\begin{opomba}
+Obstaja bijekcija $G \cdot x \to \kvoc{G}{G_x}$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $G$ topološka grupa, ki deluje na topološki prostor $X$.
+Potem je kvocientna projekcija
+\[
+q \colon X \to \kvoc{X}{G}
+\]
+odprta.
+\end{trditev}
+
+\begin{proof}
+Naj bo $V \in \tau_X$. Dokazati moramo, da je njeno nasičenje
+odprto. Velja pa
+\begin{align*}
+q^{-1}\left(q(V)\right)
+&=
+\setb{y \in X}{\exists x \in V \colon y \sim x}
+\\
+&=
+\setb{g \cdot x}{x \in V, g \in G}
+\\
+&=
+\bigcup_{g \in G} \setb{g \cdot x}{x \in V}
+\\
+&= \bigcup_{g \in G} L_g(V). \qedhere
+\end{align*}
+\end{proof}
