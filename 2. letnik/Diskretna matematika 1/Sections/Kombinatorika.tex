@@ -365,7 +365,7 @@ $\overline{p}_k(n) = \overline{p}_{k-1}(n) + \overline{p}_k(n-k)$
 
 \newpage
 
-\subsection{Stirlingova števila 1.~vrste}
+\subsection{Stirlingova števila}
 
 \begin{definicija}
 Za $1 \leq k \leq n$ je
@@ -374,3 +374,141 @@ $c(n,k)$ število permutacij $S_n$, ki jih lahko zapišemo kot
 produkt $k$ ciklov. Posebej naj bo $c(n,0) = 0$ za $n \geq 1$ in
 $c(0,0) = 1$.
 \end{definicija}
+
+\datum{2022-3-7}
+
+\begin{trditev}
+Velja rekurzivna formula
+\[
+c(n, k) = c(n-1, k-1) + (n-1) \cdot c(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Permutacij, v katerih je $x$ fiksna točka, je $c(n-1, k-1)$,
+drugače pa na $n-1$ načinov izberemo element, v katerega se
+preslika $x$, nato pa jih razporedimo v $k$ ciklov.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^{\overline{n}} = \sum_k c(n, k) x^k.
+\]
+\end{izrek}
+
+\begin{proof}
+Indukcija po $n$.
+\end{proof}
+
+\begin{definicija}
+Družina nepraznih množic $\set{X_i}_{i \in I}$ je
+\emph{razdelitev}\index{Množica!Razdelitev}, če za vse različne
+$i, j \in I$ velja $X_i \cap X_j = \emptyset$ in
+\[
+\bigcup_{i \in I} X_i = X.
+\]
+Množicam $X_i$ pravimo \emph{blok razdelitve}
+\end{definicija}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je
+\emph{Stirlingovo število 2.~vrste}\index{Stirlingovo število 2.~vrste}
+$S(n, k)$ število razdelitev $n$-množice v $k$ blokov.
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna zveza
+\[
+S(n,k) = S(n-1, k-1) + k \cdot S(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Če je element $x$ v nekem bloku sam, imamo $S(n-1, k-1)$ možnosti,
+drugače pa na $k$ načinov izberemo blok, v katerega ga dodamo.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^n = \sum_k S(n, k) \cdot x^{\underline{k}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Dovolj je izrek dokazati za naravna števila. Naj bo $A = [x]^n$.
+Velja $\abs{A} = x^n$. Po drugi strani pa lahko $A$ razdelimo glede
+na število različnih elementov $k$, teh pa je
+$S(n,k) \cdot x^{\underline{k}}$.
+\end{proof}
+
+\begin{trditev}
+Število surjekcij $f \in K^N$ je
+\[
+k! \cdot S(n, k).
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Bellovo število}\index{Bellovo število} $B(n)$ je število
+vseh razdelitev množice z $n$ elementi v bloke, oziroma
+\[
+B(n) = \sum_k S(n, k).
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna formula
+\[
+B(n+1) = \sum_k \binom{n}{k} B(k).
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $x$ v bloku velikosti $k+1$. Tedaj je razdelitev natanko
+\[
+\binom{n}{k} \cdot B(n-k). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je \emph{Lahova števila}\index{Lahovo število}
+$L(n, k)$ število razdelitev $n$-množice v $k$ linearno urejenih
+blokov.
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna zveza
+\[
+L(n, k) = L(n-1, k-1) + (n+k-1) \cdot L(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Podobno kot prejšnji. % cba
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+L(n, k) =
+\frac{(n-1)!}{(k-1)!} \binom{n}{k} =
+\frac{n!}{k!} \binom{n-1}{k-1}.
+\]
+\end{izrek}
+
+\begin{proof}
+Elemente uredimo na $n!$ načinov, nato pa izberemo $k-1$ elementov,
+ki so prvi v svojem bloku. Pri tem smo vsako razdelitev šteli
+$k!$-krat.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^{\overline{n}} = \sum_k L(n, k) x^{\underline{k}}.
+\]
+\end{izrek}
