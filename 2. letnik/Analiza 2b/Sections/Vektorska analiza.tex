@@ -4,7 +4,7 @@
 
 \begin{definicija}
 Naj bo $D \subseteq \R^3$ odprta. Funkcijam oblike
-$\mathcal{U} \colon D \to \R$ pravimo
+$U \colon D \to \R$ pravimo
 \emph{skalarno polje}\index{Polje}. Preslikavam
 $\vv{R} \colon D \to \R^3$ oblike pravimo \emph{vektorsko polje}.
 \end{definicija}
@@ -41,21 +41,21 @@ Baza je pozitivno orientirana natanko tedaj, ko je
 
 \begin{definicija}
 \emph{Smerni odvod}\index{Polje!Smerni odvod} skalarnega polja
-$\mathcal{U}$ v smeri vektorja $\vv{s}$ v točki $p$ je limita
+$U$ v smeri vektorja $\vv{s}$ v točki $p$ je limita
 \[
 \lim_{t \to 0}
-\frac{\mathcal{U}(\vv{p} + t \vv{s}) - \mathcal{U}(\vv{p})}{t} =
-\frac{\partial \mathcal{U}}{\partial \vv{s}}(\vv{p}),
+\frac{U(\vv{p} + t \vv{s}) - U(\vv{p})}{t} =
+\frac{\partial U}{\partial \vv{s}}(\vv{p}),
 \]
 če obstaja.
 \end{definicija}
 
 \begin{opomba}
-Če je $\mathcal{U} \in \mathcal{C}^1(D)$, velja
+Če je $U \in \mathcal{C}^1(D)$, velja
 \[
-\frac{\partial \mathcal{U}}{\partial \vv{s}}(\vv{p}) =
-(D\mathcal{U})(\vv{p}) \cdot \vv{s} =
-\grad \mathcal{U} \cdot \vv{s}.
+\frac{\partial U}{\partial \vv{s}}(\vv{p}) =
+(DU)(\vv{p}) \cdot \vv{s} =
+\grad U \cdot \vv{s}.
 \]
 \end{opomba}
 
@@ -71,7 +71,7 @@ Operator \emph{nabla}\index{Polje!Nabla} je operator
 \end{definicija}
 
 \begin{trditev}
-Naj bo $\mathcal{U} \in \mathcal{C}^1(D)$. V točki $\vv{p} \in D$
+Naj bo $U \in \mathcal{C}^1(D)$. V točki $\vv{p} \in D$
 skalarno polje najhitreje narašča v smeri gradienta, najhitreje pa
 pada v nasprotni smeri.
 \end{trditev}
@@ -79,7 +79,7 @@ pada v nasprotni smeri.
 \obvs
 
 \begin{opomba}
-V smereh, pravokotnih na gradient, se $\mathcal{U}$ najpočasneje
+V smereh, pravokotnih na gradient, se $U$ najpočasneje
 spreminja.
 \end{opomba}
 
@@ -103,13 +103,13 @@ komponent.}
 
 \begin{trditev}
 Naj bo $D$ odprta podmnožica $\R^3$,
-$\mathcal{U} \in \mathcal{C}^2(D)$ skalarno in
+$U \in \mathcal{C}^2(D)$ skalarno in
 $\vv{R} \in \mathcal{C}^2(D)$ vektorsko polje. Tedaj velja
 
 \begin{enumerate}[i)]
-\item $\rot(\grad \mathcal{U}) =
-\vv{\nabla} \times \vv{\nabla} \mathcal{U} = \vv{0}$ in
-\item $\dv(\rot \mathcal{U}) =
+\item $\rot(\grad U) =
+\vv{\nabla} \times \vv{\nabla} U = \vv{0}$ in
+\item $\dv(\rot \vv{R}) =
 \vv{\nabla} \cdot \left(\vv{\nabla} \times \vv{R}\right) = 0$.
 \end{enumerate}
 \end{trditev}
@@ -117,7 +117,7 @@ $\vv{R} \in \mathcal{C}^2(D)$ vektorsko polje. Tedaj velja
 \begin{proof}
 Velja
 \[
-\vv{\nabla} \times \vv{\nabla} \cdot \mathcal{U} =
+\vv{\nabla} \times \vv{\nabla} \cdot U =
 (u_{zy} - u_{yz}, u_{xz} - u_{zx}, u_{yx} - u_{xy}) =
 \vv{0}
 \]
@@ -131,25 +131,25 @@ Z_{yx} - Y_{zx} + X_{zy} - Z_{xy} + Y_{xz} - X_{yz} =
 
 \begin{definicija}
 Vektorsko polje je \emph{potencialno}\index{Polje!Potencialno}, če
-obstaja tako skalarno polje $\mathcal{U} \in \mathcal{C}^1(D)$, da
-je $\vv{R} = \grad U$. Polju $\mathcal{U}$ pravimo
+obstaja tako skalarno polje $U \in \mathcal{C}^1(D)$, da
+je $\vv{R} = \grad U$. Polju $U$ pravimo
 \emph{potencial}.
 \end{definicija}
 
 \begin{definicija}
-Naj bo $\mathcal{U}$ skalarno polje.
+Naj bo $U$ skalarno polje.
 \emph{Laplaceov operator}\index{Polje!Laplaceov operator} je
 \[
-\Delta \mathcal{U} =
-\dv \grad \mathcal{U} =
-\mathcal{U}_{xx} + \mathcal{U}_{yy} + \mathcal{U}_{zz}.
+\Delta U =
+\dv \grad U =
+U_{xx} + U_{yy} + U_{zz}.
 \]
 \end{definicija}
 
 \begin{definicija}
 Funkcijam, ki rešijo enačbo
 \[
-\Delta \mathcal{U} = 0,
+\Delta U = 0,
 \]
 pravimo \emph{harmonične funkcije}.
 \end{definicija}
@@ -193,7 +193,7 @@ $(0, 0, 0)$.
 \begin{enumerate}[i)]
 \item Naj bo
 \[
-\mathcal{U}(x,y,z) = \int_0^1 \left(
+U(x,y,z) = \int_0^1 \left(
 x \cdot X(tx, ty, tz) +
 y \cdot Y(tx, ty, tz) +
 z \cdot Z(tx, ty, tz)
@@ -201,7 +201,7 @@ z \cdot Z(tx, ty, tz)
 \]
 Sledi, da je
 \begin{align*}
-\mathcal{U}_x(x,y,z)
+U_x(x,y,z)
 &=
 \int_0^1 (X + tx \cdot X_x + ty \cdot Y_x + tz \cdot Z_x )\;dt
 \\
@@ -253,7 +253,7 @@ Potencial vektorskega polja je določen do konstante natančno.
 \end{opomba}
 
 \begin{proof}
-Za $U = \mathcal{U} - \mathcal{V}$ je množica
+Za $U = U - \mathcal{V}$ je množica
 \[
 A = \setb{(x,y,z) \in D}{U(x,y,z) = U(x_0,y_0,z_0)}
 \]
@@ -262,14 +262,14 @@ odprta in zaprta.
 
 \begin{opomba}
 Če je $\dv \vv{R} = 0$, so vse rešitve enačbe
-$\vv{R} = \rot \vv{F}$ oblike $\vv{F} + \grad \mathcal{U}$.
+$\vv{R} = \rot \vv{F}$ oblike $\vv{F} + \grad U$.
 \end{opomba}
 
 \begin{opomba}
 Vsako vektorsko polje $\vv{R} \in \mathcal{C}^1(D)$ na zvezdastem
 območju $D$ lahko zapišemo v obliki
 \[
-\vv{R} = \rot \vv{F} + \grad \mathcal{U}.
+\vv{R} = \rot \vv{F} + \grad U.
 \]
 \end{opomba}
 
@@ -301,3 +301,152 @@ razen v zaporednih robnih točkah.
 je tak izbor orientacij $\Gamma_i$, da so presečišča začetna točka
 ene in končna točka druge krivulje.
 \end{definicija}
+
+\datum{2022-3-9}
+
+\begin{definicija}
+Naj bo $\Sigma \subseteq \R^3$ gladka ploskev.
+\emph{Orientacija}\index{Ploskev!Orientacija} ploskve $\Sigma$ je
+zvezen izbor enotske normale na $\Sigma$. Ploskvi z orientacijo
+pravimo \emph{orientabilna}.
+\end{definicija}
+
+\begin{opomba}
+Vsaka orientabilna povezana ploskev ima natanko dve orientaciji.
+\end{opomba}
+
+\begin{opomba}
+Vsaka regularna parametrizacija $\vv{r} \colon D \to \R^3$ poda
+orientacijo
+\[
+\vv{N} =
+\frac{\vv{r_u} \times \vv{r_v}}{\norm{\vv{r_u} \times \vv{r_v}}}.
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Odsekoma gladka ploskev}\index{Ploskev!Odsekoma gladka}
+$\Sigma$ je vsaka končna unija gladkih omejenih ploskev z robom,
+pri čemer je presek vsakih dveh prazen ali del robnih krivulj,
+presek vsakih treh pa je prazen ali točka.
+\end{definicija}
+
+\begin{opomba}
+Orientacija ploskve določa orientacijo roba
+$\vv{T} = \vv{N} \times \vv{n}$, kjer je $\vv{n}$ normala na rob,
+ki kaže izven ploskve.
+\end{opomba}
+
+\begin{definicija}
+\emph{Orientacija} odsekoma gladke ploskve
+\[
+\Sigma = \bigcup_{i=1}^n \Sigma_i
+\]
+je tak izbor orientacij $\Sigma_i$, da so njihovi robovi
+orientirani nasprotno.
+\end{definicija}
+
+\newpage
+
+\subsection{Krivuljni integral}
+
+\begin{definicija}
+Naj bo $\Gamma$ gladka krivulja z regularno parametrizacijo
+$\vv{r} \colon [\alpha, \beta] \to \Gamma$. Naj bo
+$U \colon \Gamma \to \R$ zvezno skalarno polje.
+\emph{Krivuljni integral skalarnega polja}\index{Krivulja!Integral}
+je definiran kot
+\[
+\lint_\Gamma U\;ds =
+\int_\alpha^\beta U(\vv{r}(t)) \abs{\dot{\vv{r}}(t)}\;dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odsekoma gladko krivuljo
+\[
+\Gamma = \bigcup_{i=1}^n \Gamma_i
+\]
+je integral definiran kot
+\[
+\lint_\Gamma U\;ds =
+\sum_{i=1}^n \lint_{\Gamma_i} U\;du.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{\Gamma}$ gladka orientirana krivulja z regularno
+parametrizacijo $\vv{r} \colon [\alpha, \beta] \to \Gamma$, ki je
+usklajena z orientacijo. Naj bo $\vv{R} \colon \Gamma \to \R^3$
+zvezno skalarno polje. \emph{Krivuljni integral vektorskega polja}
+je definiran kot
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\int_\alpha^\beta \vv{R}(\vv{r}(t)) \cdot \dot{\vv{r}}(t)\;dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Integral je enak za vse parametrizacije, ki so usklajene z
+orientacijo, saj je
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\lint_\Gamma \left(\vv{R} \cdot \vv{T}\right)ds.
+\]
+\end{opomba}
+
+\begin{opomba}
+Pišemo tudi
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\lint_\Gamma X\;dx + Y\;dy + Z\;dz.
+\]
+Izraz $X\;dx + Y\;dy + Z\;dz$ je \emph{diferencialna forma}.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\vv{R} \colon D \to \R^3$, $\vv{R} = \grad U$ zvezno
+potencialno vektorsko polje. Naj bo $\Gamma$ orientirana odsekoma
+gladka krivulja v $D$ z začetno točko $A$ in končno točko $B$.
+Tedaj je
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+U(B) - U(A).
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\int_\alpha^\beta (Du) \dot{\vv{r}}\;dt =
+\int_\alpha^\beta \frac{d}{dt} \left(U(\vv{r}(t)\right)dt =
+U(B) - U(A). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $D \subseteq \R^3$ odprta in $\vv{R}$ zvezno vektorsko polje
+na $D$. Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $\vv{R}$ je potencialno.
+\item Integral $\vv{R}$ po odsekoma gladkih krivuljah v $D$ je
+neodvisen od poti.
+\item Integral $\vv{R}$ po vsaki sklenjeni odsekoma gladki krivulji
+v $D$ je enak $0$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Implikaciji iz prve točke v drugi dve sta očitni.
+\end{proof}
+
+\begin{opomba}
+Krivulja je sklenjena, če začetna in končna točka sovpadata. Tedaj
+pišemo
+\[
+\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\olint_{\vv{\Gamma}} \vv{R}\;d\vv{r}.
+\]
+\end{opomba}
