@@ -401,7 +401,7 @@ Pišemo tudi
 \lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
 \lint_\Gamma X\;dx + Y\;dy + Z\;dz.
 \]
-Izraz $X\;dx + Y\;dy + Z\;dz$ je \emph{diferencialna forma}.
+Zapis $X\;dx + Y\;dy + Z\;dz$ je \emph{diferencialna 1-forma}.
 \end{opomba}
 
 \begin{trditev}
@@ -438,8 +438,29 @@ v $D$ je enak $0$.
 \end{enumerate}
 \end{izrek}
 
+\datum{2022-3-14}
+
 \begin{proof}
-Implikaciji iz prve točke v drugi dve sta očitni.
+Implikaciji iz prve točke v tretjo je očitna. Prav tako iz tretje
+takoj sledi druga -- dve krivulji namreč določata sklenjeno 
+krivuljo.
+
+Brez škode za splošnost naj bo $D$ povezana.\footnote{Sledi, da je
+povezana s potmi.} Če je integral neodvisen od poti, definiramo
+\[
+U(T) = \lint_{\vv{\Gamma}} \vv{R}\;d\vv{r},
+\]
+kjer $\Gamma$ povezuje točki $A_0$ in $T$. Velja
+\[
+U_x = \lim_{h \to 0} \frac{U(x+h, y, z) - U(x, y, z)}{h}.
+\]
+Ker si pot v integrali lahko izberemo poljubno, si izberemo
+daljico, ki povezuje $(x+h, y, z)$ in $(x, y, z)$. Sledi, da je
+\[
+U_x =
+\lim_{h \to 0} \int_0^1 X(x + th, y, z)\;dt =
+X(x, y, z). \qedhere
+\]
 \end{proof}
 
 \begin{opomba}
@@ -449,4 +470,108 @@ pišemo
 \lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
 \olint_{\vv{\Gamma}} \vv{R}\;d\vv{r}.
 \]
+\end{opomba}
+
+\newpage
+
+\subsection{Ploskovni integral}
+
+\begin{definicija}
+Naj bo $\Sigma$ gladka ploskev s parametrizacijo
+$\vv{r} \colon D \to \Sigma$ in $U \colon \Sigma \to \R$ skalarno
+polje.
+\emph{Ploskovni integral skalarnega polja}\index{Ploskovni integral}
+je definiran kot
+\[
+\liint_\Sigma U\;dS =
+\liint_D U(\vv{r}(s,t)) \sqrt{EG - F^2}\;ds\;dt =
+\liint_D U(\vv{r}(s,t)) \abs{\vv{r_s} \times \vv{r_t}}\;ds\;dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odsekoma gladko ploskev
+\[
+\Sigma = \bigcup_{i=1}^n \Sigma
+\]
+je integral definiran kot
+\[
+\liint_\Sigma U\;dS =
+\sum_{i=1}^n \liint_{\Sigma_i} U\;ds.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{\Sigma}$ orientirana gladka ploskev s parametrizacijo
+$\vv{r} \colon D \to \Sigma$, ki je usklajena z orientacijo, in
+$\vv{R} \colon \Sigma \to \R^3$ vektorsko polje. \emph{Ploskovni
+integral vektorskega polja} je definiran kot
+\[
+\liint_{\vv{\Sigma}} \vv{R}\;d\vv{S} =
+\liint_\Sigma \left(\vv{R} \cdot \vv{N}\right)dS =
+\liint_D \vv{R} \cdot \vv{N} \cdot
+\abs{\vv{r_s} \times \vv{r_t}}\;ds\;dt =
+\liint_D \vv{R} \cdot (\vv{r_s} \times \vv{r_t})\;ds\;dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Pišemo tudi
+\[
+\liint_{\vv{\Sigma}} \vv{R}\;d\vv{S} =
+\liint_\Sigma X\;dy \wedge dz + Y\;dz \wedge dx + Z\;dx \wedge dy.
+\]
+Zapis $X\;dy \wedge dz + Y\;dz \wedge dx + Z\;dx \wedge dy$ je
+\emph{diferencialna 2-forma}.
+\end{opomba}
+
+\newpage
+
+\subsection{Integralski izreki}
+
+%\begin{okvir}
+%\begin{izrek}[Stokes]\index{Izrek!Stokes}
+%Naj bo $M$ orientirana mnogoterost z robom $\partial M$, ki ima
+%usklajeno orientacijo. Tedaj je
+%\[
+%\lint_M d\omega = \lint_{\partial M} \omega.
+%\]
+%\end{izrek}
+%\end{okvir}
+
+\begin{izrek}[Gauss]\index{Izrek!Gauss}
+Naj bo $D$ omejena odprta množica v $\R^3$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih sklenjenih
+ploskev, orientiranih z zunanjo normalo glede na $D$. Naj bo
+$\vv{R} \in \mathcal{C}^1(\overline{D})$ vektorsko
+polje. Tedaj velja
+\[
+\liint_{\partial D} \vv{R}\;d\vv{s} = \liiint_D \dv\vv{R}\;dV.
+\]
+\end{izrek}
+
+\begin{izrek}[Greenova formula]\index{Izrek!Greenova formula}
+Naj bo $D$ omejena odprta množica v $\R^2$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih sklenjenih
+krivulj, orientiranih pozitivno glede na $D$. Naj bosta
+$X, Y \in \mathcal{C}^1(\overline{D})$ funkciji. Tedaj velja
+\[
+\lint_{\partial D} X\;dx + Y\;dy = \liint_D (Y_x - X_y)\;dx\;dy.
+\]
+\end{izrek}
+
+\begin{izrek}[Stokes]\index{Izrek!Stokes}
+Naj bo $\Sigma \subseteq \R^3$ omejena odsekoma gladka orientirana
+ploskev z robom, sestavljenim iz končnega števila odsekoma gladkih
+sklenjenih krivulj, orientiranih skladno s $\Sigma$. Naj bo
+$\vv{R} \in \mathcal{C}^1(\overline{\Sigma})$ vektorsko polje.
+Tedaj velja
+\[
+\lint_{\partial \vv{\Sigma}} \vv{R}\;d\vv{r} =
+\liint_{\vv{\Sigma}} \rot\vv{R}\;d\vv{S}.
+\]
+\end{izrek}
+
+\begin{opomba}
+Stokesov izrek implicira Greenovo formulo.
 \end{opomba}
