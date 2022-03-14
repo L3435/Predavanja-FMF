@@ -324,7 +324,7 @@
     A(x + y) = Ax + Ay.    
     \]
 
-    \item semi-homogena: Obstaja nek avtomorfizem $f$ obsega $O$, da je za vsak $x \in U, \alpha \in O$
+    \item semi-homogena: Obstaja nek avtomorfizem\footnote{Izomorfizem $f \colon O \to O$.} $f$ obsega $O$, da je za vsak $x \in U, \alpha \in O$
     \[
     A(\alpha x) = f(\alpha) Ax.
     \]
@@ -334,6 +334,8 @@
 \begin{opomba}
     Obsegi $\R$, $\Q$ in $\F_p$ nimajo netrivialnih avtomorfizmov. $\mathbb{C}$ jih ima neskončno, ampak edini lahek netrivialen primer je konjugacija.
 \end{opomba}
+
+\datum{2022-3-1}
 
 \begin{trditev}
     Naj bo $A \colon U \to V$ semilinearna preslikava.
@@ -345,18 +347,18 @@
 \end{trditev}
 
 \begin{proof}
-    Pokazali bomo, da sta zgornji množici vektorska podprostora s pomočjo linearnih kombinacij. Naj bo $f$ avtomorfizem, ki pripada preslikavi $A$.
+    S pomočjo linearnih kombinacij bomo pokazali, da sta zgornji množici vektorska podprostora. Naj bo $f$ avtomorfizem, ki pripada preslikavi $A$.
     \begin{enumerate}[a)]
-        \item Naj bosta $Ax,Ay \in AW$ in $\alpha, \beta \in O$.
+        \item Naj bosta $Ax,Ay \in AW$ in $\alpha, \beta \in O$. Tedaj velja
         \[
-            \alpha Ax + \beta Ay = A(f^{-1}(\alpha) x) + A(f^{-1}(\beta) y) = A(f^{-1}(\alpha) x + f^{-1}(\beta) y) \in AW
+            \alpha Ax + \beta Ay = A(f^{-1}(\alpha) x) + A(f^{-1}(\beta) y) = A(f^{-1}(\alpha) x + f^{-1}(\beta) y) \in AW.
         \]
         
-        \item Naj bosta $x,y \in A^{-1}W$ in $\alpha, \beta \in O$.
+        \item Naj bosta $x,y \in A^{-1}W$ in $\alpha, \beta \in O$. Tedaj velja
         \[
             A(\alpha x + \beta y) = f(\alpha)Ax + f(\beta)Ay \in W,
         \]
-        torej
+        torej je
         \[
         \alpha x + \beta y \in A^{-1}W.   \qedhere
         \]
@@ -378,12 +380,14 @@
     \]
     Iz injektivnosti sledi
     \[
-        f^{-1}(\alpha_1) x_1 + \dots + f^{-1}(\alpha_k) x_k = 0,
+        f^{-1}(\alpha_1) x_1 + \dots + f^{-1}(\alpha_k) x_k = 0.
     \]
-    in ker so $x_1, \dots x_k$ linearno neodvisni in je $f$ avtomorfizem, so vsi $\alpha_1, \dots, \alpha_k$ enaki 0.
+    Ker so $x_1, \dots x_k$ linearno neodvisni in je $f$ avtomorfizem, so vsi $\alpha_1, \dots, \alpha_k$ enaki 0.
 \end{proof}
 
 \begin{trditev}
+	Veljata naslednji trditvi:
+	
     \begin{enumerate}[a)]
         \item Kompozitum semilinearnih preslikav je semilinearna preslikava.
         \item Inverz bijektivne semilinearne preslikave je semilinearna preslikava.
@@ -391,87 +395,88 @@
 \end{trditev}
 
 \begin{proof}
-    \begin{enumerate}[a)]
-        \item Kompozitum avtomorfizmov je avtomorfizem.
-        \item Naj bosta $x,y \in V$ in označimo $x' = A^{-1}x$ ter $y' = A^{-1}y$.
+	Za dokaz prve točke je dovolj opaziti, da je kompozitum avtomorfizmov spet avtomorfizem.
+	
+	Naj bosta $x,y \in V$. Označimo $x' = A^{-1}x$ in $y' = A^{-1}y$. Opazimo, da velja
         \[
-            A(f^{-1}(\alpha)x' + y') = \alpha Ax' + Ay' = \alpha x + y    
+            A(f^{-1}(\alpha)x' + y') = \alpha Ax' + Ay' = \alpha x + y.
         \]
-        in če uporabimo funkcijo $A^{-1}$ na zgornji enačbi dobimo
+        Sledi, da je
         \[
             f^{-1}(\alpha)A^{-1}x + A^{-1}y = A^{-1}(\alpha x + y). \qedhere
         \]
-    \end{enumerate}
 \end{proof}
+
+\newpage
 
 \subsection{Afine transformacije}
 
 \begin{definicija}
-    Naj bosta $\mathcal{A}, \mathcal{B}$ afina v $V$ in naj je $\dim \mathcal{A} = \dim \mathcal{B} \geq 2$. Bijekcija $\tau \colon \mathcal{A} \to \mathcal{B}$ je afina transformacija, če ohranja kolinearnost točk.
+    Naj bosta $\mathcal{A}$ in $\mathcal{B}$ afina v $V$, pri čemer velja $\dim \mathcal{A} = \dim \mathcal{B} \geq 2$. Bijekcija $\tau \colon \mathcal{A} \to \mathcal{B}$ je \emph{afina transformacija}\index{Afina transformacija}, če ohranja kolinearnost točk.
 \end{definicija}
 
 \begin{izrek}
     Slika premice z afino transformacijo je premica.
 \end{izrek}
 
-\begin{opomba}
-    Za končne obsege to sledi iz bijektivnosti.
-\end{opomba}
+\begin{proof}
+    Za končne obsege to sledi iz bijektivnosti. Za neskončne obsege najprej dokažimo naslednji lemi:
 
 \begin{lema*}
-    Naj bo $O \neq \Z_2$ in naj bosta $\mathcal{A}, \mathcal{B}$ afina v $V$. Naj se $\mathcal{A}$ in $\mathcal{B}$ sekata in naj bo $c \in \Af (\mathcal{A} \cup \mathcal{B})$. Potem obstajata $a \in \mathcal{A}$ in $b \in \mathcal{B}$,
+    Naj bo $O \neq \Z_2$ in naj bosta $\mathcal{A}, \mathcal{B}$ afina v $V$. Naj se $\mathcal{A}$ in $\mathcal{B}$ sekata in naj bo $c \in \Af (\mathcal{A} \cup \mathcal{B})$. Potem obstajata taka $a \in \mathcal{A}$ in $b \in \mathcal{B}$,
     da je $c \in \Af (\set{a,b})$.
 \end{lema*}
 
 \begin{proof}
     Naj bo $\set{x_0, \dots, x_k}$ afina baza za $\mathcal{A} \cap \mathcal{B}$. Dopolnimo jo do afine baze \\
-    $\set{x_0, \dots, x_k, a_1, \dots, a_n}$ za $\mathcal{A}$ in $\set{x_0, \dots, x_k, b_1, \dots, b_m}$ za $\mathcal{B}$.
+    $\set{x_0, \dots, x_k, a_0, \dots, a_n}$ za $\mathcal{A}$ in $\set{x_0, \dots, x_k, b_0, \dots, b_m}$ za $\mathcal{B}$.
     Naj bo $c \in \Af (\mathcal{A} \cup \mathcal{B})$. Potem lahko $c$ zapišemo kot afino kombinacijo
     \[
     c = \sum_{i=0}^k \gamma_i x_i + \sum_{j=0}^n \alpha_j a_j + \sum_{l=0}^m \beta_l b_l.
     \]
+    Naj bo $\beta = \sum \beta_l$ in $\alpha = \sum \gamma_i + \sum \alpha_j$. Sedaj ločimo dva primera:
+    
     \begin{enumerate}
-        \item Prvi primer: $\beta = \sum \beta_l \neq 0$ in $\alpha = \sum \gamma_i + \sum \alpha_j \neq 0$.
-        \begin{align*} %Popravi formatting pls
-          c &= \alpha (\sum_{i=0}^k \alpha^{-1} \gamma_i x_i + \sum_{j=0}^n \alpha^{-1} \alpha_j a_j) + \beta (\sum_{l=0}^m \beta^{-1} \beta_l b_l) \\
+        \item Velja $\beta \neq 0$ in $\alpha \neq 0$. Sledi, da lahko $c$ zapišemo kot
+        \begin{align*}
+          c &= \alpha \left(\sum_{i=0}^k \alpha^{-1} \gamma_i x_i + \sum_{j=0}^n \alpha^{-1} \alpha_j a_j\right) + \beta \left(\sum_{l=0}^m \beta^{-1} \beta_l b_l\right) \\
           &= \alpha a + \beta b \in \Af (\set{a,b}),
         \end{align*}
-        kjer je $a =\sum_{i=0}^k \alpha^{-1} \gamma_i x_i + \sum_{j=0}^n \alpha^{-1} \alpha_j a_j$ afina kombinacija elementov iz $\mathcal{A}$ in $b = \sum_{l=0}^m \beta^{-1} \beta_l b_l$ afina kombinacija elementov iz $\mathcal{B}$.
-        \item Drugi primer: $\beta = 0$. Sledi $\alpha = 1$. Izberemo $\beta_0 \in O \setminus \set{0,1}$. Zapišemo 
+        pri čemer sta $a$ in $b$ očitno elementa $\mathcal{A}$ in $\mathcal{B}$ zaporedoma.
+        \item Velja $\beta = 0$. Sledi, da je $\alpha = 1$. Izberemo si poljuben $\beta_0 \in O \setminus \set{0,1}$. Sedaj lahko zapišemo
         \[
-            c = (\sum_{i=0}^k \gamma_i x_i - \beta_0 x_0 + \sum_{j=0}^n \alpha_j a_j) + (\sum_{l=0}^m \beta_l b_l + \beta_0 x_0),
+            c = \left(\sum_{i=0}^k \gamma_i x_i - \beta_0 x_0 + \sum_{j=0}^n \alpha_j a_j\right) + \left(\sum_{l=0}^m \beta_l b_l + \beta_0 x_0\right),
         \]
-        in smo v prvem primeru. Podobno če je $\alpha = 0$.
+        kar pa lahko razrešimo na enak način kot v prvem primeru. Podobno zaključimo, če je $\alpha = 0$. \qedhere
     \end{enumerate}
 \end{proof}
 
 \begin{lema*}
-    Naj bo $\tau \colon \mathcal{A} \to \mathcal{B}$ afina transformacija in naj obstajata afini premici $p \subseteq \mathcal{A}$ in $q \subseteq \mathcal{B}$, da je $\tau (p) \subsetneq q$. Potem v $\mathcal{A}$ obstajajo afini podprostori $\mathcal{A}_1, \dots, \mathcal{A}_n$, da je
+    Naj bo $\tau \colon \mathcal{A} \to \mathcal{B}$ afina transformacija in naj obstajata afini premici $p \subseteq \mathcal{A}$ in $q \subseteq \mathcal{B}$, da je $\tau (p) \subset q$. Potem v $\mathcal{A}$ obstajajo taki afini podprostori $\mathcal{A}_1, \dots, \mathcal{A}_n$, da je
     \begin{enumerate}[a)]
-        \item $p = \mathcal{A}_1 \subseteq \dots \subseteq \mathcal{A}_n = \mathcal{A},$
-        \item $\dim \mathcal{A}_i = i,$
-        \item $\dim \Af \tau(\mathcal{A}_i) < i$.
+        \item $p = \mathcal{A}_1 \subseteq \dots \subseteq \mathcal{A}_n = \mathcal{A}$,
+        \item $\dim \mathcal{A}_i = i$ in
+        \item $\dim \Af (\tau(\mathcal{A}_i)) < i$.
     \end{enumerate}
 \end{lema*}
 
 \begin{proof}
-    Ker je $\tau$ surjetktivna obstaja nek $a \in \mathcal{A} \setminus p$, da je $\tau (a) \in q$. Naj bo $\mathcal{A}_2 = \Af (p \cup \set{a})$.
-    Velja $\dim \mathcal{A}_2 = \dim (\max (p, {a})) + 1 = 2$. Izberemo $b \in p$ in označimo $r = \Af (\set{a,b})$.
-    Sledi $\mathcal{A}_2 = \Af (p \cup \set{a}) = \Af (p \cup r)$. Ker sta $\tau (a), \tau (b) \in q$, je $\tau (r) \subseteq q$. Vsak $x$ iz $\mathcal{A}_2$ je afina kombinacija elementov iz $p$ in $r$,
-    torej za vsak $x \in \mathcal{A}_2$ velja $\tau (x) \in q$, torej je $\tau (\mathcal{A}_2) \subseteq q$, torej je $\dim \Af \tau (\mathcal{A}_2) = 1$.
+    Ker je $\tau$ surjektivna, obstaja tak $a \in \mathcal{A} \setminus p$, da je $\tau (a) \in q$. Sedaj izberemo $\mathcal{A}_2 = \Af (p \cup \set{a})$.
+    Velja $\dim \mathcal{A}_2 = \max(\dim p, \dim\set{a}) + 1 = 2$. Izberemo $b \in p$ in označimo $r = \Af (\set{a,b})$.
+    Sledi, da je $\mathcal{A}_2 = \Af (p \cup \set{a}) = \Af (p \cup r)$. Ker sta $\tau (a), \tau (b) \in q$, je $\tau (r) \subseteq q$. Vsak $x$ iz $\mathcal{A}_2$ je afina kombinacija elementov iz $p$ in $r$,
+    torej za vsak $x \in \mathcal{A}_2$ velja $\tau (x) \in q$, torej je $\tau (\mathcal{A}_2) \subseteq q$, oziroma $\dim \Af (\tau (\mathcal{A}_2)) = 1$.
 
-    Predpostavimo, da smo definirali $\mathcal{A}_1 \subseteq \dots \subseteq \mathcal{A}_{k-1}$. Izberemo $a \in \mathcal{A} \setminus \mathcal{A}_{k-1}$ in definiramo $\mathcal{A}_k = \Af (\mathcal{A}_{k-1} \cup {a})$.
-    Sledi $\dim \mathcal{A}_k = \dim \mathcal{A}_{k-1} + 1$. Izberemo $b \in \mathcal{A}_k$ in definiramo $r = \Af (\set{a,b})$. Sledi $\mathcal{A}_k = \Af (\mathcal{A}_{k-1} \cup r)$, in
+    Nadaljujemo induktivno -- denimo, da smo definirali $\mathcal{A}_1 \subseteq \dots \subseteq \mathcal{A}_{k-1}$. Izberemo poljuben $a \in \mathcal{A} \setminus \mathcal{A}_{k-1}$ in definiramo $\mathcal{A}_k = \Af (\mathcal{A}_{k-1} \cup {a})$.
+    Sledi, da je $\dim \mathcal{A}_k = \dim \mathcal{A}_{k-1} + 1$. Izberemo še $b \in \mathcal{A}_{k-1}$ in definiramo $r = \Af (\set{a,b})$. Sledi $\mathcal{A}_k = \Af (\mathcal{A}_{k-1} \cup r)$ in
     \[
-        \tau (\mathcal{A}_k) \subseteq \Af (\tau (\mathcal{A}_{k-1}) \cup \tau (r)) \subseteq \Af (\underbrace{\Af \tau (\mathcal{A}_{k-1})}_{dim < k - 1} \cup \underbrace{\Af \tau (r)}_{dim = 1}),
+        \tau (\mathcal{A}_k) \subseteq \Af (\tau (\mathcal{A}_{k-1}) \cup \tau (r)) \subseteq \Af (\underbrace{\Af \tau (\mathcal{A}_{k-1})}_{{\dim} < k - 1} \cup \underbrace{\Af \tau (r)}_{{\dim} = 1}),
     \] torej je
     \[
       \dim \tau (\mathcal{A}_k) < k. \qedhere  
     \]
 \end{proof}
 
-\begin{proof}[Dokaz izreka]
-    Če obstaja premica, ki se ne preslika v premico, preslikava ni surjektivna, kar je protislovje.
+	Vrnimo se k dokazu izreka. Če obstaja premica, ki se ne preslika v premico, preslikava ni surjektivna, kar je protislovje.
 \end{proof}
 
 \begin{posledica}
@@ -479,5 +484,5 @@
 \end{posledica}
 
 \begin{proof}
-    Naj bodo $a,b,c$ nekolinearne. Premica $p$ ki gre skozi $a$ in $b$ ne vsebuje $c$. $\tau (c)$ ne more ležati na $\tau (p)$, ker je $\tau$ injektivna preslikava, torej so kolinearne.
+    Naj bodo $a,b,c$ nekolinearne. Premica $p$, ki gre skozi $a$ in $b$, ne vsebuje $c$. $\tau (c)$ ne more ležati na $\tau (p)$, ker je $\tau$ injektivna preslikava, torej so kolinearne.
 \end{proof}
