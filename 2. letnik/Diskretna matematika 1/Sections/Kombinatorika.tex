@@ -512,3 +512,71 @@ Velja
 x^{\overline{n}} = \sum_k L(n, k) x^{\underline{k}}.
 \]
 \end{izrek}
+
+\newpage
+
+\subsection{Dvanajstera pot}
+
+\datum{2022-3-14}
+
+\begin{izrek}
+Tabela al neki idk, idgaf, this is bs
+\begin{table}[!ht]
+\centering
+\caption{Kill me pls}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+$f \colon N \to K$ & Poljubna & Injektivna & Surjektivna \\ 
+\hline 
+Ločimo elemente $N$ in $K$ & $k^n$ & $k^{\underline{n}}$ & $k! \cdot S(n, k)$ \\ 
+\hline 
+Ločimo elemnete $K$ & $\binom{n+k-1}{n}$ & $\binom{k}{n}$ & $\binom{n-1}{k-1}$ \\ 
+\hline 
+Ločimo elemente $N$ & $\displaystyle\sum_{i=1}^k S(n, i)$ & $\begin{cases} 1, & n \leq k \\ 0, & n > k \end{cases}$ & $S(n, k)$ \\ 
+\hline 
+Ne ločimo elementov & $\overline{p}_k(n)$ & $\begin{cases} 1, & n \leq k \\ 0, & n > k \end{cases}$ & $p_k(n)$ \\ 
+\hline 
+\end{tabular} 
+\end{table}
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\subsection{Načelo vključitev in izključitev}
+
+\begin{izrek}[Načelo vključitev in izključitev]
+\index{Izrek!Načelo vključitev in izključitev}
+Velja
+\[
+\abs{\bigcup_{i=1}^n A_i} =
+\sum_{\substack{X \in \mathcal{P}([n]) \\ X \ne \emptyset}}
+(-1)^{\abs{X} + 1} \cdot \abs{\bigcap_{i \in X} A_i}.
+\]
+\end{izrek}
+
+\begin{proof}
+Vsak element štejemo natanko
+\[
+\sum_{i=1}^k (-1)^{i+1} \binom{k}{i} = 1
+\]
+krat.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+\varphi(n) = n \cdot \prod_{p \mid n} \left(1 - \frac{1}{p}\right).
+\]
+\end{izrek}
+
+\obvs
+
+%\begin{posledica}
+%Velja
+%\[
+%S(n, k) =
+%\frac{1}{k!} \cdot \sum_{i=0}^k (-1)^i \binom{k}{i} (k-i)^n.
+%\]
+%\end{posledica}

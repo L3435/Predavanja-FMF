@@ -17,10 +17,10 @@
  - prof. dr. Miran Černe, 23. 2. 2022
 
 "Kam gre ta svet, ni več oranžnih flomastrov."
-- doc. dr. Gregor Cigler, 3. 3. 2022
+ - doc. dr. Gregor Cigler, 3. 3. 2022
 
 "A ni zanimivo, da se tako velika količina ljudi zbere, da gleda nekoga kako računa?"
-- Christian Ravnikar, 3. 3. 2022
+ - Christian Ravnikar, 3. 3. 2022
 
 "Se pa strinjam da izgleda kot da sem nekega zajčka iz klobuka privlekel."
  - prof. dr. Miran Černe, 7. 3. 2022
@@ -30,3 +30,6 @@
 
 "Ali imate poplavo v kopalnici ali vam ven teče?"
  - prof. dr. Miran Černe, 7. 3. 2022
+
+"Dejmo to označit z 'ni', čeprav je."
+ - doc. dr. Gregor Cigler, 3. 3. 2022
