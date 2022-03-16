@@ -197,16 +197,16 @@ U(x,y,z) = \int_0^1 \left(
 x \cdot X(tx, ty, tz) +
 y \cdot Y(tx, ty, tz) +
 z \cdot Z(tx, ty, tz)
-\right)\;dt.
+\right)\,dt.
 \]
 Sledi, da je
 \begin{align*}
 U_x(x,y,z)
 &=
-\int_0^1 (X + tx \cdot X_x + ty \cdot Y_x + tz \cdot Z_x )\;dt
+\int_0^1 (X + tx \cdot X_x + ty \cdot Y_x + tz \cdot Z_x )\,dt
 \\
 &=
-\int_0^1 (X + tx \cdot X_x + ty \cdot X_y + tz \cdot X_z)\;dt
+\int_0^1 (X + tx \cdot X_x + ty \cdot X_y + tz \cdot X_z)\,dt
 \\
 &=
 \eval{t \cdot X(tx, ty, tz)}{0}{1}
@@ -215,7 +215,7 @@ U_x(x,y,z)
 \end{align*}
 \item Označimo
 \[
-\alpha(x,y,z) = \int_0^1 t \cdot X(tx, ty, tz)\;dt.
+\alpha(x,y,z) = \int_0^1 t \cdot X(tx, ty, tz)\,dt.
 \]
 Simetrično definiramo še $\beta$ in $\gamma$. Opazimo, da velja
 \[
@@ -238,7 +238,7 @@ Sledi, da je prva komponenta $\rot \vv{F}$ enaka
 2 \alpha + y \alpha_y + z \alpha_z - x(\beta_y + \gamma_z) =
 \\
 &=
-\int_0^1 \left(2t X + t^2x X_x + t^2y X_y + t^2z X_z\right)\;dt
+\int_0^1 \left(2t X + t^2x X_x + t^2y X_y + t^2z X_z\right)\,dt
 \\
 &=
 \eval{t^2 X(tx, ty, tz)}{0}{1}
@@ -334,7 +334,7 @@ presek vsakih treh pa je prazen ali točka.
 \begin{opomba}
 Orientacija ploskve določa orientacijo roba
 $\vv{T} = \vv{N} \times \vv{n}$, kjer je $\vv{n}$ normala na rob,
-ki kaže izven ploskve.
+ki kaže izven ploskve. Taki orientaciji pravimo \emph{pozitivna}.
 \end{opomba}
 
 \begin{definicija}
@@ -357,8 +357,8 @@ $U \colon \Gamma \to \R$ zvezno skalarno polje.
 \emph{Krivuljni integral skalarnega polja}\index{Krivulja!Integral}
 je definiran kot
 \[
-\lint_\Gamma U\;ds =
-\int_\alpha^\beta U(\vv{r}(t)) \abs{\dot{\vv{r}}(t)}\;dt.
+\lint_\Gamma U\,ds =
+\int_\alpha^\beta U(\vv{r}(t)) \abs{\dot{\vv{r}}(t)}\,dt.
 \]
 \end{definicija}
 
@@ -369,8 +369,8 @@ Za odsekoma gladko krivuljo
 \]
 je integral definiran kot
 \[
-\lint_\Gamma U\;ds =
-\sum_{i=1}^n \lint_{\Gamma_i} U\;du.
+\lint_\Gamma U\,ds =
+\sum_{i=1}^n \lint_{\Gamma_i} U\,du.
 \]
 \end{opomba}
 
@@ -381,8 +381,8 @@ usklajena z orientacijo. Naj bo $\vv{R} \colon \Gamma \to \R^3$
 zvezno skalarno polje. \emph{Krivuljni integral vektorskega polja}
 je definiran kot
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
-\int_\alpha^\beta \vv{R}(\vv{r}(t)) \cdot \dot{\vv{r}}(t)\;dt.
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\int_\alpha^\beta \vv{R}(\vv{r}(t)) \cdot \dot{\vv{r}}(t)\,dt.
 \]
 \end{definicija}
 
@@ -390,7 +390,7 @@ je definiran kot
 Integral je enak za vse parametrizacije, ki so usklajene z
 orientacijo, saj je
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
 \lint_\Gamma \left(\vv{R} \cdot \vv{T}\right)ds.
 \]
 \end{opomba}
@@ -398,10 +398,10 @@ orientacijo, saj je
 \begin{opomba}
 Pišemo tudi
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
-\lint_\Gamma X\;dx + Y\;dy + Z\;dz.
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\lint_\Gamma X\,dx + Y\,dy + Z\,dz.
 \]
-Zapis $X\;dx + Y\;dy + Z\;dz$ je \emph{diferencialna 1-forma}.
+Zapis $X\,dx + Y\,dy + Z\,dz$ je \emph{diferencialna 1-forma}.
 \end{opomba}
 
 \begin{trditev}
@@ -410,7 +410,7 @@ potencialno vektorsko polje. Naj bo $\Gamma$ orientirana odsekoma
 gladka krivulja v $D$ z začetno točko $A$ in končno točko $B$.
 Tedaj je
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
 U(B) - U(A).
 \]
 \end{trditev}
@@ -418,8 +418,8 @@ U(B) - U(A).
 \begin{proof}
 Velja
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
-\int_\alpha^\beta (Du) \dot{\vv{r}}\;dt =
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\int_\alpha^\beta (Du) \dot{\vv{r}}\,dt =
 \int_\alpha^\beta \frac{d}{dt} \left(U(\vv{r}(t)\right)dt =
 U(B) - U(A). \qedhere
 \]
@@ -448,7 +448,7 @@ krivuljo.
 Brez škode za splošnost naj bo $D$ povezana.\footnote{Sledi, da je
 povezana s potmi.} Če je integral neodvisen od poti, definiramo
 \[
-U(T) = \lint_{\vv{\Gamma}} \vv{R}\;d\vv{r},
+U(T) = \lint_{\vv{\Gamma}} \vv{R}\,d\vv{r},
 \]
 kjer $\Gamma$ povezuje točki $A_0$ in $T$. Velja
 \[
@@ -458,7 +458,7 @@ Ker si pot v integrali lahko izberemo poljubno, si izberemo
 daljico, ki povezuje $(x+h, y, z)$ in $(x, y, z)$. Sledi, da je
 \[
 U_x =
-\lim_{h \to 0} \int_0^1 X(x + th, y, z)\;dt =
+\lim_{h \to 0} \int_0^1 X(x + th, y, z)\,dt =
 X(x, y, z). \qedhere
 \]
 \end{proof}
@@ -467,8 +467,8 @@ X(x, y, z). \qedhere
 Krivulja je sklenjena, če začetna in končna točka sovpadata. Tedaj
 pišemo
 \[
-\lint_{\vv{\Gamma}} \vv{R}\;d\vv{r} =
-\olint_{\vv{\Gamma}} \vv{R}\;d\vv{r}.
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\olint_{\vv{\Gamma}} \vv{R}\,d\vv{r}.
 \]
 \end{opomba}
 
@@ -483,9 +483,9 @@ polje.
 \emph{Ploskovni integral skalarnega polja}\index{Ploskovni integral}
 je definiran kot
 \[
-\liint_\Sigma U\;dS =
-\liint_D U(\vv{r}(s,t)) \sqrt{EG - F^2}\;ds\;dt =
-\liint_D U(\vv{r}(s,t)) \abs{\vv{r_s} \times \vv{r_t}}\;ds\;dt.
+\liint_\Sigma U\,dS =
+\liint_D U(\vv{r}(s,t)) \sqrt{EG - F^2}\,ds\,dt =
+\liint_D U(\vv{r}(s,t)) \abs{\vv{r_s} \times \vv{r_t}}\,ds\,dt.
 \]
 \end{definicija}
 
@@ -496,8 +496,8 @@ Za odsekoma gladko ploskev
 \]
 je integral definiran kot
 \[
-\liint_\Sigma U\;dS =
-\sum_{i=1}^n \liint_{\Sigma_i} U\;ds.
+\liint_\Sigma U\,dS =
+\sum_{i=1}^n \liint_{\Sigma_i} U\,ds.
 \]
 \end{opomba}
 
@@ -507,21 +507,21 @@ $\vv{r} \colon D \to \Sigma$, ki je usklajena z orientacijo, in
 $\vv{R} \colon \Sigma \to \R^3$ vektorsko polje. \emph{Ploskovni
 integral vektorskega polja} je definiran kot
 \[
-\liint_{\vv{\Sigma}} \vv{R}\;d\vv{S} =
+\liint_{\vv{\Sigma}} \vv{R}\,d\vv{S} =
 \liint_\Sigma \left(\vv{R} \cdot \vv{N}\right)dS =
 \liint_D \vv{R} \cdot \vv{N} \cdot
-\abs{\vv{r_s} \times \vv{r_t}}\;ds\;dt =
-\liint_D \vv{R} \cdot (\vv{r_s} \times \vv{r_t})\;ds\;dt.
+\abs{\vv{r_s} \times \vv{r_t}}\,ds\,dt =
+\liint_D \vv{R} \cdot (\vv{r_s} \times \vv{r_t})\,ds\,dt.
 \]
 \end{definicija}
 
 \begin{opomba}
 Pišemo tudi
 \[
-\liint_{\vv{\Sigma}} \vv{R}\;d\vv{S} =
-\liint_\Sigma X\;dy \wedge dz + Y\;dz \wedge dx + Z\;dx \wedge dy.
+\liint_{\vv{\Sigma}} \vv{R}\,d\vv{S} =
+\liint_\Sigma X\,dy \wedge dz + Y\,dz \wedge dx + Z\,dx \wedge dy.
 \]
-Zapis $X\;dy \wedge dz + Y\;dz \wedge dx + Z\;dx \wedge dy$ je
+Zapis $X\,dy \wedge dz + Y\,dz \wedge dx + Z\,dx \wedge dy$ je
 \emph{diferencialna 2-forma}.
 \end{opomba}
 
@@ -546,9 +546,68 @@ ploskev, orientiranih z zunanjo normalo glede na $D$. Naj bo
 $\vv{R} \in \mathcal{C}^1(\overline{D})$ vektorsko
 polje. Tedaj velja
 \[
-\liint_{\partial D} \vv{R}\;d\vv{s} = \liiint_D \dv\vv{R}\;dV.
+\liint_{\partial D} \vv{R}\,d\vv{s} = \liiint_D \dv\vv{R}\,dV.
 \]
 \end{izrek}
+
+\datum{2022-3-16}
+
+\begin{proof}
+Naj bo $D \subseteq \R^3$ množica, za katero vsaka premica,
+vzporedna kateri izmed koordinatnih osi, ki seka $D$, seka njen rob
+v največ dveh točkah. Pri ">sestavljanju"< takih množic se
+integrali po robovih seštejejo v $0$, zato je izrek dovolj dokazati
+za take množice.
+
+Naj bo $\vv{R} = (X, Y, Z)$ in $\vv{N} = (N_x, N_y, N_z)$ zunanja
+normala. Dokazujemo, da je
+\[
+\liiint_D (X_x + Y_y + Z_z)\,dV =
+\liint_{\partial D} (X N_x + Y N_y + Z N_z)\,dS.
+\]
+Dovolj je torej dokazati, da je
+\[
+\liiint_D Z_z\,dV = \liint_{\partial D} Z N_z\,dS.
+\]
+Naj bo
+\[
+\overline{D} =
+\setb{(x, y, z) \in \R^3}
+{(x,y) \in \overline{\Omega}, g(x, y) \leq z \leq f(x,y)}.
+\]
+Sledi, da je
+\[
+\liiint_D Z_z\,dV =
+\liint_\Omega \left(\int_{g(x,y)}^{f(x,y)} Z_z\,dz\right)\,dx\,dy =
+\liint_\Omega(Z(x, y, f(x, y)) - Z(x, y, g(x, y)))\,dx\,dy.
+\]
+Velja pa
+\begin{align*}
+\liint_{\partial D} Z N_z\,dS
+&=
+\liint_{\Gamma(f)} Z N_z\,dS +
+\liint_{\Gamma(g)} Z N_z\,dS +
+\liint_{N_z = 0} Z N_z\,dS
+\\
+&=
+\liint_\Omega Z(x, y, f(x, y)) \cdot
+\frac{1}{\sqrt{1 + f_x^2 + f_y^2}} \cdot
+\sqrt{1 + f_x^2 + f_y^2}\,dx\,dy +
+\\
+&\qquad
++\liint_\Omega Z(x, y, g(x, y)) \cdot
+\frac{-1}{\sqrt{1 + g_x^2 + g_y^2}} \cdot
+\sqrt{1 + g_x^2 + g_y^2}\,dx\,dy. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{opomba}
+Podoben izrek (z enakim dokazom) velja v ravnini:
+\[
+\lint_{\partial D} \vv{R} \cdot \vv{N}\,ds =
+\liint_D (X_x + Y_y)\,dx\,dy.
+\]
+\end{opomba}
 
 \begin{izrek}[Greenova formula]\index{Izrek!Greenova formula}
 Naj bo $D$ omejena odprta množica v $\R^2$ z odsekoma gladkim
@@ -556,9 +615,26 @@ robom, sestavljenim iz končnega števila odsekoma gladkih sklenjenih
 krivulj, orientiranih pozitivno glede na $D$. Naj bosta
 $X, Y \in \mathcal{C}^1(\overline{D})$ funkciji. Tedaj velja
 \[
-\lint_{\partial D} X\;dx + Y\;dy = \liint_D (Y_x - X_y)\;dx\;dy.
+\lint_{\partial D} X\,dx + Y\,dy = \liint_D (Y_x - X_y)\,dx\,dy.
 \]
 \end{izrek}
+
+\begin{proof}
+Naj bo $\vv{R} = (X, Y)$ in $\vv{\widetilde{R}} = (Y, -X)$. Po
+Gaussovem izreku v ravnini velja
+\[
+\lint_{\partial D} \vv{\widetilde{R}} \cdot \vv{N}\,ds =
+\liint_D (Y_x - X_y)\,dx\,dy.
+\]
+Velja pa
+\[
+\lint_{\partial D} \vv{\widetilde{R}} \cdot \vv{N}\,ds =
+\lint_{\partial D} (Y, -X) \cdot (N_x, N_y)\,ds =
+\lint_{\partial D} (X, Y) \cdot (-N_y, N_x)\,ds =
+\lint_{\partial D} \vv{R}\,d\vv{r},
+\]
+saj je $(-N_y, N_x)$ tangentni vektor.
+\end{proof}
 
 \begin{izrek}[Stokes]\index{Izrek!Stokes}
 Naj bo $\Sigma \subseteq \R^3$ omejena odsekoma gladka orientirana
@@ -567,11 +643,48 @@ sklenjenih krivulj, orientiranih skladno s $\Sigma$. Naj bo
 $\vv{R} \in \mathcal{C}^1(\overline{\Sigma})$ vektorsko polje.
 Tedaj velja
 \[
-\lint_{\partial \vv{\Sigma}} \vv{R}\;d\vv{r} =
-\liint_{\vv{\Sigma}} \rot\vv{R}\;d\vv{S}.
+\lint_{\partial \vv{\Sigma}} \vv{R}\,d\vv{r} =
+\liint_{\vv{\Sigma}} \rot\vv{R}\,d\vv{S}.
 \]
 \end{izrek}
 
-\begin{opomba}
-Stokesov izrek implicira Greenovo formulo.
-\end{opomba}
+\begin{proof}
+Ni težko videti, da je izrek dovolj dokazati za grafe funkcij, saj
+se pri ">sestavljanju"< integrali po robovih seštejejo v $0$.
+
+Naj bo $\Sigma$ graf nad ravnino $(x, y)$, torej
+\[
+\Sigma = \setb{(x, y, f(x, y))}{(x, y) \in D}.
+\]
+Naj bo orientacija $\Sigma$ dana z
+\[
+\frac{(-f_x, -f_y, 1}{\sqrt{1 + f_x^2 + f_y^2}}.
+\]
+Naj bo $f \in \mathcal{C}^2(\overline{D})$.\footnote{Vsako
+$\mathcal{C}^1(\overline{D})$ funkcijo lahko poljubno aproksimiramo
+s takimi.} Po Greenovi formuli velja
+\begin{align*}
+\lint_{\partial \Sigma} \vv{R}\,d\vv{r} &=
+\lint_{\partial \Sigma} X\,dx + Y\,dy + Z\,dz
+\\
+&=
+\lint_{\partial D}
+X(x, y, f(x, y))\,dx +
+Y(x, y, f(x, y))\,dy +
+Z(x, y, f(x, y))\,dz
+\\
+&=
+\lint_{\partial D} (X + f_x Z)\,dx + (Y + f_y Z)\,dy
+\\
+&=
+\liint_D ((Y + f_y Z)_x - (X + f_x Z)_y)\,dx\,dy
+\\
+&=
+\liint_D (Y_x + Y_z f_x + f_{yx} Z + f_y Z_x + f_y Z_z f_x -
+\\
+& \qquad \qquad-X_y - X_z f_y - f_{xy} Z - f_x Z_y - f_x Z_z f_y)\,dx\,dy
+\\
+&=
+\liint_\Sigma \rot\vv{R}\,d\vv{S}. \qedhere
+\end{align*}
+\end{proof}

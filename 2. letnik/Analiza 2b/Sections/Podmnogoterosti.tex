@@ -318,8 +318,8 @@ Naj bosta $\vv{r}\colon[a,b]\to\R^3$ in
 $\vv{\rho}\colon[\alpha,\beta]\to\R^3$ regularni parametrizaciji
 poti $\Gamma$. Potem je
 \[
-\int_a^b \norm{\dot{\vv{r}}(t)}\;dt =
-\int_\alpha^\beta \norm{\dot{\vv{\rho}}(t)}\;dt
+\int_a^b \norm{\dot{\vv{r}}(t)}\,dt =
+\int_\alpha^\beta \norm{\dot{\vv{\rho}}(t)}\,dt
 \]
 \end{trditev}
 
@@ -331,8 +331,8 @@ Uporabimo izrek o vpeljavi nove spremenljivke.
 Naj bo $\vv{r} \in \mathcal{C}^1([\alpha, \beta])$. Tedaj je
 dolžina krivulje enaka
 \[
-\int_\alpha^\beta \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\;dt =
-\int_\alpha^\beta \norm{\dot{\vv{r}}(t)}\;dt.
+\int_\alpha^\beta \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,dt =
+\int_\alpha^\beta \norm{\dot{\vv{r}}(t)}\,dt.
 \]
 \end{trditev}
 
@@ -345,7 +345,7 @@ letnika.
 Naj bo $\vv{r} \colon [\alpha, \beta] \to \Gamma$ regularna
 parametrizacija krivulje $\Gamma$. Naj bo
 \[
-S(t) = \int_\alpha^t \norm{\dot{\vv{r}}(\tau)}\;d\tau.
+S(t) = \int_\alpha^t \norm{\dot{\vv{r}}(\tau)}\,d\tau.
 \]
 Za inverzno preslikavo\footnote{Ta obstaja, saj je $S' > 0$.}
 $T=S^{-1}$ parametrizacijo
@@ -633,7 +633,7 @@ Naj bo $\Gamma$ krivulja na ploskvi $\Sigma$, oziroma
 \]
 Tedaj je njena dolžina enaka
 \[
-\lint_I \sqrt{E \dot{u}^2 + 2F \dot{u} \dot{v} + G \dot{v}^2}\;dt.
+\lint_I \sqrt{E \dot{u}^2 + 2F \dot{u} \dot{v} + G \dot{v}^2}\,dt.
 \]
 \end{trditev}
 
@@ -645,10 +645,10 @@ Velja
 \]
 Sledi, da je dolžina enaka
 \[
-\lint_I \abs{\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}}\;dt =
+\lint_I \abs{\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}}\,dt =
 \lint_I \sqrt{
 \left(\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}\right)^2
-}\;dt. \qedhere
+}\,dt. \qedhere
 \]
 \end{proof}
 
@@ -718,8 +718,8 @@ $\dot{\vv{\gamma_2}} = (0,1)$.
 \emph{Površina ploskve}\index{Ploskev!Površina} $\Sigma$ z
 regularno parametrizacijo $\vv{r} \colon D \to \Sigma$ je integral
 \[
-\liint_D \abs{\vv{r_u} \times \vv{r_v}}\;du\;dv =
-\liint_D \sqrt{EG - F^2}\;du\;dv.
+\liint_D \abs{\vv{r_u} \times \vv{r_v}}\,du\,dv =
+\liint_D \sqrt{EG - F^2}\,du\,dv.
 \]
 \end{definicija}
 
@@ -730,7 +730,7 @@ Množice z mero $0$ ne vplivajo na vrednost integrala.
 \begin{posledica}
 Če je $\Sigma$ graf funkcije $f$, je njena površina enaka
 \[
-\liint_D \sqrt{1 + f_x^2 + f_y^2}\;dx\;dy.
+\liint_D \sqrt{1 + f_x^2 + f_y^2}\,dx\,dy.
 \]
 \end{posledica}
 
