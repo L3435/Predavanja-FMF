@@ -1,4 +1,4 @@
-\section{Algebraične krivulje}
+\section{Algebraične krivulje in projektivno zaprtje}
 
 \subsection{Definicija}
 
@@ -204,4 +204,220 @@ V(f) = \bigcup_{i=1}^k V(f_i).
 \]
 Če je $V(f) = V(g)$, od tod sledi, da $f_i \mid g$ za vse $i$.
 Simetrično dobimo $g_i \mid f$.
+\end{proof}
+
+\newpage
+
+\subsection{Projektivna ravnina}
+
+\datum{2022-3-3}
+
+\begin{definicija}
+Naj bo $K$ polje. \emph{Afina ravnina}\index{Afina ravnina} je
+množica $A_2(K) = K^2$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $K$ polje.
+\emph{Projektivna ravnina}\index{Projektivna ravnina} je množica
+vseh premic v $K^3$, ki potekajo skozi izhodišče. Označimo jo s
+$P_2(K)$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Projektivne koordinate}\index{Projektivna ravnina!Koordinate}
+projektivne točke je razmerje
+\[
+(x : y : z).
+\]
+\end{definicija}
+
+\begin{opomba}
+Vsakim projektivnim koordinatam, različnim od $(0 : 0 : 0)$,
+ustreza natanko ena projektivna točka.
+\end{opomba}
+
+\begin{opomba}
+Projektivno ravnino lahko identificiramo z afino ravnino, ki ji
+dodamo \emph{točke v neskončnosti}. Točkam v projektivni ravnini,
+ki so oblike $(x : y : 1)$, identificiramo s točko $(x, y)$ v afini
+ravnini in jim pravimo \emph{končne točke}.
+
+Točke $(x : y : 0)$ ustrezajo \emph{točkam v neskončnosti}, ki jih
+identificiramo s snopi vzporednic.
+\end{opomba}
+
+\begin{opomba}
+Projektivno ravnino $P_2(\R)$ lahko identificiramo tudi s sfero
+$S^2$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Projektivna premica}\index{Projektivna ravnina!Premica} je
+vsaka ravnina, ki gre skozi izhodišče. Identificiramo jo z afino
+premico, ki ji dodamo pripadajočo točko v neskončnosti, oziroma
+premico v neskončnosti.
+\end{definicija}
+
+\begin{opomba}
+V sferičnem modelu so premice glavni krogi.
+\end{opomba}
+
+\begin{opomba}
+Vsaki dve različni projektivni premici se sekata v natanko eni
+projektivni točki. Skozi vsaki dve različni projektivni premici
+poteka natanko ena projektivna premica.
+\end{opomba}
+
+\newpage
+
+\subsection{Projektivne algebraične krivulje}
+
+\begin{definicija}
+Polinom $F \in \C[x,y,z]$ je \emph{homogen}\index{Polinom!Homogen},
+če so vsi njegovi monomi iste stopnje.
+\end{definicija}
+
+\begin{opomba}
+$F$ je homogen polinom stopnje $n$ natanko tedaj, ko za vse $x$,
+$y$, $z$ in $\lambda$ velja
+\[
+F(\lambda x, \lambda y, \lambda z) = \lambda^n F(x, y, z).
+\]
+\end{opomba}
+
+\begin{definicija}
+Množica projektivnih ničel homogenega polinoma $F \in \C[x, y, z]$
+je
+\[
+V_h(F) = \setb{(a : b : c) \in P_2(\C)}{F(a, b, c) = 0}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Podmnožica $\mathcal{C} \subseteq P_2(\C)$ je
+\emph{projektivna algebraična krivulja}\index{Algebraična krivulja!Projektivna},
+če obstaja tak nekonstanten homogen polinom $F \in \C[x, y, z]$,
+da velja
+\[
+\mathcal{C} = V_h(F).
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Homogenizacija}\index{Polinom!Homogenizacija} polinoma
+$f \in \C[x,y]$ je polinom
+\[
+F(x, y, z) =
+z^{\deg f} \cdot f\left(\frac{x}{z}, \frac{y}{z} \right).
+\]
+\end{definicija}
+
+\datum{2022-3-10}
+
+\begin{opomba}
+Naj bo $F$ homogenizacija polinoma $f$. Tedaj je
+\[
+V_h(F) \cap \setb{(x : y : z)}{z \ne 0} =
+\setb{(x : y : 1)}{f(x, y) = 0}.
+\]
+Množico $V_h(F) \cap \setb{(x : y : z)}{z \ne 0}$ lahko
+identificiramo z $V(f)$, preostale ničle pa s točkami v
+neskončnosti.
+\end{opomba}
+
+\newpage
+
+\subsection{Projektivne transformacije}
+
+\begin{definicija}
+\emph{Projektivna transformacija} je bijektivna preslikava
+$\Phi \colon P_2(\C) \to P_2(\C)$, ki deluje po predpisu
+\[
+(x : y : z) \mapsto (ax + by + cz : dx + ey + fz : gx + hy + iz).
+\]
+\end{definicija}
+
+\begin{opomba}
+Preslikava je dobro definirana, saj sta obe strani homogeni.
+\end{opomba}
+
+\begin{trditev}
+Preslikava z zgornjim predpisom je bijektivna natanko tedaj, ko je
+\[
+\begin{vmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{vmatrix}
+\ne 0.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Kompozitum projektivnih transformacij je projektivna
+transformacija. Prav tako je tudi inverz projektivne transformacije
+projektivna transformacija.
+\end{opomba}
+
+\begin{trditev}
+Slika algebraične krivulje s projektivno transformacijo je
+algebraična krivulja.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\Phi(V_h(F)) =
+\setb{\Phi(x : y : z)}{F(x, y, z) = 0} =
+\setb{(x : y : z)}{(F \circ \Phi^{-1})(x, y, z) = 0}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Pravimo, da so štiri točke v
+\emph{splošni legi}\index{Projektivna ravnina!Splošna lega}, če
+nobene tri niso kolinearne.
+\end{definicija}
+
+\begin{opomba}
+Tri točke so kolinearne natanko tedaj, ko so linearno odvisne,
+oziroma ko je determinanta njihovih koordinat enaka $0$.
+\end{opomba}
+
+\begin{lema}[O štirih točkah]\index{Lema!O štirih točkah}
+Če so točke $p_1$, $p_2$, $p_3$ in $p_4$ ter $q_1$, $q_2$, $q_3$ in
+$q_4$ v splošni legi, obstaja natanko ena projektivna
+transformacija $\Phi$, za katero je $\Phi(p_i) = q_i$ za vse $i$.
+\end{lema}
+
+\begin{proof}
+Dovolj je pokazati, da lahko točke $p_i$ preslikamo v točke
+\[
+t_1 = (1 : 0 : 0), \quad
+t_2 = (0 : 1 : 0), \quad
+t_3 = (0 : 0 : 0)
+\quad \text{in} \quad
+t_4 = (1 : 1 : 1).
+\]
+Naj bo $p_i = (x_i : y_i : z_i)$. Naj bo
+\[
+A =
+\begin{bmatrix}
+x_1 & x_2 & x_3 \\
+y_1 & y_2 & y_3 \\
+z_1 & z_2 & z_3
+\end{bmatrix}^{-1}.
+\]
+Naj bo $\Phi$ projektivna transformacija, ki ustreza matriki $A$.
+Sledi, da so točke $\Phi(p_i)$ v splošni legi, zato za
+$(a : b : c) = \Phi(p_4)$ velja, da so $a, b, c \ne 0$. Sedaj
+zgornjo projektivno transformacijo preprosto komponiramo s
+transformacijo
+\[
+(x : y : z) \mapsto
+\left(\frac{x}{a}, \frac{y}{b}, \frac{z}{c}\right). \qedhere
+\]
 \end{proof}
