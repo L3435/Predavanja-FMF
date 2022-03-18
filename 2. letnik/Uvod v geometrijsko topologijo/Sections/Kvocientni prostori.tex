@@ -394,7 +394,7 @@ pravimo
 Obstaja bijekcija $G \cdot x \to \kvoc{G}{G_x}$.
 \end{opomba}
 
-\begin{trditev}
+\begin{trditev}\label{td:grodp}
 Naj bo $G$ topološka grupa, ki deluje na topološki prostor $X$.
 Potem je kvocientna projekcija
 \[
@@ -529,7 +529,7 @@ X \cup_f Y \arrow[ur, dashrightarrow, "\varphi"'] &
 
 \begin{trditev}
 Naj bo $A \subseteq X$ zaprta množica in $f \colon A \to Y$ zaprta
-vložitev. Naj bo $Z = \cup_f Y$.
+vložitev. Naj bo $Z = X \cup_f Y$.
 
 \begin{enumerate}[i)]
 \item Če sta $X$ in $Y$ 2-števna, je tudi $Z$ 2-števen.
@@ -552,4 +552,102 @@ kvocientne projekcije tistih množic v $\mathcal{B}_X$ in
 $\mathcal{B}_Y$, ki ne sekajo $A$ oziroma $f(A)$, ter množic
 $W_{n,m}^X \sqcup W_{n,m}^Y$. Ni težko preveriti, da je to res
 baza.
+
+Za Hausdorffovo lastnost je edini netrivialen primer ta, da sta
+$x$ in $y$ elementa $A$, pri čemer je $f(x) \ne f(y)$ -- razrešimo
+ga na podoben način kot 2-števnost.
+\end{proof}
+
+\newpage
+
+\subsection{Projektivni prostori}
+
+\datum{2022-3-18}
+
+\begin{definicija}
+Naj bo $\F \in \set{\R, \C, \HH}$.
+\emph{Projektivni prostor}\index{Topološki prostor!Projektivni}
+dimenzije $n$ nad $\F$ je kvocient
+\[
+\proj{\F}{n} = \kvoc{\F^{n+1} \setminus \set{0}}{\sim},
+\]
+kjer je $x \sim y \iff x = \lambda y$.
+\end{definicija}
+
+\begin{opomba}
+enako lahko naredimo za poljubne topološke obsege.
+\end{opomba}
+
+\begin{trditev}
+Prostor $\proj{\F}{n}$ je homogen.
+\end{trditev}
+
+\begin{proof}
+Naj bo $H$ obrnljiva linearna preslikava, ki preslika $x$ v $y$
+(taka preslikava očitno obstaja). Opazimo, da je $H$ homeomorfizem,
+ki ohranja premice, zato je $q \circ H$ kvocientna preslikava.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\F^{n+1} \setminus \set{0}
+\arrow[rr, "H"]
+\arrow[dd, "q"']
+\arrow[ddrr, "q \circ H"]
+&& \F^{n+1} \setminus \set{0}
+\arrow[dd, "q"] \\\\
+\proj{\F}{n} \arrow[rr, dashrightarrow, "h"']
+&& \proj{\F}{n}
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $\F \in \set{\R, \C, \HH}$ in $n \in \N_0$.
+\emph{Enotska sfera}\index{Enotska sfera} je množica
+\[
+S(\F^n) = \setb{x \in \F^n}{\norm{x} = 1}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+S(\R^n) = S^{n-1}, \quad
+S(\C^n) = S^{2n - 1}
+\quad \text{in} \quad
+S(\HH^n) = S^{4n - 1}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Kvocientna projekcija
+$q \colon \F^{n+1} \setminus \set{0} \to \proj{\F}{n}$ je odprta.
+\item Velja $\proj{\F}{n} \approx \kvoc{S(\F^{n+1})}{S(\F)}$.
+\item Prostor $\proj{\F}{n}$ je kompakten, lokalno kompakten,
+povezan s potmi, lokalno povezan s potmi in 2-števen.
+
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Prva točka je posledica trditve~\ref{td:grodp}.
+
+Naj bo $\varphi \colon \F^{n+1} \setminus \set{0} \to S(\F^{n+1})$
+preslikava, ki deluje po predpisu
+$\varphi \colon x \mapsto \frac{x}{\norm{x}}$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\F^{n+1} \setminus \set{0}
+\arrow[rr, "\varphi"]
+\arrow[dd, "q"']
+\arrow[ddrr, "p \circ \varphi"]
+&& \F^{n+1} \setminus \set{0}
+\arrow[dd, "p"] \\\\
+\proj{\F}{n} \arrow[rr, dashrightarrow, "\approx"']
+&& \kvoc{S(\F^{n+1})}{S(\F)}
+\end{tikzcd}
+\]
+% TO BE CONTINUED
 \end{proof}
