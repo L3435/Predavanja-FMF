@@ -1,0 +1,84 @@
+\section{Tangente in singularnosti}
+
+\subsection{Tangente}
+
+\begin{definicija}
+Naj bo $f$ polinom v treh spremenljivkah in $(a, b)$ njegova ničla.
+\emph{Tangenta}\index{Algebraična krivulja!Tangenta} na $f$ v
+$(a, b)$ je premica
+\[
+\frac{\partial f}{\partial x} (x - a) +
+\frac{\partial f}{\partial y} (y - b) =
+0,
+\]
+če nista oba odvoda enaka $0$.
+\end{definicija}
+
+\begin{definicija}
+Točka $(a, b)$ na $f(x, y) = 0$ je
+\emph{regularna}\index{Točka!Regularna}, če velja
+\[
+\frac{\partial f}{\partial x} (a, b) \ne 0
+\quad \text{ali} \quad
+\frac{\partial f}{\partial y} (a, b) \ne 0,
+\]
+sicer je \emph{singularna}\index{Točka!Singularna}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $F$ nekonstanten homogen polinom v treh spremenljivkah in
+$(a : b : c)$ njegova ničla.
+\emph{Tangenta}\index{Algebraična krivulja!Tangenta} na $F$ v
+$(a : b : c)$ je premica
+\[
+\frac{\partial F}{\partial x}(a,b,c) \cdot (x - a) +
+\frac{\partial F}{\partial y}(a,b,c) \cdot (y - b) +
+\frac{\partial F}{\partial z}(a,b,c) \cdot (z - c) =
+0,
+\]
+če niso vsi odvodi enaki $0$.
+\end{definicija}
+
+\begin{izrek}[Eulerjeva identiteta]
+\index{Izrek!Eulerjeva identiteta}
+Če je $F$ homogen polinom v treh spremenljivkah stopnje $n$, je
+\[
+x \frac{\partial F}{\partial x} +
+y \frac{\partial F}{\partial y} +
+z \frac{\partial F}{\partial z} =
+n F.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+F(tx, ty, tz) = t^n F(x, y, z),
+\]
+zato je
+\[
+x \frac{\partial F}{\partial x}(tx, ty, tz) +
+y \frac{\partial F}{\partial y}(tx, ty, tz) +
+z \frac{\partial F}{\partial z}(tx, ty, tz) =
+n \cdot t^{n-1} F(x, y, z).
+\]
+Sedaj preprosto vstavimo $t = 1$.
+\end{proof}
+
+\begin{posledica}
+Enačba tangente se poenostavi v
+\[
+\frac{\partial F}{\partial x}(a,b,c) \cdot x +
+\frac{\partial F}{\partial y}(a,b,c) \cdot y +
+\frac{\partial F}{\partial z}(a,b,c) \cdot z =
+0.
+\]
+\end{posledica}
+
+\begin{definicija}
+Naj bo $(a, b)$ singularna točka na $f(x, y) = 0$. \emph{Tangente}
+v točki $(a, b)$ na krivuljo $f(x, y) = 0$ so tiste premice, za
+katere je presečna večkratnost večja od minimalne. Minimumu
+presečnih večkratnosti pravimo \emph{red}\index{Točka!Red} točke
+$(a, b)$.
+\end{definicija}
