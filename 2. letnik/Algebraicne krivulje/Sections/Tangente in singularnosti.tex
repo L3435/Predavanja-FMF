@@ -76,9 +76,102 @@ Enačba tangente se poenostavi v
 \end{posledica}
 
 \begin{definicija}
-Naj bo $(a, b)$ singularna točka na $f(x, y) = 0$. \emph{Tangente}
-v točki $(a, b)$ na krivuljo $f(x, y) = 0$ so tiste premice, za
+Naj bo $p$ singularna točka na $f(x, y) = 0$. \emph{Tangente}
+v točki $p$ na krivuljo $f(x, y) = 0$ so tiste premice, za
 katere je presečna večkratnost večja od minimalne. Minimumu
 presečnih večkratnosti pravimo \emph{red}\index{Točka!Red} točke
-$(a, b)$.
+$p$ in ga označimo z $\ord_p(f)$.
 \end{definicija}
+
+\newpage
+
+\subsection{Singularne točke}
+
+\datum{2022-3-31}
+
+\begin{trditev}
+Če je $f$ minimalen polinom krivulje, velja
+\[
+\ord_p(f) = \min \setb{i + j}
+{\frac{\partial^{i+j} f}{\partial x^i \partial y^j}(p) \ne 0}.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+g(t) = f(x_0 + at, y_o + bt).
+\]
+Tedaj za največjo potenco $t^k$, ki deli $g$, velja
+\[
+g(0) = g'(0) = \dots = g^{(k-1)}(0) = 0
+\quad \text{in} \quad
+g^{(k)} \ne 0.
+\]
+Velja pa
+\[
+g^{(s)}(0) = \sum_{i + j = s} \binom{s}{i}
+\frac{\partial^s f}{\partial x^i \partial y^j} (x_0, y_0) a^ib^j.
+\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je singularna točka izhodišče, je red enak najmanjši stopnji
+monoma v $f$.
+\end{opomba}
+
+\begin{posledica}
+Za tuja polinoma $f$ in $g$ velja
+\[
+\ord_p(fg) = \ord_p(f) + \ord_p(g).
+\]
+\end{posledica}
+
+\obvs
+
+\begin{posledica}
+Če je $\ord_p(\mathcal{C}) = \deg \mathcal{C} - 1$, ima
+$\mathcal{C}$ racionalno parametrizacijo.
+\end{posledica}
+
+\begin{proof}
+Naj $f_i$ označuje vsoto monomov stopnje $i$. Tedaj je
+\[
+f(x, tx) =
+f_{d-1}(x, tx) + f_d(d,tx) =
+x^{d-1} f_{d-1}(1, t) + x^d f_d(1, t).
+\]
+Sledi, da je
+\[
+x = -\frac{f_{d-1}(1, t)}{f_d(1, t)}
+\quad \text{in} \quad
+y = -\frac{t f_{d-1}(1, t)}{f_d(1, t)}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $L$ premica, ki seka $\mathcal{C}$ v končno mnogo točkah.
+Tedaj velja
+\[
+\sum_{p \in \mathcal{C} \cap L} \ord_p \leq \deg \mathcal{C}.
+\]
+\end{posledica}
+
+\begin{proof}
+Uporabimo Bezoutov izrek.
+\end{proof}
+
+\newpage
+
+\subsection{Tangente v singularnih točkah}
+
+\begin{trditev}
+Naj bo $(0, 0)$ točka na algebraični krivulji z minimalnim
+polinomom $f$. Tedaj je $(at, bt)$ tangenta natanko tedaj, ko je
+$f_m(a,b) = 0$.
+\end{trditev}
+
+\obvs
+
+
