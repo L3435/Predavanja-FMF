@@ -371,8 +371,8 @@ $\overline{p}_k(n) = \overline{p}_{k-1}(n) + \overline{p}_k(n-k)$
 Za $1 \leq k \leq n$ je
 \emph{Stirlingovo število 1.~vrste}\index{Stirlingovo število 1.~vrste}
 $c(n,k)$ število permutacij $S_n$, ki jih lahko zapišemo kot
-produkt $k$ disjunktnih ciklov. Posebej naj bo $c(n,0) = 0$ za $n \geq 1$ in
-$c(0,0) = 1$.
+produkt $k$ disjunktnih ciklov. Posebej naj bo $c(n,0) = 0$ za
+$n \geq 1$ in $c(0,0) = 1$.
 \end{definicija}
 
 \datum{2022-3-7}
@@ -703,3 +703,60 @@ Za odvod velja
 (A^{-1})' = \frac{-A'}{A^2}.
 \]
 \end{opomba}
+
+\newpage
+
+\subsection{Catalanova števila}
+
+\datum{2022-4-4}
+
+\begin{definicija}
+\emph{Catalanova števila}\index{Catalanovo število} so števila,
+podano z $c_0 = 1$ in rekurzivno formulo
+\[
+c_{n+1} = \sum_{a+b=n} c_a c_b = \sum_{k=0}^n c_k c_{n-k}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Catalanova števila so rešitev naslednjih problemov:
+
+\begin{enumerate}[i)]
+\item Koliko je binarnih dreves z $n$ vozlišči?
+\item Na koliko načinov lahko trianguliramo $n+2$-kotnik?
+\item Koliko je Dyckovih poti dolžine $2n$?
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažemo, da je odgovor za $n=0$ enak $1$, nato pa izpeljemo še
+rekurzivno zvezo.
+\end{proof}
+
+\begin{izrek}
+Velja eksplicitna formula
+\[
+c_n = \frac{1}{n+1} \binom{2n}{n}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $F$ rodovna funkcija zaporedja Catalanovih števil. Opazimo,
+da velja
+\[
+F(x) = 1 + x F(x)^2.
+\]
+Od tod ni težko izraziti
+\[
+F(x) = \frac{1 \pm \sqrt{1-4x}}{2x},
+\]
+ker pa je $F(0) = 1$, sledi
+\[
+F(x) = \frac{1 - \sqrt{1-4x}}{2x}.
+\]
+Z razvojem $\sqrt{1-4x}$ v Taylorjevo vrsto in malo spretnosti
+dobimo
+\[
+F(x) = \sum_{n=0}^\infty \frac{1}{n+1} \binom{2n}{n} x^n. \qedhere
+\]
+\end{proof}
