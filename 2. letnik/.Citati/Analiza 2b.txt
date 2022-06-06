@@ -33,3 +33,6 @@
 
 "Dejmo to označit z 'ni', čeprav je."
  - doc. dr. Gregor Cigler, 3. 3. 2022
+
+"Kateri so vsi avtomorfizmi diska? V bistvu jih imamo na tabli napisane. Oziroma sem jih že pobrisal."
+ - prof. dr. Miran Černe, 23. 5. 2022

@@ -1,5 +1,8 @@
 \section{Vektorska analiza}
 
+\epigraph{">Ali imate poplavo v kopalnici ali vam ven teče?"<}
+{-- prof.~dr.~Miran Černe}
+
 \subsection{Skalarna in vektorska polja}
 
 \begin{definicija}
@@ -151,7 +154,7 @@ Funkcijam, ki rešijo enačbo
 \[
 \Delta U = 0,
 \]
-pravimo \emph{harmonične funkcije}.
+pravimo \emph{harmonične funkcije}\index{Funkcija!Harmonična}.
 \end{definicija}
 
 \begin{definicija}
@@ -658,7 +661,7 @@ Naj bo $\Sigma$ graf nad ravnino $(x, y)$, torej
 \]
 Naj bo orientacija $\Sigma$ dana z
 \[
-\frac{(-f_x, -f_y, 1}{\sqrt{1 + f_x^2 + f_y^2}}.
+\frac{(-f_x, -f_y, 1)}{\sqrt{1 + f_x^2 + f_y^2}}.
 \]
 Naj bo $f \in \mathcal{C}^2(\overline{D})$.\footnote{Vsako
 $\mathcal{C}^1(\overline{D})$ funkcijo lahko poljubno aproksimiramo
@@ -681,10 +684,67 @@ Z(x, y, f(x, y))\,dz
 \\
 &=
 \liint_D (Y_x + Y_z f_x + f_{yx} Z + f_y Z_x + f_y Z_z f_x -
-\\
-& \qquad \qquad-X_y - X_z f_y - f_{xy} Z - f_x Z_y - f_x Z_z f_y)\,dx\,dy
+\\[-15pt]
+& \qquad \qquad
+-X_y - X_z f_y - f_{xy} Z - f_x Z_y - f_x Z_z f_y)\,dx\,dy
 \\
 &=
 \liint_\Sigma \rot\vv{R}\,d\vv{S}. \qedhere
 \end{align*}
 \end{proof}
+
+\datum{2022-3-28}
+
+\begin{posledica}
+Naj bo $D$ omejena odprta množica v $\R^3$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih ploskev.
+Naj bo ta orientiran z zunanjo normalo glede na $D$. Naj bosta $U$
+in $V$ $\mathcal{C}^2$ funkciji na okolici $\overline{D}$. Tedaj
+velja
+\[
+\liint_{\partial D} V \frac{\partial U}{\partial \vv{n}}\,dS =
+\liiint_D \left(\vv{\nabla}U \vv{\nabla}V + V \Delta U\right) dV
+\]
+in
+\[
+\liint_{\partial D} \left(
+V \frac{\partial U}{\partial \vv{n}} -
+U \frac{\partial V}{\partial \vv{n}}\right)dS =
+\liiint_D (V \Delta U - U \Delta V)\,dV.
+\]
+\end{posledica}
+
+\begin{proof}
+Naj bo $\vv{R} = V \grad U$. Sledi, da je
+\[
+\dv \vv{R} = \grad V \cdot \grad U + V \Delta U,
+\]
+ker pa je $\grad U = \frac{\partial U}{\partial \vv{n}}$, prva
+enačba sledi iz Gaussovega izreka. Če v enačbi zamenjamo $U$ in $V$
+in enačbi odštejemo, dobimo še drugo enačbo.
+\end{proof}
+
+\begin{posledica}
+Divergenca je neodvisna od izbire ortonormirane baze.
+\end{posledica}
+
+\begin{proof}
+Označimo $K = \overline{K(p, \varepsilon)}$, kjer je $p \in D$.
+Tedaj je
+\[
+\frac{1}{V(K)} \liint_{\partial K} \vv{R}\,d\vv{S} =
+\frac{1}{V(K)} \liiint_K \dv \vv{R}\,dV.
+\]
+Ker je $\dv \vv{R}$ zvezna, je enaka
+\[
+\lim_{\varepsilon \to 0}
+\frac{1}{V(K)} \liint_{\partial K} \vv{R}\,d\vv{S},
+\]
+kar pa je neodvisno od baze.
+\end{proof}
+
+\begin{opomba}
+S Stokesovim izrekom lahko podobno izpeljemo za rotor.
+\end{opomba}
+
+% Diferencialne forme in Laplace

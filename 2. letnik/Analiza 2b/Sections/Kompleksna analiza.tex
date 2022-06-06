@@ -1,0 +1,1969 @@
+\section{Kompleksna analiza}
+
+\epigraph{">Kateri so vsi avtomorfizmi diska? V bistvu jih imamo na
+tabli napisane. Oziroma sem jih že pobrisal."<}
+{-- prof.~dr.~Miran Černe}
+
+\subsection{Holomorfne funkcije}
+
+\datum{2022-4-4}
+
+\begin{definicija}
+\emph{Riemannova sfera}\index{Riemannova sfera} je kompaktifikacija
+kompleksne ravnine z eno točko. Pišemo
+\[
+\widehat{\C} = \proj{\C}{1} = \C \cup \set{\infty}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Območje}\index{Območje} je povezana odprta množica.
+\end{definicija}
+
+\begin{definicija}
+\emph{Odprti disk}\index{Odprti disk} je množica
+\[
+\dsk(\alpha, r) = \setb{z \in \C}{\abs{z - \alpha} < r}.
+\]
+Posebej označimo enotski disk
+\[
+\dsk = \dsk(0, 1).
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $D \subseteq \C$ odprta množica in $\alpha \in D$. Funkcija
+$f \colon D \to \C$ je
+\emph{odvedljiva}\index{Funkcija!Kompleksni odvod} v točki
+$\alpha \in D$, če obstaja limita
+\[
+f'(\alpha) =
+\lim_{z \to \alpha} \frac{f(z) - f(\alpha)}{z - \alpha} =
+\lim_{h \to 0} \frac{f(\alpha + h) - f(\alpha)}{h}.
+\]
+Limiti pravimo \emph{kompleksni odvod} $f$ v $\alpha$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \colon D \to \C$, kjer je $D \subseteq \C$ odprta
+množica. Če je $f$ odvedljiva v vsaki točki $D$, pravimo, da je $f$
+\emph{holomorfna}\index{Funkcija!Holomorfna} na $D$.
+\end{definicija}
+
+\begin{opomba}
+Množico holomorfnih funkcij na $D$ označimo z $\mathcal{O}(D)$.
+\end{opomba}
+
+\begin{trditev}
+Če je $f$ v $\alpha$ odvedljiva, je v $\alpha$ diferenciabilna in
+zvenza.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Množica $\mathcal{O}(D)$ je algebra nad $\C$.
+\end{trditev}
+
+\begin{proof}
+Enak kot za realne odvode.
+\end{proof}
+
+\begin{trditev}
+Naj bosta $D, \Omega \subseteq \C$ odprti množici,
+$f \colon D \to \Omega$ in $g \colon \Omega \to \C$ holomorfni
+funkciji. Tedaj je tudi $g \circ f$ holomorfna in velja
+\[
+(f \circ g)'(x) = g'(f(x)) \cdot f'(x).
+\]
+\end{trditev}
+
+\begin{proof}
+Enak kot za realne odvode.
+\end{proof}
+
+\newpage
+
+\subsection{Cauchy-Riemannove enačbe}
+
+\datum{2022-4-6}
+
+\begin{izrek}[Cauchy-Riemannov sistem]
+\index{Izrek!Cauchy-Riemannov sistem}
+Naj bo $D \subseteq \C$ odprta množica.
+
+\begin{enumerate}[i)]
+\item Naj bo $f \colon D \to \C$ holomorfna funkcija. Če je
+\[
+f = u + iv,
+\]
+kjer sta $u, v \colon D \to \R$ realni funkciji, sta $u$ in $v$
+parcialno odvedljivi na $D$ na obe spremenljivki in velja 
+Cauchy-Riemannov sistem
+\begin{align*}
+u_x &= v_y,
+\\
+u_y &= -v_x.
+\end{align*}
+\item Naj bosta $u, v \colon D \to \R$ diferenciabilni funkciji, ki
+zadoščata Cauchy-Riemannovemu sistemu enačb. Tedaj je funkcija
+$f \colon D \to \C$, podana s predpisom $f = u + iv$, holomorfna na
+$D$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Naj bo $f \in \mathcal{O}(D)$. Velja
+\begin{align*}
+f'(\alpha) &= \lim_{h \to 0} \frac{f(\alpha + h) - f(\alpha)}{h}
+\\
+&=
+\lim_{h \to 0} \frac{u(\alpha + h) - u(\alpha)}{h} +
+i \cdot \lim_{h \to 0} \frac{v(\alpha + h) - v(\alpha)}{h}.
+\end{align*}
+Če preverimo primera $h \in \R$ in $h \in i\R$, dobimo parcialno
+odvedljivost in iskan sistem.
+
+Naj bosta sedaj $u$ in $v$ diferenciabilni. Velja
+\begin{align*}
+\frac{f(\alpha + (h + ik)) - f(\alpha)}{h + ik} &=
+\frac{u_x(\alpha)h + u_y(\alpha)k + iv_x(\alpha)h + iv_y)\alpha)k +
+o(h,k)}{h + ik}
+\\
+&=
+u_x(\alpha) - iu_y(\alpha) + \frac{o(h,k)}{h + ik}.
+\end{align*}
+Sledi, da je
+\[
+f'(\alpha) = u_x(\alpha) - iu_y(\alpha). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Diferencialna operatorja sta
+\[
+\prt{}{z} =
+\frac{1}{2} \left(\prt{}{x} - i \prt{}{y}\right)
+\quad \text{in} \quad
+\prt{}{\overline{z}} =
+\frac{1}{2} \left(\prt{}{x} + i \prt{}{y}\right).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f \in \mathcal{C}^1(D)$. Tedaj je $f$ holomorfna na $D$
+natanko tedaj, ko na $D$ velja
+\[
+\prt{f}{\overline{z}} = 0.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $f = u + iv$, kjer sta $u$ in $v$ realni funkciji. Tedaj je
+\[
+\prt{f}{\overline{z}} =
+\frac{1}{2} \left((u_x - v_y) + i \cdot (u_y + v_x)\right).
+\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Velja
+\[
+(Df)h = f_z h + f_{\overline{z}} \overline{h}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Matrika $A \in \C^{2 \times 2}$ je \emph{$\C$-linearna}, če za
+matriko
+\[
+J =
+\begin{bmatrix}
+ 0 & 1 \\
+-1 & 0
+\end{bmatrix}
+\]
+velja
+\[
+AJ = JA.
+\]
+\end{definicija}
+
+\begin{opomba}
+Matrika $J$ ustreza množenju z $i$.
+\end{opomba}
+
+\begin{opomba}
+Matrika je $\C$-linearna natanko tedaj, ko je oblike
+\[
+J =
+\begin{bmatrix}
+ a & b \\
+-b & a
+\end{bmatrix}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Naj bo $f \colon D \to \C$ diferenciabilna funkcija, kjer je
+$D \subseteq \C$ odprta množica. Tedaj je $f$ holomorfna natanko
+tedaj, ko je njen diferencial $\C$-linearen na $D$.
+\end{trditev}
+
+\begin{proof}
+Drugi pogoj pretvorimo na Cauchy-Riemannov sistem.
+\end{proof}
+
+\begin{trditev}
+Funkcija $z \mapsto e^z$ je holomorfna.
+\end{trditev}
+
+\begin{proof}
+Razpišemo lahko
+\[
+e^z = e^x \cos y + i \cdot e^x \sin y. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Potenčne vrste}
+
+\datum{2022-4-11}
+
+\begin{definicija}
+Pravimo, da funkcijska vrsta
+\[
+f = \sum_{j=1}^\infty f_j
+\]
+\emph{konvergira enakomerno na kompaktnih podmnožicah $D$}\index{Konvergenca!Enakomerna na kompaktih},
+če za vsako kompaktno množico $K \subseteq D$ in $\varepsilon > 0$
+obstaja tak $n_0 \in \N$, da za vse $n \geq n_0$ velja
+\[
+\abs{\sum_{j=1}^n f_j(z) - f(z)} < \varepsilon
+\]
+za vse $z \in K$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\alpha \in \C$ in $(a_n)_{n=0}^\infty$ zaporedje
+kompleksnih števil. Vrsti oblike
+\[
+\sum_{j=0}^\infty a_n (z - \alpha)^n
+\]
+pravimo \emph{potenčna vrsta}\index{Potenčna vrsta} s središčem v
+$\alpha$.
+\end{definicija}
+
+\begin{izrek}
+Za vsako potenčno vrsto s središčem v $\alpha$ obstaja tak
+$R \in [0, \infty]$, za katerega vrsta konvergira absolutno za vse
+$z \in \dsk(\alpha, R)$, konvergira enakomerno na kompaktnih
+podmnožicah $\dsk(\alpha, R)$ in divergira za vse
+$z \not \in \overline{\dsk(\alpha, R)}$.
+\end{izrek}
+
+\begin{proof}
+Enak kot za realne.
+\end{proof}
+
+\begin{opomba}
+Podobno kot v realnem velja
+\[
+\frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $D \subseteq \C$ odprta množica, $f \colon D \to \C$
+funkcija in $\alpha \in D$. Funkcijo $f$ lahko \emph{razvijemo v
+potenčno vrsto}\index{Funkcija!Razvoj v potenčno vrsto} v okolici
+točke $\alpha$, če obstaja tak $r > 0$ in zaporedje
+$(a_n)_{n=0}^\infty$ kompleksnih števil, da je
+\[
+f(z) = \sum_{n=0}^\infty a_n (z - \alpha)^n
+\]
+za vse $z \in \dsk(\alpha, r)$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo
+\[
+f(z) = \sum_{n=0}^\infty a_n (z - \alpha)^n
+\]
+na $\dsk(\alpha, r)$ za $r > 0$. Tedaj je $f$ holomorfna na
+$\dsk(\alpha, r)$ in velja
+\[
+f'(\alpha) = \sum_{n=1}^\infty n \cdot a_n (z - \alpha)^{n-1}.
+\]
+\end{trditev}
+
+\begin{proof}
+Ker je
+\[
+\limsup_{n \to \infty} \sqrt[n-1]{n a_n} =
+\limsup_{n \to \infty} \sqrt[n]{a_n},
+\]
+na $\dsk(\alpha, r)$ konvergira tudi vrsta za odvod. Delne vsote
+parcialnih odvodov po $x$ in $y$ torej konvergirajo enakomerno na
+kompaktih. Po izrekih iz Analize 1 sledi, da je $f$ parcialno
+odvedljiva po $x$ in $y$ na $\dsk(\alpha, r)$, zato je
+$f \in \mathcal{C}^1$ in
+\[
+\prt{f}{\overline{z}} = 0,
+\]
+saj to velja za vse delne vsote.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f \colon D \to \C$ funkcija, ki se jo da v okolici vsake
+točke $\alpha \in D$ razviti v potenčno vrsto. Tedaj je $f$
+holomorfna na $D$, $f$ pa ima odvode vseh redov, ki so prav tako
+holomorfne funkcije.
+\end{posledica}
+
+\begin{definicija}
+\emph{Eksponentna funkcija}\index{Funkcija!Eksponentna}
+$z \mapsto e^z$ je definirana z vrsto
+\[
+e^z = \sum_{n=0}^\infty \frac{z^n}{n!}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Za vsaki števili $z, w \in \C$ velja
+\[
+e^{z+w} = e^z \cdot e^w.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+F(t) = e^{-t} \cdot e^{t + z + w}.
+\]
+Ker je $(e^z)' = e^z$, sledi
+\[
+F'(t) = 0.
+\]
+Funkcija $F$ je torej konstantna in je enaka $F(0) = e^{z+w}$.
+Sledi, da je
+\[
+e^z \cdot e^w = F(-z) = e^{z+w}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Logaritemska funkcija}\index{Funkcija!Logaritemska} je
+funkcija $\log \colon \C \setminus [0, \infty) \to \C$, podana s
+predpisom
+\[
+\log z = \ln \abs{z} + i \arg z,
+\]
+kjer je $\arg z \in (0, 2\pi)$.
+\end{definicija}
+
+\begin{opomba}
+Namesto $[0, \infty)$ lahko v zgornji definiciji izrežemo poljuben
+poltrak iz izhodišča. Temu primerno priredimo tudi sliko argumenta.
+\end{opomba}
+
+\begin{definicija}
+\emph{Korenska funkcija}\index{Funkcija!Korenska} je podana s
+predpisom
+\[
+\sqrt[n]{z} = \sqrt[n]{z} \cdot e^{i \frac{\arg z}{n}}.
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Krivuljni integral v kompleksni ravnini}
+
+\begin{definicija}
+Naj bo $\gamma$ gladka krivulja v $\C$, podana s parametrizacijo
+$z \colon [a, b] \to \C$, in $f \colon \gamma \to \C$ zvezna
+funkcija. \emph{Integral}\index{Integral!Kompleksni} funkcije $f$
+po krivulji $\gamma$ je definiran kot
+\[
+\lint_{\gamma} f(z)\,dz =
+\int_a^b f(z(t)) \dot{z}(t)\,dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Integral je neodvisen od parametrizacije $\gamma$, ki ohranja
+orientacijo. Velja namreč
+\begin{align*}
+\int_a^b f(z(t)) \dot{z}(t)\,dt &=
+\int_a^b f(z(t)) \left(\dot{x}(t) + i \dot{y}(t)\right)\,dt
+\\
+&=
+\lint_{\gamma} f(z)\,dx + (if(z))\,dy
+\\
+&=
+\lint_{\gamma} (u\,dx - v\,dy) + i \lint_{\gamma} (v\,dx + u\,dy).
+\end{align*}
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\ell(\gamma)$ dolžina krivulje $\gamma$. Tedaj je
+\[
+\abs{\lint_{\gamma} f(z)\,dz} \leq
+\sup_{\gamma} \abs{f} \cdot \ell(\gamma).
+\]
+\end{trditev}
+
+\begin{proof}
+Krivuljo lahko razdelimo na gladke dele, na katerih velja
+\[
+\abs{\lint_{\gamma} f(z)\,dz} =
+\abs{\int_a^b f(z(t)) \dot{z}(t)\,dt} \leq
+\int_a^b \abs{f(z(t)) \dot{z}(t)\,dt} \leq
+\sup_{\gamma} \abs{f} \cdot \int_a^b \abs{\dot{z}(t)}\,dt =
+\sup_{\gamma} \abs{f} \cdot \ell(\gamma). \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $D \subseteq \C$ odprta množica in $F \in \mathcal{O}(D)$.
+Denimo, da je $F'$ zvezna na $D$. Naj bo $\gamma$ orientirana
+krivulja v $D$ z začetno točko $\alpha$ in končno točko $\beta$.
+Tedaj je
+\[
+\lint_{\gamma} F'(z)\,dz = F(\beta) - F(\alpha).
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\lint_{\gamma} F'(z)\,dz =
+\lint_{\gamma} d_zF =
+\lint_{\gamma} du + i\,dv =
+F(\beta) - F(\alpha). \qedhere
+\]
+\end{proof}
+
+\datum{2022-4-18}
+
+\begin{izrek}[Greenova formula]\index{Izrek!Greenova formula}
+Naj bo $D \subseteq \C$ omejena odprta množica z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih krivulj.
+Naj bo $\partial D$ orientiran pozitivno glede na $D$. Naj bosta
+$f, g \in \mathcal{C}^1(\overline{D})$ funkciji. Tedaj velja
+\[
+\lint_{\partial D} f(z)\,dz + g(z)\,d\overline{z} =
+2i \liint_D \left(f_{\overline{z}} - g_z\right)\,dx\,dy.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\begin{align*}
+\lint_{\partial D} f(z)\,dz + g(z)\,d\overline{z}
+&=
+\lint_{\partial D} f(z)(dx + i\,dy) + g(z)(dx - i\,dy)
+\\
+&=
+\lint_{\partial D} (f+g)\,dx + i(f-g)\,dy
+\\
+&=
+\liint_D \left(i(f-g)_x + (f+g)_y\right)\,dx\,dy
+\\
+&=
+2i \liint_D \left(
+\frac{1}{2}(f_x + i f_y) - \frac{1}{2}(g_x - i g_y)\right)\,dx\,dy
+\\
+&=
+2i \liint_D \left(f_{\overline{z}} - g_z\right)\,dx\,dy. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}[Cauchy]\index{Izrek!Cauchy}
+Naj bo $f \in \mathcal{O}(D) \cap \mathcal{C}^1(\overline{D})$.
+Tedaj je
+\[
+\lint_{\partial D} f(z)\,dz = 0.
+\]
+\end{posledica}
+
+\begin{proof}
+V Greenovo formulo vstavimo $g = 0$.
+\end{proof}
+
+\begin{izrek}[Cauchyjeva formula]\index{Izrek!Cauchyjeva formula}
+Naj bo $f \in \mathcal{O}(D) \cap \mathcal{C}^1(\overline{D})$ in
+$z \in D$. Tedaj je
+\[
+f(z) =
+\frac{1}{2 \pi i} \lint_{\partial D} \frac{f(\xi)}{\xi - z}\,d\xi.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $r_0 > 0$ tako število, da velja
+$\overline{\dsk(z, r_0)} \subseteq D$. Za $0 < r \leq r_0$ naj bo
+$D_r = D \setminus \overline{\dsk(z, r)}$. Velja torej
+\[
+\partial D_r = \partial D \cup \partial \dsk(z, r).
+\]
+Ker je funkcija
+\[
+\frac{f(\xi)}{\xi - z}
+\]
+holomorfna na $D_r$, po Cauchyjevem izreku velja
+\[
+\lint_{\partial D_r} \frac{f(z)}{\xi - z}\,d\xi = 0.
+\]
+Iskani integral je tako enak
+\[
+\frac{1}{2 \pi i}
+\lint_{\partial \dsk(z, r)} \frac{f(\xi)}{\xi - z}\,d\xi
+\]
+za vse $0 < r \leq r_0$. S parametrizacijo
+$\xi = z + r e^{i \varphi}$ dobimo, da je zgornji integral enak
+\[
+\frac{1}{2 \pi} \int_0^{2 \pi} f(z + r e^{i \varphi})\,d\varphi.
+\]
+Če v zgornjem integralu pošljemo $r$ proti $0$ in upoštevamo
+zveznost $f$, dobimo ravno $f(z)$.
+\end{proof}
+
+\begin{opomba}
+Funkcijo $(\xi, z) \mapsto \frac{1}{\xi - z}$ imenujemo
+\emph{Cauchyjevo jedro}.
+\end{opomba}
+
+\begin{posledica}[Lastnost povprečne vrednosti]
+\index{Lastnost povprečne vrednosti}
+Naj bo $f \in \mathcal{O}(D)$ in $\oline{\dsk(z, r)} \subseteq D$.
+Tedaj je
+\[
+f(z) =
+\frac{1}{2 \pi} \int_0^{2 \pi} f(z + re^{i \varphi})\,d\varphi.
+\]
+\end{posledica}
+
+\begin{posledica}
+Naj bo $f \in \mathcal{C}^1(\oline{D}) \cap \mathcal{O}(D)$. Tedaj
+
+\begin{enumerate}[i)]
+\item velja $f \in \mathcal{C}^\infty(D)$,
+\item vsi odvodi $f$ so holomorfni,
+\item velja enakost
+\[
+f^{(m)}(z) = \frac{m!}{2 \pi i}
+\lint_{\partial D} \frac{f(\xi)}{(\xi - z)^{m+1}}\,d\xi.
+\]
+\end{enumerate}
+\end{posledica}
+
+\begin{proof}
+Vemo že, da na $D$ velja
+\[
+f(z) =
+\frac{1}{2 \pi i} \lint_{\partial D} \frac{f(\xi)}{\xi - z}\,d\xi.
+\]
+Opazimo, da je desna stran integral s parametrom $z$. Vidimo še, da
+je odvod po $\oline{z}$ enak $0$. Velja torej
+\[
+f'(z) = \frac{1}{2 \pi i}
+\lint_{\partial D} \frac{f(\xi)}{(\xi - z)^2}\,d\xi.
+\]
+Zaključimo z indukcijo.
+\end{proof}
+
+\begin{izrek}[Morera]\index{Izrek!Morera}\label{iz:mor}
+Naj bo $f \colon D \to \C$ zvezna, kjer je $D \subseteq \C$ odprta.
+Denimo, da za vsak zaprt trikotnik $T \subseteq D$ velja
+\[
+\lint_{\partial T} f(\xi)\,d\xi = 0.
+\]
+Tedaj je $f$ holomorfna in gladka na $D$.
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $D = \dsk(\alpha, r)$. Naj bo
+\[
+F(z) = \lint_{[\alpha, z]} f(\xi)\,d\xi.
+\]
+Za $z, w \in D$ po predpostavki velja
+\[
+F(z) + \lint_{[z, w]} f(\xi)\,d\xi - F(w) = 0,
+\]
+oziroma
+\[
+\frac{F(w) - F(z)}{w - z} =
+\frac{1}{w - z} \lint_{[z, w]} f(\xi)\,d\xi.
+\]
+S parametriziranjem daljice dobimo
+\[
+\frac{F(w) - F(z)}{w - z} = \int_0^1 f(z + t(w - z))\,dt.
+\]
+V limiti je torej
+\[
+F'(z) = f(z),
+\]
+zato je $F$ zvezno odvedljiva in holomorfna. Sledi, da so tudi
+njeni odvodi holomorfni in gladki.
+\end{proof}
+
+\begin{izrek}[Goursat]\index{Izrek!Goursat}
+Vsaka holomorfna funkcija $f \colon D \to \C$, kjer je
+$D \subseteq \C$ odprta, je gladka.
+\end{izrek}
+
+\begin{proof}
+Ker je $f$ holomorfna, je zvezna, zato je dovolj pokazati, da za
+vsak trikotnik $T \subseteq D$ velja
+\[
+I = \lint_{\partial T} f(\xi)\,d\xi = 0.
+\]
+Naj bo $T_0$ poljuben trikotnik. Tega lahko razdelimo na 4 skladne
+trikotnike. Opazimo, da med temi obstaja tak trikotnik $T_1$, da
+velja
+\[
+\abs{\lint_{\partial T_1} f(\xi)\,d\xi} \geq \frac{1}{4} \abs{I}.
+\]
+Če ta razmislek ponavljamo, dobimo padajoče zaporedje trikotnikov,
+njihov presek pa je ena točka $\alpha$. Pišemo lahko
+\[
+f(\xi) = f(\alpha) + f'(\alpha)(\xi - \alpha) +
+(\xi - \alpha) \eta(\xi - \alpha).
+\]
+Naj bo $\varepsilon > 0$ poljuben. Ker je $f$ zvezna v $\alpha$,
+obstaja tak $\delta > 0$, da je
+$\abs{\eta(\xi - \alpha)} < \varepsilon$ za vse
+$\xi \in \dsk(\alpha, \delta)$. Naj bo $n$ naravno število, za
+katerega velja $T_n \subseteq \dsk(\alpha, \delta)$. Tedaj je
+\begin{align*}
+\abs{\lint_{\partial T_n} f(\xi)\,d\xi}
+&=
+\abs{\lint_{\partial T_n} (f(\alpha) + f'(\alpha)(\xi - \alpha) +
+(\xi - \alpha) \eta(\xi - \alpha))\,d\xi}
+\\
+&=
+\abs{\lint_{\partial T_n} (\xi - \alpha) \eta(\xi - \alpha)\,d\xi}
+\\
+&\leq
+\varepsilon \lint_{\partial T_n} \abs{\xi - \alpha}\,d\xi
+\\
+&\leq
+\varepsilon \cdot p_n^2
+\\
+&=
+\frac{\varepsilon}{4^n} \cdot p_0^2,
+\end{align*}
+kjer $p_n$ označuje obseg trikotnika $T_n$. Sledi, da je
+\[
+\frac{1}{4^n} \cdot \abs{I} \leq
+\frac{\varepsilon}{4^n} \cdot p_0^2,
+\]
+oziroma
+\[
+\abs{I} \leq \varepsilon \cdot p_0^2,
+\]
+kar je mogoče le za $I = 0$.
+\end{proof}
+
+\begin{definicija}
+Paru $(u, v)$ realnih harmoničnih funkcij na $D$, za kateri velja,
+da je funkcija
+\[
+f = u + iv
+\]
+holomorfna na $D$, pravimo
+\emph{harmonični konjugiranki}\index{Funkcija!Harmonična konjugiranka}.
+\end{definicija}
+
+\begin{opomba}
+Če je $f = u + iv$ holomorfna, z odvajanjem Cauchy-Riemannovega
+sistema dobimo, da sta $u$ in $v$ harmonični.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $D$ zvezdasto območje v $\C$ in $u \colon D \to \R$
+harmonična. Tedaj obstaja harmonična konjugiranka $v$ k $u$,
+določena do konstante natančno.
+\end{trditev}
+
+\begin{proof}
+Ker je $u$ harmonična, ima vektorsko polje
+\[
+\vv{R} = (-u_y, u_x)
+\]
+potencial $v$ na $D$, ki je ravno iskana konjugiranka.
+\end{proof}
+
+\begin{izrek}\label{iz:pow}
+Naj bo $D \subseteq \C$ odprta množica in $f \colon D \to \C$
+holomorfna. Naj bo $\alpha \in D$ in $r > 0$ tako število, da je
+$\oline{\dsk(\alpha, r)} \subseteq D$. Tedaj lahko na
+$\dsk(\alpha, r)$ funkcijo $f$ razvijemo v potenčno vrsto
+\[
+f(z) = \sum_{n=0}^\infty a_n (z - \alpha)^n,
+\]
+kjer je
+\[
+a_n = \frac{f^{(n)}(\alpha)}{n!} =
+\frac{1}{2 \pi i} \lint_{\partial \dsk(\alpha, r)}
+\frac{f(\xi)}{(\xi - z)^{n+1}}\,d\xi.
+\]
+\end{izrek}
+
+\begin{proof}
+Vemo, da za vse $z \in \dsk(\alpha, r)$ velja
+\[
+f(z) =
+\frac{1}{2 \pi i} \lint_{\partial D} \frac{f(\xi)}{\xi - z}\,d\xi.
+\]
+Naj bo $z \in \oline{\dsk(\alpha, \rho)}$ za $0 < \rho < r$. Za
+$\xi \in \partial \dsk(\alpha, r)$ je tako
+\[
+\abs{\frac{z - \alpha}{\xi - \alpha}} < 1,
+\]
+zato lahko razvijemo
+\[
+\frac{1}{\xi - z} =
+\frac{1}{\xi - \alpha} \cdot
+\frac{1}{1  - \frac{z - \alpha}{\xi - \alpha}} =
+\sum_{n=0}^\infty \frac{(z - \alpha)^n}{(\xi - \alpha)^{n+1}}.
+\]
+Ta vrsta konvergira enakomerno na
+$z \in \oline{\dsk(\alpha, \rho)}$, zato lahko v Cauchyjevi formuli
+zamenjamo vsoto in integriranje. Dobimo
+\[
+f(z) = \sum_{n=0}^\infty
+\left(\frac{1}{2 \pi i} \lint_{\partial \dsk(\alpha, r)}
+\frac{f(\xi)}{(\xi - z)^{n+1}}\,d\xi\right)(z - \alpha)^n,
+\]
+ta vrsta pa konvergira enakomerno na $\oline{\dsk(\alpha, \rho)}$.
+\end{proof}
+
+\begin{posledica}
+Funkcija $f \colon D \to \C$ je holomorfna natanko tedaj, ko jo
+lahko v okolici vsake točke razvijemo v potenčno vrsto.
+\end{posledica}
+
+\datum{2022-5-4}
+
+\begin{trditev}[Cauchyjeve ocene]
+Naj bo $f \colon D \to \C$ holomorfna, kjer je $D = \dsk(0, R)$.
+Tedaj za vsak $n \in \N_0$ in $0 < r < R$ velja ocena
+\[
+\abs{f^{(n)}(0)} \leq \frac{n!}{r^n} \max_{\abs{z}=r} \abs{f(z)}.
+\]
+\end{trditev}
+
+\begin{proof}
+Funkcijo $f$ lahko razvijemo v potenčno vrsto. Velja
+\[
+\abs{\frac{f^{(n)}(0)}{n!}} = \abs{a_n} =
+\abs{\frac{1}{2 \pi i}
+\lint_{\partial \dsk(0, r)} \frac{f(\xi)}{\xi^{n+1}}\,d\xi} \leq
+\frac{1}{2 \pi} \cdot \max_{\abs{\xi}=r} \abs{f(\xi)} \cdot
+\frac{1}{r^{n+1}} \cdot 2 \pi r. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Liouville]\index{Izrek!Liouville}
+Naj bo $f \colon \C \to \C$ holomorfna funkcija, za katero
+obstajata taka $M \geq 0$ in $N \in \N_0$, da za vsak $z \in \C$
+velja
+\[
+\abs{f(z)} \leq M \cdot (1 + \abs{z}^N).
+\]
+Tedaj je polinom stopnje največ $N$.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+f(z) = \sum_{n=0}^\infty a_n z^n.
+\]
+Ker je $f$ cela, vrsta konvergira na $\C$. Po Cauchyjevih za
+$n > N$ velja
+\[
+\abs{f^{(n)}(0)} \leq
+\frac{n!}{r^n} \cdot \max_{\abs{z}=r} \abs{f(z)} \leq
+\frac{n!}{r^n} \cdot M \cdot (1 + r^N),
+\]
+kar je v limiti enako $0$. Sledi, da je $a_n = 0$ za vse $n > N$.
+\end{proof}
+
+\begin{posledica}
+Vsaka omejena cela holomorfna funkcija je konstantna.
+\end{posledica}
+
+\begin{izrek}[Osnovni algebre]\index{Izrek!Osnovni algebre}
+Vsak nekonstanten polinom s kompleksnimi koeficienti ima kompleksno
+ničlo.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+p(z) = \sum_{k=0}^n a_k z^k
+\]
+polinom stopnje $n$. Za $z \ne 0$, $\abs{z} = R$ velja
+\[
+\abs{p(z)} = \abs{z}^n \cdot \abs{ \sum_{k=0}^n a_k z^{k-n}} \geq
+\abs{z}^n \cdot \abs{\abs{a_n} -
+\sum_{k=0}^{n-1} \frac{\abs{a_k}}{\abs{z}^{n-k}}} \geq
+R^n \cdot \frac{\abs{a_n}}{2}
+\]
+za vse dovolj velike $R$.
+
+Denimo, da $p$ nima ničel. Tedaj je
+\[
+f(z) = \frac{1}{p(z)}
+\]
+cela funkcija. Za $\abs{z} \geq R$ je
+\[
+\abs{f(z)} \leq \frac{2}{\abs{a_n} R^n},
+\]
+za $\abs{z} \leq R$ pa je $\abs{f}$ omejena, saj je zvezna. Sledi,
+da je $f$ konstantna, kar je protislovje.
+\end{proof}
+
+\begin{posledica}
+Vsak nekonstanten polinom v $\C$ razpade na linearne faktorje.
+\end{posledica}
+
+\begin{trditev}[Princip maksima]\index{Princip maksima}
+Naj bo $D \subseteq \C$ območje v $\C$ in $f \colon D \to \C$
+omejena holomorfna funkcija. Tedaj je $f$ konstantna ali pa velja
+\[
+\abs{f(z)} < \sup_D \abs{f}
+\]
+za vse $z \in D$.
+\end{trditev}
+
+\begin{proof}
+Denimo, da $\abs{f}$ zavzame maksimum na $D$. Naj bo
+\[
+A = \setb{z \in D}{\abs{f(z)} = \sup_D \abs{f}}.
+\]
+Po predpostavki je množica $A$ neprazna. Očitno je $A$ zaprta, saj
+je praslika supremuma preslikave $\abs{f}$.
+
+Naj bo $\alpha \in A$ in $r > 0$ tako število, da velja je
+$\oline{\dsk(\alpha, r)} \subseteq D$. Po lastnosti povprečne
+vrednosti velja
+\[
+\abs{f(\alpha)} \leq \frac{1}{2 \pi}
+\int_0^{2 \pi} f(\alpha + re^{i \varphi})\,d\varphi,
+\]
+oziroma
+\[
+0 \leq \int_0^{2 \pi}
+(\abs{f(\alpha + re^{i \varphi})} - \abs{f(\alpha)})\,d\varphi.
+\]
+Ker integriramo nepozitivno funkcijo, je ta enaka $0$ skoraj
+povsod. Iz zveznosti tako sledi, da je $\abs{f}$ konstantno enaka
+$\abs{f(\alpha)}$ na robu diska. Ker lahko to naredimo za vse
+dovolj majhne $r$, je $\alpha$ notranja točka $A$. Sledi, da je $A$
+odprta in zaprta hkrati, torej je enaka množici $D$, torej je
+$\abs{f}$ konstantna na $D$.
+
+Dobili smo torej, da je funkcija $z \mapsto f(z) \oline{f(z)}$
+konstantna. Z odvajanjem po $\oline{z}$ dobimo
+\[
+f(z) \cdot \oline{f'(z)} = 0,
+\]
+z odvajanjem zgornje zveze po $z$ pa dobimo
+\[
+f'(z) \cdot \oline{f'(z)} = 0,
+\]
+zato je $f$ konstantna.
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \C$ omejena odprta množica množica,
+$f \colon \oline{D} \to \C$ pa zvezna funkcija, holomorfna na $D$.
+Tedaj velja
+\[
+\max_{\partial D} \abs{f} = \max_{\oline{D}} \abs{f}.
+\]
+\end{posledica}
+
+\begin{proof}
+Ker je $\oline{D}$ kompaktna, $\abs{f}$ na $\oline{D}$ zavzame
+maksimum. Denimo, da $\abs{f}$ zavzame maksimum v notranji točki
+$\alpha$. Po principu maksima je $f$ konstantna na komponenti točke
+$\alpha$, zato $\abs{f}$ to vrednost zavzame tudi na robu te
+komponente.
+\end{proof}
+
+\begin{trditev}
+Naj bo $f$ holomorfna na $\dsk(\alpha, r)$ in naj bo
+$f(\alpha) = 0$. Tedaj je $f \equiv 0$ na tem disku ali pa obstaja
+tako naravno število $N \in \N$ in holomorfna funkcija $g$ na
+$\dsk(\alpha, r)$, za katero je $g(\alpha) \ne 0$ in je
+\[
+f(\alpha) = (z - \alpha)^N g(z).
+\]
+\end{trditev}
+
+\begin{proof}
+Funkcijo $f$ lahko v okolici $\alpha$ razpišemo v potenčno vrsto.
+\end{proof}
+
+\begin{definicija}
+Podmnožica $A \subseteq D$ ima 
+\emph{stekališče}\index{Množica!Stekališče} v $D$, če obstaja tak
+$\alpha \in D$, da je v vsaki okolici $\alpha$ neskončno mnogo
+elementov $A$.
+\end{definicija}
+
+\datum{2022-5-9}
+
+\begin{trditev}[Princip identičnosti]\index{Princip identičnosti}
+Naj bo $D \subseteq \C$ območje in $A \subseteq D$ množica s
+stekališčem v $D$. Naj bo $f \colon D \to \C$ holomorfna funkcija,
+za katero je $\eval{f}{A}{} \equiv 0$. Tedaj je $f \equiv 0$.
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+S = \setb{z \in D}{\forall n \in \N_0 \colon f^{(n)} = 0}.
+\]
+Vidimo, da je $S$ zaprta, saj je enaka preseku praslik zveznih
+funkcij. Naj bo $\alpha \in S$. Na $\oline{\dsk(\alpha, r)}$ lahko
+$f$ razvijemo v potenčno vrsto, ki je ničelna. Sledi, da na tem
+disku velja $f \equiv 0$, zato je $\dsk(\alpha, r) \subseteq S$,
+zato je $S$ tudi odprta.
+
+Dokažimo še, da je $S$ neprazna. Naj bo $\alpha \in D$ stekališče
+množice $A$. Zaradi zveznosti $f$ je $f(\alpha) = 0$. Ker $\alpha$
+ni izolirana ničla, na $\dsk(\alpha, r)$ velja $f \equiv 0$, zato
+je $\alpha \in S$.
+\end{proof}
+
+\begin{posledica}
+Naj bosta $f, g \colon D \to \C$ holomorfni funkciji, za kateri je
+$\eval{f}{A}{} \equiv \eval{g}{A}{}$. Tedaj je $f \equiv g$.
+\end{posledica}
+
+\newpage
+
+\subsection{Izolirane singularne točke}
+
+\begin{definicija}
+\emph{Preboden disk}\index{Odprti disk!Preboden} je množica
+\[
+\dskx(\alpha, r) = \dsk(\alpha, r) \setminus \set{\alpha}.
+\]
+Podobno za odprto množico $D$ označimo
+$D^* = D \setminus \set{\alpha}$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \in \mathcal{O}(D^*)$. Tedaj pravimo, da ima $f$ v
+$\alpha$ \emph{izolirano singularnost}\index{Singularnost}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Odprt kolobar}\index{Odprt kolobar} je množica
+\[
+A(\alpha, \rho, r) = \setb{z \in \C}{\rho < \abs{z - \alpha} < r}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Lauretova vrsta}\index{Laurentova vrsta} je funkcijska vrsta
+\[
+\sum_{n=-\infty}^\infty a_n (z - \alpha)^n.
+\]
+Vrsti
+\[
+\sum_{n=0}^\infty a_n (z - \alpha)^n
+\]
+pravimo \emph{regularni del}, vrsti
+\[
+\sum_{n=-\infty}^{-1} a_n (z - \alpha)^n
+\]
+pa \emph{glavni del}.
+\end{definicija}
+
+\begin{opomba}
+Regularni del konvergira absolutno na $\dsk(\alpha, r)$ in
+enakomerno na kompaktih, glavni del pa konvergira absolutno na
+$\C \setminus \set{\alpha}$ in enakomerno na kompaktih.
+\end{opomba}
+
+\begin{izrek}\label{iz:lau}
+Naj bo $D \subseteq \C$ odprta množica, $\alpha \in D$ in $r > 0$
+tako število, da je $\oline{\dsk(\alpha, r)} \subseteq D$. Naj bo
+$f \colon D \setminus \set{\alpha} \to \C$ holomorfna funkcija.
+Tedaj lahko $f$ na $\dskx(\alpha, r)$ razvijemo v Laurentovo vrsto
+\[
+f(z) = \sum_{n=-\infty}^\infty a_n (z - \alpha)^n,
+\]
+kjer je
+\[
+a_n = \frac{1}{2 \pi i} \lint_{\abs{\xi - \alpha} = r}
+\frac{f(\xi)}{(\xi - z)^{n+1}}\,d\xi.
+\]
+Ta vrsta konvergira absolutno za vsak $z \in \dskx(\alpha, r)$ in
+enakomerno na kompaktnih podmnožicah. 
+\end{izrek}
+
+\begin{proof}
+Po Cauchyjevi formuli je
+\[
+f(z) =
+\frac{1}{2 \pi i} \lint_{\partial A(\alpha, \rho, r)}
+\frac{f(\xi)}{\xi - z}\,d\xi =
+\frac{1}{2 \pi i} \cdot \left(
+\lint_{\abs{\xi - \alpha} = r} \frac{f(\xi)}{\xi - z}\,d\xi -
+\lint_{\abs{\xi - \alpha} = \rho} \frac{f(\xi)}{\xi - z}\,d\xi
+\right).
+\]
+Sedaj zaključimo enako kot v dokazu izreka~\ref{iz:pow} -- iz
+prvega integrala dobimo regularni del, iz drugega pa glavni del.
+\end{proof}
+
+\begin{definicija}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna z Laurentovo
+vrsto
+\[
+f(z) = \sum_{n=-\infty}^\infty a_n (z - \alpha)^n.
+\]
+
+\begin{enumerate}[i)]
+\item Funkcija $f$ ima v $\alpha$
+\emph{odpravljivo singularnost}\index{Singularnost!Odpravljiva}, če
+je $a_n = 0$ za vse $n < 0$.
+\item Funkcija $f$ ima v $\alpha$
+\emph{pol}\index{Singularnost!Pol} stopnje $N$, če je
+$a_{-N} \ne 0$ in $a_n = 0$ za vse $n < -N$.
+\item Funkcija $f$ ima v $\alpha$
+\emph{bistveno singularnost}\index{Singularnost!Bistvena}, če ni
+odpravljiva ali pol.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna. Funkcija $f$
+ima v $\alpha$ odpravljivo singularnost natanko tedaj, ko je $f$
+omejena na neki prebodeni okolici $\alpha$.
+\end{trditev}
+
+\begin{proof}
+Če ima $f$ v $\alpha$, jo lahko razširimo do holomorfne funkcije na
+disku, ta pa je omejena na kompaktih.
+
+Naj bo sedaj $f$ omejena na $\dskx(\alpha, \rho)$, kjer je
+$\rho < r$. Opazimo, da je
+\begin{align*}
+\abs{a_{-m}} &=
+\abs{\frac{1}{2 \pi i} \lint_{\abs{\xi - \alpha} = \rho}
+f(\xi) (\xi - \alpha)^{m-1}\,d\xi}
+\\
+&=
+\frac{1}{2 \pi} \cdot \abs{ \int_0^{2 \pi} f(\alpha + \rho e^{it})
+\rho^{m-1} e^{i(m-1)t} \rho i e^{it}\,dt}
+\\
+&\leq
+\sup_{\dskx(\alpha, r)} \abs{f(z)} \cdot \rho^m.
+\end{align*}
+Sedaj preprosto pošljemo $\rho$ proti $0$.
+\end{proof}
+
+\datum{2022-5-11}
+
+\begin{trditev}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna. Funkcija $f$
+ima v $\alpha$ pol stopnje $N$ natanko tedaj, ko jo lahko zapišemo
+v obliki
+\[
+f(z) = \frac{g(z)}{(z - \alpha)^N},
+\]
+kjer je $g \colon \dsk(\alpha, r) \to \C$ holomorfna in
+$g(\alpha) \ne 0$.
+\end{trditev}
+
+\begin{proof}
+Obe funkciji razvijemo v Laurentovo vrsto.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna. Funkcija $f$
+ima v $\alpha$ pol natanko tedaj, ko velja
+\[
+\lim_{z \to \alpha} \abs{f(z)} = \infty.
+\]
+\end{izrek}
+
+\begin{proof}
+Če ima $f$ v $\alpha$ pol, jo zapišemo v obliki
+\[
+f(z) = \frac{g(z)}{(z - \alpha)^N},
+\]
+od koder očitno sledi zgornja limita.
+
+Denimo, da velja
+\[
+\lim_{z \to \alpha} \abs{f(z)} = \infty.
+\]
+Tedaj obstaja tak $\rho < r$, da je $f(z) \ne 0$ na
+$\dskx(\alpha, \rho)$. Funkcija
+\[
+h(z) = \frac{1}{f(z)}
+\]
+je torej holomorfna na $\dskx(\alpha, \rho)$. Opazimo, da ima $h$
+v $\alpha$ odpravljivo singularnost, saj je
+\[
+\lim_{z \to \alpha} h(z) = 0.
+\]
+Funkcijo $h$ lahko celo zapišemo v obliki $(z - \alpha)^N k(z)$,
+kjer je $k(\alpha) \ne 0$ in je $k$ holomorfna na
+$\dsk(\alpha, \rho)$. Sledi, da je
+\[
+f(z) = \frac{\frac{1}{k(z)}}{(z - \alpha)^N}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna. Funkcija $f$
+ima v $\alpha$ bistveno singularnost natanko tedaj, ko je
+\[
+\oline{f(\dskx(\alpha, r'))} = \C
+\]
+za vse $r' < r$.
+\end{izrek}
+
+\begin{proof}
+Če $f$ v $\alpha$ nima bistvene singularnosti, je $\alpha$
+odpravljiva singularnost ali pol -- v obeh primerih zgornja slika
+ni gosta v $\C$ za dovolj majhen $r'$. Če je slika gosta v $\C$ za
+vse dovolj majhne $r'$, je torej $\alpha$ bistvena singularnost.
+
+Denimo, da za vse $r' < r$ slika $f(\dskx(\alpha, r'))$ ni
+gosta v $\C$. Obstajata torej tak $A$ in $\rho$, da je
+\[
+f(\dskx(\alpha, r')) \cap \dsk(A, \rho) = \emptyset,
+\]
+oziroma, da je
+\[
+\abs{f(z) - A} \geq \rho
+\]
+za vsak $z \in \dskx(\alpha, r')$. Funkcija
+\[
+h(z) = \frac{1}{f(z) - A}
+\]
+je torej holomorfna na $\dskx(\alpha, r')$, poleg tega pa je
+\[
+\abs{h(z)} \leq \frac{1}{\rho}.
+\]
+Sledi, da ima $h$ v $\alpha$ odpravljivo singularnost. Zapišemo
+lahko torej
+\[
+h(z) = (z - \alpha)^N k(z),
+\]
+kjer je $k$ holomorfna na $\dsk(\alpha, r')$ in $k(\alpha) \ne 0$.
+Dobimo
+\[
+f(z) = A + \frac{\frac{1}{k(z)}}{(z - \alpha)^N}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Veliki Picardov]\index{Izrek!Veliki Picardov}
+Naj bo $f \colon \dskx(\alpha, r) \to \C$ holomorfna funkcija z
+bistveno singularnostjo v $\alpha$. Tedaj $f$ na $\dskx(\alpha, r)$
+neskončnokrat zavzame vse vrednosti v $\C$ z izjemo mogoče ene.
+\end{izrek}
+
+\begin{izrek}[Mali Picardov]\index{Izrek!Mali Picardov}
+\label{iz:mpc}
+Naj bo $f \colon \C \to \C$ nekonstantna cela holomorfna funkcija.
+Tedaj $f$ zavzame vse vrednosti v $\C$ z izjemo morda ene.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+g(z) = f\left(\frac{1}{z}\right).
+\]
+Sledi, da je $g$ holomorfna na $\C \setminus \set{0}$.
+
+Če je $0$ odpravljiva singularnost $g$, je $g$ na nekem disku
+$\dskx(0, r)$ omejena. Sklepamo, da je $f$ omejena na
+$\C \setminus \dsk\left(0, \frac{1}{r}\right)$, zato je omejena na
+$\C$ in konstantna, kar je protislovje.
+
+Denimo, da je $0$ pol stopnje $N$. Funkcijo $g$ lahko torej na
+$\dskx(0, 2)$ zapišemo kot
+\[
+g(z) = \frac{h(z)}{z^N},
+\]
+kjer je $h(0) \ne 0$ in je $h$ holomorfna. Sledi, da je $h$ omejena
+na $\oline{\dskx(0, 1)}$ s konstantno $M$. Dobimo, da je
+\[
+\abs{f(z)} = \abs{g\left(\frac{1}{z}\right)} \leq M \abs{z}^N
+\]
+za vse $\abs{z} \geq 1$. Ker je $f$ omejena na $\oline{\dsk(0,1)}$,
+je omejena s polinomom. Sledi, da je $f$ nekonstanten polinom, zato
+je po osnovnem izreku algebre surjektivna.
+
+Če je $0$ bistvena singularnost funkcije $g$, uporabimo Veliki
+Picardov izrek.
+\end{proof}
+
+\begin{opomba}
+Vsaka holomorfna funkcija
+$f \colon \C \setminus \oline{\dsk(0,R)} \to \C$ ima izolirano
+singularnost v $\infty$. Tip singularnosti določimo s funkcijo
+$g(z) = f\left(\frac{1}{z}\right)$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $D \subseteq \C$ odprta množica, $A \subseteq D$ pa
+diskretna množica brez stekališča v $D$. Pravimo, da je holomorfna
+funkcija $f \colon D \setminus A \to \C$
+\emph{meromorfna}\index{Funkcija!Meromorfna} na $D$, če ima v vsaki
+točki $A$ pol.
+\end{definicija}
+
+\begin{opomba}
+Meromorfne funkcije lahko vidimo kot preslikave
+$f \colon D \to \widehat{\C}$, kjer $f$ ni konstantno enaka
+$\infty$ na nobeni komponenti $D$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $D$ območje in $f \colon D \to \widehat{\C}$ meromorfna
+funkcija, ki ni identično enaka $0$. Tedaj množica ničel $f$ nima
+stekališča v $D$.
+\end{trditev}
+
+\begin{proof}
+Ker je množica $D \setminus A$ povezana, so edina možna stekališča
+na njenem robu, torej v množici $A$. Stekališča pa ne morejo biti v
+$A$, saj so te točke poli.
+\end{proof}
+
+\begin{opomba}
+Naj bo $D$ območje. Funkcija $f$ je meromorfna na $D$ natanko
+tedaj, ko je oblike
+\[
+f(z) = \frac{g(z)}{h(z)},
+\]
+kjer sta $g, h \colon D \to \C$ holomorfni in $h \not \equiv 0$.
+Meromorfne funkcije tvorijo polje ulomkov nad kolobarjem
+$\mathcal{O}(D)$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $D \subseteq \C$ odprta množica in $\alpha \in D$ izolirana
+singularna točka za holomorfno funkcijo
+$f \colon D \setminus \set{\alpha} \to \C$. Koeficient $a_{-1}$
+pri razvoju $f$ v Laurentovo vrsto imenujemo
+\emph{residuum}\index{Funkcija!Residuum} funkcije $f$ v točki
+$\alpha$. Označimo ga z $a_{-1} = \Res(f, \alpha)$.
+\end{definicija}
+
+\begin{izrek}[O residuih]\index{Izrek!O residuih}
+Naj bo $D$ omejena odprta množica z odsekoma gladkim robom,
+sestavljenim iz končnega števila pozitivno orientiranih krivulj.
+Naj bodo $\alpha_1, \dots, \alpha_N \in D$,
+$A = \setb{\alpha_n}{1 \leq n \leq N}$ in
+\[
+f \in \mathcal{O}(D \setminus A) \cap
+\mathcal{C}\left(\oline{D} \setminus A\right).
+\]
+Tedaj je
+\[
+\frac{1}{2 \pi i} \lint_{\partial D} f(z)\,dz =
+\sum_{n = 1}^N \Res(f, \alpha_n).
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $r > 0$ tako število, da za vsaka $n$ in $m$ velja
+\[
+\oline{\dsk(\alpha_n, r)} \subseteq D
+\quad \text{in} \quad
+\oline{\dsk(\alpha_n, r)} \cap \oline{\dsk(\alpha_m, r)} =
+\emptyset.
+\]
+Po Cauchyjevem izreku sledi, da je
+\[
+\lint_{\partial D} f(z)\,dz =
+\sum_{n = 1}^N \lint_{\partial \dsk(\alpha_n, r)} f(z)\,dz,
+\]
+kjer so krožnice orientirane pozitivno glede na diske. Po
+izreku~\ref{iz:lau} pa je
+\[
+\lint_{\partial \dsk(\alpha_n, r)} f(z)\,dz = 2 \pi i a_{-1}.
+\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj ima funkcija $f$ v $\alpha$ pol stopnje $N$. Tedaj je
+\[
+\Res(f, \alpha) =
+\frac{1}{(N-1)!} \lim_{z \to \alpha}
+\frac{d^{N-1}}{dz^{N-1}} \left((z - \alpha)^N f(z)\right).
+\]
+\end{trditev}
+
+\begin{proof}
+Funkcijo $f$ razvijemo v Laurentovo vrsto okoli $\alpha$.
+\end{proof}
+
+\datum{2022-5-16}
+
+\begin{trditev}
+Naj bo
+\[
+f(z) = \frac{p(z)}{q(z)}
+\]
+racionalna funkcija, kjer sta $p$ in $q$ polinoma in
+$\deg p + 2 \leq \deg q$. Naj bo $q(x) \ne 0$ za vse $x \in \R$.
+Tedaj je
+\[
+\int_{-\infty}^\infty f(x)\,dx = 2 \pi i \cdot
+\sum_{\substack{q(\alpha) = 0 \\ \Im \alpha > 0}} \Res(f, \alpha).
+\]
+\end{trditev}
+
+\begin{proof}
+Integral obstaja zaradi pogoja s stopnjami. Naj bo
+\[
+D_R = \setb{z \in \C}{\Im z > 0 \land \abs{z} < R}.
+\]
+Naj bo $R$ tak, da $D_R$ vsebuje vse pole $f$ v zgornji polravnini.
+Sledi, da je
+\[
+\lint_{\partial D_R} f(z)\,dz = 2 \pi i \cdot
+\sum_{\substack{q(\alpha) = 0 \\ \Im \alpha > 0}} \Res(f, \alpha).
+\]
+Dovolj je tako dokazati, da je
+\[
+\lim_{R \to \infty} \lint_{\gamma_R} f(z)\,dz = 0,
+\]
+kjer je
+\[
+\gamma_R = \setb{z \in \C}{\Im z \geq 0 \land \abs{z} = R}.
+\]
+Krivuljo $\gamma_R$ parametriziramo kot
+$\varphi \mapsto R e^{i \varphi}$. Dobimo
+\[
+\abs{\lint_{\gamma_R} f(z)\,dz} =
+\abs{\int_0^\pi f(R e^{i \varphi})
+R i e^{i \varphi}\,d\varphi} \leq
+\int_0^\pi
+R \cdot \abs{f(R e^{i \varphi})}\,d\varphi.
+\]
+Ocenimo lahko
+\[
+R \cdot \abs{f(z)} \leq
+\frac{\abs{a_m} R^m + \dots + \abs{a_0}}
+{\abs{b_n} R^n - \dots - \abs{b_0}} =
+R^{m+1-n} \cdot
+\frac{\abs{a_m} + \dots + \abs{a_0} \frac{1}{R^m}}
+{\abs{b_n} - \dots - \abs{b_0} \frac{1}{R^n}},
+\]
+od koder sledi, da je
+\[
+\lim_{R \to \infty} R \abs{f(R e^{i \varphi})} = 0,
+\]
+konvergenca pa je enakomerna. Zgornji integral je torej res enak
+$0$.
+\end{proof}
+
+\begin{izrek}[Princip argumenta]\index{Izrek!Princip argumenta}
+Naj bo $\Omega \subseteq \C$ odprta množica, $f$ pa meromorfna na
+$\Omega$. Naj bo $D \subseteq \oline{D} \subseteq \Omega$ odprta
+podmnožica z odsekoma gladkim robom, sestavljenim iz končnega
+števila odsekoma gladkih krivulj, orientiranih pozitivno glede na
+$D$. Če $f$ nima ničel in polov na $\partial D$, je
+\[
+\frac{1}{2 \pi i} \lint_{\partial D} \frac{f'(z)}{f(z)}\,dz =
+N_f - P_f,
+\]
+kjer je $N_f$ število ničel, $P_f$ pa število polov $f$ na $D$,
+štetimi z večkratnosti.
+\end{izrek}
+
+\begin{proof}
+Naj ima $f$ v $\alpha$ ničlo ali pol. V okolici $\alpha$ lahko
+torej zapišemo
+\[
+f(z) = (z - \alpha)^m g(z),
+\]
+kjer je $g$ holomorfna v okolici $\alpha$ in $g(\alpha) \ne 0$.
+Velja
+\[
+f'(z) = m (z - \alpha)^{m-1} g(z) + (z - \alpha)^m g'(z).
+\]
+Na dovolj majhni okolici $\alpha$ je $g(z) \ne 0$. Tedaj lahko
+zapišemo
+\[
+\frac{f'(z)}{f(z)} = \frac{m}{z - \alpha} + \frac{g'(z)}{g(z)}.
+\]
+Drugi člen je holomorfen v okolici $\alpha$, zato je
+\[
+\Res\left(\frac{f'}{f}, \alpha\right) = m. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Rouché]\index{Izrek!Rouché}
+Naj bo $\Omega \subseteq \C$ odprta množica in
+$D \subseteq \oline{D} \subseteq \Omega$ odprta podmnožica z
+odsekoma gladkim robom, sestavljenim iz končnega števila odsekoma
+gladkih krivulj, orientiranih pozitivno glede na $D$. Naj bo
+$f \colon [0, 1] \times \Omega \to \C$ taka zvezna preslikava, da
+za $f_t(z) = f(t,z)$ velja, da je $f_t$ holomorfna na $\Omega$ in
+je tudi $f_t'$ zvezna.
+
+Denimo, da $f_t$ nima ničel na $\partial D$
+za vsak $t \in [0, 1]$. Tedaj imata $f_0$ in $f_1$ enako število
+ničel na $D$, štetih z večkratnostmi.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+F(t) =
+\frac{1}{2 \pi i} \lint_{\partial D} \frac{f_t'(z)}{f_t(z)}\,dz.
+\]
+Ker je integrirana funkcija zvezna v $(t, z)$, je $F$ zvezna. Po
+prejšnji trditvi $F$ zavzame le celoštevilske vrednosti, zato je
+konstantna.
+\end{proof}
+
+\begin{posledica}
+Naj bo $\Omega \subseteq \C$ odprta množica in
+$D \subseteq \oline{D} \subseteq \Omega$ odprta podmnožica z
+odsekoma gladkim robom, sestavljenim iz končnega števila odsekoma
+gladkih krivulj, orientiranih pozitivno glede na $D$. Naj bosta
+$f, g \colon \Omega \to \C$ holomorfni funkciji, za kateri na
+$\partial D$ velja
+\[
+\abs{g(z)} < \abs{f(z)}.
+\]
+Tedaj imata $f$ in $f+g$ enako število ničel na $D$, štetih z
+večkratnostmi.
+\end{posledica}
+
+\begin{proof}
+Uporabimo Rouchéjev izrek za $f + t \cdot g$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \C$ odprta množica in
+$\oline{\dsk(\alpha, r)} \subseteq D$. Naj bo $f \colon D \to \C$
+holomorfna funkcija, za katero je
+\[
+\abs{f(\alpha)} < \min_{\partial(\alpha, r)} \abs{f(z)}.
+\]
+Tedaj ima $f$ ničlo na $\dsk(\alpha, r)$.
+\end{posledica}
+
+\begin{proof}
+Naj bo $F(z) = f(z) - f(\alpha)$. Po Rouchéjevem izreku imata $F$
+in $f$ enako število ničel na $\dsk(\alpha, r)$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $D$ območje in $f \colon D \to \C$ nekonstantna holomorfna
+funkcija. Tedaj je $f$ odprta preslikava.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\alpha \in D$. Funkcijo $f$ lahko v okolici $\alpha$
+zapišemo kot
+\[
+f(z) = f(\alpha) + (z - \alpha)^m g(z),
+\]
+kjer je $g$ holomorfna v okolici $\alpha$ in velja
+$g(\alpha) \ne 0$. Naj bo $g(z) \ne 0$ na
+$\oline{\dsk(\alpha, r)} \subseteq D$. Velja
+\[
+\abs{(z - \alpha)^m g(z)} \geq
+r^m \cdot \min_{\partial \dsk(\alpha, r)} \abs{g(z)} > 0.
+\]
+Vzemimo tak $w \in \C$, da je
+\[
+\abs{f(\alpha) - w} <
+r^m \cdot \min_{\partial \dsk(\alpha, r)} \abs{g(z)}.
+\]
+Velja
+\[
+f(z) - w = (f(\alpha) - w) + (z - \alpha)^m g(z).
+\]
+Funkcija $z \mapsto f(z) - w$ ima torej na $\dsk(\alpha, r)$ enako
+število ničel kot $(z - \alpha)^m g(z)$. Sledi, da je
+\[
+\dsk\left(f(\alpha),
+r^m \cdot \min_{\partial \dsk(\alpha, r)} \abs{g(z)}\right)
+\subseteq
+f(\dsk(\alpha, r)). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+S tem izrekom lahko enostavno dokažemo princip maksima.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $D$ zvezdasta odprta množica v $\C$, $f \colon D \to \C$ pa
+holomorfna funkcija brez ničel. Tedaj obstaja holomorfna funkcija
+$g \colon D \to \C$, za katero na $D$ velja $f(z) = e^{g(z)}$.
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+g(z) = \int_\alpha^z \frac{f'(\xi)}{f(\xi)}\,d\xi,
+\]
+kjer je $\alpha$ točka iz definicije zvezdaste množice. Funkcija
+$g$ je torej dobro definirana in holomorfna z odvodom\footnote{Glej
+dokaz izreka~\ref{iz:mor}.}
+\[
+g'(z) = \frac{f'(z)}{f(z)}.
+\]
+Velja torej
+\[
+\left(f \cdot e^{-g}\right) =
+f' \cdot e^{-g}  fg' \cdot e^{-g} = 0.
+\]
+Sledi, da je $g \cdot e^{-g}$ neničelna konstanta $e^A$ in
+\[
+f = e^{g + A}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Holomorfne funkcije kot preslikave}
+
+\begin{izrek}[O inverzni funkciji]\index{Izrek!O inverzni funkciji}
+Naj bo $D \subseteq \C$ odprta množica in $f \colon D \to \C$
+holomorfna funkcija. Naj bo $\alpha \in D$ taka točka, da je
+$f'(\alpha) \ne 0$. Tedaj obstajata taki odprti okolici $U$ in $V$
+točk $\alpha$ in $f(\alpha)$, da je $f \colon U \to V$ bijekcija in
+$f^{-1} \colon V \to U$ holomorfna.
+\end{izrek}
+
+\begin{proof}
+Vemo, da je $d_\alpha f = f'(\alpha)\,dz$. Ker je
+$f'(\alpha) \ne 0$, je diferencial $\C$ in $\R$-linearen
+avtomorfizem $\C$ oziroma $\R^2$. Po izreku o inverzni preslikavi
+obstajata taki okolici $U$ in $V$, da je $f \colon U \to V$
+difeomorfizem. Naj bo $g = f^{-1} \colon V \to U$ in
+$w, w_0 \in V$. Naj bosta $z, z_0 \in U$ taki točki, da je
+$f(z) = w$ in $f(z_0) = w_0$ (ti sta enolično določeni). Dobimo
+\[
+\lim_{w \to w_0} \frac{g(w_0) - g(w)}{w_0 - w} =
+\lim_{z \to z_0} \frac{z_0 - z}{f(z_0) - f(z)} =
+\frac{1}{f'(z_0)},
+\]
+zato je $g$ holomorfna.
+\end{proof}
+
+\begin{opomba}
+Holomorfni funkciji, ki je bijekcija in ima holomorfen inverz,
+pravimo \emph{biholomorfizem}\index{Funkcija!Biholomorfizem}.
+\end{opomba}
+
+\begin{posledica}
+Naj bo $D$ območje, $f \colon D \to \C$ nekonstantna holomorfna
+funkcija in $\alpha \in D$. Naj bo $m \in \N$ red ničle funkcije
+$z \mapsto f(z) - f(\alpha)$. Potem obstajajo taka okolica $U$
+točke $\alpha$ v $D$, holomorfna funkcija $\Phi \colon U \to \C$ in
+$r > 0$, da je
+
+\begin{enumerate}[i)]
+\item $f(z) = f(\alpha) + \Phi(z)^m$ na $U$,
+\item $\Phi'(z) \ne 0$ na $U$, $\Phi(\alpha) = 0$ in
+$\Phi \colon U \to \dsk(0, r)$ je
+biholomorfizem.
+\end{enumerate}
+\end{posledica}
+
+\begin{proof}
+Vemo, da je
+\[
+f(z) = f(\alpha) + (z - \alpha)^m g(z),
+\]
+kjer je $m \in \N$ in je $g$ funkcija, holomorfna na okolici
+$\alpha$, in je $g(\alpha) \ne 0$. Funkcija $g$ ima torej na dovolj
+majhni okolici logaritem in zato poljuben koren -- obstaja taka
+holomorfna funkcija $h \colon \dsk(\alpha, R) \to \C$, da je
+\[
+g = h^m.
+\]
+Naj bo $\Phi(z) = (z - \alpha) \cdot h(z)$. Dobimo, da na
+$\dsk(\alpha, R)$ velja
+\[
+f(z) = f(\alpha) + \Phi(z)^m.
+\]
+Velja še
+\[
+\Phi(z)' = h(z) + (z - \alpha) h'(z),
+\]
+zato je $\Phi'(\alpha) \ne 0$ in $\Phi(\alpha) = 0$. Po izreku o
+inverzni funkciji je $\Phi$ lokalni biholomorfizem.
+\end{proof}
+
+\begin{posledica}
+Naj bo $f \colon D \to \C$ holomorfna in injektivna funkcija. Tedaj
+je $f'(z) \ne 0$ na $D$.
+\end{posledica}
+
+\begin{proof}
+Denimo, da je $f'(\alpha) = 0$. Zapišemo lahko
+\[
+f(z) = f(\alpha) + \Phi(z)^m,
+\]
+kjer je $\Phi(\alpha) = 0$ in $\Phi'(z) \ne 0$ v okolici $\alpha$,
+$\Phi$ pa je biholomorfna preslikava med okolico $U$ točke $\alpha$
+in $\dsk(0, r)$. Dobimo torej $f'(z) = m \Phi(z)^{m-1} \Phi'(z)$,
+zato je $f'(\alpha) = 0$ ekvivalentno $m \geq 2$. Ker pa je
+$z \mapsto z^m$ na $\dsk(0, r)$ injektivna natanko tedaj, ko je
+$m = 1$, smo prišli do protislovja.
+\end{proof}
+
+\begin{posledica}
+Naj bo $D \subseteq \C$ odprta množica, $f \colon D \to \C$ pa
+holomorfna in injektivna funkcija. Tedaj je $f \colon D \to f(D)$
+biholomorfna.
+\end{posledica}
+
+\begin{proof}
+Očitno je $f$ bijektivna in na nobeni komponenti $D$ ni konstantna.
+Sledi, da je $f(D)$ odprta množica in $f' \ne 0$ na $D$. Po izreku
+o inverzni funkciji je $f^{-1}$ holomorfna na okolicah $f(\alpha)$,
+zato je holomorfna na $f(D)$.
+\end{proof}
+
+\newpage
+
+\subsection{Möbiusove transformacije}
+
+\begin{definicija}
+Naj bodo $a, b, c, d \in \C$ taka števila, da je $ad - bc \ne 0$.
+Preslikavi
+\[
+z \mapsto \frac{az + b}{cz + d}
+\]
+pravimo
+\emph{Möbiusova transformacija}\index{Funkcija!Möbiusova transformacija}
+ali \emph{lomljena linearna prelikava}.
+\end{definicija}
+
+\begin{opomba}
+Möbiusova transformacija je meromorfna funkcija na $\widehat{\C}$.
+\end{opomba}
+
+\begin{opomba}
+Möbiusove transformacije so homeomorfizmi.
+\end{opomba}
+
+\begin{opomba}
+Množica Möbiusovih transformacij z operacijo kompozituma je grupa,
+izomorfna $\operatorname{SL}_2(\C)$.
+\end{opomba}
+
+\begin{trditev}
+Vsaka Möbiusova transformacija je kompozitum translacij, sučnih
+raztegov in inverzij.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Möbiusove transformacije slikajo premice in krožnice v premice in
+krožnice.
+\end{trditev}
+
+\begin{proof}
+Translacije, sučni raztegi in inverzije slikajo premice in krožnice
+v premice in krožnice.
+\end{proof}
+
+\begin{trditev}
+Naj bodo $\alpha$, $\beta$ in $\gamma$ tri različne točke v
+$\widehat{\C}$. Tedaj obstaja Möbiusova transformacija $\varphi$,
+za katero je
+\[
+\varphi(\alpha) = 0, \quad
+\varphi(\beta) = 1
+\quad \text{in} \quad
+\varphi(\gamma) = \infty.
+\]
+\end{trditev}
+
+\begin{proof}
+Če je $\gamma \ne \infty$, najprej naredimo inverzijo v $\gamma$,
+nato pa zaključimo s translacijo, ki $\alpha$ premakne v $0$, in
+zaključimo s sučnim raztegom.
+\end{proof}
+
+\newpage
+
+\subsection{Konformne preslikave}
+
+\begin{definicija}
+Naj bosta $(M, d)$ in $(N, \rho)$ metrična prostora. Preslikava
+$F \colon (M, d) \to (N, \rho)$ je
+\emph{izometrija}\index{Preslikava!Izometrija}, če za vse
+$x, y \in M$ velja
+\[
+\rho(F(x), F(y)) = d(x, y).
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $D \subseteq \C$ odprta množica, $\alpha \in D$ in
+$f \colon D \to \C$ funkcija. Funkcija $f$
+\emph{ohranja kote}\index{Funkcija!Ohranja kote} v točki $\alpha$,
+če obstaja tak $\varphi \in [0, 2 \pi)$, da je
+\[
+\lim_{r \to 0}
+\frac{f(\alpha + r e^{i \theta}) - f(\alpha)}
+{\abs{f(\alpha + r e^{i \theta}) - f(\alpha)}} =
+e^{i \varphi} \cdot e^{i \theta}
+\]
+za vsak $\theta \in [0, 2 \pi)$. Če $f$ ohranja kote za vsak
+$\alpha \in D$, je $f$ \emph{komformna}\index{Funkcija!Komformna}
+na $D$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $D \subseteq \C$ odprta množica in $f \colon D \to \C$
+funkcija.
+
+\begin{enumerate}[i)]
+\item Če je $f$ holomorfna na $D$ in $f' \ne 0$ na $D$, je $f$
+konformna na $D$.
+\item Če je $f$ diferenciabilna in konformna na $D$, je holomorfna
+na $D$ z neničelnim odvodom.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Denimo, da je $f$ holomorfna. Naj bo $\alpha \in D$. Velja
+\[
+f(\alpha + h) = f(\alpha) + f'(\alpha) h + o(h),
+\]
+oziroma
+\[
+f(\alpha + r e^{i \theta}) - f(\alpha) =
+f'(\alpha) r e^{i \theta} + o(r).
+\]
+Dobimo torej
+\[
+\frac{f(\alpha + r e^{i \theta}) - f(\alpha)}
+{\abs{f(\alpha + r e^{i \theta}) - f(\alpha)}} =
+\frac{f'(\alpha) r e^{i \theta} + o(r)}
+{\abs{f'(\alpha) r e^{i \theta} + o(r)}} =
+\frac{f'(\alpha) e^{i \theta} + \frac{o(r)}{r}}
+{\abs{f'(\alpha) e^{i \theta} + \frac{o(r)}{r}}},
+\]
+kar je v limiti enako
+\[
+\frac{f'(\alpha)}{\abs{f'(\alpha)}} e^{i \theta}.
+\]
+Naj bo sedaj $f$ diferenciabilna in konformna. Za $\alpha \in D$
+velja
+\[
+f(\alpha + r e^{i \theta}) - f(\alpha) =
+f_z(\alpha) r e^{i \theta} +
+f_{\oline{z}}(\alpha) r e^{i \theta} + o(r).
+\]
+Če je $d_\alpha f = 0$, je $f_{\oline{z}}(\alpha) = 0$ in je $f$
+holomorfna v $\alpha$. Sicer ima $d_\alpha f$ največ
+enodimenzionalno jedro. Za $e^{i \theta} \not \in \ker d_\alpha f$
+dobimo
+\[
+e^{i \varphi} \cdot e^{i \theta} =
+\lim_{r \to 0}
+\frac{f(\alpha + r e^{i \theta}) - f(\alpha)}
+{\abs{f(\alpha + r e^{i \theta}) - f(\alpha)}} =
+\frac{f_z(\alpha) e^{i \theta} +
+f_{\oline{z}}(\alpha) e^{-i \theta}}
+{\abs{f_z(\alpha) e^{i \theta} +
+f_{\oline{z}}(\alpha) e^{-i \theta}}}
+\]
+S kvadriranjem dobimo
+\begin{align*}
+&f_z(\alpha)^2 e^{2 i \theta} +
+f_z(\alpha)f_{\oline{z}}(\alpha) +
+f_{\oline{z}}(\alpha)^2 e^{-2 i \theta}
+\\
+={}&
+\abs{f_z(\alpha)}^2 e^{2 i \varphi} e^{2 i \theta} +
+f_z(\alpha) \oline{f_{\oline{z}}(\alpha)}
+e^{2 i \varphi} e^{4 i \theta} +
+f_{\oline{z}}(\alpha) \oline{f(\alpha)} e^{2 i \varphi} +
+\abs{f_{\oline{z}}(\alpha)}^2 e^{2 i \varphi} e^{2 i \theta}.
+\end{align*}
+Spomnimo se, da je
+\[
+\setb{\frac{1}{\sqrt{2 \pi}} e^{inx}}{n \in \Z}
+\]
+kompleten ortonormiran sistem. Zgornja izraza sta tako Fourierovi
+vrsti, zato se ujemata v istoležečih koeficientih. Sledi, da je
+$f_{\oline{z}}(\alpha) = 0$.
+
+Denimo še, da je $f'(\alpha) = 0$. Sledi, da lahko na dovolj majhni
+okolici zapišemo
+\[
+f(z) = f(\alpha) + (z - \alpha)^m h(z)
+\]
+za nek $m \geq 2$. Iskana limita je v tem primeru enaka
+\[
+e^{im \theta} \frac{h(\alpha)}{\abs{h(\alpha)}},
+\]
+zato $f$ ne ohranja kotov v $\alpha$.
+\end{proof}
+
+\begin{definicija}
+Območji $D$ in $\Omega$ v $\C$ sta
+\emph{konformno ekvivalentni}\index{Območje!Konformna ekvivalenca},
+če obstaja biholomorfna preslikava $F \colon D \to \Omega$.
+\end{definicija}
+
+\begin{opomba}
+Če sta dve območji konformno ekvivalentni, sta homeomorfni.
+\end{opomba}
+
+\datum{2022-5-23}
+
+\begin{izrek}[Riemann]\index{Izrek!Riemann}
+Naj bo $D \subset \C$ enostavno povezano območje. Tedaj je $D$
+konformno ekvivalentna enotskemu disku $\dsk$.
+\end{izrek}
+
+\begin{opomba}
+Obstaja še en razred enostavno povezanih množic -- Riemannova
+sfera.
+\end{opomba}
+
+\begin{definicija}
+\emph{Avtomorfizem}\index{Preslikava!Avtomorfizem} na $D$ je vsaka
+biholomorfna preslikava $f \colon D \to D$. Grupo avtomorfizmov
+označimo z $\Aut(D)$.
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+\Aut(\C) = \setb{z \mapsto \alpha z + \beta}{\alpha \ne 0}.
+\]
+\end{trditev}
+
+\begin{proof}
+S sučnim raztegom lahko privzamemo, da je $f(0) = 0$ in $f(1) = 1$.
+Funkcija $f$ ima v $\infty$ izolirano singularnost. Ker je $f$
+nekonstantna in injektivna, ta singularnost ni bistvena -- sicer
+bi slika vsake okolice $\infty$ bila gosta v $\C$, oziroma
+\[
+f(\dsk) \cap f\left(\C \setminus \oline{\dsk}\right) \ne \emptyset,
+\]
+kar ni mogoče. Sledi, da je $f$ polinom.\footnote{Glej dokaz
+izreka~\ref{iz:mpc}.} Ker je $0$ njena edina ničla, je oblike
+$f(z) = z^m$, ki pa je injektivna le, če je $m = 1$.
+\end{proof}
+
+\begin{trditev}
+Velja
+\[
+\Aut(\widehat{\C}) =
+\setb{z \mapsto \frac{az + b}{cz + d}}{ad - bc = 1}.
+\]
+\end{trditev}
+
+\begin{proof}
+Z Möbiusovo transformacijo lahko privzamemo, da je $f(0) = 0$,
+$f(1) = 1$ in $f(\infty) = \infty$. Funkcija $f$ je torej cela
+holomorfna preslikava, ki je tudi avtomorfizem $\C$. Sledi, da je
+$f \equiv \id$.
+\end{proof}
+
+\begin{trditev}[Schwarzova lema]\index{Lema!Schwarz}
+Naj bo $f \colon \dsk \to \oline{\dsk}$ holomorfna funkcija, za
+katero je $f(0) = 0$. Tedaj velja $\abs{f(z)} \leq \abs{z}$ za vse
+$z \in \dsk$ in $\abs{f'(0)} \leq 1$. Velja $\abs{f(z)} = \abs{z}$
+za nek neničelni $z$ ali $\abs{f'(0)} = 1$, je $f$ oblike
+$f(z) = \alpha \cdot z$, kjer je $\abs{\alpha} = 1$.
+\end{trditev}
+
+\begin{proof}
+Oglejmo si funkcijo
+\[
+g(z) = \frac{f(z)}{z}.
+\]
+Vidimo, da je $g$ holomorfna na $\dskx$, ker pa je $f(0) = 0$, ima
+v $0$ odpravljivo singularnost in je holomorfna na $\dsk$, saj je
+\[
+g(0) = \lim_{z \to 0} \frac{f(z) - f(0)}{z - 0} = f'(0).
+\]
+Po principu maksima na $\dsk(0, r)$ velja
+\[
+\abs{g(z)} \leq \frac{1}{r},
+\]
+od koder v limiti dobimo $\abs{g(z)} \leq 1$. V neenakostih veljajo
+enakosti natanko tedaj, ko je $\abs{g(z)} = 1$ za nek $z \in \dsk$,
+od koder sledi, da je $g$ konstantna.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+\Aut(\dsk) =
+\setb{e^{i \theta} \frac{\alpha - z}{1 - \oline{\alpha} z}}
+{\theta \in [0, 2 \pi) \land \alpha \in \dsk}.
+\]
+\end{izrek}
+
+\begin{proof}
+Zgornje funkcije so res avtomorfizmi. S komponiranjem lahko
+dosežemo, da je $f(0) = 0$, od koder sledi $\abs{f'(0)} \leq 1$.
+Ker pa je tudi $f^{-1}$ avtomorfizem, ki slika $0$ v $0$, dobimo
+$\abs{f'(0)} \geq 1$, zato je $f(z) = e^{i \theta} z$.
+\end{proof}
+
+\begin{trditev}
+Naj bo $D$ enostavno povezano območje v $\C$, ki ni enako $\C$. Naj
+bo $a \in D$. Tedaj obstaja natanko en biholomorfizem iz $D$ v
+$\dsk$, ki slika $a$ v $0$ in ima v $a$ pozitiven odvod.
+\end{trditev}
+
+\begin{proof}
+Tak biholorfizem obstaja -- biholomorfizem, ki ga dobimo iz
+Riemannovega izreka, komponiramo s takim, ki sliko $a$ preslika v
+$0$, nato pa še z rotacijo. Denimo, da sta $H_1$ in $H_2$ dva taka
+biholomorfizma. Sledi, da je $H_2 \circ H_1^{-1}$ avtomorfizem
+$\dsk$, ki slika $0$ v $0$ in ima tam pozitiven odvod. To je mogoče
+le v primeru, ko je ta avtomorfizem identiteta.
+\end{proof}
+
+\begin{trditev}
+Naj bo $D$ enostavno povezano območje v $\C$, ki ni enako $\C$, in
+$a \in D$. Naj bo $g \colon D \to \dsk$ poljubna holomorfna
+funkcija, za katero je $g(a) = 0$, in $F \colon D \to \dsk$
+biholomorfizem, za katerega je $F(a) = 0$. Tedaj je
+\[
+\abs{g'(a)} \leq \abs{F'(a)}.
+\]
+\end{trditev}
+
+\begin{proof}
+Funkcija $g \circ F^{-1} \colon \dsk \to \dsk$ je holomorfna, zato
+je po Schwarzovi lemi
+\[
+\abs{(g \circ F^{-1})'(0)} \leq 1. \qedhere
+\]
+\end{proof}
