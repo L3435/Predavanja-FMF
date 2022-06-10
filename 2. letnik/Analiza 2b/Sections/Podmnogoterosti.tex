@@ -1,5 +1,7 @@
 \section{Podmnogoterosti v \titleRn{n}}
 
+\epigraph{">Zemlja je ravna."<}{-- prof.~dr.~Miran Černe}
+
 \subsection{Definicija}
 
 \datum{2022-2-14}
@@ -78,6 +80,8 @@ Naj bo $\Phi \colon D \to \R^{n+m}$ $\mathcal{C}^1$ preslikava
 ranga $n$. Potem za vsak $t_0 \in D$ obstaja njegova okolica $V$,
 da je $\Phi(V)$ podmnogoterost dimenzije $n$ v $\R^{n+m}$.
 \end{trditev}
+
+\datum{2022-2-16}
 
 \begin{proof}
 Obstaja $n \times n$ poddeterminanta $D\Phi(t_0)$, različna od $0$.
@@ -265,4 +269,495 @@ oziroma
 \Im(D\Phi)(t_0) \leq \ker(DF)(a).
 \]
 S primerjanjem dimenzij vidimo, da sta podprostora enaka.
+\end{proof}
+
+\datum{2022-2-17}
+
+\begin{opomba}
+Podmnogoterostim, katerim dodamo robne točke, pravimo
+\emph{mnogoterosti z robom}.
+\end{opomba}
+
+\newpage
+
+\subsection{Krivulje v \titleRn{3}}
+
+\subsubsection{Definicija}
+
+\begin{definicija}
+\emph{Krivulja}\index{Krivulja} je enodimenzionalna podmnogoterost
+v $\R^3$.
+\end{definicija}
+
+\begin{trditev}
+Povezane krivulje lahko parametriziramo globalno.
+\end{trditev}
+
+\begin{opomba}
+Vsaka krivulja ima neskončno mnogo regularnih parametrizacij. Velja
+\[
+\vv{\rho}' = \dot{\vv{r}}(h) \cdot h'.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\Gamma$ krivulja v $\R^3$ in
+$\vv{r} \colon [\alpha, \beta] \to \Gamma$ njena regularna
+parametrizacija. Naj bo $D$ delitev intervala $[\alpha, \beta]$.
+Naj bo
+\[
+\ell(D) =
+\sum_{i=1}^n d(\vv{r}(t_{i-1}),\vv{r}(t_i)).
+\]
+\emph{Dolžina krivulje}\index{Krivulja!Dolžina} je limita
+\[
+\lim_{\max \Delta t \to 0} \ell(D).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $\vv{r}\colon[a,b]\to\R^3$ in
+$\vv{\rho}\colon[\alpha,\beta]\to\R^3$ regularni parametrizaciji
+poti $\Gamma$. Potem je
+\[
+\int_a^b \norm{\dot{\vv{r}}(t)}\,dt =
+\int_\alpha^\beta \norm{\dot{\vv{\rho}}(t)}\,dt
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo izrek o vpeljavi nove spremenljivke.
+\end{proof}
+
+\begin{trditev}
+Naj bo $\vv{r} \in \mathcal{C}^1([\alpha, \beta])$. Tedaj je
+dolžina krivulje enaka
+\[
+\int_\alpha^\beta \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,dt =
+\int_\alpha^\beta \norm{\dot{\vv{r}}(t)}\,dt.
+\]
+\end{trditev}
+
+\begin{proof}
+Dokaz je enak dokazu izreka 5.4.6.\ v zapiskih Analize 1 prvega
+letnika.
+\end{proof}
+
+\begin{definicija}
+Naj bo $\vv{r} \colon [\alpha, \beta] \to \Gamma$ regularna
+parametrizacija krivulje $\Gamma$. Naj bo
+\[
+S(t) = \int_\alpha^t \norm{\dot{\vv{r}}(\tau)}\,d\tau.
+\]
+Za inverzno preslikavo\footnote{Ta obstaja, saj je $S' > 0$.}
+$T=S^{-1}$ parametrizacijo
+\[
+s \mapsto \vv{r}(T(s))
+\]
+imenujemo
+\emph{naravna parametrizacija}\index{Krivulja!Naravna parametrizacija}.
+\end{definicija}
+
+\begin{trditev}
+Odvod naravne parametrizacije je normiran.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\frac{d}{ds} \left(\vv{r}(T(s))\right) =
+\dot{\vv{r}}(T(s)) \cdot T'(s) =
+\frac{\dot{\vv{r}}(T(s))}{\dot{S}(T(s))} =
+\frac{\dot{\vv{r}}(T(s))}{\norm{\dot{\vv{r}}(T(s))}}. \qedhere
+\]
+\end{proof}
+
+\subsubsection{Spremljajoči trieder}
+
+\begin{definicija}
+\emph{Normalna ravnina}\index{Krivulja!Normalna, pritisnjena ravnina}
+krivulje $\vv{r}$ v točki $t$ je ravnina skozi $\vv{r}(t)$ in
+normalo $\dot{\vv{r}}(t)$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\vv{r}$ naravna $\mathcal{C}^2$ parametrizacija.
+\emph{Spremljajoči trieder} v točki $t$ so vektorji\footnote{To ni
+nujno dobra definicija.}
+\[
+\vv{T} = \dot{\vv{r}}(t),
+\quad
+\vv{N} = \frac{\vv{T}'}{\norm{\vv{T}'}}
+\quad \text{in} \quad
+\vv{B} = \vv{T} \times \vv{N}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Vektorju $\vv{N}$ pravimo \emph{vektor glavne normale}, vektorju
+$\vv{B}$ pa vektor \emph{binormale}.
+\end{opomba}
+
+\begin{definicija}
+\emph{Pritisnjena ravnina} v točki $s$ je ravnina, ki jo razpenjata
+tangentni in normalni vektor ter gre skozi $\vv{r}(s)$.
+\end{definicija}
+
+\begin{trditev}
+Pritisnjena ravnina v točki $s$ je ravnina, ki se najbolje prilega
+krivulji v okolici $\vv{r}(s)$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\vv{n} \cdot (\vv{r}(s+h)-\vv{r}(s)) =
+\vv{n} \cdot \vv{r}'(s) \cdot h +
+\vv{n} \cdot \vv{r}''(s) \cdot \frac{h^2}{2} +
+\vv{n} \cdot \vv{o}(h^3).
+\]
+Ta izraz bo najmanjši, ko bo $\vv{n} \parallel \vv{B}(s)$.
+\end{proof}
+
+\begin{trditev}
+Za regularno $\mathcal{C}^2$ parametrizacijo $\vv{r}$ krivulje
+$\Gamma$ velja
+\[
+\vv{T} = \frac{\dot{\vv{r}}(t)}{\norm{\dot{\vv{r}}(t)}},
+\quad \text{in} \quad
+\vv{N} =
+\frac{\dot{\vv{r}} \times
+\left(\ddot{\vv{r}} \times \dot{\vv{r}}\right)}
+{\norm{\dot{\vv{r}}} \cdot
+\norm{\ddot{\vv{r}} \times \dot{\vv{r}}}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo verižno pravilo.
+\end{proof}
+
+\subsubsection{Ukrivljenost krivulj}
+
+\datum{2022-2-21}
+
+\begin{definicija}
+\emph{Fleksijska ukrivljenost}\index{Krivulja!Ukrivljenost}
+je definirana kot
+\[
+\kappa(s) = \norm{\vv{r}''(s)} = \norm{\vv{T}'(s)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+\kappa = \frac{\norm{\dot{\vv{r}} \times \ddot{\vv{r}}}}{\norm{\dot{\vv{r}}}^3}.
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Pritisnjena krožnica}\index{Krivulja!Pritisnjena krožnica} je
+krožnica z radijem
+\[
+\rho(s) = \frac{1}{\kappa(s)}
+\]
+in središčem v točki
+\[
+\vv{r}(s) + \rho(s) \cdot \vv{N}(s),
+\]
+ki leži v pritisnjeni ravnini.
+\end{definicija}
+
+\begin{opomba}
+Pritisnjena krožnica je parametrizirana s
+\[
+\varphi \mapsto \vv{r} + \rho \cdot \vv{N} + \rho \cdot
+\left(\vv{T} \cdot \cos \varphi + \vv{N} \cdot \sin \varphi\right).
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Torzijska ukrivljenost}\footnote{Tudi \emph{zvitost}.}
+krivulje $\vv{r} \in \mathcal{C}^3$ je definirana kot
+\[
+\omega(s) = \norm{\vv{B}'(s)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+\omega =
+\frac{\left[\dot{\vv{r}},\ddot{\vv{r}},\dddot{\vv{r}}\right]}
+{\norm{\dot{\vv{r}} \times \ddot{\vv{r}}}^2}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Velja
+\[
+\vv{N}' = - \kappa \cdot \vv{T} + \omega \cdot \vv{B}.
+\]
+\end{trditev}
+
+\begin{proof}
+Opazimo, da velja $\vv{N}' \perp \vv{N}$, saj je $\vv{N} = 1$.
+Sedaj preprosto odvajamo zvezi
+\[
+\vv{N} \cdot \vv{T} = 0
+\quad \text{in} \quad
+\vv{N} \cdot \vv{B} = 0. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Frenet-Serretov sistem]
+\index{Izrek!Frenet-Serretov sistem}
+Velja
+\[
+\begin{bmatrix}
+\vv{T} \\
+\vv{N} \\
+\vv{B}
+\end{bmatrix}' =
+\begin{bmatrix}
+0       & \kappa  & 0      \\
+-\kappa & 0       & \omega \\
+0       & -\omega & 0
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\vv{T} \\
+\vv{N} \\
+\vv{B}
+\end{bmatrix}.
+\]
+\end{izrek}
+
+\newpage
+
+\subsection{Ploskve v \titleRn{3}}
+
+\subsubsection{Definicija}
+
+\datum{2022-2-23}
+
+\begin{definicija}
+\emph{Ploskev}\index{Ploskev} je dvodimenzionalna podmnogoterost v
+$\R^3$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Gradient}\index{Preslikava!Gradient} je vektor
+\[
+\grad F = \nabla F =
+\begin{bmatrix}
+F_x \\
+F_y \\
+F_z
+\end{bmatrix}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Gradient je pravokoten na tangentni podprostor ploskve.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $\vv{r} \colon D \to \Sigma$ regularna parametrizacija.
+Tedaj vektorja
+\[
+\vv{r_s}(s_0,t_0)
+\quad \text{in} \quad
+\vv{r_t}(s_0,t_0)
+\]
+razpenjata tangentni prostor.
+\end{trditev}
+
+\begin{proof}
+Opazimo, da sta linearno neodvisna in sta
+\[
+t \mapsto \vv{r}(s_0,t)
+\quad \text{in} \quad
+t \mapsto \vv{r}(s,t_0)
+\]
+krivulji na $\Sigma$, zato sta njuna odvoda v tangentnem prostoru.
+\end{proof}
+
+\begin{opomba}
+Velja, da je
+\[
+\vv{r_s} \times \vv{r_t}
+\]
+normalni vektor.
+\end{opomba}
+
+\subsubsection{I.~fundamentalna forma}
+
+\begin{definicija}
+Naj bo $\Sigma$ gladka ploskev v $\R^3$ z regularno parametrizacijo
+$\vv{r} \colon D \to \R^3$, kjer je $D \subseteq \R^2$. Naj bo
+\[
+E(u,v) = \vv{r_u} \cdot \vv{r_u},
+\quad
+F(u,v) = \vv{r_u} \cdot \vv{r_v}
+\quad \text{in} \quad
+G(u,v) = \vv{r_v} \cdot \vv{r_v}.
+\]
+Kvardatni formi
+\[
+(x,y) \mapsto Ex^2 + 2Fxy + Gy^2
+\]
+z matriko
+\[
+\begin{bmatrix}
+E & F \\
+F & G
+\end{bmatrix}
+(u,v)
+\]
+pravimo
+\emph{I.~fundamentalna forma}\index{Ploskev!I.~fundamentalna forma}
+ploskve $\Sigma$.
+\end{definicija}
+
+\begin{opomba}
+V vsaki točki je zgornja kvadratna forma strogo pozitivno
+definitna.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\Gamma$ krivulja na ploskvi $\Sigma$, oziroma
+\[
+\Gamma = \setb{\vv{r}(u(t), v(t))}{t \in I}.
+\]
+Tedaj je njena dolžina enaka
+\[
+\lint_I \sqrt{E \dot{u}^2 + 2F \dot{u} \dot{v} + G \dot{v}^2}\,dt.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\frac{d}{dt}\left(\vv{r}(u(t), v(t))\right) =
+\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}.
+\]
+Sledi, da je dolžina enaka
+\[
+\lint_I \abs{\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}}\,dt =
+\lint_I \sqrt{
+\left(\vv{r_u} \cdot \dot{u} + \vv{r_v} \cdot \dot{v}\right)^2
+}\,dt. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Kot $\alpha$ med koordinatnima krivuljama na ploskvi določa zveza
+\[
+\cos \alpha = \frac{F}{\sqrt{E \cdot G}}.
+\]
+\end{trditev}
+
+\datum{2022-2-28}
+
+\begin{proof}
+Naj bosta $\Gamma_1$ in $\Gamma_2$ krivulji na ploskvi $\Sigma$ s
+parametrizacijama\footnote{$\Gamma_i = \vv{r}(\gamma_i)$.}
+\[
+\gamma_1 \colon t \mapsto (u_1(t), v_1(t))
+\quad \text{in} \quad
+\gamma_2 \colon t \mapsto (u_2(t), v_2(t)).
+\]
+Naj bosta
+\[
+\dot{\vv{\Gamma_1}} =
+(\vv{r_u} \cdot \dot{u_1} + \vv{r_v} \cdot \dot{v_1})(t_1)
+\quad \text{in} \quad
+\dot{\vv{\Gamma_2}} =
+(\vv{r_u} \cdot \dot{u_2} + \vv{r_v} \cdot \dot{v_2})(t_2)
+\]
+tangentna vektorja v $\rho$. Tedaj je
+\[
+\cos \alpha = \frac{\skl{\dot{\vv{\Gamma_1}}, \dot{\vv{\Gamma_2}}}}{\norm{\dot{\vv{\Gamma_1}}} \cdot \norm{\dot{\vv{\Gamma_2}}}}.
+\]
+Označimo
+\[
+\skl{x,y}_\rho = \skl{
+\begin{bmatrix}
+E & F \\
+F & G
+\end{bmatrix}
+x, y}.
+\]
+Opazimo, da velja
+\[
+\skl{\dot{\vv{\Gamma_1}}, \dot{\vv{\Gamma_2}}} =
+\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_2}}}_\rho
+\]
+in
+\[
+\norm{\dot{\vv{\Gamma_i}}} =
+\sqrt{\skl{\dot{\vv{\gamma_i}}, \dot{\vv{\gamma_i}}}_\rho}.
+\]
+Dobimo
+\[
+\cos \alpha =
+\frac{\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_2}}}_\rho}
+{\sqrt{\skl{\dot{\vv{\gamma_1}}, \dot{\vv{\gamma_1}}}_\rho}
+\cdot
+\sqrt{\skl{\dot{\vv{\gamma_2}}, \dot{\vv{\gamma_2}}}_\rho}}.
+\]
+Sedaj preprosto vstavimo $\dot{\vv{\gamma_1}} = (1,0)$ in
+$\dot{\vv{\gamma_2}} = (0,1)$.
+\end{proof}
+
+\subsubsection{Površina ploskve}
+
+\begin{definicija}
+\emph{Površina ploskve}\index{Ploskev!Površina} $\Sigma$ z
+regularno parametrizacijo $\vv{r} \colon D \to \Sigma$ je integral
+\[
+\liint_D \abs{\vv{r_u} \times \vv{r_v}}\,du\,dv =
+\liint_D \sqrt{EG - F^2}\,du\,dv.
+\]
+\end{definicija}
+
+\begin{opomba}
+Množice z mero $0$ ne vplivajo na vrednost integrala.
+\end{opomba}
+
+\begin{posledica}
+Če je $\Sigma$ graf funkcije $f$, je njena površina enaka
+\[
+\liint_D \sqrt{1 + f_x^2 + f_y^2}\,dx\,dy.
+\]
+\end{posledica}
+
+\obvs
+
+\begin{trditev}
+Površina ploskve je neodvisna od regularne parametrizacije.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\vv{\rho} = \vv{r}(u(s,t), v(s,t))$. Sledi
+\[
+\dot{\vv{\rho_s}} = \vv{r_u} \cdot u_s + \vv{r_v} \cdot v_s
+\quad \text{in} \quad
+\dot{\vv{\rho_t}} = \vv{r_u} \cdot u_t + \vv{r_v} \cdot v_t.
+\]
+Sledi, da je
+\[
+\vv{\rho_s} \times \vv{\rho_t} =
+\left(\vv{r_v} \times \vv{r_u} \right) \cdot (u_s v_t - v_s u_t) =
+\abs{\left(\vv{r_v} \times \vv{r_u} \right)(\Phi(s,t))} \cdot
+\abs{J\Phi},
+\]
+kjer je $\Phi \colon \Omega \to D$ difeomorfizem s predpisom
+\[
+\Phi(s,t) = (u(s,t), v(s,t)). \qedhere
+\]
 \end{proof}

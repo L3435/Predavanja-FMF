@@ -57,13 +57,597 @@ odprta natanko tedaj, ko je nasičenje vsake odprte množice odprto.
 
 \obvs
 
-%\begin{figure}[H]
-%\[
-%\begin{tikzcd}[column sep=large, row sep=large]
-%X \arrow[r, "f"] \arrow[d, "q"'] & Y \\
-%\kvoc{X}{\sim} \arrow[ur, dashrightarrow, "\approx"'] &
-%\end{tikzcd}
-%\]
-%\caption{To je bilo na tabli, nekoč v prihodnosti bo najbrž
-%pomembno.}
-%\end{figure}
+\newpage
+
+\subsection{Kvocientne preslikave}
+
+\datum{2022-2-18}
+
+\begin{definicija}
+Naj bo $f \colon X \to Y$ preslikava. Preslikavi
+$\overline{f} \colon \kvoc{X}{\sim} \to Y$, ki deluje po predpisu
+$\overline{f}([x]) = f(x)$, pravimo
+\emph{inducirana preslikava}\index{Preslikava!Inducirana}.
+\end{definicija}
+
+\begin{skica}{Inducirana preslikava.}
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \arrow[r, "f"] \arrow[d, "q"']                      & Y \\
+\kvoc{X}{\sim} \arrow[ur, dashrightarrow, "\overline{f}"'] &
+\end{tikzcd}
+\]
+\end{skica}
+
+\begin{trditev}
+Naj bo $f \colon X \to Y$ preslikava, konstantna na ekvivalenčnih
+razredih.\footnote{
+$\forall x, y \in X \colon x \sim y \implies f(x) = f(y)$.}
+
+\begin{enumerate}[i)]
+\item $f$ določa inducirano preslikavo.
+\item Če je $f$ zvezna, je tudi $\overline{f}$ zvezna.
+\item $\overline{f}$ je surjektivna natanko tedaj, ko je $f$
+surjektivna.
+\item $\overline{f}$ je injektivna natanko tedaj, ko $f$ loči
+ekvivalenčne razrede.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo drugo trditev. $\overline{f}$ je zvezna natanko tedaj, ko
+je za vsako odprto množico $V \subseteq Y$ množica
+$\overline{f}^{-1}(V)$ odprta, oziroma
+\[
+q^{-1}\left(\overline{f}^{-1}(V)\right) \in \tau,
+\]
+velja pa $q^{-1}\left(\overline{f}^{-1}(V)\right) = f^{-1}(V)$.
+\end{proof}
+
+\begin{definicija}
+Surjektivna preslikava $f \colon X \to Y$ je
+\emph{kvocientna}\index{Preslikava!Kvocientna}, če za vsako
+množico $V \subseteq Y$ velja
+\[
+V \in \tau_Y \iff f^{-1}(V) \in \tau_X.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $f$ kvocientna, je njena inducirana preslikava homeomorfizem,
+zato se obnaša kot kvocientna projekcija.
+\end{opomba}
+
+\begin{opomba}
+Če je $f$ surjektivna, je kvocientna natanko tedaj, ko za vsako
+množico $V \subseteq Y$ velja
+\[
+V^{\mathsf{c}} \in \tau_Y \iff f^{-1}(V)^{\mathsf{c}} \in \tau_X.
+\]
+\end{opomba}
+
+\begin{izrek}
+Naj bo $q \colon X \to \kvoc{X}{\sim}$ kvocientna projekcija in
+$f \colon X \to Y$ kvocientna preslikava, konstantna na
+ekvivalenčnih razredih, ki loči ekvivalenčne razrede. Potem je
+$\overline{f} \colon \kvoc{X}{\sim} \to Y$ homeomorfizem.
+\end{izrek}
+
+\obvs
+
+\begin{lema}
+Naj bo $f \colon X \to Y$ zvezna in surjektivna. Če je $f$ odprta
+ali zaprta, je kvocientna.
+\end{lema}
+
+\begin{proof}
+Naj bo $f$ zaprta. Dokažimo, da je za vsako zaprto množico
+$f^{-1}(Z)$ tudi $Z$ zaprta. Ker je $f$ zaprta, je tudi
+$f\left(f^{-1}(Z)\right) $ zaprta, velja pa
+\[
+f\left(f^{-1}(Z)\right) = Z,
+\]
+saj je $f$ surjektivna.
+\end{proof}
+
+\begin{opomba}
+Če je $f \colon X \to Y$ zvezna, $X$ kompakten in $Y$ Hausdorffov,
+je $f$ zaprta.
+\end{opomba}
+
+\begin{trditev}
+Naj bosta $f \colon X \to Y$ in $g \colon Y \to Z$ preslikavi.
+
+\begin{enumerate}[i)]
+\item Če sta $f$ in $g$ kvocientni, je $g \circ f$ kvocientna.
+\item Če je $g \circ f$ kvocientna in sta $f$ in $g$ zvezni, je $g$
+kvocientna.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Če sta $f$ in $g$ kvocientni, je očitno tak tudi njun kompozitum.
+
+Če je $g \circ f$ kvocientna, je $g$ surjektivna. Velja pa
+\[
+g^{-1}(V) \in \tau_Y \implies
+f^{-1}\left(g^{-1}(V)\right) \in \tau_X \implies
+V \in \tau_Z. \qedhere
+\]
+\end{proof}
+
+\begin{zgled}
+Naj bo $X = S^1 \times S^1$ torus in
+$A = S^1 \times \set{1} \cup \set{1} \times S^1$. Tedaj je
+$\kvoc{X}{A} \approx S^2$.
+\end{zgled}
+
+\begin{proof}
+Ker sta na spodnjem diagramu $f$ in $q_1$ kvocientni, je $F$
+kvocientna in $\overline{F}$ homeomorfizem.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+I^2 \arrow[rr, "f"] \arrow[dd, "q_2"'] \arrow[ddrr, red, "F = q_1 \circ f"] & & X \arrow[dd, "q_1"]\\
+\\
+\kvoc{I^2}{\partial I^2} \arrow[rr, dashrightarrow, "\overline{F}"'] & & \kvoc{X}{A}
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je $h \colon X \to Y$ homeomorfizem, $\sim_X$ in $\sim_Y$ pa
+ekvivalenčni relaciji, za kateri velja
+$x \sim_X y \iff h(x) \sim_Y h(y)$, velja
+\[
+\kvoc{X}{\sim_X} \approx \kvoc{Y}{\sim_Y}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Topološka lastnost $L$ je
+\emph{deljiva}\index{Topološka lastnost!Deljiva}, če se s
+poljubnega topološkega prostora prenese na vsak njegov kvocientni
+prostor.
+\end{definicija}
+
+\begin{trditev}
+Naslednje topološke lastnosti so deljive:
+
+\begin{multicols}{2}
+\begin{enumerate}[i)]
+\item Trivialnost
+\item Diskretnost
+\item Separabilnost
+\item Povezanost (s potmi)
+\item Lokalna povezanost (s potmi)
+\item Kompaktnost
+\end{enumerate}
+\end{multicols}
+\end{trditev}
+
+\begin{proof}
+Dokažimo 5.~točko -- naj bo $f \colon X \to Y$ kvocientna, kjer je
+$X$ lokalno povezan (s potmi). Ekvivalentno so komponente vsake
+odprte množice odprte.
+
+Naj bo $V \subseteq Y$ odprta s komponentami $V_\lambda$, torej
+\[
+V = \bigcap_\lambda  V_\lambda.
+\]
+Sledi, da je
+\[
+f^{-1}(V) = \bigcap_\lambda f^{-1}\left( V_\lambda \right)
+\]
+odprta. Naj bodo $W_\mu$ njene komponente. Ker je
+$f(W_\mu) \subseteq V$ povezana, je vsebovana v neki komponenti
+$V_\lambda$. Sledi, da je $f^{-1}\left( V_\lambda \right)$ unija
+odprtih množic (komponent), zato je odprta.
+\end{proof}
+
+\begin{trditev}
+Naslednje topološke lastnosti niso deljive:
+
+\begin{multicols}{2}
+\begin{enumerate}[i)]
+\item Separacijske lastnosti
+\item $1$ in $2$-števnost
+\item Lokalna kompaktnost
+\item Metrizabilnost
+\item Popolna nepovezanost
+\end{enumerate}
+\end{multicols}
+\end{trditev}
+
+\begin{proof}
+Dokažimo, da Hausdorffova lastnost ni dedna. Vzemimo
+$X = \R \times \set{0, 1}$ in $(x,0) \sim (x,1) \iff x > 0$.
+Opazimo, da ne moremo ostro ločiti slik točk $(0,0)$ in $(0,1)$.
+Primer deluje tudi za metrizabilnost.
+
+Protiprimer za $1$-števnost je naslednji: Naj bo
+$X = \N \times [0,1]$ in $A = \N \times \set{0}$. Tedaj prostor
+$\kvoc{X}{A}$ ni $1$-števen -- naj bo $\setb{V_n}{n \in \N}$ števna
+lokalna baza točke $q((1,0))$. Sedaj skonstruiramo odprto množico
+\[
+W = \bigcup_{n \in \N} \left(n \times [0, a_n)\right),
+\]
+kjer $n \times [0, a_n)$ ni vsebovana v $V_n$. Sledi, da $V$ ni
+lokalna baza.
+\end{proof}
+
+\begin{izrek}[Aleksandrov]\index{Izrek!Aleksandrov}
+Če je $X$ poljuben metrični kompakt, obstaja zvezna surjekcija
+$f \colon C \to X$.\footnote{$C$ označuje \emph{Cantorjevo
+množico}.}
+\end{izrek}
+
+\begin{opomba}
+Z $X = [0, 1]$ dobimo protiprimer za deljivost popolne
+nepovezanosti. $f$ je namreč kvocientna, saj slika iz kompakta v
+Hausdorffov prostor.
+\end{opomba}
+
+\begin{trditev}\label{td:frec}
+Naj bo $R$ razdelitev prostora $X$. Tedaj velja
+\[
+\kvoc{X}{R} \in T_1 \iff \text{Elementi $R$ so zaprti v $X$}.
+\]
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Topološke grupe}
+
+\begin{definicija}
+\emph{Topološka grupa}\index{Topološka grupa} $G$ je grupa, ki je
+hkrati topološki prostor z zveznim množenjem in invertiranjem.
+\end{definicija}
+
+\datum{2022-3-4}
+
+\begin{definicija}
+Direktni produkt topoloških grup je direktni produkt grup s
+produktno topologijo.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $G$ topološka grupa in $a \in G$.
+\emph{Leva translacija}\index{Topološka grupa!Translacija} je
+preslikava
+\[
+L_a \colon g \mapsto ag.
+\]
+Simetrično definiramo \emph{desno translacijo}.
+\end{definicija}
+
+\begin{trditev}
+Translacije so homeomorfizmi.
+\end{trditev}
+
+\begin{proof}
+Translaciji sta očitno bijektivni. Opazimo, da sta zvezni, saj sta
+definirani z množenjem. Velja $L_a^{-1} = L_{a^{-1}}$, zato je tudi
+inverz zvezen.
+\end{proof}
+
+\begin{definicija}
+Topološki prostor $X$ je
+\emph{homogen}\index{Topološki prostor!Homogen}, če za vsaka dva
+elementa $a, b \in X$ obstaja tak homeomorfizem $h \colon X \to X$,
+da je $h(a) = b$.
+\end{definicija}
+
+\begin{posledica}
+Topološka grupa $G$ je homogen prostor.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor in $G$ topološka grupa.
+\emph{Levo delovanje}\index{Topološka grupa!Delovanje} na prostoru
+$X$ je zvezna preslikava $\varphi \colon G \times X \to X$, pri
+čemer za vse $a, b \in G$ in $x \in X$ velja
+
+\begin{enumerate}[i)]
+\item $1 \cdot x = x$ in
+\item $a(bx) = (ab)x$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Za vse $a \in G$ je preslikava $x \mapsto ax$ homeomorfizem.
+\end{opomba}
+
+\begin{trditev}
+Delovanje grupe $G$ na prostoru $X$ določa ekvivalenčno relacijo
+\[
+x \sim y \iff \exists g \in G \colon gx = y.
+\]
+Pripadajoči kvocientni prostor imenujemo
+\emph{prostor orbit}\index{Topološki prostor!Prostor orbit} in ga
+označimo z
+\[
+\kvoc{X}{\sim} = \kvoc{X}{G}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Orbita}\index{Topološka grupa!Orbita} točke $x$ je množica
+\[
+[x] = G \cdot x = \setb{g \cdot x}{g \in G}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Za element $x \in X$ grupi
+\[
+G_x = \setb{g \in G}{g \cdot x = x}
+\]
+pravimo
+\emph{stabilizatorska podgrupa}\index{Stabilizatorska podgrupa}.
+\end{definicija}
+
+\begin{opomba}
+Obstaja bijekcija $G \cdot x \to \kvoc{G}{G_x}$.
+\end{opomba}
+
+\begin{trditev}\label{td:grodp}
+Naj bo $G$ topološka grupa, ki deluje na topološki prostor $X$.
+Potem je kvocientna projekcija
+\[
+q \colon X \to \kvoc{X}{G}
+\]
+odprta.
+\end{trditev}
+
+\begin{proof}
+Naj bo $V \in \tau_X$. Dokazati moramo, da je njeno nasičenje
+odprto. Velja pa
+\begin{align*}
+q^{-1}\left(q(V)\right)
+&=
+\setb{y \in X}{\exists x \in V \colon y \sim x}
+\\
+&=
+\setb{g \cdot x}{x \in V, g \in G}
+\\
+&=
+\bigcup_{g \in G} \setb{g \cdot x}{x \in V}
+\\
+&= \bigcup_{g \in G} L_g(V). \qedhere
+\end{align*}
+\end{proof}
+
+\newpage
+
+\subsection{Konstrukcije kvocientov}
+
+\datum{2022-3-11}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor.
+\emph{Stožec}\index{Topološki prostor!Stožec} nad $X$ je prostor
+\[
+CX = \kvoc{X \times I}{X \times \set{1}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $X \subseteq \R^n$ in $c \in \R^n$ taka točka, da se zveznice
+med $c$ in $X$ paroma sekajo le v $c$, uniji teh daljic pravimo
+\emph{linearni stožec}. Če je $X$ kompakten, ima ta prostor enako
+topologijo kot stožec.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $X$ topološki prostor.
+\emph{Suspenzija}\index{Topološki prostor!Suspenzija} nad $X$ je
+prostor
+\[
+\Sigma X =
+\kvoc{X \times [-1, 1]}{X \times \set{-1}, X \times \set{1}}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Simetrični produkt}\index{Topološki prostor!Simetrični produkt}
+je prostor
+\[
+S^nX = \kvoc{X^n}{S_n}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bodo $X_1, X_2, \dots$ topološki prostori in
+$f_i \colon X_i \to X_{i+1}$ preslikave.
+\emph{Limita prostorov}\index{Topološki prostor!Limita} $X_i$ je
+prostor\footnote{$\sqcup$ označuje disjunktno vsoto.}
+\[
+\lim_{\to} (X_n, f_n) =
+\kvoc{\left(\displaystyle\coprod_{n=1}^\infty X_n \right)}{\sim},
+\]
+kjer je $x \sim y$ natanko tedaj, ko obstaja tak $n$, da je
+\[
+f_n(\dots f_i(x) \dots) = f_n(\dots f_j(y) \dots).
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ topološka prostora, $A \subseteq X$ in
+$f \colon A \to Y$ preslikava.
+\emph{Zlepek}\index{Topološki prostor!Zlepek}\footnote{Angleško
+\emph{adjunction space}.} $X$ na $Y$ vzdolž $f$
+je kvocient
+\[
+X \cup_f Y =
+\kvoc{X \sqcup Y}{a \sim f(a)}.
+\]
+\end{definicija}
+
+\begin{izrek}
+Naj bosta $X$ in $Y$ normalna prostora, $A \subseteq X$ pa zaprta.
+Naj bo $f \colon A \to Y$ zvezna. Tedaj je $X \cup_f Y$ normalen.
+\end{izrek}
+
+\begin{proof}
+Najprej pokažimo, da je zlepek Fréchetov. Vsi ekvivalenčni razredi
+so oblike $\set{x}$ ali $\set{y} \cup f^{-1}(y)$, ti množici pa sta
+očitno zaprti. Po trditvi~\ref{td:frec} sledi, da je zlepek
+Fréchetov.
+
+Pokažimo še, da za poljubni disjunktni zaprti množici $B$ in $C$
+obstaja Urisonova funkcija. Na $Y$ si izberemo Urisonovo funkcijo
+$\varphi_y$. Naj bo $\Phi \colon A \cup B_X \cup C_X \to I$
+funkcija, definirana s predpisom
+\[
+\Phi(x) =
+\begin{cases}
+\varphi_y(f(x)), & x \in A \\
+0,               & x \in B_X \\
+1,               & x \in C_X.
+\end{cases}
+\]
+Očitno je $\Phi$ zvezna. Po Tietzejevem razširitvenem izreku
+obstaja razširitev $\varphi_x$ funkcije $\Phi$. Ti funkciji očitno
+določata Urisonovo funkcijo na $X \cup_f Y$.
+
+\begin{skica}{Konstrukcija Urisonove funkcije.}
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \sqcup Y
+\arrow[r, "\varphi_x \sqcup \varphi_y"]
+\arrow[d, "q"']
+& I \\
+X \cup_f Y \arrow[ur, dashrightarrow, "\varphi"'] &
+\end{tikzcd} \qedhere
+\]
+\end{skica}
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \subseteq X$ zaprta množica in $f \colon A \to Y$ zaprta
+vložitev. Naj bo $Z = X \cup_f Y$.
+
+\begin{enumerate}[i)]
+\item Če sta $X$ in $Y$ 2-števna, je tudi $Z$ 2-števen.
+\item Če sta $X$ in $Y$ Hausdorffova, je tudi $Z$ Hausdorffov.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj bo $\mathcal{B}_X = \setb{U_n}{n \in \N}$ števna baza za $X$ in
+$\mathcal{B}_Y = \setb{V_n}{n \in \N}$ števna baza za $Y$. Označimo
+\[
+W_{n,m} = U_n \cap f^{-1}(V_m) \subseteq A.
+\]
+Obstaja taka odprta množica $W_{n,m}^X \subseteq U_n$, da je
+\[
+W_{n,m} = A \cap W_{n,m}^X.
+\]
+Podobno definiramo $W_{n,m}^Y$. Sedaj za bazo preprosto vzamemo
+kvocientne projekcije tistih množic v $\mathcal{B}_X$ in
+$\mathcal{B}_Y$, ki ne sekajo $A$ oziroma $f(A)$, ter množic
+$W_{n,m}^X \sqcup W_{n,m}^Y$. Ni težko preveriti, da je to res
+baza.
+
+Za Hausdorffovo lastnost je edini netrivialen primer ta, da sta
+$x$ in $y$ elementa $A$, pri čemer je $f(x) \ne f(y)$ -- razrešimo
+ga na podoben način kot 2-števnost.
+\end{proof}
+
+\newpage
+
+\subsection{Projektivni prostori}
+
+\datum{2022-3-18}
+
+\begin{definicija}
+Naj bo $\F \in \set{\R, \C, \HH}$.
+\emph{Projektivni prostor}\index{Topološki prostor!Projektivni}
+dimenzije $n$ nad $\F$ je kvocient
+\[
+\proj{\F}{n} = \kvoc{\F^{n+1} \setminus \set{0}}{\sim},
+\]
+kjer je $x \sim y \iff x = \lambda y$.
+\end{definicija}
+
+\begin{opomba}
+enako lahko naredimo za poljubne topološke obsege.
+\end{opomba}
+
+\begin{trditev}
+Prostor $\proj{\F}{n}$ je homogen.
+\end{trditev}
+
+\begin{proof}
+Naj bo $H$ obrnljiva linearna preslikava, ki preslika $x$ v $y$
+(taka preslikava očitno obstaja). Opazimo, da je $H$ homeomorfizem,
+ki ohranja premice, zato je $q \circ H$ kvocientna preslikava.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\F^{n+1} \setminus \set{0}
+\arrow[rr, "H"]
+\arrow[dd, "q"']
+\arrow[ddrr, "q \circ H"]
+&& \F^{n+1} \setminus \set{0}
+\arrow[dd, "q"] \\\\
+\proj{\F}{n} \arrow[rr, dashrightarrow, "h"']
+&& \proj{\F}{n}
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $\F \in \set{\R, \C, \HH}$ in $n \in \N_0$.
+\emph{Enotska sfera}\index{Enotska sfera} je množica
+\[
+S(\F^n) = \setb{x \in \F^n}{\norm{x} = 1}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+S(\R^n) = S^{n-1}, \quad
+S(\C^n) = S^{2n - 1}
+\quad \text{in} \quad
+S(\HH^n) = S^{4n - 1}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Kvocientna projekcija
+$q \colon \F^{n+1} \setminus \set{0} \to \proj{\F}{n}$ je odprta.
+\item Velja $\proj{\F}{n} \approx \kvoc{S(\F^{n+1})}{S(\F)}$.
+\item Prostor $\proj{\F}{n}$ je kompakten, lokalno kompakten,
+povezan s potmi, lokalno povezan s potmi in 2-števen.
+
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Prva točka je posledica trditve~\ref{td:grodp}.
+
+Naj bo $\varphi \colon \F^{n+1} \setminus \set{0} \to S(\F^{n+1})$
+preslikava, ki deluje po predpisu
+$\varphi \colon x \mapsto \frac{x}{\norm{x}}$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\F^{n+1} \setminus \set{0}
+\arrow[rr, "\varphi"]
+\arrow[dd, "q"']
+\arrow[ddrr, "p \circ \varphi"]
+&& \F^{n+1} \setminus \set{0}
+\arrow[dd, "p"] \\\\
+\proj{\F}{n} \arrow[rr, dashrightarrow, "\approx"']
+&& \kvoc{S(\F^{n+1})}{S(\F)}
+\end{tikzcd}
+\]
+% TO BE CONTINUED
+\end{proof}

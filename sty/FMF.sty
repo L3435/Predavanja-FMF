@@ -61,6 +61,7 @@
 \RequirePackage{array}
 \renewcommand{\arraystretch}{1.4}
 \setcounter{MaxMatrixCols}{20}
+\RequirePackage{diagbox}
 
 \RequirePackage{fancyhdr}
 \RequirePackage{footmisc}
@@ -110,6 +111,19 @@
 \newtheorem{primer}{Primer}[subsection]
 \newtheorem{naloga}{Naloga}[section]
 
+\newcommand{\capt}{placeholder}
+
+\newenvironment{skica}[1]
+{
+\begin{figure}[!ht]
+\centering
+\renewcommand{\capt}{#1}
+}
+{%
+\caption{\capt}
+\end{figure}
+}
+
 \let\Re\relax
 \let\Im\relax
 \let\hom\relax
@@ -122,14 +136,20 @@
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\Lin}{Lin}
-\DeclareMathOperator{\hom}{Hom}
-\DeclareMathOperator{\enm}{End}
-\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\Af}{Af}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Fr}{Fr}
 \DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\mult}{mult}
 
 \providecommand{\pot}{\mathcal{P}}
 \providecommand{\rel}[1]{\mathrel{#1}}
@@ -144,7 +164,27 @@
 \providecommand{\liint}{\iint\limits}
 \providecommand{\liiint}{\iiint\limits}
 \providecommand{\lidotsint}{\idotsint\limits}
+\providecommand{\olint}{\oint\limits}
 \providecommand{\bigsetminus}{\mathbin{\big\backslash}}
+\providecommand{\proj}[2]{#1\!\operatorname{P}^{#2}}
+\providecommand{\prt}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\oline}{\overline}
+
+\RequirePackage{amsfonts}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+\DeclareFontFamily{U}{bbold}{}
+\DeclareFontShape{U}{bbold}{m}{n}
+ {  <-5.5> s*[1.1] bbold5
+    <5.5-6.5> s*[1.1] bbold6
+    <6.5-7.5> s*[1.1] bbold7
+    <7.5-8.5> s*[1.1] bbold8
+    <8.5-9.5> s*[1.1] bbold9
+    <9.5-11.5> s*[1.1] bbold10
+    <11.5-16> s*[1.1] bbold12
+    <16-> s*[1.1] bbold17
+ }{}
+\providecommand{\dsk}{\mathbbe{\Delta}}
+\providecommand{\dskx}{\mathbbe{\Delta}\!^*}
 
 \providecommand{\titleR}{\texorpdfstring{$\R$}{R}}
 \providecommand{\titleRn}[1]{\texorpdfstring{$\R^{#1}$}{R\^{}#1}}
@@ -165,7 +205,7 @@
 }
 }
 
-\newcommand*\dashline{\rel{\rotatebox[origin=c]{90}{$\dabar@\dabar@\dabar@$}}}
+\newcommand*\dashline{\mathbin{\rotatebox[origin=c]{90}{$\dabar@\dabar@\dabar@$}}}
 \RequirePackage{arydshln}
 
 \newcommand{\obvs}{\begin{proof}The proof is obvious and need not be mentioned. \end{proof}}

@@ -71,7 +71,7 @@ $X \times Y$.
 Prvi dve točki sta očitni.
 
 Vidimo, da je $(f,g)$ zvezna, velja pa
-$\setb{x \in X}{f(x) = g(x)} = (f,g)^{-1}(\Delta_x)$.
+$\setb{x \in X}{f(x) = g(x)} = (f, g)^{-1}(\Delta_x)$.
 
 4.\ točka sledi iz 3.\ -- če se preslikavi ujemata na neki množici,
 se ujemata tudi na zaprtju.
@@ -133,7 +133,7 @@ končnih komplementov.
 
 \begin{proof}
 Če je prostor Fréchetov, za vse različne $x$ in $y$ obstaja tak
-$V \in \tau$, da je $y \in V$ in $x \ne \in V$, zato je $y$
+$V \in \tau$, da je $y \in V$ in $x \notin V$, zato je $y$
 notranja v $X \setminus \set{x}$. Če pa so enojčki zaprti, pa
 $X \setminus \set{x}$ in $X \setminus \set{y}$ ločita $x$ in $y$.
 \end{proof}
@@ -325,7 +325,7 @@ Uporabimo karakterizacijo s surjekcijo $f \colon X \to \set{0,1}$.
 \end{proof}
 
 \begin{izrek}[O vmesni vrednosti]\index{Izrek!O vmesni vrednosti}
-Naj bo $X$ povezana in $f \colon X \to \R$. Potem je $f(X)$
+Naj bo $X$ povezana in $f \colon X \to \R$ preslikava. Potem je $f(X)$
 interval.
 \end{izrek}
 
@@ -337,9 +337,9 @@ prostora obstaja pot.
 \end{definicija}
 
 \begin{definicija}
-\emph{Komponente}\index{Topološka lastnost!Povezanost!Komponenta}
+\emph{Komponenta}\index{Topološka lastnost!Povezanost!Komponenta}
 prostora $X$, ki vsebuje $x$, je unija vseh povezanih podmnožic,
-ki vsebujejo $X$. Označimo jo z $C(x)$. Če so vse komponente $X$
+ki vsebujejo $x$. Označimo jo z $C(x)$. Če so vse komponente $X$
 enojčki, pravimo, da je $X$ \emph{povsem nepovezan}.
 \end{definicija}
 

@@ -9,7 +9,15 @@
 1. letnik/Uvod v programiranje/
 
 2. letnik/Programiranje 1/
+2. letnik/Seminar/
 
+*.asy
+2. letnik/Algebraicne krivulje/*.pdf
+!2. letnik/Algebraicne krivulje/Algebraicne_krivulje.pdf
+2. letnik/Algebraicne krivulje/*.tex
+!2. letnik/Algebraicne krivulje/Algebraicne_krivulje.tex
+
+2. letnik/Algebraicne krivulje/Domace naloge
 
 # TexMaker session files:
 *.tks

@@ -76,7 +76,7 @@ k^{\overline{n}} = \prod_{i=0}^{n-1} (k + i).
 \end{definicija}
 
 \begin{trditev}
-Za množico $N$ z $n$ elementi in množico $K$ s $k$ elementov velja
+Za množico $N$ z $n$ elementi in množico $K$ s $k$ elementi velja
 
 \begin{enumerate}[i)]
 \item $\abs{K^N} = k^n$
@@ -93,3 +93,670 @@ pa $0$.
 Če imata končni množici enako moč, je bijektivnost preslikave med
 njima ekvivalentna tako injektivnosti kot surjektivnosti.
 \end{opomba}
+
+\newpage
+
+\subsection{Binomski koeficienti in binomski izrek}
+
+\datum{2022-2-21}
+
+\begin{definicija}
+Naj bo $x \in \C$ in $k \in \N_0$.
+\emph{Binomski koeficient}\index{Binomski koeficient} števil $x$ in
+$k$ je število
+\[
+\binom{x}{k} = \frac{x^{\underline{k}}}{k!}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če je $n \in \N_0$ in $k \leq n$, potem je
+\[
+\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $X$ končna množica. Označimo
+\[
+\binom{X}{k} = \setb{A \subseteq X}{\abs{A} = k}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Za končno množico $X$ velja
+\[
+\abs{\binom{X}{k}} = \binom{\abs{X}}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Na dva načina preštejemo število urejenih $k$-teric. Dobimo, da je
+\[
+k! \cdot \abs{\binom{X}{k}} = \abs{X}^{\underline{k}}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Če je $1 \leq k \leq n$, je
+\[
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Preštejmo število $k$-elementnih podmnožic $[n]$ na dva načina. Za
+število $1$ imamo dve možnosti -- lahko je v podmnožico ali ne.
+Sedaj preštejemo načine, na katere lahko izmed preostalih $n-1$
+elementov izberemo ustrezno število. V prvem primeru dobimo
+$\binom{n-1}{k-1}$ podmnožic, v drugem pa $\binom{n-1}{k}$.
+\end{proof}
+
+\begin{posledica}
+Binomski koeficienti so ravno števila v
+\emph{Pascalovem trikotniku}\index{Pascalov trikotnik}:
+\[
+\begin{array}{ccccccccccc}
+  &   &   &    & 1 &    &   &   &   \\
+  &   &   & 1  &   & 1  &   &   &   \\
+  &   & 1 &    & 2 &    & 1 &   &   \\
+  & 1 &   & 3  &   & 3  &   & 1 &   \\
+1 &   & 4 &    & 6 &    & 4 &   & 1
+\end{array}
+=
+\begin{array}{ccccccccccc}
+             &              &              &              & \binom{0}{0} &              &              &              &              \\
+             &              &              & \binom{1}{0} &              & \binom{1}{1} &              &              &              \\
+             &              & \binom{2}{0} &              & \binom{2}{1} &              & \binom{2}{2} &              &              \\
+             & \binom{3}{0} &              & \binom{3}{1} &              & \binom{3}{2} &              & \binom{3}{3} &              \\
+\binom{4}{0} &              & \binom{4}{1} &              & \binom{4}{2} &              & \binom{4}{3} &              & \binom{4}{4}
+\end{array}
+\]
+\end{posledica}
+
+\begin{izrek}[Binomski]\index{Izrek!Binomski}
+Za vse $n \in \N_0$ za $a, b \in K$, kjer je $K$ komutativen
+kolobar, velja
+\[
+(a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}.
+\]
+\end{izrek}
+
+\begin{proof}
+Uporabimo distributivnost in preštejemo število pojavitev vsakega
+monoma.
+\end{proof}
+
+\newpage
+
+\subsection{Izbori}
+
+\begin{definicija}
+Naj bo $N$ množica z $n$ elementi.
+
+\begin{enumerate}[i)]
+\item \emph{Urejen izbor s ponavljanjem}\index{Izbor} je vsaka
+urejena $k$-terica elementov $N$.
+\item \emph{Urejen izbor brez ponavljanja} je vsaka $k$-terica
+paroma različnih elementov $N$.
+\item \emph{Neurejen izbor brez ponavljanja} je vsaka podmnožica
+$k$ elementov množice $N$.
+\item \emph{Neurejen izbor s ponavljanjem} je vsaka multimnožica
+s $k$ elementi iz $N$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Urejenim izborom pravimo tudi \emph{variacije}, neurejenim pa
+\emph{kombinacije}.
+\end{opomba}
+
+\begin{trditev}
+Število neurejenih izborov s ponavljanjem je enako
+\[
+\binom{n+k-1}{k}.
+\]
+\end{trditev}
+
+\begin{proof}
+Uporabimo strategijo pik in pregrad. Naj $x_k$ označuje število
+pojavitev elementa $k$ v multimnožici.\footnote{Definicija v
+naslednjem razdelku.} Tedaj lahko vsak izbor predstavimo kot
+\[
+\underbrace{\bullet \bullet \dots \bullet}_{x_1} \mid
+\underbrace{\bullet \bullet \dots \bullet}_{x_2} \mid
+\dots \mid
+\underbrace{\bullet \bullet \dots \bullet}_{x_n}.
+\]
+Vsak izbor natanko ustreza enemu zapisu s pikami in pregradami, teh
+pa je ravno $\binom{n+k-1}{k}$. Izmed $n+k-1$ elementov moramo
+namreč izbrati $k$ pik, preostalih $n-1$ mest pa zasedejo pregrade.
+\end{proof}
+
+\newpage
+
+\subsection{Permutacije in permutacije s ponavljanjem}
+
+\begin{definicija}
+\emph{Permutacija}\index{Permutacija} množice $A$ je bijekcija
+$f \colon A \to A$. Označimo
+\[
+S_A = \setb{f \colon A \to A}{\text{$f$ je bijekcija}},
+\]
+v posebnem primeru
+\[
+S_n = S_{[n]}.
+\]
+\end{definicija}
+
+\datum{2022-2-28}
+
+\begin{definicija}
+\emph{Multimnožica}\index{Multimnožica} je urejen par $(U, \mu)$,
+kjer je $U$ množica in $\mu \colon U \to \N_0$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Permutacija multimnožice}\index{Multimnožica!Permutacija}
+$M = (U, \mu)$ je vsako zaporedje elementov $(x_1, \dots, x_n)$,
+kjer so vsi $x_i \in U$ in se vsak element $x \in U$ v zaporedju
+pojavi $\mu(x)$ krat.
+\end{definicija}
+
+\begin{trditev}
+Število permutacij multimnožice
+$\set{1^{\alpha_1}, \dots, k^{\alpha_k}}$, kjer je
+$\alpha_1 + \dots + \alpha_k = n$, je natanko
+\[
+\frac{n!}{\alpha_1! \cdots \alpha_k!}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\prod_{i=1}^{n}
+\binom{n - \alpha_1 - \dots - \alpha_{i-1}}{\alpha_i} =
+\frac{n!}{\alpha_1! \cdots \alpha_k!}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Zgornjemu številu pravimo
+\emph{multinomski koeficient}\index{Multinomski koeficient} in ga
+označimo z
+\[
+\frac{n!}{\alpha_1! \dots \alpha_k!} =
+\binom{n}{\alpha_1, \dots, \alpha_k}.
+\]
+\end{opomba}
+
+\begin{izrek}[Multinomski]\index{Izrek!Multinomski}
+Za $n \geq 0$ velja
+\[
+\left(\sum_{i=1}^k x_i\right)^n =
+\sum_{\alpha_1+\dots+\alpha_k = n}
+\binom{n}{\alpha_1, \dots, \alpha_k} \prod_{i=1}^k x_i^{\alpha_i}.
+\]
+\end{izrek}
+
+\begin{proof}
+Enak kot pri binomskem.
+\end{proof}
+
+\newpage
+
+\subsection{Kompozicije in razčlenitve}
+
+\begin{definicija}
+\emph{Kompozicija}\index{Kompozicija} naravnega števila $n$ je
+zaporedje $\lambda = (\lambda_1, \dots, \lambda_l)$, kjer so
+$\lambda_i \in \N$ in velja
+\[
+\sum_{i=1}^l \lambda_i = n.
+\]
+\end{definicija}
+
+\begin{trditev}
+Število kompozicij števila $n$ je $2^{n-1}$. Število kompozicij
+dolžine $k$ je $\binom{n-1}{k-1}$.
+\end{trditev}
+
+\begin{proof}
+Pike in pregrade.
+\end{proof}
+
+\begin{definicija}
+\emph{Šibka kompozicija}\index{Kompozicija!Šibka} naravnega števila
+$n$ je kompozicija, v kateri dovolimo, da so nekateri členi enaki
+$0$.
+\end{definicija}
+
+\begin{trditev}
+Število šibkih kompozicij števila $n$ dolžine $k$ je
+$\binom{n+k-1}{k-1}$.
+\end{trditev}
+
+\begin{proof}
+Pike in pregrade.
+\end{proof}
+
+\begin{definicija}
+\emph{Razčlenitev}\index{Razčlenitev} števila $n \in \N$ je vsaka
+padajoča kompozicija števila $n$. Število razčlenitev dolžine $k$
+označimo z $p_k(n)$, število razčlenitev dolžine največ $k$ pa z
+$\overline{p}_k(n)$.
+\end{definicija}
+
+\begin{trditev}
+Veljajo naslednje zveze:
+
+\begin{enumerate}[i)]
+\item $p_k(n) = \overline{p}_k(n-k)$
+\item
+$\overline{p}_k(n) = \overline{p}_{k-1}(n) + \overline{p}_k(n-k)$
+\item $p_k(n) = p_{k-1}(n-1) + p_k(n-k)$
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Stirlingova števila}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je
+\emph{Stirlingovo število 1.~vrste}\index{Stirlingovo število 1.~vrste}
+$c(n,k)$ število permutacij $S_n$, ki jih lahko zapišemo kot
+produkt $k$ disjunktnih ciklov. Posebej naj bo $c(n,0) = 0$ za
+$n \geq 1$ in $c(0,0) = 1$.
+\end{definicija}
+
+\datum{2022-3-7}
+
+\begin{trditev}
+Velja rekurzivna formula
+\[
+c(n, k) = c(n-1, k-1) + (n-1) \cdot c(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Permutacij, v katerih je $x$ fiksna točka, je $c(n-1, k-1)$,
+drugače pa na $n-1$ načinov izberemo element, v katerega se
+preslika $x$, nato pa jih razporedimo v $k$ ciklov.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^{\overline{n}} = \sum_k c(n, k) x^k.
+\]
+\end{izrek}
+
+\begin{proof}
+Indukcija po $n$.
+\end{proof}
+
+\begin{definicija}
+Družina nepraznih množic $\set{X_i}_{i \in I}$ je
+\emph{razdelitev}\index{Množica!Razdelitev}, če za vse različne
+$i, j \in I$ velja $X_i \cap X_j = \emptyset$ in
+\[
+\bigcup_{i \in I} X_i = X.
+\]
+Množicam $X_i$ pravimo \emph{blok razdelitve}
+\end{definicija}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je
+\emph{Stirlingovo število 2.~vrste}\index{Stirlingovo število 2.~vrste}
+$S(n, k)$ število razdelitev $n$-množice v $k$ blokov.
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna zveza
+\[
+S(n,k) = S(n-1, k-1) + k \cdot S(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Če je element $x$ v nekem bloku sam, imamo $S(n-1, k-1)$ možnosti,
+drugače pa na $k$ načinov izberemo blok, v katerega ga dodamo.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^n = \sum_k S(n, k) \cdot x^{\underline{k}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Dovolj je izrek dokazati za naravna števila. Naj bo $A = [x]^n$.
+Velja $\abs{A} = x^n$. Po drugi strani pa lahko $A$ razdelimo glede
+na število različnih elementov $k$, teh pa je
+$S(n,k) \cdot x^{\underline{k}}$.
+\end{proof}
+
+\begin{trditev}
+Število surjekcij $f \in K^N$ je
+\[
+k! \cdot S(n, k).
+\]
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+\emph{Bellovo število}\index{Bellovo število} $B(n)$ je število
+vseh razdelitev množice z $n$ elementi v bloke, oziroma
+\[
+B(n) = \sum_k S(n, k).
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna formula
+\[
+B(n+1) = \sum_k \binom{n}{k} B(k).
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $x$ v bloku velikosti $k+1$. Tedaj je razdelitev natanko
+\[
+\binom{n}{k} \cdot B(n-k). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Za $1 \leq k \leq n$ je \emph{Lahova števila}\index{Lahovo število}
+$L(n, k)$ število razdelitev $n$-množice v $k$ linearno urejenih
+blokov.
+\end{definicija}
+
+\begin{trditev}
+Velja rekurzivna zveza
+\[
+L(n, k) = L(n-1, k-1) + (n+k-1) \cdot L(n-1, k).
+\]
+\end{trditev}
+
+\begin{proof}
+Podobno kot prejšnji. % cba
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+L(n, k) =
+\frac{(n-1)!}{(k-1)!} \binom{n}{k} =
+\frac{n!}{k!} \binom{n-1}{k-1}.
+\]
+\end{izrek}
+
+\begin{proof}
+Elemente uredimo na $n!$ načinov, nato pa izberemo $k-1$ elementov,
+ki so prvi v svojem bloku. Pri tem smo vsako razdelitev šteli
+$k!$-krat.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+x^{\overline{n}} = \sum_k L(n, k) x^{\underline{k}}.
+\]
+\end{izrek}
+
+\newpage
+
+\subsection{Dvanajstera pot}
+
+\datum{2022-3-14}
+
+\begin{izrek}
+Tabela al neki idk, idgaf, this is bs
+\begin{table}[!ht]
+\centering
+\caption{Kill me pls}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+$f \colon N \to K$ & Poljubna & Injektivna & Surjektivna \\ 
+\hline 
+Ločimo elemente $N$ in $K$ & $k^n$ & $k^{\underline{n}}$ & $k! \cdot S(n, k)$ \\ 
+\hline 
+Ločimo elemnete $K$ & $\binom{n+k-1}{n}$ & $\binom{k}{n}$ & $\binom{n-1}{k-1}$ \\ 
+\hline 
+Ločimo elemente $N$ & $\displaystyle\sum_{i=1}^k S(n, i)$ & $\begin{cases} 1, & n \leq k \\ 0, & n > k \end{cases}$ & $S(n, k)$ \\ 
+\hline 
+Ne ločimo elementov & $\overline{p}_k(n)$ & $\begin{cases} 1, & n \leq k \\ 0, & n > k \end{cases}$ & $p_k(n)$ \\ 
+\hline 
+\end{tabular} 
+\end{table}
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\subsection{Načelo vključitev in izključitev}
+
+\begin{izrek}[Načelo vključitev in izključitev]
+\index{Izrek!Načelo vključitev in izključitev}
+Velja
+\[
+\abs{\bigcup_{i=1}^n A_i} =
+\sum_{\substack{X \in \mathcal{P}([n]) \\ X \ne \emptyset}}
+(-1)^{\abs{X} + 1} \cdot \abs{\bigcap_{i \in X} A_i}.
+\]
+\end{izrek}
+
+\begin{proof}
+Vsak element štejemo natanko
+\[
+\sum_{i=1}^k (-1)^{i+1} \binom{k}{i} = 1
+\]
+krat.
+\end{proof}
+
+\begin{izrek}
+Velja
+\[
+\varphi(n) = n \cdot \prod_{p \mid n} \left(1 - \frac{1}{p}\right).
+\]
+\end{izrek}
+
+\obvs
+
+\newpage
+
+\subsection{Rekurzivne enačbe}
+
+\datum{2022-3-21}
+
+\begin{izrek}
+Naj bo zaporedje $(a_n)_{n=0}^\infty$ podano z rekurzivno zvezo
+\[
+a_n = A a_{n-1} + B a_{n-2}.
+\]
+Naj bosta $\alpha$ in $\beta$ ničli karakterističnega polinoma.
+
+\begin{enumerate}[i)]
+\item Če je $\alpha \ne \beta$, obstajata taki konstanti $K_1$ in
+$K_2$, da je
+\[
+a_n = K_1 \alpha^n + K_2 \beta^n.
+\]
+\item Če je $\alpha = \beta$, obstajata taki konstanti $K_1$ in
+$K_2$, da je
+\[
+a_n = (K_1 n + K_2) \alpha^n.
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Dokažemo, da taka $K_1$ in $K_2$ obstajata za $a_0$ in $a_1$, nato
+pa z indukcijo dokažemo še, da je to splošen predpis.
+\end{proof}
+
+\begin{izrek}
+Zaporedje $(a_n)_{n=0}^\infty$ reši homogeno rekurzivno enačbo
+natanko tedaj, ko je oblike
+\[
+a_n = \sum_{i=1}^k A_i(n) \lambda_i^n,
+\]
+kjer so $\lambda_i$ ničle karakterističnega polinoma, $A_i$ pa
+polinomi, katerih stopnja je manjša od večkratnosti pripadajoče
+ničle.
+\end{izrek}
+
+\begin{proof}
+Naj bo $Q$ karakteristični polinom,
+$E \colon \C^{\N_0} \to \C^{\N_0}$ pa endomorfizem vektorskih
+prostorov, ki deluje po predpisu
+$E \colon (a_0, a_1, \dots) \mapsto (a_1, a_2, \dots)$. Tedaj je
+tudi $Q(E)$ endomorfizem, zaporedje $a$ pa je v jedru endomorfizma
+natanko tedaj, ko zadošča rekurzivni enačbi. Naj bo sedaj
+$\varphi \colon \ker(Q(E)) \to \C^d$ preslikava, ki deluje po
+predpisu
+\[
+\varphi(a_0, a_1, \dots) = (a_0, \dots, a_{d-1}).
+\]
+Opazimo, da je $\varphi$ linearna in bijektivna. Sledi, da je
+$\dim \ker(Q(E)) = d$.
+
+Naj bo sedaj
+\[
+Q(x) = \prod_{i=1}^k (x - \lambda_i)^{s_i}.
+\]
+Sledi, da je
+\[
+\ker(Q(E)) = \bigoplus_{i=1}^k \ker((E-\lambda_i I)^{s_i}).
+\]
+Ni pa težko opaziti, da je
+\[
+\setb{n^k \lambda^n}{0 \leq k < s}
+\]
+baza $\ker((E-\lambda)^s)$, saj vsaka iteracija zmanjša stopnjo
+polinoma.
+\end{proof}
+
+\begin{opomba}
+Nehomogene linearne rekurzivne enačbe rešujemo tako, da z nastavkom
+poiščemo partikularno rešitev enačbe, nato pa ji prištejemo
+homogeno rešitev.
+\end{opomba}
+
+\newpage
+
+\subsection{Rodovne funkcije}
+
+\datum{2022-3-28}
+
+\begin{definicija}
+\emph{Formalna potenčna vrsta}\index{Formalna potenčna vrsta}
+zaporedja $(a_n)_{n=1}^\infty$ je zapis
+\[
+F(x) = \sum_{n=0}^\infty a_n x^n.
+\]
+S seštevanjem in množenjem s skalarjem po komponentah ter množenjem
+\[
+A(x) \cdot B(x) = \sum_{n=0}^\infty
+\left(\sum_{k=0}^n a_k b_{n-k}\right) x_n
+\]
+postanejo formalne potenčne vrste algebra.
+\end{definicija}
+
+\begin{trditev}
+Formalna potenčna vrsta je obrnljiva natanko tedaj, ko je njen
+prosti člen različen od $0$.
+\end{trditev}
+
+\begin{proof}
+Če je $AB = 1$, je $a_0 b_0 = 1$, zato je prosti člen neničeln.
+Če pa je $a_0 \ne 0$, lahko induktivno definiramo $b_0 = a_0^{-1}$
+in
+\[
+b_n = -\left(\sum_{k=1}^n a_k b_{n-k}\right) a_0^{-1}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Odvod}\index{Formalna potenčna vrsta!Odvod} formalne potenčne
+vrste je vrsta
+\[
+A'(x) = \sum_{n=0}^\infty (n+1)a_{n+1} x^n.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odvod velja
+\[
+(A+B)' = A' + B', \quad (AB)' = A'B+ AB'
+\quad \text{in} \quad
+(A^{-1})' = \frac{-A'}{A^2}.
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Catalanova števila}
+
+\datum{2022-4-4}
+
+\begin{definicija}
+\emph{Catalanova števila}\index{Catalanovo število} so števila,
+podano z $c_0 = 1$ in rekurzivno formulo
+\[
+c_{n+1} = \sum_{a+b=n} c_a c_b = \sum_{k=0}^n c_k c_{n-k}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Catalanova števila so rešitev naslednjih problemov:
+
+\begin{enumerate}[i)]
+\item Koliko je binarnih dreves z $n$ vozlišči?
+\item Na koliko načinov lahko trianguliramo $n+2$-kotnik?
+\item Koliko je Dyckovih poti dolžine $2n$?
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažemo, da je odgovor za $n=0$ enak $1$, nato pa izpeljemo še
+rekurzivno zvezo.
+\end{proof}
+
+\begin{izrek}
+Velja eksplicitna formula
+\[
+c_n = \frac{1}{n+1} \binom{2n}{n}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $F$ rodovna funkcija zaporedja Catalanovih števil. Opazimo,
+da velja
+\[
+F(x) = 1 + x F(x)^2.
+\]
+Od tod ni težko izraziti
+\[
+F(x) = \frac{1 \pm \sqrt{1-4x}}{2x},
+\]
+ker pa je $F(0) = 1$, sledi
+\[
+F(x) = \frac{1 - \sqrt{1-4x}}{2x}.
+\]
+Z razvojem $\sqrt{1-4x}$ v Taylorjevo vrsto in malo spretnosti
+dobimo
+\[
+F(x) = \sum_{n=0}^\infty \frac{1}{n+1} \binom{2n}{n} x^n. \qedhere
+\]
+\end{proof}

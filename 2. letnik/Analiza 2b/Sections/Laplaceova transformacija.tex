@@ -1,0 +1,195 @@
+\section{Laplaceova transformacija}
+
+\epigraph{">Ta teden bom končal skripto."<}{-- Luka Horjak}
+
+\subsection{Definicija}
+
+\begin{definicija}
+Naj bo $f \colon [0, \infty) \to \C$ odsekoma zvezna funkcija.
+Funkciji
+\[
+\mathscr{L}(f)(z) = F(z) = \int_0^\infty e^{-zt} f(t)\,dt
+\]
+pravimo
+\emph{Laplaceova transformiranka}\index{Laplaceova transformacija}
+funkije $f$.
+\end{definicija}
+
+\begin{definicija}
+Preslikava $f \colon [0, \infty) \to \C$ je funkcija
+\emph{eksponentnega naraščanja}, če obstajata taka $M \geq 0$ in
+$k \in \R$, da je
+\[
+\abs{f(t)} \leq M e^{kt}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Če za funkcijo $f$ velja
+\[
+\abs{f(t)} \leq M e^{kt},
+\]
+njena Laplaceova transformiranka obstaja za vse $z \in \C$, za
+katere je $\Re z > k$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\varepsilon > 0$ in $\Re z \geq k + \varepsilon$. Tedaj je
+\[
+\abs{\int_0^\infty e^{-zt} f(t)\,dt} \leq
+\int_0^\infty e^{-t \cdot \Re z} M e^{kt}\,dt \leq
+M \cdot \int_0^\infty e^{-\varepsilon t}\,dt. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Opazimo, da ta integral konvergira enakomerno na
+$\Re z \geq k + \varepsilon$, zato je $F$ zvezna na $\Re z > k$.
+\end{opomba}
+
+\begin{trditev}
+Če za funkcijo $f$ velja
+\[
+\abs{f(t)} \leq M e^{kt},
+\]
+je $F$ holomorfna za $\Re z > k$.
+\end{trditev}
+
+\begin{proof}
+Integral
+\[
+-\int_0^\infty e^{-zt} t f(t)\,dt
+\]
+konvergira enakomerno.
+\end{proof}
+
+\begin{trditev}
+Če Laplaceova transformiranka obstaja za nek $z_0 \in \C$, obstaja
+tudi za vse $z$, za katere je $\Re z > \Re z_0$.
+\end{trditev}
+
+\begin{proof}
+Dovolj je trditev dokazati za zvezne funkcije. Naj bo
+\[
+\Phi(t) = \int_0^t e^{-z_0s} f(s)\,ds.
+\]
+Tedaj je
+\[
+\Phi'(t) = e^{-z_0t} f(t)
+\]
+in
+\[
+\mathscr{L}(f)(z_0) = \lim_{t \to \infty} \Phi(t).
+\]
+Funkcija $\Phi$ je torej omejena na $[0, \infty)$.
+
+Naj bo $\Re z > \Re z_0$. Tedaj je
+\begin{align*}
+\int_0^t e^{-zs} f(s)\,ds &=
+\int_0^t e^{-(z-z_0)s} \Phi'(s)\,ds
+\\
+&=
+\eval{e^{-(z-z_0)s} \Phi(s)}{0}{t} +
+(z-z_0) \int_0^t \Phi(s) e^{-(z-z_0)s}\,ds
+\\
+&=
+e^{-(z-z_0)t} \Phi(t) + (z-z_0) \int_0^t \Phi(s) e^{-(z-z_0)s}\,ds.
+\end{align*}
+Sedaj preprosto vzamemo limito, ki obstaja.
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+\mathscr{L}(f) \in \mathcal{O}(\setb{z \in \C}{\Re z > \sigma(f)}).
+\]
+\end{posledica}
+
+%PAZI
+\begin{definicija}
+\emph{Abscisa konvergence}\index{Laplaceova transformacija!Abscisa konvergence}
+je število
+\[
+\sigma(f) = \inf \setb{\Re z}{\text{$\mathscr{L}(f)(z)$ obstaja}}.
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Lastnosti}
+
+\begin{trditev}
+Za Laplaceovo transformacijo veljajo naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Transformacija je linearna.
+\item Velja
+\[
+\mathscr{L}(e^{\alpha t} f(t))(z) = \mathscr{L}(f)(z - \alpha).
+\]
+\item Za $k > 0$ in $\Re z > \sigma(f)$ je
+\[
+\mathscr{L}(f(t-k))(z) = e^{-kz} \mathscr{L}(f)(z).
+\]
+\item Za $k > 0$ je
+\[
+\mathscr{L}(f(kt))(z) =
+\frac{1}{k} \mathscr{L}(f)\left(\frac{z}{k}\right).
+\]
+\item Za vsak $n \in \N$ in $\Re z > \sigma(f)$ je
+\[
+\mathscr{L}\left(f^{(n)}\right)(z) =
+(-1)^n \mathscr{L}(t^n f(t))(z).
+\]
+\item Naj bo $f$ $n$-krat zvezno odvedljiva na $[0, \infty)$ in naj
+transformiranke $f, f', f'', \dots, f^{(n)}$ obstajajo za
+$\Re z > k$. Tedaj za $\Re z > k$ velja
+\[
+\mathscr{L}\left(f^{(n)}\right)(z) =
+z^n \mathscr{L}(f)(z) - \sum_{i=0}^{n-1} f^{(i)}(0) z^{n-1-i}.
+\]
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo zadnjo točko. Velja
+\[
+\int_0^\infty f'(t) e^{-zt}\,dt =
+\eval{f(t) e^{-zt}}{0}{\infty} + z \int_0^\infty f(t) e^{-zt}\,dt =
+-f(0) + z \mathscr{L}(f)(z). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bosta $f, g \colon [0, \infty) \to \C$ funkciji.
+\emph{Konvolucija}\index{Laplaceova transformacija!Konvolucija}
+funkcij $f$ in $g$ je funkcija
+\[
+(f*g)(t) = \int_0^t f(s) g(t-s)\,ds.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $f$ in $g$ eksponentnega naraščanja, torej
+\[
+\abs{f(t)}, \abs{g(t)} \leq M e^{kt}.
+\]
+Tedaj velja
+\[
+\mathscr{L}(f*g)(z) = \mathscr{L}(f)(z) \cdot \mathscr{L}(g)(z).
+\]
+\end{trditev}
+
+\begin{izrek}
+Naj bo $f \colon [0, \infty) \to \C$ zvezna in odsekoma zvezno
+odvedljiva. Naj $\mathscr{L}(f)$ obstaja za $\Re z > k$ in naj za
+nek $x > k$ obstaja integral
+\[
+\int_0^\infty e^{-xt} \abs{f(t)}\,dt.
+\]
+Tedaj za vsak $t > 0$ velja
+\[
+f(t) = \lim_{R \to \infty} \frac{1}{2 \pi i}
+\int_{x - iR}^{x + iR} e^{zt} \mathscr{L}(f)(z)\,dz.
+\]
+\end{izrek}

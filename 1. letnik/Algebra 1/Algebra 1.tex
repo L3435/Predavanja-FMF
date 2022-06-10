@@ -850,11 +850,11 @@ Krajše pišemo $A(u)=Au$.
 \end{okvir}
 
 \begin{definicija}
-Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Množico vseh linearnih preslikav $U\to V$ označimo z $\hom_\F(U,V)$.
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Množico vseh linearnih preslikav $U\to V$ označimo z $\Hom_\F(U,V)$.
 \end{definicija}
 
 \begin{definicija}
-Naj bo $A\in\hom_\F(U,V)$.
+Naj bo $A\in\Hom_\F(U,V)$.
 
 \begin{enumerate}[label=\roman*)]
 \item $A$ je \emph{monomorfizem}\index{Monomorfizem}, če je injektivna.
@@ -864,7 +864,7 @@ Naj bo $A\in\hom_\F(U,V)$.
 \end{definicija}
 
 \begin{definicija}
-Linearnim preslikavam $A\colon U\to U$ pravimo \emph{endomorfizmi}\index{Endomorfizem} prostora $U$. Označimo $\enm_\F(U)=\hom_\F(U,U)$.
+Linearnim preslikavam $A\colon U\to U$ pravimo \emph{endomorfizmi}\index{Endomorfizem} prostora $U$. Označimo $\End_\F(U)=\Hom_\F(U,U)$.
 \end{definicija}
 
 \begin{definicija}
@@ -897,22 +897,22 @@ A^{-1}(\alpha v_1+\beta v_2)=A^{-1}(A(\alpha u_1+\beta u_2))=\alpha A^{-1}v_1+\b
 \end{proof}
 
 \begin{definicija}
-Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Na $\hom_\F(U,V)$ definiramo seštevanje in množenje s skalarjem:
+Naj bosta $U$ in $V$ vektorska prostora nad $\F$. Na $\Hom_\F(U,V)$ definiramo seštevanje in množenje s skalarjem:
 
 \begin{itemize}
-\item $A,B\in\hom_\F(U,V)\colon (A+B)u=Au+Bu$
-\item $\alpha\in\F$, $A\in\hom_\F(U,V)\colon (\alpha A)u=\alpha Au$
+\item $A,B\in\Hom_\F(U,V)\colon (A+B)u=Au+Bu$
+\item $\alpha\in\F$, $A\in\Hom_\F(U,V)\colon (\alpha A)u=\alpha Au$
 \end{itemize}
 \end{definicija}
 
 \begin{trditev}
-Ob zgornjih definicijah $\hom_\F(U,V)$ postane vektorski prostor nad $\F$.
+Ob zgornjih definicijah $\Hom_\F(U,V)$ postane vektorski prostor nad $\F$.
 \end{trditev}
 
 \obvs
 
 \begin{trditev}\label{td:komp}
-Naj bo $A\in\hom_\F(U,V)$ in $B\in\hom_\F(V,W)$. Potem je kompozitum $B\circ A\in\hom_\F(U,W)$.
+Naj bo $A\in\Hom_\F(U,V)$ in $B\in\Hom_\F(V,W)$. Potem je kompozitum $B\circ A\in\Hom_\F(U,W)$.
 \end{trditev}
 
 \begin{proof}
@@ -1271,7 +1271,7 @@ Izberemo standardno bazo $\F^n\colon\mathcal{S}=\set{e_1,e_2,\dots,e_n}$. Vektor
 \begin{trditev}
 Naj bosta $U$ in $V$ vektorska prostora nad $\F$, $\mathcal{B}$ in $\mathcal{C}$ pa bazi za $U$ in $V$. Potem je preslikava
 \[
-\Phi_{\mathcal{CB}}\colon\hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
+\Phi_{\mathcal{CB}}\colon\Hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
 \]
 bijekcija.
 \end{trditev}
@@ -1323,7 +1323,7 @@ $F^{m\times n}$ z zgoraj definiranim seštevanjem in množenjem s skalarjem post
 \begin{izrek}
 Naj bosta $U$ in $V$ končnorazsežna vektorska prostora nad $\F$, $\mathcal{B}$ in $\mathcal{C}$ pa njuni bazi. Potem je
 \[
-\Phi_{\mathcal{CB}}\colon\hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
+\Phi_{\mathcal{CB}}\colon\Hom_\F(U,V)\to\F^{m\times n},\quad \Phi_{\mathcal{CB}}(A)=A_{\mathcal{CB}}
 \]
 izomorfizem vektorskih prostorov.
 \end{izrek}
@@ -1421,7 +1421,7 @@ Opazimo, da je množenje asociativno.
 
 \begin{okvir}
 \begin{definicija}
-Naj bo $V$ vektorski prostor nad $\F$. \emph{Linearen funkcional}\index{Linearen funkcional} je linearna preslikava $\varphi\colon V\to\F$. \emph{Dualni prostor}\index{Dualni prostor} vektorskega prostora $V$ je množica vseh linearnih funkcionalov, ki slikajo iz $V$ v $\F$, oziroma $V^*=\hom_\F(V,\F)$.
+Naj bo $V$ vektorski prostor nad $\F$. \emph{Linearen funkcional}\index{Linearen funkcional} je linearna preslikava $\varphi\colon V\to\F$. \emph{Dualni prostor}\index{Dualni prostor} vektorskega prostora $V$ je množica vseh linearnih funkcionalov, ki slikajo iz $V$ v $\F$, oziroma $V^*=\Hom_\F(V,\F)$.
 \end{definicija}
 \end{okvir}
 
@@ -1747,11 +1747,11 @@ Podan je sistem $Ax=b$. Naj bo $\widetilde{A}=[A\dashline b]$.
 
 \subsection{Endomorfizmi končnorazsežnih vektorskih prostorov in kvadratne matrike}
 
-Spomnimo, $\enm_\F(V)$ je algebra nad $\F$, kjer je $V$ končnorazsežen vektorski prostor nad $\F$.
+Spomnimo, $\End_\F(V)$ je algebra nad $\F$, kjer je $V$ končnorazsežen vektorski prostor nad $\F$.
 
 Izberemo bazo $\mathcal{B}$ prostora $V$ in endomorfizmu $A$ priredimo matriko $A_{\mathcal{BB}}\in\F^{n\times n}$. To pomeni, da imamo preslikavo
 \[
-\Phi_{\mathcal{BB}}\colon\enm_\F(V)\to\F^{n\times n},\quad\Phi_{\mathcal{BB}}(A)=A_{\mathcal{BB}}.
+\Phi_{\mathcal{BB}}\colon\End_\F(V)\to\F^{n\times n},\quad\Phi_{\mathcal{BB}}(A)=A_{\mathcal{BB}}.
 \]
 $\Phi_{\mathcal{BB}}$ je izomorfizem vektorskih prostorov. Na $\F^{n\times n}$ imamo poleg seštevanja in množenja s skalarjem tudi množenje (množenje matrik), zato je tudi $\F^{n\times n}$ algebra nad $\F$.
 
@@ -1765,12 +1765,12 @@ Naj bosta $X$ in $Y$ algebri nad $\F$. \emph{Homomorfizem algeber}\index{Homomor
 \end{definicija}
 
 \begin{izrek}
-$\Phi_{\mathcal{BB}}\colon\enm_\F(V)\to\F^{n\times n}$ je izomorfizem algeber.
+$\Phi_{\mathcal{BB}}\colon\End_\F(V)\to\F^{n\times n}$ je izomorfizem algeber.
 \end{izrek}
 
 \obvs
 
-$\enm_\F(V)$ ima nevtralni element za množenje -- $\id$. Pripada ji \emph{identična matrika}\index{Matrika!Identična}
+$\End_\F(V)$ ima nevtralni element za množenje -- $\id$. Pripada ji \emph{identična matrika}\index{Matrika!Identična}
 \[
 \id_{\mathcal{BB}}=I=
 \begin{bmatrix}
@@ -1786,23 +1786,23 @@ $I$ je enota za množenje v $\F^{n\times n}$.
 \begin{definicija}
 Bijektivnim endomorfizmom vektorskega prostora pravimo \emph{avtomorfizmi}\index{Avtomorfizem} vektorskega prostora $V$:
 \[
-\aut_\F(V)=\setb{A}{A\in\enm_\F(V), \text{$A$ je bijektivna}}.
+\Aut_\F(V)=\setb{A}{A\in\End_\F(V), \text{$A$ je bijektivna}}.
 \]
 \end{definicija}
 
-Na $\aut_\F(V)$ seštevanje ni operacija, prav tako pa množenje s skalarjem ni dobro definirano. Produkt je operacija na $\aut_\F(V)$, kjer je produkt avtomorfizmov njun kompozitum.
+Na $\Aut_\F(V)$ seštevanje ni operacija, prav tako pa množenje s skalarjem ni dobro definirano. Produkt je operacija na $\Aut_\F(V)$, kjer je produkt avtomorfizmov njun kompozitum.
 
 \begin{trditev}
-$\aut_\F(V)$ z množenjem je grupa.
+$\Aut_\F(V)$ z množenjem je grupa.
 \end{trditev}
 
 \obvs
 
 \begin{trditev}
-Naj bo $A\in\enm_\F(V)$. Naslednje trditve so ekvivalentne:
+Naj bo $A\in\End_\F(V)$. Naslednje trditve so ekvivalentne:
 
 \begin{enumerate}[label=\roman*)]
-\item $A\in\aut_\F(V)$
+\item $A\in\Aut_\F(V)$
 \item $A$ je surjektivna
 \item $A$ je injektivna
 \item $\rang A=\dim V$

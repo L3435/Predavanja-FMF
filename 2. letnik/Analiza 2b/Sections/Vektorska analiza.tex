@@ -1,0 +1,750 @@
+\section{Vektorska analiza}
+
+\epigraph{">Ali imate poplavo v kopalnici ali vam ven teče?"<}
+{-- prof.~dr.~Miran Černe}
+
+\subsection{Skalarna in vektorska polja}
+
+\begin{definicija}
+Naj bo $D \subseteq \R^3$ odprta. Funkcijam oblike
+$U \colon D \to \R$ pravimo
+\emph{skalarno polje}\index{Polje}. Preslikavam
+$\vv{R} \colon D \to \R^3$ oblike pravimo \emph{vektorsko polje}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Standardna baza}\index{Prostor!Standardna baza} je množica
+\[
+\set{\vv{i}, \vv{j}, \vv{k}} = \set{\vv{e_1}, \vv{e_2}, \vv{e_3}}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Pravimo, da je baza $\set{\vv{p}, \vv{q}, \vv{r}}$
+\emph{pozitivno orientirana}\index{Prostor!Orientacija baze}, če je
+\[
+[\vv{p}, \vv{q}, \vv{r}] > 0.
+\]
+Če je mešani produkt negativen, pravimo, da je baza
+\emph{negativno orientirana}.
+\end{definicija}
+
+\begin{opomba}
+Standardna baza je pozitivno orientirana.
+\end{opomba}
+
+\begin{opomba}
+Baza je pozitivno orientirana natanko tedaj, ko je
+\[
+\vv{p} \times \vv{q} = \vv{r}.
+\]
+\end{opomba}
+
+\datum{2022-3-2}
+
+\begin{definicija}
+\emph{Smerni odvod}\index{Polje!Smerni odvod} skalarnega polja
+$U$ v smeri vektorja $\vv{s}$ v točki $p$ je limita
+\[
+\lim_{t \to 0}
+\frac{U(\vv{p} + t \vv{s}) - U(\vv{p})}{t} =
+\frac{\partial U}{\partial \vv{s}}(\vv{p}),
+\]
+če obstaja.
+\end{definicija}
+
+\begin{opomba}
+Če je $U \in \mathcal{C}^1(D)$, velja
+\[
+\frac{\partial U}{\partial \vv{s}}(\vv{p}) =
+(DU)(\vv{p}) \cdot \vv{s} =
+\grad U \cdot \vv{s}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Operator \emph{nabla}\index{Polje!Nabla} je operator
+\[
+\vv{\nabla} = \left(
+\frac{\partial}{\partial x},
+\frac{\partial}{\partial y},
+\frac{\partial}{\partial z}
+\right).
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $U \in \mathcal{C}^1(D)$. V točki $\vv{p} \in D$
+skalarno polje najhitreje narašča v smeri gradienta, najhitreje pa
+pada v nasprotni smeri.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+V smereh, pravokotnih na gradient, se $U$ najpočasneje
+spreminja.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{R}$ vektorsko polje.
+\emph{Divergenca}\index{Polje!Divergenca} polja je sled odvoda,
+oziroma
+\[
+\dv \vv{R} = X_x + Y_y + Z_z = \vv{\nabla} \cdot \vv{R}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\vv{R}$ vektorsko polje. \emph{Rotor}\index{Polje!Rotor}
+polja je produkt\footnote{Abuse of notation, razlike odvodov
+komponent.}
+\[
+\rot \vv{R} = \vv{\nabla} \times \vv{R}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bo $D$ odprta podmnožica $\R^3$,
+$U \in \mathcal{C}^2(D)$ skalarno in
+$\vv{R} \in \mathcal{C}^2(D)$ vektorsko polje. Tedaj velja
+
+\begin{enumerate}[i)]
+\item $\rot(\grad U) =
+\vv{\nabla} \times \vv{\nabla} U = \vv{0}$ in
+\item $\dv(\rot \vv{R}) =
+\vv{\nabla} \cdot \left(\vv{\nabla} \times \vv{R}\right) = 0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\vv{\nabla} \times \vv{\nabla} \cdot U =
+(u_{zy} - u_{yz}, u_{xz} - u_{zx}, u_{yx} - u_{xy}) =
+\vv{0}
+\]
+in
+\[
+\vv{\nabla} \cdot \left(\vv{\nabla} \times \vv{R}\right) =
+Z_{yx} - Y_{zx} + X_{zy} - Z_{xy} + Y_{xz} - X_{yz} =
+0. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Vektorsko polje je \emph{potencialno}\index{Polje!Potencialno}, če
+obstaja tako skalarno polje $U \in \mathcal{C}^1(D)$, da
+je $\vv{R} = \grad U$. Polju $U$ pravimo
+\emph{potencial}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $U$ skalarno polje.
+\emph{Laplaceov operator}\index{Polje!Laplaceov operator} je
+\[
+\Delta U =
+\dv \grad U =
+U_{xx} + U_{yy} + U_{zz}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Funkcijam, ki rešijo enačbo
+\[
+\Delta U = 0,
+\]
+pravimo \emph{harmonične funkcije}\index{Funkcija!Harmonična}.
+\end{definicija}
+
+\begin{definicija}
+Množica $D \subseteq \R^3$ je
+\emph{konveksna}\index{Množica!Konveksna}, če za poljubni točki
+$\vv{a}, \vv{b} \in D$ in $t \in [0,1]$ tudi
+\[
+t \vv{a} + (1-t) \vv{b} \in D.
+\]
+\end{definicija}
+
+\begin{definicija}
+Množica $D \subseteq \R^3$ je
+\emph{zvezdasta}\index{Množica!Zvezdasta}, če obstaja taka točka
+$\vv{a} \in D$, da je za vse $\vv{b} \in D$ in $t \in [0,1]$ tudi
+\[
+t \vv{a} + (1-t) \vv{b} \in D.
+\]
+\end{definicija}
+
+\datum{2022-3-7}
+
+\begin{trditev}
+Naj bo $D \subseteq \R^3$ zvezdasto območje.\footnote{Povezana
+odprta množica.} Naj bo $\vv{R} \in \mathcal{C}^1(D)$ vektorsko
+polje.
+
+\begin{enumerate}[i)]
+\item Če je $\rot \vv{R} = 0$, je $\vv{R}$ potencialno.
+\item Če je $\dv \vv{R} = 0$, obstaja tako vektorsko polje
+$\vv{F} \in \mathcal{C}^2(D)$, da je $\vv{R} = \rot \vv{F}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Označimo $\vv{R} = (X, Y, Z)$ in $D$ zvezdasto glede na točko
+$(0, 0, 0)$.
+
+\begin{enumerate}[i)]
+\item Naj bo
+\[
+U(x,y,z) = \int_0^1 \left(
+x \cdot X(tx, ty, tz) +
+y \cdot Y(tx, ty, tz) +
+z \cdot Z(tx, ty, tz)
+\right)\,dt.
+\]
+Sledi, da je
+\begin{align*}
+U_x(x,y,z)
+&=
+\int_0^1 (X + tx \cdot X_x + ty \cdot Y_x + tz \cdot Z_x )\,dt
+\\
+&=
+\int_0^1 (X + tx \cdot X_x + ty \cdot X_y + tz \cdot X_z)\,dt
+\\
+&=
+\eval{t \cdot X(tx, ty, tz)}{0}{1}
+\\
+&= X.
+\end{align*}
+\item Označimo
+\[
+\alpha(x,y,z) = \int_0^1 t \cdot X(tx, ty, tz)\,dt.
+\]
+Simetrično definiramo še $\beta$ in $\gamma$. Opazimo, da velja
+\[
+\alpha_x + \beta_y + \gamma_z = 0,
+\]
+saj je $X_x + Y_y + Z_z = 0$. Sedaj naj bo
+\[
+\vv{F} =
+(\alpha, \beta, \gamma) \times (x, y, z) =
+(z \beta - y \gamma, x \gamma - z \alpha, y \alpha - x \beta).
+\]
+Sledi, da je prva komponenta $\rot \vv{F}$ enaka
+\begin{align*}
+\frac{\partial}{\partial y} (y \alpha - x \beta) -
+\frac{\partial}{\partial z} (x \gamma - z \alpha)
+&=
+\alpha + y \alpha_y - x \beta_y - x \gamma_z + \alpha + z \alpha_z
+\\
+&=
+2 \alpha + y \alpha_y + z \alpha_z - x(\beta_y + \gamma_z) =
+\\
+&=
+\int_0^1 \left(2t X + t^2x X_x + t^2y X_y + t^2z X_z\right)\,dt
+\\
+&=
+\eval{t^2 X(tx, ty, tz)}{0}{1}
+\\
+&= X(x, y, z). \qedhere
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Potencial vektorskega polja je določen do konstante natančno.
+\end{opomba}
+
+\begin{proof}
+Za $U = U - \mathcal{V}$ je množica
+\[
+A = \setb{(x,y,z) \in D}{U(x,y,z) = U(x_0,y_0,z_0)}
+\]
+odprta in zaprta.
+\end{proof}
+
+\begin{opomba}
+Če je $\dv \vv{R} = 0$, so vse rešitve enačbe
+$\vv{R} = \rot \vv{F}$ oblike $\vv{F} + \grad U$.
+\end{opomba}
+
+\begin{opomba}
+Vsako vektorsko polje $\vv{R} \in \mathcal{C}^1(D)$ na zvezdastem
+območju $D$ lahko zapišemo v obliki
+\[
+\vv{R} = \rot \vv{F} + \grad U.
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Orientacija krivulj in ploskev}
+
+\begin{definicija}
+Naj bo $\Gamma \subseteq \R^3$ gladka krivulja.
+\emph{Orientacija}\index{Krivulja!Orientacija} krivulje $\Gamma$ je
+zvezen izbor enotskega tangentnega vektorja vzdolž $\Gamma$.
+\end{definicija}
+
+\begin{opomba}
+Če je $\Gamma$ povezana, ima natanko dve orientaciji.
+\end{opomba}
+
+\begin{definicija}
+\emph{Odsekoma gladka krivulja}\index{Krivulja!Odsekoma gladka}
+$\Gamma$ je vsaka končna unija gladkih krivulj, ki se ne sekajo,
+razen v zaporednih robnih točkah.
+\end{definicija}
+
+\begin{definicija}
+\emph{Orientacija} odsekoma gladke krivulje
+\[
+\Gamma = \bigcup_{i=1}^n \Gamma_i
+\]
+je tak izbor orientacij $\Gamma_i$, da so presečišča začetna točka
+ene in končna točka druge krivulje.
+\end{definicija}
+
+\datum{2022-3-9}
+
+\begin{definicija}
+Naj bo $\Sigma \subseteq \R^3$ gladka ploskev.
+\emph{Orientacija}\index{Ploskev!Orientacija} ploskve $\Sigma$ je
+zvezen izbor enotske normale na $\Sigma$. Ploskvi z orientacijo
+pravimo \emph{orientabilna}.
+\end{definicija}
+
+\begin{opomba}
+Vsaka orientabilna povezana ploskev ima natanko dve orientaciji.
+\end{opomba}
+
+\begin{opomba}
+Vsaka regularna parametrizacija $\vv{r} \colon D \to \R^3$ poda
+orientacijo
+\[
+\vv{N} =
+\frac{\vv{r_u} \times \vv{r_v}}{\norm{\vv{r_u} \times \vv{r_v}}}.
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Odsekoma gladka ploskev}\index{Ploskev!Odsekoma gladka}
+$\Sigma$ je vsaka končna unija gladkih omejenih ploskev z robom,
+pri čemer je presek vsakih dveh prazen ali del robnih krivulj,
+presek vsakih treh pa je prazen ali točka.
+\end{definicija}
+
+\begin{opomba}
+Orientacija ploskve določa orientacijo roba
+$\vv{T} = \vv{N} \times \vv{n}$, kjer je $\vv{n}$ normala na rob,
+ki kaže izven ploskve. Taki orientaciji pravimo \emph{pozitivna}.
+\end{opomba}
+
+\begin{definicija}
+\emph{Orientacija} odsekoma gladke ploskve
+\[
+\Sigma = \bigcup_{i=1}^n \Sigma_i
+\]
+je tak izbor orientacij $\Sigma_i$, da so njihovi robovi
+orientirani nasprotno.
+\end{definicija}
+
+\newpage
+
+\subsection{Krivuljni integral}
+
+\begin{definicija}
+Naj bo $\Gamma$ gladka krivulja z regularno parametrizacijo
+$\vv{r} \colon [\alpha, \beta] \to \Gamma$. Naj bo
+$U \colon \Gamma \to \R$ zvezno skalarno polje.
+\emph{Krivuljni integral skalarnega polja}\index{Krivulja!Integral}
+je definiran kot
+\[
+\lint_\Gamma U\,ds =
+\int_\alpha^\beta U(\vv{r}(t)) \abs{\dot{\vv{r}}(t)}\,dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odsekoma gladko krivuljo
+\[
+\Gamma = \bigcup_{i=1}^n \Gamma_i
+\]
+je integral definiran kot
+\[
+\lint_\Gamma U\,ds =
+\sum_{i=1}^n \lint_{\Gamma_i} U\,du.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{\Gamma}$ gladka orientirana krivulja z regularno
+parametrizacijo $\vv{r} \colon [\alpha, \beta] \to \Gamma$, ki je
+usklajena z orientacijo. Naj bo $\vv{R} \colon \Gamma \to \R^3$
+zvezno vektorsko polje. \emph{Krivuljni integral vektorskega polja}
+je definiran kot
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\int_\alpha^\beta \vv{R}(\vv{r}(t)) \cdot \dot{\vv{r}}(t)\,dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Integral je enak za vse parametrizacije, ki so usklajene z
+orientacijo, saj je
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\lint_\Gamma \left(\vv{R} \cdot \vv{T}\right)ds.
+\]
+\end{opomba}
+
+\begin{opomba}
+Pišemo tudi
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\lint_\Gamma X\,dx + Y\,dy + Z\,dz.
+\]
+Zapis $X\,dx + Y\,dy + Z\,dz$ je \emph{diferencialna 1-forma}.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\vv{R} \colon D \to \R^3$, $\vv{R} = \grad U$ zvezno
+potencialno vektorsko polje. Naj bo $\Gamma$ orientirana odsekoma
+gladka krivulja v $D$ z začetno točko $A$ in končno točko $B$.
+Tedaj je
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+U(B) - U(A).
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\int_\alpha^\beta (Du) \dot{\vv{r}}\,dt =
+\int_\alpha^\beta \frac{d}{dt} \left(U(\vv{r}(t)\right)dt =
+U(B) - U(A). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $D \subseteq \R^3$ odprta in $\vv{R}$ zvezno vektorsko polje
+na $D$. Naslednje izjave so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $\vv{R}$ je potencialno.
+\item Integral $\vv{R}$ po odsekoma gladkih krivuljah v $D$ je
+neodvisen od poti.
+\item Integral $\vv{R}$ po vsaki sklenjeni odsekoma gladki krivulji
+v $D$ je enak $0$.
+\end{enumerate}
+\end{izrek}
+
+\datum{2022-3-14}
+
+\begin{proof}
+Implikaciji iz prve točke v tretjo je očitna. Prav tako iz tretje
+takoj sledi druga -- dve krivulji namreč določata sklenjeno 
+krivuljo.
+
+Brez škode za splošnost naj bo $D$ povezana.\footnote{Sledi, da je
+povezana s potmi.} Če je integral neodvisen od poti, definiramo
+\[
+U(T) = \lint_{\vv{\Gamma}} \vv{R}\,d\vv{r},
+\]
+kjer $\Gamma$ povezuje točki $A_0$ in $T$. Velja
+\[
+U_x = \lim_{h \to 0} \frac{U(x+h, y, z) - U(x, y, z)}{h}.
+\]
+Ker si pot v integrali lahko izberemo poljubno, si izberemo
+daljico, ki povezuje $(x+h, y, z)$ in $(x, y, z)$. Sledi, da je
+\[
+U_x =
+\lim_{h \to 0} \int_0^1 X(x + th, y, z)\,dt =
+X(x, y, z). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Krivulja je sklenjena, če začetna in končna točka sovpadata. Tedaj
+pišemo
+\[
+\lint_{\vv{\Gamma}} \vv{R}\,d\vv{r} =
+\olint_{\vv{\Gamma}} \vv{R}\,d\vv{r}.
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Ploskovni integral}
+
+\begin{definicija}
+Naj bo $\Sigma$ gladka ploskev s parametrizacijo
+$\vv{r} \colon D \to \Sigma$ in $U \colon \Sigma \to \R$ skalarno
+polje.
+\emph{Ploskovni integral skalarnega polja}\index{Ploskovni integral}
+je definiran kot
+\[
+\liint_\Sigma U\,dS =
+\liint_D U(\vv{r}(s,t)) \sqrt{EG - F^2}\,ds\,dt =
+\liint_D U(\vv{r}(s,t)) \abs{\vv{r_s} \times \vv{r_t}}\,ds\,dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odsekoma gladko ploskev
+\[
+\Sigma = \bigcup_{i=1}^n \Sigma
+\]
+je integral definiran kot
+\[
+\liint_\Sigma U\,dS =
+\sum_{i=1}^n \liint_{\Sigma_i} U\,ds.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\vv{\Sigma}$ orientirana gladka ploskev s parametrizacijo
+$\vv{r} \colon D \to \Sigma$, ki je usklajena z orientacijo, in
+$\vv{R} \colon \Sigma \to \R^3$ vektorsko polje. \emph{Ploskovni
+integral vektorskega polja} je definiran kot
+\[
+\liint_{\vv{\Sigma}} \vv{R}\,d\vv{S} =
+\liint_\Sigma \left(\vv{R} \cdot \vv{N}\right)dS =
+\liint_D \vv{R} \cdot \vv{N} \cdot
+\abs{\vv{r_s} \times \vv{r_t}}\,ds\,dt =
+\liint_D \vv{R} \cdot (\vv{r_s} \times \vv{r_t})\,ds\,dt.
+\]
+\end{definicija}
+
+\begin{opomba}
+Pišemo tudi
+\[
+\liint_{\vv{\Sigma}} \vv{R}\,d\vv{S} =
+\liint_\Sigma X\,dy \wedge dz + Y\,dz \wedge dx + Z\,dx \wedge dy.
+\]
+Zapis $X\,dy \wedge dz + Y\,dz \wedge dx + Z\,dx \wedge dy$ je
+\emph{diferencialna 2-forma}.
+\end{opomba}
+
+\newpage
+
+\subsection{Integralski izreki}
+
+%\begin{okvir}
+%\begin{izrek}[Stokes]\index{Izrek!Stokes}
+%Naj bo $M$ orientirana mnogoterost z robom $\partial M$, ki ima
+%usklajeno orientacijo. Tedaj je
+%\[
+%\lint_M d\omega = \lint_{\partial M} \omega.
+%\]
+%\end{izrek}
+%\end{okvir}
+
+\begin{izrek}[Gauss]\index{Izrek!Gauss}
+Naj bo $D$ omejena odprta množica v $\R^3$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih sklenjenih
+ploskev, orientiranih z zunanjo normalo glede na $D$. Naj bo
+$\vv{R} \in \mathcal{C}^1(\overline{D})$ vektorsko
+polje. Tedaj velja
+\[
+\liint_{\partial D} \vv{R}\,d\vv{s} = \liiint_D \dv\vv{R}\,dV.
+\]
+\end{izrek}
+
+\datum{2022-3-16}
+
+\begin{proof}
+Naj bo $D \subseteq \R^3$ množica, za katero vsaka premica,
+vzporedna kateri izmed koordinatnih osi, ki seka $D$, seka njen rob
+v največ dveh točkah. Pri ">sestavljanju"< takih množic se
+integrali po robovih seštejejo v $0$, zato je izrek dovolj dokazati
+za take množice.
+
+Naj bo $\vv{R} = (X, Y, Z)$ in $\vv{N} = (N_x, N_y, N_z)$ zunanja
+normala. Dokazujemo, da je
+\[
+\liiint_D (X_x + Y_y + Z_z)\,dV =
+\liint_{\partial D} (X N_x + Y N_y + Z N_z)\,dS.
+\]
+Dovolj je torej dokazati, da je
+\[
+\liiint_D Z_z\,dV = \liint_{\partial D} Z N_z\,dS.
+\]
+Naj bo
+\[
+\overline{D} =
+\setb{(x, y, z) \in \R^3}
+{(x,y) \in \overline{\Omega}, g(x, y) \leq z \leq f(x,y)}.
+\]
+Sledi, da je
+\[
+\liiint_D Z_z\,dV =
+\liint_\Omega \left(\int_{g(x,y)}^{f(x,y)} Z_z\,dz\right)\,dx\,dy =
+\liint_\Omega(Z(x, y, f(x, y)) - Z(x, y, g(x, y)))\,dx\,dy.
+\]
+Velja pa
+\begin{align*}
+\liint_{\partial D} Z N_z\,dS
+&=
+\liint_{\Gamma(f)} Z N_z\,dS +
+\liint_{\Gamma(g)} Z N_z\,dS +
+\liint_{N_z = 0} Z N_z\,dS
+\\
+&=
+\liint_\Omega Z(x, y, f(x, y)) \cdot
+\frac{1}{\sqrt{1 + f_x^2 + f_y^2}} \cdot
+\sqrt{1 + f_x^2 + f_y^2}\,dx\,dy +
+\\
+&\qquad
++\liint_\Omega Z(x, y, g(x, y)) \cdot
+\frac{-1}{\sqrt{1 + g_x^2 + g_y^2}} \cdot
+\sqrt{1 + g_x^2 + g_y^2}\,dx\,dy. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{opomba}
+Podoben izrek (z enakim dokazom) velja v ravnini:
+\[
+\lint_{\partial D} \vv{R} \cdot \vv{N}\,ds =
+\liint_D (X_x + Y_y)\,dx\,dy.
+\]
+\end{opomba}
+
+\begin{izrek}[Greenova formula]\index{Izrek!Greenova formula}
+Naj bo $D$ omejena odprta množica v $\R^2$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih sklenjenih
+krivulj, orientiranih pozitivno glede na $D$. Naj bosta
+$X, Y \in \mathcal{C}^1(\overline{D})$ funkciji. Tedaj velja
+\[
+\lint_{\partial D} X\,dx + Y\,dy = \liint_D (Y_x - X_y)\,dx\,dy.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $\vv{R} = (X, Y)$ in $\vv{\widetilde{R}} = (Y, -X)$. Po
+Gaussovem izreku v ravnini velja
+\[
+\lint_{\partial D} \vv{\widetilde{R}} \cdot \vv{N}\,ds =
+\liint_D (Y_x - X_y)\,dx\,dy.
+\]
+Velja pa
+\[
+\lint_{\partial D} \vv{\widetilde{R}} \cdot \vv{N}\,ds =
+\lint_{\partial D} (Y, -X) \cdot (N_x, N_y)\,ds =
+\lint_{\partial D} (X, Y) \cdot (-N_y, N_x)\,ds =
+\lint_{\partial D} \vv{R}\,d\vv{r},
+\]
+saj je $(-N_y, N_x)$ tangentni vektor.
+\end{proof}
+
+\begin{izrek}[Stokes]\index{Izrek!Stokes}
+Naj bo $\Sigma \subseteq \R^3$ omejena odsekoma gladka orientirana
+ploskev z robom, sestavljenim iz končnega števila odsekoma gladkih
+sklenjenih krivulj, orientiranih skladno s $\Sigma$. Naj bo
+$\vv{R} \in \mathcal{C}^1(\overline{\Sigma})$ vektorsko polje.
+Tedaj velja
+\[
+\lint_{\partial \vv{\Sigma}} \vv{R}\,d\vv{r} =
+\liint_{\vv{\Sigma}} \rot\vv{R}\,d\vv{S}.
+\]
+\end{izrek}
+
+\begin{proof}
+Ni težko videti, da je izrek dovolj dokazati za grafe funkcij, saj
+se pri ">sestavljanju"< integrali po robovih seštejejo v $0$.
+
+Naj bo $\Sigma$ graf nad ravnino $(x, y)$, torej
+\[
+\Sigma = \setb{(x, y, f(x, y))}{(x, y) \in D}.
+\]
+Naj bo orientacija $\Sigma$ dana z
+\[
+\frac{(-f_x, -f_y, 1)}{\sqrt{1 + f_x^2 + f_y^2}}.
+\]
+Naj bo $f \in \mathcal{C}^2(\overline{D})$.\footnote{Vsako
+$\mathcal{C}^1(\overline{D})$ funkcijo lahko poljubno aproksimiramo
+s takimi.} Po Greenovi formuli velja
+\begin{align*}
+\lint_{\partial \Sigma} \vv{R}\,d\vv{r} &=
+\lint_{\partial \Sigma} X\,dx + Y\,dy + Z\,dz
+\\
+&=
+\lint_{\partial D}
+X(x, y, f(x, y))\,dx +
+Y(x, y, f(x, y))\,dy +
+Z(x, y, f(x, y))\,dz
+\\
+&=
+\lint_{\partial D} (X + f_x Z)\,dx + (Y + f_y Z)\,dy
+\\
+&=
+\liint_D ((Y + f_y Z)_x - (X + f_x Z)_y)\,dx\,dy
+\\
+&=
+\liint_D (Y_x + Y_z f_x + f_{yx} Z + f_y Z_x + f_y Z_z f_x -
+\\[-15pt]
+& \qquad \qquad
+-X_y - X_z f_y - f_{xy} Z - f_x Z_y - f_x Z_z f_y)\,dx\,dy
+\\
+&=
+\liint_\Sigma \rot\vv{R}\,d\vv{S}. \qedhere
+\end{align*}
+\end{proof}
+
+\datum{2022-3-28}
+
+\begin{posledica}
+Naj bo $D$ omejena odprta množica v $\R^3$ z odsekoma gladkim
+robom, sestavljenim iz končnega števila odsekoma gladkih ploskev.
+Naj bo ta orientiran z zunanjo normalo glede na $D$. Naj bosta $U$
+in $V$ $\mathcal{C}^2$ funkciji na okolici $\overline{D}$. Tedaj
+velja
+\[
+\liint_{\partial D} V \frac{\partial U}{\partial \vv{n}}\,dS =
+\liiint_D \left(\vv{\nabla}U \vv{\nabla}V + V \Delta U\right) dV
+\]
+in
+\[
+\liint_{\partial D} \left(
+V \frac{\partial U}{\partial \vv{n}} -
+U \frac{\partial V}{\partial \vv{n}}\right)dS =
+\liiint_D (V \Delta U - U \Delta V)\,dV.
+\]
+\end{posledica}
+
+\begin{proof}
+Naj bo $\vv{R} = V \grad U$. Sledi, da je
+\[
+\dv \vv{R} = \grad V \cdot \grad U + V \Delta U,
+\]
+ker pa je $\grad U = \frac{\partial U}{\partial \vv{n}}$, prva
+enačba sledi iz Gaussovega izreka. Če v enačbi zamenjamo $U$ in $V$
+in enačbi odštejemo, dobimo še drugo enačbo.
+\end{proof}
+
+\begin{posledica}
+Divergenca je neodvisna od izbire ortonormirane baze.
+\end{posledica}
+
+\begin{proof}
+Označimo $K = \overline{K(p, \varepsilon)}$, kjer je $p \in D$.
+Tedaj je
+\[
+\frac{1}{V(K)} \liint_{\partial K} \vv{R}\,d\vv{S} =
+\frac{1}{V(K)} \liiint_K \dv \vv{R}\,dV.
+\]
+Ker je $\dv \vv{R}$ zvezna, je enaka
+\[
+\lim_{\varepsilon \to 0}
+\frac{1}{V(K)} \liint_{\partial K} \vv{R}\,d\vv{S},
+\]
+kar pa je neodvisno od baze.
+\end{proof}
+
+\begin{opomba}
+S Stokesovim izrekom lahko podobno izpeljemo za rotor.
+\end{opomba}
+
+% Diferencialne forme in Laplace
