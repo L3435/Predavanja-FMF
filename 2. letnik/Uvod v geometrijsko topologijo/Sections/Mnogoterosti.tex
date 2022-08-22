@@ -1,0 +1,464 @@
+\section{Mnogoterosti}
+
+\epigraph{"Če imaš selotejp, lahko vse strgaš."}
+{-- Maša Žaucer}
+
+\subsection{Topološke mnogoterosti}
+
+\datum{2022-4-29}
+
+\begin{definicija}
+Naj bo $n \in \N_0$.
+\emph{Topološka mnogoterost}\index{Mnogoterost} dimenzije $n$ je
+Hausdorffov, 2-števen topološki prostor $M$, v katerem ima vsaka
+točka v $M$ odprto okolico $V \subseteq M$, homeomorfno $\R^n$ ali
+$\R_+^n$.\footnote{Označimo
+$\R_+^n = \setb{x \in \R^n}{x_n \geq 0}$.} Okolico $V$ imenujemo
+\emph{evklidska okolica}, homeomorfizem med $V$ in $\R^n$ ali
+$\R_+^n$ pa \emph{karta}.
+\end{definicija}
+
+\begin{opomba}
+Ta definicija je dobra po invarianci odprtih množic.
+\end{opomba}
+
+\begin{opomba}
+Ekvivalentno lahko zahtevamo, da je $V$ homeomorfna neki odprti
+množici v $\R_+^n$.
+\end{opomba}
+
+\begin{opomba}
+Vsaka točka v $M$ ima bazo evklidskih okolic.
+\end{opomba}
+
+\begin{definicija}
+\emph{Notranjost}\index{Mnogoterost!Notranjost, rob} mnogoterosti
+$M$ je množica
+\[
+\Int M = \setb{x \in M}
+{\text{obstaja evklidska okolica $x$, homeomorfna $\R^n$}}.
+\]
+\emph{Rob} mnogoterosti $M$ je množica
+$\partial M = M \setminus \Int M$.
+\end{definicija}
+
+\begin{trditev}
+Mnogoterosti so metrizabilne.
+\end{trditev}
+
+\begin{proof}
+Ker je mnogoterost lokalno evklidski prostor, je lokalno kompakten
+in 2-števen. Iz lokalne kompaktnosti in Hausdorffove lastnosti
+sledi regularnost, ker pa je prostor 2-števen, je metrizabilen.
+\end{proof}
+
+\begin{definicija}
+Mnogoterost $M$ je \emph{sklenjena}\index{Mnogoterost!Sklenjena},
+če je $\partial M = \emptyset$ in je $M$ kompaktna.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $n \in \N_0$ in $\F \in \set{\R, \C, \HH}$. Projektivni
+prostor $\proj{\F}{n}$ je sklenjena mnogoterost dimenzije $dn$,
+kjer je $d = \dim_{\R} \F$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $q \colon \F^{n+1} \setminus \set{0} \to \proj{\F}{n}$
+kvocientna projekcija. Ker je odprta, je $\proj{\F}{n}$ 2-števen
+prostor. Množice
+\[
+V_i =
+\setb{(x_0, \dots, x_n) \in \F^{n+1} \setminus \set{0}}{x_i \ne 0}
+\]
+tvorijo pokritje prostora, zato je $q(V_i)$ odprto pokritje za
+$\proj{\F}{n}$. Dovolj je tako pokazati, da je
+$q(V_i) \approx \F^n$, oziroma, da je $q(V_0) \approx \F^n$.
+
+Naj bo $f \colon V_0 \to \F^n$ preslikava, podana z
+\[
+f(x_0, x_1, \dots, x_n) = x_0^{-1} \cdot (x_1, \dots, x_n).
+\]
+Ker je $\eval{q}{V_0}{}$ kvocientna, $f$ pa je konstantna na
+ekvivalenčnih razredih, dobimo inducirano zvezno preslikavo
+$\overline{f}$ iz $q(V_0)$ v $\F^n$. Dovolj je tako preveriti, da
+ima $\overline{f}$ zvezen inverz, kar je res, saj elementu $\F^n$
+dodamo na prvo mesto $1$ in ga slikamo s $q$. Sledi, da je
+$\proj{\F}{n}$ lokalno evklidski prostor brez roba.
+
+Preveriti je treba še lastnost $T_2$. Če je $a \in V_i$ za vse $i$,
+jo lahko od vsake točke ločimo znotraj neke množice $V_j$. Ker je
+$\proj{\F}{n}$ homogen, pa lahko poljubno točko slikamo v tak $a$,
+zato lahko ločimo vse točke.
+\end{proof}
+
+\newpage
+
+\subsection{Konstrukcije mnogoterosti}
+
+\begin{izrek}
+Naj bosta $M$ in $N$ $n$-mnogoterosti, $V \subseteq \Int M$ odprta
+množica in $f \colon V \to N$ zvezna in injektivna preslikava.
+Potem je $f$ odprta in je $f(V) \subseteq \Int N$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $W \subseteq V$ poljubna odprta množica. Naj bo $y \in f(W)$
+in $x = f^{-1}(y)$. Ker je $y \in N$, ima evklidsko okolico $U$.
+Točka $x$ ima zato evklidsko okolico
+\[
+U' \subseteq f^{-1}(U) \cap W \subseteq V,
+\]
+ki je homeomorfna $\R^n$.
+
+Po Brouwerju je kompozicija $f$ s homeomorfizmi odprta preslikava,
+zato je njena slika odprta v $\R^n$. Točka $y$ ima torej okolico,
+homeomorfno $\R^n$, zato je notranja točka v $N$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $M$ $n$-mnogoterost z nepraznim robom. Potem je njen rob
+$\partial M$ $(n-1)$-mnogoterost s praznim robom. Če je $M$
+kompaktna, je $\partial M$ sklenjena.
+\end{izrek}
+
+\begin{proof}
+Naj bo $x \in \partial M$. Sledi, da obstaja homeomorfizem $h$,
+ki okolico $U$ točke $x$ preslika v $\R_+^n$. Ker pa je
+$\eval{h}{U \cap \Int M}{}$ zvezna in injektivna, je odprta, zato
+je
+\[
+h(U \cap \Int M) \subseteq \Int \R_+^n =
+\R^{n-1} \times (0, \infty).
+\]
+Podobno sklepamo za inverzno preslikavo. Sledi, da je
+\[
+h(U \cap \partial M) = \R^{n-1} \times \set{0},
+\]
+zato je $\partial M$ res $(n-1)$-mnogoterost brez roba. Če je $M$
+kompaktna, je tudi $\partial M$ kompaktna, in zato sklenjena.
+\end{proof}
+
+\begin{opomba}
+Če je $M$ povezana, je tudi $M \setminus \partial M$ povezana.
+\end{opomba}
+
+\begin{izrek}
+Rob ima globalni obrobek -- obstaja vložitev
+$\varphi \colon \partial M \times [0, 1] \to M$, za katero je
+$\varphi(x, 0) = x$.
+\end{izrek}
+
+\datum{2022-5-6}
+
+\begin{izrek}
+Naj bo $M$ $m$-mnogoterost in $N$ $n$-mnogoterost. Tedaj je
+$M \times N$ $(m+n)$-mnogoterost z notranjostjo
+\[
+\Int (M \times N) = \Int M \times \Int N
+\]
+in robom
+\[
+\partial (M \times N) =
+\partial M \times N \cup M \times \partial N.
+\]
+\end{izrek}
+
+\begin{proof}
+Lastnosti $T_2$ in 2-števnost sta multiplikativni, zato nam teh ni
+treba preverjati.
+
+Naj bosta $x \in M$ in $y \in N$ notranji točki z evklidskima
+okolicama $U_x$ in $U_y$. Tedaj je $U_x \times U_y$ evklidska
+okolica točke $(x, y)$. Če je ena izmed $x$ in $y$ robna, je
+$U_x \times U_y \approx \R_+^{n+m}$. Če sta obe robni, pa velja
+\[
+U_x \times U_y \approx
+\R^{n+m-2} \times [0, \infty) \times [0, \infty) \approx
+\R^{n+m-2} \times \R_+^2 \approx
+\R_+^{n+m}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $L$ $\ell$-mnogoterost in $N$ $n$-mnogoterost, pri čemer
+velja $L \subseteq N$ in $\ell \leq n$.
+
+\begin{enumerate}[i)]
+\item Mnogoterost $L$ je
+\emph{prav vložena}\index{Mnogoterost!Prav vložena} v $N$, če velja
+\[
+L \cap \partial N = \partial L.
+\]
+\item Mnogoterost $L$ je
+\emph{lokalno ploščata}\index{Mnogoterost!Lokalno ploščata} ali
+\emph{podmnogoterost} v $N$, če je prav vložena in za vsak
+$x \in L$ obstajata evklidska okolica $V$ za $x$ v $N$ in
+homeomorfizem $h$ med $V$ in $\R^n$ ali $\R_+^n$, za katerega velja
+\[
+h(V \cap L) =
+h(V) \cap \left(\set{0}^{n - \ell} \times \R^\ell\right).
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Naj bosta $N_1$ in $N_2$ $n$-mnogoterosti ter
+$L_1 \subseteq \partial N_1$ in $L_2 \subseteq \partial N_2$ zaprti
+$(n-1)$-mnogoterosti z lokalno ploščatima robovoma,
+$h \colon L_1 \to L_2$ pa homeomorfizem. Tedaj je zlepek
+$N_1 \cup_h N_2$ $n$-mnogoterost z robom
+\[
+\partial (N_1 \cup_h N_2) =
+(\partial N_1 \setminus \Int L_1)
+\cup_{\eval{h}{\partial L_1}{}}
+(\partial N_2 \setminus \Int L_2).
+\]
+\end{izrek}
+
+\begin{proof}
+Podoben kot trditev~\ref{td:zlp}.
+\end{proof}
+
+\begin{lema}
+Naj bosta $x$ in $y$ točki v $\Int B^n$. Poljuben homeomorfizem
+$\varphi \colon S^{n-1} \to S^{n-1}$ lahko razširimo do
+homeomorfizma $\Phi \colon B^n \to B^n$, za katerega velja
+$\Phi(x) = y$.
+\end{lema}
+
+\begin{izrek}
+Naj bo $M$ povezana $n$-mnogoterost. Potem za poljubna
+$x, y \in \Int M$ obstaja homeomorfizem $h \colon M \to M$, za
+katerega je $h(x) = y$.
+\end{izrek}
+
+\begin{proof}
+Definiramo ekvivalenčno relacijo $\sim$ tako, da je $x \sim y$
+natanko tedaj, ko obstaja tak homeomorfizem. Ker je $\Int M$
+odprta in povezana, je dovolj pokazati, da so ekvivalenčni razredi
+odprti.
+
+Naj bo $x \in \Int M$ poljuben in naj bo $U \approx \R^n$
+njegova evklidska okolica, $h$ pa homeomorfizem. Naj bo
+$V = h^{-1}(\Int B^n)$ in $y \in V$ poljubna. Po zgornji lemi
+obstaja homeomorfizem $\Phi \colon h^{-1}(B^n) \to h^{-1}(B^n)$, ki
+je na robu enak $\id$ in preslika $x$ v $y$. Če ga na $M$ razširimo
+z identiteto, dobimo iskan homeomorfizem.
+\end{proof}
+
+\begin{definicija}
+Naj bosta $M$ in $N$ $n$-mnogoterosti ter $D \subseteq \Int M$ in
+$E \subseteq \Int N$ množici, homeomorfni $B^n$. Naj bo
+$h \colon \partial D \to \partial E$ homeomorfizem lokalno
+ploščatih sfer. Zlepku
+\[
+M \mathbin{\#} N = (M \setminus \Int D) \cup_h (N \setminus \Int E)
+\]
+pravimo \emph{povezana vsota}\index{Mnogoterost!Povezana vsota}
+mnogoterosti $M$ in $N$.
+\end{definicija}
+
+\begin{opomba}
+Tudi $M \mathbin{\#} N$ je $n$-mnogoterost.
+\end{opomba}
+
+\newpage
+
+\subsection{Kompaktne ploskve}
+
+\datum{2022-5-13}
+
+\begin{definicija}
+Naj bo $T = S^1 \times S^1$ torus in $P = \proj{\R}{2}$ projektivna
+ravnina. Induktivno definiramo $1T = T$, $1P = P$, za $n \geq 2$ pa
+\[
+nT = (n-1)T \mathbin{\#} T
+\quad \text{in} \quad
+nP = (n-1)P \mathbin{\#} P.
+\]
+Posebej označimo $0T = S^2$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo
+\[
+K = \coprod_{i=1}^n K_i
+\]
+disjunktna unija mnogokotnikov v ravnini in naj bo $\sim$
+ekvivalenčna relacija na $K$, ki identificira nekatere pare
+mnogokotnikov z linearnimi homeomorfizmi. Tedaj je $\kvoc{K}{\sim}$
+disjunktna unija kompaktnih ploskev. Pri tem so robne točke natanko
+tiste točke s stranic, ki niso identificirane z nobeno drugo.
+\end{trditev}
+
+\begin{proof}
+Vemo že, da je $\kvoc{K}{\sim}$ 2-števen in Hausdorffov, saj je
+zlepek takih prostorov. Dovolj je tako preveriti obstoj evklidskih
+okolic.
+
+Oglejmo si poljuben $x \in \Int K_i$. Ta točka ima evklidsko
+okolico $U$ v $K$, njena slika $q(U)$ pa je okolica za $[x]$. Velja
+pa $q(U) \approx U$, saj so ekvivalenčni razredi točk enojci.
+Podobno velja za točke na stranicah, ki jih ne identificiramo.
+
+Če je $x$ točka na stranici, ki se identificira z neko drugo, se v
+$\kvoc{K}{\sim}$ okolici originalov po robu zlepita v odprto
+evklidsko množico.
+
+Za oglišča dobimo zaporedje identifikacij, inducirano iz
+identifikacij stranic. Če je to zaporedje ciklično, dobimo $\R^2$,
+sicer pa $\R_+^2$.
+\end{proof}
+
+\begin{opomba}
+Tako ploskev imenujemo \emph{poliedrska ploskev}.
+\end{opomba}
+
+\begin{izrek}[Radó]
+Vsaka sklenjena kompaktna ploskev je homeomorfna neki poliedrski.
+\end{izrek}
+
+\begin{definicija}
+Naj bo
+\[
+M = \kvoc{\coprod_{i=1}^n K_i}{\sim}
+\]
+poliedrska ploskev, predstavljena kot kvocient disjunktne unije
+mnogokotnikov, v katerih identificiramo nekatere pare stranic.
+Ploskev $M$ je \emph{orientabilna}\index{Mnogoterost!Orientabilna},
+če lahko mnogokotnike $K_i$ orientiramo tako, da so orientirani
+glede na vsak par identificiranih stranic.
+\end{definicija}
+
+\begin{izrek}
+Orientabilnost je topološka lastnost.
+\end{izrek}
+
+\begin{trditev}
+Naj bo $M$ poliedrska ploskev in $N$ njena poliedrska podploskev.
+Če je $M$ orientabilna, je orientabilna tudi $N$.
+\end{trditev}
+
+\begin{proof}
+Izberemo enako orientacijo.
+\end{proof}
+
+\begin{posledica}
+Ploskev je neorientabilna natanko tedaj, ko vsebuje Möbiusov trak.
+\end{posledica}
+
+\begin{proof}
+Če je ploskev orientabilna, so tudi podploskve orientabilne, torej
+ne vsebuje Möbiusovega traku. Če ploskev ni orientabilna,
+identificiramo stranice, dokler še lahko izbiramo skladno
+orientacijo. Ko je ne moremo, dobimo Möbiusov trak tako, da
+izberemo poljuben trak, ki povezuje neskladni stranici.
+\end{proof}
+
+\begin{trditev}
+Naj bosta $M$ in $N$ orientabilni ploskvi. Tedaj je tudi
+$M \mathbin{\#} N$ orientabilna.
+\end{trditev}
+
+\begin{proof}
+Ker sta orientabilni $M$ in $N$, sta taki tudi $M \setminus \Int D$
+in $N \setminus \Int E$, orientaciji pa določata orientaciji
+$\partial D$ in $\partial E$. Če se ti ujemata, je
+$M \mathbin{\#} N$ orientabilna, sicer pa lahko preprosto obrnemo
+orientacijo ene izmed njih.
+\end{proof}
+
+\begin{definicija}
+Naj bo
+\[
+M = \kvoc{\coprod_{i=1}^n K_i}{\sim}
+\]
+poliedrska ploskev, predstavljena kot kvocient disjunktne unije
+mnogokotnikov, v katerih identificiramo nekatere pare stranic.
+2-celice ploskve $M$ so slike odprtih mnogokotnikov s kvocientno
+projekcijo, 1-celice slike stranic, 0-celice pa slike oglišč. Z
+$N_i$ označimo število $i$-celic ploskve $M$.
+
+\emph{Eulerjeva karakteristika}\index{Mnogoterost!Eulerjeva karakteristika}
+ploskve $M$ je število
+\[
+\chi(M) = N_2 - N_1 + N_0.
+\]
+\end{definicija}
+
+\begin{trditev}
+Eulerjeva karakteristika ploskve je topološka invarianta.
+\end{trditev}
+
+\begin{trditev}
+Ploskve $nT$ za $n \in \N_0$ ali $mP$ za $m \in \N$ med seboj niso
+homeomorfne.
+\end{trditev}
+
+\begin{proof}
+Ploskve $mP$ niso orientabilne, $nT$ pa so. Velja še
+\[
+\chi(nT) = 2 - 2n
+\quad \text{in} \quad
+\chi(mP) = 2 - m. \qedhere
+\]
+\end{proof}
+
+\datum{2022-5-27}
+
+\begin{trditev}
+Naj bo $M$ poliedrska ploskev in $A, B \subseteq M$ uniji celic, za
+kateri velja $M = A \cup B$. Potem je
+\[
+\chi(M) = \chi(A) + \chi(B) - \chi(A \cap B).
+\]
+\end{trditev}
+
+\begin{trditev}
+Število $\chi(S^2)$ je neodvisno od poliedrske strukture in je
+enako $2$.
+\end{trditev}
+
+\begin{proof}
+Indukcija po številu povezav.
+\end{proof}
+
+\begin{izrek}
+Naj bo $M$ poljubna sklenjena ploskev. Tedaj je $M$ homeomorfna
+natanko eni izmed ploskev $nt$ za $n \in \N_0$ ali $mP$ za
+$m \in \N$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $M$ poljubna sklenjena poliedrska ploskev. Brez škode za
+splošnost jo lahko predstavimo kot kvocient pravilnega
+mnogokotnika, saj je povezana. Predpostavimo še, da se stranice
+zlepijo z linearnimi homeomorfizmi.
+
+Okoli vsakega oglišča si izberemo izsek majhnega diska in ga
+odstranimo. Dobimo kompaktno ploskev z robom $N$, ki sestoji iz več
+krožnic. Z dodajanjem diskov dobimo nazaj $M$.
+
+Ploskev $N$ lahko predstavimo kot disk s prilepljenimi trakovi, ki
+jih imenujemo ročaji. Te ločimo na orientabilne in neorientabilne.
+Ločimo dva primera:
+
+\begin{enumerate}[i)]
+\item Vsi ročaji so orientabilni. Vidimo, da lahko poljuben
+prepleten par ročajev najprej izoliramo, vsak tak prepleten par pa
+nam da en torus. Preostale ročaje lahko ignoriramo, saj se
+">prilepijo"< na disk.
+\item Obstaja neorientabilen ročaj. Vidimo, da ga lahko izoliramo.
+Dobimo torej izolirane neorientabilne ročaje, pare prepletenih
+orientabilnih ročajev in nekaj neprepletenih orientabilnih ročajev.
+Prepleten par lahko spremenimo v dva neorientabilna. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Velja
+\[
+P \# T \approx 3 P.
+\]
+\end{opomba}

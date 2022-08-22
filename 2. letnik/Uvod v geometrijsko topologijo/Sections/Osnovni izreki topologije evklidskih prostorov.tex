@@ -1,0 +1,525 @@
+\section{Osnovni izreki topologije evklidskih prostorov}
+
+\epigraph{">Zmasiraš kot eno testo za pico."<}
+{-- Andrej Matevc}
+
+\subsection{Brouwerjev izrek o negibni točki}
+
+\begin{definicija}
+Preslikava $f \colon X \to X$ ima
+\emph{negibno točko}\index{Preslikava!Negibna točka} $c \in X$, če
+je $f(c) = c$.
+\end{definicija}
+
+\begin{izrek}[Brouwer]\index{Izrek!Brouwer}\label{iz:br:1}
+Vsaka zvezna preslikava $f \colon B^n \to B^n$ ima negibno točko.
+\end{izrek}
+
+\begin{definicija}
+Topološki prostor $X$ ima
+\emph{lastnost negibne točke}\index{Topološka lastnost!Negibne točke},
+če ima vsaka zvezna preslikava $f \colon X \to X$ negibno točko.
+\end{definicija}
+
+\begin{opomba}
+Lastnost negibne točke je topološka.
+\end{opomba}
+
+\begin{definicija}
+Množica $A \subseteq X$ je \emph{retrakt}\index{Retrakt}, če obstaja
+zvezna preslikava $r \colon X \to A$, za katero je
+$\eval{r}{A}{} = \id$. Preslikavi $r$ pravimo \emph{retrakcija}.
+\end{definicija}
+
+\begin{lema}
+Če ima $X$ lastnost negibne točke, jo ima tudi njegov retrakt.
+\end{lema}
+
+\begin{proof}
+Kompozitum retrakcije in preslikave na retraktu ima fiksno točko.
+\end{proof}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Retrakt povezanega prostora je povezan.
+\item Retrakt kompaktnega prostora je kompakten.
+\item Če je $X$ Hausdorffov, je njegov retrakt zaprt.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo tretjo točko. Retrakt je množica ujemanja identitete in
+retrakcije, zato je zaprt.
+\end{proof}
+
+\datum{2022-4-1}
+
+\begin{definicija}
+Topološki prostor $Y$ je
+\emph{absolutni ekstenzor}\index{Topološki prostor!Absolutni ekstenzor}
+($Y \in \AE(R)$) za nek razred $R$ topoloških prostorov, če za vse
+$X \in R$, zaprte množice $A \subseteq X$ in zvezne preslikave
+$f \colon A \to Y$ obstaja zvezna preslikava $F \colon X \to Y$,
+za katero velja $\eval{F}{A}{} = f$.
+\end{definicija}
+
+\begin{opomba}
+Po Tietzevem izreku velja
+\[
+J \in \AE(\mathcal{N}),
+\]
+za vsak interval $J$, kjer $\mathcal{N}$ označuje normalne
+prostore.
+\end{opomba}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Biti absolutni ekstenzor nekega razreda je topološka
+lastnost.
+\item Če so $V_\lambda \in \AE(R)$ za $\lambda \in \Lambda$, je
+\[
+\prod_{\lambda \in \Lambda} V_\lambda \in \AE(R).
+\]
+\item Če je $Y \in \AE(R)$ in $Z$ retrakt $Y$, je $Z \in \AE(R)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Za tretjo točko razširitev preprosto komponiramo z retrakcijo.
+\end{proof}
+
+\begin{definicija}
+Topološki prostor $Y$ je
+\emph{absolutni retrakt}\index{Topološki prostor!Absolutni retrakt}
+($Y \in \AR(R)$) za nek razred $R$ topoloških prostorov, če je
+$Y \in R$ in za vsak $X \in R$, za katerega obstaja zaprta vložitev
+$\varphi \colon Y \to X$, velja, da je $\varphi(Y)$ retrakt $X$.
+\end{definicija}
+
+\begin{trditev}
+Za vsak razred $R$ topoloških prostorov velja
+$R \cap \AE(R) \subseteq \AR(R)$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $Y \in R \cap \AE(R)$ in $X \in R$. Naj bo
+$\varphi \colon Y \to X$ zaprta vložitev. Označimo
+$A = \varphi(Y)$. $A$ je seveda zaprta.
+
+Ker je $Y \in \AE(R)$, je tudi $A \in \AE(R)$. Sledi, da lahko
+vložitev $i(A) \to A$ razširimo do preslikave $r \colon X \to A$.
+Po konstrukciji je $r \circ i$ retrakcija.
+\end{proof}
+
+\begin{posledica}
+Za poljuben interval $J$ velja $J \in \AR(\mathcal{N})$.
+\end{posledica}
+
+\begin{izrek}\label{iz:br:2}
+Prostor $S^{n-1}$ ni retrakt $B^n$.
+\end{izrek}
+
+\begin{definicija}
+Zvezni preslikavi $f, g \colon X \to Y$ sta
+\emph{homotopni}\index{Preslikava!Homotopna}, če med njima obstaja
+homotopija, oziroma zvezna preslikava $H \colon X \times I \to Y$,
+za katero velja $H(x, 0) = f(x)$ in $H(x, 1) = g(x)$. Pišemo
+$f \simeq g$. Pišemo tudi $H_t(x) = H(x, t)$.
+\end{definicija}
+
+\begin{opomba}
+Homotopnost je ekvivalenčna relacija.
+\end{opomba}
+
+\begin{definicija}
+Prostor $X$ je
+\emph{kontraktibilen}\index{Topološki prostor!Kontraktibilen}, če
+je $\id$ na $X$ homotopna kateri konstantni preslikavi. Tako
+homotopijo imenujemo \emph{kontrakcija}.
+\end{definicija}
+
+\begin{trditev}
+Kontraktibilen prostor je povezan s potmi.
+\end{trditev}
+
+\begin{proof}
+Naj bo $H(x, 1) = x_0$. Sledi, da je $H(x, t)$ pot med $x$ in
+$x_0$.
+\end{proof}
+
+\begin{izrek}\label{iz:br:3}
+Prostor $S^{n-1}$ ni kontraktibilen.
+\end{izrek}
+
+\begin{izrek}
+Izreki~\ref{iz:br:1},~\ref{iz:br:2} in~\ref{iz:br:3} so
+ekvivalentni.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da velja izrek~\ref{iz:br:1} in da obstaja
+retrakcija $r \colon B^n \to S^{n-1}$. Tedaj preslikava
+$f(x) = -r(x)$ nima fiksnih točk, kar je protislovje.
+Izrek~\ref{iz:br:1} torej implicira izrek~\ref{iz:br:2}.
+
+\datum{2022-4-8}
+
+Denimo sedaj, da obstaja zvezna preslikava $f \colon B^n \to B^n$
+brez negibne točke in poiščimo retrakcijo
+$r \colon B^n \to S^{n-1}$. Za vsak $x \in B^n$ naj bo $g(x)$
+točka, kjer odprt poltrak iz $f(x)$ skozi $x$ seka $S^{n-1}$. Ni
+težko videti, da je $g$ dobro definirana, zvezna in
+\[
+\eval{g}{S^{n-1}}{} = \id,
+\]
+torej je $g$ retrakcija, kar je v protislovju z
+izrekom~\ref{iz:br:2}. Sledi, da sta izreka~\ref{iz:br:1}
+in~\ref{iz:br:2} ekvivalentna.
+
+Pokažimo še ekvivalentnost izrekov~\ref{iz:br:2} in~\ref{iz:br:3}.
+Denimo najprej, da obstaja kontrakcija
+$H \colon S^{n-1} \times I \to S^{n-1}$. Naj bo
+$f \colon S^{n-1} \times I \to B^n$ preslikava, podana s predpisom
+\[
+f(x, t) = (1-t) \cdot x.
+\]
+Preslikava $f$ je očitno zvezna, surjektivna in zaprta, saj slika
+iz kompakta v Hausdorffov prostor. Sledi, da je $f$ kvocientna.
+
+Edini netrivialni ekvivalenčni razred preslikave $f$ je
+$S^{n-1} \times \set{1}$. Ker je na tej množici $H$ konstantna,
+inducira zvezno preslikavo $r \colon B^n \to S^{n-1}$:
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+S^{n-1} \times I \arrow[r, "H"] \arrow[d, "f"'] & S^{n-1} \\
+B^n \arrow[ur, dashrightarrow, "r"']            &
+\end{tikzcd}
+\]
+Opazimo, da je $\eval{r}{S^{n-1}}{} = \id$, zato je $r$ retrakcija,
+kar je v protislovju z izrekom~\ref{iz:br:2}.
+
+Denimo sedaj, da obstaja retrakcija $r \colon B^n \to S^{n-1}$.
+Tedaj je $H = r \circ f$ kontrakcija, kjer je $f$ definirana tako
+kot zgoraj.
+\end{proof}
+
+\newpage
+
+\subsection{Jordan-Brouwerjev delilni izrek}
+
+\datum{2022-4-15}
+
+\begin{definicija}
+Naj bo $X$ povezan topološki prostor. Množica $A \subseteq X$
+\emph{deli} $X$, če je prostor $X \setminus A$ nepovezan.
+\end{definicija}
+
+\begin{definicija}
+Množico $S \subseteq \R^2$, ki je homeomorfna $S^1$, imenujemo
+\emph{enostavna sklenjena krivulja}, \emph{Jordanova krivulja} ali
+\emph{topološka krožnica}\index{Jordanova krivulja}.
+\end{definicija}
+
+\begin{izrek}[Jordan]\index{Izrek!Jordan}
+Naj bo $S \subseteq \R^2$ Jordanova krivulja. Tedaj ima
+$\R^2 \setminus S$ dve komponenti -- eno omejeno in eno neomejeno,
+pri čemer sta obe odprti v $\R^2$ in povezani s potmi, $S$ pa je
+meja obeh komponent.
+\end{izrek}
+
+\begin{izrek}[Jordan-Brouwer]\index{Izrek!Jordan-Brouwer}
+Naj bo $n \geq 2$ in $S \subseteq \R^n$ topološka $(n-1)$-sfera.
+Tedaj ima $\R^n \setminus S$ dve komponenti -- eno omejeno in eno
+neomejeno, pri čemer sta obe odprti v $\R^n$ in povezani s potmi,
+$S$ pa je meja obeh komponent.
+\end{izrek}
+
+\begin{lema}
+Naj bo $X \subseteq \R^n$ kompaktna množica. Tedaj ima
+$\R^n \setminus X$ natanko eno neomejeno komponento. Vse komponente
+so povezane s potmi in odprte v $\R^n$, njihov rob pa je vsebovan v
+$X$.
+\end{lema}
+
+\begin{proof}
+Ker je $X$ kompaktna množica, je omejena. Sledi, da je vsebovana v
+neki množici $K(0, R)$, velja pa, da je $\R^n \setminus K(0, R)$
+povezana. Sledi, da ima $\R^n \setminus X$ natanko eno neomejeno
+komponento, ostale pa so vsebovane v $K(0, R)$.
+
+Ker je $\R^n$ lokalno povezan s potmi, so komponente odprtih
+podmnožic odprte v $\R^n$ in prav tako povezane s potmi. Ker je $X$
+kompakten, je zaprt, zato je $\R^n \setminus X$ odprta, zato so
+njene komponente odprte in povezane s potmi.
+
+Ker je vsaka točka množice $\R^n \setminus X$ vsebovana v neki
+odprti komponenti, tu ni robnih točk komponent.
+\end{proof}
+
+\begin{izrek}\label{iz:dsk}
+Naj bo $D \subseteq \R^n$ topološki $k$-disk, torej $D \approx B^k$
+za nek $0 \leq k \leq n$, kjer je $n \geq 2$. Tedaj je
+$\R^n \setminus D$ povezan.
+\end{izrek}
+
+\begin{proof}
+Denimo, da obstaja omejena komponenta $V$ prostora
+$\R^n \setminus D$. Naj bo $v \in V$ in $R > 0$ tako število, da je
+$D \cup V \subseteq K(v, R)$.
+
+Ker je $D \approx I^k$, je $D$ absolutni ekstenzor, posledično pa
+tudi absolutni retrakt normalnih prostorov. Ker je $D$ zaprta
+podmnožica $D \cup V$, ki pa je normalen prostor (zaprt podprostor
+normalnega prostora), zato obstaja retrakcija
+$r \colon D \cup V \to D$.
+
+Naj bo $f \colon \R^n \to \R^n \setminus V$ preslikava, podana s
+predpisom
+\[
+f(x) = \begin{cases}
+r(x), & x \in D \cup V, \\
+x,    & x \in \R^n \setminus V.
+\end{cases}
+\]
+Predpisa sta podana na zaprtih množicah in se ujemata na preseku
+($D$), zato je $f$ zvezna. Če jo komponiramo z radialno retrakcijo
+na $S(v, R)$, dobimo retrakcijo prostora $\R^n$ na $S(v, R)$, ki ne
+obstaja po Brouwerjevem izreku.
+\end{proof}
+
+\begin{lema}
+Če $V$ ni edina komponenta prostora $\R^n \setminus S$, je
+$\partial V = S$.
+\end{lema}
+
+\begin{proof}
+Dovolj je dokazati, da je $S \subseteq \partial V$. Denimo, da
+obstaja tak $x \in S$ in njegova okolica $W$, da je
+$V \cap W = \emptyset$.
+
+Naj bo $h \colon S^{n-1} \to S$ homeomorfizem in $y = h^{-1}(x)$.
+Ker je $h^{-1}(W)$ odprta okolica točke $y$, obstaja tak $r$, da je
+$H = \oline{K(y, r)} \cap S^{n-1} \subseteq h^{-1}(W)$. Opazimo, da
+je $H \approx B^{n-1}$ in
+$G = S^{n-1} \setminus H \approx B^{n-1}$. Sledi, da je tudi
+$h(G) \approx B^{n-1}$, torej po izreku~\ref{iz:dsk} ne deli
+$\R^n$.
+
+Naj bo $V'$ še ena komponenta $\R^n \setminus S$. Izberimo
+$v \in V$ in $v' \in V'$. Ker $G$ ne deli $\R^n$, obstaja pot
+$\gamma$ med tema točkama v $\R^n \setminus G$. Ker pa sta $v$ in
+$v'$ iz različnih komponent, mora ta pot v neki točki sekati $S$,
+torej seka $S \setminus G \subseteq W$.
+
+Naj bo $t_0$ prva točka, v kateri velja $\gamma(t_0) \in S$. Ta
+obstaja, saj je $\gamma^{-1}(S)$ kompaktna podmnožica $[0, 1]$.
+Vemo, da je $\gamma([0, t_0)) \subseteq V$, torej obstaja tak
+$\delta > 0$, da $\gamma$ interval $(t_0 - \delta, t_0)$ preslika v
+$V \cap W$.
+\end{proof}
+
+\begin{lema}\label{lm:sk}
+Naj bosta $h, v \colon [-1, 1] \to P$ poti, kjer je
+$P = [a, b] \times [c, d]$. Denimo, da je $h_1(-1) = a$,
+$h_1(1) = b$, $v_2(-1) = c$ in $v_2(1) = d$. Tedaj obstajata taki
+števili $s, t \in [-1, 1]$, da je $h(s) = v(t)$.
+\end{lema}
+
+\begin{proof}
+Denimo, da trditev ne velja, in definirajmo
+\[
+D(s, t) =
+\max \set{\abs{h_1(s) - v_1(t)}, \abs{h_2(s) - v_2(t)}} > 0.
+\]
+Vidimo, da je $D$ zvezna. Naj bo še
+$f \colon [-1, 1]^2 \to [-1, 1]^2$ preslikava, podana s predpisom
+\[
+f(s, t) = \frac{(v_1(t) - h_1(s),h_2(s) - v_2(t))}{D(s, t)}.
+\]
+Trdimo, da $f$ nima fiksne točke, kar je v protislovju z
+Brouwerjevim izrekom.
+
+Opazimo, da $f$ slika v rob kvadrata, zato so edini kandidati za
+fiksne točke $(1, t)$, $(-1, t)$, $(s, 1)$ in $(s, -1)$. Velja
+\[
+f(1, t) = \frac{(v_1(t) - b, h_2(1) - v_2(t))}{D(s, t)},
+\]
+ker pa je prva komponenta nepozitivna, smo prišli v protislovje.
+Ostali primeri vodijo do podobnega zaključka.
+\end{proof}
+
+\begin{trditev}
+Naj bo $S \subseteq \R^2$ Jordanova krivulja. Tedaj ima
+$\R^2 \setminus S$ natanko eno omejeno komponento.
+\end{trditev}
+
+\begin{proof}
+Naj bo $(A, A')$ par najbolj oddaljenih točk na $S$.\footnote{Tak
+par obstaja, saj je evklidska metrika zvezna, $S$ pa kompakt.} Brez
+škode za splošnost naj bo $A = (0, 0)$ in $A' = (a, 0)$. Naj bo še
+$P = [0, a] \times [-a, a]$. Opazimo, da je $S \subseteq P$ in
+$S \cap \partial P = {A, -A}$. Označimo še točki
+$B = \left(\frac{a}{2}, -a\right)$ in
+$T = \left(\frac{a}{2}, a\right)$.
+
+Točki $A$ in $A'$ razdelita $S$ na dva loka, vsak izmed njiju pa po
+lemi~\ref{lm:sk} sekata daljico $BT$. Naj bo $M_T$ najvišja točka
+v preseku $S \cap \oline{BT}$, $S_T$ tisti lok $S$, ki vsebuje
+$M_T$, $m_T$ pa najnižja točka v preseki $S_T \cap \oline{BT}$. Naj
+bo še $S_B$ drugi lok $S$.
+
+Ker $S_B$ po lemi~\ref{lm:sk} seka pot\footnote{Z $\widehat{XY}$
+označimo pot med $X$ in $Y$, ki poteka po $S$ in ne vsebuje točk
+$A$ in $A'$.}
+\[
+\oline{Bm_T} \cup \widehat{m_T M_T} \cup \oline{M_T T},
+\]
+$S_B$ seka $\oline{Bm_T}$. Naj bosta $M_B$ in $m_B$ najvišje in
+najnižje tako presečišče.
+
+Trdimo, da $C$ ne leži v neomejeni komponenti. Sicer bi obstajala
+pot $\gamma$ med $C$ in neko točko v komplementu $P$, ki ne seka
+$S$. Naj bo $D$ prva točka, v kateri $\gamma$ seka $\partial P$.
+Ločimo dva primera:
+
+\begin{enumerate}[i)]
+\item $D$ je pod $x$-osjo. V tem primeru se poti $S_T$ in
+\[
+\oline{BC} \cup \gamma_D \cup \gamma_T
+\]
+ne sekata, kjer je $\gamma_T$ najkrajša pot med $D$ in $T$ znotraj
+$\partial P$.
+\item $D$ je nad $x$-osjo. V tem primeru se poti $S_B$ in
+\[
+\oline{TM_T} \cup \widehat{M_T m_T} \cup
+\oline{m_TC} \cup \gamma_D \cup \gamma_B
+\]
+ne sekata.
+\end{enumerate}
+
+V obeh primerih smo prišli do protislovja, torej $C$ res leži v
+omejeni komponenti. Označimo to komponento z $V$.
+
+Denimo, da imamo še eno omejeno komponento $V'$. Ker imamo vsaj dve
+komponenti, je $\partial V' = S$. Naj bo
+\[
+\gamma = \oline{Bm_B} \cup \widehat{m_BM_B} \cup
+\oline{M_Bm_T} \cup \widehat{m_tM_T} \cup \oline{M_TT}.
+\]
+Opazimo, da $\gamma$ poteka le po neomejeni komponenti, $S$ in $V$,
+torej je $\gamma \cap V' = \emptyset$. Ker pa je $V'$ povezana s
+potmi in sta $A$ ter $A'$ njeni robni točki, lahko izberemo njuni
+okolici, ki ne vsebujeta $\gamma$, ter ju povežemo prek
+pripadajočih točk v $V'$. S tem smo znova dobili dve poti, ki se ne
+sekata, in s tem protislovje.
+\end{proof}
+
+\begin{izrek}[Schoenflies]\index{Izrek!Schoenflies}
+Naj bo $S \subseteq \R^2$ Jordanova krivulja, $V$ pa omejena
+komponenta $\R^2 \setminus S$. Tedaj je $\oline{V} \approx B^2$.
+\end{izrek}
+
+\begin{trditev}
+Naj bo $S \subseteq \R^n$ topološka $(n-1)$-sfera, $V$ pa omejena
+komponenta $\R^n \setminus S$. Tedaj je $\oline{V} \approx B^n$
+natanko tedaj, ko obstaja homeomorfizem $s \colon \R^n \to \R^n$,
+za katerega je $h(S) = S^{n-1}$.
+\end{trditev}
+
+\begin{opomba}
+Podobno velja v $S^n$, saj je to le kompaktifikacija z eno točko.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $S^{n-1} \approx S \subseteq \R^n$ in $x \in S$. Sfera $S$
+je \emph{lokalno ploščata} v točki $x$, če obstajata taka okolica
+$U \subseteq \R^n$ točke $x$ in homeomorfizem $h \colon U \to W$,
+kjer je $W \subseteq \R^n$ odprta množica, da je
+\[
+h(S \cap U) = W \cap (\R^{n-1} \times \set{0}).
+\]
+Sfera $S$ je \emph{lokalno ploščata} ali
+\emph{podmnogoterost}\index{Mnogoterost!Podmnogoterost}, če je
+ploščata v vsaki točki.
+\end{definicija}
+
+\begin{opomba}
+Schoenfliesov izrek v splošnem velja natanko za lokalno ploščate
+topološke $(n-1)$-sfere v $\R^n$.
+\end{opomba}
+
+\newpage
+
+\subsection{Invarianca odprtih množic}
+
+\begin{izrek}[Brouwer]
+Naj bo $U \subseteq \R^n$ odprta množica, $f \colon U \to \R^n$ pa
+zvezna in injektivna preslikava. Tedaj je $f$ odprta vložitev.
+\end{izrek}
+
+\begin{proof}
+Naj bo $W \subseteq U$ odprta množica in $y \in f(W)$. Označimo
+$x = f^{-1}(y)$. Dovolj je pokazati, da ima $y$ odprto okolico v
+$\R^n$, ki je vsebovana v $f(W)$.
+
+Vemo, da obstaja tak $r > 0$, da je
+\[
+K = \oline{K(x,r)} \subseteq W.
+\]
+Pri tem velja $K \approx B^n$, $\partial K \approx S^{n-1}$ in
+$\Int K \approx \Int B^n$. Naj bo $S = f(\partial K)$.
+
+Velja, da je $\eval{f}{\partial K}{}$ zaprta, saj slika iz kompakta
+v Hausdorffov prostor, zato je vložitev. Velja torej
+$S \approx S^{n-1}$. Po Jordan-Brouwerju ima $\R^n \setminus S$
+natanko dve komponenti, pri čemer sta obe odprti v $\R^n$. Očitno
+je $f(\Int K)$ povezana, prav tako pa je povezana
+$\R^n \setminus f(K)$, saj disk ne deli $\R^n$. Sledi, da sta to
+ravno komponenti $\R^n \setminus S$, zato sta odprti v $\R^n$.
+Množica $f(\Int K)$ je torej iskana okolica točke $y$.
+\end{proof}
+
+\begin{izrek}[Invarianca odprtih množic]
+\index{Izrek!Invarianca odprtih množic}
+Naj bo $V \subseteq \R^n$ odprta množica in $W \subseteq \R^n$
+množica, homeomorfna $V$. Tedaj je $W$ odprta v $\R^n$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $h \colon V \to W$ homeomorfizem. To je zvezna in injektivna
+preslikava, zato je odprta vložitev.
+\end{proof}
+
+\begin{posledica}
+Naj bosta $n$ in $m$ naravni števili, za kateri je
+$\R^n \approx \R^m$. Tedaj je $n = m$.
+\end{posledica}
+
+\begin{proof}
+Denimo, da je $m < n$. Tedaj je
+\[
+\R^n \approx \R^m \approx \R^m \times \set{0}^{n-m} \subseteq \R^n.
+\]
+Ker je $\R^n$ odprta, je odprta tudi $\R^m \times \set{0}^{n-m}$,
+kar je protislovje.
+\end{proof}
+
+\begin{trditev}
+Naj bosta $A, B \subseteq \R^n$ množici, $h \colon A \to B$ pa
+homeomorfizem. Tedaj je
+\[
+h(\Int A) = \Int B
+\quad \text{in} \quad
+h(A \cap \partial A) = B \cap \partial B.
+\]
+\end{trditev}
+
+\begin{proof}
+Vemo, da je $h(\Int A)$ odprta v $\R^n$ in vsebovana v $B$, zato je
+$h(\Int A) \subseteq \Int B$. Simetrično dobimo drugo inkluzijo.
+Ker je $h$ bijekcija, tudi rob preslika v rob.
+\end{proof}

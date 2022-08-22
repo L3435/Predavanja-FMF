@@ -1,5 +1,9 @@
 \section{Kvocientni prostori}
 
+\epigraph{">A ni ta topologija trivialna?"<\\
+">Um... Pavza 15 min."<}
+{-- izr. prof. dr. Aleš Vavpetič}
+
 \subsection{Kvocientna topologija}
 
 \datum{2022-2-15}
@@ -38,7 +42,7 @@ Odprtost in zaprtost sta invariantni za $q^{-1}$.
 \end{opomba}
 
 \begin{opomba}
-Kvocientna projekcija ni nujni odprta/zaprta.
+Kvocientna projekcija ni nujno odprta/zaprta.
 \end{opomba}
 
 \begin{definicija}
@@ -51,8 +55,9 @@ q^{-1}(q(A)) \subseteq X.
 
 \begin{trditev}
 Pri zgornjih oznakah je $q(A)$ odprta\footnote{Enako velja za
-zaprtost.} natanko tedaj, ko je njeno nasičenje odprto. $q$ je
-odprta natanko tedaj, ko je nasičenje vsake odprte množice odprto.
+zaprtost.} natanko tedaj, ko je nasičenje $A$ odprto. Projekcija
+je odprta natanko tedaj, ko je nasičenje vsake odprte množice
+odprto.
 \end{trditev}
 
 \obvs
@@ -112,11 +117,6 @@ množico $V \subseteq Y$ velja
 V \in \tau_Y \iff f^{-1}(V) \in \tau_X.
 \]
 \end{definicija}
-
-\begin{opomba}
-Če je $f$ kvocientna, je njena inducirana preslikava homeomorfizem,
-zato se obnaša kot kvocientna projekcija.
-\end{opomba}
 
 \begin{opomba}
 Če je $f$ surjektivna, je kvocientna natanko tedaj, ko za vsako
@@ -232,16 +232,17 @@ odprte množice odprte.
 
 Naj bo $V \subseteq Y$ odprta s komponentami $V_\lambda$, torej
 \[
-V = \bigcap_\lambda  V_\lambda.
+V = \bigcup_\lambda  V_\lambda.
 \]
 Sledi, da je
 \[
-f^{-1}(V) = \bigcap_\lambda f^{-1}\left( V_\lambda \right)
+f^{-1}(V) = \bigcup_\lambda f^{-1}\left( V_\lambda \right)
 \]
 odprta. Naj bodo $W_\mu$ njene komponente. Ker je
 $f(W_\mu) \subseteq V$ povezana, je vsebovana v neki komponenti
 $V_\lambda$. Sledi, da je $f^{-1}\left( V_\lambda \right)$ unija
-odprtih množic (komponent), zato je odprta.
+odprtih množic (komponent), zato je odprta, torej so tudi množice
+$V_\lambda$ odprte.
 \end{proof}
 
 \begin{trditev}
@@ -259,7 +260,7 @@ Naslednje topološke lastnosti niso deljive:
 \end{trditev}
 
 \begin{proof}
-Dokažimo, da Hausdorffova lastnost ni dedna. Vzemimo
+Dokažimo, da Hausdorffova lastnost ni deljiva. Vzemimo
 $X = \R \times \set{0, 1}$ in $(x,0) \sim (x,1) \iff x > 0$.
 Opazimo, da ne moremo ostro ločiti slik točk $(0,0)$ in $(0,1)$.
 Primer deluje tudi za metrizabilnost.
@@ -276,7 +277,7 @@ lokalna baza.
 \end{proof}
 
 \begin{izrek}[Aleksandrov]\index{Izrek!Aleksandrov}
-Če je $X$ poljuben metrični kompakt, obstaja zvezna surjekcija
+Če je $X$ poljuben metričen kompakt, obstaja zvezna surjekcija
 $f \colon C \to X$.\footnote{$C$ označuje \emph{Cantorjevo
 množico}.}
 \end{izrek}
@@ -340,7 +341,7 @@ da je $h(a) = b$.
 \end{definicija}
 
 \begin{posledica}
-Topološka grupa $G$ je homogen prostor.
+Vsaka topološka grupa je homogen prostor.
 \end{posledica}
 
 \begin{definicija}
@@ -527,7 +528,7 @@ X \cup_f Y \arrow[ur, dashrightarrow, "\varphi"'] &
 \end{skica}
 \end{proof}
 
-\begin{trditev}
+\begin{trditev}\label{td:zlp}
 Naj bo $A \subseteq X$ zaprta množica in $f \colon A \to Y$ zaprta
 vložitev. Naj bo $Z = X \cup_f Y$.
 
@@ -545,11 +546,12 @@ W_{n,m} = U_n \cap f^{-1}(V_m) \subseteq A.
 \]
 Obstaja taka odprta množica $W_{n,m}^X \subseteq U_n$, da je
 \[
-W_{n,m} = A \cap W_{n,m}^X.
+W_{n,m} = A \cap W_{n,m}^X,
 \]
-Podobno definiramo $W_{n,m}^Y$. Sedaj za bazo preprosto vzamemo
-kvocientne projekcije tistih množic v $\mathcal{B}_X$ in
-$\mathcal{B}_Y$, ki ne sekajo $A$ oziroma $f(A)$, ter množic
+saj je $A \setminus f^{-1}(V_m)$ zaprta množica v $X$. Podobno
+definiramo $W_{n,m}^Y$. Sedaj za bazo preprosto vzamemo kvocientne
+projekcije tistih množic v $\mathcal{B}_X$ in $\mathcal{B}_Y$, ki
+ne sekajo $A$ oziroma $f(A)$, ter množic
 $W_{n,m}^X \sqcup W_{n,m}^Y$. Ni težko preveriti, da je to res
 baza.
 
@@ -575,7 +577,7 @@ kjer je $x \sim y \iff x = \lambda y$.
 \end{definicija}
 
 \begin{opomba}
-enako lahko naredimo za poljubne topološke obsege.
+Enako lahko naredimo za poljubne topološke obsege.
 \end{opomba}
 
 \begin{trditev}
@@ -619,7 +621,7 @@ S(\HH^n) = S^{4n - 1}.
 \end{opomba}
 
 \begin{trditev}
-Veljajo naslednje trditve:
+Za $\F \in \set{\R, \C, \HH}$ veljajo naslednje trditve:
 
 \begin{enumerate}[i)]
 \item Kvocientna projekcija
@@ -631,23 +633,82 @@ povezan s potmi, lokalno povezan s potmi in 2-števen.
 \end{enumerate}
 \end{trditev}
 
+\datum{2022-3-25}
+
 \begin{proof}
 Prva točka je posledica trditve~\ref{td:grodp}.
 
-Naj bo $\varphi \colon \F^{n+1} \setminus \set{0} \to S(\F^{n+1})$
+Naj bo $r \colon \F^{n+1} \setminus \set{0} \to S(\F^{n+1})$
 preslikava, ki deluje po predpisu
-$\varphi \colon x \mapsto \frac{x}{\norm{x}}$.
+$r \colon x \mapsto \frac{x}{\norm{x}}$, $p$ pa kvocientna
+projekcija $p \colon S(\F^{n+1}) \to \kvoc{S(\F^{n+1})}{S(\F)}$.
+Velja, da je $r$ zvezna in surjektivna. Naj bo
+$h \colon \F^{n+1} \setminus \set{0} \to
+S(\F^{n+1}) \times (0, \infty)$
+homeomorfizem, ki deluje po predpisu
+\[
+h \colon x \mapsto \left(\frac{x}{\norm{x}}, \norm{x}\right).
+\]
+Ker je $r$ kompozitum homeomorfizma $h$ in projekcije,
+je odprta, zato je $p \circ r$ kvocientna. Ker pa je
+\[
+(p \circ r)(x) = (p \circ r)(y) \iff
+\frac{y}{\norm{y}} = \lambda \frac{x}{\norm{x}} \iff
+y = \mu x \iff
+q(x) = q(y),
+\]
+je $p \circ r$ konstantna na ekvivalenčnih razredih.
 \[
 \begin{tikzcd}[column sep=large, row sep=large]
+& S(\F^{n+1}) \times (0, \infty)
+  \arrow[dr, "\operatorname{pr}_1"]
+&\\
 \F^{n+1} \setminus \set{0}
-\arrow[rr, "\varphi"]
+\arrow[ur, "h"]
+\arrow[rr, "r"]
 \arrow[dd, "q"']
-\arrow[ddrr, "p \circ \varphi"]
-&& \F^{n+1} \setminus \set{0}
+\arrow[ddrr, "p \circ r"]
+&& S(\F^{n+1})
 \arrow[dd, "p"] \\\\
 \proj{\F}{n} \arrow[rr, dashrightarrow, "\approx"']
 && \kvoc{S(\F^{n+1})}{S(\F)}
 \end{tikzcd}
 \]
-% TO BE CONTINUED
+Tretje točke ni težko preveriti.
+\end{proof}
+
+\begin{trditev}
+Velja $\proj{\R}{n} \approx \kvoc{B^n}{\sim}$, kjer je
+$x \sim y \iff x, y \in S^{n-1} \land x = -y$. Podobno je
+$\proj{\C}{n} \approx \kvoc{B^{2n}}{\sim}$, kjer je
+$x \sim y \iff x, y \in S^{2n-1} \land x = \lambda y$ za
+$\lambda \in S^1$.
+\end{trditev}
+
+\begin{proof}
+Dokažimo prvi del trditve -- dokaz drugega dela je enak.
+
+Naj bo $h \colon B^n \to S_+^n$ standardni homeomorfizem,
+$i \colon S_+^n \hookrightarrow S^n$ inkluzija in
+$p \colon S^n \to \kvoc{S^n}{S^0}$ kvocientna projekcija. Naj bo še
+\[
+f = p \circ i \circ h.
+\]
+
+Preslikava $f$ je zvezna, saj je kompozitum zveznih. Iz istega
+razloga je $f$ zaprta. Opazimo še, da je surjektivna.
+
+$f$ naredi iste identifikacije kot $q$, saj za $x \in B^n$
+velja $f^{-1}(f(x)) = \set{x}$ in za $x \in S^{n-1}$ velja
+$f^{-1}(f(x)) = \set{x, -x}$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+B^n \arrow[r, "h", "\approx"'] \arrow[dd, "q"'] \arrow[ddrr, "f"] &
+S_+^n \arrow[r, hook, "i"] &
+S^n \arrow[dd, "p"] \\ \\
+\kvoc{B^n}{\sim}
+\arrow[rr, dashrightarrow, "\overline{f}", "\approx"'] &&
+\kvoc{S^n}{S^0}
+\end{tikzcd} \qedhere
+\]
 \end{proof}
