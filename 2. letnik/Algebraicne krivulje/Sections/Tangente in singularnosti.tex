@@ -174,4 +174,283 @@ $f_m(a,b) = 0$.
 
 \obvs
 
+\datum{2022-4-7}
+% neke singularnosti al neki idk
+\newpage
 
+\datum{2022-4-14}
+
+\begin{lema}
+Če krivulji $\mathcal{C}_1$ in $\mathcal{C}_2$ nimata skupne
+komponente, velja
+\[
+\Sing(\mathcal{C}_1 \cup \mathcal{C}_2) =
+\Sing(\mathcal{C}_1) \cup \Sing(\mathcal{C}_2) \cup
+(\mathcal{C}_1 \cap \mathcal{C}_2).
+\]
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+\frac{\partial (F_1 F_2)}{\partial x}(p) = 0 \iff
+F_1(p) \cdot \frac{\partial F_2}{\partial x}(p) +
+F_2(p) \cdot \frac{\partial F_1}{\partial x}(p) = 0.
+\]
+Če je $p \in \mathcal{C}_1$ singularna točka unije, je zato
+$F_2(p) = 0$ ali pa je $p$ singularna točka $\mathcal{C}_1$, in
+obratno.
+\end{proof}
+
+\begin{posledica}
+Krivulja stopnje $n$ ima kvečjemu $\frac{n(n-1)}{2}$ singularnih
+točk.
+\end{posledica}
+
+\begin{proof}
+Posledico dokažemo z indukcijo po stopnji krivulje. Če je krivulja
+nerazcepna, to sledi iz zgornjega izreka. Če je $\mathcal{C}$
+razcepna, jo lahko zapišemo kot $\mathcal{C}_1 \cup \mathcal{C}_2$,
+kjer je $\mathcal{C}_1$ nerazcepna. Naj bo
+$n_1 = \deg \mathcal{C}_1$ in $n_2 = \deg \mathcal{C}_2$. Sledi, da
+ima $\mathcal{C}$ kvečjemu
+\[
+\frac{(n_1-1)(n_1-2)}{2} + \frac{n_2 (n_2-1)}{2} + n_1 n_2 =
+\frac{n_1^2 + 2n_1n_2 + n_2^2 - 3n_1 - n_2 + 2}{2} \leq
+\frac{n (n-1)}{2}
+\]
+singularnih točk.
+\end{proof}
+
+\newpage
+
+\subsection{Prevoji}
+
+\begin{definicija}
+Točka $p \in \mathcal{C}$ je \emph{prevoj}\index{Točka!Prevoj}, če
+je $p$ regularna točka in obstaja tangenta $\ell$ v točki $p$, za
+katero je
+\[
+\mult_p(\mathcal{C} \cap \ell) \geq 3.
+\]
+Množico vseh prevojev označimo z $\Flex(\mathcal{C})$.
+\end{definicija}
+
+\begin{opomba}
+Če je ena izmed komponent krivulje premica $\ell$, so vse točke na
+$\ell$ prevoji.
+\end{opomba}
+
+\begin{definicija}
+Če je $\mult_p(\mathcal{C} \cap \ell) = \infty$, pravimo točki $p$
+\emph{nepravi prevoj}, če pa je
+$\mult_p(\mathcal{C} \cap \ell) = 3$, pa ji pravimo \emph{običajen
+prevoj}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\mathcal{C} = V_h(F)$ in $H_F$ Hessejeva matrika polinoma
+$F$. Krivulji $H(\mathcal{C}) = V_h(\det H_F)$ pravimo
+\emph{Hessejeva krivulja}\index{Algebraična krivulja!Hessejeva}.
+\end{definicija}
+
+\begin{izrek}
+Za vsako krivuljo $\mathcal{C}$ velja
+\[
+\mathcal{C} \cap H(\mathcal{C}) =
+\Flex(\mathcal{C}) \cup \Sing(\mathcal{C}).
+\]
+\end{izrek}
+
+\begin{proof}
+Dovolj je pokazati, da je
+$\Sing(\mathcal{C}) \subseteq H(\mathcal{C})$ in
+$\Reg(\mathcal{C}) \cap H(\mathcal{C}) = \Flex(\mathcal{C})$.
+
+\begin{lema*}
+Velja
+\[
+z^2 \det H_F =
+(n-1)^2 \det \begin{bmatrix}
+F_{xx} & F_{xy} & F_x             \\
+F_{xy} & F_{yy} & F_y             \\
+F_x    & F_y    & \frac{n}{n-1} F
+\end{bmatrix}.
+\]
+\end{lema*}
+
+\begin{proof}
+Velja
+\[
+z^2 \det H_F =
+\det \begin{bmatrix}
+F_{xx}   & F_{xy}   & z F_{xz}   \\
+F_{xy}   & F_{yy}   & z F_{yz}   \\
+z F_{xz} & z F_{zy} & z^2 F_{zz}
+\end{bmatrix}.
+\]
+Ker pa je
+\[
+x (F_x)_x + y (F_x)_y + z (F_x)_z = (n-1) F_x,
+\]
+lahko s prištevanjem večkratnikov vrstic in stolpcev dobimo matriko
+\[
+\begin{bmatrix}
+F_{xx}       & F_{xy} & (n-1) F_x      \\
+F_{xy}       & F_{yy} & (n-1) F_y      \\
+(n-1) F_x    & (n-1) F_y    & n(n-1) F
+\end{bmatrix}. \qedhere
+\]
+\end{proof}
+
+Naj bo $p$ singularna točka, za katero je brez škode za splošnost
+$z \ne 0$. Po zgornji lemi je zato $(z^2 \det H_F)(p) = 0$. Sledi,
+da je $\Sing(\mathcal{C}) \subseteq H(\mathcal{C})$.
+
+Naj bo $p \in \Reg \mathcal{C}$. Brez škode za splošnost naj bo
+$p = (0 : 0 : 1)$, njena tangenta $\ell$ pa naj ima enačbo $y = 0$.
+Naj bo $f(x,y) = F(x,y,1)$. Očitno $f$ nima konstantnega člena,
+linearni člen pa je oblike $\lambda y$.
+
+Izračunajmo presečno večkratnost. Opazimo, da je
+\[
+F(x,0,z) = a_2 x^2 z^{n-2} + a_3 x^3 z^{n-3} + \dots.
+\]
+Točka $p$ je prevoj natanko tedaj, ko je zgornji polinom deljiv z
+$x^3$. Velja
+\begin{align*}
+F(x,y,z) &= F(x,0,z) + F(x,y,z) - F(x,0,z)
+\\
+&=
+x^2 G(x,z) + y \cdot H(x,y,z).
+\end{align*}
+Sedaj izračunamo parcialne odvode
+\begin{align*}
+F_x &= 2x G + x^2 G_x + y H_x,
+\\
+F_y &= H + y H_y,
+\\
+F_z &= x^2 G_z + y H_z.
+\end{align*}
+Ker v točki $p$ velja $F_x = F_z = 0$, točka $p$ pa je regularna,
+sledi $H(0,0,1) \ne 0$. Hessejeva determinanta je enaka
+\[
+\det H_F = \frac{(n-1)^2}{z^2} \det \begin{bmatrix}
+2G + 4x G_x + x^2 G_{xx} + y H_{xx} &
+H_x + y H_{xy} &
+2x G + x^2 G_x + y H_x
+\\
+H_x + y H_{xy} &
+2H_y &
+H + y H_y
+\\
+2x G + x^2 G_x + y H_x &
+H + y H_y &
+\frac{n}{n-1} F
+\end{bmatrix}.
+\]
+Sledi, da je
+\[
+\det H_F (0 : 0 : 1) =
+\det \begin{bmatrix}
+2G  & H_x   & 0 \\
+H_x & 2 H_y & H \\
+0   & H     & 0
+\end{bmatrix} =
+-2 G(0,1) \cdot H(0,0,1)^2.
+\]
+Opazimo, da je determinanta enaka $0$ natanko tedaj, ko je
+$G(0,1) = 0$, oziroma, ko $x^3 \mid F(x, 0, z)$.
+\end{proof}
+
+\begin{izrek}\label{iz:1}
+Naj bo $\mathcal{C}'$ komponenta krivulje $\mathcal{C}$. Krivulja
+$\mathcal{C}'$ je premica natanko tedaj, ko je
+$\mathcal{C}' \subseteq H(\mathcal{C})$.
+\end{izrek}
+
+\begin{proof}
+Če je $\mathcal{C}'$ premica, naj bo brez škode za splošnost njena
+enačba $z=0$. Sledi, da je $F = z \cdot G$. Velja
+\[
+z^2 \det H_F =
+(n-1)^2 \det \begin{bmatrix}
+F_{xx} & F_{xy} & F_x             \\
+F_{xy} & F_{yy} & F_y             \\
+F_x    & F_y    & \frac{n}{n-1} F
+\end{bmatrix}.
+\]
+Desna stran je deljiva z $z^3$, zato $z \mid H_F$.
+
+\begin{lema*}
+Naj bo $p$ regularna točka krivulje $\mathcal{C}$, $\ell$ pa
+tangenta v tej točki. Tedaj je
+\[
+\mult_p(\mathcal{C} \cap \ell) =
+\mult_p(H(\mathcal{C} \cap \ell) + 2.
+\]
+\end{lema*}
+
+\begin{proof}
+Brez škode za splošnost naj bo $p = (0 : 0 : 1)$, enačba $\ell$ pa
+$y = 0$. Sledi, da za $k = \mult_p(\mathcal{C} \cap \ell)$ velja
+$x^k \parallel F(x, 0, z)$, zato lahko zapišemo
+\[
+F(x,y,z) = x^k G(x,z) + y \cdot H(x,y,z),
+\]
+kjer je $G(0,1) \ne 0$ in $H(0,0,1) \ne 0$. To vstavimo v
+\[
+z^2 \det H_F =
+(n-1)^2 \det \begin{bmatrix}
+F_{xx} & F_{xy} & F_x             \\
+F_{xy} & F_{yy} & F_y             \\
+F_x    & F_y    & \frac{n}{n-1} F
+\end{bmatrix}.
+\]
+Po približno dveh straneh dobimo, da je zgornja determinanta enaka
+\[
+x^{k-2} \varphi(x,z) + \psi(x,y,z),
+\]
+kjer je $\varphi(0,1) \ne 0$. Ker $p$ ne leži na premici $z=0$,
+sledi, da je $\mult_p(H(\mathcal{C}) \cap \ell) = k-2$.
+\end{proof}
+
+Naj bo $p \in \mathcal{C}'$ točka, ki ne leži na nobeni drugi
+komponenti. Če bi veljalo $\mathcal{C}' \subseteq H(\mathcal{C})$,
+bi sledilo
+\[
+\mult_p(\mathcal{C}' \cap \ell) \leq
+\mult_p(H(\mathcal{C}) \cap \ell),
+\]
+kar je seveda protislovje.
+\end{proof}
+
+\begin{trditev}
+Naj bo $f$ število prevojev na krivulji $\mathcal{C}$ stopnje $n$
+in $s$ število njenih singularnih točk. Če $\mathcal{C}$ nima
+linearne komponente, velja
+\[
+f + 2s \leq 3n(n-2).
+\]
+\end{trditev}
+
+\begin{proof}
+Po izreku~\ref{iz:1} sledi, da sta $\mathcal{C}$ in
+$H(\mathcal{C})$ tuji. Opazimo, da je
+$\deg H(\mathcal{C}) = 3 \cdot (n-2)$, velja pa
+\begin{align*}
+\deg \mathcal{C} \cdot \deg H(\mathcal{C})
+&=
+\sum_{p \in \mathcal{C} \cap H(\mathcal{C})}
+\mult_p(\mathcal{C} \cap H(\mathcal{C})
+\\
+&=
+\sum_{p \in \Flex(\mathcal{C})}
+\mult_p(\mathcal{C} \cap H(\mathcal{C}) +
+\sum_{p \in \Sing(\mathcal{C})}
+\mult_p(\mathcal{C} \cap H(\mathcal{C})
+\\
+&\geq
+f + 2s. \qedhere
+\end{align*}
+\end{proof}

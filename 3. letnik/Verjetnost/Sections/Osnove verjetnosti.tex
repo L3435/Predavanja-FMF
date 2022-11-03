@@ -1,0 +1,323 @@
+\section{Osnove verjetnosti}
+
+\subsection{Izidi, dogodki, verjetnosti}
+
+\datum{2022-10-4}
+
+\begin{definicija}
+\emph{Množico vseh možnih izidov}\index{Množica izidov} označujemo
+z $\Omega$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Dogodek}\index{Dogodek} je vsaka podmnožica množice $\Omega$.
+\end{definicija}
+
+\begin{definicija}
+Družina dogodkov $\mathcal{F}$ ima naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item velja $\Omega \in \mathcal{F}$ in
+$\emptyset \in \mathcal{F}$,
+\item če je $A \in \mathcal{F}$, je tudi
+$A^\mathsf{c} \in \mathcal{F}$ in
+\item če so $A_1, A_2, \ldots \in \mathcal{F}$, je tudi
+\[
+\bigcup_{i=1}^\infty A_i \in \mathcal{F}.
+\]
+\end{enumerate}
+
+Družini množic z zgornjimi lastnostmi pravimo
+\emph{$\sigma$-algebra}\index{Sigma-algebra@$\sigma$-algebra}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Verjetnost}\index{Verjetnost} je preslikava
+$P \colon \mathcal{F} \to [0,1]$ z naslednjimi
+lastnostmi:\footnote{To so aksiomi Kolmogorova.}
+
+\begin{enumerate}[i)]
+\item Velja $P(\Omega) = 1$ in $P(\emptyset) = 0$.
+\item Če so dogodki $A_1, A_2, \dots$ disjunktni, je
+\[
+P\left(\bigcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty P(A_n).
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Velja $P(A) + P(A^\mathsf{c}) = 1$.
+\item Velja $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Trditev dokažemo po točkah:
+
+\begin{enumerate}[i)]
+\item Ker je $A \cup A^\mathsf{c} = \Omega$ in
+$A \cap A^\mathsf{c} = \emptyset$, je
+\[
+P(A) + P(A^\mathsf{c}) = P(\Omega).
+\]
+\item Obe strani lahko zapišemo kot
+\[
+P(A \cap B^\mathsf{c}) + P(A^\mathsf{c} \cap B) + P(A \cap B).
+\qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\datum{2022-10-5}
+
+\begin{izrek}[Formula za vključitve in izključitve]
+\index{Izrek!Vključitve in izključitve}
+Naj bodo $A_1, A_2, \dots A_n$ dogodki. Tedaj je
+\[
+P\left(\bigcup_{i=1}^n A_i\right) =
+\sum_{\substack{S \subseteq \set{1, \dots, n} \\ S \ne \emptyset}}
+(-1)^{\abs{S}+1} \cdot P\left(\bigcap_{i=1}^n A_i\right).
+\]
+\end{izrek}
+
+\begin{proof}
+Formulo dokažemo z indukcijo. Trditev za $n=2$ smo že dokazali.
+Naj bo
+\[
+A = \bigcup_{i=1}^n A_i
+\]
+in $B = A_{n+1}$.
+Tedaj je
+\begin{align*}
+P(A \cup B) &= P(A) + P(B) - P(A \cap B)
+\\
+&=
+\sum_{\substack{S \subseteq \set{1, \dots, n} \\ S \ne \emptyset}}
+(-1)^{\abs{S}+1} \cdot P\left(\bigcap_{i=1}^n A_i\right) + P(B) -
+\sum_{\substack{S \subseteq \set{1, \dots, n} \\ S \ne \emptyset}}
+(-1)^{\abs{S}+1} \cdot P\left(\bigcap_{i=1}^n A_i \cap B\right)
+\\
+&=
+\sum_{\substack{S \subseteq \set{1,\dots, n+1} \\ S \ne \emptyset}}
+(-1)^{\abs{S}+1} \cdot P\left(\bigcap_{i=1}^n A_i\right). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Naj bodo $A_1 \subseteq A_2 \subseteq \dots$ naraščajoči dogodki.
+Tedaj je
+\[
+P\left(\bigcup_{n=1}^\infty A_n\right) =
+\lim_{n \to \infty} P(A_n).
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+\bigcup_{n=1}^\infty A_n =
+A_1 \cup \bigcup_{n=2}^\infty (A_n \setminus A_{n-1}).
+\]
+Velja torej
+\[
+P\left(\bigcup_{n=1}^\infty A_n\right) =
+P(A_1) + \sum_{n=2}^\infty (P(A_n) - P(A_{n-1})) =
+\lim_{n \to \infty} P(A_n). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Iz De Morganovih pravil sledi analog s preseki -- če so
+$A_1 \supseteq A_2 \supseteq \dots$ padajoči dogodki, je
+\[
+P\left(\bigcap_{n=1}^\infty A_n\right) =
+\lim_{n \to \infty} P(A_n).
+\]
+\end{opomba}
+
+\begin{izrek}[Borel-Cantellijeva lema]
+\index{Izrek!Borel-Cantellijeva lema}
+Naj bodo $A_1, A_2, \dots$ dogodki in
+\[
+A = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k.
+\]
+Če je
+\[
+\sum_{k=1}^\infty P(A_k) < \infty,
+\]
+je $P(A) = 0$.
+\end{izrek}
+
+\begin{proof}
+Opazimo, da so
+\[
+\bigcup_{k=n}^\infty A_k
+\]
+padajoči dogodki, zato je
+\[
+P(A) =
+\lim_{n \to \infty} P\left(\bigcup_{k=n}^\infty A_k\right) \leq
+\lim_{n \to \infty} \sum_{k=n}^\infty P(A_k) = 0. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Pogojne verjetnosti}
+
+\datum{2022-10-11}
+
+\begin{definicija}
+Naj bo $B$ dogodek z verjetnostjo $P(B) > 0$.
+\emph{Pogojno verjetnost}\index{Verjetnost!Pogojna verjetnost}
+dogodka $A$ pri pogoju $B$ definiramo kot
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Nabor dogodkov $\set{H_1, H_2, \dots}$ je
+\emph{particija}\index{Množica izidov!Particija} $\Omega$, če je
+\[
+\bigcup_i H_i = \Omega
+\quad \text{in} \quad
+\forall i \ne j \colon H_i \cap H_j = \emptyset.
+\]
+\end{definicija}
+
+\begin{izrek}[Formula za popolno verjetnost]
+Naj bo $\set{H_1, H_2, \dots}$ particija $\Omega$ in $A$ dogodek.
+Tedaj velja
+\[
+P(A) = \sum_i P(A \mid H_i) \cdot P(H_i).
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+P(A) = \sum_i P(A \cap H_i) = \sum_i P(A \mid H_i) \cdot P(H_i).
+\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Velja tudi
+\[
+P\left(\bigcap_{i=1}^n A_i\right) =
+\prod_{k=1}^n P\left(A_k~\middle|~\bigcap_{i=1}^{k-1} A_i\right).
+\]
+\end{opomba}
+
+\datum{2022-10-12}
+
+\begin{definicija}
+Dogodki $A_1, \dots, A_n$ so
+\emph{neodvisni}\index{Dogodek!Neodvisen}, če za vse
+$S \subseteq \set{1,\dots,n}$ velja
+\[
+P\left(\bigcap_{i \in S} A_i\right) = \prod_{i \in S} P(A_i).
+\]
+Dogodki $\set{A_n}_{i \in I}$ so neodvisni, če je vsaka njihova
+končna poddružina neodvisna.
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno sta dogodka neodvisna natanko tedaj, ko zanju velja
+$P(A \mid B) = P(A)$.
+\end{opomba}
+
+\datum{2022-10-18}
+
+\begin{izrek}[Borel-Cantellijeva lema]
+\index{Izrek!Borel-Cantellijeva lema}
+Naj bodo dogodki $A_1, A_2, \dots$ neodvisni in
+\[
+A = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k.
+\]
+Če je
+\[
+\sum_{i=1}^\infty P(A_i) = \infty,
+\]
+je $P(A) = 1$.
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+A^{\mathsf{c}} =
+\bigcup_{n=1}^\infty \bigcap_{k=n}^\infty A_k^{\mathsf{c}}.
+\]
+Dovolj je pokazati, da imajo preseki verjetnost $0$. Ker so tudi
+komplementi neodvisni, velja
+\[
+P\left(\bigcap_{k=n}^\infty A_k^{\mathsf{c}}\right) \leq
+P\left(\bigcap_{k=n}^N A_k^{\mathsf{c}}\right) =
+\prod_{k=n}^N (1 - P(A_k)) \leq
+\prod_{k=n}^N e^{-P(A_k)},
+\]
+kar konvergira proti $0$.
+\end{proof}
+
+\begin{definicija}
+Družina dogodkov $\mathcal{P}$ je \emph{$\pi$-sistem}, če je za
+vsaka $A, B \in \mathcal{P}$ tudi $A \cap B \in \mathcal{P}$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo družina $\set{B_1, \dots, B_n}$ $\pi$-sistem, $A$ pa
+dogodek, ki je neodvisen od vsakega $B_i$. Potem je $A$ neodvisen
+od vsakega dogodka, ki ga lahko sestavimo iz dogodkov $B_i$ s
+komplementi, preseki in unijami.
+\end{izrek}
+
+\begin{proof}
+Vsak dogodek, ki ga lahko sestavimo iz dogodkov $B_i$, je
+disjunktna unija dogodkov oblike
+\[
+\bigcap_{i=1}^n B_i^*,
+\]
+kjer je $B_i^* \in \set{B_i, B_i^{\mathsf{c}}}$. Ker delamo v
+$\pi$-sistemu, je brez škode za splošnost dovolj preveriti dogodke
+oblike
+\[
+\bigcap_{i=1}^m B_i^{\mathsf{c}} \cap B_{m+1}.
+\]
+Velja pa
+\begin{align*}
+P\left(A \cap \bigcap_{i=1}^m B_i^{\mathsf{c}} \cap B_{m+1}\right)
+&=
+P\left(A \cap \left(\bigcup_{i=1}^m B_i\right)^{\mathsf{c}} \cap
+B_{m+1}\right)
+\\
+&=
+P(A \cap B_{m+1}) -
+P\left(\bigcup_{i=1}^m B_i \cap B_{m+1} \cap A\right)
+\\
+&=
+P(A) \cdot P(B_{m+1}) -
+P\left(\bigcup_{i=1}^m (B_i \cap B_{m+1} \cap A)\right)
+\intertext{Sedaj lahko unijo razvijemo po načelu vključitev in
+izključitev, nato pa izpostavimo $P(A)$, ki je neodvisen z vsemi
+peseki. Po ponovni uporabi vključitev in izključitev dobimo}
+P\left(A \cap \bigcap_{i=1}^m B_i^{\mathsf{c}} \cap B_{m+1}\right)
+&=
+P(A) \cdot \left(P(B_{m+1}) -
+P\left(\bigcup_{i=1}^m B_i \cup B_{m+1}\right)\right)
+\\
+&= P(A) \cdot
+P\left(\bigcap_{i=1}^m B_i^{\mathsf{c}} \cap B_{m+1}\right).
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Naj bosta $\set{A_1, \dots, A_m}$ in $\set{B_1, \dots, B_n}$
+$\pi$-sistema dogodkov. Če so vsi dogodki $A_i$ neodvisni z vsemi
+dogodki $B_j$, so neodvisni vsi dogodki, ki jih lahko sestavimo s
+komplementi, unijami in preseki množic iz posameznega sistema.
+\end{izrek}

@@ -1,0 +1,191 @@
+\section{Osnovne navadne parcialne enačbe}
+
+\subsection{Diferencialne enačbe}
+
+\datum{2022-10-13}
+
+\begin{definicija}
+\emph{Splošna diferencialna enačba I.~reda}\index{Diferencialna enačba!I.~reda}
+je enačba oblike
+\[
+\dot{x}(t) = F(t, x(t)),
+\]
+kjer je $F$ dovolj lepa funkcija.
+\end{definicija}
+
+\begin{definicija}
+\emph{Splošna diferencialna enačba $n$-tega reda}\index{Diferencialna enačba!$n$-tega reda}
+je enačba oblike
+\[
+F(t, x(t), \dot{x}(t), \dots, x^{(n)}(t)) = 0.
+\]
+Rešitev enačbe so vse funkcije $\widetilde{x}(t)$, ki rešijo enačbo
+za vsak $t$ iz intervala, ki nas zanima.
+\end{definicija}
+
+\begin{definicija}
+\emph{Splošen sistem}\index{Diferencialna enačba!Sistem} $n$ enačb
+reda $m$ je sistem oblike
+\begin{align*}
+F_1(t, x(t), \dot{x}(t), \dots, x^{(m)}(t)) &= 0,
+\\
+F_2(t, x(t), \dot{x}(t), \dots, x^{(m)}(t)) &= 0,
+\\
+& ~~\! \vdots
+\\
+F_n(t, x(t), \dot{x}(t), \dots, x^{(m)}(t)) &= 0,
+\end{align*}
+kjer $x \colon \R \to \R^n$ označuje vektorsko funkcijo.
+\end{definicija}
+
+\begin{trditev}
+Vsako enačbo reda $n$ lahko zapišemo v obliki sistema $n$ enačb
+I.~reda.
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+x^{(n)} = F(t, x, \dot{x}, \dots, x^{(n-1)}).
+\]
+Vpeljimo neodvisne spremenljivke $x_1(t), \dots, x_n(t)$ kot
+\[
+x_i(t) = x^{(i-1)}(t).
+\]
+Enačbo lahko sedaj prepišemo v sistem
+\begin{align*}
+\dot{x}_1 &= x_2
+\\
+\dot{x}_2 &= x_3
+\\
+&~~\! \vdots
+\\
+\dot{x}_{n-1} &= x_n
+\\
+\dot{x}_n &= F(t, x_1, \dots, x_n). \qedhere
+\end{align*}
+\end{proof}
+
+\newpage
+
+\subsection{Enačbe I.~reda in vektorska polja}
+
+\begin{definicija}
+\emph{Vektorsko polje}\index{Vektorsko polje} $F$ na območju
+$\Omega \subseteq \R^n$ je gladka preslikava
+$F \colon \Omega \to \R^n$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $F \colon \Omega \to \R^n$ vektorsko polje in naj bo
+$\vv{x}_0 \in \Omega$.
+\emph{Integralska krivulja}\index{Integralska krivulja} polja $F$
+skozi točko $\vv{x}_0$ je krivulja
+$\gamma \colon t \mapsto \gamma(t) \in \Omega$, za katero velja
+$\dot{\gamma}(t) = F(\gamma(t))$ in $\gamma(0) = \vv{x}_0$.
+\end{definicija}
+
+\datum{2022-10-20}
+
+\begin{opomba}
+Sistem $\dot{\gamma}(t) = F(\gamma(t))$ je \emph{avtonomen} --
+neodvisna spremenljivka $t$ na desni ne nastopa eksplicitno.
+\end{opomba}
+
+\begin{definicija}
+Sistem $n$ diferencialnih enačb I.~reda oblike
+\[
+\dot{x}(t) = F(t, x(t))
+\]
+je
+\emph{neavtonomen sistem}\index{Diferencialna enačba!Sistem!Neavtonomen}.
+\end{definicija}
+
+\begin{opomba}
+Neavtonomne sisteme lahko obravnavamo s pomočjo razširjenega
+faznega prostora -- dodamo dimenzijo $x_{n+1}(t) = t$. V tem
+sistemu je polje translacijsko invariantno za translacije v smeri
+$t$.
+\end{opomba}
+
+\newpage
+
+\subsection{Primeri diferencialnih enačb}
+
+\begin{primer}
+Rešitev enačbe
+\[
+\dot{x} = g(t)
+\]
+je funkcija
+\[
+x(t) = \int_0^t g(\tau)\,d\tau + C.
+\]
+\end{primer}
+
+\begin{primer}
+Na podoben način lahko rešimo enačbo
+\[
+\dot{x} = h(x).
+\]
+Sistem lahko namreč preoblikujemo v $\xi'(x) = \frac{1}{h(x)}$,
+kjer je $\xi = x^{-1}$. Za
+\[
+G(x) = \int_0^x \frac{1}{h(\zeta)}\,d\zeta
+\]
+tako velja
+\[
+x = G^{-1}(t-C).
+\]
+\end{primer}
+
+\begin{primer}
+Enačbi oblike
+\[
+\dot{x} = f(t) \cdot g(x)
+\]
+pravimo \emph{splošna enačba z ločljivima spremenljivkama}. Če je
+$H(x)$ primitivna funkcija funkcije $\frac{1}{g(x)}$, lahko enačbo
+preoblikujemo v
+\[
+\dot{H}(x(t)) = f(x).
+\]
+Za primitivno funkcijo $F$ funkcije $f$ tako velja
+\[
+x(t) = H^{-1}(F(t) + C).
+\]
+\end{primer}
+
+\begin{primer}
+Enačba
+\[
+\dot{x} = f(t,x)
+\]
+je \emph{homogena}, če za vsak $\lambda \ne 0$ velja
+\[
+f(\lambda t, \lambda x) = f(t,x).
+\]
+Naj bo $v = \frac{x}{t}$. Tedaj velja
+\[
+\dot{v} = \frac{t \dot{x} - x}{t^2} =
+\frac{1}{t} (f(1,v) - v).
+\]
+To je enačba z ločljivima spremenljivkama, ki jo rešimo tako kot
+prejšnjo.
+\end{primer}
+
+\newpage
+
+\subsection{Splošne in partikularne rešitve}
+
+\begin{definicija}
+\emph{Splošna rešitev sistema} je $n$-parametrična družina funkcij
+\[
+t \mapsto \gamma(t, c_1, \dots, c_n),
+\]
+ki rešijo sistem.
+\end{definicija}
+
+\begin{opomba}
+Parametri pridobimo iz začetnih pogojev sistema.
+\end{opomba}

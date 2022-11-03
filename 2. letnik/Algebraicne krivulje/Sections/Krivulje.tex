@@ -22,7 +22,6 @@ Množicam oblike $V(f)$ pravimo
 \emph{(afine) algebraične množice}\index{Algebraična množica}.
 \end{opomba}
 
-\begin{okvir}
 \begin{definicija}
 Množica $\mathcal{C} \subseteq K^2$ je
 \emph{algebraična krivulja}\index{Algebraična krivulja}, če obstaja
@@ -34,7 +33,6 @@ Pravimo, da je krivulja
 \emph{nerazcepna}\index{Algebraična krivulja!Nerazcepna}, če je v
 zgornji definiciji $F$ nerazcepen polinom.
 \end{definicija}
-\end{okvir}
 
 \begin{definicija}
 \emph{Afina preslikava}\index{Afina preslikava} je kompozitum
@@ -154,22 +152,21 @@ f = \sum_{i=0}^m a_i x^{m-i}
 \quad \text{in} \quad
 g = \sum_{i=0}^n b_i x^{n-i},
 \]
-kjer so $a_i, b_i \in \C[y]$.\footnote{Ker je $\C$ komutativen,
-velja $\C[x,y] = \C[y][x]$.} Brez škode za splošnost naj bo
-$m \geq 1$. Ker je $a_0 \ne 0$, obstaja tak $y_0$, da je
+kjer so $a_i, b_i \in \C[y]$.\footnote{Ker je $\C$ komutativen
+kolobar, velja $\C[x,y] = \C[y][x]$.} Brez škode za splošnost naj
+bo $m \geq 1$. Ker je $a_0 \ne 0$, obstaja tak $y_0$, da je
 $a_0(y_0) \ne 0$.
 
 Oglejmo si polinom $f_{y_0}(x) = f(x,y_0)$. Ker je $\C$ algebraično
 zaprto polje, ima ta polinom ničlo $x_0$. Sledi, da je
-$f(x_0, y_0) = 0$, zato $(x_0, y_0) \in V(g)$, zato je tudi
+$f(x_0, y_0) = 0$, zato $(x_0, y_0) \in V(g)$ in je tudi
 \[
 g_{y_0}(x_0) = 0.
 \]
 Sledi, da imata polinoma $f_{y_0}$ in $g_{y_0}$ skupni faktor
-$x - x_0$ in je njuna rezultanta enaka $0$. Sledi, da je $y_0$
+$x - x_0$, torej je njuna rezultanta enaka $0$. Sledi, da je $y_0$
 ničla rezultante $\Res(f,g)$. Ker to velja za skoraj vse $y_0$, je
-$\Res(f,g) = 0$, oziroma, da imata $f$ in $g$ skupni faktor, to je
-$f$.
+$\Res(f,g) = 0$ in imata $f$ in $g$ skupni faktor, to je $f$.
 \end{proof}
 
 \begin{opomba}
@@ -226,7 +223,7 @@ $P_2(K)$.
 
 \begin{definicija}
 \emph{Projektivne koordinate}\index{Projektivna ravnina!Koordinate}
-projektivne točke je razmerje
+projektivne točke so razmerje
 \[
 (x : y : z).
 \]
@@ -239,8 +236,8 @@ ustreza natanko ena projektivna točka.
 
 \begin{opomba}
 Projektivno ravnino lahko identificiramo z afino ravnino, ki ji
-dodamo \emph{točke v neskončnosti}. Točkam v projektivni ravnini,
-ki so oblike $(x : y : 1)$, identificiramo s točko $(x, y)$ v afini
+dodamo \emph{točke v neskončnosti}. Točke v projektivni ravnini, ki
+so oblike $(x : y : 1)$, identificiramo s točko $(x, y)$ v afini
 ravnini in jim pravimo \emph{končne točke}.
 
 Točke $(x : y : 0)$ ustrezajo \emph{točkam v neskončnosti}, ki jih
@@ -248,7 +245,7 @@ identificiramo s snopi vzporednic.
 \end{opomba}
 
 \begin{opomba}
-Projektivno ravnino $P_2(\R)$ lahko identificiramo tudi s sfero
+Projektivno ravnino $P_2(\R)$ lahko identificiramo tudi prek sfere
 $S^2$.
 \end{opomba}
 
@@ -275,7 +272,7 @@ poteka natanko ena projektivna premica.
 
 \begin{definicija}
 Polinom $F \in \C[x,y,z]$ je \emph{homogen}\index{Polinom!Homogen},
-če so vsi njegovi monomi iste stopnje.
+če imajo vsi njegovi monomi enako stopnjo.
 \end{definicija}
 
 \begin{opomba}
@@ -288,7 +285,7 @@ F(\lambda x, \lambda y, \lambda z) = \lambda^n F(x, y, z).
 
 \begin{definicija}
 Množica projektivnih ničel homogenega polinoma $F \in \C[x, y, z]$
-je
+je množica
 \[
 V_h(F) = \setb{(a : b : c) \in P_2(\C)}{F(a, b, c) = 0}.
 \]

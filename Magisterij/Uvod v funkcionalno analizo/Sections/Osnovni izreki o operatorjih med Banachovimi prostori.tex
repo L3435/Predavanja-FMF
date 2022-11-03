@@ -1,0 +1,324 @@
+\section{Osnovni izreki o operatorjih med Banachovimi prostori}
+
+\subsection{Bairov izrek}
+
+\begin{izrek}[Baire]
+Naj bo $(X,d)$ poln metrični prostor, $D_n$ pa odprte goste
+množice. Tedaj je tudi
+\[
+\bigcap_{n=1}^\infty D_n
+\]
+gosta.
+\end{izrek}
+
+\begin{proof}
+Naj bo $x \in X$ in $r > 0$. Induktivno definiramo zaporedji
+$(x_n)_{n=1}^\infty$ in $(r_n)_{n=1}^\infty$, kjer so $x_i \in X$
+in $r_i > 0$, in sicer s pogojema
+\[
+\oline{\mathcal{B}}(x_{n+1}, r_{n+1}) \subseteq D_n \cap
+\spr(x_n, r_n)
+\quad \text{in} \quad
+r_n \leq \frac{1}{n}.
+\]
+Ni težko videti, da je dobljeno zaporedje središč Cauchyjevo, zato
+ima limito $x_0$. Velja pa $d(x_0, x_m) \leq r_m$, zato je
+\[
+x_0 \subseteq
+\spr(x_1, r_1) \cap \bigcap_{m=1}^\infty D_m \subseteq
+\spr(x, r) \cap \bigcap_{m=1}^\infty D_m. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $X \ne \emptyset$ poln metrični prostor, $A_n \subseteq X$
+pa zaprte množice. Če velja
+\[
+X = \bigcup_{n=1}^\infty A_n,
+\]
+ima vsaj ena neprazno notranjost.
+\end{posledica}
+
+\begin{proof}
+Uporabimo zgornji izrek za množice $A_n^{\mathsf{c}}$.
+\end{proof}
+
+\begin{opomba}
+Izrek ne velja v splošnih metričnih prostorih - protiprimer je že
+$X = \Q$ in $D_n = \Q \setminus \set{q_n}$.
+\end{opomba}
+
+\newpage
+
+\subsection{Izrek o odprti preslikavi}
+
+\datum{2022-10-26}
+
+\begin{izrek}[O odprti preslikavi]\index{Izrek!O odprti preslikavi}
+Naj bosta $X$ in $Y$ Banachova prostora, $T \colon X \to Y$ pa
+linearna omejena surjekcija. Tedaj je $T$ odprta preslikava.
+\end{izrek}
+
+\begin{proof}
+Naj bo $U \subseteq X$ odprta množica in $0 \in U$. Obstaja torej
+tak $\varepsilon > 0$, da je
+$\oline{\mathcal{B}}(0, \varepsilon) \subseteq U$. Sledi, da za
+$x \in X \setminus \set{0}$ velja
+$x \in \frac{\norm{x}}{\varepsilon} \in U$, zato je
+\[
+X = \bigcup_{n=1}^\infty nU.
+\]
+Dobimo
+\[
+Y = T(X) = \bigcup_{n=1}^\infty T(nU) =
+\bigcup_{n=1}^\infty n T(U) = \bigcup_{n=1}^\infty n \oline{T(U)}.
+\]
+Po Baireovem izreku ima ena izmed množic $m \oline{T(U)}$ neprazno
+notranjost, zato ima $\oline{T(U)}$ notranjo točko.
+
+Naj bo $V = \spr\left(0, \frac{\varepsilon}{2}\right)$. Očitno je
+\[
+V-V = \setb{v-w}{v, w \in V} \subseteq
+\spr(0, \varepsilon) \subseteq U.
+\]
+Po enakem argumentu kot zgoraj ima $\oline{T(V)}$ notranjo točko,
+torej obstaja odprta množica $W \subseteq \oline{T(V)}$. Velja
+\begin{align*}
+W-W &\subseteq \oline{T(V)} - \oline{T(V)}
+\\
+&= s\left(\oline{T(V)} \times \oline{T(V)}\right)
+\\
+&= s\left(\oline{T(V) \times T(V)}\right)
+\\
+&\subseteq \oline{T(V) - T(V)}
+\\
+&= \oline{T(V-V)} \subseteq \oline{T(U)},
+\end{align*}
+kjer $s$ označuje razliko. Vidimo, da je
+\[
+W-W = \bigcup_{w \in W}(W-w)
+\]
+odprta množica in velja $0 \in (W-W)$. Sledi, da je $0$ notranja v
+$\oline{T(U)}$.
+
+Naj bo sedaj $\varepsilon > 0$,
+$\varepsilon_0 = \frac{\varepsilon}{2}$ in
+\[
+\varepsilon_0 = \sum_{i=1}^\infty \varepsilon_i,
+\]
+kjer so $\varepsilon_i > 0$. Po prejšnjem delu dokaza za vsak
+$i \in \N_0$ obstaja tak $\eta_i > 0$, da je
+\[
+\spr(0, \eta_i) \subseteq \oline{T\br{\spr(0, \varepsilon_i)}}.
+\]
+Če je $\norm{x} < \varepsilon_i$, je
+$\norm{Tx} < \varepsilon_i \norm{T}$. Velja torej
+\[
+T(\spr(0, \varepsilon_i)) \subseteq
+\spr(0, \varepsilon_i \norm{T}).
+\]
+Sledi, da je $0 < \eta_i \leq \varepsilon_i \norm{T}$, zato
+$\eta_i$ konvergirajo k $0$.
+
+Naj bo $y \in \spr(0, \eta_0) \subseteq
+\oline{T\br{\spr(0, \varepsilon_0)}}$. Oglejmo si
+$\spr(y, \eta_1)$. Ta seka $T(\spr(0, \varepsilon_0))$ -- obstaja
+$x_0$, za katerega je $\norm{x_0} < \varepsilon_0$ in
+$\norm{y - Tx_0} < \eta_1$. Velja torej, da je
+$y-Tx_0 \in \spr(0, \eta_1) \subseteq
+\oline{T\br{\spr(0, \varepsilon_1)}}$. Postopek lahko nadaljujemo
+induktivno -- dobimo zaporedje $(x_n)_{n=1}^\infty$, za katere je
+$\norm{x_n} < \varepsilon_i$ in
+\[
+\norm{y - \sum_{i=0}^n Tx_i} < \eta_{n+1}.
+\]
+Oglejmo si zaporedje delnih vsot
+\[
+s_n = \sum_{i=0}^n x_i.
+\]
+Ker je
+\[
+\norm{s_n - s_m} = \norm{\sum_{i=m+1}^n x_i} \leq
+\sum_{i=m+1}^n \norm{x_i} < \sum_{i=m+1}^n \varepsilon_i,
+\]
+je to zaporedje Cauchyjevo in vrsta
+\[
+\sum_{i=0}^\infty x_i
+\]
+konvergira k $x$. Vidimo še, da velja
+\[
+\norm{x} \leq \sum_{i=0}^\infty \norm{x_i} < \varepsilon
+\]
+in
+\[
+y = \sum_{i=0}^\infty Tx_i = T\br{\sum_{i=0}^\infty x_i} = Tx.
+\]
+Sledi, da je $T\br{\spr(0,\varepsilon)}$ okolica $0$, zato je
+$0$ notranja točka $T(U)$.
+
+Sedaj lahko splošen izrek dobimo s preprosto translacijo.
+\end{proof}
+
+\begin{posledica}\label{ps:od:1}
+Naj bosta $X$ in $Y$ Banachova prostora, $T \colon X \to Y$ pa
+omejena linearna bijekcija. Tedaj je tudi $T^{-1}$ omejen.
+\end{posledica}
+
+\begin{proof}
+Po izreku o odprti preslikavi je $T$ odprta, zato je $T^{-1}$
+zvezna.
+\end{proof}
+
+\begin{posledica}
+Naj bo $X$ vektorski prostor, ki je v normah $\norm{.}_1$ in
+$\norm{.}_2$. Če obstaja tak $c > 0$, da za vse $x \in X$ velja
+$\norm{x}_1 \leq c \norm{x}_2$, sta normi ekvivalentni.
+\end{posledica}
+
+\begin{proof}
+Preslikava $\id \colon (X, \norm{.}_1) \to (X, \norm{.}_2)$ ustreza
+pogojem posledice~\ref{ps:od:1}.
+\end{proof}
+
+\newpage
+
+\subsection{Princip enakomerne omejenosti}
+
+\begin{izrek}[Banach-Steinhaus]\index{Izrek!Banach-Steinhaus}
+\label{iz:bs:1}
+Naj bo $X$ Banachov, $Y$ pa normiran prostor. Naj bo
+$\mathcal{A} \subseteq \mathcal{B}(X,Y)$ taka množica, da je za
+vsak $x \in X$ množica $\setb{\norm{Tx}}{T \in \mathcal{A}}$
+omejena.\footnote{Temu pogoju pravimo tudi \emph{omejenost po
+točkah}.} Tedaj je $\mathcal{A}$ omejena.
+\end{izrek}
+
+\begin{proof}
+Za $n \in N$ naj bo
+\[
+A_n = 
+\setb{x \in X}{\forall T \in \mathcal{A} \colon \norm{Tx} \leq n} =
+\bigcap_{T \in \mathcal{A}} \setb{x \in X}{\norm{Tx} \leq n}.
+\]
+Očitno so množice $A_n$ zaprte, velja pa
+\[
+\bigcup_{n=1}^\infty A_n = X.
+\]
+Po Baireovem izreku obstajajo taki $n_0 \in N$, $x_0 \in X$ in
+$\varepsilon > 0$, da velja
+\[
+\spr(x_0, 2\varepsilon) \subseteq A_{n_0}.
+\]
+Vzemimo $x \in X$, za katerega velja $\norm{x} = 1$. Za vsak
+$T \in \mathcal{A}$ velja
+\begin{align*}
+\norm{Tx} &= \frac{1}{\varepsilon} \norm{T(\varepsilon x)}
+\\
+&= \frac{1}{\varepsilon} \norm{Tx_0 - T(x_0 - \varepsilon x)}
+\\
+&\leq \frac{1}{\varepsilon} \norm{Tx_0} +
+\frac{1}{\varepsilon} \norm{T(x_0 - \varepsilon x)}
+\\
+&\leq \frac{2n_0}{\varepsilon}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Naj bo $X$ normiran prostor. Tedaj lahko $X$ vložimo v $X^{**}$.
+\end{trditev}
+
+\begin{proof}
+Vsakemu $x$ priredimo operator $F_x \colon X^* \to \K$, ki slika po
+predpisu $f \mapsto f(x)$. Očitno je $F_x$ linearen, velja pa
+\[
+\abs{F_x(f)} = \abs{f(x)} \leq \norm{x} \cdot \norm{f},
+\]
+zato je $F_x$ tudi omejen -- velja $\norm{F_x} \leq \norm{x}$. Po
+posledici~\ref{ps:hb:1} obstaja tak $f \in X^*$, da je $\norm{f}=1$
+in $f(x) = \norm{x}$. Sledi, da je
+\[
+F_x(f) = \norm{x},
+\]
+zato je $\norm{F_x} = \norm{x}$.
+\end{proof}
+
+\begin{trditev}
+Zgornja vložitev $\iota$ je linearna izometrija.
+\end{trditev}
+
+\begin{proof}
+Vložitev je izometrija po prejšnji trditvi. Velja pa
+\[
+F_{x+y}(f) = f(x+y) = (F_x + F_y)(f)
+\]
+in
+\[
+F_{\lambda x}(f) = f(\lambda x) = (\lambda F_x)(f). \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Normiran prostor je
+\emph{refleksiven}\index{Vektorski prostor!Refleksiven}, če je
+$\iota \colon X \to X^{**}$ surjektivna.
+\end{definicija}
+
+\begin{opomba}
+Vsak refleksiven prostor je Banachov.
+\end{opomba}
+
+\begin{zgled}
+Prostori $\ell^p$ za $p>1$ so refleksivni. Refleksivni so tudi vsi
+končnorazsežni vektorski prostori.
+\end{zgled}
+
+\begin{zgled}
+Prostor $c_0$ ni refleksiven, čeprav je Banachov.
+\end{zgled}
+
+\begin{opomba}
+Obstaja Banachov prostor $X$, za katerega je $X \cong X^{**}$, a ni
+refleksiven.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $X$ normiran prostor in $A \subseteq X$. Denimo, da za vsak
+$f \in X^*$ obstaja tak $k_f \in \R^+$, da za vse $x \in A$
+velja\footnote{Pravimo, da je $A$ \emph{šibko omejena}.}
+\[
+\abs{f(x)} \leq k_f.
+\]
+Tedaj je $A$ omejena.
+\end{izrek}
+
+\begin{proof}
+Za vse $x \in A$ velja
+\[
+\abs{F_x(f)} = \abs{f(x)} \leq k_f.
+\]
+Množica
+\[
+\mathcal{A} = \setb{F_x}{x \in A} = \iota(A)
+\]
+je podmnožica Banachovega prostora $X^{**}$. Po predpostavki je
+$\mathcal{A}$ omejena po točkah, zato je po izreku~\ref{iz:bs:1}
+omejena.
+\end{proof}
+
+\begin{posledica}
+Naj bo $X$ Banachov, $Y$ pa normiran prostor. Naj bo
+$\mathcal{A} \subseteq \mathcal{B}(X,Y)$ taka množica, da za vse
+$f \in Y^*$ in $x \in X$ obstaja tak $k(f,x) \in \R^+$, da za vse
+$T \in \mathcal{A}$ velja
+\[
+\abs{f(Tx)} \leq k(f,x).
+\]
+Tedaj je $\mathcal{A}$ omejena.
+\end{posledica}
+
+\begin{proof}
+Za poljuben $x \in X$ je množica $A_x=\setb{Tx}{T \in \mathcal{A}}$
+šibko omejena, zato je po zgornjem izreku omejena. Sledi, da je
+$\mathcal{A}$ omejena po točkah, zato je po izreku~\ref{iz:bs:1}
+omejena.
+\end{proof}

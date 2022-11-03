@@ -1,0 +1,458 @@
+\section{Projektivne kubike}
+
+\subsection{Nesingularne kubike}
+
+\datum{2022-4-28}
+
+\begin{trditev}
+Vsaka nesingularna krivulja je nerazcepna.
+\end{trditev}
+
+\begin{proof}
+Razcepne krivulje imajo dve komponenti, ki se sekata v singularni
+točki.
+\end{proof}
+
+\begin{definicija}
+\emph{Weierstrassova normalna forma}\index{Kubika!Weierstrassova forma}
+je
+\[
+y^2z = x^3 + axz^2 + bz^3.
+\]
+\end{definicija}
+
+\begin{izrek}
+Vsaka nesingularna kuubika je projektivno ekvivalentna neki
+Weierstrassovi normalni formi.
+\end{izrek}
+
+\begin{proof}
+Vsaka nesingularna kubika ima vsaj en prevoj. Velja namreč, da je
+\[
+\mathcal{C} \cap H(\mathcal{C}) = \Flex(\mathcal{C}),
+\]
+presek $\mathcal{C} \cap H(\mathcal{C})$ pa je neprazen.
+
+S projektivnostjo prevoj preslikamo v $(0 : 1 : 0)$, tangento v tej
+točki pa v $z = 0$. Naj bo
+\[
+F(x,y,z) =
+ax^3 + by^3 + cz^3 +
+dx^2y + ey^2x + fy^2z +
+gz^2y + hz^2x + ix^2z +
+jxyz =
+0
+\]
+enačba dobljene kubike. Očitno je $b = 0$. Ker je tangenta oblike
+$z=0$, ima $F(x,y,0)$ trojno ničlo v točki $(0, 1)$. Velja pa
+\[
+F(x,y,0) = ax^3 + dx^2y + ey^2x,
+\]
+zato je tudi $d = e = 0$. Enačba kubike je tako
+\[
+F(x,y,z) =
+ax^3 + cz^3 + fy^2z +
+gz^2y + hz^2x + ix^2z +
+jxyz =
+0.
+\]
+Opazimo, da je $a \ne 0$, saj v nasprotnem primeru velja $z \mid F$
+in je kubika sisngularna. Opazimo še, da je
+$F_x(0,1,0) = F_y(0,1,0) = 0$. Ker je $(0 : 1 : 0)$ regularna
+točka, je zato $F_z(0,1,0) \ne 0$, oziroma $f \ne 0$.
+
+Naj bo
+\[
+y' = y + \frac{g}{2f} z + \frac{i}{2f} x.
+\]
+Sledi, da je
+\[
+fy^2z + gz^2y + jxyz =
+fzy'^2 - \frac{f}{4} z \cdot
+\left(\frac{g}{f} z + \frac{i}{f} x\right)^2.
+\]
+Sledi, da je krivulja projektivno ekvivalentna kubiki
+\[
+ax^3 + cz^3 + hz^2x + ix^2z + fzy^2 -
+\frac{f}{4} z \cdot \left(\frac{g}{f} z + \frac{i}{f} x\right)^2,
+\]
+oziroma
+\[
+zy^2 = Ax^3 + Bx^2z + Cxz^2 + Dz^3,
+\]
+kjer je $A \ne 0$. Sedaj definiramo še
+\[
+x' = \sqrt[3]{A} * x + B/(3 \sqrt[3]{A}^2) z.
+\]
+Dobimo želeno obliko :)).
+\end{proof}
+
+\begin{trditev}
+Weierstrassova normalna forma je singularna natanko tedaj, ko je
+$4a^3 + 27b^2 = 0$.
+\end{trditev}
+
+\begin{proof}
+Izračunamo parcialne odvode
+\begin{align*}
+F_x &= -3x^2 - az^2,
+\\
+F_y &= 2yz,
+\\
+F_z &= y^2 - 2axz - 3bz^2.
+\end{align*}
+Denimo, da so vsi enaki $0$. Če je $z = 0$, velja $x = y = 0$, kar
+ni projektivna točka. Sledi, da je $y = 0$, torej
+\[
+3x^2 + az^2 = 2ax + 3bz = 0,
+\]
+saj je $z \ne 0$. Enačba $2ax = -3bz$ ima rešitev natanko tedaj, ko
+jo ima enačba
+\[
+4a^2 x^2 = 9b^2 z^2.
+\]
+Dobimo sistem
+\[
+\begin{bmatrix}
+4a^2 & -9b^2 \\
+ 3   &   a
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+x^2 \\
+z^2
+\end{bmatrix}
+=
+0,
+\]
+ki ima netrivialno rešitev natanko tedaj, ko je determinanta
+zgornje matrike enaka $0$.
+\end{proof}
+
+\begin{opomba}
+Polinom $x^3 + ax + b$ ima večkratno ničlo natanko tedaj, ko je
+$4a^3 + 27b^2 = 0$.\footnote{Oboje je ekvivalentno
+$\Res(f, f') = 0$.}
+\end{opomba}
+
+\datum{2022-5-5}
+
+\begin{izrek}
+Vsaka nesingularna kubika ima natanko 9 prevojev.
+\end{izrek}
+
+\begin{proof}
+Vsaka nesingularna kubika je projektivno ekvivalentna krivulji
+\[
+y^2z = x^3 + axz^2 + bz^3,
+\]
+kjer je $4a^3 + 27b^2 \ne 0$. Množica prevojev je enaka množici
+presečišč $\mathcal{C} \cap H(\mathcal{C})$. Polinom krivulje
+$\mathcal{C}$ je enak
+\[
+F(x,y,z) = y^2z - x^3 - axz^2 - bz^3,
+\]
+Hessejeva matrika polinoma pa
+\[
+H_F = \begin{bmatrix}
+-6x  & 0  &     -2az   \\
+  0  & 2z &      2y    \\
+-2az & 2y & -2ax - 6bz
+\end{bmatrix}.
+\]
+Njena determinanta je enaka
+\[
+\det H_F = 8 \cdot (3ax^2 z + 9bxz^2 - a^2z^3 + 3xy^2).
+\]
+Denimo, da je $z = 0$. Sledi, da je tudi $x = 0$, zato dobimo prvi
+prevoj $(0 : 1 : 0)$. V nasprotnem primeru lahko predpostavimo
+$z = 1$.
+
+Velja torej
+\[
+ax^2 + 3bx - \frac{1}{3} a^2 + x (x^3 + ax + b).
+\]
+Preverimo lahko, da je $y \ne 0$, zato nam vsaka rešitev za $x$ da
+dve rešitvi za $y$. Dovolj je tako preveriti, da zgornji polinom
+nima večkratnih ničel, oziroma, da je $\Res(f, f') \ne 0$.
+Opazimo,\footnote{Just trust me lol} da je rezultanta enaka
+\[
+-\frac{(4a^3 + 27b^2)^2}{27}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Vsaka premica, ki gre skozi dva prevoja nesingularne kubike, gre
+skozi še natanko en prevoj.
+\end{izrek}
+
+\begin{proof}
+Neki
+\end{proof}
+
+\datum{2022-5-12}
+
+\begin{definicija}
+\emph{Hessejeva normalna forma}\index{Kubika!Hessejeva forma}
+je
+\[
+x^3 + y^3 + z^3 = 3kxyz.
+\]
+\end{definicija}
+
+\begin{trditev}
+Ta kubika je singuarna natanko tedaj, ko je $k = 0$ ali $k^3 = 1$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $F = x^3 + y^3 + z^3 - 3kxyz$. Ni težko dobiti, da za
+singularne točke te krivulje velja
+\[
+(k^3 - 1) x^2 y^2 z^2 = 0.
+\]
+Če je $k^3 \ne 1$, hitro dobimo $x=y=z=0$, torej singularnih točk
+ni. Sicer imamo singularno točko $(k : k : 1)$.
+\end{proof}
+
+\begin{trditev}
+Prevoji nesingularne Hessejeve normalne forme so
+\[
+(0 : -\omega^m : 1)
+\]
+in ciklične permutacije koordinat.
+\end{trditev}
+
+\begin{proof}
+Determinanta Hessejeve matrike Hessejeve normalne forme je enaka
+\[
+-54k^2 \cdot (x^3 + y^3 + z^3) + 54 \cdot (4 - k^3)xyz.
+\]
+Dobimo $xyz = 0$, od koder dobimo zgornje ničle.
+\end{proof}
+
+\begin{izrek}
+Vsaka konfiguracija 9 točk je projektivno ekvivalentna standardni
+konfiguraciji.
+\end{izrek}
+
+\begin{proof}
+Najprej dokažimo projektivno ekvivalenco s konfiguracijo
+\[
+\begin{array}{ccc}
+(-1 :    1   : 1) & ( \alpha :  1 : 1) & (1 :     1   : 1) \\
+(-1 : \alpha : 1) & (    0   :  0 : 1) & (1 : -\alpha : 1) \\
+(-1 :   -1   : 1) & (-\alpha : -1 : 1) & (1 :    -1   : 1).
+\end{array}
+\]
+Po lemi o štirih točkah lahko izberemo štiri točke, ki se slikajo
+v štiri želene točke. Sledi, da se tudi presečišče premic skozi te
+točke slika kamor se mora. Izberemo še parameter $\alpha$, ki
+določa, kam se preslika ena izmed preostalih štirih točk. Pri tem
+dobimo, da je $\alpha^2 = -3$.
+\end{proof}
+
+\datum{2022-5-19}
+
+\begin{izrek}
+Vsaka nesingularna kubika je projektivno ekvivalentna Hessejevi
+normalni fomri.
+\end{izrek}
+
+\begin{proof}
+Denimo, da je standardna konfiguracija devetih točk množica
+prevojev neke nesingularne kubike. Če v kubiko vstavimo $x = 0$ in
+$z = 1$, dobimo
+\[
+by^3 + c + fy^2 + gy = 0.
+\]
+Ker so $-\omega^i$ ničle tega polinoma, je ta do skalarja natančno
+enak $y^3 + 1$, zato je $b = c$ in $f = g = 0$. Podobno sklepamo za
+ostale ciklične permutacije. Sledi, da je kubika oblike
+\[
+x^3 + y^3 + z^3 = 3kxyz,
+\]
+saj je nesingularna.
+\end{proof}
+
+\newpage
+
+\subsection{Singularne kubike}
+
+\begin{izrek}
+Vsaka nerazcepna singularna kubika je projektivno ekvivalentna
+krivulji
+\[
+x^3 + y^3 + 3xyz = 0
+\quad \text{ali} \quad
+x^3 = y^2z.
+\]
+\end{izrek}
+
+\begin{proof}
+Po izreku\footnote{Citation needed} vemo, da ima taka kubika
+natanko eno singularno točko, v kateri ima kvečjemu dve tangenti.
+Ločimo dva primera:
+
+\begin{enumerate}[i)]
+\item V singularni točki ima kubika dve tangenti. S projektivnostjo
+jo lahko preslikamo tako, da sta ti tangenti ravno $x=0$ in $y=0$.
+Z upoštevanjem pogoja singularnosti točke $(0 : 0 : 1)$ dobimo, da
+je enačba kubike
+\[
+ax^3 + by^3 + dx^2y + exy^2 + fy^2z + ix^2z + jxyz.
+\]
+Tangento $y = 0$ parametriziramo z $(t : 0 : 1)$. Presečna
+večkratnost te tangente je enaka $3$, zato velja
+\[
+t^3 \mid at^3 + it^2z,
+\]
+oziroma $i = 0$. Simetrično je $f = 0$. Enačba krivulje je tako
+\[
+ax^3 + by^3 + dx^2y + exy^2 + jxyz.
+\]
+Opazimo, da so $a$, $b$ in $j$ neničelni, saj je v nasprotnem
+primeru krivulja razcepna. Predpostavimo lahko $a = b = 1$ in
+$j = 1$, saj lahko posamične koordinate pomnožimo s skalarjem.
+S preslikavo $z \mapsto z - \frac{d}{3} x - \frac{e}{3} y$ dobimo
+obliko
+\[
+x^3 + y^3 + 3xyz = 0.
+\]
+\item V singularni točki ima kubika dvojno tangento. Znova lahko
+predpostavimo, da je singularna točka $(0 : 0 : 1)$, tangenta pa
+premica $y = 0$. Znova dobimo, da je enačba kubike
+\[
+ax^3 + by^3 + dx^2y + exy^2 + fy^2z + ix^2z + jxyz.
+\]
+Naj bo $(pt : qt : 1)$ tangenta. Velja, da je $t$ trojna ničla
+polinoma
+\[
+fq^2t^2 + ip^2t^2 + jpqt^2.
+\]
+Ker je $y = 0$ edina ničla, je $i = j = 0$. Enačba krivulje je tako
+\[
+ax^3 + by^3 + dx^2y + exy^2 + fy^2z = 0.
+\]
+Opazimo, da sta $a$ in $f$ neničelna, zato lahko $x$ preslikamo
+tako, da je $d = 0$, $z$ pa tako, da je $b = e = 0$. Z množenjem s
+skalarjem lahko privzamemo še, da je $a = 1$ in $f = -1$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}
+Vsaka razcepna kubika, ki razpade na linearen in kvadratni faktor,
+je projektivno ekvivalentna krivulji
+\[
+(y+z)(xy+yz+zx) = 0
+\quad \text{ali} \quad
+z(xy+yz+zx.
+\]
+\end{izrek}
+
+\begin{proof}
+Ločimo dva primera:
+
+\begin{enumerate}[i)]
+\item Premica je tangentna na stožnico. Naj bo $P$ njuno
+presečišče, $Q$ in $R$ pa točki na stožnici. Brez škode za
+splošnost naj bo $P = (1 : 0 : 0)$, $Q = (0 : 1 : 0)$ in
+$R = (0 : 0 : 1)$. Naj bo enačba krivulje
+\[
+(ax^2 + by^2 + cz^2 + dxy + eyz + fzx)(gx + hy + iz).
+\]
+Z zgornjimi predpostavkami lahko najprej enačbo poenostavimo v
+\[
+(dxy + eyz + fzx)(hy + iz).
+\]
+Opazimo, da so $d$, $e$ in $f$ neničelna, saj bi drugače lahko
+krivuljo faktorizirali dalje. Z množenjem s skalarjem lahko
+predpostavimo, da je $d = e = f = 1$. Ni težko dobiti, da je
+tangenta v $P$ premica $y + z = 0$.
+\end{enumerate}
+\end{proof}
+
+\newpage
+
+\subsection{Grupa kubike}
+
+\datum{2022-5-26}
+
+\begin{definicija}
+Naj bo $\mathcal{C}$ kubika. Operacija $*$ na točkah $\mathcal{C}$
+je definirana tako, da je $P * Q$ tretje presečišče premice $PQ$ s
+kubiko $\mathcal{C}$. Pri tem primerno upoštevamo večkratnosti.
+\end{definicija}
+
+\begin{izrek}
+Če se dve kubiki sekata v devetih točkah, gre vsaka kubika, ki gre
+skozi 8 izmed teh točk, tudi skozi deveto.
+\end{izrek}
+
+\begin{trditev}
+Za operacijo $*$ veljajo naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Operacija je komutativna.
+\item Za vsaki točki $P$ in $Q$ velja $(P * Q) * P = Q$.
+\item Za vse točke $P$, $Q$, $R$ in $S$ velja
+$((P * Q) * R) * S = P * ((Q * S) * R)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{definicija}
+Naj bo $\mathcal{C}$ nerazcepna kubika, $O$ pa neka točka na
+$\mathcal{C}$. Množica regularnih točk $\Reg \mathcal{C}$,
+opremljena z operacijo
+\[
+P + Q = (P * Q) * O,
+\]
+je \emph{grupa kubike}\index{Kubika!Grupa}.
+\end{definicija}
+
+\begin{trditev}
+Z zgornjo operacijo je $\Reg \mathcal{C}$ res grupa.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Vse grupe iste kubike so izomorfne.
+\end{trditev}
+
+\begin{proof}
+Med grupama imamo preslikavo
+$\varphi \colon \Reg \mathcal{C} \to \Reg \mathcal{C}$, podano s
+predpisom
+\[
+\varphi(P) = (O * O') * P.
+\]
+Naj bo $A = O * O'$. Velja
+\[
+\varphi(P + Q) = A * ((P * Q) * O)
+\]
+in
+\[
+\varphi(P) +' \varphi(Q) = (A * P) +' (A * Q) =
+((A * P) * (A * Q)) * O' =
+A * ((P * O') * (A * Q)).
+\]
+Ker pa je
+\[
+(A * Q) * (P * O') =
+((O * O') * Q) * (P * O') =
+O * ((O' * (P * O')) * Q) =
+O * (P * Q),
+\]
+je $\varphi$ homomorfizem. Ker je inverzen sam sebi, je
+izomorfizem.
+\end{proof}
+
+\begin{trditev}
+Če sta kubiki $\mathcal{C}$ in $\mathcal{C}'$ projektivno
+ekvivalentni, sta njuni grupi izomorfni.
+\end{trditev}
+
+\begin{trditev}
+Grupa kubike je izomorfna $(\C, +)$,
+$(\C \setminus \set{0}, \cdot)$ ali $S^1 \times S^1$.
+\end{trditev}

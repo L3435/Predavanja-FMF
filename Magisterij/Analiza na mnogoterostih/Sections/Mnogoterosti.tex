@@ -1,0 +1,957 @@
+\section{Mnogoterosti}
+
+\subsection{Topološke mnogoterosti}
+
+\datum{2022-10-5}
+
+\begin{definicija}
+Naj bo $n \in \N_0$. Topološki prostor $X$ je
+\emph{$n$-dimenzionalna topološka mnogoterost}\index{Mnogoterost},
+če velja:
+
+\begin{enumerate}[i)]
+\item za vsako točko $p \in X$ obstaja njena okolica $U$ in
+homeomorfizem $\phi \colon U \to V$, kjer je $V \subseteq \R^n$
+odprta,
+\item prostor $X$ je Hausdorffov in
+\item prostor $X$ je 2-števen.
+\end{enumerate}
+
+Vsak par $(U, \phi)$ iz prve točke imenujemo
+\emph{lokalna karta}\index{Karta}, inverz $\phi^{-1}$ pa
+\emph{lokalna parametrizacija}\index{Mnogoterost!Lokalna parametrizacija}
+množice $U \subseteq X$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Topološki atlas}\index{Mnogoterost!Atlas} je kolekcija
+$\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ lokalnih kart, za
+katero je
+\[
+X = \bigcup_{i \in I} U_i.
+\]
+\end{definicija}
+
+\begin{opomba}
+Po definiciji mnogoterosti lahko vselej najdemo števni atlas. Če je
+$X$ kompakten, dobimo atlas s končno kartami.
+\end{opomba}
+
+\datum{2022-10-7}
+
+\begin{opomba}
+Zgornja formulacija ustreza mnogoterostim brez roba. Če v zgornji
+definiciji zamenjamo $\R^n$ s
+\[
+\HH^n = \setb{(x_1,x_2,\dots,x_n) \in \R^n}{x_n \geq 0},
+\]
+dobimo splošno definicijo. Definiramo rob $\partial X$ mnogoterosti
+kot točke, ki se s homeomorfizmi preslikajo v $\partial \HH^n$, in
+notranjost $\itr{X}$ kot točke, ki se preslikajo v
+$\HH^n \setminus \partial \HH^n$.
+\end{opomba}
+
+\begin{izrek}[Brouwer]\index{Izrek!Brouwer}
+Naj bo $V \subseteq \R^n$ odprta množica in $\phi \colon V \to V'$
+homeomorfizem, kjer je $V' \subseteq \R^n$. Tedaj je $V'$ odprta v
+$\R^n$.
+\end{izrek}
+
+\begin{proof}
+Glej izrek~2.3.2 v zapiskih predmeta Uvod v geometrijsko topologijo
+v 2.~letniku.
+\end{proof}
+
+\begin{opomba}
+Ta izrek zagotavlja, da sta rob in notranjost mnogoterosti dobro
+definirana.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $X$ $n$-dimenzionalna mnogoterost z nepraznim robom. Tedaj
+je $\partial X$ zaprta množica, ki je $(n-1)$-dimenzionalna
+mnogoterost brez roba.
+\end{trditev}
+
+\begin{proof}
+Glej izrek~3.2.2 v zapiskih predmeta Uvod v geometrijsko topologijo
+v 2.~letniku.
+\end{proof}
+
+\begin{primer}
+Naj bo $f \colon \R^n \to \R$ zvezno odvedljiva funkcija in
+\[
+X = \setb{x \in \R^n}{f(x) \leq 0}.
+\]
+Če za vsak $x$, za katerega je $f(x) = 0$, velja $df_x \ne 0$, je
+\[
+\partial X = \setb{x \in \R^n}{f(x) = 0}.
+\]
+Dokaz je preprost -- uporabimo izrek o implicitni funkciji.
+\end{primer}
+
+\newpage
+
+\subsection{Gladke mnogoterosti}
+
+\begin{definicija}
+Naj bo $\Omega \subseteq \R^n$ in $f \colon \Omega \to \R^m$.
+Pravimo, da je za $r \in \N_0$ funkcija $f$ razreda
+$\mathcal{C}^r$, če njeni parcialni odvodi do reda $r$ obstajajo in
+so zvezne funkcije na $\Omega$. Funkcija $f$ je razreda
+$\mathcal{C}^\infty$, če obstajajo njeni parcialni odvodi
+poljubnega reda.
+
+S $\mathcal{C}^\omega(\Omega)$ označujemo realno analitične
+funkcije na $\Omega$.
+
+Za $\Omega \subseteq \C^n$ je funkcija $f \colon \Omega \to \C^m$
+razreda $\mathcal{O}(\Omega)$, če so njene komponente holomorfne na
+$\Omega$.
+\end{definicija}
+
+\begin{definicija}
+Bijektivna preslikava $f \colon \Omega \to \Omega'$, kjer sta
+$\Omega, \Omega' \subseteq \R^n$, je $\mathcal{C}^r$
+\emph{difeomorfizem}\index{Preslikava!Difeomorfizem}, če sta
+$f$ in $f^{-1}$ razreda $\mathcal{C}^r$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ topološka mnogoterost dimenzije $n$ in
+$\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ njen atlas. Za vsaka
+$i, j \in I$ označimo $U_{i,j} = U_i \cap U_j$. Za vsak par
+$i, j \in I$, za katerega je $U_{i,j} \ne \emptyset$, definiramo
+\emph{prehodno preslikavo}\index{Preslikava!Prehodna}
+$\phi_{i,j} \colon \phi_j(U_{i,j}) \to \phi_i(U_{i,j})$ kot
+$\phi_{i,j} = \phi_i \circ \phi_j^{-1}$.
+
+Pravimo, da je $\mathcal{U}$ razreda $\mathcal{C}^r$, če so vse
+njegove prehodne preslikave $\mathcal{C}^r$ difeomorfizmi.
+\end{definicija}
+
+\begin{primer}
+Naj bosta $\phi$ in $\psi$ stereografski projekciji glede na
+severni in južni pol sfere $S^2$. Tedaj je prehodna preslikava
+enaka
+\[
+\phi \circ \psi^{-1}(\zeta) = \frac{1}{\zeta}
+\]
+za $\zeta \in \C^*$. Sledi, da je to kompleksen atlas na $S^2$.
+\end{primer}
+
+\begin{definicija}
+Dva $\mathcal{C}^r$ atlasa
+$\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ in
+$\mathcal{V} = \setb{(V_i, \psi_i)}{i \in I}$ sta
+\emph{$C^r$ kompatibilna}\index{Mnogoterost!Atlas!Cr kompatibilnost@$\mathcal{C}^r$ kompatibilnost},
+če je tudi $\mathcal{U} \cup \mathcal{V}$ spet $\mathcal{C}^r$
+atlas.
+\end{definicija}
+
+\begin{opomba}
+$\mathcal{C}^r$ kompatibilnost je ekvivalenčna relacija.
+\end{opomba}
+
+\begin{opomba}
+Struktura $\mathcal{C}^r$ mnogoterosti na topološki mnogoterosti
+$X$ je določena z izbiro ekvivalenčnega razreda $\mathcal{C}^r$
+atlasov na $X$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Maksimalen}\index{Mnogoterost!Atlas!Maksimalen}
+$\mathcal{C}^r$ atlas na $X$ je unija vseh ekvivalenčnih
+$\mathcal{C}^r$ atlasov.
+\end{definicija}
+
+\begin{definicija}
+Topološka mnogoterost s $\mathcal{C}^r$ atlasom je
+
+\begin{enumerate}[i)]
+\item \emph{gladka}, če je $r = \infty$,
+\item \emph{realno analitična}, če je $r = \omega$.
+\end{enumerate}
+
+Če je atlas razreda $\mathcal{O}$, je mnogoterost
+\emph{kompleksna}\index{Mnogoterost!Gladka}.
+\end{definicija}
+
+\begin{definicija}
+Zvezna preslikava $f \colon X \to Y$ med dvema $\mathcal{C}^r$
+mnogoterostima je razreda $\mathcal{C}^r$, če je za vsak par kart
+$(U, \phi)$ na $X$ in $(V, \psi)$ na $Y$ preslikava
+$\widetilde{f} = \psi \circ f \circ \phi^{-1}$ razreda
+$\mathcal{C}^r$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U \arrow[r, "f"] \arrow[d, "\phi"'] & V \arrow[d, "\psi"'] \\
+U' \subseteq \R^n \arrow[r, dashrightarrow, "\widetilde{f}"'] &
+V' \subseteq \R^n
+\end{tikzcd}
+\]
+\end{definicija}
+
+\datum{2022-10-12}
+
+\begin{trditev}
+Preslikava $f \colon X \to Y$ je $\mathcal{C}^r$ v neki okolici
+točke $p \in X$ natanko tedaj, ko je za nek par kart
+$p \in U \subseteq X$ in $f(p) \in V \subseteq Y$ s homeomorfizmoma
+$\phi \colon U \to U'$ in $\psi \colon V \to V'$, preslikava
+$\widetilde{f} = \psi \circ f \circ \phi^{-1}$ razreda
+$\mathcal{C}^r$ v okolici točke $\phi(p)$.\footnote{Lastnost
+$\mathcal{C}^r$ je neodvisna od izbire parov kart v danem atlasu.}
+\end{trditev}
+
+\begin{proof}
+Naj bosta $(U', \phi')$ in $(V', \psi')$ neki drugi karti na $X$ in
+$Y$ v okolici $p$ in $f(p)$ zaporedoma. Velja
+\[
+\psi' \circ f \circ (\phi')^{-1} =
+(\psi' \circ \psi^{-1}) \circ (\psi \circ
+f \circ \phi^{-1}) \circ (\phi \circ (\phi')^{-1}).
+\]
+Opazimo, da sta prvi in zadnji oklepaj $\mathcal{C}^r$
+difeomorfizma, saj sta prehodni preslikavi, drugi oklepaj pa je kar
+$\widetilde{f}$.
+\end{proof}
+
+\begin{definicija}
+\emph{Rang}\index{Preslikava!Rang} preslikave
+$f \colon \R^n \to \R^m$ v točki $p$ je rang diferenciala
+preslikava v tej točki, oziroma
+\[
+\rang_p f = \rang df(p).
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \colon X \to Y$ preslikava razreda $\mathcal{C^1}$ in
+$p \in X$. \emph{Rang} preslikave $f$ v točki $p$ je definiran kot
+\[
+\rang_p f = \rang_{\phi(p)} \psi \circ f \circ \phi^{-1},
+\]
+kjer sta $(U, \phi)$ in $(V, \psi)$ poljubni karti na $X$ in $Y$,
+za kateri je $p \in U$ in $f(p) \in V$.
+\end{definicija}
+
+\begin{opomba}
+Definicija je neodvisna od izbire kart -- velja namreč
+\[
+\psi' \circ f \circ (\phi')^{-1} =
+(\psi' \circ \psi^{-1}) \circ (\psi \circ
+f \circ \phi^{-1}) \circ (\phi \circ (\phi')^{-1}).
+\]
+Ker sta prvi in zadnji oklepaj difeomorfizma, sta ranga preslikav
+\[
+\psi \circ f \circ \phi^{-1}
+\quad \text{in} \quad
+\psi' \circ f \circ (\phi')^{-1}
+\]
+enaka.
+\end{opomba}
+
+\begin{definicija}
+Pravimo, da je $f \colon \R^n \to \R^m$ ($f \colon X \to Y$)
+\emph{imerzija}\index{Preslikava!Imerzija, submerzija} v točki $p$,
+če je $n \leq m$ in je $\rang_p f = n$. Če je $n \geq m$ in je
+$\rang_p f = m$, preslikavi pravimo \emph{submerzija}. Če je
+$n = m = \rang_p f$, preslikavi pravimo
+\emph{lokalni difeomorfizem}\index{Preslikava!Difeomorfizem}.
+\end{definicija}
+
+\begin{opomba}
+Če je $f$ imerzija, obstaja tak par kart $(U, \phi)$ in $(V, \psi)$
+v okolici $p$ in $f(p)$, da je
+\[
+\widetilde{f}(x_1, \dots, x_m) = (x_1, \dots, x_n, 0, \dots, 0).
+\]
+Če je $f$ submerzija, obstaja tak par kart $(U, \phi)$ in
+$(V, \psi)$ v okolici $p$ in $f(p)$, da je
+\[
+\widetilde{f}(x_1, \dots, x_m) = (x_1, \dots, x_m).
+\]
+\end{opomba}
+
+\datum{2022-10-14}
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ mnogoterosti razreda $\mathcal{C}^r$.
+Preslikava $f \colon X \to Y$ je $\mathcal{C}^r$ difeomorfizem, če
+je homeomorfizem in sta $f$ in $f^{-1}$ razreda $\mathcal{C}^r$.
+\end{definicija}
+
+\begin{opomba}
+Preslikava $f$ je difeomorfizem natanko tedaj, ko je $f$
+homeomorfizem razreda $\mathcal{C}^r$ in je maksimalnega ranga v
+vsaki točki.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $r \geq 1$, $X$ mnogoterost razreda $\mathcal{C}^r$ z
+atlasom $\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ in
+$f \colon X \to X$ homeomorfizem. Tedaj je
+\[
+\mathcal{V} =
+\setb{(f(U_i), \phi_i \circ (\eval{f}{U_i}{})^{-1}}{i \in I}
+\]
+$\mathcal{C}^r$ atlas.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\psi_i \circ \psi_j^{-1} = \phi_i \circ
+((\eval{f}{V_i}{})^{-1} \circ \eval{f}{U_j}{}) \circ \phi_j^{-1} =
+\phi_i \circ \phi_j^{-1}.
+\qedhere
+\]
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U_i \arrow[r, "\phi_i"] \arrow[d, "\eval{f}{U_i}{}"'] &
+\phi_i(U_i) \arrow[d, "\id"]
+\\
+V_i \arrow[r, rightarrow, "\psi_i"'] &
+\phi_i(U_i)
+\end{tikzcd}
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $r \in \N \cup \set{\infty, \omega, \mathcal{O}}$. Če sta
+$f \colon X \to Y$ in $g \colon Y \to Z$ $\mathcal{C}^r$
+preslikavi, je tudi $g \circ f$ $\mathcal{C}^r$ preslikava.
+\end{trditev}
+
+\begin{proof}
+Naj bo $p \in X$ poljubna, $U$ pa njena okolica.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+U \arrow[r, "f"] \arrow[d, "\phi"'] &
+V \arrow[r, "g"] \arrow[d, "\psi"'] &
+W \arrow[d, "\theta"]
+\\
+U' \arrow[r, "\widetilde{f}"] &
+V' \arrow[r, "\widetilde{g}"] &
+W'
+\end{tikzcd}
+\]
+Iz predpostavk sledi, da sta $\widetilde{f}$ in $\widetilde{g}$
+razreda $\mathcal{C}^r$. Sledi, da je tak tudi njun kompozitum. Ker
+je
+\[
+\widetilde{(g \circ f)} = \widetilde{g} \circ \widetilde{f},
+\]
+je $\eval{g \circ f}{U}{}$ razreda $\mathcal{C}^r$.
+\end{proof}
+
+\begin{posledica}
+Mnogoterosti razreda $\mathcal{C}^r$ kot objekti in $\mathcal{C}^r$
+preslikave med njimi kot morfizmi tvorijo kategorijo
+$\mathcal{C}^r$. Izomorfizmi v tej kategoriji so difeomorfizmi.
+\end{posledica}
+
+\begin{opomba}
+Vse zgornje definicije lahko posplošimo na mnogoterosti z robom.
+\end{opomba}
+
+\begin{opomba}
+Naj bo $X$ mnogoterost dimenzije $n$ z robom. Tedaj je
+\[
+\setb{(U_i \cap \partial X, \eval{\phi_i}{U_i \cap X}{})}{i \in I}
+\]
+$\mathcal{C}^r$ atlas, zato je $\partial X$ $\mathcal{C}^r$
+mnogoterost dimenzije $n-1$.
+\end{opomba}
+
+\begin{definicija}
+Mnogoterost $X$ je \emph{kompleksna mnogoterost s $\mathcal{C}^r$
+robom $\partial X$}, če obstaja tak atlas
+\[
+\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}
+\]
+na $X$, da so prehodne preslikave $\mathcal{C}^r$ difeomorfizmi, ki
+so holomorfni na $\phi_j(U_{i,j} \setminus X)$.
+\end{definicija}
+
+\begin{opomba}
+Pri $\dim_\C X = 1$ lahko zaradi Riemannovega upodobitvenega izreka
+zahtevamo $\phi_i(U_i \cap \partial X) \subseteq \set{\Im z = 0}$.
+\end{opomba}
+
+\begin{trditev}
+Če je $f$ meromorfna funkcija na domeni $D \subseteq \C$ s poli v
+točkah množice $A$, je preslikava $\widetilde{f} \colon D \to S$,
+podana s predpisom
+\[
+\widetilde{f}(z) = \begin{cases}
+f(z), & z \not \in A,
+\\
+\infty, & z \in A.
+\end{cases}
+\]
+\end{trditev}
+
+\begin{opomba}
+Pojem meromorfne funkcije lahko definiramo na poljubni Riemannovi
+ploskvi oziroma kompleksni mnogoterosti.
+\end{opomba}
+
+\newpage
+
+\subsection{Primeri in konstrukcije mnogoterosti}
+
+\begin{definicija}
+Naj bo $\K$ obseg, $V$ pa vektorski prostor nad $\K$.
+\emph{Projektivni prostor}\index{Projektivni prostor} prostora $V$
+je množica enodimenzionalnih vektorskih podprostorov v $V$.
+Označimo ga z $\P(V)$. Za $V = \K^{n+1}$ označimo
+\[
+\P(V) = \proj{\K}{n}.
+\]
+\end{definicija}
+
+\datum{2022-10-19}
+
+\begin{opomba}
+Velja $\proj{\C}{n} = \C^n \cup \proj{\C}{n-1}$. Prostor
+$\proj{\C}{n}$ je kompaktifikacija prostora $\C^n$ s hiperravnino v
+neskončnosti.
+\end{opomba}
+
+\begin{trditev}
+Vsak projektiven prostor $\proj{\K}{n}$ je kompakten.
+\end{trditev}
+
+\begin{proof}
+Prostor je zvezna slika sfere, ki je kompaktna.
+\end{proof}
+
+\begin{opomba}
+Vsako vlakno\footnote{Ekvivalenčni razred projekcije.} v
+$\proj{\C}{n}$ je krožnica.
+\end{opomba}
+
+\begin{trditev}
+Prostor $\proj{\C}{1}$ je Riemannova sfera.
+\end{trditev}
+
+\begin{proof}
+Ker je $\proj{\C}{0}$ ena točka, lahko zapišemo
+$\proj{\C}{1} = \C \cup \set{\infty}$. Ker sta karti oblike
+\[
+[z_0 : z_1] \mapsto \frac{z_0}{z_1} = \zeta
+\quad \text{in} \quad
+[z_0 : z_1] \mapsto \frac{z_1}{z_0} = \zeta^{-1},
+\]
+dobimo enako prehodno preslikavo kot na Riemannovi sferi.
+\end{proof}
+
+\begin{definicija}
+\emph{Projektivno zaprtje}\index{Projektivni prostor!Projektivno zaprtje}
+zaprte množice $E \subseteq \C^n$ je množica
+$\overline{E} \subseteq \proj{C}{n}$.
+\end{definicija}
+
+\begin{opomba}
+Če je $E$ omejena, je $\overline{E} = E$.
+\end{opomba}
+
+\datum{2022-10-20}
+
+\begin{definicija}
+Naj bo $\Sigma \cong \C^{k+1}$ $(k+1)$-razsežen vektorski prostor v
+$\C^{n+1}$. Prostoru $\pi(\Sigma \setminus \set{0})$ pravimo
+\emph{projektivni podprostor}\index{Projektivni prostor!Podprostor}
+v $\proj{\C}{n}$.\footnote{$\pi$ označuje kvocientno projekcijo.}
+\end{definicija}
+
+\begin{opomba}
+Projektivni podprostor dimenzije $k$ je množica točk, ki rešijo
+$(n-k)$ neodvisnih linearnih enačb.
+\end{opomba}
+
+\begin{trditev}
+Naj bosta $\Sigma$ in $\Sigma'$ vzporedni hiperravnini v $\C^n$.
+Tedaj je $\oline{\Sigma} \cap H = \oline{\Sigma'} \cap H$, kjer $H$
+označuje hiperravnino v neskončnosti.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Če je $P(z_0, \dots, z_n)$ homogen polinom stopnje $d \in \N$,
+množici
+\[
+\setb{[z_0 : \cdots : z_n]}{P(z_0, \dots, z_n) = 0}
+\]
+pravimo
+\emph{Algebraična hiperploskev}\index{Mnogoterost!Algebraična hiperploskev}
+stopnje $d$.
+\end{definicija}
+
+\begin{opomba}
+Algebraična hiperploskev v projektivnem prostoru je projektivno
+zaprtje afine algebraične množice.
+\end{opomba}
+
+\begin{definicija}
+Za mnogoterost $X$ in preslikavo $F \colon X \to \C^{n+1}$ lahko
+definiramo preslikavo
+$f \colon X \setminus \setb{x \in X}{F(x) = 0} \to \proj{\C}{n}$
+kot $f = \pi \circ F$.
+\end{definicija}
+
+\begin{opomba}
+Preslikava $f$ je gladka, če so kvocienti $\frac{f_i}{f_j}$ gladki
+na $f_j \ne 0$.
+\end{opomba}
+
+\begin{primer}
+Naj bo $X \subseteq \C$ območje v $\C$, $f_0, \dots, f_n$ pa
+holomorfne funkcije, pri čemer vsaj ena ni konstantno enaka $0$.
+Naj bo $a \in X$ skupna ničla teh funkcij, $k$ pa njena minimalna
+stopnja. Tedaj lahko zapišemo
+\[
+f(\zeta) =
+[(\zeta-a)^k g_0(\zeta) : \dots : (\zeta-a)^k g_n(\zeta)] =
+[g_0(\zeta) : \dots : g_n(\zeta)].
+\]
+Tako lahko vedno definiramo preslikavo
+$f \colon X \to \proj{\C}{n}$.
+\end{primer}
+
+\begin{definicija}
+Naj bo $P \colon \C_*^{n+1} \to \C_*^{N+1}$ preslikava, katere
+komponente so polinomi stopnje $d$. Tedaj lahko definiramo
+preslikavo
+$f \colon \proj{\C}{n} \setminus
+\setb{z \in \proj{\C}{n}}{P(z) \ne 0} \to \proj{\C}{N}$
+s predpisom
+\[
+f([z_0 : \dots : z_n]) = [P_0(z) : \dots : P_n(z)].
+\]
+\end{definicija}
+
+\begin{primer}
+Preslikave $P \in \GL_{n+1}(\C)$ porodijo holomorfne avtomorfizme
+$\proj{\C}{n} \to \proj{\C}{n}$. Dobljena grupa je izomorfna
+\[
+\operatorname{PGL}_{n}(\C) \cong \kvoc{\GL_{n+1}(\C)}{\C^*}.
+\]
+\end{primer}
+
+\datum{2022-10-21}
+
+\begin{definicija}
+Naj bo $1 \leq k < n$. Z $V_k(\K^n)$ označimo vse $n \times k$
+matrike maksimalnega ranga. Na $V_k(\K^n)$ uvedemo ekvivalenčno
+relacijo
+\[
+v \sim w \iff \Lin v = \Lin w.
+\]
+\emph{Grassmanova mnogoterost}\index{Mnogoterost!Grassmanova} je
+množica
+\[
+G_k(\K^n) = \kvoc{V_k(\K^n)}{\sim}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Grupa $\GL_k(\K)$ deluje na $V_k(\K^n)$ z množenjem na desno.
+\end{opomba}
+
+\begin{opomba}
+Na Grassmanovi mnogoterosti definiramo karto tako, da jo množimo z
+inverzom nesingularnega $k \times k$ minorja. Tako dobimo $I_k$ in
+še $k(n-k)$ koordinat, ki nam dajo točko v $\K^{k(n-k)}$.
+\end{opomba}
+
+\begin{opomba}
+Mnogoterost $G_k(\R^n)$ je realno analitična, $G_k(\C)$ pa
+kompleksna mnogoterost.
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ $\mathcal{C}^r$ mnogoterosti z atlasoma
+$\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ in
+$\mathcal{U} = \setb{(V_j, \psi)}{j \in J}$.
+\emph{Kartezični produkt}\index{Mnogoterost!Kartezični produkt} je
+mnogoterost $X \times Y$ z atlasom
+\[
+\setb{(U_i \times V_j, \phi_i \times \psi_j)}{i \in I, j \in J}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če sta $X$ in $Y$ $\mathcal{C}^r$ mnogoterosti, je $X \times Y$
+spet $\mathcal{C}^r$ mnogoterost.
+\end{opomba}
+
+\newpage
+
+\subsection{Orientabilne in orientirane mnogoterosti}
+
+\begin{definicija}
+Naj bo $U \subseteq \R^n$ množica in $f \colon U \to f(U)$
+difeomorfizem. Pravimo, da $f$ \emph{ohranja orientacijo}, če za
+vse $x \in U$ velja $\det(Jf(x)) > 0$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ $\mathcal{C}^r$ mnogoterost. Atlas mnogoterosti $X$ je
+\emph{orientiran}, če vse prehodne preslikave ohranjajo
+orientacijo. V tem primeru pravimo, da je $X$
+\emph{orientirana}\index{Mnogoterost!Orientirana}. Mnogoterost $X$
+je \emph{orientabilna}, če ima kak orientiran atlas, in
+\emph{neorientabilna}, če ni orientabilna.
+\end{definicija}
+
+\begin{opomba}
+Če je $X$ povezana in orientabilna, ima natanko dve orientaciji.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $X$ $\mathcal{C}^r$ mnogoterost za
+$r \in \N_0 \cup \set{\infty}$, $\psi \colon X \to \R$ pa
+$\mathcal{C}^r$ funkcija. \emph{Nosilec}\index{Preslikava!Nosilec}
+funkcije $\psi$ je množica
+\[
+\supp \psi = \oline{\setb{x \in X}{\psi(x) \ne 0}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $X$ kompaktna, je $\supp X$ kompakten.
+\end{opomba}
+
+\begin{definicija}
+Particija enote na $\mathcal{C}^r$ mnogoterosti $X$ je družina
+$\setb{\psi_i}{i \in \N}$ $\mathcal{C}^r$ funkcij s kompaktnimi
+nosilci, za katero velja
+
+\begin{enumerate}[i)]
+\item za vsak kompakt $k \subseteq X$ je
+$\supp \psi_i \cap K \ne \emptyset$ za kvečjemu končno indeksov in
+\item na $X$ velja
+\[
+\sum_{i=1}^\infty \psi_i = 1.
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Zgornja vrsta je dobro definirana, saj je lokalno končna.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $X$ $\mathcal{C}^r$ mnogoterost za
+$r \in \N \cup \set\infty$,
+$\mathcal{U} = \setb{U_\alpha}{\alpha \in A}$ pa neko odprto
+pokritje $X$. Potem obstaja $\mathcal{C}^r$ particija enote
+$\setb{\psi_i}{i \in \N}$ na $X$, pri čemer za vsak $i \in I$
+obstaja nek $\alpha \in A$, za katerega je
+\[
+\supp \psi_i \subseteq U_\alpha.
+\]
+\end{izrek}
+
+\begin{opomba}
+Če je $\mathcal{U}$ lokalno končno, je brez škode za splošnost
+$A = \N$. Tedaj obstaja taka particija enote, da je v zgornjem
+izreku $i = \alpha$.
+\end{opomba}
+
+\begin{posledica}
+Če sta $E$ in $F$ disjunktni zaprti podmnožici v $\mathcal{C}^r$
+mnogoterosti $X$, obstaja taka $\mathcal{C}^r$ funkcija
+$\chi \colon X \to [0,1]$, da je $\eval{\chi}{E}{} = 1$ in
+$\eval{\chi}{F}{} = 0$.
+\end{posledica}
+
+\begin{proof}
+Množici $U = X \setminus E$ in $V = X \setminus F$ tvorita odprto
+pokritje in lahko preprosto izberemo
+\[
+\chi = \sum_{\supp \psi_i \in V} \psi_i. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Podmnogoterosti}
+
+\datum{2022-10-26}
+
+\begin{definicija}
+Podmnožica $N$ $\mathcal{C}^r$ mnogoterosti $X$ dimenzije $m$ je
+\emph{$\mathcal{C}^r$ podmnogoterost}\index{Mnogoterost!Podmnogoterost}
+dimenzije $n$, če za vse $p \in N$ obstaja karta $(U, \phi)$ na
+$X$, za katero velja $p \in U$ in
+\[
+\phi(U \cap N) = \phi(U) \cap (\R^n \times \set{0}^{m-n}).
+\]
+Številu $\dim X - \dim N = m - n$ pravimo
+\emph{kodimenzija}\index{Mnogoterost!Podmnogoterost!Kodimenzija}
+podmnogoterosti $N$ v $X$.
+\end{definicija}
+
+\begin{opomba}
+Podobno definiramo kompleksne podmnogoterosti.
+\end{opomba}
+
+\begin{opomba}
+Karta $(U, \phi)$ je iz maksimalnega atlas na $C$, ki določa dano
+$\mathcal{C}^r$ strukturo na $X$.
+\end{opomba}
+
+\begin{opomba}
+Brez izgube splošnosti lahko karto izberemo tako, da velja
+\[
+\pi(\phi(U)) = \phi(U) \cap (\R^n \times \set{0}^{m-n}),
+\]
+kjer je $\pi$ projekcija na prvih $n$ koordinat. Taki karti pravimo
+\emph{odlikovana karta}\index{Karta!Odlikovana} glede na $N$.
+\end{opomba}
+
+\begin{opomba}
+Če v definiciji zamenjamo $\R^n$ s $\HH^n$, dobimo podmnogoterosti
+z robom.
+\end{opomba}
+
+\begin{trditev}
+Če je $N$ $\mathcal{C}^r$ podmnogoterost v $X$, obstaja na $N$
+natanko določena struktura $\mathcal{C}^r$ mnogoterosti, za katero
+je inkluzija $\iota \colon N \hookrightarrow X$ $\mathcal{C}^r$
+preslikava.
+\end{trditev}
+
+\begin{proof}
+Za vsako karto $(U, \phi)$ na $X$ v danem maksimalnem
+$\mathcal{C}^r$ atlasu, izbrano glede na $N$, je zožitev
+\[
+\eval{\pi \circ \phi}{N \cap U}{} \colon N \times U \to
+\pi(\phi(U) \cap \R^n \times \set{0}^{m-n})
+\]
+karta na $N$. Ker so prehodne preslikave na $N$ zožitve prehodnih
+preslikav na $X$, so gladke. Če je $(U, \phi)$ izbrana karta na
+$X$, potem je glede na to in prirejeno karto inkluzija
+$\iota \colon N \to X$ podana z inkluzijo
+\[
+\phi(U) \cap (\R^n \times \set{0}^{m-n}) \hookrightarrow \R^m.
+\qedhere
+\]
+\end{proof}
+
+\datum{2022-10-28}
+
+\begin{trditev}
+Naj bo $N$ podmnogoterost v $X$. Tedaj obstaja odprta množica
+$\Omega \subseteq X$, v kateri je $N$ zaprta podmnožica.
+\end{trditev}
+
+\begin{proof}
+Vzamemo unijo vseh kart iz definicije podmnogoterosti.
+\end{proof}
+
+\begin{trditev}
+Naj bo $N \subseteq X$ $\mathcal{C}^r$ podmnogoterost. Naj bo $Z$
+$\mathcal{C}^r$ mnogoterost, $f \colon Z \to N$ pa zvezna
+preslikava. Tedaj je $f$ gladka kot preslikava v $N$ natanko tedaj,
+ko je gladka kot preslikava v $X$.
+
+Če je $f \colon X \to Z$ gladka preslikava, je taka tudi
+$\eval{f}{N}{}$.
+\end{trditev}
+
+\begin{proof}
+Oboje sledi iz definicije.
+\end{proof}
+
+\begin{izrek}
+Če je $N$ zaprta $\mathcal{C}^r$ podmnogoterost v $X$ in je
+$f \colon N \to Z$ $\mathcal{C}^r$ preslikava, obstaja odprta
+okolica $\Omega \subseteq X$ podmnogoterosti $N$ in $\mathcal{C}^r$
+preslikava $F \colon \Omega \to Z$, za katero je $\eval{F}{N}{}=f$.
+\end{izrek}
+
+\begin{proof}
+l8r nerdz
+\end{proof}
+
+\begin{trditev}
+Če je $N \subseteq X$ zaprta $\mathcal{C}^r$ podmnogoterost za
+$r \in \N_0 \cup \set\infty$, za vsako $\mathcal{C}^r$ funkcijo
+$f \colon N \to \R$ obstaja taka $\mathcal{C}^r$ funkcija
+$F \colon X \to \R$, da je $\eval{F}{N}{} = f$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\mathcal{U} = \setb{(U_i, \phi_i)}{i \in I}$ lokalno končno
+pokritje $N$ z odlikovanimi kartami. Tedaj za vsak $i \in I$
+obstaja $\mathcal{C}^r$ preslikava
+$\pi_i \colon U_i \to U_i \cap N$, za katero je
+$\eval{\pi_i}{U_i \cap N}{} = \id$. Res, vzamemo lahko kar
+$\pi_i = \phi_i^{-1} \circ \pi \circ \phi_i$, kjer je $\pi$
+projekcija na prvih $n$ koordinat. Sedaj lahko na vsaki odlikovani
+karti definiramo $f_i \colon U_i \to \R$ s predpisom
+$f_i = f \circ \pi_i$. Sedaj lahko s particijo enote na $X$,
+podrejeno pokritju $\mathcal{U} \cup \set{X \setminus N}$,
+definiramo
+\[
+F = \sum_{i \in I} \chi_i \cdot f_i
+\]
+in jo na $X$ razširimo z $0$.
+\end{proof}
+
+\begin{opomba}
+Analogen dokaz deluje, če v trditvi $\R$ zamenjamo s poljubnim
+kontraktibilnim prostorom.
+\end{opomba}
+
+\begin{izrek}[Homotopski princip]
+Naj bo $N \subseteq X$ zaprta $\mathcal{C}^r$ podmnogoterost za
+$r \in \N_0 \cup \set\infty$ in $f \colon N \to Z$ $\mathcal{C}^r$
+preslikava. Če obstaja zvezna razširitev $F_0 \colon X \to Z$
+preslikave $f$, obstaja tudi $\mathcal{C}^r$ razširitev
+$F_1 \colon X \to Z$ preslikave $f$.
+\end{izrek}
+
+\begin{opomba}
+Homotopski princip pravi, da rešitev nekega analitičnega problema
+obstaja, če ni topoloških obstrukcij.
+\end{opomba}
+
+\begin{opomba}
+Obstaja celo razširitev, ki je homotopna $F_0$.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $N \subseteq X$ zaprta podmnožica $\mathcal{C}^r$
+mnogoterosti $X$, pri čemer je $r \ne 0$. Denimo, da za vsak
+$p \in N$ obstaja taka odprta množica $U \subseteq X$ točke $p$ in
+$\mathcal{C}^r$ funkcije $g_1, \dots, g_d \colon U \to \R$, da ima
+preslikava $g = (g_1, \dots, g_d) \colon U \to \R^d$ maksimalen
+rang v točki $p$ in je $\setb{x \in U}{g(x) = 0} = U \cap N$. Tedaj
+je $N$ $\mathcal{C}^r$ podmnogoterost kodimenzije $d$.
+\end{izrek}
+
+\begin{proof}
+Lahko vzamemo dovolj majhno okolico $U$, da imamo $\mathcal{C}^r$
+karto $\phi \colon U \to U'$ za odprto množico $U' \subseteq \R^m$.
+Brez škode za splošnost naj bo $\phi(p) = 0$. Velja, da je
+$\widetilde{g} = g \circ \phi^{-1}$ $\mathcal{C}^r$ preslikava, ki
+ima v $0$ maksimalen rang. Sledi, da so diferenciali
+$d \widetilde{g}_i(0)$ linearno neodvisni. Obstajajo funkcije
+$h_1, \dots, h_n \colon U' \to \R$, za katere so diferenciali
+$dh_i(0)$ in $d \widetilde{g}_i(0)$ linearno neodvisni (vzamemo
+lahko kar linearne preslikave). Po izreku o inverzni preslikavi je
+preslikava $f = (h, \widetilde{g})$ lokalni difeomorfizem v točki
+$0$. Če zožimo okolico $U$, s tem $f \colon U' \to f(U')$ postane
+difeomorfizem. S tem dobimo karto $f \circ \phi$ na $U$. Nivojnice
+$g = c$ se s to karto preslikajo v afine ravnine
+$\R^n \times \set{c}$. Velja torej
+\[
+(f \circ \phi)(N \cap U) = f(U') \cap (\R^n \times \set{c}).
+\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $g \colon X \to \R^d$ $\mathcal{C}^r$ preslikava, kjer je
+$r \ne 0$. Če je $c \in \R^d$ v $g(x)$
+\emph{regularna vrednost},\footnote{Točka $c$ je regularna
+vrednost, če je $g$ v vsaki točki $x \in f^{-1}(c)$ maksimalnega
+ranga.} je nivojnica $g^{-1}(c)$ zaprta $\mathcal{C}^r$
+podmnogoterost kodimenzije $d$.
+\end{posledica}
+
+\begin{posledica}
+Če je $g \colon X \to \R^d$ $\mathcal{C}^r$ submerzija, je vsaka
+neprazna nivojnica $\mathcal{C}^r$ zaprta podmnogoterost.
+\end{posledica}
+
+\begin{opomba}
+S tem dobimo razslojitev\footnote{Tudi \emph{foliacija}.} $X$ na
+paroma disjunktne podmnogoterosti kodimenzije $d$.
+\end{opomba}
+
+\begin{opomba}
+Podobno velja tudi za nivojnice $\mathcal{C}^r$ preslikav
+$g \colon X \to Z$, kjer je $Z$ mnogoterost dimenzije $d$.
+\end{opomba}
+
+\datum{2022-11-2}
+
+\begin{izrek}
+Naj bo $f \colon X \to Y$ injektivna $\mathcal{C}^r$ imerzija.
+Potem je $f(X)$ $\mathcal{C}^r$ podmnogoterost v $Y$ natanko tedaj,
+ko je vložitev.
+\end{izrek}
+
+\begin{proof}
+Recimo, da je $f \colon X \to f(X)$ homeomorfizem. Naj bo
+$p \in X$. Obstaja okolica $U \subseteq X$ točke $p$, za katero je
+$\eval{f}{U}{}$ vložitev, na okolici $f(U)$ pa imamo karto
+$(V, \psi)$, ki jo izravna. Tedaj je $f(U)$ odprta v $f(X)$, zato
+jo lahko zapišemo kot $V' \cap f(X)$, kjer je $V' \subseteq Y$
+odprta. Za $W = V \cap V'$ je $W \cap f(X) = f(U)$, zato je
+$(W, \eval{\psi}{W}{})$ karta na $Y$, ki zadošča definiciji
+podmnogoterosti.
+
+Recimo, da je $f(X)$ podmnogoterost v $Y$ in $p \in X$. Tedaj
+obstaja karta $(V, \psi)$ na $Y$, za katero je $f(p) \in V$ in
+\[
+\psi(f(X) \cap V) = \psi(V) \cap \br{\R^n \times \set{0}^{m-n}}.
+\]
+Naj bo $U \subseteq X$ taka okolica točke $p$, da je
+$f(U) \subseteq f(X) \cap V$. Sledi, da je $\psi(f(U))$
+difeomorfizem slike $U$ v $\R^n$, zato je odprta. Sedaj naj bo
+$W \subseteq \psi(V)$ odprta množica, za katero je
+\[
+W \cap \br{\R^n \times \set{0}^{m-n}} = \psi(f(U)).
+\]
+Velja, da je $\psi^{-1}(W)$ odprta v $Y$, zato je
+\[
+\psi^{-1}(W) \cap f(X) = f(U)
+\]
+odprta v $f(X)$. Ker je odprtost dovolj preveriti na bazi, je $f$
+odprta in zato vložitev.
+\end{proof}
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ lokalno kompaktna Hausdorffova prostora.
+Zvezna preslikava $f \colon X \to Y$ je
+\emph{prava}\index{Preslikava!Prava}, če je za vsako kompaktno
+množico $K \subseteq Y$ tudi $f^{-1}(K)$ kompaktna.
+\end{definicija}
+
+\begin{trditev}
+Če je $f \colon X \to Y$ prava preslikava lokalno kompaktnih
+Hausdorffovih prostorov, je $f$ zaprta preslikava.
+\end{trditev}
+
+\begin{proof}
+Naj bo $E \subseteq X$ zaprta množica. Naj bo $y_0$ stekališče
+množice $f(E)$. Obstaja torej zaporedje $(x_n)_{n=1}^\infty$ v $E$,
+za katero je
+\[
+\lim_{n \to \infty} f(x_n) = y_0.
+\]
+Naj bo $K \subseteq Y$ kompaktna okolica točke $y_0$. Sledi, da je
+$f^{-1}(K)$ kompaktna. Za vse $n \geq N$ velja $f(x_n) \in K$, zato
+je zaporedje $(a_n)_{n=N}^\infty$ vsebovano v $E \cap f^{-1}(K)$.
+Sledi, da obstaja konvergentno podzaporedje z limito $x_0 \in E$ in
+je $y_0 = f(x_0)$.
+\end{proof}
+
+\begin{posledica}
+Naj bosta $X$ in $Y$ mnogoterosti. Če je $f \colon X \to Y$
+injektivna prava preslikava, je $f(X)$ zaprta podmnogoterost v $Y$
+in je $f$ vložitev.
+\end{posledica}
+
+\begin{proof}
+Po zgornji trditvi je $f$ zaprta.
+\end{proof}

@@ -1,0 +1,89 @@
+\section{Slučajne spremenljivke}
+
+\subsection{Diskretne slučajne spremenljivke}
+
+\datum{2022-10-19}
+
+\begin{definicija}
+\emph{Slučajna spremenljivka}\index{Slučajna spremenljivka} $X$ je
+taka funkcija $X \colon \Omega \to \R$, da je $X^{-1}((a,b])$
+dogodek v $\mathcal{F}$ za vsak interval $(a,b]$.
+\end{definicija}
+
+\begin{opomba}
+Iz definicij sledi, da so dogodki tudi praslike unij intervalov.
+Takim množicam pravimo \emph{Borelove množice}.
+\end{opomba}
+
+\begin{definicija}
+Slučajna spremenljivka $X$ je
+\emph{diskretna}\index{Slučajna spremenljivka!Diskretna}, če je
+zaloga vrednosti diskretna množica.
+\end{definicija}
+
+\begin{opomba}
+Za diskretne slučajne spremenljivke označimo
+\[
+P(X=k) = P(X^{-1}(\set{k})).
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Porazdelitev slučajne spremenljivke}\index{Slučajna spremenljivka!Porazdelitev}
+$X$ je dana z naborom verjetnosti $P(X^{-1}((a,b]))$ za vse $a<b$.
+\end{definicija}
+
+\begin{definicija}
+Slučajna spremenljivka $X$ ima
+\emph{hiper-geometrijsko porazdelitev}\index{Porazdelitev!Hiper-geometrijska}
+s parametri $B$, $R$ in $n$, če velja
+\[
+P(X=k) = \frac{\binom{B}{k} \cdot \binom{R}{n-k}}{\binom{B+R}{n}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Verjetnosti $P(X=k)$ je največja pri
+\[
+k = \floor{\frac{(B+1)(n+1)}{N+2}}.
+\]
+Če je zgornji ulomek celo število, je maksimum dosežen tudi pri
+$k-1$.
+\end{opomba}
+
+\datum{2022-10-25}
+
+\begin{definicija}
+Slučajna spremenljivka $X$ ima
+\emph{binomsko porazdelitev}\index{Porazdelitev!Binomska} s
+parametroma $n$ in $p$, če velja
+\[
+P(X=k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Verjetnosti $P(X=k)$ je največja pri
+\[
+k = \floor{(n+1)p}.
+\]
+Če je $(n+1)p$ celo število, je maksimum dosežen tudi pri $k-1$.
+\end{opomba}
+
+\begin{definicija}
+Slučajna spremenljivka $X$ ima
+\emph{geometrijsko porazdelitev}\index{Porazdelitev!Geometrijska} s
+parametrom $p$, če velja
+\[
+P(X=k) = p \cdot (1-p)^{k-1}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Slučajna spremenljivka $X$ ima
+\emph{negativno binomsko porazdelitev}\index{Porazdelitev!Negativna binomska}
+s parametroma $m$ in $p$, če velja
+\[
+P(X=k) = \binom{k-1}{m-1} p^m (1-p)^{k-m}.
+\]
+\end{definicija}

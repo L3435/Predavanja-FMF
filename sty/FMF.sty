@@ -90,13 +90,17 @@
 \begin{tcolorbox}[colback=yellow!40!white,colframe=red!75!white,parbox=false]}
 {\end{tcolorbox}\vspace{0.2cm}}
 
+\let\P\relax
+
 \providecommand{\N}{\mathbb{N}}
 \providecommand{\Z}{\mathbb{Z}}
 \providecommand{\Q}{\mathbb{Q}}
 \providecommand{\R}{\mathbb{R}}
 \providecommand{\C}{\mathbb{C}}
 \providecommand{\F}{\mathbb{F}}
+\providecommand{\K}{\mathbb{K}}
 \providecommand{\HH}{\mathbb{H}}
+\providecommand{\P}{\mathbb{P}}
 
 \newenvironment{rešitev}{\begin{proof}[Rešitev]}{\end{proof}}
 \theoremstyle{definition}
@@ -107,9 +111,8 @@
 \newtheorem{posledica}[opomba]{Posledica}
 \newtheorem{trditev}[izrek]{Trditev}
 \newtheorem{definicija}[izrek]{Definicija}%[section]
-\newtheorem{zgled}{Zgled}[izrek]
-\newtheorem{primer}{Primer}[subsection]
-\newtheorem{naloga}{Naloga}[section]
+\newtheorem{zgled}[opomba]{Zgled}
+\newtheorem{primer}[opomba]{Primer}
 
 \newcommand{\capt}{placeholder}
 
@@ -153,6 +156,11 @@
 \DeclareMathOperator{\mult}{mult}
 \DeclareMathOperator{\AE}{AE}
 \DeclareMathOperator{\AR}{AR}
+\DeclareMathOperator{\Sing}{Sing}
+\DeclareMathOperator{\Flex}{Flex}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
 
 \providecommand{\pot}{\mathcal{P}}
 \providecommand{\rel}[1]{\mathrel{#1}}
@@ -170,8 +178,14 @@
 \providecommand{\olint}{\oint\limits}
 \providecommand{\bigsetminus}{\mathbin{\big\backslash}}
 \providecommand{\proj}[2]{#1\!\operatorname{P}^{#2}}
+\providecommand{\edn}{\triangleleft}
 \providecommand{\prt}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\grpd}{\mathbin{\square}}
 \providecommand{\oline}{\overline}
+\providecommand{\parc}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\spr}{\overset{\circ}{\mathcal{B}}}
+\providecommand{\itr}[1]{\overset{\circ}{#1}}
+\providecommand{\br}[1]{\left(#1\right)}
 
 \RequirePackage{amsfonts}
 \DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
@@ -214,7 +228,7 @@
 \newcommand{\obvs}{\begin{proof}The proof is obvious and need not be mentioned. \end{proof}}
 
 \newcommand{\avtor}{Luka Horjak}
-\newcommand{\avtorzmailom}{Luka Horjak (\href{mailto:lukahorjak@student.uni-lj.si}{lukahorjak@student.uni-lj.si})}
+\newcommand{\avtorzmailom}{Luka Horjak (\href{mailto:lh0919@student.uni-lj.si}{lh0919@student.uni-lj.si})}
 
 \title{\naslov}
 \author{\avtorzmailom}

@@ -1,0 +1,676 @@
+\section{Linearni funkcionali, operatorji in dualni prostor}
+
+\subsection{Osnovni pojmi}
+
+\begin{definicija}
+Naj bosta $E$ in $F$ normirana prostora.
+Operator\footnote{Linearna preslikava.} $T \colon E \to F$ je
+\emph{omejen},\index{Operator!Omejen} če obstaja tak $c > 0$, da za
+vse $x \in E$ velja
+\[
+\norm{Tx} \leq c \cdot \norm{x}.
+\]
+\end{definicija}
+
+\begin{izrek}
+Naj bosta $E$ in $F$ normirana prostora, $T \colon E \to F$ pa
+operator. Naslednje trditve so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item Operator $T$ je zvezen na $E$.
+\item Operator $T$ je zvezen v $x_0 \in E$.
+\item Operator $T$ je omejen.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Denimo, da je $T$ zvezen v $x_0$. Sledi, da obstaja $\delta > 0$,
+za katero velja
+\[
+\norm{x - x_0} \leq \delta \implies \norm{Tx - Tx_0} \leq 1.
+\]
+Vzemimo poljuben $y \in E$, za katerega je $\norm{y} \leq \delta$.
+Ker je
+\[
+\norm{y} = \norm{(y+x_0) - x_0} \leq \delta,
+\]
+sledi
+\[
+\norm{T(y + x_0) - Tx_0} \leq 1,
+\]
+zato je $\norm{Ty} \leq 1$. Za $y \in E \setminus 0$ tako sledi
+\[
+\norm{T\left(\delta \cdot \frac{y}{\norm{y}}\right)} \leq 1.
+\]
+Za $c$ iz definicije lahko tako vzamemo kar $\frac{1}{\delta}$.
+
+Naj bo $T$ omejen operator, $x_0 \in E$ poljuben in
+$\varepsilon > 0$. Za vse $x$, za katere velja
+\[
+\norm{x - x_0} < \frac{\varepsilon}{c},
+\]
+tako velja
+\[
+\norm{Tx - Tx_0} \leq c \cdot \norm{x - x_0} < \varepsilon.
+\]
+Operator $T$ je torej zvezen.
+\end{proof}
+
+\begin{definicija}
+Naj bosta $E$ in $F$ normirana prostora. Označimo
+\[
+\mathcal{B}(E,F) =
+\setb{T \colon E \to F}{\text{$T$ je omejen operator}}.
+\]
+Na prostoru vpeljemo še normo
+\[
+\norm{T} = \sup_{\norm{x}_E \leq 1} \norm{Tx}_F.
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bodo $E$, $F$ in $G$ normirani prostori.
+
+\begin{enumerate}[i)]
+\item Prostor $(\mathcal{B}(E,F), \norm{.})$ je normiran prostor.
+Za $T \in \mathcal{B}(E,F)$ velja
+\[
+\norm{T} =
+\sup_{\norm{x}=1} \norm{Tx} =
+\sup_{x \ne 0} \frac{\norm{Tx}}{\norm{x}} =
+\inf \setb{c > 0}
+{\forall x \in E \colon \norm{Tx} \leq c \norm{x}}.
+\]
+\item Naj bosta $T \in \mathcal{B}(E,F)$ in
+$S \in \mathcal{B}(F,G)$ operatorja, Tedaj je
+$S \circ T \in \mathcal{B}(E,G)$ in velja
+\[
+\norm{S \circ T} \leq \norm{S} \cdot \norm{T}.
+\]
+\end{enumerate}
+\end{trditev}
+
+\datum{2022-10-13}
+
+\begin{proof}
+Če je $\norm{T} = 0$, za vse $\norm{x} \leq 1$ velja
+$\norm{Tx} = 0$. Ker je $T$ operator, sledi $T = 0$. Velja še
+\[
+\norm{\lambda T} = \sup_{\norm{x}=1} \norm{\lambda Tx} =
+\abs{\lambda} \cdot \norm{T}
+\]
+in za vsak $x$, za katerega je $\norm{x}=1$ še
+\[
+\norm{(T_1 + T_2)x} \leq \norm{T_1x} + \norm{T_2x},
+\]
+od koder dobimo še trikotniško neenakost.
+
+Za dokaz prve enakosti iz trditve je dovolj opaziti
+\[
+\norm{T} \geq \sup_{\norm{x}=1} \norm{Tx} =
+\sup_{x \ne 0} \frac{\norm{Tx}}{\norm{x}} \geq
+\sup_{\substack{\norm x \leq 1 \\ x \ne 0}} \norm{Tx} = \norm{T}.
+\]
+Če velja $\norm{Tx} \leq c \cdot \norm{x}$ za vse $x$, je
+$\norm{T} \leq c$. Hkrati pa velja
+\[
+\norm{Tx} =
+\frac{\norm{Tx}}{\norm{x}} \cdot \norm{x} \leq
+\norm{T} \cdot \norm{x},
+\]
+zato je $\norm{T}$ res iskani infimum.
+
+Ker velja
+\[
+\norm{S(T(x))} \leq \norm{S} \cdot \norm{Tx} \leq
+\norm{S} \cdot \norm{T} \cdot \norm{x},
+\]
+sledi $\norm{S \circ T} \leq \norm{S} \cdot \norm{T}$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $E$ normiran prostor. Linearnim preslikavam $E \to \K$
+pravimo \emph{linearni funkcionali}\index{Operator!Funkcional}.
+Prostoru linearnih funkcionalov pravimo
+\emph{dualni prostor}\index{Vektorski prostor!Dualni} in ga
+označimo z
+\[
+E^* = \mathcal{B}(E,\K).
+\]
+\end{definicija}
+
+\begin{izrek}
+Naj bo $E$ normiran, $F$ pa Banachov prostor. Potem je
+$\mathcal{B}(E,F)$ Banachov prostor.
+\end{izrek}
+
+\begin{proof}
+Naj bo $(T_n)_{n=1}^\infty$ Cauchyjevo zaporedje v
+$\mathcal{B}(E,F)$. Za vse $x \in E$ je zaporedje
+$(T_n x)_{n=1}^\infty$ Cauchyjevo, saj je
+\[
+\norm{T_n x - T_m x} \leq \norm{T_n - T_m} \cdot \norm{x}.
+\]
+Sledi, da ima limito, zato lahko definiramo
+\[
+Tx = \lim_{n \to \infty} T_n x.
+\]
+Ni težko videti, da je $T$ linearna preslikava. Za dovolj velik $N$
+velja
+\[
+\norm{T_n - T_N x} \leq \norm{x}
+\]
+za vse $n > N$, zato v limiti dobimo
+\[
+\norm{Tx} \leq (1 + \norm{T_n}) \cdot \norm{x},
+\]
+zato je $T$ omejen. Za vsak $\varepsilon > 0$ obstaja $N$, za
+katerega velja
+\[
+\norm{Tx - T_n x} \leq \varepsilon \cdot \norm{x},
+\]
+za vse $n > N$.Velja torej $\norm{T - T_m} \leq \varepsilon$, zato
+je $T$ limita zaporedja.
+\end{proof}
+
+\begin{posledica}
+Dualni prostor normiranega prostora je Banachov.
+\end{posledica}
+
+\begin{posledica}
+Naj bo $E$ normiran prostor in $L \leq E$. Naj bo $F$ Banachov in
+$T \in \mathcal{B}(L,F)$. Tedaj obstaja natanko en
+$S \in \mathcal{B}(\oline{L},F)$, za katerega je
+$\eval{S}{L}{} = T$. Pri tem je $\norm{S} = \norm{T}$.
+\end{posledica}
+
+\begin{proof}
+Naj bo $x \in \oline{L}$. Potem obstaja zaporedje
+$(y_n)_{n=1}^\infty$ v $L$, ki konvergira k $x$. Tedaj je $T y_n$
+Cauchyjevo v $F$. Ta limita je neodvisna od izbira zaporedja $y_i$.
+Sledi, da lahko definiramo $Sx = \lim_{n \to \infty} T y_n$. Ni
+težko preveriti, da je $S$ linearen, očitno pa je
+$\eval{S}{L}{} = T$, saj je $T$ omejen.
+%continue;
+\end{proof}
+
+\datum{2022-10-19}
+
+\begin{definicija}
+Naj bosta $E$ in $F$ normirana prostora in $T \in \mathcal{B}(E,F)$
+omejen operator. Operatorju $T^* \colon F^* \to E^*$ s predpisom
+$\varphi \mapsto \varphi \circ T$ pravimo
+\emph{dualni operator}\index{Operator!Dualni}.
+\end{definicija}
+
+\begin{lema}
+Dualni operator je omejen operator.
+\end{lema}
+
+\begin{proof}
+Očitno je $T^*$ linearen. Velja
+\[
+\abs{(T^* \varphi)(x)} = \abs{\varphi(T(x)} \leq
+\norm{\varphi} \cdot \norm{T} \cdot \norm{x},
+\]
+zato je $\norm{T^* \varphi} \leq \norm{T} \cdot \norm{\varphi}$.
+\end{proof}
+
+\newpage
+
+\subsection{Hahn-Banachov izrek}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor nad $\R$. Funkcija $p \colon X \to \R$
+je
+\emph{sublinearen funkcional}\index{Operator!Funkcional!Sublinearen},
+če za vse $x, y \in X$ in $\alpha \geq 0$ velja
+\[
+p(x+y) \leq p(x) + p(y)
+\quad \text{in} \quad
+p(\alpha x) = \alpha \cdot p(x).
+\]
+\end{definicija}
+
+\begin{opomba}
+Vsaka polnorma je sublinearen funkcional.
+\end{opomba}
+
+\begin{opomba}
+Namesto prvega pogoja bi lahko vzeli tudi, da je $p$ konveksen.
+\end{opomba}
+
+\begin{izrek}[Hahn-Banach]\index{Izrek!Hahn-Banach!Razširitveni}
+\label{iz:hb:1}
+Naj bo $p \colon X \to \R$ sublinearen funkcional in $Y \leq X$.
+Naj bo $f \colon Y \to \R$ linearen funkcional, za katerega je
+$f(y) \leq p(y)$ za vse $y \in Y$. Tedaj obstaja linearen
+funkcional $F \colon X \to \R$, za katerega je $\eval{F}{Y}{} = f$
+in za vse $x \in X$ velja $F(x) \leq p(x)$.
+\end{izrek}
+
+\begin{proof}
+Najprej obravnavajmo primer, ko je $\dim \kvoc{X}{Y} = 1$. Tedaj
+lahko zapišemo $X = Y \oplus \R x_0$ za nek
+$x_0 \in X \setminus Y$. Za vse $y_1, y_2 \in Y$ velja
+\[
+f(y_1) + f(y_2) = p(y_1 + y_2) \leq p(y_1 + x_0) + p(y_2 - x_0).
+\]
+Velja torej
+\[
+f(y_2) - p(y_2 - x_0) \leq p(y_1 + x_0) - f(y_1),
+\]
+zato obstaja tak $\alpha_0$, da je
+\[
+\sup_{y_2 \in Y} f(y_2) - p(y_2 - x_0) \leq
+\alpha_0 \leq
+\inf_{y_1 \in Y} p(y_1 + x_0) - f(y_1).
+\]
+Sedaj lahko preprosto izberemo $F(y + tx_0) = f(y) + t\alpha_0$.
+Operator $F$ je očitno linearen. Velja pa
+\[
+F(y + tx_0) = f(y) + t\alpha_0 \leq
+f(y) + t \cdot p\left(\frac{y}{t} + x_0\right) -
+t \cdot f\left(\frac{y}{t}\right) = p(y + t x_0).
+\]
+Naj bo sedaj $Y \leq X$ poljuben podprostor in
+\[
+A = \setb{(Y_i, f_i)}{Y \leq Y_i \leq X,
+f_i \in \mathcal{B}(Y_i, \R) \land \eval{f_i}{Y}{} = f \land
+\forall y \in Y \colon f_i(y) \leq p(y)}.
+\]
+Očitno je $\mathcal{A} \ne 0$, množico pa lahko delno uredimo z
+relacijo
+\[
+(Y_1, f_1) \leq (Y_2, f_2) \iff
+Y_1 \leq Y_2 \land \eval{f_2}{Y_1}{} = f_1.
+\]
+Vsaka veriga $\mathcal{C} = \setb{(Y_j, f_j)}{j \in \Lambda}$ v
+$\mathcal{A}$ ima zgornjo mejo. Res, naj bo
+\[
+Z = \bigcup_{j \in \Lambda} Y_j
+\]
+in $g \colon Z \to \R$ funkcional, podan s predpisom
+$z \mapsto f_j(z)$, pri čemer je $z \in Y_j$. Očitno je
+$(Z, g) \in \mathcal{A}$. Po Zornovi lemi torej obstaja maksimalni
+element $(M, F) \in \mathcal{A}$. Po prvem delu dokaza je $M = X$,
+zato je $F$ iskana razširitev.
+\end{proof}
+
+\begin{lema}\label{lm:hb:1}
+Naj bo $X$ vektorski prostor nad $\C$.
+
+\begin{enumerate}[i)]
+\item Če je $f \colon X \to \R$ $\R$-linearen funkcional, potem je
+s predpisom
+\[
+\widetilde{f}(x) = f(x) - if(ix)
+\]
+definiran $\C$-linearen funkcional $\widetilde{f} \colon X \to \C$,
+za katerega je $\Re \widetilde{f} = f$.
+\item Če je $g \colon X \to \C$ $\C$-linearen funkcional in
+$f = \Re g$, je $\widetilde{f} = g$.
+\item Če je $p$ polnorma na $X$, velja
+\[
+\forall x \in X \colon \abs{f(x)} \leq p(x) \iff
+\forall x \in X \colon \abs{\widetilde{f}(x)} \leq p(x).
+\]
+\item Če je $X$ normiran, je $\norm{f} = \norm{\widetilde{f}}$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Dokažimo vsako točko posebej:
+
+\begin{enumerate}[i)]
+\item Očitno je $\widetilde{f}$ $\R$-linearen, saj je tak tudi $f$.
+Velja pa
+\[
+\widetilde{f}(ix) = f(ix) - if(-x) =
+i \cdot (f(x)-if(ix)) = i \widetilde{f}(x).
+\]
+\item Naj bo $g(x) = f(x) + i \cdot h(x)$ za nek $\R$-linearen
+funkcional $h \colon X \to \R$. Velja torej
+\[
+f(ix) + ih(ix) = g(ix) = if(x) - h(x),
+\]
+zato je $h(x) = -f(ix)$ in $g(x) = \widetilde{f}(x)$.
+\item Denimo najprej, da je $\abs{\widetilde{f}(x)} \leq p(x)$.
+Velja
+\[
+\abs{f(x)} = \abs{\Re \widetilde{f}(x)} \leq
+\abs{\widetilde{f}(x)} \leq p(x).
+\]
+Če pa je $\abs{f(x)} \leq p(x)$, pa za nek $\lambda \in \C$,
+$\abs{\lambda} = 1$, dobimo
+\[
+\abs{\widetilde{f}(x)} = \widetilde{f}(\lambda x) =
+\Re \widetilde{f}(\lambda x) = f(\lambda x) \leq p(x).
+\]
+\item Po prejšnji točki za $c \geq 0$ velja
+\[
+\forall x \in X \colon \abs{f(x)} \leq c \norm{x} \iff
+\forall x \in X \colon \abs{\widetilde{f}(x)} \leq c \norm{x}.
+\qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Hahn-Banach]\index{Izrek!Hahn-Banach!Razširitveni}
+\label{iz:hb:2}
+Naj bo $X$ vektorski prostor nad $\K$ in $Y \leq X$, $p$ pa
+polnorma na $X$. Če je $f \colon Y \to \K$ linearen funkcional, za
+katerega za vse $y \in Y$ velja $\abs{f(y)} \leq p(y)$, obstaja
+linearen funkcional $F \colon X \to \K$, za katerega je
+$\eval{F}{Y}{} = f$ in za vse $x \in X$ velja
+$\abs{F(x)} \leq p(x)$.
+\end{izrek}
+
+\begin{proof}
+Če je $\K = \R$, lahko uporabimo izrek~\ref{iz:hb:1}. Za dobljen
+funkcional velja $F(x) \leq p(x)$, a je tudi
+\[
+-F(x) = F(-x) \leq p(-x) = p(x),
+\]
+zato je $\abs{F(x)} \leq p(x)$.
+
+Naj bo sedaj $\K = \C$ in $f_1 = \Re f$. Po lemi~\ref{lm:hb:1} in
+prejšnji točki tega dokaza obstaja $\R$-linearna razširitev
+$F_1 \colon X \to \R$ funkcionala $f_1$. Sedaj preprosto vzamemo
+$F = \widetilde{F}_1$.
+\end{proof}
+
+\begin{izrek}[Hahn-Banach]\index{Izrek!Hahn-Banach!Razširitveni}
+Naj bo $X$ normiran prostor nad $\K$, $Y \leq X$ in
+$f \colon Y \to \K$ omejen linearen funkcional. Tedaj obstaja
+omejen linearen funkcional $F \colon X \to \K$, za katerega je
+$\eval{F}{Y}{} = f$ in je $\norm{F} = \norm{f}$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $p(x) = \norm{f} \cdot \norm{x}$. Velja
+$\abs{f(y)} \leq \norm{f} \cdot \norm{x} = p(x)$, zato po
+izreku~\ref{iz:hb:2} obstaja razširitev $F \colon X \to \K$, za
+katero je
+\[
+\abs{F(x)} \leq p(x) = \norm{f} \cdot \norm{x}.
+\]
+Sledi $\norm{F} \leq \norm{f}$, ker pa je $F$ razširitev $f$, velja
+tudi $\norm{F} \geq \norm{f}$.
+\end{proof}
+
+\begin{posledica}\label{ps:hb:1}
+Naj bo $X$ normiran prostor in $x \in X$. Tedaj je
+\[
+\norm{x} = \sup \setb{\abs{f(x)}}{f \in X^* \land \norm{f} \leq 1}.
+\]
+Ta supremum je tudi dosežen.
+\end{posledica}
+
+\begin{proof}
+Naj bo $Y = \K x \leq X$. Na $Y$ definiramo linearni funkcional
+$q \colon Y \to \K$ s predpisom $q(\lambda x) = \lambda \norm{x}$.
+Po Hahn-Banachovem izreku lahko $q$ razširimo do funkcionala
+$f \in X^*$ z normo $\norm{f} = \norm{q} = 1$. Za $f$ torej velja
+$f(x) = \norm{x}$. Velja pa tudi
+\[
+\abs{f(x)} \leq \norm{f} \cdot \norm{x} \leq \norm{x}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Dualni prostor $X^*$ loči točke normiranega prostora $X$.
+\end{posledica}
+
+\begin{proof}
+Po prejšnji posledici obstaja $f \in X^*$, za katerega je
+$f(x-y) = \norm{x-y} \ne 0$.
+\end{proof}
+
+\begin{posledica}
+Naj bo $Y$ zaprt podprostor normiranega prostora $X$ in
+$x_0 \in X \setminus Y$ z $d = d(x_0, Y) > 0$. Potem obstaja
+linearen funkcional $f \in X^*$, za katerega je $f(x_0) = 1$,
+$\eval{f}{Y}{} = 0$ in $\norm{f} = \frac{1}{d}$.
+\end{posledica}
+
+\begin{proof}
+V kvocientnem prostoru $\kvoc{X}{Y}$ velja $\norm{x_0 + Y} = d$. Po
+Hahn-Banachovem izreku obstaja $g \in \left(\kvoc{X}{Y}\right)^*$,
+za katerega je $\norm{g} = 1$ in $g(x_0 + Y) = d$. Naj bo
+$\pi \colon X \to \kvoc{X}{Y}$ kvocientna projekcija in
+$f = \frac{1}{d} g \circ \pi$. Ni težko videti, da je $f$ linearen
+funkcional, za katerega je $f(x_0) = 1$ in $\eval{f}{Y}{} = 0$.
+Ni težko videti, da je
+\[
+\norm{f} \leq
+\frac{1}{d} \norm{g} \cdot \norm{\pi} \leq \frac{1}{d}.
+\]
+Ker je $\norm{g} = 1$, obstaja zaporedje $(x_n)_{n=1}^\infty$ v
+$X$, za katerega je $\norm{x + Y} < 1$
+\[
+\lim_{n \to \infty} g(x_n + Y) = 1.
+\]
+Naj bo $y_n \in Y$ tak, da je $\norm{x_n + y_n} < 1$. Sledi, da je
+\[
+\abs{f(x_n + y_n)} = \frac{1}{d} \abs{g(x_n + y_n + Y)} =
+\frac{1}{d} \abs{g(x_n + Y)},
+\]
+kar limitira proti $\frac{1}{d}$, zato je tudi
+$\norm{f} \geq \frac{1}{d}$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $Y$ podprostor normiranega prostora $X$. Potem je
+\[
+\oline{Y} =
+\bigcap_{f \in X^*} \setb{\ker f}{Y \subseteq \ker f}.
+\]
+\end{izrek}
+
+\begin{proof}
+Ker je $\ker f \leq X$ zaprt, je zgornji presek zaprt in je
+$\oline{Y}$ vsebovan v njem. Naj bo sedaj $x_0 \not \in \oline{Y}$.
+Sledi, da je $d(x_0, Y) > 0$, zato po zgornji posledici obstaja
+funkcional $f \in X^*$, za katerega je $Y \in \ker f$ in
+$f(x_0) = 1$, zato $x_0$ ni element zgornjega preseka.
+\end{proof}
+
+\newpage
+
+\subsection{Geometrijske posledice Hahn-Banachovega izreka}
+
+\datum{2022-10-20}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor nad $\R$ in $A \subseteq X$. Točka
+$x_0 \in A$ je \emph{notranja točka}\index{Notranjost}, če za vsak
+$y \in X$ obstaja tak $\varepsilon > 0$, da je
+$x_0 + t \cdot y \in A$ za vse $t \in (-\varepsilon, \varepsilon)$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $K$ konveksna podmnožica realnega vektorskega prostora $X$,
+pri čemer je $0 \in K$ notranja točka.
+\emph{Funkcional Minkowskega}\index{Funkcional!Minkowskega} $p_K$
+za $K$ je funkcija
+\[
+p_K(x) = \inf \setb{a > 0}{\frac{x}{a} \in K}.
+\]
+\end{definicija}
+
+\begin{zgled}
+Če je $K$ enotska krogla v normiranem prostoru $X$, je
+\[
+p_K(x) = \norm{x}.
+\]
+\end{zgled}
+
+\begin{trditev}
+Funkcional Minkowskega je sublinearen funkcional.
+\end{trditev}
+
+\begin{proof}
+Homogenost je očitna. Naj bosta $x, y \in X$, $a, b > 0$ pa taki
+števili, da velja $\frac{x}{a}, \frac{y}{b} \in K$. Tedaj je
+\[
+\frac{x+y}{a+b} =
+\frac{a}{a+b} \cdot \frac{x}{a} + \frac{b}{a+b} \cdot \frac{y}{b},
+\]
+kar je po konveksnosti $K$ spet element $K$. Sledi
+\[
+p_K(x+y) \leq a + b,
+\]
+zato je funkcional tudi subaditiven.
+\end{proof}
+
+\begin{trditev}
+Če je $x \in K$, je $p_K(x) \leq 1$. Točka $x \in X$ je notranja za
+$K$ natanko tedaj, ko je $p_K(x) < 1$.
+\end{trditev}
+
+\begin{proof}
+Prvi del trditve je očiten. Če je $x$ notranja točka, obstaja tak
+$\varepsilon > 0$, da je $x + \varepsilon x \in K$. Sledi, da je
+$(1+\varepsilon) p_K(x) = p_K(x + \varepsilon x) \leq 1$.
+
+Če je $p_K(x) < 1$, obstaja tak $a \in (0, 1)$, da je
+$\frac{x}{a} \in K$. Posebej je $x \in K$. Za poljuben $y \in X$
+obstaja tak $\varepsilon > 0$, da je
+$p_K(x) + \varepsilon p_K(\pm y) < 1$. Sledi, da za
+$t \in (-\varepsilon, \varepsilon)$ velja
+\[
+p_K(x \pm t y) < 1,
+\]
+zato je $x \pm \varepsilon y \in K$.
+\end{proof}
+
+\begin{opomba}
+Če so vse točke $K$ notranje, je
+\[
+K = \setb{x \in X}{p_K(x) < 1}.
+\]
+\end{opomba}
+
+\begin{posledica}
+Naj bo $p$ sublinearen funkcional na realnem vektorskem prostoru
+$X$. Tedaj je množica
+\[
+\setb{x \in X}{p(x) < 1}
+\]
+konveksna množica, pri čemer so vse njene točke notranje. Tudi
+\[
+\setb{x \in X}{p(x) \leq 1}
+\]
+je konveksna množica.
+\end{posledica}
+
+\begin{definicija}
+Naj bo $f$ neničeln linearen funkcional na realnem vektorskem
+prostoru $X$ in $c \in \R$.
+
+\begin{enumerate}[i)]
+\item \emph{Hiperravnina}\index{Vektorski prostor!Hiperravnina} je
+množica $f^{-1}(c)$.
+\item Množica $\setb{x \in X}{f(x) < c}$ je
+\emph{odprt polprostor}\index{Vektorski prostor!Polprostor}
+\item Množica $\setb{x \in X}{f(x) \leq c}$ je
+\emph{zaprt polprostor}.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Hahn-Banach]\index{Izrek!Hahn-Banach!Separacijski}
+Naj bo $K$ konveksna množica, ki ima samo notranje točke. Potem
+lahko vsak $y \not \in K$ ločimo od $K$ s hiperravnino -- obstajata
+linearni funkcional $f \colon X \to \R$ in $c \in \R$, pri čemer za
+vsak $x \in K$ velja
+\[
+f(x) < f(y) = c.
+\]
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $0 \in K$ notranja točka. Tedaj za
+vse $x \in K$ velja $p_K(x) < 1$. Sedaj definiramo linearen
+funkcional $f \colon \R y \to \R$, ki deluje po predpisu
+$\lambda y \to \lambda$. Tedaj velja
+$f(\lambda y) \leq p_K(\lambda y)$ -- za negativne $\lambda$ je
+neenakost očitna, sicer pa uporabimo homogenost. Sedaj lahko po
+Hahn-Banachovem razširitvenem izreku $f$ razširimo do linearnega
+funkcionala na $X$, ki je omejen s $p_K$.
+\end{proof}
+
+\begin{opomba}
+Dovolj je že, da ima $K$ eno notranjo točko, pri čemer zgornja
+neenakost ni stroga.
+\end{opomba}
+
+\begin{izrek}
+Naj bosta $A$ in $B$ disjunktni konveksni podmnožici realnega
+vektorskega prostora $X$, pri čemer ima vsaj ena notranjo točko.
+Potem ju lahko ločimo s hiperravnino -- obstaja tak neničeln
+linearen funkcional $f \colon X \to \R$ in $c \in \R$, da za vse
+$a \in A$ in $b \in B$ velja
+\[
+f(a) \leq c \leq f(b).
+\]
+\end{izrek}
+
+\begin{proof}
+Množica
+\[
+K = A-B = \setb{a-b}{A \in A, b \in B}
+\]
+je konveksna, velja pa $0 \not \in K$. Obstaja torej tak neničeln
+linearen funkcional $f \colon X \to \R$, da za vsak $x \in K$ velja
+\[
+f(x) \leq f(0) = 0. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Separacija v normiranih prostorih}
+
+\begin{lema}
+Naj bo $X$ normiran prostor in $K \subseteq X$ odprta konveksna
+podmnožica, za katero je $0 \in K$. Potem obstaja tak $M > 0$, da
+je
+\[
+p_K(x) \leq M \cdot \norm{x}.
+\]
+\end{lema}
+
+\begin{proof}
+Naj bo $B = \spr(0, r)$ vsebovana v $K$. Sledi, da je
+$p_K \leq p_B = \frac{1}{r} \cdot \norm{x}$.
+\end{proof}
+
+\begin{izrek}[Hahn-Banach]\index{Izrek!Hahn-Banach!Separacijski}
+Naj bo $X$ normiran prostor in $K \subseteq X$ odprta konveksna
+podmnožica. Potem za vsak $y \not \in K$ obstajata taka $f \in X^*$
+in $c \in \R$, da za vse $x \in K$ velja
+\[
+f(x) < f(y) = c.
+\]
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $0 \in K$. Obstaja torej linearen
+funkcional $f \colon X \to \R$, ki strogo loči $y$ od $K$ in za vse
+$x \in X$ velja
+\[
+f(x) \leq p_K(x).
+\]
+Po zgornji lemi je $f$ omejen.
+\end{proof}
+
+\begin{izrek}
+Naj bo $X$ normiran prostor, $U, V \subseteq X$ pa disjunktni
+konveksni množici. Če je $U$ zaprta in $V$ kompaktna, obstajajo tak
+linearen funkcional $f \in X^*$ in $\alpha_1 < \alpha_2$, da za vse
+$u \in U$ in $v \in V$ velja
+\[
+f(u) \leq \alpha_1 < \alpha_2 \leq f(v).
+\]
+\end{izrek}

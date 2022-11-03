@@ -1,0 +1,437 @@
+\section{Normirani in Banachovi prostori}
+
+\subsection{Definicije in osnovni zgledi}
+
+\datum{2022-10-6}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor nad $\K \in \set{\R, \C}$. Preslikava
+$\norm{.} \colon X \to \R$ je \emph{norma}\index{Norma}, če
+velja\footnote{Preslikavi, ki ne izpolnjuje pogoja
+$\norm{x} = 0 \iff x = 0$ pravimo \emph{polnorma}.}
+
+\begin{enumerate}[i)]
+\item za vse $x \in X$ velja $\norm{x} \geq 0$ z enakostjo natanko
+tedaj, ko je $x=0$,
+\item za vse $\lambda \in \K$ in $x \in X$ velja
+$\norm{\lambda \cdot x} = \abs{\lambda} \cdot \norm{x}$ in
+\item za vse $x,y \in X$ velja $\norm{x+y} \leq \norm{x} + \norm{y}$.
+\end{enumerate}
+
+Pravimo, da je $(X, \norm{.})$
+\emph{normiran vektorski prostor}\index{Vektorski prostor!Normiran}.
+\end{definicija}
+
+\begin{definicija}
+Na normiranem vektorskem prostoru vpeljemo metriko
+$d \colon X \times X \to \R$ kot $d(x,y) = \norm{x-y}$.
+\end{definicija}
+
+\begin{opomba}
+Tako definirana metrika je translacijsko invariantna in homogena --
+za vse $x,y,a \in X$ in $\lambda \in \K$ velja
+\[
+d(x+a, y+a) = d(x, y)
+\quad \text{in} \quad
+d(\lambda x, \lambda y) = \abs{\lambda} \cdot d(x,y).
+\]
+\end{opomba}
+
+\begin{definicija}
+Polnim normiranim vektorskim prostorom pravimo
+\emph{Banachovi prostori}\index{Vektorski prostor!Banachov}.
+\end{definicija}
+
+\begin{definicija}
+Algebra $A$ nad $\K$ je \emph{unitalna}\index{Algebra!Unitalna},
+če ima enoto $e$.
+\end{definicija}
+
+\begin{definicija}
+Algebra $A$ nad $\K$ je \emph{normirana}\index{Algebra!Normirana},
+če je normiran prostor, v katerem za vse $x,y \in A$
+velja\footnote{Pri unitalnih algebrah zahtevamo še $\norm{e} = 1$.}
+\[
+\norm{xy} \leq \norm{x} \cdot \norm{y}.
+\]
+Če je $A$ tudi poln vektorski prostor, ji pravimo
+\emph{Banachova algebra}\index{Algebra!Banachova}.
+\end{definicija}
+
+\begin{opomba}
+V normirani algebri sta operaciji seštevanja in množenja zvezni.
+\end{opomba}
+
+\begin{definicija}
+Za Hausdorffov topološki prostor $X$ naj $\mathcal{C}_b(X)$
+označuje množico zveznih omejenih funkcij $f \colon X \to \K$ z
+normo $\norm{f}_\infty = \sup_{x \in X} \abs{f(x)}$.
+\end{definicija}
+
+\begin{trditev}
+Algebra $\mathcal{C}_b(X)$ je Banachova.\footnote{Operacije
+definiramo po točkah.}
+\end{trditev}
+
+\begin{proof}
+Ni težko preveriti, da je $\norm{.}_\infty$ res norma. Algebra je
+normirana, saj velja $\norm{1}_\infty = 1$ in
+\[
+\abs{(fg)(x)} = \abs{f(x)} \cdot \abs{g(x)} \leq
+\norm{f}_\infty \cdot \norm{g}_\infty.
+\]
+Naj bo $(f_n)_{n=1}^\infty$ Cauchyjevo zaporedje v
+$\mathcal{C}_b(X)$. Za vsak $\varepsilon > 0$ tako obstaja tak
+$N \in \N$, da za vse $m, n > N$ velja
+$\norm{f_m - f_n} < \varepsilon$. V tem primeru za vsak $x \in X$
+velja $\abs{f_m(x) - f_n(x)} < \varepsilon$, zato je zaporedje
+$(f_n(x))_{n=1}^\infty$ Cauchyjevo in ima limito $f(x)$.
+
+Pokažimo, da je $f \in \mathcal{C}_b(X)$. Ker velja
+\[
+\varepsilon \geq \lim_{m \to \infty} \abs{f_n(x) - f_m(x)} =
+\abs{f_n(x) - f(x)},
+\]
+je zaradi omejenosti $f_n$ omejena tudi $f$.
+
+Naj bo $\varepsilon > 0$. Zaradi Cauchyjeve lastnosti obstaja tak
+$N \in \N$, da za vse $n > N$ velja
+\[
+\norm{f - f_n}_\infty < \frac{\varepsilon}{3}.
+\]
+Ker je $f_n$ zvezna, za vsak $x \in X$ obstaja taka okolica $U$,
+da za vse $y \in U$ velja
+\[
+\abs{f_n(x) - f_n(y)} < \frac{\varepsilon}{3}.
+\]
+Sledi torej
+\[
+\abs{f(x) - f(y)} \leq
+\abs{f_n(x) - f(x)} + \abs{f_n(x) - f_n(y)} +\abs{f_n(y) - f(y)} <
+\varepsilon. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je $X$ kompakten prostor, je algebra zveznih funkcij Banachova.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $Y$ vektorski podprostor Banachovega prostora $X$. Tedaj je
+$Y$ Banachov natanko tedaj, ko je $Y$ zaprt.
+\end{trditev}
+
+\begin{proof}
+Prostor $Y$ je zaprt natanko tedaj, ko so limite zaporedij iz $Y$
+elementi $Y$.
+\end{proof}
+
+\begin{zgled}
+Naj bo $X$ lokalno kompakten Hausdorffov prostor. Naj bo
+\[
+\mathcal{C}_0(X) =
+\setb{f \in \mathcal{C}(X)}{\forall \varepsilon > 0\,
+\exists K \subseteq X \colon (\text{$K$ je kompakt} \land
+\forall x \in X \setminus K \colon \abs{f(x)} < \varepsilon)}.
+\]
+Množica $\mathcal{C}_0(X)$ je zaprt podprostor v $\mathcal{C}_b(X)$
+in je ideal v $\mathcal{C}_b(X)$.
+\end{zgled}
+
+\begin{proof}
+Prostor $\mathcal{C}_0(X)$ je očitno vektorski podprostor. Naj bo
+$(f_n)_{n=1}^\infty$ zaporedje v $\mathcal{C}_0(X)$ z limito v
+$\mathcal{C}_b(X)$. Za poljuben $\varepsilon > 0$ obstaja tak
+$N \in \N$, da za vse $n > \N$ velja
+\[
+\norm{f - f_n}_\infty < \frac{\varepsilon}{2}.
+\]
+Po definiciji $\mathcal{C}_0(X)$ obstaja tak kompakt $K$, da za
+$x \in X \setminus K$ velja $\abs{f_n(x)} < \frac{\varepsilon}{2}$.
+Za $x \in X \setminus K$ torej sledi
+\[
+\abs{f(x)} < \varepsilon,
+\]
+zato je $f \in \mathcal{C}_0(X)$. $\mathcal{C}_0(X)$ je torej zaprt
+podprostor.
+
+Naj bosta sedaj $f \in \mathcal{C}_0(X)$ in
+$g \in \mathcal{C}_b(X) \setminus \set{0}$ funkciji. Za vsak
+$\varepsilon > 0$ obstaja tak kompakt $K \subseteq X$, da za vse
+$x \in X \setminus K$ velja
+\[
+\abs{f(x)} < \frac{\varepsilon}{\norm{g}_\infty}.
+\]
+Za vse $x \in X \setminus K$ torej velja
+\[
+\abs{(fg)(x)} \leq \abs{f(x)} \cdot \norm{g}_\infty < \varepsilon,
+\]
+zato je res $\mathcal{C}_0(X) \edn \mathcal{C}_b(X)$.
+\end{proof}
+
+\begin{definicija}
+Prostor $c$ je podprostor $\ell^\infty = \mathcal{C}_b(\N)$, ki je
+sestavljen iz konvergentnih zaporedij.
+\end{definicija}
+
+\begin{opomba}
+Prostor $c$ je Banachova algebra.
+\end{opomba}
+
+\begin{zgled}
+Za $p \in [1, \infty)$ na $\K^n$ definiramo
+\[
+\norm{x}_p = \sqrt[p]{\sum_{i=1}^n \abs{x_i}^p}.
+\]
+S tem postane $\K^n$ Banachov prostor. Tudi
+\[
+\ell^p = \setb{x \in \K^\N}{\sum_{i=1}^\infty \abs{x_i}^p < \infty}
+\]
+je Banachov.
+\end{zgled}
+
+\newpage
+
+\subsection{Napolnitve}
+
+\begin{definicija}
+Naj bo $X$ normiran prostor in $\widetilde{X}$ vektorski prostor
+vseh Cauchyjevih zaporedij v $X$. Na $\widetilde{X}$ vpeljemo
+ekvivalenčno relacijo
+\[
+(x_n)_{n=1}^\infty \sim (y_n)_{n=1}^\infty \iff
+\lim_{n \to \infty} (x_n - y_n) = 0.
+\]
+Z $\widehat{X} = \kvoc{\widetilde{X}}{\sim}$ označimo vektorski
+prostor ekvivalenčnih razredov.
+\end{definicija}
+
+\begin{trditev}
+Preslikava
+\[
+\norm{[(x_n)_{n=1}^\infty]} = \lim_{n \to \infty} \norm{x_n}
+\]
+je norma na prostoru $\widehat{X}$.
+\end{trditev}
+
+\begin{proof}
+Ker so elementi prostora $\widetilde{X}$ Cauchyjeva zaporedja, je
+$(\norm{x_n})_{n=1}^\infty$ Cauchyjevo in ima limito. Zgornja
+operacija je tako polnorma na $\widetilde{X}$, ki inducira polnormo
+na $\widehat{X}$. Ni težko videti, da je na tem prostoru to tudi
+norma.
+\end{proof}
+
+\begin{opomba}
+Obstaja izometrija\footnote{Preslikava, ki ohranja normo.}
+$j \colon X \to \widehat{X}$ s predpisom
+\[
+j(x) = [(x,x,\dots)].
+\]
+\end{opomba}
+
+\begin{izrek}
+Prostor $\widehat{X}$ je Banachov prostor, v katerem je $j(X)$ gost
+podprostor.
+\end{izrek}
+
+\begin{opomba}
+Prostoru $\widehat{X}$ pravimo
+\emph{napolnitev}\index{Vektorski prostor!Napolnitev} prostora $X$.
+\end{opomba}
+
+\begin{zgled}
+Napolnitev prostora $\mathcal{C}([a,b])$ z normo
+\[
+\norm{f}_2 = \sqrt{\int_a^b \abs{f(x)}^2\,dx}
+\]
+so kvadratno integrabilne funkcije.
+\end{zgled}
+
+\newpage
+
+\subsection{Osnove konstrukcije z Banachovimi prostori}
+
+\datum{2022-10-12}
+
+\begin{definicija}
+Naj bo $E$ vektorski prostor nad $\K$. Normi $\norm{.}_1$ in
+$\norm{.}_2$ na $E$ sta
+\emph{ekvivalentni}\index{Norma!Ekvivalentna}, če obstajata taka
+$\alpha, \beta > 0$, da za vse $x \in E$ velja
+\[
+\alpha \cdot \norm{x}_1 \leq \norm{x}_2 \leq
+\beta \cdot \norm{x}_1.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če sta normi $\norm{.}_1$ in $\norm{.}_2$ ekvivalentni, je
+$(E, \norm{.}_1)$ poln natanko tedaj, ko je poln $(E, \norm{.}_2)$.
+\end{opomba}
+
+\begin{opomba}
+Norma je Lipschitzevo zvezna -- velja
+\[
+\abs{\norm{x} - \norm{y}} \leq \norm{x-y}.
+\]
+\end{opomba}
+
+\begin{opomba}
+Množenje s skalarjem in seštevanje sta zvezni operaciji.
+\end{opomba}
+
+\begin{opomba}
+Če je $F \leq E$, je tudi $\overline{F} \leq E$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $E$ vektorski prostor in $F \leq E$. Na $E$ vpeljemo
+ekvivalenčno relacijo $x \sim y \iff x-y \in F$.
+\emph{Kvocientni prostor}\index{Vektorski prostor!Kvocientni} je
+množica odsekov
+\[
+\kvoc{E}{F} = \setb{x + F}{x \in E}
+\]
+s standardnimi operacijami.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $(E, \norm{.})$ normiran prostor in $F \leq E$ zaprt
+podprostor. Tedaj je
+\[
+\norm{x + F} = \inf \setb{\norm{x+y}}{y \in F}
+\]
+norma na $\kvoc{E}{F}$. Če je $E$ Banachov, je tudi $\kvoc{E}{F}$
+Banachov.
+\end{trditev}
+
+\begin{proof}
+Opazimo, da je $\norm{0 + F} = 0$. Če je $\norm{x + F} = 0$,
+obstaja zaporedje $(y_n)_{n=1}^\infty$ elementov $F$, za katere je
+\[
+\lim_{n \to \infty} \norm{x + y_n} = 0.
+\]
+Sledi, da zaporedje konvergira k $-x$. Ker je $F$ zaprt, sledi
+$-x \in F$ in zato $x \in F$. Ni težko videti, da velja
+\[
+\norm{\lambda(x + F)} =
+\inf \setb{\norm{\lambda x + y}}{y \in F} =
+\abs{\lambda} \cdot \inf \setb{\norm{x + y}}{y \in F}.
+\]
+Preverimo še trikotniško neenakost. Naj bosta $x, y \in E$ in
+$\varepsilon > 0$. Obstajata taka $z_1, z_2 \in F$, da velja
+\[
+\norm{x + z_1} < \norm{x + F} + \frac{\varepsilon}{2}
+\quad \text{in} \quad
+\norm{y + z_2} < \norm{y + F} + \frac{\varepsilon}{2}.
+\]
+Sledi, da je
+\[
+\norm{(x+F) + (y+F)} =
+\norm{(x+y) + F} \leq
+\norm{(x+y) + (z_1 + z_2)} <
+\norm{x+F} + \norm{y+F} + \varepsilon.
+\]
+Naj bo sedaj $E$ Banachov prostor in $(x_n + F)_{n=1}^\infty$
+Cauchyjevo zaporedje. Za vsak $i$ obstaja tak $n_i \in \N$, da je
+\[
+\norm{(x_{n_i+1} - x_{n_i}) + F} < 2^{-i},
+\]
+Brez škode za splošnost je zaporedje $n_i$ naraščajoče. Obstaja
+torej tak $y_i \in F$, da je
+\[
+\norm{(x_{n_{i+1}} - x_{n_i}) + y_i} < 2^{-i}.
+\]
+Naj bo
+$z_1 = 0$ in
+\[
+z_{i+1} = z_i + y_i.
+\]
+Sledi, da je
+\[
+\norm{(x_{n_{i+1}} + z_{i+1}) - (x_{n_i} + z_i)} < 2^{-i}.
+\]
+Očitno je
+\[
+w_i = x_{n_i} + z_i
+\]
+Cauchyjevo, zato je konvergentno z limito $x \in E$. Velja
+\[
+\norm{(x_{n_i} + F) - (x + F)} \leq
+\norm{x_{n_i} - x + z_i} =
+\norm{w_i - x},
+\]
+kar konvergira proti $0$. Sledi, da podzaporedje $(x_{n_i} + F)$
+konvergira, zato zaporedje $(x_i + F)$ konvergira.
+\end{proof}
+
+\begin{trditev}
+Naj bo $E$ normiran prostor in $F \leq E$ zaprt podprostor. Če sta
+$F$ in $\kvoc{E}{F}$ Banachova prostora, je tudi $E$ Banachov.
+\end{trditev}
+
+\begin{proof}
+Naj bo $(x_n)_{n=1}^\infty$ Cauchyjevo zaporedje v $E$. Očitno je
+tedaj tudi zaporedje odsekov Cauchyjevo, zato ima limito $x + F$.
+Ker je
+\[
+\lim_{n \to \infty} \norm{(x_n - x) + F} = 0,
+\]
+obstaja zaporedje $(y_n)_{n=1}^\infty$ v $F$, za katero je
+\[
+\lim_{n \to \infty} \norm{x_n - x + y_n} = 0.
+\]
+Tudi zaporedje $(y_n)_{n=1}^\infty$ je Cauchyjevo -- res, velja
+\[
+\norm{y_n - y_m} \leq \norm{y_n + x_n - x} +
+\norm{x - x_m - y_m} + \norm{x_m - x_n},
+\]
+vsi členi pa konvergirajo proti $0$. Ker je tudi $F$ poln, ima
+zaporedje limito $y$. Ker je
+\[
+\lim_{n \to \infty} \norm{x_n - x + y} \leq
+\lim_{n \to \infty} \norm{x_n - x + y_n} + \norm{y - y_n},
+\]
+je $y$ limita zaporedja $(x_n)_{n=1}^\infty$.
+\end{proof}
+
+\begin{posledica}
+Vsak končnorazsežen normiran vektorski prostor je Banachov.
+\end{posledica}
+
+\begin{proof}
+Predpostavimo, da je $\dim E = 1$. Naj bo $x \in E$ tak, da je
+$\norm{x} = 1$. Ker je preslikava $q \colon \K \to E$ s predpisom
+$q(\lambda) = \lambda x$ izometrija, je bijektivna. Ker je $\K$
+poln, je tak tudi $E$.
+
+Za prostore višjih dimenzij uporabimo indukcijo -- za $x \ne 0$ naj
+bo $F = \K \cdot x$. To je očitno podprostor dimenzije $1$. Sledi,
+da je poln, torej je zaprt. Velja
+\[
+\dim \left(\kvoc{E}{F}\right) = \dim E - 1,
+\]
+zato je po indukcijski predpostavki poln.
+\end{proof}
+
+\begin{zgled}
+Če sta $E$ in $F$ normirana prostora, je $E \times F$ normiran z
+normo
+\[
+\norm{(x,y)} = \max(\norm{x}_E, \norm{y}_E).
+\]
+Če sta $E$ in $F$ Banachova, je tak tudi $E \times F$.
+\end{zgled}
+
+\begin{zgled}
+Naj bodo $E_1, \dots, E_r$ normirani prostori. Tedaj sta
+\[
+\norm{(x_1, \dots, x_r)}_\infty =
+\max \setb{\norm{x_i}_{E_i}}{i \leq r}
+\quad \text{in} \quad
+\norm{(x_1, \dots, x_r)}_p =
+\sqrt[p]{\sum_{i=1}^r \norm{x_i}_{E_i}^p}
+\]
+normi na kartezičnem produktu.
+\end{zgled}
