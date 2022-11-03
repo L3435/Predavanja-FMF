@@ -21,7 +21,7 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}}
           
       - name: pdflatex
-        uses: xu-cheng/latex-action@v2.5.0
+        uses: xu-cheng/latex-action@2.5.0
         with:
           root_file: |
             *letnik/*/*.tex
