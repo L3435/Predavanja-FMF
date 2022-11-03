@@ -16,7 +16,7 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}}
               
       - name: Prvi pdflatex
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v2.5.0
         with:
           root_file: |
             *letnik/*/*.tex
@@ -26,7 +26,7 @@ jobs:
           args: -interaction=nonstopmode
           
       - name: Bibliografija
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v2.5.0
         with:
           root_file: |
             *letnik/*/*.bcf
@@ -52,7 +52,7 @@ jobs:
           done
           
       - name: Drugi pdflatex
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v2.5.0
         with:
           root_file: |
             *letnik/*/*.tex
@@ -62,7 +62,7 @@ jobs:
           args: -interaction=nonstopmode
           
       - name: Tretji pdflatex
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v2.5.0
         with:
           root_file: |
             *letnik/*/*.tex
