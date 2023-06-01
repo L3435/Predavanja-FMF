@@ -9,13 +9,29 @@
 	top=2.5cm,
 	bottom=2.5cm
  }
+ 
+\newif\if@mylang\@mylangfalse
+\DeclareOption{en}{\@mylangtrue}
+\ProcessOptions\relax
+
+\if@mylang
+\RequirePackage[english]{babel}
+\else
 \RequirePackage[slovene]{babel}
+\fi
+
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \usepackage{lmodern}
 
 \RequirePackage[xindy]{imakeidx}
+
+\if@mylang
+\makeindex[program=xindy,options=-L english -C utf8]
+\else
 \makeindex[program=xindy,options=-L slovenian -C utf8]
+\fi
+
 \RequirePackage[nottoc]{tocbibind}
 \RequirePackage[backend=biber]{biblatex}
 \nocite{*}
@@ -32,6 +48,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{etoolbox}
 \RequirePackage{esvect}
+\usepackage{algpseudocode}
 
 \RequirePackage{pgf,tikz-cd,pgfplots}
 \usetikzlibrary{babel}
@@ -102,6 +119,21 @@
 \providecommand{\HH}{\mathbb{H}}
 \providecommand{\P}{\mathbb{P}}
 
+
+\if@mylang
+\newenvironment{rešitev}{\begin{proof}[Solution]}{\end{proof}}
+\theoremstyle{definition}
+\newtheorem{izrek}{Theorem}[subsection]
+\newtheorem{lema}[izrek]{Lemma}%[section]
+\newtheorem*{lema*}{Lemma}%[section]
+\newtheorem{opomba}{Remark}[izrek]
+\newtheorem{posledica}[opomba]{Corolarity}
+\newtheorem{trditev}[izrek]{Claim}
+\newtheorem{definicija}[izrek]{Definition}%[section]
+\newtheorem{zgled}[opomba]{Example}
+\newtheorem{primer}[opomba]{Example}
+\newtheorem{openprob}{Open problem}[izrek]
+\else
 \newenvironment{rešitev}{\begin{proof}[Rešitev]}{\end{proof}}
 \theoremstyle{definition}
 \newtheorem{izrek}{Izrek}[subsection]
@@ -113,6 +145,8 @@
 \newtheorem{definicija}[izrek]{Definicija}%[section]
 \newtheorem{zgled}[opomba]{Zgled}
 \newtheorem{primer}[opomba]{Primer}
+\newtheorem{openprob}{Odprt problem}[izrek]
+\fi
 
 \newcommand{\capt}{placeholder}
 
@@ -161,6 +195,16 @@
 \DeclareMathOperator{\Reg}{Reg}
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Tang}{T}
+\providecommand{\T}{\Tang\!}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\Ar}{Ar}
+\DeclareMathOperator{\chr}{char}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\fl}{fl}
 
 \providecommand{\pot}{\mathcal{P}}
 \providecommand{\rel}[1]{\mathrel{#1}}
@@ -169,6 +213,7 @@
 \providecommand{\abs}[1]{\left\lvert #1\right\rvert}
 \providecommand{\norm}[1]{\left\lVert #1\right\rVert}
 \providecommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\providecommand{\ceil}[1]{\left\lceil #1\right\rceil}
 \providecommand{\eval}[3]{\left. #1\right|_{#2}^{#3}}
 \providecommand{\skl}[1]{\left\langle #1\right\rangle}
 \providecommand{\lint}{\int\limits}
@@ -182,10 +227,12 @@
 \providecommand{\prt}[2]{\frac{\partial #1}{\partial #2}}
 \providecommand{\grpd}{\mathbin{\square}}
 \providecommand{\oline}{\overline}
+\providecommand{\uline}{\underline}
 \providecommand{\parc}[2]{\frac{\partial #1}{\partial #2}}
 \providecommand{\spr}{\overset{\circ}{\mathcal{B}}}
 \providecommand{\itr}[1]{\overset{\circ}{#1}}
 \providecommand{\br}[1]{\left(#1\right)}
+\providecommand{\cat}[1]{\uline{\mathcal{#1}}}
 
 \RequirePackage{amsfonts}
 \DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
@@ -247,4 +294,4 @@
 
 \setcounter{tocdepth}{2}
 
-%\overfullrule=5pt
+\overfullrule=5pt

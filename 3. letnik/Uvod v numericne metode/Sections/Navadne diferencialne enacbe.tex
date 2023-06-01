@@ -1,0 +1,108 @@
+\section{Navadne diferencialne enačbe}
+
+\subsection{Eulerjeva metoda}
+
+\begin{definicija}
+Naj bo $D = [a, b] \times \Omega \subseteq \R^2$. Funkcija
+$f \colon D \to \R$ je
+\emph{Lipschitzova}\index{Funkcija!Lipschitzova} glede na $y$ s
+konstanto $L$, če za vsaka $(x, y_1)$ in $(x, y_2)$ v $D$ velja
+\[
+\abs{f(x, y_1) - f(x, y_2)} \leq L \cdot \abs{y_1 - y_2}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $f$ Lipschitzova glede na $y$, ima navadna diferencialna
+enačba $y' = f(x,y)$ z začetnim pogojem $y(x_0) = y_0$ enolično
+lokalno rešitev ne glede na $x_0$ in $y_0$.
+\end{opomba}
+
+\begin{opomba}
+Občutljivost problema določimo z zvezo
+\[
+\abs{\tilde{y}(x) - y(x)} \leq
+e^{L(x - x_0)} \abs{\tilde{y}_0 - y_0} +
+\frac{e^{L(x - x_0)}}{L} \cdot \norm{\tilde{f} - f}_\infty.
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Eksplicitna Eulerjeva metoda}\index{Numerična metoda!Eulerjeva}
+je numerična metoda, s katero izračunamo približek vrednosti $y$ v
+točki $x_n = x_0 + n h$. Približke vrednosti v točkah $x_k$ dobimo
+tako, da se premaknemo v smeri tangente.
+\end{definicija}
+
+\begin{opomba}
+Algoritem za Eulerjevo metodo je naslednji:
+
+\begin{algorithmic}[1]
+\State $y = y_0$
+\For{$i = 0$ to $n-1$}
+  \State $y \gets y + h f(x + ih, y)$
+\EndFor
+\end{algorithmic}
+\end{opomba}
+
+\begin{opomba}
+Poznamo tudi \emph{implicitno Eulerjevo metodo}, pri kateri
+$y_{n+1}$ izračunamo iz zveze
+\[
+y_{n+1} = y_n + h f(x + ih, y_{n+1}).
+\]
+\end{opomba}
+
+\begin{definicija}
+\emph{Taylorjeva metoda}\index{Taylorjeva metoda} je numerična
+metoda, podobna Eulerjevi. Pri tem $y(x+h)$ izračunamo kot
+\[
+y(x+h) = \sum_{n=0}^N \frac{h^n}{n!} \cdot y^{(n)}(x).
+\]
+\end{definicija}
+
+\begin{definicija}
+Pravimo, da ima metoda lokalno napako reda $k$, če se pri točni
+vrednosti $y(x_n)$ izračunani približek $y_{n+1}$ ujema z razvojem
+$y(x_n+h)$ v Taylorjevo vrsto okoli $x_n$ do vključno člena s
+$h^k$.
+\end{definicija}
+
+\begin{opomba}
+Ker velja $y'' = f_x + f \cdot f_y$, lahko odvode $y$ izrazimo z
+odvodi funkcije~$f$.
+\end{opomba}
+
+\newpage
+
+\subsection{Metode tipa Runge-Kutta}
+
+\begin{definicija}
+\emph{Metoda Runge-Kutta}\index{Numerična metoda!Runge-Kutta} je
+numerična metoda, s katero izračunamo približek vrednosti $y$ v
+točki $x_n = x_0 + nh$. Približke vrednosti $y$ v točkah $x_k$
+dobimo tako, da izračunamo koeficiente
+\[
+k_i = h f \br{x_n + \alpha_i h, y_n + \sum_{j=1}^m \beta_{i,j} k_j}
+\]
+in rekurzivno izračunamo
+\[
+y_{n+1} = y_n + \sum_{i=1}^m \gamma_i k_i.
+\]
+\end{definicija}
+
+\begin{opomba}
+Metoda je eksplicitna, če velja $\beta_{i,j} = 0$ za vse
+$j \geq i$.
+\end{opomba}
+
+\begin{opomba}
+Da ima metoda lokalno napako reda $1$, mora veljati
+\[
+\alpha_i = \sum_{j=1}^i \beta_{i,j}
+\quad \text{in} \quad
+\sum_{i=1}^m \gamma_i = 1.
+\]
+\end{opomba}
+
+

@@ -1,0 +1,229 @@
+\section{Polinomska interpolacija}
+
+\subsection{Lagrangeeva interpolacija}
+
+\begin{izrek}
+Za paroma različne točke $x_0, \dots, x_n$ in vrednosti
+$y_0, \dots, y_n$ obstaja natanko en polinom $p$, za katerega je
+$\deg p \leq n$ in $p(x_i) = y_i$ za vse $i$.
+\end{izrek}
+
+\begin{proof}
+Če sta $p$ in $q$ dva taka polinoma, ima njuna razlika stopnjo
+največ $n$, ima pa $n+1$ ničel. Sledi, da imamo kvečjemu en tak
+polinom. Ni pa težko videti, da
+\[
+p(x) =
+\sum_{i=0}^n y_i \cdot \prod_{j \ne i} \frac{x - x_j}{x_i - x_j}
+\]
+zadošča danim pogojem.
+\end{proof}
+
+\begin{izrek}
+Naj bo $f \in \mathcal{C}^{n+1}([a,b])$ funkcija in
+$x_0, \dots, x_n \in [a,b]$ paroma različne točke. Naj bo $p$
+interpolacijski polinom za $f$ in točke $x_i$. Tedaj za vsak
+$x \in [a,b]$ obstaja tak $\xi$, da je
+\[
+\min \br{\set{x} \cup \setb{x_i}{0 \leq i \leq n}} <
+\xi <
+\max \br{\set{x} \cup \setb{x_i}{0 \leq i \leq n}}
+\]
+in je
+\[
+f(x) - p(x) =
+\frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^n (x - x_i).
+\]
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $x \ne x_i$ za vsak $i$. Definirajmo
+\[
+w(t) = \prod_{i=0}^n (t - x_i)
+\]
+in
+\[
+g(t) = f(t) - p(t) - \frac{f(x) - p(x)}{w(x)} w(t).
+\]
+Tako velja $g(x) = 0$ in $g \in \mathcal{C}^{n+1}([a,b])$. Po
+Rollovem izreku ima $g^{(n+1)}$ vsaj eno ničlo $\xi$ na želenem
+intervalu. Tako dobimo
+\[
+0 = f^{(n+1)}(\xi) - \frac{f(x) - p(x)}{w(x)} (n+1)!. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Deljene diference}
+
+\begin{definicija}
+Za paroma različne točke $x_0, \dots, x_k$ in funkcijo $f$ je
+\emph{deljena diferenca}\index{Deljena diferenca}
+$[x_0, \dots, x_k] f$ koeficient pred $x^k$ pripadajočega
+interpolacijskega polinoma. Če se katera izmed točk ponovi, tam
+interpoliramo tudi vrednosti odvodov.
+\end{definicija}
+
+\begin{izrek}
+Za paroma različne točke $x_0, \dots, x_n$ velja
+\[
+p(x) = \sum_{i=0}^n
+\br{[x_0, \dots, x_i]f \cdot \prod_{j=0}^{i-1} (x - x_j)}.
+\]
+\end{izrek}
+
+\begin{proof}
+Trditev dokažemo z indukcijo, baza je trivialna. Velja
+\[
+p_{n+1}(x) = p_n(x) + c \prod_{i=0}^n (x - x_i),
+\]
+kjer je
+\[
+c =
+\frac{f^{(k)}(x_{n+1}) - p_n^{(k)}(x_{n+1})}
+{\br{\displaystyle \prod_{i=0}^n (x_{n+1} - x_i)}^{(k)}}.
+\]
+Očitno je $c$ vodilni koeficient $p_{n+1}$.
+\end{proof}
+
+\begin{izrek}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Deljena diferenca $[x_0, \dots, x_n] f$ je simetrična
+funkcija.
+\item Deljena diferenca je linearen funkcional.
+\item Če je $x_0 \ne x_n$, velja
+\[
+[x_0, \dots, x_n] f =
+\frac{[x_1, \dots, x_n] f - [x_0, \dots, x_{n-1}] f}{x_n - x_0}
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Simetričnost in linearnost sta očitni. Če je $q$ interpolacijski
+polinom za točke $x_0, \dots, x_{n-1}$ in $r$ interpolacijski
+polinom za $x_1, \dots, x_n$, velja
+\[
+p(x) =
+\frac{x - x_n}{x_0 - x_n} q(x) + \frac{x - x_0}{x_n - x_0} r(x).
+\]
+S primerjavo koeficientov dobimo rekurzivno formulo.
+\end{proof}
+
+\begin{opomba}
+Če je $x_i = x_0$ za vsak $i$, deljeno diferenco namesto z
+rekurzivno formulo izračunamo kot
+\[
+[x,\dots,x] f = \frac{f^{(n)}(x)}{n!}.
+\]
+\end{opomba}
+
+\begin{izrek}
+Za vsako funkcijo $f \in \mathcal{C}^k([a,b])$ velja
+\[
+[x_0, \dots, x_k] f =
+\int_0^1 \int_0^{t_1} \dots \int_0^{t_{k-1}}
+f^{(k)} \br{x_0 + \sum_{i=1}^k t_i (x_i - x_{i-1})}
+\,dt_k \,dt_{k-1}\dots\,dt_1
+\]
+\end{izrek}
+
+\begin{proof}
+Izrek očitno velja za $k = 0$. Najprej predpostavimo, da je
+$x_k \ne x_{k-1}$. Tedaj sledi
+\[
+\int_0^{t_{k-1}} f^{(k)}
+\br{X + t_k (x_k - x_{k-1})}\,dt_k
+\\
+=
+\frac{f^{(k-1)} \br{X + t_{k-1} (x_k - x_{k-1})} -
+f^{(k-1)} \br{X}}{x_k - x_{k-1}},
+\]
+kjer je
+\[
+X = x_0 + \sum_{i=1}^{k-1} t_i (x_i - x_{i-1}).
+\]
+Po indukcijski predpostavki je ta izraz enak
+\[
+\frac{[x_0, \dots, x_{k-2}, x_k] f -
+[x_0, \dots, x_{k-1}] f}{x_k - x_{k-1}} =
+[x_0, \dots, x_k] f.
+\]
+Če je $x_i = x_0$ za vsak $i$, pa dobimo
+\[
+\int_0^1 \int_0^{t_1} \dots \int_0^{t_{k-1}}
+f^{(k)} \br{x_0} \,dt_k \,dt_{k-1}\dots\,dt_1 =
+\frac{f^{(k)}(x_0)}{k!}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Za vsako funkcijo $f \in \mathcal{C}^k([a,b])$ in točke
+$x_0, \dots, x_n$ velja
+\[
+[x_0, \dots, x_n] f = \frac{f^{(k)}(\xi)}{k!}
+\]
+za $\xi \in \br{\min \setb{x_i}{0 \leq i \leq n},
+\max \setb{x_i}{0 \leq i \leq n}}$.
+\end{posledica}
+
+\begin{proof}
+Volumen množice, po kateri integriramo, je enak $\frac{1}{k!}$.
+Izrek tako sledi iz izreka o vmesni vrednosti in zveznosti funkcije
+$f^{(k)}$.
+\end{proof}
+
+\begin{izrek}
+Za funkcijo $f$ in interpolacijski polinom $p$ na točkah
+$x_0, \dots, x_n$ velja
+\[
+f(x) = p(x) + [x_0, \dots, x_n, x] f \cdot \prod_{i=0}^n (x - x_i).
+\]
+\end{izrek}
+
+\begin{proof}
+Desna stran enačbe je interpolacijski polinom za $f$ na točkah
+$x_0, \dots, x_n, x$.
+\end{proof}
+
+\begin{posledica}
+Za $f \in \mathcal{C}^{n+1}([a,b])$ naj bo $p$ njen interpolacijski
+polinom za točke $x_0, \dots, x_n$. Tedaj za vsak $x \in [a,b]$
+obstaja tak $\xi$, da velja
+\[
+\min \br{\set{x} \cup \setb{x_i}{0 \leq i \leq n}} \leq
+\xi \leq
+\max \br{\set{x} \cup \setb{x_i}{0 \leq i \leq n}}
+\]
+in
+\[
+f(x) - p(x) =
+\frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^n (x - x_i).
+\]
+\end{posledica}
+
+\obvs
+
+\begin{opomba}
+To je pravzaprav posplošitev Taylorjevega izreka.
+\end{opomba}
+
+\begin{opomba}
+Boljšo aproksimacijo funkcije lahko poskusimo dobiti tako, da
+povečamo število interpolacijskih točk. Včasih je pri tem namesto
+ekvidistantnih smiselno vzeti Čebiševe točke
+\[
+x_i = \lambda \cos \br{\frac{j \pi}{n}} + \mu.
+\]
+\end{opomba}
+
+\begin{opomba}
+Kljub večjemu številu točk polinomi pogosto ne konvergirajo proti
+$f$. V takem primeru je bolj smiselno $f$ aproksimirati odsekoma.
+Na odsekih lahko vzamemo linearne funkcije, lahko pa vzamemo
+polinome tretje stopnje in dosežemo, da je dobljena funkcija zvezno
+odvedljiva.
+\end{opomba}

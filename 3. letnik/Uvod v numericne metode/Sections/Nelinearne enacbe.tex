@@ -1,0 +1,281 @@
+\section{Nelinearne enačbe}
+
+\subsection{Definicije in bisekcija}
+
+\begin{definicija}
+\emph{Nelinearna enačba}\index{Nelinearna enačba} je enačba oblike
+$f(x) = 0$, kjer je $f \colon \R \to \R$ (gladka) funkcija.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \colon \R \to \R$ funkcija z ničlo $\alpha$.
+Predpostavimo, da je $f$ gladka\footnote{Dovoljkrat zvezno
+odvedljiva.} v okolici $\alpha$. Pravimo, da je $\alpha$ $m$-kratna
+ničla, če je
+\[
+m = \min \setb{n \in \N}{f^{(n)}(\alpha) \ne 0}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $\alpha$ $m$-kratna ničla funkcije $f$, za $x$ v okolici
+$\alpha$ velja
+\[
+\abs{f(x)} =
+\frac{\abs{f^{(m)}(\xi)}}{m!} \cdot \abs{x - \alpha}^m,
+\]
+zato velja
+\[
+\abs{x - \alpha} =
+\sqrt[m]{\frac{m! \abs{f(x)}}{\abs{f^{(m)}(\xi)}}} =
+O \br{\abs{f(x)}^{\frac{1}{m}}}.
+\]
+Natančnost računanja ničel torej pada z redom ničle.
+\end{opomba}
+
+\begin{izrek}
+Če je $f \colon [a, b] \to \R$ zvezna funkcija in je
+$f(a) f(b) < 0$, obstaja tak $c \in (a, b)$, da je $f(c) = 0$.
+\end{izrek}
+
+\begin{proof}
+Glej dokaz izreka~3.5.3 v skripti predmeta Analiza~1 v 1.~letniku.
+\end{proof}
+
+\begin{opomba}
+Ničlo poiščemo z metodo
+\emph{bisekcije}\index{Numerična metoda!Bisekcija}. Algoritem za
+bisekcijo je naslednji:
+\begin{algorithmic}[1]
+\State $e = b - a$
+\While{$e > \varepsilon$}
+  \State $e \gets \frac{e}{2}$
+  \State $c \gets a + e$
+  \If{$\sgn(f(c)) = \sgn(f(a))$}
+  	\State $a \gets c$
+  \Else
+  	\State $b \gets c$
+  \EndIf
+\EndWhile
+\end{algorithmic}
+Do napake $\varepsilon$ pridemo v
+\[
+k = \ceil{\log_2 \br{\frac{\varepsilon}{b-a}}}
+\]
+korakih.
+\end{opomba}
+
+\newpage
+
+\subsection{Navadna iteracija}
+
+\begin{izrek}
+Naj bo $g \colon I = [\alpha - \delta, \alpha + \delta] \to \R$
+skrčitev s faktorjem $m < 1$ in fiksno točko $\alpha$. Tedaj za
+vsak $x_0 \in I$ zaporedje, podano z rekurzivno zvezo
+$x_n = g(x_{n-1})$, konvergira k $\alpha$. Pri tem velja
+\[
+\abs{x_r - \alpha} \leq m^r \abs{x_0 - \alpha}
+\quad \text{in} \quad
+\abs{x_{r+1} - \alpha} \leq
+\frac{m}{1-m} \cdot \abs{x_{r+1} - x_r}.
+\]
+\end{izrek}
+
+\begin{proof}
+Za dokaz konvergence in prve neenakosti glej dokaz izreka~7.4.2 v
+skripti predmeta Analiza~1 v 1.~letniku. Velja
+\begin{align*}
+\abs{x_{r+1} - \alpha} &=
+\abs{\sum_{n=r+1}^\infty x_n - x_{n+1}}
+\\
+&\leq
+\sum_{n=r+1}^\infty \abs{x_n - x_{n+1}}
+\\
+&\leq
+\sum_{n=1}^\infty m^n \abs{x_r - x_{r-1}}
+\\
+&=
+\frac{m}{1-m} \cdot \abs{x_r - x_{r-1}}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bo $g \colon I \to \R$ zvezno odvedljiva funkcija s fiksno
+točko $\alpha \in \Int I$. Če je $\abs{g'(\alpha)} < 1$, obstaja
+tak $\delta > 0$, da za vsak
+$x_0 \in [\alpha - \delta, \alpha + \delta]$ zaporedje, podano z
+rekurzivno zvezo $x_n = g(x_{n-1})$, konvergira k $\alpha$.
+\end{posledica}
+
+\obvs
+
+\begin{definicija}[Navadna iteracija]
+\emph{Navadna iteracija}\index{Numerična metoda!Navadna iteracija}
+je numerična metoda, ki rešitev enačbe $g(x) = x$ aproksimira z
+uporabo začetnega približka $x_0$ po predpisu
+$\widetilde{x} = g^n(x_0)$ za dovolj velik $n$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $g \colon I \to \R$ funkcija s fiksno točko
+$\alpha \in \Int I$, v kateri je zvezno odvedljiva. Pravimo, da je
+točka $\alpha$ \emph{privlačna}\index{Privlačna, odbojna točka}, če
+velja $\abs{g'(\alpha)} < 1$, in \emph{odbojna}, če velja
+$\abs{g'(\alpha)} > 1$.
+\end{definicija}
+
+\begin{definicija}
+Naj zaporedje $(x_n)_{n=1}^\infty$ konvergira proti $\alpha$.
+Pravimo, da je $p$ \emph{red konvergence}\index{Red konvergence},
+če obstaja taka konstanta $C > 0$, da je
+\[
+\lim_{n \to \infty}
+\frac{\abs{x_{n+1} - \alpha}}{\abs{x_r - \alpha}^p} = C.
+\]
+\end{definicija}
+
+\begin{opomba}
+Pravimo, da je konvergenca linearna, če je $p = 1$, kvadratična, če
+je $p = 2$, superlinearna, če je $1 < p < 2$ in podobno za večje
+$p$. Če je red koncergence enak $p$, število točnih decimalnih mest
+z iteracijo narašča asimptotsko kot $A^p$.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $g \colon I \to \R$ gladka na $I$ in $\alpha \in \Int I$
+njena fiksna točka. Naj bo
+\[
+p = \min \setb{n \in \N}{g^{(n)}(\alpha) \ne 0}.
+\]
+Tedaj zaporedje, podano z rekurzivnim predpisom $x_n = g(x_{n-1})$
+in začetnim členom v okolici $\alpha$, konvergira z redom
+$p$.\footnote{Pri $p=1$ zahtevamo še $\abs{g'(\alpha)} < 1$.}
+\end{izrek}
+
+\begin{proof}
+Po Taylorjevem izreku velja
+\[
+x_{n+1} - \alpha = \frac{g^{(p)}(\xi)}{p!} (x_n - \alpha)^p
+\]
+za nek $\xi$ med $\alpha$ in $x_n$. Sledi, da je
+\[
+\lim_{n \to \infty}
+\frac{\abs{x_{n+1} - \alpha}}{\abs{x_n - \alpha}^p} =
+\lim_{n \to \infty}
+\frac{\abs{\frac{g^{(p)}(\xi)}{p!} (x_n - \alpha)^p}}{
+\abs{x_n - \alpha}^p} =
+\frac{\abs{g^{(p)}(\alpha)}}{p!}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Tangentna metoda}\index{Numerična metoda!Tangentna} je
+navadna iteracija za funkcijo
+\[
+g(x) = x - \frac{f(x)}{f'(x)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $\alpha$ enostavna ničla za $f$, sledi
+\[
+g'(\alpha) = \frac{f(\alpha) f''(\alpha)}{f'(\alpha)^2} = 0,
+\]
+zato je red konvergence vsaj kvadratičen.\footnote{Če velja še
+$f''(\alpha) = 0$, je red celo vsaj kubičen.} Če je $\alpha$ ničla
+reda $m \geq 2$, pa se izkaže, da velja
+\[
+g'(\alpha) = 1 - \frac{1}{m},
+\]
+zato je konvergenca linearna.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $f \colon [a, \infty) \to \R$ dvakrat zvezno odvedljiva,
+naraščajoča in konveksna funkcija z ničlo $\alpha \geq a$. Tedaj
+je $\alpha$ edina ničla $f$ in za vsak $x_0 \geq a$ tangentna
+metoda konvergira k $\alpha$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $e_n = x_n - \alpha$ za vsak $n \in \N$. Ker velja
+\[
+0 = f(\alpha) = f(x_n) + f'(x_n) (\alpha - x_n) +
+\frac{f''(\xi_n)}{2} (\alpha - x_n)^2,
+\]
+sledi
+\[
+0 = \frac{f(x_n)}{f'(x_n)} + \alpha - x_n +
+\frac{f''(\xi_n)}{2f'(x_n} (\alpha - x_n)^2,
+\]
+od koder lahko izrazimo
+\[
+e_{n+1} =
+\alpha - x_n + \frac{f(x_n)}{f'(x_n)} =
+\frac{f''(\xi_n)}{2 f'(x_n)} \cdot e_n^2.
+\]
+Tako sledi
+\[
+x_{n+1} - \alpha = \frac{f''(\xi_n)}{2 f'(x_n)} \cdot e_n^2 \geq 0,
+\]
+zato je $x_k \geq \alpha$ za vse $k \in \N$. Za $n \geq 1$ je tako
+\[
+x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \leq x_n,
+\]
+zato je zaporedje padajoče in posledično konvergentno, saj je
+omejeno.
+\end{proof}
+
+\newpage
+
+\subsection{Sekantne metode}
+
+\begin{definicija}
+\emph{Sekantna metoda}\index{Numerična metoda!Sekantna} je
+numerična metoda, ki približek ničle funkcije $f$ aproksimira z
+uporabo začetnih približkov $x_0$ in $x_1$ ter rekurzivne zveze
+\[
+x_{n+1} = x_n - \frac{f(x_n) (x_n - x_{n-1})}{f(x_n) - f(x_{n-1})}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Izkaže se, da velja $e_{n+1} \approx c e_n e_{n-1}$, od koder
+sledi, da je red konvergence enak $p = \frac{1 + \sqrt{5}}{2}$,
+zato je konvergenca superlinearna.
+\end{opomba}
+
+\begin{definicija}
+\emph{Mullerjeva metoda}\index{Numerična metoda!Mullerjeva} je
+numerična metoda, pri kateri naslednji člen zaporedja izračunamo
+kot ničlo kvadratnega polinoma, ki interpolira vrednosti v
+prejšnjih treh točkah.
+\end{definicija}
+
+\begin{opomba}
+Za red konvergence v tem primeru velja $p^3 = p^2 + p + 1$, oziroma
+$p \approx 1{,}84$, zato je konvergenca superlinearna.
+\end{opomba}
+
+\begin{opomba}
+Za razliko od prejšnjih metod lahko s to metodo za realne funkcije
+najdemo kompleksne ničle tudi pri realnih začetnih približkih.
+\end{opomba}
+
+\begin{definicija}
+\emph{Inverzna interpolacija}\index{Numerična metoda!Inverzna interpolacija}
+je numerična metoda, pri kateri poiščemo kvadratni polinom $p$, ki
+interpolira točke $(f(x_n), x_n)$, $(f(x_{n-1}), x_{n-1})$ in
+$(f(x_{n-2}), x_{n-2})$, in naslednji člen izračunamo po predpisu
+$x_{n+1} = p(0)$.
+\end{definicija}
+
+\begin{opomba}
+Kot pri Mullerjevi metodi je tudi tu red konvergence enak
+$p \approx 1{,}84$.
+\end{opomba}
+
+\begin{opomba}
+Zgoraj naštete metode lahko med seboj seveda tudi kombiniramo.
+\end{opomba}

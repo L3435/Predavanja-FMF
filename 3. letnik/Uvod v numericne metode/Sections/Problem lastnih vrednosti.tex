@@ -1,0 +1,513 @@
+\section{Problem lastnih vrednosti}
+
+\subsection{Potenčna metoda}
+
+\begin{definicija}
+Neničelen vektor $x$ je
+\emph{levi lastni vektor}\index{Levi lastni vektor} matrike $A$, če
+velja
+\[
+x^\mathsf{H} A = \lambda x^\mathsf{H}.
+\]
+\end{definicija}
+
+\begin{lema}
+Če ima matrika $A$ lastno vrednost $\lambda$ z desnim lastnim
+vektorjem $x$ in lastno vrednost $\mu \ne \lambda$ z levim lastnim
+vektorjem $y$, je $x \perp y$.
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+\lambda \skl{x,y} = y^\mathsf{H} Ax = \mu \skl{x,y}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Schur]
+\index{Izrek!Schur}
+Za vsako matriko $A$ obstajata unitarna matrika $U$ in
+zgornjetrikotna matrika $T$, za kateri je $A = UTU^\mathsf{H}$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $A = XJX^{-1}$, kjer je $J$ Jordanova forma matrike
+$A$.\footnote{Na predavanjih je bil izrek dokazan samo za
+diagonalne $J$.} Preverimo lahko, da lahko zapišemo $X = QR$, kjer
+je $Q$ unitarna in $R$ zgornjetrikotna. Tako dobimo
+\[
+A = Q \cdot RJR^{-1} \cdot Q^\mathsf{H}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Matriki $T$ pravimo \emph{Schurova forma}.
+\end{opomba}
+
+\begin{opomba}
+Matrika $S$ je \emph{realna Schurova forma}, če za ortogonalno
+matriko $Q$ velja $A = Q S Q^\top$ in je $S$
+kvazizgornjetrikotna.\footnote{Na diagonali ima lahko bloke
+$1 \times 1$ ali $2 \times 2$.} Realna Schurova forma obstaja za
+vse realne matrike $A$.
+\end{opomba}
+
+\begin{opomba}
+Lastne vrednosti bi v teoriji lahko računali z Jordanovo
+formo, a ta metoda ni stabilna.
+\end{opomba}
+
+\begin{definicija}
+\emph{Potenčna metoda}\index{Numerična metoda!Potenčna} je navadna
+iteracija za preslikavo $F(x) = \frac{Ax}{\norm{Ax}}$.
+\end{definicija}
+
+\begin{opomba}
+Algoritem za potenčno metodo je naslednji:
+
+\begin{algorithmic}[1]
+\State $z = z_0$
+\For{$k=1$ to $N$}
+  \State $y = Az$
+  \State $z \gets \frac{y}{\norm{y}}$
+\EndFor
+\end{algorithmic}
+S tem se izognemo dvojnemu računanju $Az$.
+\end{opomba}
+
+\begin{izrek}
+Naj za lastne vrednosti matrike $A$ velja
+$\abs{\lambda_1} > \abs{\lambda_2} \geq
+\abs{\lambda_3} \geq \dots \geq \abs{\lambda_n}$.\footnote{Pravimo,
+da je $\lambda_1$ \emph{dominantna} lastna vrednost.} Tedaj
+potenčna metoda konvergira k lastnem vektorju za $\lambda_1$ za
+skoraj vse $z_0$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $A = XJX^{-1}$, pri čemer je $J$ Jordanova forma in
+$X = \begin{bmatrix}
+x_1 & \dots & x_n
+\end{bmatrix}$. Dodatno lahko predpostavimo, da za vsak $i$ velja
+$Ax_i = \lambda_i x_i$. Sedaj lahko zapišemo
+\[
+A^N x = A^N \sum_{i=1}^n \alpha_i x_i =
+\sum_{i=1}^n \br{\sum_{j=i}^{i+k_i-1}
+\alpha_j \lambda_i^{N+i-j} \frac{N!}{(N+i-j)!}} x_i.
+\]
+Če velja $\alpha_1 \ne 0$, opazimo, da velja
+\[
+\lim_{N \to \infty} \frac{A^N x}{\lambda_1^N} = \alpha_1 x_1,
+\]
+saj je
+\[
+\lim_{N \to \infty} \abs{\frac{\lambda_i}{\lambda_1}}^N \cdot
+\frac{N!}{(N-k)!} \leq
+\lim_{N \to \infty} \abs{\frac{\lambda_i}{\lambda_1}}^N \cdot N^k =
+0
+\]
+za vsak $i \ne 1$, pri $i = 1$ pa dobimo ravno
+$\alpha_1 \lambda^N x_1$. Sledi, da je
+\[
+\lim_{N \to \infty} \frac{A^n x}{\norm{A^N x}} =
+\frac{\alpha_1 x_1}{\norm{\alpha_1 x_1}} =
+c \cdot x_1. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Konvergenca je linearna in je odvisna od
+$\abs{\frac{\lambda_2}{\lambda_1}}$.
+\end{opomba}
+
+\begin{trditev}
+Vrednost $\lambda$, ki minimizira $\norm{Az - \lambda z}$, reši
+enačbo
+\[
+\norm{z}^2 \lambda = \skl{Az, z}.
+\]
+\end{trditev}
+
+\begin{proof}
+Problem je ekvivalenten metodi najmanjših kvadratov za enačbo
+$z \cdot \lambda = Az$. Sledi, da je
+\[
+z^\mathsf{H} z \lambda = z^\mathsf{H} Az. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Rayleighov kvocient}\index{Rayleighov kvocient} za matriko
+$A$ in vektor $z \ne 0$ je vrednost
+\[
+\rho(z,A) = \frac{\skl{Az,z}}{\norm{z}^2}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Za Rayleighov kvocient veljajo naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Za vsak $\alpha \ne 0$ je $\rho(z, A) = \rho(\alpha z, A)$.
+\item Za lastni par $(x, \lambda)$ je $\rho(x, A) = \lambda$.
+\item Minimum izraza $\norm{Az - \lambda z}$ je dosežen pri
+$\lambda = \rho(z, A)$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Rayleighov kvocient uporabimo kot ustavitveni pogoj za potenčno
+metodo. Dobimo naslednji algoritem:
+
+\begin{algorithmic}[1]
+\State $z = z_0$
+\While{$\norm{Az - \rho(z, A) z} \geq \varepsilon$}
+  \State $y = Az$
+  \State $z \gets \frac{y}{\norm{y}}$
+\EndWhile
+\end{algorithmic}
+\end{opomba}
+
+\begin{opomba}
+Ko najdemo dominantno lastno vrednost, lahko induktivno poiščemo še
+ostale. Obstaja Householderjevo zrcaljenje $U$, za katero je
+$U e_1 = x_1$. Dobimo novo matriko
+\[
+B = U^\mathsf{H} A U =
+\begin{bmatrix}
+\lambda_1 & b^\top \\
+    0     &    C
+\end{bmatrix}.
+\]
+Preostale lastne vrednosti matrike $A$ so ravno lastne vrednosti
+matrike $C$.
+\end{opomba}
+
+\newpage
+
+\subsection{Inverzna in ortogonalna iteracija}
+
+\begin{definicija}
+Naj bo $\sigma$ približek lastne vrednosti matrike $A$.
+\emph{Inverzna iteracija}\index{Numerična metoda!Inverzna iteracija}
+je potenčna metoda za matriko $(A - \sigma I)^{-1}$.
+\end{definicija}
+
+\begin{opomba}
+Lastne vrednosti matrike $(A - \sigma I)^{-1}$ so
+$\frac{1}{\sigma - \lambda_i}$. Če je $\sigma$ dovolj dober
+približek za $\lambda$, bo $\frac{1}{\sigma - \lambda}$ dominantna
+lastna vrednost, zato bo metoda konvergirala k približku lastnega
+vektorja.
+\end{opomba}
+
+\begin{lema}
+Naj bo $S =
+\begin{bmatrix}
+S_1 & S_2
+\end{bmatrix}$ nesingularna matrika. Če je
+\[
+B = S^{-1} A S =
+\begin{bmatrix}
+B_{1,1} & B_{1,2} \\
+B_{2,1} & B_{2,2}
+\end{bmatrix},
+\]
+stolpci $S_1$ razpenjajo invariantni podprostor za $A$ natanko
+tedaj, ko je $B_{2,1} = 0$.
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+AS_1 = S_1 B_{1,1} + S_2 B_{2,1}.
+\]
+Ekvivalenca je zdaj očitna.
+\end{proof}
+
+\begin{definicija}
+Invarianten podprostor je \emph{dominanten}, če ga razpenjajo
+lastni vektorji $x_1, x_2, \dots, x_p$, katerih lastne vrednosti
+zadoščajo
+$\abs{\lambda_1} \geq \dots \geq \abs{\lambda_p} >
+\abs{\lambda_{p+1}} \geq \dots \geq \abs{\lambda_n}$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Ortogonalna iteracija}\index{Numerična metoda!Ortogonalna iteracija}
+je metoda, s katero aproksimiramo bazo dominantnega invariatnega
+podprostora dimenzije $p$ z uporabo začetnega približka
+$Z_0 \in \C^{n \times p}$ in rekurzivno zvezo
+$Z_{k+1} = Q_k$, kjer je $A Z_k = Q_k R_k$ QR razcep.
+\end{definicija}
+
+\begin{izrek}
+Denimo, da za lastne vrednosti $A$ velja 
+$\abs{\lambda_1} \geq \dots \geq \abs{\lambda_p} >
+\abs{\lambda_{p+1}} \geq \dots \geq \abs{\lambda_n}$. Tedaj za
+skoraj vse $Z_0$ ortogonalna iteracija konvergira proti
+ortonormirani bazi za dominantni invariantni podprostor dimenzije
+$p$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\abs{\lambda_p} > \lambda > \abs{\lambda_{p+1}}$. Naj
+bo\footnote{Na predavanjih je bil izrek dokazan samo za diagonalne
+$J$.} $A = XJX^{-1}$ in
+\[
+Z_0 = X \cdot
+\begin{bmatrix}
+W_1 \\ W_2
+\end{bmatrix},
+\]
+pri čemer je $\det W_1 \ne 0$. Sedaj opazimo, da velja
+\[
+\im Z_{k+1} = \im Q_k = \im (AZ_k),
+\]
+zato je
+\[
+\im Z_k = \im (A^k Z_0).
+\]
+Ker je
+\[
+A^k Z_0 = X J^k W = X \cdot
+\begin{bmatrix}
+J_1^k W_1 \\ J_2^k W_2
+\end{bmatrix} = X \cdot
+\begin{bmatrix}
+I \\ J_2^k W_2 W_1^{-1} J_1^{-k}
+\end{bmatrix} \cdot J_1^k W_1.
+\]
+Matrika $J_1$ je namreč nesingularna, saj je
+$\abs{\lambda_i} > \abs{\lambda_n} \geq 0$. Ni težko opaziti, da
+velja
+\[
+\lim_{N \to \infty} \lambda^N J_1^{-N} =
+\lim_{N \to \infty} \lambda^{-N} J_2^N = 0,
+\]
+zato je
+\[
+\lim_{k \to \infty} J_2^k W_2 W_1^{-1} J_1^{-k} = 0.
+\]
+Sledi, da $A^k Z_0$ konvergira k
+\[
+\begin{bmatrix}
+X_1 \\ 0
+\end{bmatrix}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Podobno opazimo, da če za nek $r < p$ velja
+$\abs{\lambda_r} > \abs{\lambda_{r+1}}$, tudi prvih $r$ stolpcev
+$Z_k$ konvergira k ortonormirani bazi dominantnega invariantnega
+podprostora dimenzije $r$.
+\end{opomba}
+
+\begin{izrek}
+Naj za lastne vrednosti matrike $A$ velja
+$\abs{\lambda_1} > \dots > \abs{\lambda_n}$. Tedaj za skoraj vse
+$Z_0 \in \C^{n \times n}$ zaporedje $Z_k^\top A Z_k$ za $Z_k$ iz
+ortogonalne iteracije konvergira k Schurovi formi.
+\end{izrek}
+
+\begin{proof}
+Za poljuben $p$ naj bo $Z_k =
+\begin{bmatrix}
+X_k & Y_k
+\end{bmatrix}$, kjer je $X_k \in \C^{n \times p}$. Tedaj je
+\[
+Z_k^\top A Z_k =
+\begin{bmatrix}
+X_k^\top A X_k & X_k^\top A Y_k \\
+Y_k^\top A X_k & Y_k^\top A Y_k
+\end{bmatrix}.
+\]
+Zaporedje $Y_k^\top A X_k$ konvergira k $0$, saj $\im X_k$
+konvergira k invariantnemu podprostoru za $A$ in so stolpci matrik
+$Y_k$ ter $X_k$ pravokotni. Ker to velja za vsak $p$, v limiti
+dobimo zgornjetrikotno matriko.
+\end{proof}
+
+\begin{opomba}
+Če je $A$ realna matrika s kompleksnimi lastnimi vrednostmi,
+ortogonalna iteracija konvergira k realni Schurovi formi.
+\end{opomba}
+
+\begin{opomba}
+Časovna zahtevnost enega koraka ortogonalne iteracije je $O(n^3)$,
+konvergenca poddiagonalnih elementov pa je linearna -- odvisna od
+razmerja $\abs{\frac{\lambda_j}{\lambda_i}}$.
+\end{opomba}
+
+\newpage
+
+\subsection{QR iteracija}
+
+\begin{definicija}
+Naj bo $A$ kvadratna matrika.
+\emph{QR iteracija}\index{Numerična metoda!QR iteracija} je
+numerična metoda, s katero aproksimiramo Schurovo formo matrike $A$
+z zaporedjem, podanim z $A_0 = A$ in rekurzivno zvezo
+\[
+A_{k+1} = R_k Q_k,
+\]
+pri čemer je $A_k = Q_k R_k$ QR razcep.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $A$ nesingularna matrika. Za matriko $A_k$ iz QR iteracije
+velja $A_k = Z_k^\top A Z_k$, kjer je $Z_k$ matrika, ki jo dobimo
+pri ortogonalni iteraciji z začetnim približkom $Z_0 = I$.
+\end{izrek}
+
+\begin{proof}
+Trditev dokažemo z indukcijo po $k$. Baza $k=0$ je trivialna. Naj
+bo $A_k = QR$ in $AZ_k = Z_{k+1} R'$. Tako dobimo
+\[
+QR = A_k = Z_k^\top A Z_k = Z_k^\top Z_{k+1} R'.
+\]
+Ker je $Z_k^\top Z_{k+1}$ ortogonalna, smo dobili nov QR razcep. Iz
+enoličnosti razcepa sledi, da je $Q = Z_k^\top Z_{k+1}$ in
+$R = R'$. Tako sledi
+\[
+A_{k+1} = RQ = R' Z_k^\top Z_{k+1} =
+\br{Z_{k+1}^\top A Z_k} Z_k^\top Z_{k+1} =
+Z_{k+1}^\top A Z_{k+1}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Če za lastne vrednosti matrike $A$ velja
+$\abs{\lambda_1} > \dots > \abs{\lambda_n}$, matrike $A_k$
+konvergirajo proti Schurovi formi.
+\end{posledica}
+
+\obvs
+
+\begin{opomba}
+Časovna zahtevnost enega koraka ortogonalne iteracije je $O(n^3)$,
+konvergenca poddiagonalnih elementov pa je linearna -- odvisna od
+razmerja $\abs{\frac{\lambda_j}{\lambda_i}}$.
+\end{opomba}
+
+\begin{definicija}
+Matrika $H$ je
+\emph{zgornja Hessenbergova}\index{Matrika!Zgornja Hessenbergova},
+če je $h_{i,j} = 0$ za vsak $i > j+1$.
+\end{definicija}
+
+\begin{trditev}
+Če je $A$ zgornja Hessenbergova matrika, je vsak vmesni rezulta QR
+iteracije zgornja Hessenbergova matrika.
+\end{trditev}
+
+\begin{proof}
+Opazimo, da je v QR razcepu $A = QR$ tudi $Q$ zgornja
+Hessenbergova, zato je taka tudi $RQ$.
+\end{proof}
+
+\begin{opomba}
+Če pred QR iteracijo $A$ s primerno ortogonalno matriko pretvorimo
+v Hessenbergovo matriko $H = Q^\top A Q$, je časovna zahtevnost
+enega koraka QR iteracije samo $O(n^2)$, saj potrebujemo le $n-1$
+Givensovih rotacij. Pretvorbo dosežemo s Householderjevimi
+zrcaljenji, ki imajo skupaj časovno zahtevnost $O(n^3)$.
+\end{opomba}
+
+\begin{definicija}
+Zgornja Hessenbergova matrika $H$ je
+\emph{nerazcepna}\index{Matrika!Zgornja Hessenbergova!Nerazcepna},
+če za vsak $i$ velja $h_{i+1,i} \ne 0$.
+\end{definicija}
+
+\begin{opomba}
+Če $H$ ni nerazcepna, jo lahko ločimo na dva dela in lastne
+vrednosti iščemo v vsakem posebej. Numerično pogoj preverimo z
+\[
+\abs{a_{i+1,i}} \leq
+\varepsilon \cdot \br{\abs{a_{i,i}} + \abs{a_{i+1,i+1}}}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bo $A$ kvadratna matrika.
+\emph{QR iteracija s premiki}\index{Numerična metoda!QR iteracija s premiki}
+je modifikacija QR iteracije, pri kateri za rekurzivno zvezo
+vzamemo
+\[
+A_{k+1} = R_k Q_k + \sigma_k I,
+\]
+pri čemer je $A_k - \sigma_k I = Q_k R_k$ QR razcep.
+\end{definicija}
+
+\begin{opomba}
+Matriki $A_{k+1}$ in $A_k$ sta si še vedno unitarno podobni, saj
+velja
+\[
+A_{k+1} = Q_k^\mathsf{H} A_k Q_k.
+\]
+\end{opomba}
+
+\begin{lema}
+Naj bo $\sigma$ lastna vrednost nerazcepne zgornje Hessenbergove
+matrike $A$. Če je $A - \sigma I = QR$ in $B = RQ + \sigma I$,
+je $b_{n, n-1} = 0$ in $b_{n,n} = \sigma$.
+\end{lema}
+
+\begin{proof}
+Ker je prvih $n-1$ stolpcev matrike $A - \sigma I$ linearno
+neodvisnih, sledi $r_{i,i} \ne 0$ za vse $i < n$. Sledi, da je
+$r_{n,n} = 0$, saj je $R$ singularna. Zadnja vrstica matrike $RQ$
+je tako ničelna.
+\end{proof}
+
+\begin{opomba}
+Za izbiro premikov imamo več opcij:
+
+\begin{enumerate}[i)]
+\item Enojni premik -- vzamemo $\sigma_k = a_{n,n}^{(k)}$. Ta ne
+deluje, če niso vse lastne vrednosti matrike $A$ realne.
+\item Dvojni premik\footnote{Tudi Francisov} -- naredimo dva enojna
+premika, in sicer z lastnima vrednostma matrike
+\[
+\begin{bmatrix}
+a_{n-1,n-1}^{(k)} & a_{n-1,n}^{(k)} \\
+ a_{n,n-1}^{(k)}  &  a_{n,n}^{(k)}
+\end{bmatrix}.
+\]
+\end{enumerate}
+\end{opomba}
+
+\begin{opomba}
+Francisov premih ohranja realnost elementov matrike $A$. Če je
+$A - \sigma_1 I = QR$, $B = RQ + \sigma_1 I$,
+$B - \sigma_2 I = Q'R'$ in $C = R'Q' + \sigma_2 I$, velja
+\begin{align*}
+QQ'R'R &=
+Q (B - \sigma_2 I) R
+\\
+&=
+Q (Q^\mathsf{H} A Q - \sigma_2 I) R
+\\
+&=
+(AQ - \sigma_2 I) QR
+\\
+&=
+(AQ - \sigma_2 I) (A - \sigma_1 I) \in \R^{n \times n}.
+\end{align*}
+Dobili smo QR razcep matrike, ki je enolično določen. Ker je
+matrika realna, je tak tudi razcep, zato je
+$QQ' \in \R^{n \times n}$. Tako dobimo
+\[
+C = (Q')^\mathsf{H} B Q' =
+(Q')^\mathsf{H} Q^\mathsf{H} A Q Q' \in \R^{n \times n}. \qedhere
+\]
+\end{opomba}
+
+\begin{opomba}
+Izkaže se, da lahko Francisov premik naredimo v $O(n^2)$
+operacijah.
+\end{opomba}

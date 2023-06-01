@@ -1,0 +1,203 @@
+\section{Numerično integriranje}
+
+\subsection{Kvadraturne formule}
+
+\begin{definicija}
+\emph{Kvadraturna formula}\index{Kvadraturna formula} je enačba
+\[
+\int_a^b f(x)\,dx = \sum_{i=0}^n \alpha_i f(x_i) + R(f),
+\]
+Pri čemer velja
+\[
+\alpha_i = \int_a^b \prod_{j \ne i} \frac{x - x_j}{x_i - x_j}\,dx.
+\]
+Tu so $\alpha_i$ uteži, $x_i$ vozli in $R(f)$ napaka.
+\end{definicija}
+
+\begin{opomba}
+Kvadratna formula je vedno točna za polinome stopnje največ $n$. Če
+izberemo primerne vozle, lahko dosežemo, da je formula točna za
+polinome stopnje največ $2n+1$.\footnote{Gaussova kvadraturna
+formula, glej poglavje~\ref{subs:gauss}.}
+\end{opomba}
+
+\begin{definicija}
+\emph{Newton-Cotesove formule}\index{Newton-Cotesove formule} so
+kvadratne formule, pri katerih za vozle vzamemo ekvidistantne točke
+\[
+x_i = a + ih,
+\]
+kjer je $h = \frac{b-a}{n}$. Formula je \emph{zaprta}, če sta
+krajišči intervala vozla, sicer je \emph{odprta}.
+\end{definicija}
+
+\begin{opomba}
+Naj bo $f \in \mathcal{C}^2([a,b])$. Za $n=1$ dobimo
+\[
+f(x) = f(a) \cdot \frac{x-b}{a-b} + f(b) \cdot \frac{x-a}{b-a} +
+\frac{f''(\xi_x)}{2} (x-a)(x-b),
+\]
+od koder z izrekom o vmesni vrednosti izpeljemo
+\[
+\int_a^b f(x)\,dx =
+\frac{h}{2} \cdot \br{f(a) + f(b)} - \frac{h^3}{12} f''(\xi).
+\]
+\end{opomba}
+
+\begin{opomba}
+Če je $n$ sod, ne Newton-Cotesova formula točna za polinome stopnje
+največ $n+1$.
+\end{opomba}
+
+\begin{opomba}
+Iz Peanovega izreka lahko izpeljemo, da za
+$f \in \mathcal{C}^r([a,b])$ velja
+\[
+R(f) = c h^m f^{(r)}(\xi),
+\]
+kjer je $r$ najnižja stopnja polinoma, za katerega je $R \ne 0$.
+\end{opomba}
+
+\begin{opomba}
+Naj bo $f \in \mathcal{C}^3([a,b])$. Za $n=2$ dobimo\footnote{Tudi
+Simpsonovo pravilo.}
+\[
+\int_a^b f(x)\,dx =
+\frac{h}{3} \cdot \br{f(x_0) + 4 f(x_1) + f(x_2)} +
+\int_a^b \frac{f'''(\xi_x)}{6} \cdot (x-x_0)(x-x_1)(x-x_2)\,dx.
+\]
+Z uporabo prejšnje opombe lahko izpeljemo še
+\[
+R(f) = -\frac{h^4}{90} \cdot f^{(4)}(\xi).
+\]
+\end{opomba}
+
+\begin{opomba}
+Napaka metode kvadraturnih formul je enaka $R(f)$. Če je
+$\widetilde{f(x_i)}$ naš približek za $f(x_i)$ in velja
+$\abs{\widetilde{f(x_i)} - f(x_i)} < \varepsilon$, lahko
+neodstranljivo napako ocenimo kot
+\[
+\abs{D_n} =
+\abs{\sum_{i=0}^n \alpha_i \cdot \br{\widetilde{f(x_i)} - f(x_i)}}
+<
+\varepsilon \cdot \sum_{i=0}^n \abs{\alpha_i}.
+\]
+Če imajo vse $\alpha_i$ enak predznak, sledi
+$\abs{D_n} < \varepsilon \cdot (b-a)$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Sestavljeno pravilo} za integriranje je enačba, ki jo dobimo
+tako, da integral odsekoma aproksimiramo s kvadraturno formulo.
+\end{definicija}
+
+\begin{opomba}
+Za odsekoma linearno aproksimiacijo dobimo sestavljeno trapezno
+pravilo
+\[
+\int_a^b f(x)\,dx =
+\frac{h}{2} \cdot \br{f(x_0) + 2\sum_{i=1}^{n-1} f(x_i) + f(x_n)} -
+\sum_{i=0}^{n-1} \frac{h^3}{12} f''(\xi_i),
+\]
+kar lahko z izrekom o povprečni vrednosti poenostavimo do
+\[
+\frac{h}{2} \cdot \br{f(x_0) + 2\sum_{i=1}^{n-1} f(x_i) + f(x_n)} -
+(b-a) \cdot \frac{h^2}{12} f''(\xi).
+\]
+\end{opomba}
+
+\begin{opomba}
+Za odsekoma kvadratne polinome pri sodih $n$ dobimo sestavljeno
+Simpsonovo pravilo
+\[
+\int_a^b f(x)\,dx =
+\frac{h}{3} \cdot \br{f(x_0) +
+4 \sum_{\substack{0 < i < n \\2 \nmid i}} f(x_i) +
+2 \sum_{\substack{0 < i < n \\2 \mid i}} f(x_i) + f(x_n)} -
+(b-a) \cdot \frac{h^4}{180} f^{(4)}(\xi).
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Gaussove kvadraturne formule}
+\label{subs:gauss}
+
+\begin{trditev}
+Naj bo $\rho$ nenegativna funkcija. Tedaj je
+\[
+\skl{f, g} = \int_a^b f(x) \oline{g(x)} \rho(x)\,dx
+\]
+skalarni produkt.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bodo $p_n(x) = x^n$ polinomi. Polinomom, ki jih dobimo z
+Gram-Schmidtovo ortogonalizacijo na $p_i$ z zgornjim skalarnim
+produktom pravimo
+\emph{ortogonalni polinomi}\index{Ortogonalni polinomi} za interval
+$[a, b]$ in utež $\rho$.
+\end{definicija}
+
+\begin{lema}
+Vse ničle ortogonalnih polinomov so enostavne, realne in ležijo
+znotraj intervala $(a,b)$.
+\end{lema}
+
+\begin{proof}
+Naj bo $p$ ortogonalen polinom in
+\[
+q(x) = \prod_{i=1}^k (x - x_i)^{\alpha_i},
+\]
+kjer so $x_i$ vse ničle polinoma $p$, ki ležijo na $(a,b)$, in
+\[
+\alpha_i =
+\begin{cases}
+1, & 2 \nmid \ord_{x_i}(p), \\
+0, & 2 \mid \ord_{x_i}(p).
+\end{cases}
+\]
+Očitno je $\skl{p, q} \ne 0$, zato je $\deg p = \deg q$. Sledi,
+da vse ničle polinoma $p$ ležijo na intervalu $(a, b)$ in so
+enostavne.
+\end{proof}
+
+\begin{definicija}
+\emph{Gaussova kvadraturna formula}\index{Kvadraturna formula!Gaussova}
+je kvadraturna formula, pri kateri za vozle vzamemo ničle
+ortogonalnega polinoma $p_{n+1}$ (z utežjo $1$).
+\end{definicija}
+
+\begin{trditev}
+Naj bo $f$ polinom stopnje največ $2n+1$. Tedaj je Gaussova
+kvadraturna formula točna za $f$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $q$ ortogonalen polinom stopnje $n+1$. Vozli so njegove
+ničle. Za polinoma $g$ in $h$ stopnje največ $n$ lahko zapišemo
+$f = gq + h$. Tako sledi
+\[
+\int_a^b f(x) \rho(x)\,dx =
+\int_a^b g(x) q(x)\,dx + \int_a^b h(x)\,dx =
+0 + \sum_{i=0}^n \alpha_i h(x_i) =
+\sum_{i=0}^n \alpha_i f(x_i). \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Uteži Gaussovih kvadraturnih formul so pozitivne.
+\end{lema}
+
+\begin{proof}
+Naj bo $q$ ortogonalen polinom. Polinom
+$p_k(x) = \frac{q(x)^2}{(x - x_k)^2}$ je stopnje $2n$, zato je
+\[
+0 < \int_a^b p_k(x) \rho(x)\,dx =
+\sum_{i=0}^n \alpha_i p_k(x_i) =
+\alpha_k p_k(x_k). \qedhere
+\]
+\end{proof}

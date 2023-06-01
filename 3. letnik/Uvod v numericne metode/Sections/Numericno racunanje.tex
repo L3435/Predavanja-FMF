@@ -1,0 +1,179 @@
+\section{Računalniški zapis realnih števil}
+
+\subsection{Predstavljiva števila}
+
+\begin{definicija}
+\emph{Numerična metoda}\index{Numerična metoda} je postopek, ki s
+končnim številom elementarnih operacij izračuna približek iskane
+numerične vrednosti.
+\end{definicija}
+
+\begin{definicija}
+\emph{Množica predstavljivih števil}\index{Predstavljiva števila}
+je množica
+\[
+P(b, t, L, U) =
+\setb{\pm \sum_{i=1}^t c_i b^{e-i}}{
+\forall i \colon 0 \leq c_i < b \land L \leq e \leq U}.
+\]
+Pravimo, da je število
+\emph{normalizirano}\index{Število!Normalizirano}, če v tem zapisu
+velja $c_1 \ne 0$, sicer pravimo, da je \emph{subnormalizirano}.
+\end{definicija}
+
+\begin{definicija}
+Ob zgornjih oznakah številu $u = \frac{1}{2} b^{1-t}$ pravimo
+\emph{osnovna zaokrožitvena napaka}.
+\end{definicija}
+
+\begin{izrek}
+Če za realno število $x$ velja
+\[
+\min P(b, t, L, U) \leq \abs{x} \leq \max P(b, t, L, U),
+\]
+velja
+\[
+\min_{y \in P(b, t, L, U)} \frac{\abs{y-x}}{\abs{x}} \leq u.
+\]
+\end{izrek}
+
+\begin{definicija}
+Število $y \in P(b, t, L, U)$, za katerega je zgornja vrednost
+najmanjša, označimo s $\fl(x)$.
+\end{definicija}
+
+\begin{opomba}
+Za računske operacije po standardu IEEE za poljubno operacijo
+$* \in \set{+, -, \cdot, \div}$ velja\footnote{Izjema so overflowi
+in underflowi.}
+\[
+\fl(x*y) = (x*y) \cdot(1 + \delta)
+\]
+za nek $\delta \in [-u,u]$. Podobno velja za korenjenje.
+\end{opomba}
+
+\newpage
+
+\subsection{Numerične napake}
+
+\begin{definicija}
+Naj bo $f \colon \R \to \R$ funkcija in $x \in \R$ število.
+
+\begin{enumerate}[i)]
+\item \emph{Neodstranljiva napaka}\index{Numerična napaka} pri
+računanju vrednosti $f(x)$ je razlika $D_n = f(x) - f(\fl(x))$.
+
+\item \emph{Napaka metode} je razlika
+$D_m = f(\fl(x)) - \widetilde{f}(\fl(x))$, kjer je $\widetilde{f}$
+numerična metoda za funkcijo $f$.
+
+\item \emph{Zaokrožitvena napaka} je razlika
+$D_z = \widetilde{f}(\fl(x)) - g(\fl{x})$, kjer je $g$ funkcija, ki
+jo dobimo tako, da vsako operacijo v metodi $\widetilde{f}$
+komponiramo s $\fl$.
+\end{enumerate}
+Skupno napako izračunamo kot $D = D_n + D_m + D_z$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \colon \R^n \to \R^m$ preslikava.
+\emph{Stopnja občutljivosti}\index{Preslikava!Stopnja občutljivosti}
+preslikave $f$ v točki $a$ je limita\footnote{Ob predpostavki, da
+obstaja.}
+\[
+\lim_{x \to 0} \frac{\norm{f(a+x) - f(a)}}{\norm{x}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za odvedljive realne funkcije realne spremenljivke je stopnja
+občutljivosti kar $\abs{f'(a)}$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $f \colon R^n \to \R^m$ preslikava in
+$\widetilde{f} \colon \R^n \to \R^m$ numerična metoda za~$f$.
+
+\begin{enumerate}[i)]
+\item Metoda $\widetilde{f}$ je
+\emph{direktno stabilna}\index{Stabilnost}, če je napaka
+$\frac{\norm{\widetilde{f}(x) - f(x)}}{f(x)}$
+">majhna"<.\footnote{Omejena z dovolj majhnim številom.}
+\item Metoda $\widetilde{f}$ je \emph{obratno stabilna}, če je
+napaka
+\[
+\min_{f(y) = \widetilde{f}(x)} \frac{\norm{x-y}}{x}
+\]
+">majhna"<.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Direktna napaka je načeloma manjša od obratne napake pomnožene z
+občutljivostjo metode.
+\end{opomba}
+
+\begin{trditev}
+Pri računanju produkta $p = \prod_{i=0}^n x_i$ za relativno
+zaokrožitveno napako $\gamma$ velja $\abs{\gamma} \leq nu + o(u)$.
+\end{trditev}
+
+\begin{proof}
+Produkt izračunamo z naslednjim algoritmom:
+\begin{algorithmic}[1]
+\State $p = x_0$
+\For{$i=1,\dots,n$}
+  \State $p \gets p \cdot x_i$
+\EndFor
+\end{algorithmic}
+Za rezultat $\widetilde{p}$, ki ga na koncu dobimo, tako zaradi
+zaokroževanja dobimo
+\[
+\widetilde{p} = p \cdot \prod_{i=1}^n (1+\delta_i),
+\]
+kjer je $\abs{\delta_i} \leq u$ za vsak $i$. Tako z Bernoullijevo
+neenakostjo ocenimo
+\[
+1 - nu \leq (1-u)^n \leq 1 + \gamma \leq (1+u)^n = 1 + nu + o(u).
+\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Računanje produkta je direktno stabilno. Ni težko preveriti, da je
+tudi obratno stabilno.
+\end{opomba}
+
+\begin{trditev}
+Računanje skalarnega produkta je obratno, ne pa direktno stabilno.
+\end{trditev}
+
+\begin{proof}
+Skalarni produkt vektorjev $x$ in $y$ izračunamo z naslednjim
+algoritmom:
+\begin{algorithmic}[1]
+\State $s = 0$
+\For{$i=1,\dots,n$}
+  \State $s \gets s + x_i \cdot y_i$
+\EndFor
+\end{algorithmic}
+Dejanski numerični rezultat je zaradi zaokroževanja enak
+\[
+\widetilde{s} = \sum_{i=1}^n x_i y_i (1 + \alpha_i) \cdot
+\prod_{j=i}^n (1 + \beta_j),
+\]
+pri čemer je $\beta_1 = 0$. Označimo
+\[
+1 + \gamma_i = (1 + \alpha_i) \cdot \prod_{j=i}^n (1 + \beta_j).
+\]
+Tedaj je $\widetilde{s} = \skl{x, \widetilde{y}}$, kjer vzamemo
+$\widetilde{y}_i = y_i \cdot (1 + \gamma_i)$. Metoda je torej
+obratno stabilna, saj je $\abs{\gamma_i} \leq nu + o(u)$. Velja pa
+\[
+\frac{\abs{\widetilde{s} - s}}{\abs{s}} \leq
+\frac{\skl{\abs{x}, \abs{y}}}{\abs{\skl{x,y}}} \cdot (nu + o(u)),
+\]
+kar ni omejeno navzgor. Če sta vektorja $x$ in $y$ skoraj
+pravokotna, je lahko napaka zelo velika. Metoda ni direktno
+stabilna.
+\end{proof}

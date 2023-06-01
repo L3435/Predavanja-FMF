@@ -1,0 +1,185 @@
+\section{Nelinearni sistemi}
+
+\subsection{Navadna iteracija}
+
+\begin{izrek}
+\index{Numerična metoda!Navadna iteracija}
+Naj bo $G \colon \R^n \to \R^n$ zvezno odvedljiva na
+$\Omega \subseteq \R^n$. Če je $G(\Omega) \subseteq \Omega$ in
+obstaja tak $m < 1$, da za vse $x \in \Omega$
+velja\footnote{Tu $\rho(A)$ označuje \emph{spektralni radij}, za
+matrike je to absolutna vrednost največje lastne vrednosti.}
+\[
+\rho(JG(x)) \leq m,
+\]
+ima $G$ v $\Omega$ natanko eno fiksno točko $\alpha$ in zaporedje
+$x_n = G^n(x_0)$ konvergira k $\alpha$ za vsak
+$x_0 \in \Omega$.\footnote{Tega dokaza ni v profesorjevih zapiskih,
+za teoretični izpit ga ni potrebno znati.}
+\end{izrek}
+
+%TODO Dokončaj proof
+\begin{proof}
+Naj bo $\varphi(t) = \norm{F(a + t(b-a)) - F(a)}$ za preslikavo
+$F \colon \Omega \to \R^n$. Tedaj je
+\begin{align*}
+\varphi'(t)
+&=
+\frac{1}{\varphi(t)} \cdot
+\sum_{i=1}^n \br{F_i(s) - F_i(a)}
+\sum_{j=1}^n \br{b_j - a_j} \parc{F_i}{x_j}(s)
+\\
+&=
+\frac{1}{\varphi(t)} \cdot \skl{F(s) - F(a), JF(s) \cdot (b-a)},
+\end{align*}
+kjer je $s = a + t(b-a)$. Po Lagrangeevem izreku tako obstaja tak
+$c \in (0, 1)$, da je
+\[
+\varphi(1) - \varphi(0) = \varphi'(c).
+\]
+Za $p = a + c(b-a)$ tako dobimo
+\[
+\norm{F(b) - F(a)} =
+\frac{1}{\norm{F(p) - F(a)}} \cdot
+\skl{F(p) - F(a), JF(p) \cdot (b-a)} \leq
+\norm{JF(p) \cdot (b-a)}.
+\]
+Posebej, za $F = G^n$ dobimo
+\[
+\norm{G^n(b) - G^n(a)} \leq
+\norm{JG(p_n)^n \cdot (b-a)} \leq
+\norm{JG(p_n)^n} \cdot \norm{b-a}.
+\]
+Naj bo $m < m_1 < m_2 < 1$. Za vsak $x$ obstaja tak $c(x)$, da za
+vse $n \in \N$ velja\footnote{Glej dokaz leme 6.1.17 iz skripte
+predmeta Uvod v funkcionalno analizo magistrskega študija.}
+\[
+\norm{JG(x)^n} < c(x) \cdot m_1^n.
+\]
+Sedaj naj bo
+\[
+A = \setb{a + t (b-a)}{t \in [0,1]}
+\]
+in
+\[
+U_c = \setb{x \in A}{\exists p < m_2 \colon \forall n \in \N \colon
+\norm{JG(x)^n} < cp^n}.
+\]
+To je očitno pokritje množice $A$. Naj bo $x \in U_c$ in
+$x_1$ v taki okolici $x$, da za matriko $M = JG(x_1) - JG(x)$ velja
+$\norm{M} < m_2 - p$. Tedaj dobimo
+\[
+\norm{JG(x_1)^n} \leq
+\sum_{i=0}^n \binom{n}{i} \norm{JG(x)^{n-i}} \norm{M^i} <
+c \cdot \br{\norm{M} + m_2}^n.
+\]
+Sledi, da je $x_1 \in U_c$, zato je to pokritje odprto. Zaradi
+kompaktnosti množice $A$ obstaja končno podpokritje. Ekvivalentno
+obstaja tak $c$, da je
+\[
+\norm{JG(x)^n} < c m_2^n
+\]
+za vsak $x \in A$ in $n \in \N$. Za vse $p > q$ tako dobimo
+\[
+\norm{G^p(a) - G^q(a)} \leq
+\sum_{k=q}^{p-1} \norm{G^{k+1}(a) - G^k(a)} <
+c \cdot \norm{G(a) - a} \cdot
+\frac{m_2^q \cdot (1 - m_2^{p-q})}{1-m_2}.
+\]
+Od tod ni težko videti, da je zaporedje $G^n(a)$ Cauchyjevo in zato
+konvergentno. Limita je zaradi zveze
+\[
+\norm{G^n(b) - G^n(a)} < c m_2^n \norm{b - a}
+\]
+neodvisna od izbire začetne točke, za limito $\alpha$ zaporedja pa
+velja še
+\[
+G(\alpha) = G \br{\lim_{n \to \infty} G^n(a)} =
+\lim_{n \to \infty} G^{n+1}(a) = \alpha. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Če je $\alpha = G(\alpha)$ in $\rho(JG(\alpha)) < 1$, je $\alpha$
+privlačna fiksna točka. Zadošča že, da velja
+$\norm{JG(\alpha)} < 1$ za neko matrično normo.
+\end{opomba}
+
+\begin{definicija}
+\emph{Seidelova iteracija}\index{Numerična metoda!Seidelova iteracija}
+je numerična metoda, ki rešitev enačbe $G(x) = x$ aproksimira z
+začetnim približkom $x^{(0)}$ in rekurzivnim predpisom
+\[
+x_i^{(r+1)} =
+G_i(x_1^{(r+1)}, \dots, x_{i-1}^{(r+1)}, x_i^{(r)}, \dots).
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Newtonova metoda}\index{Numerična metoda!Newtonova} je
+navadna iteracija za preslikavo
+\[
+G(x) = x - JF(x)^{-1} \cdot F(x).
+\]
+\end{definicija}
+
+\begin{opomba}
+Metoda zagotovo konvergira, če je začetni približek dovolj dober.
+Za korak iteracije moramo izračunati $\Delta x$ kot rešitev enačbe
+$JF(x) \cdot \Delta x = -F(x)$, za kar potrebujemo $O(n^3)$
+operacij.
+\end{opomba}
+
+\begin{lema}
+Matrika $A$, za katero je $Ax = y \ne 0$ in ima najmanjšo normo, je
+oblike
+\[
+A = \frac{y x^\top}{\norm{x}^2}.
+\]
+\end{lema}
+
+\begin{proof}
+Očitno velja $Ax = y$ in $\norm{A} \geq \frac{\norm{y}}{\norm{x}}$.
+Ker je
+\[
+\norm{yx^\top z} =
+\norm{y} \cdot \abs{x^\top z} \leq
+\norm{y} \cdot \norm{x} \cdot \norm{z}
+\]
+z enakostjo, ko je $z = x$, sledi
+\[
+\norm{\frac{y x^\top}{\norm{x}^2}} = \frac{\norm{y}}{\norm{x}}.
+\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Broydenova metoda}\index{Numerična metoda!Broydenova} je
+metoda, pri kateri $\Delta x$ izračunamo po predpisu
+\[
+B_r \Delta x = -F(x).
+\]
+Pri tem za $B_r$ vzamemo matriko, za katero je
+\[
+B_{r+1} \cdot \br{x^{(r+1)} - x^{(r)}} =
+F \br{x^{(r+1)}} - F \br{x^{(r)})}
+\]
+in je najbližje matriki $B_r$.
+\end{definicija}
+
+\begin{opomba}
+Velja
+\[
+B_{r+1} = B_r + \frac{F \br{x^{(r+1)}} \br{\Delta x^{(r)}}^\top}
+{\norm{\Delta x^{(r)}}^2}.
+\]
+\end{opomba}
+
+\begin{opomba}
+Za reševanja sistema z $B_{r+1}$ si pomagamo s Sherman-Morrisonovo
+formulo
+\[
+\br{A + uv^\top}^{-1} =
+A^{-1} + \frac{A^{-1} u v^\top A^{-1}}{1 + \skl{v, A^{-1} u}}.
+\]
+\end{opomba}

@@ -1,0 +1,681 @@
+\section{Sistemi linearnih enačb}
+
+\subsection{Vektorske in matrične norme}
+
+\begin{definicija}
+\emph{Vektorska norma}\index{Norma!Vektorska} je preslikava
+$\norm{\cdot} \colon \C^n \to \R$, za katero za vse $x, y \in \C^n$
+in $\alpha \in \C$ velja
+
+\begin{enumerate}[i)]
+\item $\norm{x} \geq 0$ z enakostjo natanko tedaj, ko je $x = 0$,
+\item $\norm{\alpha x} = \abs{\alpha} \cdot \norm{x}$,
+\item $\norm{x+y} \leq \norm{x} + \norm{y}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Za vektor $x \in \C^n$ veljajo ocene
+\begin{align*}
+\norm{x}_2 &\leq \norm{x}_1 \leq \sqrt{n} \norm{x}_2,
+\\
+\norm{x}_\infty &\leq \norm{x}_2 \leq \sqrt{n} \norm{x}_\infty,
+\\
+\norm{x}_\infty &\leq \norm{x}_1 \leq n \norm{x}_\infty.
+\end{align*}
+\end{trditev}
+
+\begin{definicija}
+\emph{Matrična norma}\index{Norma!Matrična} je preslikava
+$\norm{\cdot} \colon \C^{n \times n} \to \R$, za katero za vse
+$A, B \in \C^{n \times n}$ in $\alpha \in \C$ velja
+
+\begin{enumerate}[i)]
+\item $\norm{A} \geq 0$ z enakostjo natanko tedaj, ko je $A = 0$,
+\item $\norm{\alpha A} = \abs{\alpha} \cdot \norm{A}$,
+\item $\norm{A+B} \leq \norm{A} + \norm{B}$,
+\item $\norm{A \cdot B} \leq \norm{A} \cdot \norm{B}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+\emph{Frobeniusova norma}\index{Norma!Frobeniusova} je preslikava
+\[
+\norm{A}_F = \br{\sum_{i,j=1}^n \abs{a_{i,j}}^2}^{\frac{1}{2}}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Frobeniusova norma je matrična norma.
+\end{trditev}
+
+\begin{proof}
+Prve tri lastnosti matrične norme sledijo iz tega, da je
+Frobeniusova norma vektorska norma na prostoru $\C^{n^2}$. Velja pa
+\begin{align*}
+\norm{A \cdot B}_F^2 &=
+\br{\sum_{i,j=1}^n \abs{\sum_{k=1}^n a_{i,k} b_{k,j}}^2}
+\\
+&\leq
+\sum_{i,j=1}^n \br{\br{\sum_{k=1}^n \abs{a_{i,k}}^2} \cdot
+\br{\sum_{k=1}^n \abs{b_{k,j}}^2}}
+\\
+&=
+\sum_{i=1}^n \br{\br{\sum_{k=1}^n \abs{a_{i,k}}^2} \cdot
+\br{\sum_{j,k=1}^n \abs{b_{k,j}}^2}}
+\\
+&=
+\br{\sum_{i,k=1}^n \abs{a_{i,k}}^2} \cdot
+\br{\sum_{j,k=1}^n \abs{b_{k,j}}^2}
+\\
+&=
+\norm{A}_F^2 \cdot \norm{B}_F^2.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Za poljubno vektorsko normo $\norm{\cdot}_v$ je tudi
+\[
+\norm{A} = \sup_{x \ne 0} \frac{\norm{Ax}_v}{\norm{x}_v}
+\]
+matrična norma.\footnote{To je tudi splošna definicija operatorske
+norme.}
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Za $p \geq 1$ definiramo
+\[
+\norm{A}_p = \sup_{x \ne 0} \frac{\norm{Ax}_p}{\norm{x}_p}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Velja
+\[
+\norm{A}_1 = \max_j \sum_{i=1}^n \abs{a_{i,j}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\norm{Ax}_1 =
+\sum_{i=1}^n \abs{\sum_{j=1}^n a_{i,j} x_j} \leq
+\sum_{j=1}^n \br{\abs{x_j} \cdot \sum_{i=1}^n \abs{a_{i,j}}} \leq
+\norm{x}_1 \cdot \max_j \sum_{i=1}^n \abs{a_{i,j}}.
+\]
+Ni težko videti, da je enakost dosežena za $x = e_k$, kjer je $k$
+indeks, pri katerem je zgornja vsota največja.
+\end{proof}
+
+\begin{trditev}
+Velja
+\[
+\norm{A}_\infty = \norm{A^\top}_1.
+\]
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\norm{Ax}_\infty = \max_i \abs{\sum_{j=1}^n a_{i,j} x_j} \leq
+\max_{i} \sum_{j=1}^n \abs{a_{i,j} x_j} \leq
+\max_i \sum_{j=1}^n \abs{a_{i,j}} \cdot \norm{x}_\infty =
+\norm{A^\top}_1 \cdot \norm{x}_\infty.
+\]
+Enakost je očitno dosežena za\footnote{Če je $a_{k,j} = 0$,
+vzamemo $x_j = 1$.}
+\[
+x_j = \frac{\abs{a_{k,j}}}{a_{k,j}},
+\]
+kjer je $k$ indeks, pri katerem je zgornja vsota največja.
+\end{proof}
+
+\begin{definicija}
+Število $\sigma \geq 0$ je
+\emph{singularna vrednost}\index{Matrika!Singularna vrednost}
+matrike $A$, če je $\sigma^2$ lastna vrednost matrike
+$A^\mathsf{H} A$.
+\end{definicija}
+
+\begin{opomba}
+Ker je $\skl{x, A^\mathsf{H} Ax} = \skl{Ax, Ax} \geq 0$, so vse
+lastne vrednosti matrike $A^\mathsf{H} A$ nenegativne.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\sigma$ največja singularna vrednost matrike $A$. Tedaj
+velja
+\[
+\norm{A}_2 = \sigma.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bodo $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n$
+singularne vrednosti matrike $A$, štete z večkratnostmi. Tedaj
+obstaja ortonormirana baza lastnih vektorjev $u_i$. Sedaj lahko
+zapišemo
+\[
+\norm{Ax}_2^2 =
+\skl{x, A^\mathsf{H} x} =
+\skl{\sum_{i=1}^n \alpha_i u_i,
+\sum_{i=1}^n \alpha_i \sigma_i^2 u_i} =
+\sum_{i=1}^n \alpha_i^2 \sigma_i^2 \leq
+\sigma_1^2 \norm{x}_2.
+\]
+Enakost je očitno dosežena v primeru $x = u_1$.
+\end{proof}
+
+\begin{trditev}
+Za vsako matriko $A \in \C^{n \times n}$ veljajo ocene
+\begin{align*}
+\frac{1}{\sqrt{n}} \norm{A}_F
+&\leq \norm{A}_2 \leq \norm{A}_F,
+\\
+\frac{1}{\sqrt{n}} \norm{A}_1
+&\leq \norm{A}_2 \leq \sqrt{n} \norm{A}_1,
+\\
+\frac{1}{\sqrt{n}} \norm{A}_\infty
+&\leq \norm{A}_2 \leq \sqrt{n} \norm{A}_\infty.
+\end{align*}
+\end{trditev}
+
+\begin{lema}
+Za vsako matrično normo $\norm{\cdot}_m$ obstaja taka vektorska
+norma $\norm{\cdot}_v$, da za vsak $x \in \C^n$ in
+$A \in \C^{n \times n}$ velja
+$\norm{Av}_v \leq \norm{A}_m \cdot \norm{v}_v$.
+\end{lema}
+
+\begin{proof}
+Vzamemo $\norm{x}_v = \norm{(x,0,\dots,0)}_m$.
+\end{proof}
+
+\begin{lema}
+Za vsako lastno vrednost $\lambda$ matrike $A$ in normo
+$\norm{\cdot}$ velja $\abs{\lambda} \leq \norm{A}$.
+\end{lema}
+
+\begin{proof}
+Za inducirano vektorsko normo velja
+\[
+\abs{\lambda} \cdot \norm{x} =
+\norm{Ax} \leq \norm{A} \cdot \norm{x}. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Frobeniusova in spektralna norma sta invariantni za množenje z
+unitarno matriko.
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+\norm{A}_F^2 = \sum_{i=1}^n \norm{a_i}^2 =
+\sum_{i=1}^n \norm{UA_i}^2 = \norm{UA}^2
+\]
+in
+\[
+\norm{UA}_2 = \sup_{x \ne 0} \frac{\norm{UAx}}{\norm{x}} =
+\sup_{x \ne 0} \frac{\norm{Ax}}{\norm{x}} = \norm{A}_2.
+\]
+Velja tudi $\norm{AU}_F = \norm{U^\mathsf{H} A^\mathsf{H}}_F = 
+\norm{A^\mathsf{H}}_F = \norm{A}_F$ in podobno za $\norm{\cdot}_2$.
+\end{proof}
+
+\begin{lema}
+Če je $\norm{X} < 1$, je $I-X$ nesingularna in velja
+\[
+(I-X)^{-1} = \sum_{n=0}^\infty X^n.
+\]
+Če je $\norm{I} = 1$, velja še
+\[
+\norm{(I-X)^{-1}} \leq \frac{1}{1 - \norm{X}}.
+\]
+\end{lema}
+
+\begin{proof}
+Če je $\norm{X} < 1$, so absolutne vrednosti lastnih vrednosti
+matrike $X$ omejene z $1$. Sledi, da je $I-X$ obrnljiva. Ker je
+\[
+(I-X) \sum_{i=1}^n X^i = I - X^{n+1},
+\]
+sledi
+\[
+\lim_{n \to \infty} \norm{(I-X) \sum_{i=1}^n X^i - I} =
+\lim_{n \to \infty} \norm{X^{n+1}} \leq
+\lim_{n \to \infty} \norm{X}^{n+1} = 0.
+\]
+Za zadnjo neenakost opazimo, da velja
+\[
+\norm{\sum_{i=0}^\infty X^i} \leq
+\sum_{i=0}^i \norm{X}^i =
+\frac{1}{1 - \norm{X}}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Občutljivost sistema linearnih enačb}
+
+\begin{definicija}
+Naj bo $\C^{n \times n}$ nesingularna matrika in $\norm{\cdot}$
+matrična norma z $\norm{I} = 1$.
+\emph{Občutljivost}\index{Matrika!Občutljivost} matrike $A$ je
+število
+\[
+K(A) = \norm{A} \cdot \norm{A^{-1}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Velja $K(A) \geq 1$.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $A$ nesingularna matrika in $\Delta A$ taka matrika, da je
+$\norm{\Delta A} \cdot \norm{A^{-1}} < 1$. Če je $Ax = b$ in
+$(A + \Delta A) (x + \Delta x) = b + \Delta b$, velja
+\[
+\frac{\norm{\Delta x}}{\norm{x}} \leq
+\frac{K(A)}{1 - K(A) \frac{\norm{\Delta A}}{\norm{A}}} \cdot
+\br{\frac{\norm{\Delta A}}{\norm{A}} +
+\frac{\norm{\Delta b}}{\norm{b}}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Iz enačb lahko izrazimo
+\[
+b + \Delta A \cdot x + A \cdot \Delta x + \Delta A \cdot \Delta x =
+b + \Delta b,
+\]
+oziroma
+\[
+\Delta A \cdot x + A \cdot \Delta x + \Delta A \cdot \Delta x =
+\Delta b.
+\]
+Tako lahko izrazimo
+\[
+A(I + A^{-1} \Delta A) \Delta x = \Delta b - \Delta A \cdot x.
+\]
+Matrika $I + A^{-1} \Delta A$ je po predpostavkah obrnljiva, zato
+lahko izrazimo
+\[
+\Delta x =
+(I + A^{-1} \Delta A)^{-1} A^{-1} (\Delta b - \Delta A \cdot x),
+\]
+od koder dobimo
+\begin{align*}
+\norm{\Delta x} &\leq
+\frac{1}{1 - \norm{A^{-1} \Delta A}} \cdot \norm{A^{-1}} \cdot
+\norm{b - \Delta A \cdot x}
+\\
+&\leq
+\frac{\norm{A^{-1}}}{1 - \norm{A^{-1}} \cdot \norm{\Delta A}} \cdot
+\br{\norm{\Delta b} + \norm{\Delta A} \cdot \norm{x}}
+\\
+&=
+\frac{\norm{A} \cdot \norm{A^{-1}}}
+{1 - \norm{A^{-1}} \cdot \norm{A} \cdot
+\frac{\norm{\Delta A}}{\norm{A}}} \cdot
+\br{\frac{\norm{\Delta b}}{\norm{A}} +
+\frac{\norm{\Delta A}}{\norm{A}} \cdot \norm{x}}
+\\
+&\leq
+\frac{K(A)} {1 - K(A) \cdot \frac{\norm{\Delta A}}{\norm{A}}} \cdot
+\br{\frac{\norm{\Delta b}}{\norm{b}} +
+\frac{\norm{\Delta A}}{\norm{A}}} \cdot \norm{x}. \qedhere
+\end{align*}
+\end{proof}
+
+\newpage
+
+\subsection{LU razcep}
+
+\begin{definicija}
+\emph{LU razcep}\index{Matrika!LU razcep} matrike $A$ je razcep
+$A = L \cdot U$, kjer je $L$ spodnjetrikotna matrika, ki ima na
+diagonali same $1$, $U$ pa nesingularna zgornjetrikotna matrika.
+\end{definicija}
+
+\begin{izrek}
+LU razcep matrike $A$ obstaja natanko tedaj, ko so vsi vodilni
+minorji matrike $A$ neničelni.
+\end{izrek}
+
+\begin{proof}
+Naj $P_k$ označuje vodilno $k \times k$ podmatriko matrike $P$.
+Denimo, da ima matrika $A$ LU razcep. Ni težko opaziti, da je
+$A_k = L_k \cdot U_k$. Ker sta tako $L_k$ kot $U_k$ nesingularni,
+je taka tudi $A$.
+
+Naj bodo sedaj vsi vodilni minorji matrike $A$ nesingularni. Izrek
+dokažemo z indukcijo po dimenziji. Za $n=1$ je trditev očitna.
+Sedaj naj bo
+\[
+A =
+\begin{bmatrix}
+  A'   & b \\
+c^\top & d
+\end{bmatrix},
+\]
+kjer je $A' \in \C^{n \times n}$, $b, c \in \C^n$ in $d \in \C$.
+Naj bo še $A' = LU$. Opazimo, da velja
+\[
+\begin{bmatrix}
+  A'   & b \\
+c^\top & d
+\end{bmatrix}
+=
+\begin{bmatrix}
+       L      & 0 \\
+c^\top U^{-1} & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+U & L^{-1} b                   \\
+0 & d - c^\top U^{-1} L^{-1} b
+\end{bmatrix}.
+\]
+Označimo $u = d - c^\top U^{-1} L^{-1} b$. Ker velja
+\[
+0 \ne \det A = \det U \cdot u,
+\]
+je $u \ne 0$, zato sta dobljeni matriki nesingularni. Ni težko
+videti, da je ta razcep enoličen, saj morata zgornja leva bloka
+biti enaka $L$ in $U$.
+\end{proof}
+
+\begin{opomba}
+LU razcep matrike dobimo z naslednjim algoritmom:
+
+\begin{algorithmic}[1]
+\For{$j=1$ to $n-1$}
+  \For{$i = j+1$ to $n$}
+    \State $\ell_{i,j} = \frac{a_{i,j}}{a_{j,j}}$
+    \For{$k=j+1$ to $n$}
+      \State $a_{i,k} \gets a_{i,k} - \ell_{i,j} \cdot a_{j,k}$
+    \EndFor
+  \EndFor
+\EndFor
+\end{algorithmic}
+
+Z algoritmom v vsakem koraku izračunamo matriko $L_j$ in $U_j$, za
+kateri velja
+\[
+\prod_{i=0}^{j-1} L_{j-i} \cdot A = U_j.
+\]
+Prvih $j$ stolpcev $U_j$ je pri tem nastavljenih na pravo obliko.
+Na koncu dobimo
+\[
+A = \prod_{i=1}^n L_i^{-1} \cdot U.
+\]
+Časovna zahtevnost algoritma je $\frac{2}{3} n^3 + O(n^2)$.
+\end{opomba}
+
+\begin{opomba}
+Sistem linearnih enačb $Ax = b$ z LU razcepom rešimo tako, da
+izračunamo razcep $A = LU$, nato pa rešimo enačbi $Ly = b$ in
+$Ux = y$. Rešitvi dobimo eksplicitno kot
+\[
+y_k = b_k - \sum_{i=1}^{k-1} \ell_{k,i} y_i
+\]
+in
+\[
+x_k = \frac{1}{u_{k,k}} \br{y_k - \sum_{i=k+1}^n u_{k,i} x_i}.
+\]
+Časovna zahtevnost reševanja je $\frac{2}{3} n^3 + O(n)$.
+\end{opomba}
+
+\begin{izrek}
+Če je $A$ nesingularna matrika, obstaja taka permutacijska matrika
+$P$, da obstaja LU razcep matrike $PA$.
+\end{izrek}
+
+\begin{proof}
+Na vsakem koraku algoritma za LU razcep matriko pomnožimo s
+permutacijsko matriko $P_k$, ki na mesto $a_{k,k}$ postavi element
+z največjo absolutno vrednostjo v tem stolpcu.\footnote{Temu
+algoritmu pravimo \emph{LU razcep z delnim pivotiranjem}. Če na
+mesto $a_{k,k}$ postavimo največji element v matriki, dobimo
+\emph{LU razcep s kompletnim pivotiranjem} in obliko $PAQ = LU$.}
+Na koncu dobimo enačbo
+\[
+\prod_{i=0}^{j-1} L_{j-i} P_{j-i} \cdot A = U.
+\]
+Ker $P_i$ komutira z vsemi $L_j$ za $j < i$, lahko enačbo prepišemo
+v
+\[
+\prod_{i=0}^{j-1} P_{j-i} \cdot A = LU. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Časovno zahtevnost smo povečali za $O(n^2)$. Pri kompletnem
+pivotiranjem se ta poveča za $O(n^3)$.
+\end{opomba}
+
+\begin{opomba}
+Pri LU razcepu s pivotiranjem velja $\ell_{i,j} \leq 1$.
+\end{opomba}
+
+\begin{lema}
+Naj bo $L$ nesingularna spodnjetrikotna matrika dimenzije
+$n \times n$. Če sistem $Ly = b$ rešimo s premo susbstitucijo,
+izračunani vektor $\tilde{y}$ zadošča
+$(L + \Delta L) \tilde{y} = b$, kjer je
+$\abs{\Delta L} \leq nu \abs{L} + o(u)$.\footnote{Tu absolutne
+vrednosti in neenakosti gledamo po komponentah.}
+\end{lema}
+
+\begin{proof}
+Velja
+\[
+\tilde{y}_i =
+\frac{\displaystyle b_i -
+\sum_{k=1}^{i-1} \ell_{i,k} \tilde{y}_k (1 + \delta_{i,k})}
+{\ell_{i,i} (1 + \alpha_i) (1 + \beta_i)}
+\]
+Pri tem je $\abs{\delta_{i,k}} \leq (i-1) u + o(u)$ in
+$\abs{\alpha_i}, \abs{\beta_i} \leq u + o(u)$. Če definiramo še
+$(1 + \delta_{i,i}) = (1 + \alpha_i) (1 + \beta_i)$, velja še
+$\abs{\delta_{i,i}} \leq nu$.\footnote{Velja namreč
+$\alpha_1 = 0$.} Enačbo lahko sedaj preoblikujemo v
+\[
+b_i = \sum_{k=1}^i \ell_{i,k} \tilde{y}_k (1 + \delta_{i,k}),
+\]
+kar je ekvivalentno
+\[
+\Delta L = [\ell_{i,k} \delta_{i,k}]_{i,k}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Podobno velja za zgornjetrikotne matrike.
+\end{opomba}
+
+\begin{lema}
+Naj bo $A$ nesingularna matrika velikosti $n \times n$, pri kateri
+se izvede LU razcep brez pivotiranja. Za izračunani matriki
+$\widetilde{L}$ in $\widetilde{U}$ velja
+\[
+\abs{A - \widetilde{L} \widetilde{U}} \leq
+n u \abs{\widetilde{L}} \abs{\widetilde{U}} + o(u).
+\]
+\end{lema}
+
+\begin{izrek}
+Za izračunano vrednost $\tilde{x}$ sistema $Ax = b$ z LU razcepom
+velja $(A + \Delta A)x = b$, pri čemer je
+\[
+\abs{\Delta A} \leq 3 n u \abs{L} \cdot \abs{U} + o(u).
+\]
+\end{izrek}
+
+\begin{proof}
+Izrazimo lahko
+\[
+b = (A - E + \Delta L \cdot U + L \cdot \Delta U +
+\Delta L \cdot \Delta U) \tilde{x},
+\]
+kjer je $E = A - LU$. Z uporabo lem tako dobimo
+\[
+\abs{\Delta A} \leq 3 nu \abs{L} \abs{U} + o(u). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Velja
+\[
+\norm{\Delta A}_\infty \leq 3nu \norm{L}_\infty \norm{U}_\infty.
+\]
+\end{posledica}
+
+\begin{opomba}
+Če LU razcep računamo brez pivotiranja, je $\norm{L}_\infty$
+neomejen, zato metoda ni obratno stabilna.
+\end{opomba}
+
+\begin{definicija}
+\emph{Pivotna rast}\index{Stabilnost!Pivotna rast} LU razcepa je
+količina
+\[
+g = \frac{\max \abs{u_{i,j}}}{\max \abs{a_{i,j}}}.
+\]
+\end{definicija}
+
+\begin{lema}
+Za LU razcep s pivotiranjem velja
+\[
+\norm{\Delta A}_\infty \leq 3 g n^3 u \norm{A}_\infty.
+\]
+\end{lema}
+
+\begin{proof}
+Velja $\norm{U}_\infty \leq n g \norm{A}_\infty$ in
+$\norm{L}_\infty \leq n$.
+\end{proof}
+
+\begin{lema}
+Pri delnem pivotiranju je pivotna rast omejena z $2^{n-1}$.
+\end{lema}
+
+\begin{proof}
+Elemente matrike $U$ določimo z ukazom
+$a_{i,k} \gets a_{i,k} - \ell_{i,j} \cdot a_{j,k}$. Ker je
+$\ell_{i,j} \leq 1$ in vsak element spremenimo kvečjemu $n-1$-krat,
+sledi, da je $g \leq 2^{n-1}$.
+\end{proof}
+
+\begin{opomba}
+LU razcep z delnim pivotiranjem v splošnem ni obratno stabilen, v
+veliki večini primerov pa je.
+\end{opomba}
+
+\begin{lema}
+Pri kompletnem pivotiranju velja
+\[
+g \leq
+\br{n \cdot \prod_{k=1}^{n-1} \sqrt[k]{k+1}}^{\frac{1}{2}} \approx
+n^{\frac{1}{2} + \frac{\ln n}{4}}.
+\]
+LU razcep s kompletnim pivotiranjem je obratno stabilen.
+\end{lema}
+
+\newpage
+
+\subsection{Razcep Choleskega}
+
+\begin{izrek}
+Naj bo $A$ simetrična pozitivno definitna matrika. Tedaj velja
+
+\begin{enumerate}[i)]
+\item vse njene vodilne podmatrike so pozitivno definitne,
+\item obstaja LU razcep brez pivotiranja za matriko $A$, pri čemer
+ima matrika $U$ pozitivno diagonalo,
+\item obstaja nesingularna spodnjetrikotna matrika $V$ s pozitivno
+diagonalo, za katero je $A = VV^\top$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Za $x = (x_1, \dots, x_k, 0, \dots, 0)$ velja
+\[
+\skl{x, A_k x} = \skl{x, Ax} > 0.
+\]
+\item Vse matrike $A_k$ so pozitivno definitne in zato
+nesingularne. Velja pa
+\[
+u_{k,k} = \frac{\det U_k}{\det U_{k-1}} =
+\frac{\det A_k}{\det A_{k-1}} > 0.
+\]
+\item Naj bo $A = LU$. Po prejšnji točki vemo, da ima $U$ pozitivno
+diagonalo -- naj bo $U = DM$, kjer ima $M$ na diagonali same $1$.
+Sledi, da je
+\[
+L \cdot DM = A = A^\top = M^\top \cdot D^\top L^\top.
+\]
+Iz enoličnosti LU razcepa sledi, da je $L = M^\top$. Sedaj
+preprosto vzamemo
+\[
+V = L \cdot \sqrt{D}. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Če velja $A = VV^\top$, je očitno $A$ simetrična pozitivno
+definitna matrika.
+\end{opomba}
+
+\begin{definicija}
+\emph{Razcep Choleskega}\index{Matrika!Razcep Choleskega} matrike
+$A$ je razcep $A = V \cdot V^\top$, pri čemer ima $V$ pozitivne
+diagonalne elemente.
+\end{definicija}
+
+\begin{opomba}
+Razcep Choleskega je enolično določen. Po enoličnosti LU razcepa je
+namreč $V$ enolično določena do skalarnega faktorja natančno, od
+koder hitro sledi enoličnost.
+\end{opomba}
+
+\begin{opomba}
+Razcep Choleskega izračunamo z naslednjim algoritmom:
+
+\begin{algorithmic}[1]
+\For{$k=1$ to $n$}
+  \State $\displaystyle v_{k,k} =
+  \br{a_{k,k} - \sum_{i=1}^{k-1} v_{k,i}^2}^{\frac{1}{2}}$
+  \For{$j = k+1$ to $n$}
+    \State $\displaystyle v_{j,k} = \frac{1}{v_{k,k}}
+    \br{a_{j,k} - \sum_{i=1}^{k-1} v_{k,i} v_{i,j}}$
+  \EndFor
+\EndFor
+\end{algorithmic}
+
+Časovna zahtevnost algoritma je $\frac{1}{3} n^3 + O(n^2)$.
+\end{opomba}
+
+\begin{opomba}
+Reševanje sistema $Ax = b$ z razcepom Choleskega je obratno
+stabilno.
+\end{opomba}
+
+\begin{opomba}
+Za simetrične matrike $A$ lahko sistem $Ax = b$ rešujemo z razcepom
+\[
+PAP^\top = LDL^\top,
+\]
+kjer je $P$ permutacijska, $L$ spodnjetrikotna in $D$ diagonalna
+matrika. Časovna zahtevnost reševanja sistema je pri tem
+$\frac{1}{3} n^3 + O(n^2)$.
+\end{opomba}
