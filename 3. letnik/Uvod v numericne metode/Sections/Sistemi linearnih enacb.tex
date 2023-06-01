@@ -430,7 +430,7 @@ in
 \[
 x_k = \frac{1}{u_{k,k}} \br{y_k - \sum_{i=k+1}^n u_{k,i} x_i}.
 \]
-Časovna zahtevnost reševanja je $\frac{2}{3} n^3 + O(n)$.
+Časovna zahtevnost reševanja je $\frac{2}{3} n^3 + O(n^2)$.
 \end{opomba}
 
 \begin{izrek}
@@ -486,7 +486,8 @@ Pri tem je $\abs{\delta_{i,k}} \leq (i-1) u + o(u)$ in
 $\abs{\alpha_i}, \abs{\beta_i} \leq u + o(u)$. Če definiramo še
 $(1 + \delta_{i,i}) = (1 + \alpha_i) (1 + \beta_i)$, velja še
 $\abs{\delta_{i,i}} \leq nu$.\footnote{Velja namreč
-$\alpha_1 = 0$.} Enačbo lahko sedaj preoblikujemo v
+$\alpha_1 = 0$, zato neenakost drži tudi za $n=1$.} Enačbo lahko
+sedaj preoblikujemo v
 \[
 b_i = \sum_{k=1}^i \ell_{i,k} \tilde{y}_k (1 + \delta_{i,k}),
 \]
@@ -512,7 +513,7 @@ n u \abs{\widetilde{L}} \abs{\widetilde{U}} + o(u).
 
 \begin{izrek}
 Za izračunano vrednost $\tilde{x}$ sistema $Ax = b$ z LU razcepom
-velja $(A + \Delta A)x = b$, pri čemer je
+velja enakost $(A + \Delta A) \tilde{x} = b$, pri čemer je
 \[
 \abs{\Delta A} \leq 3 n u \abs{L} \cdot \abs{U} + o(u).
 \]
