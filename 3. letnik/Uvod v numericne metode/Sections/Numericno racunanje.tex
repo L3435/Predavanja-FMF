@@ -91,18 +91,18 @@ občutljivosti kar $\abs{f'(a)}$.
 \end{opomba}
 
 \begin{definicija}
-Naj bo $f \colon R^n \to \R^m$ preslikava in
+Naj bo $f \colon \R^n \to \R^m$ preslikava in
 $\widetilde{f} \colon \R^n \to \R^m$ numerična metoda za~$f$.
 
 \begin{enumerate}[i)]
 \item Metoda $\widetilde{f}$ je
 \emph{direktno stabilna}\index{Stabilnost}, če je napaka
-$\frac{\norm{\widetilde{f}(x) - f(x)}}{f(x)}$
+$\frac{\norm{\widetilde{f}(x) - f(x)}}{\norm{f(x)}}$
 ">majhna"<.\footnote{Omejena z dovolj majhnim številom.}
 \item Metoda $\widetilde{f}$ je \emph{obratno stabilna}, če je
 napaka
 \[
-\min_{f(y) = \widetilde{f}(x)} \frac{\norm{x-y}}{x}
+\min_{f(y) = \widetilde{f}(x)} \frac{\norm{x-y}}{\norm{x}}
 \]
 ">majhna"<.
 \end{enumerate}
