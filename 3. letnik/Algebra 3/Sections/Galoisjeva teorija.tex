@@ -1,0 +1,582 @@
+\section{Galoisova teorija}
+
+\epigraph{">Jezik se mi zapleta. Ne vem, ali bi moral več spit ali
+manj spit."<}{-- prof.~dr.~Primož Moravec}
+
+\subsection{Normalne in separabilne razširitve}
+
+\datum{2023-2-17}
+
+\begin{definicija}
+Enačba je \emph{rešljiva z radikali}\index{Enačba!Rešljiva}, če
+lahko rešitev izrazimo z operacijami $+$, $-$, $\cdot$, $\div$,
+$\sqrt[n]{}$ iz podanih parametrov.
+\end{definicija}
+
+\begin{definicija}
+Polje $E$ je
+\emph{radikalska razširitev}\index{Razširitev polj!Radikalska}
+polja $F$, če obstaja tak $a \in F$, da je $E = F(\sqrt[n]{a})$ za
+nek $n \in \N$.
+\end{definicija}
+
+\begin{opomba}
+Polinomska enačba $p(X) = 0$ za $p(X) \in F[X]$ je rešljiva z
+radikali natanko tedaj, ko obstaja veriga
+\[
+F \subseteq F_1 \subseteq F_2 \subseteq \dots \subseteq F_k = F(p)
+\]
+radikalskih razširitev.
+\end{opomba}
+
+\begin{definicija}
+Razširitev $E$ polja $F$ je
+\emph{normalna}\index{Razširitev polj!Normalna}, če za vsak
+nerazcepen polinom $p(X) \in F[X]$ velja, da $E$ vsebuje bodisi vse
+bodisi nobene ničle polinoma $p$.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $E/F$ končna razširitev. Tedaj je $E/F$ normalna natanko
+tedaj, ko je $E$ razpadno polje nekega polinoma $p(X) \in F[X]$.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da je $E/F$ normalna. Naj bo
+$E = F(a_1, \dots, a_r)$ in naj bo $p_i$ minimalni polinom za
+$a_i$. Naj bo
+\[
+p(X) = \prod_{i=1}^r p_i(X).
+\]
+Ker je $p_i$ nerazcepen, so vse ničle polinoma $p_i$ vsebovane v
+$E$ za vsak $i$. Posledično so tudi vse ničle polinoma $p$
+vsebovane v $E$. Sledi, da je $F(p) \subseteq E$. Ker je očitno
+$E \subseteq F(p)$, je $E = F(p)$.
+
+Predpostavimo sedaj, da je $E = F(p)$ za polinom $p$. Naj bo
+$q$ poljuben nerazcepen polinom z ničlo $a \in E$. Naj bo $b$
+poljubna ničla polinoma $q$. Opazimo, da je $q$ minimalen polinom
+za $a$ in $b$, zato je $F(a) \sim F(b)$ z izomorfizmom
+$\sigma \colon a \mapsto b$. Sledi, da obstaja izomorfizem
+$\tau \colon (F(a))(p) \to (F(b))(p)$, ki se na $F(a)$ ujema s
+$\sigma$:
+\[
+\begin{tikzcd}
+& {F(a)} & {(F(a))(p) = F(a)(b_1, \dots, b_r)} \\
+F \\
+& {F(b)} & {(F(b))(p) = F(b)(b_1, \dots, b_r)}
+\arrow[hook, from=2-1, to=1-2]
+\arrow[hook, from=2-1, to=3-2]
+\arrow["\sigma", from=1-2, to=3-2]
+\arrow[hook, from=1-2, to=1-3]
+\arrow[hook, from=3-2, to=3-3]
+\arrow["\tau", from=1-3, to=3-3]
+\end{tikzcd}
+\]
+Ker je $a \in F(p)$, je $a$ racionalna funkcija ničel polinoma $p$,
+zato je tudi $b = \sigma(a)$ racionalna funkcija ničel polinoma
+$p$, zato je $b \in F(p)$.
+\end{proof}
+
+\begin{definicija}
+Polinom $p(X) \in F[X]$ je
+\emph{separabilen}\index{Polinom!Separabilen}, če ima same
+enostavne ničle.
+\end{definicija}
+
+\begin{definicija}
+Končna razširitev $E/F$ je
+\emph{separabilna}\index{Razširitev polj!Separabilna}, če je za
+vse $a \in E$ minimalni polinom elementa $a$ separabilen.
+\end{definicija}
+
+\begin{izrek}[O primitivnem elementu]
+\index{Izrek!O primitivnem elementu}
+\label{gal:iz:1}
+Naj bo $\chr F = 0$. Če je $E/F$ končna razširitev, je enostavna.
+\end{izrek}
+
+\datum{2023-2-24}
+
+\begin{proof}
+Dovolj je pokazati, da za poljubna $a, b \in E$ velja
+$F(a,b) = F(a + \lambda b)$ za nek $\lambda \in F$. Naj bosta $p$
+in $q$ minimalna polinoma elementov $a$ in $b$ zaporedoma. Naj bodo
+njune ničle zaporedoma $a_1, a_2, \dots, a_m$ in
+$b_1, b_2, \dots b_n$, kjer je $a = a_1$ in $b = b_1$. Ker je
+$\chr F = 0$, so ničle posameznega polinoma paroma različne.
+
+Naj bo
+\[
+\lambda \in F \bigsetminus \setb{\frac{a-a_i}{b_j-b}}{j > 1}.
+\]
+Sedaj definiramo
+$\tilde{p}(X) = p(a+\lambda b-\lambda X) \in F(a + \lambda b)[X]$.
+Opazimo, da je $b$ edina skupna ničla polinomov $\tilde{p}$ in $q$.
+Sledi, da je $\gcd(\tilde{p},q) = X - b$. Po Bezoutovi lemi
+obstajata taka polinoma $r,s \in F(a+\lambda b)[X]$, da velja
+\[
+r \tilde{p} + sq = X-b,
+\]
+zato je tudi $X-b \in F(a+\lambda b)[X]$. Sledi, da je
+$b \in F(a+\lambda b)$ in posledično $a \in F(a+\lambda b)$.
+\end{proof}
+
+\begin{izrek}[O primitivnem elementu]
+\index{Izrek!O primitivnem elementu}
+Če je $E/F$ končna separabilna razširitev, je enostavna.
+\end{izrek}
+
+\begin{proof}
+Če je $F$ neskončno polje, lahko naredimo enak razmislek kot pri
+dokazu izreka~\ref{gal:iz:1}.
+
+Naj bo $F$ sedaj končno polje. Sledi, da je tudi
+$E = F(a_1, \dots, a_k)$ končno. Sledi, da je
+$(E \setminus \set{0}, \cdot)$ ciklična grupa -- naj bo $a$ njen
+generator. Očitno je tedaj $E = F(a)$.
+\end{proof}
+
+\newpage
+
+\subsection{Galoisova grupa}
+
+\begin{definicija}
+Avtomorfizem $\sigma$ polja $E$ je
+\emph{$F$-avtomorfizem}\index{Preslikava!$F$-avtomorfizem}, če je
+$\eval{\sigma}{F}{} = \id$. Množici $F$-avtomorfizmov pravimo
+\emph{Galoisova grupa}\index{Grupa!Galoisova} razširitve $E/F$ in
+jo označimo z $\Gal(E/F)$.
+\end{definicija}
+
+\begin{opomba}
+Galoisova grupa $\Gal(E/F)$ je podgrupa grupe $\Aut E$.
+\end{opomba}
+
+\begin{lema}
+Naj bo $E/F$ razširitev polja. Naj bo $a \in E$ ničla polinoma
+$p \in F[X]$. Potem je za poljuben $\sigma \in \Gal(E/F)$ tudi
+$\sigma(a)$ ničla polinoma $p$.
+\end{lema}
+
+\obvs
+
+\begin{zgled}
+Velja $\Gal(\C/\R) \cong \kvoc{\Z}{2\Z}$. Velja namreč
+$\Gal(\C/\R) = \set{\id, z \mapsto \oline{z}}$.
+\end{zgled}
+
+\begin{zgled}
+Grupa $\Gal(\Q(\sqrt[3]{2})/\Q)$ je trivialna.
+\end{zgled}
+
+\begin{trditev}
+Če je $E/F$ končna normalna separabilna razširitev, je
+\[
+\abs{\Gal(E/F)} = [E : F].
+\]
+\end{trditev}
+
+\begin{proof}
+Obstaja tak $a \in E$, da je $E = F(a)$. Naj bo $p$ minimalen
+polinom za $a$. Vse ničle polinoma $p$ so enostavne in vsebovane v
+$E$, velja pa $\deg p = [E : F]$. Da določimo
+$\sigma \in \Gal(E/F)$, je dovolj določiti $\sigma(a)$, za
+kar imamo natanko $\deg p$ možnosti -- za poljubno ničlo $b$
+polinoma $p$ preslikava $a \mapsto b$ inducira izomorfizem
+$E = F(a) \to F(b) \cong E$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $p \in F[X]$.
+\emph{Galoisova grupa}\index{Grupa!Galoisova} polinoma $p$ je
+grupa
+\[
+\Gal(p) = \Gal(F(p)/F).
+\]
+\end{definicija}
+
+\begin{opomba}
+Preslikava $\sigma \in \Gal(p)$ je permutacija ničel
+$a_1, \dots, a_k$ polinoma $p$, zato jo lahko vložimo v $S_k$.
+\end{opomba}
+
+\newpage
+
+\subsection{Galoisova korespondenca}
+
+\begin{definicija}
+Naj bo $G$ podgrupa v $\Gal(E/F)$.
+\emph{Fiksno polje}\index{Polje!Fiksno} glede na grupo $G$ je
+množica
+\[
+E^G = \setb{a \in E}{\forall \sigma \in G \colon \sigma(a) = a}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če so $F \subseteq L \subseteq E$ polja, je $\Gal(E/L)$ podgrupa v
+$\Gal(E/F)$.
+\end{opomba}
+
+\datum{2023-3-3}
+
+\begin{lema}
+Naj bodo $F \subseteq L \subseteq E$ polja.
+
+\begin{enumerate}[i)]
+\item Če je $E/F$ končna razširitev, je taka tudi $E/L$.
+\item Če je $E/F$ normalna razširitev, je taka tudi $E/L$.
+\item Če je $E/F$ separabilna razširitev, je taka tudi $E/L$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Ker je $E$ končnorazsežen vektorski prostor nad $F$, je
+končnorazsežen tudi nad poljem $L$.
+\item Naj bo $a \in E$ ničla nerazcepnega polinoma $p(x) \in L[x]$
+in naj bo $q$ minimalni polinom $a$ nad $F$. Opazimo, da velja
+$\gcd(p, q) = p$, saj je nekonstanten. Tako dobimo $p \mid q$. Ker
+so zaradi normalnosti razširitve $E/F$ vse ničle polinoma $q$
+vsebovane v $E$, enako velja za ničle $p$.
+\item Podobno kot pri drugi točki iz separabilnosti polinoma $q$
+sledi separabilnost minimalnega polinoma $p$ za $a \in E$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Normalnim separabilnim razširitvam pravimo
+\emph{Galoisove razširitve}\index{Galoisova razširitev}.
+\end{definicija}
+
+\begin{lema}
+Naj bo $E/F$ končna Galoisova razširitev. Tedaj je
+$E^{\Gal(E/F)} = F$.
+\end{lema}
+
+\begin{proof}
+Naj bo $a \in E \setminus F$ in $p$ minimalni polinom za $a$.
+Dovolj je dokazati, da obstaja izomorfizem $\sigma \in \Gal(E/F)$,
+za katerega je $\sigma(a) \ne a$. Ker je $a \not \in F$, je
+$\deg p > 1$. Zaradi separabilnosti ima $p$ tako še ničlo
+$b \ne a$. Ker imata $a$ in $b$ skupni minimalni polinom, obstaja
+izomorfizem $T \colon F(a) \to F(b)$, za katerega je $F(a) = b$.
+
+Ker je polje $F(p)$ razpadno polje nad $F(a)$ in $F(b)$, se
+izomorfizem $T$ razširi\footnote{Algebra 2.} do avtomorfizma
+$\widehat{T}$ polja $F(p)$. Ker pa je tudi $E / F(p)$ normalna, se
+$\widehat{T}$ razširi do izomorfizma $\sigma$ polja $E$.
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+&
+F(a)
+\arrow[r, hookrightarrow] \arrow[dd, "\cong", "T"']
+&
+F(a)(p) = F(p)
+\arrow[r, hookrightarrow] \arrow[dd, "\cong", "\widehat{T}"']
+&
+E
+\arrow[dd, "\cong", "\sigma"']
+\\
+F
+\arrow[ur, hookrightarrow] \arrow[dr, hookrightarrow]
+\\
+&
+F(b)
+\arrow[r, hookrightarrow]
+&
+F(b)(p) = F(p)
+\arrow[r, hookrightarrow]
+&
+E
+\end{tikzcd}
+\]
+Pri tem velja $\sigma(a) = b \ne a$, zato je
+$a \not \in E^{\Gal(E/F)}$.
+\end{proof}
+
+\begin{izrek}[Fundamentalni Galoisove teorije]
+\index{Izrek!Fund.~Galoisove teorije}
+Naj bo $E/F$ končna Galoisova razširitev.
+
+\begin{enumerate}[i)]
+\item Korespondenca $L \mapsto \Gal(E/L)$, $G \mapsto E^G$ med
+vmesnimi polji in podgrupami je bijektivna, ti preslikavi pa sta si
+inverzni.
+\item Za $F \subseteq L \subseteq M \subseteq E$ velja
+\[
+[\Gal(E/L) : \Gal(E/M)] = [M : L].
+\]
+\item Za $F \subseteq L \subseteq E$ je $L/F$ normalna razširitev
+natanko tedaj, ko je $\Gal(E/L) \edn \Gal(E/F)$. V tem primeru je
+\[
+\kvoc{\Gal(E/F)}{\Gal(E/L)} \cong \Gal(L/F).
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Naj bo $L$ vmesna razširitev polja $F$. Sledi, da je tudi
+$E/L$ Galoisova razširitev. Sledi, da je $E^{\Gal(E/L)} = L$.
+
+Naj bo sedaj $G \leq \Gal(E/F)$. Naj bo $\sigma \in G$ in
+$a \in E^G$. Po definiciji je $\sigma(a) = a$, zato je
+$\sigma \in \Gal(E / E^G)$ in posledično $G \leq \Gal(E/E^G)$.
+Pokažimo, da je $\abs{\Gal(E/E^G)} \leq \abs{G}$.
+
+Ker so je $E/F$ končna separabilna razširitev, obstaja tak
+$a \in E$, da je $E = F(a)$. Sedaj definiramo
+\[
+p(x) = \prod_{T \in G} (x - T(a)).
+\]
+Ni težko opaziti, da za vsak $\sigma \in G$ velja
+\[
+\sigma(p) = \prod_{T \in G} (X - \sigma(T(a))) = p,
+\]
+zato je $p \in E^G[x]$. Sledi, da minimalni polinom $q$ za $a$ nad
+$E^G$ deli $p$. Tako dobimo
+\[
+\abs{\Gal(E/E^G)} = [E : E^G] = \deg q \leq \deg p = \abs{G}.
+\]
+\item Ker velja $[E : L] = [E : M] \cdot [M : L]$, sledi
+\[
+[M : L] = \frac{[E : L]}{[E : M]} =
+\frac{\abs{\Gal(E/L)}}{\abs{\Gal(E/M)}}.
+\]
+\item Naj bo $a$ ničla minimalnega polinoma $p \in F[x]$. Po dokazu
+prejšnje leme vidimo, da za vsako ničlo $b$ polinoma $p$ obstaja
+izomorfizem $\sigma \in \Gal(E/F)$, za katerega je $\sigma(a) = b$.
+Poleg tega je za vsak $\sigma \in \Gal(E/F)$ element $\sigma(a)$
+ničla polinoma $p$, zato $\sigma(a)$ preteče natanko vse ničle
+polinoma $p$.
+
+Pokažimo, da je $L/F$ normalna razširitev natanko tedaj, ko je
+$\sigma(L) = L$ za vsak $\sigma \in \Gal(E/F)$. Če je $L$ normalna,
+lahko zapišemo $L = F(p) = F(a_1, \dots, a_n)$. Ker je za vsak
+$\sigma \in \Gal(E/F)$ element $\sigma(a_i)$ ničla minimalnega
+polinoma elementa $a_i$, je $\sigma(a_i) \in L$ zaradi normalnosti.
+Tako je res $\sigma(L) \subseteq L$ in zato $\sigma(L) = L$ zaradi
+enakosti dimenzij. Če je $\sigma(L) = L$, pa za vsaki ničli $a$ in
+$b$ nerazcepnega polinoma $p \in F[x]$ obstaja izomorfizem
+$\sigma$, za katerega je $\sigma(a) = b$. Če $L$ vsebuje ničlo $a$,
+vsebuje torej tudi vse ostale ničle.
+
+Pokažimo sedaj, da velja
+$\Gal(E/\sigma(L)) = \sigma \cdot \Gal(E/L) \cdot \sigma^{-1}$.
+Res, velja
+\begin{align*}
+\tau \in \Gal(E/\sigma(L)) &\iff
+\forall a \in L \colon \tau(\sigma(a)) = \sigma(a)
+\\
+&\iff
+\forall a \in L \colon \sigma^{-1}(\tau(\sigma(a))) = a
+\\
+&\iff
+\sigma^{-1} \tau \sigma \in \Gal(E/L).
+\end{align*}
+
+Sedaj lahko dokažemo trditev. Velja namreč
+\begin{align*}
+\text{$E/F$ je normalna razširitev} &\iff
+\forall \sigma \in \Gal(E/F) \colon \sigma(L) = L
+\\
+&\iff
+\forall \sigma \in \Gal(E/F) \colon
+\Gal(E/L) = \sigma \Gal(E/L) \sigma^{-1}
+\\
+&\iff
+\Gal(E/L) \edn \Gal(E/F).
+\end{align*}
+
+Denimo, da je $L$ res normalna razširitev. Naj bo
+$\Phi \colon \Gal(E/F) \to \Gal(L/F)$ homomorfizem s predpisom
+$\sigma \mapsto \eval{\sigma}{L}{}$. Ker je $E/L$ separabilna,
+lahko zapišemo $E = L(a)$. Poljuben izomorfizem
+$\tau \in \Gal(L/F)$ lahko razširimo do izomorfizma
+$\sigma \in \Gal(E/F)$ tako, da definiramo $\sigma(a) = a$. V tem
+primeru je seveda $\Phi(\sigma) = \tau$, zato je $\Phi$
+surjektiven. Očitno je $\ker \Phi = \Gal(E/L)$, zato po izreku o
+izomorfizmu sledi
+\[
+\kvoc{\Gal(E/F)}{\Gal(E/L)} \cong \Gal(L/F). \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\datum{2023-3-10}
+
+\begin{opomba}
+Naj bo $E/F$ končna razširitev in $H \leq \Gal(E/F)$ podgrupa,
+$L = E^H$ pa vmesna razširitev. Najmanjšo normalno razširitev
+$\widetilde{L}/F$, za katero je $L \subseteq \widetilde{L}$, dobimo
+kot $\widetilde{L} = E^{\widetilde{H}}$, kjer je
+\[
+\widetilde{H} =
+\bigcap_{\sigma \in \Gal(E/F)} \sigma H \sigma^{-1}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Polju $\widetilde{L}$ pravimo
+\emph{normalno zaprtje}\index{Polje!Normalno zaprtje} polja $L$.
+\end{definicija}
+
+\newpage
+
+\subsection{Rešljivost grup}
+
+\begin{definicija}
+Grupa $G$ je \emph{rešljiva}\index{Grupa!Rešljiva}, če obstaja
+končno zaporedje podgrup
+\[
+1 = G_0 \leq G_1 \leq \dots \leq G_k = G,
+\]
+za za katerega za vsak $i < k$ velja $G_i \edn G_{i+1}$ in je
+$\kvoc{G_{i+1}}{G_i}$ abelova.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $G$ rešljiva grupa.
+
+\begin{enumerate}[i)]
+\item Če je $H \leq G$, je tudi $H$ rešljiva.
+\item Če je $N \edn G$, je tudi $\kvoc{G}{N}$ rešljiva.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Po definiciji obstaja zaporedje
+\[
+1 = G_0 \leq G_1 \leq \dots \leq G_k = G,
+\]
+ki ustreza pogojem rešljivosti. Ni težko videti, da za zaporedje
+$H_i = H \cap G_i$ velja $H_i \edn H_{i+1}$. Velja še
+\[
+\kvoc{G_{i+1} \cap H}{G_i \cap H} =
+\kvoc{G_{i+1}}{G_{i+1} \cap H \cap G_i}.
+\]
+Opazimo, da je po drugem izreku o izomorfizmu
+\[
+\kvoc{G_{i+1}}{G_{i+1} \cap H \cap G_i} \cong
+\kvoc{(G_{i+1} \cap H) G_i}{G_i} \leq
+\kvoc{G_{i+1}}{G_i},
+\]
+zato so kvocienti abelovi. Sledi, da je $H$ rešljiva.
+
+Naj bo sedaj $N \edn G$. Tedaj je
+\[
+1 = \kvoc{G_0 N}{N} \leq \kvoc{G_1 N}{N} \leq \dots \leq
+\kvoc{G_k N}{N} = \kvoc{G}{N}.
+\]
+Opazimo, da velja $\kvoc{G_i N}{N} \edn \kvoc{G_{i+1} N}{N}$. Za
+$a \in G_i$, $b \in G_{i+1}$ in $n, m \in N$ namreč velja
+\[
+(bmN)(anN)(bmN)^{-1} =
+\underbrace{bmb^{-1}}_N
+\underbrace{bab^{-1}}_{G_i}
+\underbrace{b(nm^{-1})b^{-1}}_N N \in
+\kvoc{G_i N}{N}.
+\]
+Opazimo še
+\[
+\kvoc{G_{i+1} N}{G_i N} =
+\kvoc{G_{i+1} G_i N}{G_i N} \cong
+\kvoc{G_{i+1}}{G_{i+1} \cap G_i N} \cong
+\kvoc{\kvoc{G_{i+1}}{G_i}}{\kvoc{G_{i+1} \cap G_i N}{G_i}},
+\]
+kar je abelova grupa.
+\end{proof}
+
+\begin{opomba}
+Grupa $S_5$ ni rešljiva, saj $A_5$ ni rešljiva (je enostavna in ni
+abelova).
+\end{opomba}
+
+\begin{izrek}[Feit-Thompson]\index{Izrek!Feit-Thompson}
+Vsaka končna grupa lihe moči je rešljiva.
+\end{izrek}
+
+\newpage
+
+\subsection{Reševanje polinomskih enačb z radikali}
+
+V nadaljevanju predpostavimo $\chr F = 0$.
+
+\begin{definicija}
+Naj bo $p(X) \in F[X]$. Enačba $p(X) = 0$ je
+\emph{rešljiva z radikali}\index{Polinom!Rešljivost z radikali}, če
+obstaja tako zaporedje polj
+\[
+F = E_0 \subseteq E_1 \subseteq \dots \subseteq E_n = E,
+\]
+da so razširitve $E_{i+1}/E_i$ radikalske in velja
+$F(p) \subseteq E$.
+\end{definicija}
+
+\begin{lema}
+Naj bo $F$ polje, ki vsebuje $n$-te korene enote in $a \in F$.
+Tedaj je grupa $\Gal(X^n-a)$ ciklična.
+\end{lema}
+
+\begin{proof}
+Naj bo $\omega \in F$ primitiven $n$-ti koren enote. Tedaj so vse
+rešitve enačbe $X^n - a = 0$ ravno $b \omega^k$. Razpadno polje
+polinoma $X^n - a$ je tako kar $F(b)$.
+
+Naj bo $\sigma \in \Gal(X^n - a)$ in $\sigma(b) = b \omega^\ell$.
+Opazimo, da je preslikava $\Gal(X^n - a) \to \Z_n$,
+$\sigma \mapsto \ell$, injektiven homomorfizem.
+\end{proof}
+
+\begin{izrek}
+Recimo, da je enačba $p(X) = 0$ za $p(X) \in F[X]$ rešljiva z
+radikali. Potem je $\Gal_F(p)$ rešljiva grupa.
+\end{izrek}
+
+\begin{proof}
+Naj bo
+\[
+F = E_0 \subseteq E_1 \subseteq \dots \subseteq E_m = E
+\]
+zaporedje iz definicije rešljivosti z radikali. Naj bo še
+$a_i^{r_i} \in E_i$ za vsak $i$ in
+\[
+n = \prod_{i=1}^{m-1} r_i.
+\]
+Naj bo $\omega$ primitiven $n$-ti koren enote. Naj bo $\Omega$
+Galoisova razširitev polja $F$, ki vsebuje $E$ in $\omega$. Naj bo
+$\widetilde{E}$ normalno zaprtje $E(\omega)$ v $\Omega$. Opazimo,
+da je
+\[
+\widetilde{E} =
+F(\omega, a_1, \dots, a_{m-1}, \sigma_1(a_1), \dots).
+\]
+Tako lahko najdemo zaporedje
+\[
+F \subseteq F(\omega) \subseteq F(\omega, a_1) \subseteq
+\dots \subseteq \widetilde{E}.
+\]
+Z Galoisovo korespondenco dobimo zaporedje
+\[
+\Gal \br{\widetilde{E}/\widetilde{E}} \subseteq \dots \subseteq
+\Gal \br{\widetilde{E}/F(\omega, a_1)} \subseteq
+\Gal \br{\widetilde{E}/F(\omega)} \subseteq
+\Gal \br{\widetilde{E}/F}.
+\]
+Po zgornji lemi so kvocienti zaporednih grup ciklični. Sledi, da je
+$\Gal \br{\widetilde{E}/F}$ rešljiva grupa. Sledi, da je
+\[
+\Gal(E/F) \cong
+\kvoc{\Gal \br{\widetilde{E}/F}}{\Gal \br{\widetilde{E}/E}}
+\]
+rešljiva grupa.
+\end{proof}
+
+\begin{opomba}
+Velja tudi obratno -- če je $\Gal_F(p)$ rešljiva grupa, je enačba
+$p(X) = 0$ rešljiva z radikali.
+\end{opomba}

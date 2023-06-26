@@ -1,0 +1,715 @@
+\section{Teorija upodobitev}
+
+\epigraph{">Pa kemiki to uporabljajo ko opazujejo strukture
+kristalov. Samo da oni tega ne znajo."<}{-- prof.~dr.~Primož
+Moravec}
+
+\subsection{Upodobitve}
+
+\begin{definicija}
+Naj bo $R$ komutativen kolobar z enoto. $R$-modul $A$ je
+\emph{$R$-algebra}\index{$R$-algebra}, če je kolobar in za vse
+$r \in R$ ter $a_1, a_2 \in A$ velja
+\[
+r(a_1 a_2) = (r a_1) a_2 = a_1 (r a_2).
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $A$ $R$-algebra.
+\emph{Upodobitev}\index{$R$-algebra!Upodobitev} algebre $A$ je
+homomorfizem $R$-algeber $\rho \colon A \to \End_R(V)$, kjer je $V$
+$R$-modul.
+\end{definicija}
+
+\begin{opomba}
+Če je $V$ prost, lahko pišemo $\rho \colon A \to M_n(R)$. Številu
+$n$ pravimo \emph{stopnja upodobitve}.
+\end{opomba}
+
+\begin{opomba}
+Na vsako upodobitev $\rho$ $R$-algebre $A$ lahko gledamo kot
+$R$-modul $V$, ki je $A$-modul. Definiramo lahko namreč
+$a \cdot v = \rho(a)v$. Velja tudi obratno --
+$a \mapsto (v \mapsto av)$ je upodobitev $R$-algebre $A$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $G$ grupa. \emph{Grupna algebra}\index{Grupna algebra} $RG$
+je prosti $R$-modul nad množico $G$ z množenjem
+\[
+\br{\sum_{g \in G} \lambda_g g} \cdot \br{\sum_{h \in G} \mu_h h} =
+\sum_{g \in G} \br{\sum_{hk = g} \lambda_h \mu_k} g.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $G$ grupa. \emph{upodobitev grupe}\index{Upodobitev}
+$G$ nad $R$ je homomorfizem $R$-algeber
+$\rho \colon RG \to \End_R(V)$, kjer je $V$ $R$-modul.
+\end{definicija}
+
+\begin{trditev}
+Zožitev $\eval{\rho}{G}{}$ je homomorfizem grup $G$ in $\GL_R(V)$.
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+Vsak homomorfizem grup $G$ in $\GL_R(V)$ lahko razširimo do
+homomorfizma $R$-algeber $RG$ in $\End_R(V)$. Tako lahko
+ekvivalentno definiramo upodobitev grupe $G$ nad $R$ kot
+homomorfizem grup $\rho \colon G \to \GL_R(V)$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\rho \colon G \to \GL_R(V)$ upodobitev. Podmodul $W$
+$R$-modula $V$ je \emph{$G$-invarianten}, če za vsaka $g \in G$ in
+$w \in W$ velja $\rho(g) w \in W$.
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno je $W$ podmodul $RG$-modula $V$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $W \leq V$ $G$-invarianten podmodul. Upodobitvi
+$\rho_W \colon G \to \GL_R(W)$ s predpisom
+$g \mapsto (w \mapsto \rho(g) w)$ pravimo
+\emph{podupodobitev}\index{Upodobitev!Podupodobitev} upodobitve
+$\rho$.
+\end{definicija}
+
+\begin{definicija}
+Upodobitvi $\rho_1 \colon G \to \GL_R(V_1)$ in
+$\rho_2 \colon G \to \GL_R(V_2)$ sta
+\emph{ekvivalentni}\index{Upodobitev!Ekvivalentna}, če sta $V_1$ in
+$V_2$ izomorfna kot $RG$-modula.
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno obstaja izomorfizem $T \colon V_1 \to V_2$
+$R$-modulov, za katerega je $T \circ \rho_1(g) = \rho_2(g) \circ T$
+za vse $g \in G$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Direktna vsota}\index{Upodobitev!Direktna vsota} upodobitev
+$\rho_1 \colon G \to \GL_R(V_1)$ in
+$\rho_2 \colon G \to \GL_R(V_2)$ je upodobitev
+$\rho_1 \oplus \rho_2 \colon G \to \GL_R(V_1 \oplus V_2)$ s
+predpisom
+\[
+g \mapsto \br{(v_1, v_2) \mapsto (\rho_1(g) v_1, \rho_2(g) v_2)}.
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Tenzorski produkt}\index{Upodobitev!Tenzorski produkt}
+upodobitev $\rho_1 \colon G \to \GL_R(V_1)$ in
+$\rho_2 \colon G \to \GL_R(V_2)$ je upodobitev
+$\rho_1 \otimes \rho_2 \colon G \to \GL_R(V_1 \otimes_R V_2)$ s
+predpisom
+\[
+g \mapsto
+\br{v_1 \otimes v_2 \mapsto \rho_1(g) v_1 \otimes \rho_2(g) v_2}.
+\]
+\end{definicija}
+
+\newpage
+
+\subsection{Polenostavni moduli}
+
+\begin{definicija}
+Naj bo $V$ $A$-modul.
+\begin{enumerate}[i)]
+\item Modul $V$ je \emph{enostaven}\index{Modul!Enostaven}
+(nerazcepen), če sta edina njegova $A$-podmodula $\set{0}$ in $V$.
+\item Modul $V$ je \emph{polenostaven}\index{Modul!Polenostaven}
+(povsem razcepen), če je direktna vsota enostavnih $A$-podmodulov.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Maschke]\index{Izrek!Maschke}
+Naj bo $G$ končna grupa in $F$ polje, za katerega
+$\chr F \nmid \abs{G}$. Naj bo $\rho \colon G \to \GL_F(V)$
+upodobitev grupe $G$ nad $F$ za končnorazsežen vektorski prostor
+$V$ in $W$ $G$-invarianten podprostor v $V$. Potem obstaja
+$G$-invarianten podprostor $U$ v $V$, za katerega je
+$V = W \oplus U$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\pi \colon V \to W$ projektor. Definirajmo preslikavo
+$\pi' \colon V \to V$ s predpisom
+\[
+\pi' = \frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \pi \rho(g)^{-1}.
+\]
+Tudi $\pi'$ je projektor na $W$. Za $w \in W$ namreč velja
+\[
+\pi' w =
+\frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \pi \rho^{-1}(g) w =
+\frac{1}{\abs{G}} \sum_{g \in G} \rho(g) \rho^{-1}(g) w =
+w,
+\]
+saj je $\rho^{-1}(g) w \in W$, poleg tega pa je seveda
+$\im \pi' = W$. Sledi, da je $V = W \oplus \ker \pi'$. Dovolj je
+tako pokazati, da je $\ker \pi'$ $G$-invarianten. Zadošča torej, da
+je $\pi' \colon V \to W$ homomorfizem $G$-modulov. Velja pa
+\begin{align*}
+\pi'(g \cdot v) &=
+\frac{1}{\abs{G}}
+\sum_{g \in G} \rho(g) \pi \rho^{-1}(g) \rho(h) v
+\\
+&=
+\frac{1}{\abs{G}}
+\sum_{g \in G} \rho(h) \rho(h^{-1} g) \pi \rho(g^{-1} h) v
+\\
+&=
+\frac{1}{\abs{G}}
+\rho(h) \sum_{g \in G} \rho(g) \pi \rho^{-1}(g) v
+\\
+&=
+h \cdot (\pi' v). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Naj bo $F$ polje in $G$ končna grupa, za katero
+$\chr F \nmid \abs{G}$. Potem je vsak končnorazsežen $FG$-modul
+polenostaven.
+\end{posledica}
+
+\begin{lema}\label{rep:lm:dir_sum}
+Naj bo $U = S_1 + \dots + S_n$ $A$-modul, pri čemer so $S_i$
+enostavni $A$-moduli. Naj bo $V$ podmodul v $U$. Potem obstaja
+podmnožica $I \subseteq \setb{i \in \N}{i \leq n}$, za katero je
+\[
+U = V \oplus \bigoplus_{i \in I} S_i.
+\]
+\end{lema}
+
+\begin{proof}
+Naj bo $I$ maksimalna množica, za katero je
+\[
+W = V \oplus \bigoplus_{i \in I} S_i
+\]
+direktna vsota. Če obstaja $j$, za katerega je
+$S_j \not \subseteq W$, zaradi enostavnosti sledi
+$S_j \cap W = \set{0}$, kar je v prostislovju z maksimalnostjo
+množice $I$. Sledi, da je $W = U$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $U$ $A$-modul.
+\emph{Kompozicijska vrsta}\index{Modul!Kompozicijska vrsta} modula
+$U$ je zaporedje
+\[
+\set{0} = U_0 \leq U_1 \leq \dots \leq U_n = U,
+\]
+pri čemer je za vsak $i$ modul $U_i$ maksimalen podmodul v
+$U_{i+1}$. Modulom, za katere obstaja končna kompozicijska vrsta,
+pravimo \emph{moduli s končno kompozicijsko dolžino}.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $U$ $A$-modul. Naslednje trditve so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $U$ je direktna vsota končno mnogo enostavnih podmodulov.
+\item $U$ je direktna vsota končno mnogo enostavnih $A$-modulov.
+\item $U$ ima končno kompozicijsko dolžino in vsak podmodul v $U$
+je direktni sumand $U$-ja.
+\end{enumerate}
+
+Če drži katera od zgornjih trditev, velja tudi za vse podmodule in
+kvociente $U$-ja.
+\end{trditev}
+
+\begin{proof}
+Prvi trditvi sta ekvivalentni po lemi~\ref{rep:lm:dir_sum}. Ti
+trditvi po isti lemi implicirata tretjo.
+
+Predpostavimo, da ima $U$ končno kompozicijsko dolžino in da je
+vsak podmodul v $U$ njegov direktni sumand. Opazimo, da to velja
+tudi za vse podmodule $V \leq U$, saj lahko za $W \leq V$ zapišemo
+$V = W \oplus (X \cap V)$. Nadaljujemo z indukcijo po dolžini
+kompozicijske vrste.
+
+Če je dolžina vrste enaka $1$, je $U$ enostaven, zato velja prva
+trditev. Če je dolžina vrste daljša, lahko zapišemo
+$U = V \oplus W$ in uporabimo indukcijsko predpostavko na $V$ ter
+$W$.
+
+Dokažimo še dedovanje na podmodule in kvociente. Na podmodule se
+deduje tretja trditev. Za vsak kvocient $\kvoc{U}{V}$ lahko po
+tretji trditvi zapišemo $U = V \oplus W$. Ker je $W$ podmodul v
+$U$, zadošča prvi trditvi. Sledi, da ji zadošča tudi
+$\kvoc{U}{V} \cong W$.
+\end{proof}
+
+\newpage
+
+\subsection{Artin-Wedderburnov izrek}
+
+\begin{izrek}[Schurova lema]\index{Schurova lema}
+Naj bo $A$ končnorazsežna algebra nad poljem $F$. Naj bosta $S_1$
+in $S_2$ enostavna $A$-modula.
+
+\begin{enumerate}[i)]
+\item Če je $S_1 \not \cong S_2$, je $\Hom_A(S_1, S_2) = \set{0}$.
+\item $\End_A(S_1)$ je obseg.
+\item Če je $F$ algebraično zaprto, je $\End_A(S_1) \cong F$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Naj bo $\varphi \colon S_1 \to S_2$ neničeln homomorfizem
+$A$-modulov. Ker je $\im \varphi$ neničeln podmodul v $S_2$, je
+$\im \varphi = S_2$. Ker je $\ker \varphi \ne S_1$, je
+$\ker \varphi = \set{0}$. Sledi, da je $\varphi$ izomorfizem.
+\item Vsi neničelni homomorfizmi so po istem argumentu kot v prvi
+točki izomorfizmi.
+\item Naj bo $\lambda \in F$ lastna vrednost endomorfizma
+$\varphi$. Sledi, da $\varphi = \lambda I$ ni injektiven, zato je
+$\varphi = \lambda I$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Za kolobar $A$ definiramo
+\emph{nasprotni kolobar}\index{Kolobar!Nasprotni} $A^{\mathsf{op}}$
+kot kolobar, katerega elementi so elementi $A$, seštevanje sovpada
+s seštevanjem v $A$, množenje pa je definirano z $a \cdot b = ba$.
+\end{definicija}
+
+\begin{lema}
+Naj bo $A$ kolobar z enoto. Če na $A$ gledamo kot na $A$-modul,
+velja $\End_A(A) \cong A^{\mathsf{op}}$.
+\end{lema}
+
+\begin{proof}
+Preslikavi $\varphi \mapsto \varphi(1)$ in
+$x \mapsto (a \mapsto ax)$ sta inverzna homomorfizma.
+\end{proof}
+
+\begin{definicija}
+Naj bo $A$ kolobar z enoto. $A$ je
+\emph{polenostaven}\index{Kolobar!Polenostaven}, če so vsi
+$A$-moduli polenostavni.
+\end{definicija}
+
+\begin{lema}
+Če je
+\[
+U = \bigoplus_{i=1}^r U_i
+\]
+$A$-modul, je $\End_A(U)$ izomorfen algebri $r \times r$ matrik
+$[\varphi_{i,j}]$, kjer je $\varphi_{i,j} \in \Hom_A(U_i, U_j)$.
+\end{lema}
+
+\begin{proof}
+Ni težko videti, da so endomorfizmi $\varphi \in \End_A(U)$ v
+bijektivni korespondenci z zgornjimi matrikami. Kratek izračun
+pokaže, da velja
+\[
+\varphi \circ \psi(v_j) =
+\sum_{i=1}^r \br{\varphi \circ \psi}_{i,j}(v_j). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Artin-Wedderburn]\index{Izrek!Artin-Wedderburn}
+Naj bo $A$ končnorazsežna algebra nad poljem $F$, za katero velja,
+da je vsak končnogeneriran $A$-modul polenostaven. Potem je $A$
+direktna vsota matričnih algeber nad obsegi. Natančneje, če je
+\[
+A = \bigoplus_{i=1}^k S_i^{n_i},
+\]
+kjer so $S_i$ paroma neizomorfni enostavni $A$-moduli, je $A$ kot
+$F$-algebra izomorfna
+\[
+\bigoplus_{i=1}^k M_{n_i}(D_i),
+\]
+kjer je $D_i = \End_A(S_i)^{\mathsf{op}}$. Če je $F$ algebraično
+zaprto, je $D_i = F$.
+\end{izrek}
+
+\begin{proof}
+Po Schurovi lemi je $\Hom_A \br{S_j^{n_j}, S_i^{n_i}} = \set{0}$ za
+vse $i \ne j$. Po lemi sledi, da je $\End_A(U)$ izomorfen algebri
+$n \times n$ matrik, ki pa so bločno diagonalne. Posebej, velja
+\[
+\End_A(A) \cong \bigoplus_{i=1}^k \End_A \br{S_i^{n_i}}.
+\]
+Po zgornji lemi pa je $\End_A \br{S_i^{n_i}}$ izomorfna algebri
+$n_i \times n_i$ matrik z elementi iz
+$\End_A(S_i) = D_i^{\mathsf{op}}$. Velja torej
+\[
+A^{\mathsf{op}} \cong
+\End_A(A) \cong
+\bigoplus_{i=1}^k M_{n_i} \br{D_i^{\mathsf{op}}}.
+\]
+Ker je
+$M_{n_i} \br{D_i^{\mathsf{op}}}^{\mathsf{op}} \cong M_{n_i}(D_i)$,
+je izrek dokazan. Enakost $D_i = F$ v primeru algebraične zaprtosti
+sledi iz Schurove leme.
+\end{proof}
+
+\begin{opomba}
+Vsaka direktna vsota matričnih algeber je polenostavna.
+\end{opomba}
+
+\begin{opomba}
+Algebra $M_n(D)$ je enostavna.
+\end{opomba}
+
+\begin{opomba}
+Matrične algebre, ki nastopajo v razcepi, so enolično določene do
+izomorfizma natančno.
+\end{opomba}
+
+\begin{posledica}
+Naj bo $A$ končnorazsežna $F$-algebra. Če je $A$ kot $A$-modul enak
+\[
+A = \bigoplus_{i=1}^r S_i^{n_i},
+\]
+kjer so $S_i$ paroma neizomorfni enostavni $A$-moduli, je
+$\setb{S_i}{1 \leq i \leq r}$ množica vseh predstavnikov izomorfnih
+razredov enostavnih $A$-modulov. Če je $F$ algebraično zaprto, je
+$n_i = \dim_F S_i$ in
+\[
+\dim_F A = \sum_{i=1}^r n_i^2.
+\]
+\end{posledica}
+
+\begin{proof}
+Najprej opazimo, da je vsak enostaven $A$-modul izomorfen
+$\kvoc{A}{I}$. Res, naj bo $u \in U$ neničeln element modula.
+Ker je $Au$ netrivialen podmodul v $U$, je $Au = U$. Po izreku o
+izomorfizmu sledi $\kvoc{A}{\ker \varphi} \cong U$ za homomorfizem
+$\varphi \colon a \mapsto au$. Če $\ker \varphi$ ni maksimalen
+ideal, modul $U$ ni enostaven.
+
+Za vsak enostaven $A$-modul $S$ tako sledi, da je kvocient modula
+\[
+\bigoplus_{i=1}^r S_i^{n_i}.
+\]
+Ker je kompozitum inkluzije $S_i \hookrightarrow A$ in kvocientne
+projekcije izomorfizem enostavnih modulov, sledi, da za nek $i$
+velja $S \cong S_i$.
+
+Naj bo sedaj $F$ algebraično zaprto. Po Schurovi lemi tako velja
+\[
+A \cong \bigoplus_{i=1}^r M_{n_i}(F),
+\]
+od koder sledi
+\[
+\dim_F A = \sum_{i=1}^r n_i^2.
+\]
+Preostane še dokaz enakosti $n_i = \dim_F S_i$. Pokažimo, da je
+$S_i^{n_i} \cong M_{n_i}(F)$.
+
+Iz dokaza Artin-Wedderburnovega izreka vidimo, da za vsaka
+$s \in S_i^{n_i}$ in $t \in M_{n_j}(F)$ ob pogoju $i \ne j$ velja
+$st = 0$. Opazimo, da je $M_{n_i}(F) \cong \kvoc{A}{V}$, kjer je
+$V$ podmodul direktne vsote matričnih algeber, ki ga $M_{n_i}(F)$
+anihilira. Kompozitum inkluzije $S_i^{n_i}$ v $A$ in kvocientne
+projekcije je tako surjektiven, zato je
+$\dim_F S_i^{n_i} \geq \dim_F M_{n_i}(F)$. Ker je
+\[
+\dim_F A = \sum_{i=1}^r \dim_F S_i^{n_i},
+\]
+sledi, da velja enakost.
+\end{proof}
+
+\begin{posledica}
+Naj bo $G$ končna grupa in $F$ polje, za katerega
+$\chr F \nmid \abs{G}$.
+
+\begin{enumerate}[i)]
+\item Kot kolobar je $FG$ izomorfen direktni vsoti matričnih
+algeber nad obsegi.
+\item Če je $F$ algebraično zaprto in je $S_1, \dots, S_r$
+kompleten nabor predstavnikov izomorfnih razredov enostavnih
+$FG$-modulov, za $d_i = \dim_F S_i$ velja, da je $d_i$ večkratnost,
+s katero $S_i$ nastopa v razcepu $FG$-modula $FG$ in je
+\[
+\abs{G} = \sum_{i=1}^r d_i^2.
+\]
+\end{enumerate}
+\end{posledica}
+
+\newpage
+
+\subsection{Karakterji}
+
+\begin{definicija}
+Naj bo $\rho \colon G \to \GL_\C(V)$ končnorazsežna upodobitev
+končne grupe $G$. Preslikavi $\chi \colon G \to \C$ s predpisom
+\[
+\chi(g) = \tr \rho(g)
+\]
+pravimo \emph{karakter}\index{Upodobitev!Karakter} upodobitve
+$\rho$.
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\chi$ karakter upodobitve $\rho$.
+
+\begin{enumerate}[i)]
+\item Velja $\chi(1) = \deg \rho$.
+\item Za vsak $g \in G$ je $\chi (x^{-1}) = \oline{\chi(g)}$.
+\item Za vse $g, h \in G$ je $\chi(hgh^{-1}) = \chi(g)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo drugo točko. Ker je $\rho(g)^n = 1$, so lastne vrednosti
+$\rho(g)$ koreni enote. Ker velja $\lambda^{-1} = \oline{\lambda}$,
+sledi
+\[
+\rho(g^{-1}) = \sum_{i=1}^n \lambda_i^{-1} =
+\sum_{i=1}^n \oline{\lambda_i} = \oline{\rho(g)}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $V$ končnorazsežen $\C G$-modul. S $\chi_V$ označimo
+karakter upodobitve $\rho \colon G \to \GL_\C(V)$.
+\end{definicija}
+
+\begin{opomba}
+Ta karakter je dobro definiran. Če sta $V$ in $W$ izomorfna
+$\C G$-modula, velja namreč
+\[
+\rho_V(g) = T^{-1} \circ \rho_W(g) \circ T,
+\]
+zato sta sledi enaki.
+\end{opomba}
+
+\begin{trditev}
+Naj bosta $V$ in $W$ končnorazsežna $\C G$-modula. Tedaj je
+
+\begin{enumerate}[i)]
+\item $\chi_{V \oplus W} = \chi_V + \chi_W$,
+\item $\chi_{V \otimes W} = \chi_V \times \chi_W$ in
+\item $\chi_{V^*} = \oline{\chi_V}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Preprosto izračunamo sled pripadajočičh matrik. Upodobitev
+$\rho^* \colon G \to \GL_\C(V^*)$ deluje s predpisom
+$\rho(g) = (\varphi \mapsto \varphi \circ \rho(g^{-1}))$.
+\end{proof}
+
+\begin{lema}
+Naj bosta $V$ in $W$ končnorazsežna $\C G$-modula. Tedaj sta
+$G$-modula $\Hom_\C(V, W)$ in $V^* \otimes_\C W$ izomorfna.
+\end{lema}
+
+\begin{proof}
+Naj bo $\alpha \colon V^* \otimes_\C W \to \Hom_\C(V, W)$
+preslikava, podana s predpisom
+$\varphi \otimes w \mapsto (v \mapsto \varphi(v) w)$. Očitno je
+$\C$-linearna, ker pa velja
+\[
+\alpha(g (\varphi \otimes w)) =
+\alpha(g \varphi \otimes gw) =
+(v \mapsto (g \varphi)(v) gw) =
+(v \mapsto \varphi(g^{-1}v) gw) =
+g \cdot \alpha(\varphi \otimes w).
+\]
+Zaradi enakosti dimenzij je dovolj, da dokažemo surjektivnost. Naj
+bo $f \colon V \to W$ poljuben homomorfizem. Za bazo
+$\setb{v_i}{i \leq n}$ naj bo $f(v_i) = w_i$. Naj bo
+$\setb{\varphi_i}{i \leq n}$ dualna baza in
+\[
+\widetilde{f} = \sum_{i=1}^n \varphi_i \otimes f(v_i).
+\]
+Tedaj je
+\[
+\alpha \br{\widetilde{f}} v_j = f(v_j),
+\]
+zato je $\alpha \br{\widetilde{f}} = f$.
+\end{proof}
+
+\begin{lema}
+Naj bosta $V$ in $W$ končnorazsežna $\C G$-modula. Tedaj je
+$\Hom_\C(V, W)^G = \Hom_{\C G}(V, W)$.
+\end{lema}
+
+\begin{proof}
+Naj bo $\varphi \in \Hom_\C(V, W)$. Sledi, da je
+\begin{align*}
+\varphi \in \Hom_\C(V,W)^G &\iff
+\forall g \in G \colon g \cdot \varphi = \varphi
+\\
+&\iff
+\forall g \in G \colon \forall v \in V \colon
+g \varphi(g^{-1} v) = \varphi(v)
+\\
+&\iff
+\forall g \in G \colon \forall v \in V \colon
+\varphi(g v) = g \varphi(v)
+\\
+&\iff
+\varphi \in \Hom_{\C G}(V, W). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{lema}
+Naj bo $V$ $\C G$-modul. Tedaj je preslikava $\pi \colon V \to V$ s
+predpisom
+\[
+\pi = \frac{1}{\abs{G}} \sum_{g \in G} g
+\]
+homomorfizem $G$-modulov in projektor na $V^G$ in velja
+\[
+\tr \br{\frac{1}{\abs{G}} \sum_{g \in G}} = \dim V^G.
+\]
+\end{lema}
+
+\begin{proof}
+Očitno je $\pi$ linearna. Ker je
+\begin{align*}
+\pi(hv) &=
+\br{\frac{1}{\abs{G}} \sum_{g \in G} g} hv
+\\
+&=
+\br{\frac{1}{\abs{G}} \sum_{g \in G} gh} v
+\\
+&=
+\pi(v)
+\\
+&=
+\br{\frac{1}{\abs{G}} \sum_{g \in G} hg} v
+\\
+&=
+h \pi(v),
+\end{align*}
+je tudi homomorfizem $G$-modulov. Seveda je $\pi(v) \in V^g$. Ker
+je očitno $\eval{\pi}{V^G}{} = \id$, je to res projektor. Ker je
+sled projektorja enaka dimenziji slike, velja tudi zgornja enakost.
+\end{proof}
+
+\begin{definicija}
+Naj bosta $\varphi, \psi \colon G \to \C$ funkciji, konstantni na
+konjugiranostnih razredih. Definiramo
+\emph{skalarni produkt}\index{Upodobitev!Skalarni produkt}
+\[
+\skl{\varphi, \psi} =
+\frac{1}{\abs{G}} \sum_{g \in G} \oline{\varphi(g)} \psi(g).
+\]
+\end{definicija}
+
+\begin{trditev}
+Za vse $\varphi, \psi, \varphi_1$ in $\varphi_2$ velja:
+
+\begin{enumerate}[i)]
+\item $\skl{\varphi, \varphi} \geq 0$,
+\item $\skl{\varphi, \varphi} = 0 \iff \varphi = 0$,
+\item $\skl{\varphi, \psi} = \oline{\skl{\psi, \varphi}}$,
+\item $\skl{\varphi_1 + \varphi_2, \psi} =
+\skl{\varphi_1, \psi} + \skl{\varphi_2, \psi}$ in
+\item $\skl{\varphi_1 \varphi_2, \psi} =
+\skl{\varphi_1, \oline{\varphi_2} \psi}$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Če sta $\chi$ in $\psi$ karakterja, velja
+$\skl{\chi, \psi} = \skl{\psi, \chi}$.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\skl{\chi, \psi} =
+\frac{1}{\abs{G}} \sum_{g \in G} \oline{\chi(g)} \psi(g) =
+\frac{1}{\abs{G}} \sum_{g \in G} \chi(g^{-1}) \psi(g) =
+\frac{1}{\abs{G}} \sum_{g \in G} \chi(g) \psi(g^{-1}) =
+\skl{\psi, \chi}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Veljata naslednji trditvi:
+
+\begin{enumerate}[i)]
+\item Če je $\chi$ karakter nerazcepne upodobitve $G$, je
+$\skl{\chi, \chi} = 1$.
+\item Če sta $\chi$ in $\psi$ karakterja neizomorfnih upodobitev
+$G$, je $\skl{\chi, \psi} = 0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj bosta $V$ in $W$ pripadajoča $\C G$-modula. Na elemente $g$
+glejmo kot na delovanje na prostoru $\Hom_\C(V,W)$. Po Schurovi
+lemi je
+\[
+\tr \br{\frac{1}{\abs{G}} \sum_{g \in G} g} =
+\dim \Hom_\C(V, W)^G =
+\dim \Hom_{\C G}(V, W) =
+\begin{cases}
+0, & V \not \cong W, \\
+1, & V \cong W.
+\end{cases}
+\]
+Ker je
+\[
+\skl{\chi, \psi} =
+\frac{1}{\abs{G}} \sum_{g \in G} \br{\oline{\chi} \psi}(g)
+\]
+in je $\oline{\chi} \psi$ karakter $\Hom_\C(V, W)$, je
+\[
+\skl{\chi, \psi} =
+\tr \br{\frac{1}{\abs{G}} \sum_{g \in G} g}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo
+\[
+V = \bigoplus_{i=1}^r S_i^{n_i}
+\]
+končnorazsežen $\C G$-modul, pri čemer so $S_i$ paroma neizomorfni
+enostavni $\C G$-moduli. Tedaj je
+\[
+n_i = \skl{\chi_V, \chi_i},
+\]
+kjer je $\chi_i$ karakter upodobitve $S_i$.
+\end{posledica}
+
+\begin{proof}
+Velja
+\[
+\chi_V = \sum_{i=1}^r n_i \chi_i. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bosta $V$ in $W$ končnorazsežna $\C G$-modula. Tedaj je
+$V \cong W$ natanko tedaj, ko je $\chi_V = \chi_W$.
+\end{posledica}
+
+\begin{proof}
+Uporabimo prejšnjo posledico.
+\end{proof}
+
+\begin{posledica}
+Če je $V$ končnorazsežen $\C G$-modul, za njegov karakter $\chi$
+velja $\skl{\chi, \chi} = 1$ natanko tedaj, ko je enostaven.
+\end{posledica}
+
+\begin{proof}
+Razpišemo lahko
+\[
+\skl{\chi, \chi} = \sum_{i=1}^r n_i^2. \qedhere
+\]
+\end{proof}

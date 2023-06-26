@@ -1,0 +1,460 @@
+\section{Teorija kategorij}
+
+\epigraph{">Ups, niste videli..."<}{-- prof.~dr.~Primož Moravec}
+
+\subsection{Definicija, izomorfizmi, začetni in končni objekti}
+
+\datum{2023-4-14}
+
+\begin{definicija}
+\emph{Kategorija}\index{Kategorija} $\cat{C}$ je struktura, ki ima
+
+\begin{itemize}
+\item razred objektov $\Ob \cat{C}$,
+\item za vsaka $A, B \in \Ob \cat{C}$ množico morfizmov
+$\cat{C}(A, B)$,
+\item operacijo komponiranja
+$\circ \colon \cat{C}(A,B) \times \cat{C}(B,C) \to \cat{C}(A,C)$,
+pri čemer je komponiranje asociativno in unitalno.\footnote{Za vsak
+$A \in \cat{C}$ obstaja $1_A \in \cat{C}(A,A)$, za katerega je
+$f \circ 1_A = f$ in $1_A \circ g$.}
+\end{itemize}
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\cat{C}$ kategorija in $f \in \cat{C}(A,B)$ morfizem. $f$
+je \emph{izomorfizem}\index{Kategorija!Izomorfizem}, če ima inverz
+$g \in \cat{C}(B,A)$, za katerega je
+\[
+f \circ g = 1_B
+\quad \text{in} \quad
+g \circ f = 1_A.
+\]
+Objekta $A$ in $B$ kategorije $\cat{C}$ sta \emph{izomorfna}, če
+v $\cat{C}(A,B)$ obstaja izomorfizem. Pišemo $A \cong B$.
+\end{definicija}
+
+\begin{opomba}
+Inverz je enolično določen.
+\end{opomba}
+
+\begin{definicija}
+Morfizem $f \in \cat{C}(A,B)$ je
+\index{Kategorija!Prerez, retrakt}
+\index{Kategorija!Monomorfizem, epimorfizem}
+
+\begin{enumerate}[i)]
+\item \emph{prerez}, če ima levi inverz,
+\item \emph{retrakt}, če ima desni inverz,
+\item \emph{monomorfizem}, če za vsaka $g, h \in \cat{C}(C,A)$ iz
+\[
+f \circ g = f \circ h
+\]
+sledi $g = h$,
+\item \emph{epimorfizem}, če za vsaka $g, h \in \cat{C}(B,C)$ iz
+\[
+g \circ f = h \circ f
+\]
+sledi $g = h$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Objekt $Z \in \Ob \cat{C}$ je
+\emph{začeten objekt}\index{Kategorija!Začetni, končni objekt}, če
+za vsak objekt $C \in \Ob \cat{C}$ obstaja natanko en morfizem v
+$\cat{C}(Z,C)$.
+
+Objekt $K \in \Ob \cat{C}$ je končen objekt, če za vsak objekt
+$C \in \Ob \cat{C}$ obstaja natanko en morfizem v $\cat{C}(C,K)$.
+\end{definicija}
+
+\begin{trditev}
+Poljubna začetna objekta v $\cat{C}$ sta izomorfna.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $Z_1$ in $Z_2$ začetna objekta. Sledi, da je $1_{Z_1}$
+edini morfizem v $\cat{C}(Z_1, Z_1)$. Obstajata še morfizma
+$f \in \cat{C}(Z_1, Z_2)$ in $g \in \cat{C}(Z_2, Z_1)$. Ker je
+$g \circ f \in \cat{C}(Z_1, Z_1)$, je $g \circ f = 1_{Z_1}$.
+Simetrično dobimo $f \circ g = 1_{Z_2}$.
+\end{proof}
+
+\begin{opomba}
+Enako velja za končne objekte.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\cat{C}$ kategorija.
+\emph{Dualna kategorija}\index{Kategorija!Dualna}
+$\cal{C}^{\mathsf{op}}$ kategorije $\cat{C}$ je kategorija, v
+kateri je
+
+\begin{enumerate}[i)]
+\item $\Ob \cat{C}^{\mathsf{op}} = \Ob \cat{C}$,
+\item $	\cat{C}^{\mathsf{op}}(A,B) = \cat{C}(B,A)$ in
+\item za komponiranje $*$ velja $g * f = f \circ g$.\footnote{Tu
+$\circ$ označuje komponiranje v $\cat{C}$.}
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Morfizem $f$ je monomorfizem v $\cat{C}$ natanko tedaj, ko je
+$f$ epimorfizem v $\cat{C}^{\mathsf{op}}$.
+\end{opomba}
+
+\begin{opomba}
+Objekt $Z$ je začetni objekt v $\cat{C}$ natanko tedaj, ko je
+končen objekt v $\cat{C}^{\mathsf{op}}$.
+\end{opomba}
+
+\newpage
+
+\subsection{Funktorji in naravne transformacije}
+
+\datum{2023-4-21}
+
+\begin{definicija}
+Naj bosta $\cat{C}$ in $\cat{D}$ kategoriji.
+\emph{Funktor}\index{Funktor} $F$ iz $\cat{C}$ v $\cat{D}$ je
+predpis, sestavljen iz
+
+\begin{enumerate}[i)]
+\item predpisa $\Ob \cat{C} \to \Ob \cat{D}$, $A \mapsto F(A)$,
+\item za vsaka objekta $A$ in $B$ iz $\cat{C}$ imamo predpis
+$\cat{C}(A,B) \to \cat{D}(F(A), F(B))$, $f \mapsto F(f)$.
+\end{enumerate}
+
+Pri tem zahtevamo $F(1_A) = 1_{F(A)}$ za vsak $A \in \Ob \cat{C}$
+in $F(f \circ g) = F(f) \circ F(g)$ za vse smiselne $f$ in $g$.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $\cat{C}$ in $\cat{D}$ kategoriji.
+\emph{Kontravariantni funktor}\index{Kategorija!Kofunktor}
+(\emph{kofunktor}) $F \colon \cat{C} \to \cat{D}$ je predpis,
+sestavljen iz
+
+\begin{enumerate}[i)]
+\item predpisa $\Ob \cat{C} \to \Ob \cat{D}$, $A \mapsto F(A)$,
+\item za vsaka objekta $A$ in $B$ iz $\cat{C}$ imamo predpis
+$\cat{C}(A,B) \to \cat{D}(F(B), F(A))$, $f \mapsto F(f)$.
+\end{enumerate}
+
+Pri tem zahtevamo $F(1_A) = 1_{F(A)}$ za vsak $A \in \Ob \cat{C}$
+in $F(f \circ g) = F(g) \circ F(f)$ za vse smiselne $f$ in $g$.
+\end{definicija}
+
+\begin{opomba}
+Kofunktor $F \colon \cat{C} \to \cat{D}$ je funktor
+$F \colon \cat{C}^{\mathsf{op}} \to \cat{D}$.
+\end{opomba}
+
+\begin{opomba}
+Funktorji ohranjajo izomorfizme, prereze in retrakte, ne pa nujno
+monomorfizmov, epimorfizmov, začetnih in končnih objektov.
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $F, G \colon \cat{C} \to \cat{D}$ funktorja.
+\emph{Naravna transformacija}\index{Kategorija!Naravna transformacija}
+$\mu \colon F \to G$ je nabor morfizmov
+$\mu_C \colon F(C) \to G(C)$ za $C \in \cat{C}$, za katere
+diagram
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+F(C) \arrow[r, "F(f)"] \arrow[d, "\mu_C"'] &
+F(D) \arrow[d, "\mu_D"] \\
+G(C) \arrow[r, "G(f)"'] & G(D)
+\end{tikzcd}
+\]
+komutira za vse $f \in \cat{C}(C,D)$.
+\end{definicija}
+
+\newpage
+
+\subsection{Univerzalne konstrukcije}
+
+\begin{definicija}
+Naj bosta $A$ in $B$ objekta kategorije $\cat{C}$.
+\emph{Produkt}\index{Kategorija!Produkt} $A$ in $B$ je tak objekt
+$C$ z morfizmoma $p \colon C \to A$ in $q \colon C \to B$, da za
+vsak $X \in \Ob \cat{C}$ in morfizma $f \colon X \to A$ ter
+$g \colon X \to B$ obstaja natanko en morfizem $h \colon X \to C$,
+da velja $p \circ h = f$ in $q \circ h = g$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+A & C \arrow[l, "p"'] \arrow[r, "q"] & B \\
+  & X \arrow[ul, "f"] \arrow[ur, "g"']
+\arrow[u, dashrightarrow, "h"]
+\end{tikzcd}
+\]
+\end{definicija}
+
+\begin{trditev}
+Naj bosta $A$ in $B$ objekta kategorije $\cat{C}$ s produktoma
+\[
+\begin{tikzcd}
+A & C \arrow[l, "p"'] \arrow[r, "q"] & B
+\end{tikzcd}
+\]
+in
+\[
+\begin{tikzcd}
+A & C' \arrow[l, "p'"'] \arrow[r, "q'"] & B.
+\end{tikzcd}
+\]
+Tedaj je $C \cong C'$.
+\end{trditev}
+
+\begin{proof}
+Obstaja morfizem $h \colon C' \to C$, za katerega je
+$p \circ h = p'$ in $q \circ h = q'$. Podobno obstaja morfizem
+$h' \colon C \to C'$, za katerega je $p' \circ h' = p$ in
+$q' \circ h' = q$. Sledi, da je
+\[
+p \circ (h \circ h') = p \circ \id_C
+\quad \text{in} \quad
+q \circ (h \circ h') = q \circ \id_C
+\]
+Po enoličnosti dobimo $h \circ h' = \id_C$ in simetrično
+$h' \circ h = \id_{C'}$.
+\end{proof}
+
+\begin{opomba}
+Produkte v kategoriji $\cat{C}$ lahko definiramo tudi tako, da
+za fiksna $A, B \in \Ob \cat{C}$ definiramo kategorijo $\cat{D}$,
+ki ima za objekte diagrame
+\[
+\begin{tikzcd}
+A & C \arrow[l, "p"'] \arrow[r, "q"] & B
+\end{tikzcd}
+\]
+in morfizme definirane na naraven način. Produkt $A$ in $B$ je
+končen objekt v kategoriji $\cat{D}$.
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $A$ in $B$ objekta kategorije $\cat{C}$.
+\emph{Koprodukt}\index{Kategorija!Koprodukt} $A$ in $B$ je produkt
+$A$ in $B$ v $\cat{C}^{\mathsf{op}}$.
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno, koprodukt $A$ in $B$ je tak objekt $C$ z morfizmoma
+$p \colon A \to C$ in $q \colon B \to C$, da za vsak
+$X \in \Ob \cat{C}$ in morfizma $f \colon A \to X$ ter
+$g \colon B \to X$ obstaja natanko en morfizem $h \colon C \to X$,
+da velja $h \circ p = f$ in $h \circ q = g$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+A \arrow[r, "p"] \arrow[dr, "f"'] &
+C \arrow[d, dashrightarrow, "h"] &
+B \arrow[l, "q"'] \arrow[dl, "g"] \\
+  & X
+\end{tikzcd}
+\]
+\end{opomba}
+
+\begin{definicija}
+Kategorija $\cat{C}$ je
+\emph{konkretna}\index{Kategorija!Konkretna}, če imajo njeni
+objekti strukturo množice, morfizmi pa so preslikave.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $\cat{C}$ konkretna kategorija in $X$ množica.
+\emph{Prost objekt}\index{Kategorija!Prost objekt} v $\cat{C}$ nad
+množico $X$ je objekt $F_X$ skupaj s strukturno preslikavo
+$\iota \colon X \to F_X$, za katera velja, da za vsak objekt
+$C \in \Ob \cat{C}$ in preslikavo $j \colon X \to C$ obstaja
+natanko en morfizem $f \colon F_x \to C$, da je
+$f \circ \iota = j$.
+\[
+\begin{tikzcd}[column sep = large, row sep=large]
+X \arrow[r, "j"] \arrow[d, "\iota"'] & C \\
+F_X \arrow[ur, dashrightarrow, "f"']
+\end{tikzcd}
+\]
+\end{definicija}
+
+\begin{trditev}
+Prost objekt je enolično določen do izomorfizma natančno.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $F$ in $F'$ s preslikavama $\iota \colon X \to F$ in
+$\iota \colon X \to F'$ prosta objekta. Sledi, da obstaja
+preslikava $f \colon F \to F'$, za katero je
+$f \circ \iota = \iota'$, in preslikava $f' \colon F' \to F$, za
+katero je $f' \circ \iota' = \iota$. Sledi, da je
+\[
+(f' \circ f) \circ \iota = \id \circ \iota,
+\]
+zato je zaradi enoličnosti $f' \circ f = \id$. Simetrično dobimo
+$f \circ f' = \id$.
+\end{proof}
+
+\begin{opomba}
+Proste objekte v kategoriji $\cat{C}$ lahko definiramo tudi tako,
+da definiramo kategorijo $\cat{D}$, ki ima za objekte diagrame
+\[
+\begin{tikzcd}
+X \arrow[r, "\iota"] & A
+\end{tikzcd}
+\]
+in morfizme definirane na naraven način. Prost objekt je začetni
+objekt v kategoriji $\cat{D}$.
+\end{opomba}
+
+\newpage
+
+\subsection{Izomorfizem in ekvivalenca kategorij}
+
+\datum{2023-5-5}
+
+\begin{definicija}
+Funktor $F \colon \cat{C} \to \cat{D}$ je
+\emph{izomorfizem kategorij}\index{Kategorija!Izomorfizem}, če
+obstaja tak funktor $G \colon \cat{D} \to \cat{C}$, da je
+\[
+F \circ G = 1_{\cat{D}}
+\quad \text{in} \quad
+G \circ F = 1_{\cat{C}}.
+\]
+Pišemo $\cat{C} \cong \cat{D}$.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $F, G \colon \cat{C} \to \cat{D}$ funktorja in
+$\mu \colon F \to G$ naravna transformacija. Funktorja $F$ in $G$
+sta
+\emph{naravno izomorfna}\index{Funktor!Naravno izomorfen}, če so
+vsi morfizmi $\mu_C \colon F(C) \to G(C)$ izomorfizmi.
+\end{definicija}
+
+\begin{definicija}
+Kategorija $\cat{C}$ je \emph{majhna}\index{Kategorija!Majhna}, če
+sta $\Ob \cat{C}$ in razred vseh morfizmov množici.
+\end{definicija}
+
+\begin{opomba}
+Naj bo $\cat{C}$ majhna kategorija in $\cat{D}$ poljubna
+kategorija. Naj bo $\cat{D}^{\cat{C}}$ kategorija, katere objekti
+so funktorji $F \colon \cat{C} \to \cat{D}$, morfizmi med $F$ in
+$G$ pa naravne transformacije. Tedaj sta $F$ in $G$ naravno
+izomorfna natanko tedaj, ko sta izomorfna kot objekta
+$\cat{D}^{\cat{C}}$.
+\end{opomba}
+
+\begin{definicija}
+Kategoriji $\cat{C}$ in $\cat{D}$ sta
+\emph{ekvivalentni}\index{Kategorija!Ekvivalentna}, če obstajata
+taka funktorja $F \colon \cat{C} \to \cat{D}$ in
+$G \colon \cat{D} \to \cat{C}$, da je $F \circ G$ naravno izomorfen
+$1_{\cat{D}}$, $G \circ F$ pa naravno izomorfen $1_{\cat{C}}$.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $F \colon \cat{C} \to \cat{D}$ funktor.
+
+\begin{enumerate}[i)]
+\item $F$ je \emph{zvest}\index{Funktor!Zvest, poln, gost}, če je
+injektiven na morfizmih -- za vsaka $X, Y \in \Ob \cat{C}$ je
+$F_{X,Y} \colon \cat{C}(X,Y) \to \cat{D}(F(X), F(Y))$ injektivna.
+\item $F$ je \emph{poln}, če je surjektiven na morfizmih.
+\item $F$ je \emph{gost}, če za vsak $Y \in \Ob \cat{D}$ obstaja
+tak $X \in \Ob \cat{C}$, da je $F(X) \cong Y$.
+\end{enumerate}
+\end{definicija} 
+
+\begin{opomba}
+Pravimo, da je funktor $F$ \emph{ekvivalenca}, če je zvest, gost in
+poln.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $\cat{C}$ majhna kategorija. Definirajmo funktor
+$\mathcal{Y} \colon \cat{C} \to
+\uline{\operatorname{Set}}^{\cat{C}^{\mathsf{op}}}$ na naslednji
+način:
+
+\begin{enumerate}[i)]
+\item Vsak Objekt $A$ preslikamo v funktor
+$F_A \colon \cat{C}^{\mathsf{op}} \to \uline{\operatorname{Set}}$,
+ki deluje po predpisu $F_A(X) = \cat{C}(X,A)$ na objektih in
+$F_A(f) = (\varphi \mapsto \varphi \circ f)$ na morfizmih.
+\item Vsak morfizem $f \colon A \to B$ preslikamo v naravno
+transformacijo $\mathcal{Y}(f) \colon F_A \to F_B$, z naborom
+morfizmov $\mathcal{Y}(f)_X \colon \cat{C}(X, A) \to \cat{C}(X,B)$
+s predpisom $\mathcal{Y}(f)_X(\varphi) = f \circ \varphi$.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Lema Yonede]\index{Izrek!Lema Yonede}
+Naj bo $\cat{C}$ majhna kategorija. Tedaj je funktor
+$\mathcal{Y} \colon \cat{C} \to
+\uline{\operatorname{Set}}^{\cat{C}^{\mathsf{op}}}$ zvest in poln.
+\end{izrek}
+
+\begin{proof}
+Naj bosta $A$ in $B$ objekta kategorije $\cat{C}$. Denimo, da za
+$f, g \colon A \to B$ velja $\mathcal{Y}(f) = \mathcal{Y}(g)$.
+Sledi, da je
+\[
+f =
+f \circ 1_{A} =
+\mathcal{Y}(f)_A(1_A) =
+\mathcal{Y}(g)_A(1_A) =
+g \circ 1_A =
+g.
+\]
+Sledi, da je $F$ zvest.
+
+Pokažimo še polnost. Naj bo $\eta \colon F_A \to F_B$ naravna
+transformacija. Naj bo $e = \eta_A(1_A) \in \cat{C}(A,B)$.
+Pokažimo, da je $\eta = \mathcal{Y}(e)$. Za poljuben morfizem
+$f \colon C \to A$ vemo, da komutira naslednji diagram:
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\cat{C}(A,A) \arrow[r, "F_A(f)"] \arrow[d, "\eta_A"'] &
+\cat{C}(C,A) \arrow[d, "\eta_C"] \\
+\cat{C}(A,B) \arrow[r, "F_B(f)"'] &
+\cat{C}(C,B)
+\end{tikzcd}
+\]
+Opazimo, da je
+\[
+F_B(f) \circ \eta_A(1_A) =
+F_B(f)(e) =
+e \circ f =
+\mathcal{Y}(e)_C(f),
+\]
+po drugi strani pa je zaradi komutativnega diagrama
+\[
+F_B(f) \circ \eta_A(1_A) =
+\eta_C \circ F_A(f)(1_A) =
+\eta_C(f). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Ekvivalentno, vsako majhno kategorijo $\cat{C}$ lahko vložimo v
+kategorijo kovariantnih funktorjev
+$\cat{C} \to \uline{\operatorname{Set}}$.
+\end{opomba}
+
+\begin{posledica}[Cayleyev izrek]\index{Izrek!Cayley}
+Vsaka grupa $G$ je izomorfna podgrupi grupe $\Sym_G$.
+\end{posledica}
+
+\begin{proof}
+Grupi $G$ priredimo kategorijo $\uline{G}$, katere element je $G$,
+morfizmi pa njeni elementi. Po lemi Yonede je preslikava
+$x \mapsto \mathcal{Y}(x)$ injektivna. Za preslikavo
+$\rho \colon G \to G^G$, ki deluje po predpisu
+$\rho(x) = \mathcal{Y}(x)_G$, zato velja $\rho(x) \ne \rho(y)$ za
+vse $x \ne y$. Injektivna je torej tudi preslikava $\rho$. Ni težko
+preveriti, da je $\rho \colon G \to \Sym_G$ homomorfizem grup.
+\end{proof}
