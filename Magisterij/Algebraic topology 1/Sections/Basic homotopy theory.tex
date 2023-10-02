@@ -1,0 +1,51 @@
+\section{Basic homotopy theory}
+
+\subsection{Definition}
+
+\datum{2023-10-2}
+
+\begin{definicija}
+Continuous maps $f, g \colon X \to Y$ of topological spaces are
+\emph{homotopic}\index{homotopic}, if there is a continuous map
+$H \colon X \times I \to Y$, such that $H(x, 0) = f(x)$ and
+$H(x, 1) = g(x)$. Such $H$ is called a
+\emph{homotopy}\index{homotopy}. We write $H \colon f \simeq g$.
+\end{definicija}
+
+\begin{opomba}
+If $X$ is a locally compact and Hausdorff space, homotopies
+coincide with paths in the space $\mathcal{C}(X, Y)$.
+\end{opomba}
+
+\begin{trditev}
+Homotopy is an equivalence relation on $\mathcal{C}(X, Y)$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+We denote the set of equivalence classes of the homotopy relation
+on $\mathcal{C}(X, Y)$ by $[X, Y]$.
+\end{definicija}
+
+\begin{opomba}
+If $X$ is a locally compact and Hausdorff space, $[X, Y]$ is the
+set of path components of $\mathcal{C}(X, Y)$.
+\end{opomba}
+
+\begin{definicija}
+With $f \colon (X, A) \to (Y, B)$ we denote maps $f \colon X \to Y$
+such that $f(A) \subseteq f(B)$. Similarly, we define
+$\mathcal{C}( (X, A), (Y, B))$ and $[(X,A), (Y,B)]$.
+\end{definicija}
+
+\begin{definicija}
+Let $A \subseteq X$ and $f, g \colon X \to Y$ be maps, such that
+$\eval{f}{A}{} = \eval{g}{A}{}$. $G \colon X \times I \to Y$ is a
+\emph{homotopy relative to $A$}\index{homotopy!relative to a subspace}
+if $H \colon f \simeq g$ and $\eval{H_t}{A}{} = \eval{f}{A}{}$ for
+all $t \in I$.
+\end{definicija}
+
+
+
