@@ -1,0 +1,175 @@
+\section{Holomorphic functions}
+
+\subsection{Properties of holomorphic functions}
+
+\datum{2023-10-3}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open subset. A function
+$f \colon \Omega \to \C$ is
+\emph{complex differentiable}\index{function!complex differentiable}
+in a point $a \in \Omega$ if the limit
+\[
+\lim_{z \to a} \frac{f(z) - f(a)}{z - a}
+\]
+exists.
+\end{definicija}
+
+\begin{opomba}[Cauchy-Riemann equations]
+\index{Cauchy-Riemann equations}
+Denoting $u = \Re f$ and $v = \Im f$ where $f$ is real
+differentiable in $a$, $f$ is complex differentiable in $a$ if and
+only if $\parc{u}{x} = \parc{v}{y}$ and
+$\parc{u}{y} = - \parc{v}{x}$
+\end{opomba}
+
+\begin{definicija}
+\emph{Wirtinger derivatives}\index{Wirtinger derivatives} are
+defined as
+\[
+\parc{}{z} =
+\frac{1}{2} \cdot \br{\parc{}{x} - i \parc{}{y}}
+\quad \text{and} \quad
+\parc{}{\oline{z}} =
+\frac{1}{2} \cdot \br{\parc{}{x} + i \parc{}{y}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+A function $f$ is complex differentiable in $a$ if and only if
+\[
+\parc{f}{\oline{z}} = 0.
+\]
+In that case, we also have
+\[
+\parc{f}{z}(a) = f'(a).
+\]
+\end{opomba}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open subset. A function
+$f \colon \Omega \to \C$ is
+\emph{holomorphic in $a$}\index{function!holomorphic} if it is
+complex differentiable in an open neighbourhood of $a$. The
+function $f$ is \emph{holomorphic} if it is holomorphic in every
+point of $\Omega$. We denote the set of holomorphic functions in
+$\Omega$ as $\mathcal{O}(\Omega)$.
+\end{definicija}
+
+\begin{izrek}[Inhomogeneous Cauchy integral formula]
+\index{Cauchy integral formula}
+Let $\Omega \subseteq \C$ be a bounded domain with
+$\mathcal{C}^1$-smooth boundary and
+$f \in \mathcal{C}^1(\Omega) \cap \mathcal{C} \br{\oline{\Omega}}$.
+Then, for all $z \in \Omega$, we have
+\[
+f(z) =
+\frac{1}{2 \pi i} \olint_{\partial \Omega} \frac{f(w)}{w - z}\,dw +
+\frac{1}{2 \pi i} \liint_\Omega \parc{f}{\oline{w}} \cdot
+\frac{1}{w - z}\,dw \wedge d\oline{w}
+\]
+\end{izrek}
+
+\begin{proof}
+As $\Omega$ is an open set, there exists an $\varepsilon > 0$ such
+that $\oline{\dsk(z, \varepsilon)} \subseteq \Omega$. Define a new
+domain
+$\Omega_\varepsilon =
+\Omega \setminus \oline{\dsk(z, \varepsilon)}$.
+
+We now apply Stokes' theorem to $\omega = \frac{f(w)}{w-z}\,dw$ on
+$\Omega_\varepsilon$. As
+$d\omega =
+\parc{f}{\oline{w}} \cdot \frac{1}{w-z}\,d\oline{w} \wedge dw$, we
+have
+\[
+\olint_{\partial \Omega_\varepsilon} \frac{f(w)}{w-z}\,dw =
+\liint_{\Omega_\varepsilon} \parc{f}{\oline{w}} \cdot
+\frac{1}{w-z}\,d\oline{w} \wedge dw.
+\]
+Note that
+\[
+\olint_{\partial \Omega_\varepsilon} \frac{f(w)}{w-z}\,dw =
+\olint_{\partial \Omega} \frac{f(w)}{w-z}\,dw -
+\olint_{\partial \dsk(z, \varepsilon)} \frac{f(w)}{w-z}\,dw.
+\]
+In the limit, we have
+\[
+\lim_{\varepsilon \to 0}
+\olint_{\partial \dsk(z, \varepsilon)} \frac{f(w)}{w - z}\,dw =
+\lim_{\varepsilon \to 0}
+\int_0^{2 \pi}
+\frac{f \br{z + \varepsilon e^{it}}}{\varepsilon e^{it}} \cdot
+\varepsilon i e^{it}\,dt =
+2 \pi i f(z)
+\]
+by continuity. Also note that
+\[
+\lim_{\varepsilon \to 0}
+\liint_{\Omega_\varepsilon} \parc{f}{\oline{w}} \cdot
+\frac{1}{w-z}\,d\oline{w} \wedge dw =
+\liint_{\Omega \setminus \set{z}} \parc{f}{\oline{w}} \cdot
+\frac{1}{w - z}\,d\oline{w} \wedge dw =
+\liint_{\Omega} \parc{f}{\oline{w}} \cdot
+\frac{1}{w - z}\,d\oline{w} \wedge dw.
+\]
+Applying the limit to the Stokes' theorem equation, it follows that
+\[
+\frac{1}{2 \pi i}
+\olint_{\partial \Omega} \frac{f(w)}{w-z}\,dw - f(z) =
+-\frac{1}{2 \pi i} \liint_{\Omega} \parc{f}{\oline{w}} \cdot
+\frac{1}{w-z}\,dw \wedge d\oline{w}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Power series expansion]
+Let $\Omega \subseteq \C$ be an open subset,
+$f \in \mathcal{O}(\Omega)$ and $a \in \Omega$. The function $f$
+can be developed into a power series about $a$ that converges
+absolutely and uniformly to $f$ in compacts inside $\dsk(a, r)$,
+where $r$ is the radius of convergence. For
+\[
+c_k = \frac{f^{(k)}(a)}{k!} =
+\frac{1}{2 \pi i} \olint_{\partial \dsk(a, \rho)}
+\frac{f(w)}{(w-z)^{k+1}}\,dw
+\]
+we have
+\[
+f(z) = \sum_{k=0}^\infty c_k \cdot (z-a)^k.
+\]
+\end{izrek}
+
+\begin{opomba}
+The converse is also true -- any complex power series defines a
+holomorphic function inside its radius of convergence.
+\end{opomba}
+
+\begin{opomba}
+The radius of convergence is given by the formula
+\[
+\frac{1}{r} = \limsup_{k \to \infty} \sqrt[k]{\abs{c_k}}.
+\]
+\end{opomba}
+
+\begin{izrek}[Identity]
+\index{identity theorem}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{O}(\Omega)$ a holomorphic function. Let
+$A \subseteq \Omega$ be a subset such that $f(z) = 0$ for all
+$z \in A$. If $A$ has an accumulation point in $\Omega$, then
+$f(z) = 0$ for all $z \in \Omega$.
+\end{izrek}
+
+\begin{proof}
+Let $a \in \Omega$ be an accumulation point of $A$. By continuity,
+we have $f(a) = 0$. We can now write
+\[
+f(z) = \sum_{k=k_0}^\infty c_k (z - a)^k,
+\]
+where we assume $c_{k_0} \ne 0$. But now
+$g(z) = \frac{f(z)}{(z-a)^{k_0}}$ is also holomorphic. Again, by
+continuity, we must have $g(a) = 0$, which is a contradiction. It
+follows that $c_k = 0$ for all $k \in \N_0$. The set
+$\setb{z \in \Omega}{f(z) = 0}$ is then both open and closed and
+is therefore equal to $\Omega$.
+\end{proof}
