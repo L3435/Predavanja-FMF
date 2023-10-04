@@ -169,7 +169,112 @@ f(z) = \sum_{k=k_0}^\infty c_k (z - a)^k,
 where we assume $c_{k_0} \ne 0$. But now
 $g(z) = \frac{f(z)}{(z-a)^{k_0}}$ is also holomorphic. Again, by
 continuity, we must have $g(a) = 0$, which is a contradiction. It
-follows that $c_k = 0$ for all $k \in \N_0$. The set
-$\setb{z \in \Omega}{f(z) = 0}$ is then both open and closed and
-is therefore equal to $\Omega$.
+follows that $c_k = 0$ for all $k \in \N_0$. It follows that the
+set $\Int \setb{z \in \Omega}{f(z) = 0}$ is non-empty. By the same
+argument as above, it has an empty boundary and is therefore equal
+to $\Omega$.
+\end{proof}
+
+\datum{2023-10-4}
+
+\begin{izrek}[Open mapping]
+\index{open mapping theorem}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{O}(\Omega)$ a function. If $f$ is not constant, it
+is an open map.
+\end{izrek}
+
+\begin{proof}
+We first prove the following lemma:
+
+\begin{lema*}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{O}(\Omega)$. Suppose that for $a \in \Omega$ and
+$r > 0$ we have $\oline{\dsk(a, r)} \subseteq \Omega$. If
+\[
+\abs{f(a)} < \min_{\partial \dsk(a, r)} \abs{f},
+\]
+then $f$ has a zero in $\dsk(a, r)$.
+\end{lema*}
+
+\begin{proof}[Proof (lemma)]
+Assume otherwise. From the inequality it follows that $f$ has no
+zeroes on the boundary either. By continuity, $f$ has no zero on an
+open set $V$ with $\dsk(a, r) \subseteq V$. We can therefore define
+$g \in \mathcal{O}(V)$ with $g(z) = \frac{1}{f(z)}$. We now have
+\[
+g(a) =
+\frac{1}{2 \pi i}
+\olint_{\partial \dsk(a, r)} \frac{g(z)}{z-a}\,dz =
+\frac{1}{2 \pi i}
+\int_0^{2 \pi}
+\frac{g \br{a + r \cdot e^{it}}}{e^{it}} \cdot r i e^{it}\,dt =
+\frac{1}{2 \pi} \int_0^{2 \pi}  g \br{a + r e^{it}}\,dt.
+\]
+We can therefore get a bound on $\abs{g(a)}$ as
+\[
+\abs{g(a)} \leq \max_{\partial \dsk(a, r)} \abs{g},
+\]
+but as the condition on $f$ can be rewritten as
+\[
+\abs{g(a)} > \max_{\partial \dsk(a, r)} \abs{g},
+\]
+we have reached a contradiction.
+\end{proof}
+
+Let $U \subseteq \Omega$ be an open set and $w_0 \in f(U)$. Choose
+a $z_0 \in U$ such that $f(z_0) = w_0$. Choose a $\rho > 0$ such
+that $\dsk(z_0, \rho) \subseteq U$ and $z_0$ is the only pre-image
+of $w_0$ in $\dsk(z_0, 2\rho)$.\footnote{If such a disk does not
+exist, $f$ is constant by the identity theorem.}
+
+Since $\partial \dsk(z_0, \rho)$ is a compact set and
+\[
+\abs{f(z) - w_0} > 0
+\]
+for all $z \in \partial \dsk(z_0, \rho)$, we can choose some
+$\varepsilon > 0$ such that
+\[
+\abs{f(z) - w_0} > 2 \varepsilon
+\]
+holds on the boundary of the disk. Choose a
+$w \in \dsk(w_0, \varepsilon)$. As we have
+\[
+\abs{f(z) - w} >
+\abs{f(z) - w_0} - \abs{w_0 - w} \geq
+\varepsilon
+\]
+on the boundary and
+\[
+\abs{f(z_0) - w} = \abs{w_0 - w} < \varepsilon,
+\]
+by the above lemma, $f(z_0) - w$ has a root on $\dsk(z, \rho)$.
+\end{proof}
+
+\begin{izrek}[Maximum principle]
+\index{maximum principle}
+Let $\Omega \subseteq \C$ be a domain. If the modulus $\abs{f}$ of
+a function $f \in \mathcal{O}(\Omega)$ attains a local maximum, the
+function $f$ is constant.
+\end{izrek}
+
+\begin{proof}
+Suppose that $f$ is non-constant and that its modulus attains a
+local maximum at $z \in \Omega$. As $f$ is an open map, it also
+attains the value $(1 + \varepsilon) \cdot f(z)$, which is a
+contradiction as the modulus then equals
+$(1 + \varepsilon) \cdot \abs{f(z)} > \abs{f(z)}$.
+\end{proof}
+
+\begin{izrek}[Maximum principle]
+Let $\Omega \subseteq \C$ be a bounded domain and assume that
+$f \in \mathcal{O}(\Omega) \cap \mathcal{C} \br{\oline{\Omega}}$.
+Then, the maximum of $\abs{f}$ is attained in the boundary
+$\partial \Omega$.
+\end{izrek}
+
+\begin{proof}
+As $\oline{\Omega}$ is compact, $f$ attains a global maximum on
+this set. If the maximum is attained in the interior, $f$ is
+constant, therefore it is also attained on the boundary.
 \end{proof}
