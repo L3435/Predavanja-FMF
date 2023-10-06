@@ -25,6 +25,7 @@ jobs:
         with:
           root_file: |
             *letnik/*/*.tex
+            magisterij/*/*.tex
           work_in_root_file_dir: true
           glob_root_file: true
           compiler: pdflatex

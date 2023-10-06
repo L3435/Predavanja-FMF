@@ -20,6 +20,7 @@ jobs:
         with:
           root_file: |
             *letnik/*/*.tex
+            magisterij/*/*.tex
           work_in_root_file_dir: true
           glob_root_file: true
           compiler: pdflatex
@@ -30,6 +31,7 @@ jobs:
         with:
           root_file: |
             *letnik/*/*.bcf
+            magisterij/*/*.bcf
           work_in_root_file_dir: true
           glob_root_file: true
           compiler: biber
@@ -38,7 +40,7 @@ jobs:
       - name: Stvarno kazalo
         run: |
           sudo apt install xindy
-          for letnik in *letnik/ ; do
+          for letnik in *letnik/ magisterij/ ; do
             cd "$letnik"
             for predmet in */ ; do
               if [[ ${predmet:0:1} == "." ]]; then
@@ -56,6 +58,7 @@ jobs:
         with:
           root_file: |
             *letnik/*/*.tex
+            magisterij/*/*.tex
           work_in_root_file_dir: true
           glob_root_file: true
           compiler: pdflatex
@@ -66,6 +69,7 @@ jobs:
         with:
           root_file: |
             *letnik/*/*.tex
+            magisterij/*/*.tex
           work_in_root_file_dir: true
           glob_root_file: true
           compiler: pdflatex
@@ -78,15 +82,17 @@ jobs:
           filters: |
             pdf:
               -  "*letnik/*/*.pdf"
+              -  "magisterij/*/*.pdf"
             tex:
               -  "*letnik/**/*.tex"
+              -  "magisterij/*/*.tex"
           list-files: shell
           
       - name: Add pdfs
         run: |
             git config --global user.name "Luka Horjak"
             git config --global user.email "luka1.horjak@gmail.com"
-            for letnik in *letnik/ ; do
+            for letnik in *letnik/ magisterij/ ; do
               cd "$letnik"
               for predmet in */ ; do
                 if [[ ${predmet:0:1} == "." ]]; then
