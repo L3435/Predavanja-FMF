@@ -47,5 +47,135 @@ if $H \colon f \simeq g$ and $\eval{H_t}{A}{} = \eval{f}{A}{}$ for
 all $t \in I$.
 \end{definicija}
 
+\datum{2023-10-6}
 
+\begin{definicija}
+A map $f \colon X \to Y$ is
+\emph{null-homotopic}\index{null-homotopic} if it is homotopic to a
+constant.
+\end{definicija}
 
+\begin{definicija}
+Let $X$ be a topological space. The \emph{cone}\index{cone} on $X$
+is the space
+\[
+CX = \kvoc{X \times I}{X \times \set{1}}.
+\]
+\end{definicija}
+
+\begin{trditev}
+A map $f \colon X \to Y$ is null-homotopic if and only if it
+extends to the cone $CX$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \arrow[r, "f"] \arrow[d, hook, "i"'] & Y \\
+CX \arrow[ur, dashed, "F"']
+\end{tikzcd}
+\]
+\end{trditev}
+
+\begin{proof}
+In the following diagram, $H$ exists if and only if $F$ exists.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \arrow[r, "f"] \arrow[d, hook, "i_0"'] & Y \\
+X \times I \arrow[ur, dashed, "H"] \arrow[r, "q"']
+&
+CX \arrow[u, dashed, "F"']
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Homotopy equivalence}
+
+\begin{trditev}
+Let $f, f' \colon X \to Y$ and $g, g' \colon Y \to Z$ be maps. If
+$f \simeq g$ and $f' \simeq g'$, we also have
+$g \circ f \simeq g' \circ f'$.
+\end{trditev}
+
+\begin{proof}
+Let $H \colon X \times I \to Y$ and $K \colon Y \times I \to Z$ be
+the two homotopies. It is trivial to check that
+\[
+L(x, t) = K(H(x, t), t)
+\]
+is a homotopy of the compositions.
+\end{proof}
+
+\begin{definicija}
+The \emph{homotopy category}\index{homotopy!category}
+$\catt{HoTop}$ is the category with topological spaces as objects
+and homotopies as morphisms. Operations are induced by the
+compositions of maps.
+\end{definicija}
+
+\begin{definicija}
+The category $\catt{Top}^2$ has pairs of spaces $(X, A)$ with
+$A \subseteq X$ as spaces, maps of pairs as morphisms and
+composition as the operation. Analogously as above, this category
+induces the category $\catt{HoTop}^2$.
+\end{definicija}
+
+\begin{definicija}
+The category $\catt{Top}_\bullet$ has pairs $(X, x_0)$ with
+$x_0 \in X$ as spaces, maps of pairs as morphisms and composition
+as the operation. Analogously as above, this category induces the
+category $\catt{HoTop}_\bullet$.
+\end{definicija}
+
+\begin{definicija}
+\emph{Homotopy equivalence}\index{homotopy!equivalence} is an
+isomorphism in the category $\catt{HoTop}$. If spaces $X$ and $Y$
+are homotopy equivalent, we write $X \simeq Y$.
+\end{definicija}
+
+\begin{opomba}
+A map $f \colon X \to Y$ is a homotopy equivalence if there exists
+a map $g \colon Y \to X$ such that $g \circ f \simeq \id_X$ and
+$f \circ g \simeq \id_Y$. The map $g$ is a
+\emph{homotopy inverse}\index{homotopy!inverse} of $f$.
+\end{opomba}
+
+\begin{definicija}
+A space $X$ is \emph{contractible}\index{contractible space} if
+it is homotopy equivalent to a point.
+\end{definicija}
+
+\begin{opomba}
+Every cone is contractible.
+\end{opomba}
+
+\begin{trditev}
+Let $X$ be a topological space. The following statements are
+equivalent:
+
+\begin{enumerate}[i)]
+\item The space $X$ is contractible.
+\item The map $\id_X$ is homotopy equivalent to a constant map.
+\item The space $X$ is a retract of $CX$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{izrek}
+Let $X$ and $Y$ be closed surfaces. If $X \simeq Y$, then
+$X \approx Y$.
+\end{izrek}
+
+\begin{definicija}
+A subspace $A \subseteq X$ is a
+\emph{deformation retract}\index{deformation retract} of $X$ if it
+is a retract and the retraction is a homotopy inverse of the
+inclusion.
+\end{definicija}
+
+\begin{definicija}
+A subspace $A \subseteq X$ is a
+\emph{strong deformation retract}\index{strong deformation retract}
+is a retract and the retraction is a homotopy inverse of the
+inclusion relative to $A$.
+\end{definicija}
