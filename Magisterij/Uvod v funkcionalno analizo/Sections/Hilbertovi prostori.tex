@@ -1,0 +1,983 @@
+\section{Hilbertovi prostori}
+
+\epigraph{">Torej, sup norma nima nič skupnega z vodnim
+športom."<}{-- prof.~dr.~Igor Klep}
+
+\subsection{Osnovne lastnosti}
+
+\begin{definicija}
+Naj bo $X$ vektorski prostor nad $\K \in \set{\R, \C}$. Preslikava
+$\skl{.,.} \colon X \times X \to \K$ je
+\emph{skalarni produkt}\index{Vektorski prostor!Skalarni produkt},
+če za vse $x, y, z \in X$ in $\alpha, \beta \in \K$ velja
+
+\begin{enumerate}[i)]
+\item $\skl{x,x} \geq 0$ z enakostjo natanko tedaj, ko je $x = 0$,
+\item
+$\skl{\alpha x + \beta y, z} = \alpha \skl{x,z} + \beta \skl{y,z}$,
+\item $\skl{y,x} = \oline{\skl{x,y}}$.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Cauchy-Schwarzova neenakost]
+\index{Neenakost!Cauchy-Schwarz}
+Za vsak polskalarni\footnote{Enakost $\skl{x,x} = 0$ lahko velja
+tudi za $x \ne 0$.} produkt na $X$ velja
+\[
+\abs{\skl{x,y}}^2 \leq \skl{x,x} \cdot \skl{y,y}
+\]
+za poljubna $x,y \in X$. Enakost velja natanko tedaj, ko obstajata
+taka $\alpha, \beta \in \K$, ne oba $0$, da je
+$\skl{\alpha x + \beta y, \alpha x + \beta y} = 0$.
+\end{izrek}
+
+\begin{proof}
+Algebra 1.
+\end{proof}
+
+\begin{trditev}
+Za vsak polskalarni produkt $\skl{.,.}$ na $X$ je s predpisom
+\[
+\norm{x} = \sqrt{\skl{x,x}}
+\]
+definirana polnorma na $X$.
+\end{trditev}
+
+\begin{proof}
+Očitno je zgornja preslikava pozitivno semidefinitna in homogena,
+velja pa
+\[
+\norm{x+y}^2 =
+\skl{x+y,x+y} =
+\norm{x}^2 + 2 \cdot \Re \skl{x,y} + \norm{y}^2 \leq
+\br{\norm{x} + \norm{y}}^2. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Vsak skalarni produkt na $X$ z zgornjim predpisom inducira normo na
+$X$.
+\end{posledica}
+
+\begin{opomba}
+Skalarni produkt je zvezna preslikava.
+\end{opomba}
+
+\begin{izrek}[Paralelogramska identiteta]
+\index{Izrek!Paralelogramska identiteta}
+V normiranem prostoru $X$ je norma porojena iz skalarnega produkta
+natanko tedaj, ko za vse $x, y \in X$ velja
+\[
+\norm{x+y}^2 + \norm{x-y}^2 = 2 \norm{x}^2 + 2 \norm{y}^2.
+\]
+\end{izrek}
+
+\begin{proof}
+Trditev dokažimo za $\K = \R$. Če je norma porojena iz skalarnega
+produkta, velja
+\[
+\norm{x+y}^2 = \norm{x}^2 + 2 \cdot \Re \skl{x,y} + \norm{y}^2,
+\]
+od koder sledi paralelogramska identiteta.
+
+Denimo sedaj, da v normiranem prostoru $X$ velja paralelogramska
+identiteta. Definirajmo
+\[
+\skl{x,y} = \frac{1}{4} \br{\norm{x+y}^2 - \norm{x-y}^2}.
+\]
+Ni težko videti, da velja $\skl{x,x} = \norm{x}^2$. Prav tako
+očitno velja simetričnost. Pokazati moramo še linearnost v prvi
+komponenti. Aditivnost preverimo s paralelogramsko identiteto. Za
+homogenost je dovolj opaziti, da zaradi aditivnosti ta velja za vse
+$\alpha \in \Q$, preslikava
+$\alpha \mapsto \skl{\alpha x,y} - \alpha \skl{x,y}$ pa je zvezna.
+\end{proof}
+
+\begin{opomba}
+Za $\K = \C$ je skalarni produkt podan s predpisom
+\[
+\skl{x,y} =
+\frac{1}{4} \sum_{\omega^4 = 1} \omega \norm{x + \omega y}^2.
+\]
+\end{opomba}
+
+\datum{2022-11-3}
+
+\begin{definicija}
+Prostor $X$ s skalarnim produktom $\skl{.,.}$ je
+\emph{Hilbertov}\index{Vektorski prostor!Hilbertov}, če je Banachov
+glede na inducirano normo.
+\end{definicija}
+
+\begin{zgled}
+Prostori $(\K^n, \skl{.,.})$ so Hilbertovi, $c_{0,0}$ pa ne.
+\end{zgled}
+
+\begin{zgled}
+Prostor $\ell^2$ s skalarnim produktom
+\[
+\skl{x,y} = \sum_{n=1}^\infty x_n \oline{y}_n
+\]
+je Hilbertov. Podobno lahko definiramo Hilbertov prostor
+\[
+\ell^2(I) =
+\setb{x \colon I \to \K}{\sum_{i \in I} \abs{x(i)}^2 < \infty}.
+\]
+\end{zgled}
+
+\begin{zgled}
+Prostor $\mathcal{C}([a,b])$ s skalarnim produktom
+\[
+\skl{f,g} = \int_a^b f(x) \cdot \oline{g(x)}\,dx
+\]
+ni Hilbertov -- njegova napolnitev je $L^2([a,b])$.
+\end{zgled}
+
+\begin{trditev}
+Naj bo $(X, \skl{.,.})$ prostor s skalarnim produktom. Tedaj
+obstaja napolnitev prostora $X$.
+\end{trditev}
+
+\begin{proof}
+Skalarni produkt na $X$ inducira normo $\norm{.}$. Obstaja torej
+napolnitev $(\widehat{X}, \widehat{\norm{.}})$, pri čemer
+$\widehat{\norm{.}}$ zadošča paralelogramski identiteti, saj je $X$
+gost v $\widehat{X}$. Sledi, da je norma porojena s skalarnim
+produktom $\widehat{\skl{.,.}}$.
+\end{proof}
+
+\newpage
+
+\subsection{Ortogonalnost}
+
+\begin{definicija}
+Naj bo $X$ prostor s skalarnim produktom. Vektorja $x,y \in X$ sta
+\emph{ortogonalna}\index{Vektorski prostor!Ortogonalnost}, če je
+$\skl{x,y} = 0$. Pišemo $x \perp y$.
+\end{definicija}
+
+\begin{definicija}
+Množici $A,B \subseteq X$ sta ortogonalni, če za vse $x \in A$ in
+$y \in B$ velja $\skl{x,y} = 0$. Pišemo $A \perp B$.
+\end{definicija}
+
+\begin{izrek}[Pitagora]
+Naj bosta $x$ in $y$ pravokotna vektorja. Tedaj je
+\[
+\norm{x+y}^2 = \norm{x}^2 + \norm{y}^2.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+\norm{x+y} = \skl{x+y,x+y} = \norm{x}^2 + \norm{y}^2. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $H$ Hilbertov prostor, $K \subseteq H$ pa zaprta konveksna
+podmnožica. Tedaj za vsak $x \in H$ obstaja natanko en $k \in K$,
+za katerega je
+\[
+d(x,K) = \norm{x-k}.
+\]
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $x=0$. Naj bo
+$d = \inf_{y \in K} \norm{y}$. Sledi, da obstaja zaporedje točk
+$(k_n)_n \subseteq K$, katerih norme konvergirajo proti $d$. Po
+paralelogramski identiteti velja
+\[
+\norm{k_n - k_m}^2 =
+2 \norm{k_m}^2 + 2 \norm{k_n}^2 - \norm{k_m+k_n}^2 =
+2 \norm{k_m}^2 + 2 \norm{k_n}^2 - 4 \norm{\frac{k_m+k_n}{2}}^2
+\]
+Naj bo $\varepsilon > 0$. Za vse dovolj velike $n$ velja
+\[
+\norm{k_n}^2 \leq d^2 + \frac{\varepsilon^2}{4},
+\]
+zato je
+\[
+\norm{k_n - k_m}^2 \leq 4d^2 + \varepsilon^2 - 4d^2,
+\]
+zato je zaporedje Cauchyjevo. Ker je $K$ zaprta podmnožica
+Hilbertovega prostora, ima limito $k \in K$. Očitno je
+$\norm{k} = d$.
+
+Denimo, da je $\norm{k_1} = \norm{k_1} = d$. Sledi, da je
+\[
+\norm{k_1 - k_2}^2 = 4d^2 - 4 \norm{\frac{k_1+k_2}{2}}^2 \leq 0.
+\qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Naj bo $M$ zaprt podprostor Hilbertovega prostora $H$ in $x \in H$
+poljuben. Za vektor $x_0 \in M$ velja $d(x,M) = \norm{x-x_0}$
+natanko tedaj, ko je $x-x_0 \perp M$.
+\end{izrek}
+
+\begin{proof}
+Predpostavimo, da za nek $y \in M$ velja $\skl{x-x_0,y} \ne 0$.
+Brez škode za splošnost vzamemo $\skl{x-x_0,y} > 0$. Tedaj za
+dovolj majhen $\varepsilon > 0$ velja
+\[
+\norm{x-(x_0 + \varepsilon y)}^2 =
+\norm{x-x_0}^2 - 2 \varepsilon \cdot \Re \skl{x-x_0,y} +
+\varepsilon^2 \cdot \norm{y}^2 <
+\norm{x-x_0}^2,
+\]
+kar je protislovje.
+
+Če velja $x-x_0 \perp M$, za $y \in M$ sledi
+\[
+\norm{x-y}^2 = \norm{x-x_0+x_0-y}^2 =
+\norm{x-x_0}^2 + \norm{x_0-y}^2 \geq \norm{x-x_0}^2. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+\emph{Ortogonalni komplement}\index{Ortogonalni komplement}
+vektorja $x \in H$ je množica
+\[
+x^\bot = \setb{y \in H}{x \perp y}.
+\]
+Podobno definiramo ortogonalni komplement množice
+\[
+A^\bot = \bigcap_{x \in A} x^\bot.
+\]
+\end{definicija}
+
+\begin{trditev}
+Ortogonalni komplement je zaprt podprostor.
+\end{trditev}
+
+\begin{proof}
+Ortogonalni komplement je očitno podprostor. Ker je $x^\bot$
+praslika točke, je zaprt podprostor, $A^\bot$ pa je presek zaprtih
+prostorov.
+\end{proof}
+
+\begin{izrek}
+Naj bo $M$ zaprt podprostor Hilbertovega prostora $H$. Za vsak
+$x \in H$ naj bo $Px$ vektor iz $M$, za katerega je
+$x - Px \in M^\bot$.
+
+\begin{enumerate}[i)]
+\item $P \colon H \to M$ linearen operator,
+\item velja\footnote{Pravimo, da je $P$ \emph{skrčitev}.}
+$\norm{P} \leq 1$,
+\item $P$ je idempotent,
+\item $\im P = M$ in $\ker P = M^\bot$,
+\item $H = M \oplus M^\bot$ in $\br{M^\bot}^\bot$.
+\end{enumerate} 
+\end{izrek}
+
+\begin{proof}
+Dokažimo vsako točko posebej.
+
+\begin{enumerate}[i)]
+\item Naj bosta $x, y \in H$, $\alpha, \beta \in \K$ in $z \in M$.
+Velja
+\[
+\skl{\alpha x + \alpha y - \alpha Px - \beta Py, z} =
+\alpha \skl{x - Px, z} + \beta \skl{y - Py, z} = 0.
+\]
+\item Po Pitagorovem izreku je
+\[
+\norm{Px}^2 = \norm{x}^2 - \norm{x - Px}^2 \leq \norm{x}^2.
+\]
+\item Za $y \in M$ velja $Py = y$.
+\item Očitno je $\im P = M$. Enakost $Px = 0$ velja natanko tedaj,
+ko je $x = x - Px \in M^\bot$, kar je ekvivalentno temu, da je
+$x \in M^\bot$.
+\item Vsak $x \in H$ lahko zapišemo kot $Px + (I-P)x$. Očitno je
+$Px \in \im P$ in $x-Px \in \ker P$. Očitno je tudi
+$M \cap M^\bot = \set{0}$.
+\item Ker je $(I-P)$ ortogonalen projektor na $M^\bot$, sledi
+$\br{M^\bot}^\bot = \ker(I-P)) = M$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+Pravimo, da je $P$
+\emph{ortogonalni projektor}\index{Operator!Ortogonalni projektor}
+na $M$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Zaprta linearna ogrinjača} množice $A$ je najmanjša zaprta
+množica, ki vsebuje njeno linearno ogrinjačo. Označimo
+\[
+[A] = \oline{\Lin A}.
+\]
+\end{definicija}
+
+\begin{posledica}
+Za $A \subseteq H$ je $\br{A^\bot}^\bot$ zaprta linearna ogrinjača
+množice $A$.
+\end{posledica}
+
+\begin{proof}
+Očitno je $A \subseteq [A]$, zato je $[A]^\bot \subseteq A^\bot$.
+Za $x \in A^\bot$ pa velja $x \perp \Lin A$, zaradi zveznosti
+skalarnega produkta pa sledi $x \perp [A]$. Sledi, da je
+\[
+\br{A^\bot}^\bot = \br{[A]^\bot}^\bot = [A]. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Linearni funkcionali}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor. Za poljuben $x_0 \in H$ naj bo
+$f \colon H \to \K$ preslikava, ki deluje s predpisom
+\[
+f(x) = \skl{x,x_0}.
+\]
+Tedaj je $f$ omejen linearen funkcional.
+\end{trditev}
+
+\begin{proof}
+Linearnost je očitna, velja pa
+\[
+\norm{f(x)} = \abs{\skl{x,x_0}} \leq \norm{x} \cdot \norm{x_0},
+\]
+zato je $\norm{f} \leq \norm{x_0}$.
+\end{proof}
+
+\begin{opomba}
+Ker je $f(x_0) = \norm{x_0}^2$, velja $\norm{f} = \norm{x_0}$.
+\end{opomba}
+
+\begin{izrek}[Riesz]\index{Izrek!Riesz}
+Naj bo $H$ Hilbertov prostor in $f \in H^*$. Tedaj obstaja natanko
+en $x_0 \in H$, za katerega za vse $x \in H$ velja
+\[
+f(x) = \skl{x, x_0}.
+\]
+\end{izrek}
+
+\begin{proof}
+Brez škode za splošnost naj bo $f \ne 0$. Potem je $\ker f$ 
+zaprt pravi podprostor, zato je $\br{\ker f}^\bot \ne \set{0}$.
+Naj bo $y_0 \in \br{\ker f}^\bot$ tak neničeln element, da je
+$f(y_0) = 1$.
+
+Če je $x \in H$, velja
+\[
+f(x - f(x)y_0) = f(x) - f(x) \cdot f(y_0) = 0,
+\]
+zato je $x - f(x)y_0 \in \ker f$. Velja torej
+\[
+0 = \skl{x - f(x) y_0, y_0} = \skl{x,y_0} - f(x) \skl{y_0,y_0},
+\]
+zato je
+\[
+f(x) = \frac{\skl{x,y_0}}{\skl{y_0,y_0}} =
+\skl{x, \frac{y_0}{\norm{y_0}^2}}.
+\]
+
+Denimo, da za vsak $x \in H$ velja $\skl{x,x_0} = \skl{x,x_1}$. Če
+v zvezo vstavimo $x = x_0 - x_1$, dobimo $x_0 = x_1$.
+\end{proof}
+
+\begin{opomba}
+Izrek v prostorih s skalarnim produktom ne velja v splošnem.
+\end{opomba}
+
+\begin{posledica}
+Za vsaj $f \in \br{\ell^2}^*$ obstaja natanko en $y \in \ell^2$, za
+katerega je
+\[
+f(x) = \sum_{n=1}^\infty x_n \oline{y}_n.
+\]
+\end{posledica}
+
+\begin{opomba}
+Za $f \in H^*$ pri oznakah iz Rieszovega izreka označimo
+$y_f = x_0$ in
+\[
+f_y(x) = \skl{x,y}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Preslikava $J \colon H \to H^*$, ki deluje po predpisu
+$J(y) = f_y$, je poševno linearna izometrična bijekcija.
+\end{trditev}
+
+\begin{proof}
+Preslikava je bijektivna izometrija po Rieszovem izreku. Poševne
+linearnosti ni težko preveriti.
+\end{proof}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor. Potem je $H^*$ Hilbertov prostor s
+skalarnim produktom
+\[
+\skl{f,g} = \skl{y_g,y_f}.
+\]
+\end{trditev}
+
+\begin{proof}
+Ni težko preveriti, da je to res skalarni produkt. Velja pa
+\[
+\norm{f,f} = \norm{y_f, y_f} = \norm{y_f}^2 = \norm{f}^2,
+\]
+zato skalarni produkt inducira standardno normo na $H^*$, ta
+prostor pa je Hilbertov.
+\end{proof}
+
+\begin{izrek}[Hahn-Banach]
+\index{Izrek!Hahn-Banach!V Hilbertovih prostorih}
+Naj bo $H$ Hilbertov prostor in $L \leq H$. Tedaj za vsak
+$g \in L^*$ obstaja natanko en $f \in H^*$, za katerega je
+$\eval{f}{L}{} = g$ in $\norm{f} = \norm{g}$.
+\end{izrek}
+
+\begin{proof}
+Po Rieszovem izreku obstaja tak $y \in \oline{L}$, da je
+$g(x) = \skl{x,y}$ za vse $x \in L$, pri čemer je
+$\norm{g} = \norm{y}$. Sledi, da je $f \colon H \to \K$, ki deluje
+s predpisom $f(x) = \skl{x,y}$ očitno ustrezna razširitev.
+
+Denimo, da sta $f_1$ še ena ustrezna razširitev funkcionala $g$.
+Velja, da je $f_1(x) = \skl{x,y_1}$. Za vse $x \in L$ velja
+$\skl{x,y} = \skl{x,y_1}$, zato je $z = y_1-y \in L^\bot$. Sledi,
+da je
+\[
+\norm{f_1}^2 = \norm{y_1}^2 = \norm{y+z}^2 =
+\norm{y}^2 + \norm{z}^2 = \norm{g}^2 + \norm{z}^2,
+\]
+zato je $y = y_1$.
+\end{proof}
+
+\begin{posledica}
+Hilbertovi prostori so refleksivni.
+\end{posledica}
+
+\begin{proof}
+Naj bo $\varphi \in H^{**}$. Sledi, da obstaja tak
+$f_\varphi \in H^*$, da za vse $f \in H^*$ velja
+\[
+\varphi(f) = \skl{f,f_\varphi}.
+\]
+Obstaja tudi tak $y_{f_\varphi} \in H$, da za vse $x \in H$ velja
+\[
+f_\varphi(x) = \skl{x, y_{f_\varphi}}.
+\]
+Sledi, da je
+\[
+F_{y_{f_\varphi}}(f) = f\br{y_{f_\varphi}} =
+\skl{y_{f_\varphi},y_f} = \skl{f, f_\varphi} = \varphi(f).
+\]
+Sledi, da je $F_{y_{f_\varphi}} = \varphi$.
+\end{proof}
+
+\newpage
+
+\subsection{Ortonormirani sistemi}
+
+\datum{2022-11-9}
+
+\begin{definicija}
+Naj bo $H$ Hilbertov prostor. Množica $E \subseteq H$ je
+\emph{ortonormiran sistem}\index{Vektorski prostor!Ortonormiran sistem},
+če za vsak $e \in E$ velja $\norm{e} = 1$ in za vsaka $e, f \in E$
+velja $e \ne f \implies e \perp f$.
+
+Ortonormiran sistem je
+\emph{kompleten},\footnote{Tudi \emph{baza}.} če je maksimalen v
+množici ortonormiranih sistemov glede na inkluzijo.
+\end{definicija}
+
+\begin{trditev}
+Vsak ortonormiran sistem $E \subseteq H$ lahko razširimo do
+kompletnega.
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+\mathcal{F} =
+\setb{F}{E \subseteq F \land \text{$F$ je ortonormiran sistem}}.
+\]
+Očitno je $\mathcal{F}$ neprazna, vsaka veriga pa ima zgornjo mejo
+(njeno unijo). Po Zornovi lemi ima $\mathcal{F}$ maksimalen
+element.
+\end{proof}
+
+\begin{posledica}
+Vsak Hilbertov prostor ima bazo.
+\end{posledica}
+
+\begin{trditev}
+Vsak ortonormiran sistem je linearno neodvisen.
+\end{trditev}
+
+\begin{proof}
+Denimo, da je
+\[
+0 = \sum_{i=1}^n \alpha_i e_i.
+\]
+Tedaj je za vsak $k$
+\[
+0 = \skl{\sum_{i=1}^n \alpha_i e_i, e_k} = \alpha_k. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $E = \setb{e_i}{1 \leq i \leq n}$ ortonormiran sistem v $H$
+in $M_n = \Lin E$, $P_n \colon H \to M_n$ pa ortogonalni projektor.
+Tedaj za vsak $x \in H$ velja
+\[
+P_nx = \sum_{i=1}^n \skl{x, e_i} e_i.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo
+\[
+x_0 = \sum_{i=1}^n \skl{x, e_i} e_i.
+\]
+Sledi, da je
+\[
+\skl{x_0, e_i} = \skl{x, e_i},
+\]
+zato je $x - x_0 \in M_n^\bot$.
+\end{proof}
+
+\begin{izrek}[Gram-Schmidt]
+\index{Izrek!Gram-Schmidt}
+Naj bo $H$ Hilbertov prostor in $\setb{x_n}{n \in \N}$ linearno
+neodvisna množica v $H$. Tedaj obstaja tak ortonormiran sistem
+$\setb{e_n}{n \in \N}$, da za vsak $n \in \N$ velja
+\[
+\Lin \setb{x_i}{i \leq n} = \Lin \setb{e_i}{i \leq n}.
+\]
+\end{izrek}
+
+\begin{proof}
+Rekurzivno definiramo $y_1 = x_1$, za $n \geq 2$
+\[
+y_n = x_n - \sum_{i=1}^{n-1} \skl{x_n, e_i} e_i
+\]
+in $e_n = \frac{y_n}{\norm{y_n}}$.
+\end{proof}
+
+\begin{izrek}[Stone-Weierstrass]
+\index{Izrek!Stone-Weierstrass}
+Naj bo $K$ kompakten Hausdorffov prostor in $A$ podalgebra
+$\mathcal{C}(K, \C) = \mathcal{C}(K)$. Algebro $\mathcal{C}(K)$
+opremimo s supremum normo. Naj za $A$ velja:
+
+\begin{enumerate}[i)]
+\item $A$ vsebuje konstantne funkcije,
+\item $A$ loči točke $K$,
+\item $A$ je zaprta za konjugiranje.
+\end{enumerate}
+
+Tedaj je $A$ gosta v $\mathcal{C}(K)$.
+\end{izrek}
+
+\begin{proof}
+Splošna topologija.
+\end{proof}
+
+\datum{2022-11-10}
+
+\begin{trditev}[Besselova neenakost]\index{Neenakost!Bessel}
+Naj bo $(e_n)_{n=1}^\infty$ ortonormiran sistem v $H$. Tedaj za vse
+$x \in H$ velja
+\[
+\norm{x}^2 \geq \sum_{n=1}^\infty \abs{\skl{x, e_n}}^2.
+\]
+\end{trditev}
+
+\begin{proof}
+Naj bo $P_n$ projektor na $\Lin \setb{e_i}{i \leq n}$. Za vse
+$x \in H$ tako velja
+\[
+P_n(x) = \sum_{i=1}^n \skl{x, e_i} e_i,
+\]
+zato je
+\[
+\norm{x}^2 \geq \norm{P_n x}^2 \geq
+\sum_{i=1}^n \abs{\skl{x, e_i}}^2. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $E \subseteq H$ ortonormiran sistem in $x \in H$. Potem je
+$\skl{x}{e} \ne 0$ za kvečjemu števno mnogo $e \in E$.
+\end{posledica}
+
+\begin{proof}
+Naj bo
+\[
+E_n = \setb{e \in E}{\abs{\skl{x,e}} \geq \frac{1}{n}}.
+\]
+Po Besselovi neenakosti je ta množica končna. Sledi, da lahko $E$
+zapišemo kot števno unijo končnih množic.
+\end{proof}
+
+\begin{posledica}
+Če je $E \subseteq H$ ortonormiran sistem, za vsak $x \in H$ velja
+\[
+\norm{x}^2 \geq \sum_{e \in E} \abs{\skl{x,e}}^2.
+\]
+\end{posledica}
+
+\obvs
+
+\begin{izrek}
+Naj bo $E \subseteq H$ ortonormiran sistem. Naslednje trditve so
+ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $E$ je kompleten ortonormiran sistem.
+\item Velja $E^\bot = \set{0}$.
+\item Velja $[E] = H$.
+\item Za vsak $x \in H$ velja
+\[
+x = \sum_{e \in E} \skl{x,e} \cdot e.
+\]
+\item Za vsaka $x, y \in H$ velja
+\[
+\skl{x,y} = \sum_{e \in E} \skl{x,e} \cdot \skl{e, y}.
+\]
+\item Za vsak $x \in H$ velja
+\[
+\norm{x}^2 = \sum_{e \in E} \abs{\skl{x,e}}^2.
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Denimo, da je $E$ kompleten. Če je $x \in E^\bot$ in je $x \ne 0$,
+je $E \cup \set{\frac{x}{\norm{x}}}$ ortonormiran sistem. Če $E$ ni
+kompleten, obstaja $f \not \in E$, ki je pravokoten na vse ostale,
+zato ne velja niti druga točka. Sledi, da sta prvi trditvi
+ekvivalentni.
+
+Ker velja,
+\[
+H = [E] \oplus [E]^\bot = [E] \oplus E^\bot,
+\]
+sta ekvivalentni tudi druga in tretja trditev.
+
+Denimo, da je $E$ kompleten. Ker $\skl{x,e}$ velja za kvečjemu
+števno elementov $E$, jih lahko oštevilčimo kot
+$(e_n)_{n=1}^\infty$. Naj bo
+\[
+s_n = \sum_{i=1}^n \skl{x, e_i} e_i.
+\]
+Za $m>n$ tako velja
+\[
+\norm{s_m - s_n}^2 = \norm{\sum_{i=n+1}^m \skl{x, e_i} e_i}^2 =
+\sum_{i=n+1}^m \abs{\skl{x, e_i}}^2 = S_m - S_n,
+\]
+kjer je
+\[
+S_n = \sum_{i=1}^n \abs{\skl{x,e_i}}^2.
+\]
+Po Besselovi neenakosti je $S_n$ konvergentno, zato je $s_n$
+Cauchyjevo in ima limito
+\[
+x_0 = \sum_{n=1}^\infty \skl{x, e_n} e_n.
+\]
+Očitno je $x - x_0$ pravokoten na vse $e \in E$, zato je $x = x_0$.
+
+Če velja 4.~trditev, velja
+\[
+\skl{x,y} = \skl{\sum_{e \in E} e, y} =
+\sum_{e \in E} \skl{x,e} \skl{e, y}.
+\]
+Če v 5.~trditev vstavimo $x=y$, dobimo 6.~trditev.
+
+Denimo, da je $E^\bot \ne \set{0}$. Za
+$e_0 \in E^\bot \setminus \set{0}$ po 6.~trditvi velja
+\[
+1 = \norm{e_0}^2 = \sum_{e \in E} \abs{\skl{e_0, e}}^2 = 0.
+\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Poljubna kompletna ortonormirana sistema Hilbertovega sistema $H$
+imata enako kardinalnost.
+\end{trditev}
+
+\begin{proof}
+Naj bosta $E$ in $F$ kompletna ortonormirana sistema. Če je eden
+izmed njiju končen, sta bazi prostora, zato sta enake
+kardinalnosti. Predpostavimo torej, da sta oba neskončna.
+
+Naj bo
+\[
+F_e = \setb{f \in F}{\skl{e,f} \ne 0}.
+\]
+Vemo, da je $F_e$ kvečjemu končna. Ker je $E$ kompleten, velja
+\[
+F = \bigcup_{e \in E} F_e.
+\]
+Sledi, da je
+\[
+\abs{F} \leq \abs{E} \cdot \abs{\N} = \abs{E}
+\]
+in simetrično $\abs{E} \leq \abs{F}$.
+\end{proof}
+
+\begin{definicija}
+\emph{Dimenzija}\index{Vektorski prostor!Dimenzija} Hilbertovega
+prostora $H$ je kardinalnost kompletnega ortogonalnega sistema.
+Označimo jo z $\dim H$.
+\end{definicija}
+
+\begin{zgled}
+Velja
+\[
+\dim \ell^2(I) = \abs{I}.
+\]
+\end{zgled}
+
+\begin{definicija}
+Metrični prostor $(X, d)$ je
+\emph{separabilen}\index{Metrični prostor!Separabilen}, če vsebuje
+števno gosto množico.
+\end{definicija}
+
+\begin{lema}
+Če so $\spr(x_i, \varepsilon_i)$ za $i \in I$ disjunktne neprazne
+odprte krogle v separabilnem metričnem prostoru $(X, d)$, je $I$
+kvečjemu števen.
+\end{lema}
+
+\obvs
+
+\begin{trditev}
+Neskončnorazsežen Hilbertov prostor $H$ je separabilen natanko
+tedaj, ko je $\dim H = \abs{\N}$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $E$ kompleten ortonormiran sistem v $H$. Denimo, da je $H$
+separabilen. Za različna $e, f \in E$ velja
+\[
+\norm{e-f}^2 = 2.
+\]
+Sledi, da so
+\[
+\setb{\spr\br{e, \frac{\sqrt{2}}{2}}}{e \in E}
+\]
+paroma disjunktne krogle, zato je $\abs{E} \leq \abs{\N}$.
+
+Denimo, da je $\dim H = \abs{\N}$. Tedaj je\footnote{Če je
+$\K = \C$, namesto $\Q$ vzamemo $\Q + i\Q$.}
+\[
+D = \setb{\sum_{i=1}^n \alpha_i e_i}{n \in \N, \alpha_j \in \Q}
+\]
+gosta števna množica.
+\end{proof}
+
+\begin{zgled}
+Prostor $L^2[0, 2\pi]$ ima kompleten ortonormiran sistem
+\[
+\setb{\frac{1}{\sqrt{2 \pi}} e^{in \theta}}{n \in \Z}.
+\]
+Res, naj bo $K = \partial \dsk$. Polinomi v
+$z, \oline{z} = \frac{1}{z}$ so gosti v $\mathcal{C}(K)$, zato so
+trigonometrični polinomi
+\[
+\sum_{k=-m}^n \alpha_k e^{ik \theta}
+\]
+gosti v $(\mathcal{C}[0, 2\pi], \skl{.,.})$.
+\end{zgled}
+
+\newpage
+
+\subsection{Izomorfizmi in direktne vsote}
+
+\begin{definicija}
+\emph{Izomorfizem}\index{Vektorski prostor!Hilbertov!Izomorfizem}
+Hilbertovih prostorov $H$ in $K$ je surjektivna linearna preslikava
+$U \colon H \to K$, za katero za vse $x, y \in H$ velja
+\[
+\skl{x,y}_H = \skl{Ux, Uy}_K.
+\]
+Preslikavi $U$ pravimo
+\emph{unitarna preslikava}\index{Preslikava!Unitarna}.
+\end{definicija}
+
+\begin{definicija}
+\emph{Izometrija} je linearna preslikava $V \colon H \to K$, za
+katero za vse $x \in H$ velja
+\[
+\norm{x} = \norm{Vx}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Vsak izomorfizem je izometrija.
+\end{opomba}
+
+\begin{opomba}
+Vsaka izometrija je injektivna.
+\end{opomba}
+
+\datum{2022-11-16}
+
+\begin{trditev}
+Linearna preslikava $V \colon H \to \K$ je izometrija natanko
+tedaj, ko za vsaka $x, y \in H$ velja
+\[
+\skl{Vx,Vy} = \skl{x,y}.
+\]
+\end{trditev}
+
+\begin{proof}
+Če preslikava ohranja skalarni produkt, je izometrija. Če je $V$
+izometrija, pa velja
+\begin{align*}
+\norm{Vx}^2 + 2 \Re \skl{Vx, Vy} + \norm{Vy}^2 &=
+\skl{V(x+y),V(x+y)}
+\\
+&=
+\norm{V(x+y)}^2
+\\
+&=
+\norm{x+y}^2
+\\
+&=
+\norm{x}^2 + 2 \Re \skl{x,y} + \norm{y}^2.
+\end{align*}
+Sledi, da je
+\[
+\Re \skl{Vx,Vy} = \Re \skl{x,y}
+\]
+Če je $\K = \R$, je s tem dokaz zaključen, sicer pa velja
+\[
+\Re \skl{iVx, Vy} = \Re \skl{ix,y},
+\]
+zato sta enaki tudi imaginarni komponenti.
+\end{proof}
+
+\begin{zgled}
+Naj bo $S \colon \ell^2 \to \ell^2$ operator, ki deluje po predpisu
+\[
+S(x_1, x_2, \dots) = (0, x_1, x_2, \dots).
+\]
+Očitno je $S$ izometrija, ni pa unitarna.
+\end{zgled}
+
+\begin{izrek}
+Hilbertova prostora $H$ in $K$ sta izomorfna natanko tedaj, ko je
+$\dim H = \dim K$.
+\end{izrek}
+
+\begin{proof}
+Če sta prostora izomorfna, se kompleten ortogonormiran sistem pod
+izomorfizmom slika v kompleten ortonormiran sistem.
+
+Naj bo $E \subseteq H$ kompleten ortonormiran sistem. Dovolj je
+pokazati, da je
+\[
+H \cong \ell^2(E) =
+\setb{f \colon E \to \K}{\sum_{e \in E} \abs{f(e)}^2 < \infty}.
+\]
+Naj bo
+$U \colon H \to \ell^2(E)$ preslikava, ki deluje po predpisu
+$x \mapsto (\widehat{x} \colon e \mapsto \skl{x,e})$. Po
+Parsevalovi identiteti velja
+\[
+\norm{\widehat{x}} = \sum_{e \in E} \abs{\skl{x,e}}^2 = \norm{x}^2,
+\]
+zato je zgornja preslikava dobro definirana. Očitno je $U$
+linearna, iz zgornje enakosti pa dobimo, da je tudi izometrija.
+Dovolj je tako pokazati, da je $U$ surjektivna.
+
+Naj bo $f \in \ell^2(E)$. Definirajmo
+\[
+x = \sum_{e \in E} f(e) \cdot e.
+\]
+Zgornja vrsta očitno konvergira, velja pa
+\[
+\widehat{x}(e) = \skl{x,e} = f(e),
+\]
+zato je $\widehat{x} = f$.
+\end{proof}
+
+\begin{posledica}
+Vsak separabilen neskončnodimenzionalen Hilbertov prostor je
+izomorfen $\ell^2$.
+\end{posledica}
+
+\begin{definicija}
+\emph{Direktna vsota}\index{Vektorski prostor!Hilbertov!Direktna vsota}
+Hilbertovih prostorov $H$ in $K$ je vektorski prostor $H \times K$
+s skalarnim produktom
+\[
+\skl{(x_1,y_1), (x_2,y_2)} = \skl{x_1, x_2} + \skl{y_1, y_2}.
+\]
+Označimo jo s $H \oplus K$.
+\end{definicija}
+
+\begin{opomba}
+V direktni vsoti za vsak $x \in H$ in $y \in K$ velja
+\[
+\norm{(x,y)}^2 = \norm{x}^2 + \norm{y}^2.
+\]
+\end{opomba}
+
+\begin{opomba}
+Direktna vsota Hilbertovih prostorov je Hilbertov prostor.
+\end{opomba}
+
+\begin{definicija}
+Naj bodo $H_1, H_2, \dots$ Hilbertovi prostori.
+\emph{Direktna vsota} prostorov $H_1, H_2, \dots$ je prostor
+\[
+H = \bigoplus_{j=1}^\infty H_j =
+\setb{(x_1, x_2, \dots)} {\forall j \in \N \colon x_j \in H_j \land
+\sum_{j=1}^\infty \norm{x_j}^2 < \infty}
+\]
+s skalarnim produktom
+\[
+\skl{x,y} = \sum_{j=1}^\infty \skl{x_j, y_j}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Zgornji skalarni produkt je dobro definiran, saj velja
+\[
+\sum_{j=1}^\infty \abs{\skl{x_j,y_j}} \leq
+\sum_{j=1}^\infty \norm{x_j} \cdot \norm{y_j} \leq
+\br{\sum_{j=1}^\infty \norm{x_j}^2}^\frac{1}{2} \cdot
+\br{\sum_{j=1}^\infty \norm{y_j}^2}^\frac{1}{2}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Naj bosta $V_1$ in $V_2$ vektorska prostora nad $\K$ z bazama $E_1$
+in $E_2$.
+\emph{Tenzorski produkt}\index{Vektroski prostor!Tenzorski produkt}
+prostorov $V_1$ in $V_2$ je vektorski prostor nad $\K$ z bazo
+\[
+\setb{e_1 \otimes e_2}{e_1 \in E_1 \land e_2 \in E_2}.
+\]
+Označimo ga z $V_1 \otimes V_2$.
+\end{definicija}
+
+\begin{opomba}
+Tenzorski produkt Hilbertovih prostorov definiramo kot napolnitev
+njunega tenzorskega produkta s skalarnim produktom
+\[
+\skl{a \otimes b, c \otimes d} = \skl{a,c} \cdot \skl{b,d}.
+\]
+Označimo ga s $H_1 \mathbin{\oline{\otimes}} H_2$.
+\end{opomba}

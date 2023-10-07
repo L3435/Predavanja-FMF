@@ -1,0 +1,1081 @@
+\section{Omejeni operatorji med Hilbertovimi prostori}
+
+\epigraph{">Po kratkem razmisleku mislim da že nekaj časa nisi bil
+na tabli, tako da lahko nadaljuješ svoj crossfit
+trening."<}{-- asist.~Tea Štrekelj}
+
+\subsection{Osnovni pojmi}
+
+\begin{definicija}
+Naj bosta $a < b$ realni števili in $k \in \mathcal{C}([a,b]^2)$.
+\emph{Integralski operator}\index{Operator!Integralski} je
+preslikava $K \colon \mathcal{C}([a,b]) \to \mathcal{C}([a,b])$, ki
+deluje po predpisu
+\[
+(Kf)(x) = \int_a^b k(x,y) f(y)\,dy.
+\]
+\end{definicija}
+
+\begin{trditev}
+Integralski operator je omejen.
+\end{trditev}
+
+\begin{proof}
+Po Cauchyjevi neenakosti je
+\begin{align*}
+\abs{(Kf)x} &= \abs{\int_a^b k(x,y) f(y)\,dy}
+\\
+&\leq
+\int_a^b \abs{k(x,y)} \cdot \abs{f(y)}\,dy
+\\
+&\leq
+\norm{k}_\infty \cdot \int_a^b \abs{f(y)}\,dy
+\\
+&\leq
+\norm{k}_\infty \cdot \norm{1}_2 \cdot \norm{f}_2.
+\end{align*}
+Sledi, da je
+\[
+\norm{Kf}^2 = \int_a^b \abs{(Kf)(x)}^2\,dx \leq
+\norm{k}_\infty^2 \cdot (b-a)^2 \cdot \norm{f}_2,
+\]
+zato je $\norm{K} \leq \norm{k}_\infty \cdot (b-a)$.
+\end{proof}
+
+\newpage
+
+\subsection{Adjungirani operator}
+
+\begin{definicija}
+Naj bosta $H$ in $K$ Hilbertova prostora. Preslikava
+$u \colon H \times K \to \K$ je
+\emph{seskvilinearna forma}\index{Seskvilinearna forma}, če je
+linearna v prvi in poševno linearna v drugi komponenti.
+\end{definicija}
+
+\begin{definicija}
+Seskvilinearna forma je
+\emph{omejena}\index{Seskvilinearna forma!Omejena}, če obstaja tak
+$M > 0$, da za vse $x \in H$ in $y \in K$ velja
+\[
+\abs{u(x,y)} \leq M \cdot \norm{x} \cdot \norm{y}.
+\]
+\end{definicija}
+
+\begin{zgled}
+Za $A \in \mathcal{B}(H,K)$ je $u(x,y) = \skl{Ax,y}$ omejena
+seskvilinearna forma. Res, po Cauchyjevi neenakosti velja
+\[
+\abs{u(x,y)} = \abs{\skl{Ax,y}} \leq
+\norm{A} \cdot \norm{x} \cdot \norm{y}. \qedhere
+\]
+\end{zgled}
+
+\datum{2022-11-17}
+
+\begin{izrek}
+Naj bo $u \colon H \times K \to \K$ omejena seskvilinearna forma.
+Tedaj obstajata enolična $A \in \mathcal{B}(H,K)$ in
+$B \in \mathcal{B}(K,H)$, za katera za vsaka $x \in H$ in $y \in K$
+velja
+\[
+u(x,y) = \skl{Ax,y} = \skl{x,By}.
+\]
+\end{izrek}
+
+\begin{proof}
+Naj bo $f_x \colon K \to \K$ preslikava, ki deluje po predpisu
+$f_x(y) = \oline{u(x,y)}$. Tedaj je $f_x$ linearen funkcional,
+velja pa
+\[
+\abs{f_x(y)} = \abs{u(x,y)} \leq M \cdot \norm{x} \cdot \norm{y},
+\]
+zato je funkcional omejen. Po Rieszovem izreku obstaja tak
+$z \in K$, da je $f_x(y) \equiv \skl{y,z}$ in velja
+$\norm{f_x} = \norm{z}$. S predpisom $Ax = z$ je tako podana
+preslikava $A \colon H \to K$.
+
+Preslikava $A$ je očitno linearna, velja pa
+\[
+\norm{Ax} = \norm{z} = \norm{f_x} \leq M \cdot \norm{x},
+\]
+zato je $A$ omejen. Dobimo
+\[
+\skl{y,Ax} = \skl{y,z} = f_x(y) = \oline{u(x,y)}.
+\]
+Denimo sedaj, da je $u(x,y) = \skl{A_1x,y}$. Sledi, da za vse $x$
+in $y$ velja
+\[
+\skl{Ax,y} = \skl{A_1x,y},
+\]
+zato je $A_1 = A$.
+
+Z zgornjim dokazom za $v(x,y) = \oline{u(y,x)}$ dobimo še
+preslikavo $B$.
+\end{proof}
+
+\begin{definicija}
+Naj bo $A \in \mathcal{B}(H,K)$. Operatorju
+$B \in \mathcal{B}(K,H)$, za katerega za vse $x \in H$ in $y \in K$
+velja
+\[
+\skl{Ax,y} = \skl{x,By},
+\]
+pravimo \emph{adjungirani operator}\index{Operator!Adjungirani} in
+ga označimo z $A^*$.
+\end{definicija}
+
+\begin{opomba}
+Po zgornjem izreku obstaja natanko en adjungiran operator.
+\end{opomba}
+
+\begin{trditev}
+Preslikava $U \in \mathcal{B}(H,K)$ je izomorfizem natanko tedaj,
+ko je obrnljiv z inverzom $U^*$.
+\end{trditev}
+
+\begin{proof}
+Če je $U$ obrnljiv, je seveda surjektiven. Če je $U^* = U^{-1}$, pa
+velja še
+\[
+\skl{Ux,Uy} = \skl{x,U^*Uy} = \skl{x,y}.
+\]
+Če je $U$ izomorfizem, je bijektiven in zato obrnljiv, za vse
+$x,y \in H$ pa velja
+\[
+\skl{x,y} = \skl{Ux,Uy} = \skl{x,U^*Uy},
+\]
+zato je $U^*U = I$ in $U^* = U^{-1}$.
+\end{proof}
+
+\begin{trditev}
+Operacija $^*$ je involucija na $\mathcal{B}(H)$ -- za vse
+$A, B \in \mathcal{B}(H)$ in $\alpha, \beta \in \K$ velja
+
+\begin{enumerate}[i)]
+\item
+$(\alpha A + \beta B)^* = \oline{\alpha} A^* + \oline{\beta} B^*$,
+\item $(AB)^* = B^* A^*$,
+\item $(A^*)^* = A$ in
+\item če je $A$ obrnljiv, je obrnljiv tudi $A^*$ in velja
+$(A^*)^{-1} = (A^{-1})^*$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{zgled}
+Naj bo $A \in \mathcal{B}(\ell^2)$ in $(e_n)_n$ kompleten
+ortonormiran sistem za $\ell^2$. Če ima $A$ ">neskončno matriko"<
+$(a_{i,j})_{i,j \in \N}$, ima $A^*$ neskončno matriko
+$(\oline{a}_{j,i})_{i,j \in \N}$.
+\end{zgled}
+
+\begin{izrek}\label{iz:ker_im:1}
+Naj bo $A \in \mathcal{B}(H,K)$. Tedaj velja
+$\ker(A^*) = (\im A)^\bot$.
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+x \in \ker(A^*) \iff A^*x = 0 \iff
+\forall y \in H \colon \skl{A^*x,y} = 0 \iff
+\forall y \in H \colon \skl{x,y} = 0. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Za $A \in \mathcal{B}(H,K)$ velja
+$(\ker A)^\bot = \oline{\im(A^*)}$.
+\end{posledica}
+
+\begin{proof}
+Velja $\ker A = (\im(A^*))^\bot$.
+\end{proof}
+
+\begin{definicija}
+Operator $A \in \mathcal{B}(H)$ je
+
+\begin{enumerate}[i)]
+\item
+\emph{sebiadjungiran}\index{Operator!Sebiadjungiran},\footnote{Tudi
+\emph{hermitski}.} če velja $A^* = A$,
+\item \emph{normalen}\index{Operator!Normalen}, če velja
+$AA^* = A^*A$ in
+\item \emph{unitaren}\index{Operator!Unitaren}, če velja
+$AA^* = I = A^*A$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Operator $A$ je sebiadjungiran natanko tedaj, ko za vse
+$x, y \in H$ velja $\skl{Ax,y} = \skl{x,Ay}$.
+\end{opomba}
+
+\begin{opomba}
+Tako sebiadjungirani kot unitarni operatorji so normalni.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $H$ Hilbertov prostor nad $\C$. Za $A \in \mathcal{B}(H)$
+definiramo
+\[
+\Re A = \frac{A + A^*}{2}
+\quad \text{in} \quad
+\Im A = \frac{A-A^*}{2i}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Realni in imaginarni del operatorja sta sebiadjungirana operatorja.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor nad $\C$ in $A \in \mathcal{B}(H)$.
+Operator $A$ je sebiadjungiran natanko tedaj, ko za vse $x \in H$
+velja $\skl{Ax,x} \in \R$.
+\end{trditev}
+
+\begin{proof}
+Če je $A = A^*$, velja
+\[
+\skl{Ax,x} = \skl{x,Ax} = \oline{\skl{Ax,x}}.
+\]
+Naj bosta sedaj $x, y \in H$ in $\alpha \in \C$. Tedaj velja
+\[
+\skl{A(\alpha x + y), \alpha x + y} =
+\abs{\alpha}^2 \skl{Ax,x} + \alpha \skl{Ax,y} +
+\oline{\alpha} \skl{Ay, x} + \skl{Ay,y},
+\]
+zato velja
+$\alpha \skl{Ax,y} + \oline{\alpha} \oline{\skl{x,Ay}} \in \R$. Z
+$\alpha = 1$ in $\alpha = i$ dobimo $\skl{Ax,y} = \skl{x,Ay}$.
+\end{proof}
+
+\begin{definicija}
+Za operator $A \in \mathcal{B}(H)$ definiramo
+\emph{numerični zaklad}\index{Operator!Numerični zaklad in radij}
+\[
+W(A) = \setb{\skl{Ax,x}}{x \in H \land \norm{x} = 1}.
+\]
+\emph{Numerični radij} operatorja $A$ je
+\[
+w(A) = \sup_{\norm{x} = 1} \abs{\skl{Ax,x}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Za normirane $x$ velja
+\[
+\abs{\skl{Ax,x}} \leq \norm{Ax} \cdot \norm{x} \leq \norm{A},
+\]
+zato je $w(A) \leq \norm{A}$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $A \in \mathcal{B}(H)$ sebiadjungiran operator. Tedaj je
+$w(A) = \norm{A}$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $x \in H$ normiran vektor. Tedaj za nek enotski vektor $y$
+velja $Ax = \norm{Ax}y$ in je
+\[
+\norm{Ax} = \skl{Ax,y} = \skl{x,Ay}.
+\]
+Sledi, da je
+\begin{align*}
+\skl{A(x+y),x+y} - \skl{A(x-y),x-y} &=
+2\skl{Ax,y} + 2\skl{Ay,x}
+\\
+&=
+2 \skl{Ax,y} + 2 \oline{\skl{Ax,y}}
+\\
+&=
+4 \Re \skl{Ax,y}
+\\
+&= 4 \skl{Ax,y}.
+\end{align*}
+Tako velja
+\begin{align*}
+\norm{Ax} &=
+\frac{1}{4} \br{\skl{A(x+y),x+y} - \skl{A(x-y),x-y}}
+\\
+&\leq
+\frac{1}{4} \br{\abs{\skl{A(x+y),x+y}} - \abs{\skl{A(x-y),x-y}}}
+\\
+&\leq
+\frac{1}{4} \br{w(A) \norm{x+y}^2 + w(A) \norm{x-y}^2}
+\\
+&=
+\frac{1}{2} w(A) \br{\norm{x}^2 + \norm{y}^2}
+\\
+&=
+w(A). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{posledica}
+Če za sebiadjungiran operator $A \in \mathcal{B}(H)$ velja
+$\skl{Ax,x} \equiv 0$, je $A = 0$.
+\end{posledica}
+
+\begin{posledica}
+Če je $H$ Hilbertov prostor nad $\C$, $A \in \mathcal{B}(H)$ pa
+operator, za katerega je $\skl{Ax,x} \equiv 0$, velja $A = 0$.
+\end{posledica}
+
+\begin{trditev}
+Za operator $A \in \mathcal{B}(H)$ so naslednje trditve
+ekvivalentne:
+
+\begin{enumerate}[i)]
+\item Operator $A$ je normalen.
+\item Za vsak $x \in H$ velja $\norm{Ax} = \norm{A^*x}$.
+\item Velja $\Re A \cdot \Im A = \Im A \cdot \Re A$.\footnote{Ta
+del trditve je ekvivalenten prejšnjima le v kompleksnih prostorih.}
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Za vsak $x \in H$ velja
+\[
+\norm{Ax}^2 - \norm{A^*x}^2 =
+\skl{Ax,Ax} - \skl{A^*x,A^*x} =
+\skl{(A^*A - AA^*)x,x}.
+\]
+Ker je operator $A^*A - AA^*$ sebiadjungiran, je zgornji izraz enak
+$0$ za vse $x \in H$ natanko tedaj, ko je $A^*A - AA^* = 0$.
+
+Naj bo $B = \Re A$ in $C = \Im A$. Ta operatorja sta
+sebiadjungirana, velja pa
+\begin{align*}
+A^*A = (B-iC)(B+iC) &= B^2 + C^2 + i(BC-CB)
+\intertext{in}
+AA^* = (B+iC)(B-iC) &= B^2 + C^2 - i(BC-CB),
+\end{align*}
+zato je $A^*A = AA^* \iff BC = CB$.
+\end{proof}
+
+\datum{2022-11-23}
+
+\begin{definicija}
+Operator $A \in \mathcal{B}(H)$, kjer je $H$ Hilbertov prostor, je
+\emph{pozitivno semidefiniten}\index{Operator!Pozitivno semidefiniten},
+če velja $A = A^*$ in za vse $x \in H$ velja
+\[
+\skl{Ax,x} \geq 0.
+\]
+Označimo $A \geq 0$.
+\end{definicija}
+
+\begin{opomba}
+Če za vse $x \ne 0$ velja $\skl{Ax,x} > 0$, pravimo, da je $A$
+pozitivno definiten z oznako $A > 0$.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $H$ Hilbertov prostor. Na množici
+\[
+\mathcal{B}(H)_{\text{sa}} = \setb{A \in \mathcal{B}(H)}{A^* = A}
+\]
+vpeljemo delno urejenost
+\[
+A \geq B \iff A - B \geq 0.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $\dim H \geq 2$, zgornja urejenost ni linearna.
+\end{opomba}
+
+\begin{trditev}
+Veljajo naslednje trditve:
+
+\begin{enumerate}[i)]
+\item Če je $\alpha \geq 0$ in $A \geq 0$, je tudi
+$\alpha A \geq 0$.
+\item Če je $A \geq 0$ in $P \in \mathcal{B}(H)$, je tudi
+$P^*AP \geq 0$.
+\item Za vse $A \in \mathcal{B}(H)_{\text{sa}}$ velja
+$-\norm{A} \cdot I \leq A \leq \norm{A} \cdot I$.
+\item Za $A \in \mathcal{B}(H)$ velja $AA^* \geq 0$ in
+$A^*A \geq 0$.\footnote{Tema operatorjema pravimo \emph{hermitska
+kvadrata}.}
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Dokažimo tretjo točko. Za $A \in \mathcal{B}(H)_{\text{sa}}$ velja
+\[
+\skl{-\norm{A}Ix,x} = -\norm{A} \cdot \norm{x}^2 \leq
+\skl{Ax,x} \leq \norm{A} \cdot \norm{x}^2 =
+\skl{\norm{A} \cdot I x, x}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Za vsak operator $B \geq 0$ obstaja tak $A$, da je $B = A^*A$.
+\end{opomba}
+
+\newpage
+
+\subsection{Idempotenti in ortogonalni projektorji}
+
+\begin{definicija}
+Operator $E \in \mathcal{B}(H)$ je
+\emph{idempotent}\index{Operator!Idempotent}, če je $E^2 = E$.
+\end{definicija}
+
+\begin{trditev}
+Za neničeln idempotent $E \in \mathcal{B}(H)$ so naslednje trditve
+ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $E$ je ortogonalni projektor.
+\item Velja $\norm{E} = 1$.
+\item Velja $E^* = E$.
+\item Operator $E$ je normalen.
+\item Za vsak $x \in H$ velja $\skl{Ex,x} \geq 0$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Denimo, da je $E$ ortogonalni projektor. Tedaj je
+$\norm{E} \leq 1$, a za vsak $x \in \im E$ velja $Ex=x$, zato je
+$\norm{E} = 1$.
+
+Denimo, da je $\norm{E} = 1$. Naj bo $x \in \br{\ker E}^\bot$. Ker
+je $x - Ex \in \ker E$, sledi
+\[
+0 = \skl{x - Ex, x} = \norm{x}^2 - \skl{Ex,x}.
+\]
+Sledi, da je
+\[
+\norm{x}^2 = \skl{Ex,x} \leq \norm{Ex} \norm{x} \leq \norm{x}^2,
+\]
+zato je $\norm{x} = \norm{Ex} = \sqrt{\skl{Ex,x}}$. Sledi
+\[
+\norm{x-Ex}^2 = \norm{x}^2 + \norm{Ex}^2 - 2 \skl{Ex,x} = 0.
+\]
+Sledi, da je $\br{\ker E}^\bot \subseteq \im E$.
+
+Za $y \im E$ lahko zapišemo $y = y_1 + y_2$ za enolično določen
+$y_1 \in \ker E$ in $y_2 \in \br{\ker E}^\bot$. Sledi, da je
+\[
+y = Ey = E(y_1 + y_2) = Ey_2 = y_2,
+\]
+saj je $y_2 \in \im E$. Sledi, da je
+$\im E \subseteq \br{\ker E}^\bot$. Prvi dve trditvi sta torej
+ekvivalentni.
+
+Naj bo $E$ ortogonalni projektor. Tedaj lahko zapišemo
+$H = \ker E \oplus \br{\ker E}^\bot$. Za $x, y \in H$ zapišemo
+$x = x_1 + x_2$ in $y = y_1 + y_2$, pri čemer velja
+$x_1, y_1 \in \ker E$ in $x_2, y_2 \in \br{\ker E}^\bot$. Velja
+torej
+\[
+\skl{E^*x,y} = \skl{x,Ey} = \skl{x_1 + x_2,y_2} = \skl{x_2, y_2}
+\]
+in
+\[
+\skl{Ex,y} = \skl{x_2,y_1 + y_2} = \skl{x_2,y_2},
+\]
+zato je sebiadjungiran.
+
+Če je $E$ sebiadjungiran, je očitno normalen.
+
+Če je $E$ normalen, za vsak $x \in H$ velja
+$\norm{Ex} = \norm{E^*x}$ -- posebej, $\ker E = \ker E^*$. Po
+izreku~\ref{iz:ker_im:1} sledi, da je $\ker E = \br{\ker E}^\bot$,
+zato je $E$ projektor. Prve štiri trditve so torej ekvivalentne.
+
+Če je $E$ ortogonalen projektor, sledi
+\[
+\norm{Ex,x} = \norm{E^2x,x} = \norm{Ex,E^*x} = \norm{Ex}^2 \geq 0.
+\]
+Če velja peta trditev, pa za poljubna $h_1 \in \im E$ in
+$h_2 \in \ker E$ velja
+\[
+0 \leq \skl{E(h_1 + h_2), h_1 + h_2} =
+\skl{h_1, h_1} + \skl{h_1, h_2},
+\]
+kar lahko velja le, če je $h_1 \perp h_2$, zato je
+$\im E \perp \ker E$. Sledi, da je $H = \ker E \oplus \im E$, saj
+lahko zapišemo $x = (x - Ex) + Ex$. Ker pa je
+$\im E \subseteq \br{\ker E}^\bot$ in
+$H = \ker E \oplus \br{\ker R}^\bot$, je
+$\im E = \br{\ker E}^\bot$.
+\end{proof}
+
+\begin{posledica}
+Operator $P \in \mathcal{B}(H)$ je projektor natanko tedaj, ko je
+$P^2 = P = P^*$.
+\end{posledica}
+
+\begin{definicija}
+Zaprt podprostor $M \leq H$ je
+\emph{invariaten}\index{Vektorski prostor!Invarianten} za
+$A \in \mathcal{B}(H)$, če je $A(M) \subseteq M$. Invarianten
+prostor $M \leq H$ je
+\emph{reducirajoč}\index{Vektorski prostor!Reducirajoč}, če je tudi
+$M^\bot$ invarianten za $A$.
+\end{definicija}
+
+\begin{opomba}
+Naj bo $M \leq H$ zaprt podprostor. Potem lahko vsak
+$A \in \mathcal{B}(H)$ zapišemo kot $2 \times 2$ operatorsko
+matriko
+\[
+A = \begin{pmatrix}
+B & C \\
+D & E
+\end{pmatrix},
+\]
+kjer je $B \in \mathcal{B}(M)$, $C \in \mathcal{B}(M^\bot, M)$,
+$D \in \mathcal{B}(M, M^\bot)$ in $E \in \mathcal{B}(M^\bot)$.
+Ortogonalni projektor v tej obliki zapišemo kot
+\[
+P = \begin{pmatrix}
+I & 0 \\
+0 & 0
+\end{pmatrix}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Naj bo $A \in \mathcal{B}(H)$, $M \leq H$ zaprt podprostor in $P$
+projektor na $M$. Naslednje trditve so ekvivalentne:
+
+\begin{enumerate}[i)]
+\item $M$ je invarianten za $A$.
+\item Velja $PAP = AP$.
+\item V zapisu iz zgornje opombe je $D = 0$.
+\end{enumerate}
+
+Ekvivalentne so tudi naslednje trditve:
+
+\begin{enumerate}[i)]
+\item $M$ reducira $A$.
+\item Velja $PA = AP$.
+\item V zapisu iz prejšnje opombe je $D = 0$ in $C = 0$.
+\item $M$ je invarianten za $A$ in $A^*$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj bo $M$ invarianten za $A$. Za $x \in H$ je $Px \in M$, zato je
+$APx \in M$ in je $PAPx = APx$.
+
+Če je $PAP = AP$, sledi
+\[
+AP =
+\begin{pmatrix}
+B & C \\
+D & E
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+1 & 0 \\
+0 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+B & 0 \\
+D & 0
+\end{pmatrix},
+\]
+velja pa
+\[
+PAP =
+\begin{pmatrix}
+B & 0 \\
+0 & 0
+\end{pmatrix},
+\]
+zato je $D = 0$.
+
+Če je $D = 0$, za $x \in M$ velja
+\[
+Ax =
+\begin{pmatrix}
+B & C \\
+0 & E
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+x \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+Bx \\
+0
+\end{pmatrix}
+\in M.
+\]
+Sledi, da so prve tri trditve ekvivalentne.
+
+Denimo sedaj, da $M$ reducira $A$. Ker je $M$ invarianten za $A$,
+sledi $PAP = AP$, ker pa je $I-P$ ortogonalni projektor na
+$M^\bot$, dobimo
+\[
+(I-P)A(I-P) = A(I-P),
+\]
+od koder sledi $AP = PA$.
+
+Če je $AP = PA$, iz bločnega množenja dobimo $D = 0$ in $C = 0$.
+
+Če velja $D = 0$ in $C = 0$, sledi
+\[
+A =
+\begin{pmatrix}
+B & 0 \\
+0 & E
+\end{pmatrix}
+\quad \text{in} \quad
+A^* =
+\begin{pmatrix}
+B^* & 0   \\
+0   & C^*
+\end{pmatrix},
+\]
+zato je $M$  invarianten za $A$ in $A^*$.
+
+Denimo, da je $M$ invarianten za $A$ in $A^*$. Za poljuben
+$x \in M$ in $y \in M^\bot$ tako velja
+\[
+\skl{x, Ay} = \skl{A^*x, y} = 0,
+\]
+zato je $Ay \in M^\bot$ in je $M^\bot$ invarianten za $A$, zato $M$
+reducira $A$. Sledi, da so tudi ostale trditve ekvivalentne.
+\end{proof}
+
+\begin{posledica}
+Če je $A \in \mathcal{B}(H)$ in $M \leq H$ invarianten prostor za
+$A$, je $M^\bot$ invarianten za $A^*$.
+\end{posledica}
+
+\begin{posledica}
+Če je $A \in \mathcal{B}(H)_{\text{sa}}$, je vsak invarianten
+podprostor za $A$ tudi reducirajoč.
+\end{posledica}
+
+\begin{openprob}[Invariant subspace problem]
+\index{Odprt problem!Invariant subspace problem}
+Ali ima vsak $A \in \mathcal{B}(H)$ kak netrivialen invarianten
+prostor?
+\end{openprob}
+
+\begin{opomba}
+Če je $\dim H < \infty$, je odgovor da.
+\end{opomba}
+
+\begin{opomba}
+Če $H$ ni separabilen, je odgovor tudi da -- velja da je
+\[
+\left[\setb{A^kx}{k \in \N_0}\right] \leq H
+\]
+netrivialen podprostor.
+\end{opomba}
+
+\begin{opomba}
+Trditev ne drži v splošnem v Banachovih prostorih.
+\end{opomba}
+
+\newpage
+
+\subsection{Kompaktni operatorji}
+
+\datum{2022-11-24}
+
+\begin{definicija}
+Naj bosta $X$ in $Y$ normirana prostora. Operator
+$T \colon X \to Y$ je \emph{kompakten}\index{Operator!Kompakten},
+če je $T(B_X)$ relativno kompaktna množica.\footnote{$B_X$ tu
+označuje zaprto enotsko kroglo v $X$.}
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno, za vsako omejeno zaporedje $(x_n)_n$ v $X$ ima
+zaporedje $(Tx_n)_n$ konvergentno podzaporedje.
+\end{opomba}
+
+\begin{opomba}
+Vsak kompakten operator je omejen.
+\end{opomba}
+
+\begin{definicija}
+Množica $A \subseteq X$ je
+\emph{povsem omejena}\index{Množica!Povsem omejena}, če za vsak
+$\varepsilon > 0$ obstaja končno pokritje množice $A$ z odprtimi
+kroglami radija $\varepsilon$.
+\end{definicija}
+
+\begin{trditev}
+Če je $Y$ Banachov prostor, je operator $T \in \mathcal{B}(X,Y)$
+kompakten natanko tedaj, ko je $T(B_X)$ povsem omejena.
+\end{trditev}
+
+\begin{proof}
+Vsak omejen poln metričen prostor $(X,d)$ je kompakten. Naj bo
+$(x_n)_n$ zaporedje. Tedaj za vsak $n \in \N$ obstaja taka končna
+podmnožica $D_n \subseteq X$, da je
+\[
+\bigcup_{a \in D} \spr \br{a,2^{-n}} = X.
+\]
+Za vsak $n \in \N$ zato obstaja tak $y_n \in D_n$, da je množica
+\[
+A_n = \setb{n \in A_{n-1}}{x_n \in \spr \br{y_n, 2^{-n}}}
+\]
+neskončna, kjer je $A_0 = \N$. Za poljubno naraščajoče zaporedje
+$(n_k)_k$, pri čemer je $n_k \in A_k$, je tako $\br{x_{n_k}}_k$
+Cauchyjevo. Sledi, da ima vsako zaporedje Cauchyjevo podzaporedje.
+\end{proof}
+
+\begin{opomba}
+Množico kompaktnih operatorjev iz $X$ v $Y$ označimo s
+$\mathcal{K}(X,Y)$. Posebej označimo še
+$\mathcal{K}(X) = \mathcal{K}(X,X)$.
+\end{opomba}
+
+\begin{izrek}
+Naj bosta $X$ in $Y$ Banachova prostora. Tedaj je
+$\mathcal{K}(X,Y)$ zaprt podprostor v $\mathcal{B}(X,Y)$ in za vse
+$T \in \mathcal{K}(X,Y)$, $A \in \mathcal{B}$ in
+$B \in \mathcal{B}(Y)$ velja $TA \in \mathcal{K}(X,Y)$ in
+$BT \in \mathcal{K}(X,Y)$.
+\end{izrek}
+
+\begin{proof}
+Naj bosta $S, T \in \mathcal{K}(X,Y)$ in $\lambda, \mu \in \K$,
+$(x_n)_n$ pa omejeno zaporedje v $X$. Ker sta $S$ in $T$ kompaktna,
+obstaja naraščajoče zaporedje $(n_k)_k$, za katerega sta zaporedji
+$\br{Sx_{n_k}}$ in $\br{Tx_{n_k}}$ konvergentni. Sledi, da je
+konvergentno tudi zaporedje $\br{(\lambda S + \mu T)\br{x_{n_k}}}$,
+zato je $\mathcal{K}$ res podprostor.
+
+Naj bo $(T_n)_n$ zaporedje v $\mathcal{K}(X,Y)$ in
+$T \in \mathcal{B}(X,Y)$ limita tega zaporedja. Naj bo
+$\varepsilon > 0$. Tedaj obstaja tak $n \in \N$, da je
+$\norm{T - T_n} < \frac{\varepsilon}{3}$. Ker je
+$T_n \in \mathcal{K}(X,Y)$, obstajajo točke
+$x_1, \dots, x_m \in B_X$, za katere je
+\[
+T_n(B_x) \subseteq
+\bigcup_{j=1}^m \spr \br{T_nx_j, \frac{\varepsilon}{3}}.
+\]
+Za vsak $x \in B_X$ torej obstaja tak $j$, da je
+$\norm{T_nx - T_n x_j} < \frac{\varepsilon}{3}$. Sledi, da je
+\[
+\norm{Tx_j - Tx} =
+\norm{Tx_j - T_nx_j + T_nx_j - T_nx + T_nx - T_x} <
+\varepsilon
+\]
+in
+\[
+T(B_X) \subseteq \bigcup_{j=1}^m \spr(Tx_j, \varepsilon),
+\]
+zato je $T \in \mathcal{K}(X,Y)$ in je $\mathcal{K}(X,Y)$ zaprt.
+
+Naj bo $(x_n)_n$ omejeno zaporedje. Potem je $(Ax_n)_n$ omejeno,
+ker pa je $T$ kompakten, ima $(TAx_n)_n$ konvergentno podzaporedje.
+Sledi, da je $TA$ kompakten. Podobno dobimo kompaktnost $BT$.
+\end{proof}
+
+\begin{posledica}
+Prostor $\mathcal{K}(X)$ je ideal v $\mathcal{B}(X)$.
+\end{posledica}
+
+\begin{zgled}
+Če ima $T \in \mathcal{B}(X,Y)$ končen rang, je
+kompakten.\footnote{Definiramo $\rang T = \dim(\im T)$.} Res, velja
+\[
+T(B_X) \subseteq \norm{T} \cdot B_{\im T},
+\]
+ki pa je kompaktna, saj je $\im T$ končnorazsežen.
+\end{zgled}
+
+\begin{opomba}
+Operatorje s končnim rangom med $X$ in $Y$ označimo z
+$\mathcal{F}(X,Y)$. Posebej označimo
+$\mathcal{F}(X) = \mathcal{F}(X,X)$.
+\end{opomba}
+
+\begin{opomba}
+Velja, da je $\mathcal{F}(X,Y)$ podprostor v $\mathcal{K}(X,Y)$ in
+$\mathcal{F}(X) \edn \mathcal{B}(X)$.
+\end{opomba}
+
+\begin{zgled}
+Če je $\dim X < \infty$ ali $\dim Y < \infty$, je
+$\mathcal{F}(X,Y) = \mathcal{K}(X,Y) = \mathcal{B}(X,Y)$.
+\end{zgled}
+
+\begin{zgled}
+Če je $\dim X = \infty$, potem identiteta ni kompakten operator.
+Zaporedje ortononrmiranih vektorjev je namreč omejeno, nima pa
+konvergentnega podzaporedja.
+\end{zgled}
+
+\begin{opomba}
+Če je $H$ separabilen Hilbertov prostor, je $\mathcal{K}(H)$
+maksimalen ideal v $\mathcal{B}(H)$.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $X$ normiran, $Y$ pa Banachov prostor. Potem je za vsak
+$A \in \mathcal{K}(X,Y)$ tudi razširitev
+$\oline{A} \colon \oline{X} \to Y$ kompaktna.
+\end{trditev}
+
+\begin{proof}
+Naj bo $(x_n)_n$ omejeno zaporedje v $\oline{X}$. Tedaj obstaja
+tako omejeno zaporedje $(y_n)_n$ v $X$, da je
+\[
+\norm{x_n - y_n} < \frac{1}{n}.
+\]
+Ker je $A$ kompakten, ima zaporedje $\br{Ay_n}_n$ konvergentno
+podzaporedje $\br{Ay_{n_j}}_j$ z limito $y$. Sledi, da je
+\[
+\norm{\oline{A}x_{n_j} - y} \leq
+\norm{\oline{A}x_{n_j} - \oline{A}y_{n_j}} +
+\norm{\oline{A}y_{n_j} - y} \leq
+\norm{\oline{A}} \cdot \frac{1}{n_j} + \norm{Ay_{n_j} - y},
+\]
+kar konvergira k $0$, zato ima $\br{\oline{A}x_n}_n$ konvergentno
+podzaporedje.
+\end{proof}
+
+\begin{definicija}
+Družina funkcij $F$ je
+\emph{enakozvezna}\index{Preslikava!Enakozvezne}, če za vsak
+$\varepsilon > 0$ obstaja tak $\delta > 0$, da za vse $f \in F$
+in $x,y \in \R$, za katere je $\abs{x-y} < \delta$, velja
+\[
+\abs{f(x) - f(y)} < \varepsilon.
+\]
+\end{definicija}
+
+\begin{izrek}[Arzelà-Ascoli]\index{Izrek!Arzelà-Ascoli}
+Naj bo $(f_n)_n \subseteq \mathcal{C}([a,b])$ enakozvezno
+zaporedje. Če je $(f_n)_n$ omejena množica v
+$(\mathcal{C}([a,b]), \norm{.}_\infty)$, je relativno kompaktna.
+\end{izrek}
+
+\begin{proof}
+Naj bo $(x_n)_n$ množica vseh racionalnih števil v $[a,b]$. Ker je
+$(f_n(x_1))_n$ omejena v $\K$, obstaja tako podzaporedje
+$(f_n^{(1)})_n$, da zaporedje $(f_n^{(1)}(x_1))_n$ konvergira.
+Induktivno tako za vsak $j$ najdemo zaporedje $(f_n^{(j)})_n$, za
+katero zaporedja $(f_n^{(j)}(x_i))_n$ konvergirajo za vsak
+$i \leq j$. Tedaj zaporedje $\widetilde{f}_n = f_n^{(n)}$
+konvergira za vsak $x_j$.
+
+Naj bo $\varepsilon > 0$. Po enakozveznosti obstaja tak
+$\delta > 0$, da iz $\abs{x-y} < \delta$ sledi
+\[
+\abs{f_n(x) - f_n(y)} < \frac{\varepsilon}{3}
+\]
+za vse $n \in \N$. Ker je $[a,b]$ kompakten, obstaja tak
+$p \in \N$, da je
+\[
+[a,b] \subseteq \bigcup_{j=1}^p \br{x_j - \delta, x_j + \delta}.
+\]
+Za vse dovolj velike $n$ in $m$ velja
+\[
+\abs{\widetilde{f}_m(x_j) - \widetilde{f}_n(x_j)} <
+\frac{\varepsilon}{3}.
+\]
+Za poljuben $x \in [a,b]$ tako obstaja tak $j$, da je
+\[
+\abs{\widetilde{f}_n(x) - \widetilde{f}_m(x)} \leq
+\abs{\widetilde{f}_n(x) - \widetilde{f}_m(x_j)} +
+\abs{\widetilde{f}_m(x_j) - \widetilde{f}_n(x_j)} +
+\abs{\widetilde{f}_n(x_j) - \widetilde{f}_n(x)} <
+\varepsilon.
+\]
+Sledi, da je zaporedje $\br{\widetilde{f}_n}_n$ Cauchyjevo.
+\end{proof}
+
+\begin{trditev}
+Naj bo $(f_n)_n$ zaporedje zvezno odvedljivih funkcij na $[a,b]$.
+Če je
+\[
+M = \sup_n \norm{f_n'}_\infty < \infty,
+\]
+je zaporedje enakozvezno.
+\end{trditev}
+
+\begin{proof}
+Izberemo $\delta = \frac{\varepsilon}{M}$. Tedaj je
+\[
+\abs{f_n(x) - f_n(y)} = \abs{f_n'(z) \cdot (x - y)} \leq
+M \cdot \delta = \varepsilon. \qedhere
+\]
+\end{proof}
+
+\begin{zgled}
+Obrat ne drži -- zaporedje $f_n(x) = \frac{1}{n} \sin(n^2 \pi x)$
+na $[0,1]$ je enakozvezno, a odvodi niso omejeni.
+\end{zgled}
+
+\begin{trditev}
+Integralski operator
+\[
+(Kf)(x) = \int_a^b k(x,y) f(y)\,dy,
+\]
+kjer je $k \in \mathcal{C} \br{[a,b]^2}$, je kompakten na
+$(\mathcal{C}([a,b]), \norm{.}_2)$ in
+$(\mathcal{C}([a,b]), \norm{.}_\infty)$.
+\end{trditev}
+
+\begin{proof}
+Opazimo, da je $k$ enakomerno zvezen v prvi spremenljivki. Sledi,
+da je
+\[
+\abs{(Kf)(x) - (Kf)(y)} \leq
+\int_a^b \abs{k(x,z) - k(y,z)} \cdot \abs{f(z)}\,dz \leq
+\varepsilon \cdot \int_a^b \abs{f(z)}\,dz \leq
+\varepsilon \cdot \sqrt{b-a} \cdot \norm{f}_2.
+\]
+Naj bo $(f_n)_n$ omejeno zaporedje v
+$(\mathcal{C}([a,b]), \norm{.}_2)$. Po zgornji oceni je zaporedje
+$(Kf_n)_n$ enakozvezno. Ker je
+\[
+\norm{Kf_n}_\infty \leq
+\sup_{x \in [a,b]} \int_a^b \abs{k(x,y)} \cdot \abs{f(y)}\,dy \leq
+\norm{k}_\infty \cdot \int_a^b \abs{f(y)}\,dy \leq
+\norm{k}_\infty \cdot \sqrt{b-a} \cdot \norm{f_n}_2,
+\]
+je tudi omejeno. Sledi, da je $K$ kompakten.
+\end{proof}
+
+\datum{2022-11-30}
+
+\begin{izrek}
+Naj bosta $H$ in $K$ Hilbertova prostora. Za operator
+$T \in \mathcal{B}(H,K)$ so naslednje trditve
+ekvivalentne:\footnote{Prvi dve trditvi sta ekvivalentni tudi v
+Banachovih prostorih -- ekvivalenci pravimo \emph{Schauderjev
+izrek}.}
+
+\begin{enumerate}[i)]
+\item $T$ je kompakten.
+\item $T^*$ je kompakten.
+\item Obstaja zaporedje operatorjev
+$(T_n)_n \subseteq \mathcal{F}(H,K)$, ki konvergirajo k $T$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Ker je $\mathcal{F}(H,K) \subseteq \mathcal{K}(H,K)$, kompaktni
+operatorji pa so zaprti, je zaprtje $\mathcal{F}(H,K)$ vsebovano v
+kompaktnih operatorjih. Sledi, da so vse limite operatorjev končnih
+rangov kompaktne.
+
+Denimo, da je $T$ kompakten. Tedaj je množica $\oline{T(B_H)}$
+kompaktna. Sledi, da je tudi separabilna, saj jo lahko za vsak $n$
+pokrijemo s končno mnogo kroglami z radijem $\frac{1}{n}$. Sledi,
+da je
+\[
+\oline{\im T} \subseteq \Q_{\geq 0} \cdot \oline{T(B_H)}.
+\]
+Tudi $\oline{\im T}$ je separabilen Hilbertov prostor. Naj bo
+$(e_n)_n$ kompleten ortonormiran sistem za $\oline{\im T}$,
+$P_n \in \mathcal{B}(K)$ pa projektor na
+$\Lin \setb{e_i}{i \leq n}$. Tedaj so $P_n \in \mathcal{F}(K)$,
+zato so operatorji $T_n = P_n T \in \mathcal{F}(H,K)$.
+
+Pokažimo, da $T_n$ po točkah konvergirajo k $T$, oziroma, da za
+vsak $y \in \oline{\im T}$ velja
+\[
+\lim_{n \to \infty} \norm{P_n y - y} = 0.
+\]
+Velja pa
+\[
+\lim_{n \to \infty} \norm{P_n y - y} =
+\lim_{n \to \infty} \norm{\sum_{k=n+1}^\infty \skl{y,e_k}e_k} = 0.
+\]
+Ker je $T$ kompakten, za vsak $\varepsilon > 0$ obstajajo take
+točke $x_1, \dots, x_m \in B_H$, da je
+\[
+T(B_H) \subseteq
+\bigcup_{j=1}^m \spr \br{Tx_j, \frac{\varepsilon}{3}}.
+\]
+Za poljuben $x \in B_H$ lahko tako izberemo tak $x_j$, da je
+\[
+\norm{Tx - Tx_j} < \frac{\varepsilon}{3}.
+\]
+Ker $T_n$ konvergira po točkah, obstaja tak $n$, da za vse $i$
+velja
+\[
+\norm{Tx_i - T_nx_i} < \frac{\varepsilon}{3}.
+\]
+Sledi, da je
+\[
+\norm{Tx - T_nx} \leq
+\norm{Tx - Tx_j} + \norm{Tx_j - T_nx_j} + \norm{T_nx_j - T_nx} <
+\frac{2 \varepsilon}{3} + \norm{P_n} \cdot \norm{Tx_j - Tx} <
+\varepsilon.
+\]
+Pokažimo še ekvivalenco prvih dveh točk -- denimo, da je $T$
+kompakten. Velja
+\[\norm{T^*x}^2 = \skl{T^*x,T^*x} =
+\skl{TT^*x,x} \leq \norm{TT^*x} \cdot \norm{x}.
+\]
+Ker je $T$ kompakten, je kompakten tudi $TT^*$. Za vsako zaporedje
+$(x_n)_n \subseteq B_K$ zaporedje $(TT^*x_n)_n$ tako vsebuje
+konvergentno podzaporedje $\br{TT^*x_{n_k}}_k$. Velja pa
+\[
+\norm{T^*x_{n_k} - T^*x_{n_l}}^2 \leq
+\norm{TT^* \br{x_{n_k}-x_{n_l}}} \cdot \norm{x_{n_k}-x_{n_l}} \leq
+2 \norm{TT^* \br{x_{n_k}-x_{n_l}}}.
+\]
+Zaporedje $\br{T^*x_{n_k}}_k$ je zato Cauchyjevo in konvergentno.
+\end{proof}
+
+\begin{posledica}
+Če je $T \in \mathcal{K}(H,H')$, je $\oline{\im T}$ separabilen
+prostor v $H'$. Če je $(e_n)_n$ kompleten ortonormiran sistem za
+$\oline{\im T}$, $P_n$ pa ortogonalni projektor na prvih $n$
+komponent, zaporedje $(P_nT)_n$ konvergira k $T$.
+\end{posledica}
+
+\begin{zgled}[Diagonalni operator]
+Naj bo $H$ separabilen Hilbertov prostor z bazo $(e_n)_n$. Naj bo
+$\alpha = (\alpha_n)_n \in \ell^\infty$. S predpisom
+\[
+Ae_n = \alpha_n e_n
+\]
+je definiran enoličen operator $A \in \mathcal{B}(H)$ in je
+\[
+\norm{A} = \sup_n \abs{\alpha_n}.
+\]
+Operator $A$ je kompakten natanko tedaj, ko je $\alpha \in c_0$.
+\end{zgled}
+
+\begin{proof}
+Naj bo $A_n = A - P_n A$. Potem je
+\[
+A_n e_k =
+\begin{cases}
+0,            & k \leq n \\
+\alpha_k e_k, & k > n.
+\end{cases}
+\]
+Sledi, da je $A_n$ diagonalen operator in
+\[
+\norm{A_n} = \sup_{k > n} \abs{\alpha_n}.
+\]
+Če je $\alpha \in c_0$, norme $\norm{A_n}$ konvergirajo proti $0$,
+zato operatorji $P_n A$ konvergirajo k $A$, zato je $A$ kompakten.
+
+Če je $A$ kompakten, velja
+\[
+\norm{A_n} = \norm{A_n^*} = \norm{A^* - A^* P_n},
+\]
+zato $\norm{A_n}$ konvergirajo proti $0$ zaradi kompaktnosti $A^*$.
+Sledi, da $\alpha_n$ konvergirajo proti $0$.
+\end{proof}

@@ -1,4 +1,7 @@
-\section{Linearni funkcionali, operatorji in dualni prostor}
+\section{Linearni funkcionali, operatorji, dualni prostor}
+
+\epigraph{">Ta dokaz je spet priložnost da pokažemo svoje likovne
+sposobnosti."<}{-- prof.~dr.~Igor Klep}
 
 \subsection{Osnovni pojmi}
 
@@ -186,13 +189,146 @@ $\eval{S}{L}{} = T$. Pri tem je $\norm{S} = \norm{T}$.
 
 \begin{proof}
 Naj bo $x \in \oline{L}$. Potem obstaja zaporedje
-$(y_n)_{n=1}^\infty$ v $L$, ki konvergira k $x$. Tedaj je $T y_n$
-Cauchyjevo v $F$. Ta limita je neodvisna od izbira zaporedja $y_i$.
-Sledi, da lahko definiramo $Sx = \lim_{n \to \infty} T y_n$. Ni
-težko preveriti, da je $S$ linearen, očitno pa je
-$\eval{S}{L}{} = T$, saj je $T$ omejen.
-%continue;
+$(y_n)_{n=1}^\infty$ v $L$, ki konvergira k $x$. Zaporedje
+$(Ty_n)_n$ je tako Cauchyjevo v $F$, njegova limita pa je neodvisna
+od izbira zaporedja $y_i$. Sledi, da lahko definiramo
+$Sx = \lim_{n \to \infty} T y_n$. Ni težko preveriti, da je $S$
+linearen, očitno pa je $\eval{S}{L}{} = T$, saj je $T$ omejen.
+
+Očitno velja neenakost $\norm{S} \geq \norm{T}$. Naj bo
+$x \in \oline{L}$ in $(x_n)_n$ zaporedje v $L$, ki konvergira k
+$x$. Sledi, da je
+\[
+\norm{Sx} =
+\norm{\lim_{n \to \infty} Tx_n} =
+\lim_{n \to \infty} \norm{Tx_n} \leq
+\norm{T} \cdot \norm{\lim_{n \to \infty} x_n} =
+\norm{T} \cdot \norm{x},
+\]
+zato je $\norm{S} \leq \norm{T}$.
+
+Enoličnost razširitve sledi iz zveznosti in gostosti.
 \end{proof}
+
+\begin{trditev}
+Naj bosta $E$ in $F$ normirana prostora, $T \colon E \to F$ pa
+linearna preslikava. Naslednji trditvi sta ekvivalentni:
+
+\begin{enumerate}[i)]
+\item Obstaja omejen inverzni operator $T^{-1} \colon TE \to E$.
+\item Obstaja tak $c > 0$, da za vsak $x \in E$ velja
+$c \norm{x} \leq \norm{Tx}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Denimo, da ima $T$ omejen inverz z $\norm{T^{-1}} = \frac{1}{c}$.
+Za poljuben $y = Tx$ tako velja
+\[
+\frac{1}{c} \cdot \norm{y} \geq \norm{T^{-1}y} = \norm{x},
+\]
+oziroma $\norm{Tx} \geq c \cdot \norm{x}$.
+
+Denimo sedaj, da velja druga trditev. Očitno je $T$ injektivna,
+zato $T^{-1} \colon TE \to E$ obstaja in je linearen. Naj bo
+$y = Tx$ poljuben. Tedaj je
+\[
+\norm{y} \geq c \norm{x} = c \norm{T^{-1}y},
+\]
+oziroma $\norm{T^{-1}} \leq \frac{1}{c}$.
+\end{proof}
+
+\begin{izrek}
+Naj bo $1 \leq p < \infty$ in $\frac{1}{p} + \frac{1}{q} = 1$. Za
+$y \in \ell^q$ naj bo $f_y \colon \ell^p \to \K$ preslikava s
+predpisom
+\[
+f_y(x) = \sum_{n=1}^\infty x_n y_n.
+\]
+Tedaj je $f_y \in \br{\ell^p}^*$ in je $y \mapsto f_y$ izometrični
+izomorfizem.
+\end{izrek}
+
+\begin{proof}
+Opazimo, da po Hölderjevi neenakosti velja
+\[
+f_y(x) \leq \norm{x}_p \cdot \norm{y}_q.
+\]
+Sledi, da je $f_y$ dobro definirana preslikava. Ker je ta očitno
+linearna, je omejen operator, za katerega je
+$\norm{f_y} \leq \norm{y}_q$. Pokažimo, da velja enakost.
+
+Najprej obravnavajmo primer $p=1$. Za poljuben $\varepsilon > 0$
+obstaja tak $n$, da je
+$\abs{y_n} \geq \norm{y}_\infty - \varepsilon$. Sedaj lahko
+preprosto vzamemo $x = e_n$ in dobimo
+$\norm{f_y} \geq \norm{y}_\infty - \varepsilon$, oziroma
+$\norm{f_y} = \norm{y}_\infty$.
+
+Naj bo sedaj $p > 1$. Vzemimo
+\[
+x_n = \begin{cases}
+0, & y_n = 0, \\
+\frac{\abs{y_n}^q}{y_n}, & y_n \ne 0.
+\end{cases}
+\]
+Velja $x \in \ell^p$, saj je
+\[
+\sum_{n=1}^\infty \abs{x_n}^p =
+\sum_{n=1}^\infty \abs{y_n}^q <
+\infty.
+\]
+Sledi, da je
+\[
+f_y(x) = \sum_{n=1}^\infty x_n y_n = \norm{y}_q^q,
+\]
+oziroma
+\[
+\frac{\abs{f_y(x)}}{\norm{x}_p} =
+\frac{\norm{y}_q^q}{\norm{y}_q^{\frac{1}{p}}} =
+\norm{y}_q,
+\]
+oziroma $\norm{f_y} = \norm{y}_q$.
+
+Preslikava $y \mapsto f_y$ je tako linearna izometrija. Pokažimo še
+surjektivnost. Naj bo $f \in \br{\ell^p}^*$ in definirajmo
+$y_n = f(e_n)$. Dokažimo, da je $y \in \ell^q$.
+
+Znova najprej obravnavajmo primer $p=1$. Sledi, da je
+\[
+\abs{y_n} = \abs{f(e_n)} \leq \norm{f},
+\]
+zato je $y \in \ell^\infty$.
+
+Naj bo sedaj $p > 1$. Sledi, da je
+\[
+\sum_{n=1}^m \abs{y_n}^q =
+\sum_{\substack{n=1 \\ y_n \ne 0}}^m
+\frac{\abs{y_n}^q}{y_n} f(e_n) =
+f \br{\sum_{\substack{n=1 \\ y_n \ne 0}}^m
+\frac{\abs{y_n}^q}{y_n} e_n} \leq
+\norm{f} \cdot \norm{\sum_{\substack{n=1 \\ y_n \ne 0}}^m
+\frac{\abs{y_n}^q}{y_n} e_n}_p,
+\]
+velja pa
+\[
+\norm{\sum_{\substack{n=1 \\ y_n \ne 0}}^m
+\frac{\abs{y_n}^q}{y_n} e_n}_p =
+\sqrt[p]{\sum_{\substack{n=1 \\ y_n \ne 0}}^m \abs{y_n}^q}.
+\]
+Dobimo, da je
+\[
+\sqrt[q]{\sum_{n=1}^m \abs{y_n}^q} \leq \norm{f},
+\]
+kar nam v limiti da $\norm{y}_q \leq \norm{f}$.
+
+Očitno se $f$ in $f_y$ ujemata na $\Lin \setb{e_n}{n \in \N}$, ki
+je gosta v $\ell^p$, zato je $f = f_y$.
+\end{proof}
+
+\begin{posledica}
+Velja $\br{\ell^p}^* \cong \ell^q$.
+\end{posledica}
 
 \datum{2022-10-19}
 
@@ -464,7 +600,7 @@ $\norm{f} \geq \frac{1}{d}$.
 Naj bo $Y$ podprostor normiranega prostora $X$. Potem je
 \[
 \oline{Y} =
-\bigcap_{f \in X^*} \setb{\ker f}{Y \subseteq \ker f}.
+\bigcap_{\substack{f \in X^* \\ Y \subseteq \ker f}} \ker f.
 \]
 \end{izrek}
 

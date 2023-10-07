@@ -1,5 +1,8 @@
 \section{Osnovni izreki o operatorjih med Banachovimi prostori}
 
+\epigraph{">Vsi nekako kimate, samo žal ne vsi v isto smer."<}{
+-- prof.~dr.~Igor Klep}
+
 \subsection{Bairov izrek}
 
 \begin{izrek}[Baire]
@@ -321,4 +324,39 @@ Za poljuben $x \in X$ je množica $A_x=\setb{Tx}{T \in \mathcal{A}}$
 šibko omejena, zato je po zgornjem izreku omejena. Sledi, da je
 $\mathcal{A}$ omejena po točkah, zato je po izreku~\ref{iz:bs:1}
 omejena.
+\end{proof}
+
+\newpage
+
+\subsection{Izrek o zaprtem grafu}
+
+\datum{2023-10-27}
+
+\begin{definicija}
+\emph{Graf}\index{Funkcija!Graf} funkcije $f \colon X \to Y$ je
+množica
+\[
+\Gamma(f) = \setb{\br{x, f(x)}}{x \in X}.
+\]
+\end{definicija}
+
+\begin{izrek}[O zaprtem grafu]\index{Izrek!O zaprtem grafu}
+Naj bosta $X$ in $Y$ Banachova prostora in $T \colon X \to Y$
+linearen operator. Potem je $T$ omejen natanko tedaj, ko je
+$\Gamma(T)$ zaprta podmnožica $X \times Y$.
+\end{izrek}
+
+\begin{proof}
+Ker je graf zvezne funkcije vedno zaprt, je dovolj pokazati obratno
+implikacijo. Denimo torej, da je $\Gamma(T)$ zaprta. Ni težko
+videti, da je $\Gamma(T)$ vektorski podprostor v $X \times Y$. Ker
+je $X \times Y$ Banachov, je tak tudi $\Gamma(T)$.
+
+Projekcija $\pi_1 \colon X \times Y \to X$ je omejena linearna
+surjekcija. Ni težko videti, da je $P = \eval{\pi_1}{\Gamma(T)}{}$
+omejena, linearna in bijektivna. Po izreku o odprti preslikavi
+sledi, da obstaja omejena preslikava
+$P^{-1} \colon X \to \Gamma(T)$. Sledi, da je
+$T = \pi_2 \circ P^{-1}$ kompozitum omejenih preslikav, zato je
+omejen.
 \end{proof}

@@ -1,0 +1,1013 @@
+\section{Spektralna teorija}
+
+\epigraph{">Če kdo to reši, bo dobil poleg časti in slave verjetno
+še intervju na RTV."<}{-- prof.~dr.~Igor Klep}
+
+\subsection{Splošna teorija}
+
+\begin{definicija}
+Naj bo $X$ kompleksen Banachov prostor in $A \in \mathcal{B}(X)$.
+\emph{Resolventna množica}\index{Operator!Resolventna množica} je
+\[
+\rho(A) = \setb{\lambda \in \C}
+{\text{$\lambda \cdot I - A$ ima inverz v $\mathcal{B}(X)$}}.
+\]
+Označimo
+\[
+R(\lambda, A) = (\lambda I - A)^{-1}.
+\]
+Funkciji $\lambda \mapsto R(\lambda,A)$ pravimo \emph{resolventa},
+množici
+\[
+\sigma(A) = \operatorname{sp}(A) = \C \setminus \rho(A)
+\]
+pa \emph{spekter}\index{Operator!Spekter} operatorja $A$.
+\end{definicija}
+
+\begin{opomba}
+Za $\lambda \in \C$ velja $\lambda \in \rho(A)$ natanko tedaj, ko
+je $\lambda I - A$ bijektiven.
+\end{opomba}
+
+\begin{definicija}
+Število $\lambda \in \C$ je
+\emph{lastna vrednost}\index{Operator!Lastna vrednost} operatorja
+$A$, če je $\ker(\lambda I - A) \ne \set{0}$.
+\emph{Točkasti spekter} je množica
+\[
+\sigma_p (A) =
+\setb{\lambda \in \C}{\ker(\lambda I - A) \ne \set{0}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Če je $X$ končnorazsežen, velja $\sigma(A) = \sigma_p(A)$.
+\end{opomba}
+
+\begin{zgled}
+Naj bo $S \colon \ell^2 \to \ell^2$ premik v desno. Tedaj je očitno
+$0 \in \sigma(S)$ in $0 \not \in \sigma_p(S)$.
+\end{zgled}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor in $A \in \mathcal{B}(H)$. Tedaj je
+\[
+\sigma(A^*) = \oline{\sigma(A)}.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Naj bo $X$ Banachov prostor in $T \in \mathcal{B}(X)$. Naj bo $M$
+množica lastnih vektorjev za $T$, ki pripadajo paroma različnim
+lastnim vrednostim. Tedaj je $M$ linearno neodvisna.
+\end{trditev}
+
+\begin{proof}
+Denimo, da je
+\[
+\sum_{k=1}^n \alpha_k x_k = 0,
+\]
+za neničelne skalarje $\alpha_k$, kjer je $Tx_k = \lambda_k x_k$.
+Pri tem vzamemo najmanjšo tako kombinacijo. Sledi, da je tudi
+\[
+\sum_{k=1}^n \alpha_k \lambda_k x_k = 0,
+\]
+zato je
+\[
+\sum_{k=1}^{n-1} \alpha_k (\lambda_k - \lambda_n) x_k = 0,
+\]
+kar je protislovje.
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \in \mathcal{B}(H)$ sebiadjungiran operator. Tedaj so
+njegove lastne vrednosti realne.
+\end{trditev}
+
+\begin{proof}
+Velja
+\[
+\lambda \skl{x,x} = \skl{Ax,x} =
+\skl{x,Ax} = \oline{\lambda} \skl{x,x}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $A \in \mathcal{B}(H)$ sebiadjungiran operator. Tedaj so
+lastni vektorji različnih lastnih vrednosti ortogonalni.
+\end{trditev}
+
+\begin{proof}
+Naj bo $Ax = \lambda x$ in $Ay = \mu y$ za $\lambda, \mu \in \C$ in
+$x,y \ne 0$. Tedaj velja
+\[
+\lambda \skl{x,y} = \skl{Ax,y} = \skl{x,Ay} = \mu \skl{x,y}.
+\qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $X$ Banachov prostor nad $\C$, $A \in \mathcal{B}(X)$
+operator in $\lambda \in \sigma(A)$.
+
+\begin{enumerate}[i)]
+\item $\lambda$ je v \emph{zveznem spektru} operatorja $A$, če je
+$\lambda I - A$ injektiven in je $\im(\lambda I - A)$ gosta v $X$.
+Zvezni spekter označimo s $\sigma_c(A)$.
+\item $\lambda$ je v \emph{residualnem spektru} operatorja $A$, če
+je $\lambda I - A$ injektiven in je $\im(\lambda I - A)$ ni gosta v
+$X$. Residualni spekter označimo s $\sigma_r(A)$.
+\end{enumerate}
+\end{definicija}
+
+\datum{2022-12-1}
+
+\begin{trditev}
+Naj bo $X$ Banachov prostor, $A \in \mathcal{B}(X)$ operator in
+$\lambda \in \sigma_c(A)$. Tedaj obstaja
+zaporedje\footnote{Zaporedje aproksimativnih lastnih vektorjev.}
+$(x_n)_n \subseteq X$, za katerega je $\norm{x_n} = 1$ za vsak $n$
+in je
+\[
+\lim_{n \to \infty} \norm{Ax_n - \lambda x_n} = 0.
+\]
+\end{trditev}
+
+\begin{proof}
+Ker je $\lambda I - A$ injektiven, ima inverz
+$(\lambda I - A)^{-1} \colon \im (\lambda I - A) \to X$.
+Predpostavimo, da je ta operator omejen. Sledi, da ga lahko
+razširimo do operatorja $B \colon X \to X$, za katerega je
+$\eval{B}{\im (\lambda I - A)}{} = (\lambda I - A)^{-1}$. Pri tem
+upoštevamo, da je $X = \oline{\im (\lambda I - A)}$. Ker je
+operator $(\lambda I - A)B$ omejen in se z $I$ ujema na
+$\im (\lambda I - A)$, sledi, da je $(\lambda I - A)B = I$. Podobno
+sklepamo $B(\lambda I - A) = I$, kar pa je protislovje, saj
+$\lambda I - A$ ni obrnljiv.
+
+Sledi, da obstaja tako zaporedje $(w_n)_n \in \im (\lambda I - A)$,
+da za vsak $n$ velja $\norm{w_n} = 1$ in
+\[
+\norm{(\lambda I - A)^{-1}w_n} \geq n.
+\]
+Naj bo
+\[
+x_n =
+\frac{(\lambda I - A)^{-1}w_n}{\norm{(\lambda I - A)^{-1}w_n}}.
+\]
+Dobimo
+\[
+\norm{(\lambda I - A) x_n} =
+\frac{\norm{w_n}}{\norm{(\lambda I - A)^{-1}w_n}} \leq
+\frac{1}{n}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor in $A \in \mathcal{B}(H)$.
+
+\begin{enumerate}[i)]
+\item Če je $\lambda \in \sigma_r(A)$, je
+$\oline{\lambda} \in \sigma_p(A^*)$.
+\item Če je $\lambda \in \sigma_p(A)$, je
+$\oline{\lambda} \in \sigma_p(A^*) \cup \sigma_r(A^*)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Naj bo $\lambda \in \sigma_r(A)$ in
+$Y = \oline{\im (\lambda I - A)}$. Sledi, da je
+\[
+\set{0} \ne
+Y^\bot =
+\oline{\im(\lambda I - A)}^\bot =
+\ker ((\lambda I - A)^*) =
+\ker ((\oline{\lambda} I - A^*)).
+\]
+Naj bo sedaj $\lambda \in \sigma_p(A)$. Tedaj je
+\[
+\set{0} \ne \ker (\lambda I - A) =
+\im (\oline{\lambda} I - A^*)^\bot,
+\]
+zato je $\oline{\lambda} \in \sigma(A^*)$ in
+$\oline{\lambda} \not \in \sigma_c(A^*)$.
+\end{proof}
+
+\begin{posledica}
+Če je $A = A^*$, je $\sigma_r(A) = \emptyset$.
+\end{posledica}
+
+\begin{proof}
+Za $\lambda \in \sigma_r(A)$ velja
+$\oline{\lambda} \in \sigma_p(A^*) = \sigma_p(A) \subseteq \R$,
+zato je $\lambda = \oline{\lambda}$, kar je protislovje.
+\end{proof}
+
+\begin{izrek}
+Za $A = A^* \in \mathcal{B}(H)$ velja $\sigma(A) \subseteq \R$.
+\end{izrek}
+
+\begin{proof}
+Vemo že, da je $\sigma_r(A) = \emptyset$ in
+$\sigma_p(A) \subseteq \R$. Naj bo
+$\lambda_1 + i \lambda_2 \in \sigma_c(A)$. Obstaja torej zaporedje
+normiranih vektorjev $(x_n)_n$, za katerega je
+\[
+\lim_{n \to \infty} (\lambda I - A) x_n = 0.
+\]
+Velja pa
+\[
+\norm{(\lambda I - A) x_n} \geq
+\abs{\skl{(\lambda I - A) x_n, x_n}} =
+\abs{\lambda_1 + i \lambda_2 - \skl{Ax_n, x_n}} \geq
+\abs{\lambda_2},
+\]
+zato je $\lambda_2 = 0$.
+\end{proof}
+
+\begin{izrek}[Von Neumannova vsota]
+\index{Izrek!Von!Neumannova vsota}
+Naj bo $X$ Banachov prostor in $A \in \mathcal{B}(X)$ operator, za
+katerega je $\norm{A} < 1$. Tedaj je $(I-A)$ obrnljiv operator in
+velja
+\[
+(I-A)^{-1} = \sum_{n=0}^\infty A^n.
+\]
+\end{izrek}
+
+\begin{proof}
+Vrsta je absolutno konvergentna, zato je zgornji izraz dobro
+definiran. Ni težko preveriti, da je res inverz.
+\end{proof}
+
+\begin{trditev}
+Naj bo $X$ Banachov prostor in $A \in \mathcal{B}(X)$. Tedaj je
+$\rho(A)$ odprta v $\C$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\lambda_0 \in \rho(A)$. Tedaj velja
+\[
+\lambda I - A =
+(\lambda_0 I - A)(I - (\lambda_0 - \lambda) \cdot R(\lambda_0, A)).
+\]
+Če je $\norm{(\lambda_0 - \lambda) \cdot R(\lambda_0, A)} < 1$,
+je drugi faktor obrnljiv. Ker je $(\lambda_0 I - A)$ obrnljiv po
+predpostavki, je $\lambda \in \rho(A)$.
+\end{proof}
+
+\begin{posledica}
+Za vsak $A \in \mathcal{B}(X)$ je $\sigma(A)$ zaprta.
+\end{posledica}
+
+\begin{trditev}
+Za vsaka $A \in \mathcal{B}(X)$ in $\lambda \in \sigma(A)$ velja
+$\abs{\lambda} \leq \norm{A}$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\lambda \in \C$ število, za katerega je
+$\abs{\lambda} > \norm{A}$. Tedaj je
+\[
+\lambda I - A = \lambda \br{I - \frac{A}{\lambda}},
+\]
+ki je očitno obrnljiv, zato je $\lambda \in \rho(A)$.
+\end{proof}
+
+\begin{posledica}
+Za $A \in \mathcal{B}(X)$ je $\sigma(A)$ kompaktna podmnožica $\C$.
+\end{posledica}
+
+\begin{trditev}
+Resolventa operatorja $A$ je zvezna funkcija.
+\end{trditev}
+
+\begin{proof}
+Za vse $\lambda$ blizu $\lambda_0$ velja
+\[
+R(\lambda, A) =
+(I - (\lambda_0 - \lambda) \cdot R(\lambda_0, A))^{-1} \cdot
+R(\lambda_0, A) =
+\sum_{n=0}^\infty (\lambda_0 - \lambda)^n \cdot
+R(\lambda_0, A)^{n+1},
+\]
+zato je
+\begin{align*}
+\norm{R(\lambda, A) - R(\lambda_0, A)} &=
+\norm{\sum_{n=1}^\infty (\lambda_0 - \lambda)^n \cdot
+R(\lambda_0, A)^{n+1}}
+\\
+&\leq
+\sum_{n=1}^\infty \abs{\lambda_0 - \lambda}^n \cdot
+\norm{R(\lambda_0, A)}^{n+1}
+\\
+&=
+\abs{\lambda_0 - \lambda} \cdot \norm{R(\lambda_0, A)}^2 \cdot
+\frac{1}{1 - \abs{\lambda_0 - \lambda} \norm{R(\lambda_0, A)}}.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+Za vsak $A \in \mathcal{B}(X)$ je $\sigma(A)$ neprazna kompaktna
+podmnožica $\C$.
+\end{izrek}
+
+\begin{proof}
+Za $\abs{\lambda} > \norm{A}$ velja
+\[
+\norm{R(\lambda, A)} =
+\norm{\sum_{n=0}^\infty \frac{A^n}{\lambda^{n+1}}} \leq
+\frac{1}{\abs{\lambda}} \cdot
+\frac{1}{1 - \frac{\norm{A}}{\abs{\lambda}}}.
+\]
+Sledi, da je
+\[
+\lim_{\abs{\lambda} \to \infty} \norm{R(\lambda, A)} = 0.
+\]
+Za poljuben $f^* \in \mathcal{B}(X)^*$ je
+$g(\lambda) = f(R(\lambda, A))$ holomorfna, saj velja
+\[
+R(\lambda, A) - R(\mu, A) =
+(\mu - \lambda) R(\mu, A) \cdot R(\lambda, A)
+\]
+in zato
+\[
+\frac{f(R(\lambda, A)) - f(R(\mu, A))}{\lambda - \mu} =
+- f(R(\mu, A) \cdot R(\lambda, A)).
+\]
+Sledi, da je $g$ omejena holomorfna funkcija. Če je
+$\sigma(A) = \emptyset$, je $g$ tako cela funkcija. Po
+Liouvilleovem izreku je omejena in zato konstantno enaka $0$. Ker
+pa po Hahn-Banachovem izreku obstaja $f \in \mathcal{B}(X)^*$, za
+katerega je $\norm{f} = 1$ in
+$g(\lambda) = f(R(\lambda, A)) = \norm{R(\lambda, A)} \ne 0$,
+to ni mogoče.
+\end{proof}
+
+\datum{2022-12-7}
+
+\begin{opomba}
+Za vsak neprazen kompakt $K \subseteq \C$ obstaja operator
+$A \in \mathcal{B}(H)$, za katerega je $\sigma(A) = K$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Spektralni polmer}\index{Operator!Spekter!Polmer} operatorja
+$A \in \mathcal{B}(X)$ je
+\[
+r(A) = \max \setb{\abs{\lambda}}{\lambda \in \sigma(A)}.
+\]
+\end{definicija}
+
+\begin{zgled}
+Velja $r(I) = 1$.
+\end{zgled}
+
+\begin{lema}
+Velja
+\[
+\limsup_n \sqrt[n]{\norm{A^n}} \leq r(A).
+\]
+\end{lema}
+
+\begin{proof}
+Za $\lambda > \norm{A}$ velja
+\[
+R(\lambda,A) = (\lambda I - A)^{-1} =
+\sum_{n=0}^\infty \frac{A^n}{\lambda^{n+1}}.
+\]
+Naj bo $f \in \mathcal{B}(X)^*$ in $g(\lambda) = f(R(\lambda, A))$.
+Za $\abs{\lambda} > \norm{A}$ tako sledi
+\[
+g(\lambda) = \sum_{n=0}^\infty \frac{f(A^n)}{\lambda^{n+1}},
+\]
+kar je Laurentova vrsta. Ker je $g$ definirana za vse
+$\abs{\lambda} > r(A)$, vrsta konvergira za te $\lambda$.
+
+Naj bo $\varepsilon > 0$. Tedaj vrsta
+\[
+\sum_{n=0}^\infty \frac{f(A^n)}{(r+\varepsilon)^{n+1}}
+\]
+konvergira in je
+\[
+\lim_{n \to \infty} \frac{f(A^n)}{(r+\varepsilon)^{n+1}} = 0.
+\]
+Množica
+\[
+\setb{\frac{A^n}{(r+\varepsilon)^{n+1}}}{n \in \N}
+\]
+je zato šibko omejena, zato je omejena. Sledi, da je
+\[
+\norm{A^n} < c \cdot (r+\varepsilon)^{n+1},
+\]
+oziroma
+\[
+\sqrt[n]{\norm{A^n}} <
+\sqrt[n]{c} \cdot (r+\varepsilon)^{\frac{n+1}{n}}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Če je $\lambda \in \sigma(A)$, je $\lambda^n \in \sigma(A^n)$.
+\end{trditev}
+
+\begin{proof}
+Denimo, da je $\lambda^n I - A^n$ obrnljiv. Velja
+\[
+\lambda^n I - A^n =
+(\lambda I - A)\br{\sum_{k=0}^{n-1} \lambda^k A^{n-1-k}} =
+\br{\sum_{k=0}^{n-1} \lambda^k A^{n-1-k}}(\lambda I - A).
+\]
+Sledi, da je tudi $(\lambda I - A)$ obrnljiv.
+\end{proof}
+
+\begin{lema}
+Za vsak $n \in \N$ velja
+\[
+\sqrt[n]{\norm{A^n}} \geq r(A).
+\]
+\end{lema}
+
+\obvs
+
+\begin{izrek}[Gelfandova formula]\index{Izrek!Gelfandova formula}
+Naj bo $A \in \mathcal{B}(X)$. Tedaj velja
+\[
+r(A) = \lim_{n \to \infty} \sqrt[n]{\norm{A^n}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Velja
+\[
+\limsup_n \sqrt[n]{\norm{A^n}} \leq
+r(A) \leq
+\liminf_n \sqrt[n]{\norm{A^n}}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Naj bo $A \in \mathcal{B}(H)$ sebiadjungiran operator. Tedaj je
+$r(A) = \norm{A}$.
+\end{posledica}
+
+\begin{proof}
+Induktivno pokažemo
+\[
+\norm{A^{2^n}} = \norm{A^{2^{n-1}} \cdot \br{A^{2^{n-1}}}^*} =
+\norm{A^{2^{n-1}}}^2 = \norm{A}^{2^n}.
+\]
+Sledi, da je
+\[
+r(A) = \lim_{n \to \infty} \sqrt[n]{\norm{A^n}} =
+\lim_{n \to \infty} \sqrt[2^n]{\norm{A^{2^n}}} =
+\norm{A}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Spekter kompaktnega operatorja}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor in $K \in \mathcal{K}(H)$ kompakten
+operator. Za $\lambda \ne 0$ ima $T = \lambda I - K$ naslednje
+lastnosti:
+
+\begin{enumerate}[i)]
+\item Velja $\dim \ker T < \infty$.
+\item $\im T$ je zaprt podprostor.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Ker velja
+\[
+T = \br{I - \frac{1}{\lambda} K},
+\]
+imata $T$ in $I - \frac{1}{\lambda} K$ enako jedro in sliko. Brez
+škode za splošnost naj bo tako $\lambda = 1$.
+
+Naj bo $Y = \ker T \leq H$ zaprt podprostor v $H$. Sledi, da za vse
+$y \in Y$ velja $Ky = y$. Sledi, da je
+$\eval{K}{Y}{} = \eval{\id}{Y}{}$ kompakten, zato je
+$\dim Y < \infty$.
+
+Naj bo $Z = Y^\bot$. Velja, da je $Z$ zaprt podprostor in je
+$H = Y \oplus Z$. Operator $\eval{T}{Z}{}$ je omejen injektiven
+operator -- če velja $\br{\eval{T}{Z}{}}z = 0$, je namreč
+$z \in \ker T \cap Z$, torej je $z = 0$. Očitno velja tudi
+$\im \eval{T}{Z}{} = \im T$. Preslikava
+$\eval{T}{Z}{} \colon Z \to \im T$ je zato bijektivna in ima inverz
+$S$.
+
+Denimo, da operator $S$ ni omejen. Sledi, da za vsak $n \in \N$
+obstaja tak $w_n = Tz_n$, da je $\norm{w_n} = 1$ in
+$\norm{z_n} \geq n$.
+
+Naj bo $u_n = \frac{z_n}{\norm{z_n}}$. Velja
+\[
+\norm{Tu_n} = \frac{1}{\norm{z_n}} \cdot \norm{Tz_n} \leq
+\frac{1}{n}.
+\]
+Zaporedje $(Tu_n)_n$ tako konvergira k $0$. Zaporedje $(u_n)_n$ je
+omejeno, ima $(Ku_n)_n$ konvergentno podzaporedje $\br{Ku_{n_k}}_k$
+z limito $y$. Sledi, da je
+\[
+u_{n_k} = T u_{n_k} + K u_{n_k},
+\]
+kar konvergira k $y$. Ker je $Z$ zaprt, je $y \in Z$. Ker so $u_n$
+normirani, je $\norm{y} = 1$. Zaporedje $\br{T u_{n_k}}_k$
+tako konvergira k $Ty = 0$, zato je $y \in Y \cap Z = \set{0}$,
+kar je protislovje.
+\end{proof}
+
+\begin{trditev}
+Naj bo $H$ Hilberetov prostor, $K \in \mathcal{K}(H)$ pa kompakten
+operator. Potem je
+\[
+\sigma(K) \setminus \set{0} \subseteq \sigma_p(K).
+\]
+\end{trditev}
+
+\begin{proof}
+Denimo, da je $\lambda \in \C \setminus \set{0}$ in
+$\lambda \not \in \sigma_p(K)$. Naj bo $S = \lambda I - K$. Sledi,
+da je $S$ injektiven, po prejšnji trditvi pa je $\im S \leq H$
+zaprt podprostor.
+
+Denimo, da je $H_1 = SH \subset H = H_0$. Za $H_n = SH_{n-1}$ tako
+velja
+\[
+H_0 \supset H_1 \supset H_2 \supset \dots,
+\]
+prostori $H_j$ pa so zaprti. Za vsak $n$ tako obstaja tak
+$Z_{n+1}$, da je
+\[
+H_n = H_{n+1} \oplus Z_{n+1}.
+\]
+Naj bo $x_n \in Z_{n+1}$ poljuben enotski vektor. Ti tvorijo
+omejeno zaporedje, zato ima $(Kx_n)_n$ konvergentno podzaporedje
+$\br{Kx_{n_k}}_k$. Za $a < b$ velja
+\[
+\frac{1}{\lambda} \br{Kx_{n_a} - Kx_{n_b}} =
+\br{I - \frac{1}{\lambda} S} x_{n_a} -
+\br{I - \frac{1}{\lambda} S} x_{n_b} =
+x_{n_a} + \br{-x_{n_b} +
+\frac{1}{\lambda} S \br{x_{n_a} - x_{n_b}}}.
+\]
+Ker je $x_{n_a} \in Z_{n_a+1}$,
+$x_{n_k} \in H_{n_b} \subseteq H_{n_a+1}$ in
+$S \br{x_{n_a} - x_{n_b}} \in H_{n_a+1}$ in je
+$x_{n_a} \perp H_{n_a + 1}$, po Pitagorovem izreku sledi
+\[
+\norm{\frac{1}{\lambda} \br{Kx_{n_a} - Kx_{n_b}}}^2 =
+\norm{x_{n_a}}^2 +
+\norm{-x_{n_b} + \frac{1}{\lambda} S \br{x_{n_a} - x_{n_b}}}^2 \geq
+1,
+\]
+kar je v protislovju s predpostavko, da je $(K x_{n_k})_k$
+konvergentno.
+\end{proof}
+
+\datum{2022-12-8}
+
+\begin{izrek}
+Naj bo $H$ kompleksen Hilbertov prostor in $K \in \mathcal{K}(H)$.
+
+\begin{enumerate}[i)]
+\item Vsako od $0$ različno število v $\sigma(K)$ je lastna
+vrednost za $K$, pripadajoč lastni podprostor pa je končnorazsežen.
+\item Če je $\dim H = \infty$, je $0 \in \sigma(K)$.
+\item $\sigma(K)$ je števna množica brez neničelnih stekališč.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Posledica prejšnjih dveh trditev.
+\item Če je $0 \in \rho(K)$, je $K$ obrnljiv. Ker so kompaktni
+operatorji ideal v omejenih operatorjih, je tudi
+$I = K \cdot K^{-1}$ kompakten operator, zato je $\dim H < \infty$.
+\item Denimo, da ima $\sigma(K)$ neničelno stekališče $\lambda$.
+Naj bo $(\lambda_n)_n$ zaporedje paroma različnih neničelnih
+elementov $\sigma$, ki konvergirajo k $\lambda$. Po prvi točki so
+$\lambda_n$ lastne vrednosti operatorja $K$, zato lahko tvorimo
+zaporedje lastnih vektorjev $(x_n)_n$. To zaporedje je linearno
+neodvisno.
+
+Naj bo $X_n = \Lin \setb{x_i}{1 \leq i \leq n}$ zaprt podprostor v
+$H$. Ker ti tvorijo strogo naraščajočo verigo, za vsak $n$ obstaja
+enotski vektor $y_{n+1} \in X_{n+1}$, za katerega je
+$y_{n+1} \perp X_n$. Za poljuben $\mu \in \C$ naj bo
+$S_\mu = \mu I - K$.
+
+Velja
+\[
+S_{\lambda_n} x_k =
+\lambda_n x_k - Kx_k =
+(\lambda_n - \lambda_k) x_k,
+\]
+zato za vse $n, k \in \N$ velja $S_{\lambda_n} X_k \subseteq X_k$
+in $S_{\lambda_n} X_n \subseteq X_{n-1}$. Tako lahko za $n > m$
+izrazimo
+\[
+\frac{1}{\lambda_n} K y_n - \frac{1}{\lambda_m} K y_m =
+\br{I - \frac{1}{\lambda_n} S_{\lambda_n}} y_n -
+\br{I - \frac{1}{\lambda_m} S_{\lambda_m}} y_m =
+y_n - z,
+\]
+kjer je $z \in X_{n-1}$. Po Pitagorovem izreku tako dobimo
+\[
+\norm{\frac{1}{\lambda_n} K y_n - \frac{1}{\lambda_m} K y_m}^2 =
+\norm{y_n}^2 + \norm{z}^2 \geq
+1.
+\]
+Ker je $K$ kompakten operator, ima zaporedje $(K y_n)_n$
+konvergentno podzaporedje. To torej velja tudi za
+$\br{\frac{1}{\lambda_n} K y_n}_n$, kar je seveda protislovje.
+
+Za vsak $n$ je
+\[
+A_n = \setb{z \in \sigma{K}}{\abs{z} \geq \frac{1}{n}}
+\]
+kompaktna množica brez stekališč, zato je končna. Množico
+$\sigma(K)$ lahko torej zapišemo kot števno unijo končnih množic,
+zato je kvečjemu števna. \qedhere
+\end{enumerate}
+\end{proof}
+
+\newpage
+
+\subsection{Diagonalizacija kompaktnega sebiadjungiranega operatorja}
+
+\begin{izrek}
+Naj bo $H$ Hilbertov prostor in $0 \ne K \in \mathcal{K}(H)$
+sebiadjungiran operator. Tedaj obstajata zaporedji\footnote{Lahko
+tudi končni.} $(\lambda_n)_n \subseteq \R \setminus \set{0}$ in
+$(x_n)_n \subseteq H$, za kateri velja naslednje:
+
+\begin{enumerate}[i)]
+\item $\abs{\lambda_1} \geq \abs{\lambda_2} \geq \dots$, pri
+neskončnih zaporedjih pa velja še, da $\lambda_n$ konvergirajo k
+$0$.
+\item Vektorji $(x_n)_n$ tvorijo ortonormiran sistem, za vsak $n$
+pa velja $K x_n = \lambda x_n$.
+\item Če je $\lambda \in \sigma_p(K) \setminus \set{0}$, se
+$\lambda$ v zaporedju $(\lambda_n)_n$ pojavi natanko
+$\dim (\lambda I - K)$-krat.
+\item Za vsak $x \in H$ velja
+\[
+K x = \sum_{n=1}^\infty \lambda_n \skl{x, x_n} \cdot x_n.
+\]
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Operator $K$ ima lastno vrednost $\lambda_1$, za katero je
+$\abs{\lambda_1} = \norm{K}$. Naj bo $x_1$ pripadajoč enotski
+lastni vektor in $H_1 = \Lin \set{x_1}$. Opazimo, da je tudi
+$\eval{K}{H_1^\bot}{} \colon H_1^\bot \to H_1^\bot$ sebiadjungiran
+operator. Tudi za ta operator lahko skonstruiramo lastni par.
+
+Denimo, da velja $\eval{K}{H_n^\bot}{} = 0$ za nek $n \in \N$. Za
+vsak $x \in H$ lahko zapišemo $x = y + z$, pri čemer je $y \in H_n$
+in $z \in H_n^\bot$. Tako dobimo
+\[
+K x =
+K y + K z =
+K \br{\sum_{i=1}^n \skl{y, x_i} x_i} =
+\sum_{i=1}^n \lambda_i \skl{x, x_i} x_i.
+\]
+Naj bo $\lambda \in \sigma_p(K) \setminus \set{0}$. Ker za vsak
+$x \in \ker (\lambda I - K)$ velja
+\[
+x =
+\frac{1}{\lambda} Kx =
+\sum_{i=1}^n \frac{\lambda_i}{\lambda} \skl{x, x_i} x_i
+\]
+in
+\[
+x = \sum_{i=1}^n \skl{x, x_i} x_i,
+\]
+saj je $x \in K$, morata ti linearni kombinaciji imeti enake
+koeficiente. Tako sledi $\skl{x, x_i} = 0$ za vse $i$, za katere
+velja $\lambda_i \ne \lambda$. Tako velja
+$\ker (\lambda I - K) = \Lin \setb{x_i}{\lambda_i = \lambda}$. Za
+ti zaporedji so torej izpolnjeni vsi pogoji izreka.
+
+Denimo sedaj, da velja $\eval{K}{H_n^\bot}{} \ne 0$ za vsak
+$n \in \N$. Pokažimo, da dobljeni zaporedji ustrezata zgornjim
+pogojem.
+
+Denimo, da za vsak $n \in \N$ velja
+$\abs{\lambda_n} \geq \delta > 0$. Sledi
+\[
+\norm{K x_n - K x_m}^2 =
+\norm{\lambda_n x_n - \lambda_m x_m}^2 \geq
+2 \delta^2,
+\]
+zato zaporedje $(K x_n)_n$ ne vsebuje konvergentnega podzaporedja,
+kar je v protislovji s kompaktnostjo $K$. Prva dva pogoja sta tako
+izpolnjena.
+
+Naj bo $L = [\setb{x_n}{n \in \N}]$. Ker je $K(L) \subseteq L$, je
+tudi $K \br{L^\bot} \subseteq L^\bot$. Za vsak $x \in L^\bot$ velja
+$x \in H_n^\bot$ za vsak $n \in \N$, zato velja
+\[
+\abs{\skl{Kx, x}} \leq
+\norm{Kx} \cdot \norm{x} \leq
+\norm{\eval{K}{H_n^\bot}{}} \cdot \norm{x}^2 =
+\abs{\lambda_{n+1}} \cdot \norm{x}^2,
+\]
+kar konvergira proti $0$. Sledi, da je $\skl{Kx, x} = 0$ za vsak
+$x \in L^\bot$, oziroma $\eval{K}{L^\bot}{} = 0$. Preostanek dokaza
+je enak kot v prejšnjem primeru.
+\end{proof}
+
+\begin{opomba}
+Zaporedje $(x_n)_n$ lahko s kompletnim ortonormiranim sistemom za
+$\ker K$ dopolnimo do kompletnega ortonormitanega sistema za $H$.
+V tej bazi je $K$ diagonalni operator.
+\end{opomba}
+
+\begin{opomba}
+Prostor $H$ je direktna vsota lastnih podprostorov operatorja $K$.
+\end{opomba}
+
+\begin{opomba}
+Naj $P_\lambda$ označuje ortogonalni projektor na
+$\ker (\lambda I - K)$. Tedaj velja
+\[
+K =
+\sum_{\lambda \in \sigma_p(K) \setminus \set{0}}
+\lambda \cdot P_\lambda.
+\]
+\end{opomba}
+
+\datum{2022-12-14}
+
+\begin{trditev}
+Naj bo $H$ Hilbertov prostor, $K \in \mathcal{K}(H)$ pa operator,
+za katerega je $K \geq 0$. Tedaj obstaja enolično določen
+$S \in \mathcal{K}(H)$, za katerega velja $S \geq 0$ in $S^2 = K$.
+\end{trditev}
+
+\begin{proof}
+Po spektralnem izreku zapišemo
+\[
+K x = \sum_{n=1}^\infty \lambda_n \skl{x, x_n} \cdot x_n.
+\]
+Ker je $K \geq 0$, velja $\lambda_n \geq 0$. Tako lahko definiramo
+operator
+\[
+S x = \sum_{n=1}^\infty \sqrt{\lambda_n} \skl{x, x_n} x_n.
+\]
+Ker je $S$ glede na ortonormiran sistem $(x_n)_n$ diagonalen
+operator, je prav tako sebiadjungiran. Za poljuben $x \in H$ lahko
+zapišemo
+\[
+x = \sum_{n=1}^\infty \skl{x, x_n} x_n + e,
+\]
+kjer je $e \in \ker K$. Tako dobimo
+\begin{align*}
+\skl{Sx, x} &=
+\skl{\sum_{n=1}^\infty \skl{x, x_n} x_n + Se,
+\sum_{m=1}^\infty \skl{x, x_m} x_m + e}
+\\
+&=
+\sum_{m, n \in \N} \skl{x, x_n} \skl{x_m, x} \skl{x_n, x_m}
+\\
+&=
+\sum_{n=1}^\infty \abs{\skl{x, x_n}}^2
+\\
+&\geq
+0,
+\end{align*}
+zato je $S \geq 0$. Očitno je $S^2 = K$.
+
+Naj bo
+\[
+T_N x = \sum_{k=1}^N \sqrt{\lambda_k} \skl{x, x_k} x_k.
+\]
+Ker velja
+\[
+\norm{Sx - T_N x}^2 =
+\norm{\sum_{k=N+1}^\infty \sqrt{\lambda_k} \skl{x, x_k} x_k}^2 =
+\sum_{k=N+1}^\infty \lambda_k \cdot \abs{\skl{x, x_l}}^2 \leq
+\lambda_{N+1} \norm{x}^2,
+\]
+velja
+\[
+\norm{S - T_N} \leq \sqrt{\lambda_{N+1}}.
+\]
+Ker imajo operatorji $T_N$ končen rang, je $S$ limita zaporedja
+operatorjev končnega ranga in zato kompakten.
+
+Denimo sedaj, da zgornjim pogojem zadošča tudi
+$R \in \mathcal{K}(H)$. Zapišemo lahko
+\[
+R = \sum_{k} \nu_k \cdot Q_k,
+\]
+zato je
+\[
+\sum_{k} \lambda_k P_k =
+K =
+R^2 =
+\sum_k \nu_k^2 Q_k.
+\]
+Sledi. da je $\nu_k^2 = \lambda_k$ in $Q_k = P_k$ za vsak $k$, zato
+je $R = S$.
+\end{proof}
+
+\begin{opomba}
+Označimo $S = \sqrt{K}$.
+\end{opomba}
+
+\begin{definicija}
+\emph{Absolutna vrednost}\index{Operator!Absolutna vrednost}
+operatorja $T \in \mathcal{K}(H_1, H_2)$ je operator
+\[
+\abs{T} = \sqrt{T^* T}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $H_1$ in $H_2$ Hilbertova prostora. Operator
+$U \in \mathcal{B}(H_1, H_2)$ je
+\emph{parcialna izometrija}\index{Operator!Parcialna izometrija},
+če je $\eval{U}{(\ker U)^\bot}{}$ izometrija.
+\end{definicija}
+
+\begin{izrek}[Polarni razcep]
+\index{Izrek!Polarni razcep}
+Za vsak $K \in \mathcal{K}(H_1, H_2)$ obstaja enolična parcialna
+izometrija $U \in \mathcal{B}(H_1, H_2)$, za katero je
+$\ker U = \ker K$ in $K = U \cdot \abs{K}$.
+\end{izrek}
+
+\begin{proof}
+Naj bo $\widetilde{U}(\abs{K} x) = Kx$. Zlahka preverimo, da je to
+izometrija na $\im \abs{K}$, ki jo po zveznosti lahko razširimo do
+izometrija ne $\oline{\im \abs{K}}$. To lahko razširimo do
+operatorja $U$, za katerega je $Ux = 0$ za vse
+$x \in \br{\im \abs{K}}^\bot = \ker K$.
+\end{proof}
+
+\begin{izrek}[Singularni razcep]
+\index{Izrek!Singularni razcep}
+Naj bosta $H_1$ in $H_2$ Hilbertova prostora,
+$K \in \mathcal{K}(H_1, H_2)$ pa operator. Tedaj obstajata taka
+ortonormirana sistema $(e_n)_n \subseteq H_1$ in
+$(f_n)_n \subseteq H_2$ ter singularne vrednosti
+$\sigma_1 \geq \sigma_2 \geq \dots \geq 0$ operatorja $K$, da za
+vse $x \in H_1$ velja
+\[
+Kx = \sum_{n=1}^\infty \sigma_n \skl{x, e_n} f_n.
+\]
+Če je $\dim H_1 = \infty$, $\sigma_n$ konvergirajo k $0$.
+\end{izrek}
+
+\begin{proof}
+S spektralnim razcepom za $\abs{K}$ lahko zapišemo
+\[
+Kx =
+U \abs{K}x =
+U \br{\sum_{n=1}^\infty \sigma_n \skl{x, e_n} e_n} =
+\sum_{n=1}^\infty \sigma_n \skl{x, e_n} U e_n.
+\]
+Ker velja $e_n \in \im \abs{K} \subseteq (\ker K)^\bot$, za
+$f_n = U e_n$ velja
+\[
+\skl{f_n, f_m} = \skl{U e_n, U e_m} = \skl{e_n, e_m}.
+\]
+Sledi, da je tudi to ortonormiran sistem.
+\end{proof}
+
+\newpage
+
+\subsection{Funkcijski račun}
+
+\begin{definicija}
+Naj bo $K$ kompakten sebiadjungiran operator,
+$f \colon \sigma(K) \to \C$ pa omejena funkcija. Naj bo
+\[
+K = \sum_{\lambda \in \sigma_p(K)} \lambda \cdot P_\lambda.
+\]
+Predpisu
+\[
+f \mapsto
+f(K) = \sum_{\lambda \in \sigma_p(K)} f(\lambda) \cdot P_\lambda
+\]
+pravimo \emph{funkcijski račun}\index{Funkcijski račun}.
+\end{definicija}
+
+\begin{opomba}
+Ta definicija $f(K)$ za polinome sovpada s standardno.
+\end{opomba}
+
+\begin{izrek}
+Naj bo $K \in \mathcal{K}(H)$ sebiadjungiran. Vsaki omejeni
+funkciji $f \colon \sigma(K) \to \C$ lahko enolično priredimo
+$f(K) \in \mathcal{B}(H)$, za katero velja naslednje:
+
+\begin{enumerate}[i)]
+\item Če je $f \equiv 1$, je $f(K) = I$.
+\item Če je $\eval{f}{\sigma(K)}{} = \id$, je $f(K) = K$.
+\item Predpis $f \mapsto f(K)$ je injektiven homomorfizem.
+\item Velja $f(K)^* = \oline{f}(K)$.
+\item Predpis je izometrija -- velja
+$\norm{f}_\infty = \norm{f(K)}$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Tem lastnostim ustreza funkcijski račun. Prve tri lastnosti je
+enostavno preveriti. Velja
+\begin{align*}
+\skl{f(K)^* u, v} &=
+\skl{u, f(K) v}
+\\
+&=
+\skl{u, \sum_{n=1}^\infty f(\lambda_n) \skl{v, e_n} e_n}
+\\
+&=
+\sum_{n=1}^\infty \oline{f(\lambda_n)} \skl{e_n, v} \skl{u, e_n}
+\\
+&=
+\skl{\oline{f}(K) u, v},
+\end{align*}
+zato je $f(K)^* = \oline{f}(K)$. Velja še
+\[
+\norm{f(K)u}^2 =
+\sum_{n=1}^\infty \abs{f(\lambda_n)}^2 \abs{\skl{u, e_n}}^2 \leq
+\norm{f}_\infty^2 \cdot \norm{u}^2,
+\]
+zato je $\norm{f}_\infty \geq \norm{f(K)}$. Ker pa je
+$f(K) e_n = f(\lambda_n) e_n$, je
+$\norm{f(K)} \geq \abs{f(\lambda_n)}$ in zato tudi
+$\norm{f(K)} \geq \norm{f}_\infty$.
+
+Enoličnost pokažimo za funkcije, ki so zvezne v $0$. Prve tri točke
+enolično določajo predpis za vse polinome. S pomočjo
+Stone-Weierstrassovega izreka se predpis razširi do vseh zveznih
+funkcij.
+\end{proof}
+
+\begin{trditev}
+Funkcijski račun ima naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Če je $f(\sigma(K)) \subseteq \R$, je $f(K)$ sebiadjungiran.
+\item Če je $f(\sigma(K)) \geq 0$, je $f(K) \geq 0$.
+\item Če je $f(\sigma(K)) \subseteq \partial \dsk$, je $f(K)$
+unitaren.
+\item Če je
+\[
+\lim_{\lambda \to 0} f(\lambda) = f(0) = 0,
+\]
+je $f(K)$ kompakten.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Posledica 4.~točke izreka.
+\item Velja
+\[
+\skl{f(K) x, x} =
+\sum_{n=1}^\infty f(\lambda_n) \abs{\skl{x, e_n}}^2 \geq
+0.
+\]
+\item Velja
+\[
+\norm{f(K) x}^2 =
+\sum_{n=1}^\infty \abs{\skl{x, e_n}}^2 =
+\norm{x}^2,
+\]
+zato je $f(K)$ izometrija. Sledi, da je $f(K)^* \cdot f(K) = I$,
+ker pa $f(K)$ komutira s $\oline{f}(K)$, pa velja tudi
+$f(K) \cdot f(K)^* = I$.
+\item Velja
+\[
+f(K) = \sum_{n=1}^\infty f(\lambda_n) \skl{x, e_n} e_n.
+\]
+Naj bo
+\[
+T_N = \sum_{n=1}^N f(\lambda_n) \skl{x, e_n} e_n.
+\]
+Tedaj velja
+\[
+\norm{f(K) x - T_N x}^2 =
+\sum_{n=N+1}^\infty \abs{f(\lambda_n)}^2 \abs{\skl{x, e_n}}^2 \leq
+\sup_{n > N} \abs{f(\lambda_n)}^2 \norm{x}^2.
+\]
+Sledi, da zaporedje $(T_n)_n$ konvergira k $f(K)$. Ker imajo ti
+končen rang, je $f(K)$ kompakten. \qedhere
+\end{enumerate}
+\end{proof}
