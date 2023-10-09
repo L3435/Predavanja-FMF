@@ -179,3 +179,67 @@ A subspace $A \subseteq X$ is a
 is a retract and the retraction is a homotopy inverse of the
 inclusion relative to $A$.
 \end{definicija}
+
+\newpage
+
+\subsection{Extensions of homotopies}
+
+\datum{2023-10-9}
+
+\begin{definicija}
+A closed subspace $A \subseteq X$ has the
+\emph{homotopy extension property}\index{homotopy!extension property}
+if for every space $Y$, map $f \colon X \to Y$ and homotopy
+$H \colon A \times I \to Y$ with $H_0 = \eval{f}{A}{}$ there exists
+a homotopy $\oline{H} \colon X \times I \to Y$ such that
+$\oline{H}_0 = f$ and $\eval{\oline{H}}{A}{} = H$.
+\end{definicija}
+
+\begin{trditev}
+A closed subspace $A \subseteq X$ has the homotopy extension
+property if an only if the space
+\[
+L = A \times I \cup X \times \set{0}
+\]
+is a retract of $X \times I$.
+\end{trditev}
+
+\begin{proof}
+Suppose that $L$ is a retract of $X$. It is easy to see that
+$\oline{H} = (H \cup f) \circ r$ is the required homotopy
+extension, where $r \colon X \times I \to L$ is a retraction.
+
+Now suppose that $A$ has the homotopy extension property. Let
+$i_0 \colon X \hookrightarrow L$ and
+$H \colon A \times I \hookrightarrow L$ be inclusions. By the
+homotopy extension property, there exists a homotopy
+$\oline{H} \colon X \times I \to L$, which is of course a
+retraction.
+\end{proof}
+
+\begin{trditev}
+Let $A \subseteq X$ be a contractible subspace. If $A$ has the
+homotopy extension property, then $q \colon X \to \kvoc{X}{A}$ is a
+homotopy equivalence.
+\end{trditev}
+
+\begin{proof}
+Let $K \colon A \times I \to A$ be a homotopy equivalence between
+$\id_A$ and the constant map. Then
+$K \cup \id_X \colon A \times I \cup X \to X$ is a well defined
+map. Let $H \colon X \times I \to X$ be its extension.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \times I \arrow[r, "H"] \arrow[d, "q \times \id_I"'] &
+X \arrow[d, "q"] \\
+\kvoc{X}{A} \times I \arrow[r, dashed, "\oline{H}"']
+&
+\kvoc{X}{A}
+\end{tikzcd}
+\]
+The map $q \times \id_I$ is a quotient map because $I$ is locally
+compact. The induced map $\oline{H}$ is therefore well defined.
+But now $H_1$ induces a map $h \colon \kvoc{X}{A} \to X$. Note
+that, by definition, $h \circ q = H_1 \simeq H_0 = \id_X$, and
+$q \circ h = \oline{H}_1 \simeq \oline{H}_0 = \id_{\kvoc{X}{A}}$.
+\end{proof}
