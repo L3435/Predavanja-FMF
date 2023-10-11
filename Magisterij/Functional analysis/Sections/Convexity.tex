@@ -198,7 +198,7 @@ weak topology with $\sigma(X, X^*)$.
 
 \begin{opomba}
 The space $X$ with the topology $\sigma(X, X^*)$ is a locally
-compact space by the Hahn-Banach theorem.\footnote{Introduction to
+convex space by the Hahn-Banach theorem.\footnote{Introduction to
 functional analysis, corollary 2.2.5.2.}
 \end{opomba}
 
@@ -281,3 +281,339 @@ Now observe that
 by Hahn-Banach.\footnote{Introduction to functional analysis,
 corollary 2.2.5.1.}
 \end{proof}
+
+\newpage
+
+\subsection{Minkowski gauge}
+
+\datum{2023-10-11}
+
+\begin{definicija}
+Let $X$ be a $\F$-vector space. A set $A \subseteq$ is
+
+\begin{enumerate}[i)]
+\item \emph{balanced}\index{balanced set}, if for all $x \in A$
+and $\alpha \in \F$ with $\abs{\alpha} \leq 1$ we have
+$\alpha x \in A$,
+\item \emph{absorbing}\index{absorbing set}, if for all $x \in A$
+there exists some $\varepsilon > 0$ such that for all
+$t \in (0, \varepsilon)$ we have $tx \in A$,
+\item \emph{absorbing in $a \in A$} if $A - a$ is absorbing.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Let $X$ be a $\F$-vector space and $V \subseteq X$ a convex,
+balanced and absorbing in each of its points. Then there exists a
+unique seminorm $p$ such that
+\[
+V = \setb{x \in X}{p(x) < 1}.
+\]
+\end{izrek}
+
+\begin{proof}
+As $A$ is convex, we can define the
+\emph{Minkowski gauge}\index{Minkowski gauge}
+\[
+p_V(x) = \inf \setb{t \geq 0}{x \in tV}.
+\]
+It is of course well defined, as $A$ is absorbing. We can check
+that
+\begin{align*}
+p_V(\alpha x) &=
+\inf \setb{t \geq 0}{x \in \frac{t}{\alpha} V}
+\\
+&=
+\inf \setb{t \geq 0}{x \in \frac{t}{\abs{\alpha}} V}
+\\
+&=
+\abs{\alpha} \cdot \inf
+\setb{\frac{t}{\abs{\alpha}} \geq 0}
+{x \in \frac{t}{\abs{\alpha}} V}
+\\
+&=
+\abs{\alpha} p_V(x)
+\end{align*}
+as $A$ is balanced. Therefore, $p_V$ is homogeneous. As $p_V$ is
+sublinear,\footnote{Introduction to functional analysis,
+proposition~2.3.3.} it is a seminorm. It follows
+that\footnote{Introduction to functional analysis, remark~2.3.4.1.}
+\[
+V = \setb{x \in X}{p_V(x) < 1}.
+\]
+Suppose that
+\[
+V = \setb{x \in X}{q(x) < 1}
+\]
+for some seminorm $q \ne p_V$. But then we have $p_V(x) \ne q(x)$
+for some $x \in X$, therefore there exists some $t \in \R$ such
+that $p_V(tx) > 1 > q(tx)$ or $q(tx) > 1 > p_V(tx)$.
+\end{proof}
+
+\newpage
+
+\subsection{Applications of the Hahn-Banach theorem}
+
+\begin{izrek}[Hahn-Banach]
+\index{Hahn-Banach theorem}
+Suppose $X$ is a locally convex space and $A, B \subseteq X$ are
+disjoint convex sets. If $B$ is compact, there exists a functional
+$f \in X^*$ that separates $A$ from $B$ -- there exist
+$\alpha, \beta \in \R$ such that for all $a \in A$ and $b \in B$ we
+have
+\[
+\Re f(a) \leq \alpha < \beta \leq \Re f(b).
+\]
+\end{izrek}
+
+\begin{izrek}
+Suppose $X$ is a locally convex space and $A \subseteq X$ is a
+convex space. Then the closure of $A$ is the same as the closure
+in the weak topology.
+\end{izrek}
+
+\begin{proof}
+The set $\oline{A}$ is of course a subset of the closure of $A$ in
+the weak topology. Now choose a point $x \not \in \oline{A}$. There
+exists a functional $f \in X^*$ and numbers $\alpha, \beta \in \R$
+such that
+\[
+\Re f(a) \leq \alpha < \beta \leq \Re f(x)
+\]
+for all $a \in \oline{A}$. But then
+\[
+\oline{A} \subseteq
+\setb{y \in X}{\Re f(y) < \alpha} =
+\br{\Re f}^{-1} \br{(-\infty, \alpha]} =
+C,
+\]
+where $C$ is closed in the weak topology. It follows that the
+closure of $A$ in the weak topology is a subset of $C$. As
+$x \not \in C$, we get the desired equality.
+\end{proof}
+
+\begin{posledica}
+A convex set is a locally convex space if and only if it is weakly
+closed.
+\end{posledica}
+
+\begin{trditev}
+Let $X$ be a topological vector space and $f \colon X \to \F$ a
+linear functional. The following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The functional $f$ is continuous.
+\item The functional $f$ is continuous in $0$.
+\item The functional $f$ is continuous in some point $x_0 \in X$.
+\item The set $\ker f$ is closed.
+\item The function $x \mapsto \abs{f(x)}$ is a continuous seminorm.
+\end{enumerate}
+
+If $X$ is a locally compact space and $\mathcal{P}$ is the family
+of seminorms defining the topology on $X$, the above conditions are
+also equivalent to
+\[
+\abs{f(x)} \leq \sum_{k=1}^r \alpha_k p_k(x)
+\]
+for some $\alpha_k \in \R^+$ and $p_k \in \mathcal{P}$.
+\end{trditev}
+
+\begin{proof}
+The proof of the equivalence of the first 5 statements is the same
+as for normed spaces. Suppose now that
+\[
+\abs{f(x)} \leq \sum_{k=1}^r \alpha_k p_k(x).
+\]
+Let $(x_i)_{i \in I}$ be a net in $X$ that converges to $0$. Then
+\[
+0 \leq \abs{f(x_i)} \leq \sum_{k=1}^r \alpha_k p_k(x_i),
+\]
+which converges to $0$. It follows that $f$ is continuous at $0$.
+
+Now suppose that $f$ is continuous at $0$. The set
+\[
+f^{-1} \br{\spr(0, 1)} = \setb{x \in X}{\abs{f(x)} < 1}
+\]
+contains an open neighbourhood $B$ of the point $0$. We can write
+\[
+B = \bigcap_{j=1}^r U(0, p_j, \varepsilon).
+\]
+Take $x \in X$. For $\delta > 0$ be such that
+\[
+p_j \br{x \cdot \frac{\varepsilon}{\delta + \sum p_j(x)}} =
+\frac{\varepsilon}{\delta + \sum p_j(x)} \cdot p_j(x) <
+\varepsilon,
+\]
+therefore,
+\[
+\abs{f \br{x \cdot \frac{\varepsilon}{\delta + \sum p_j(x)}}} < 1,
+\]
+which can be rearranged to
+\[
+\abs{f(x)} <
+\frac{1}{\varepsilon} \cdot \sum_{j=1}^r p_j(x) +
+\frac{\delta}{\varepsilon}.
+\]
+Taking a limit, we get the desired inequality.
+\end{proof}
+
+\begin{izrek}[Riesz-Markov]
+\index{Riesz-Markov theorem}
+Let $X$ be a compact Hausdorff space and
+$\Phi \in \mathcal{C}(X)˘*$. Then there exists a unique regular
+Borel measure $\mu$ such that
+\[
+\Phi(f) = \lint_X f\,d\mu
+\]
+for all $f \in \mathcal{C}(X)$. Furthermore, we have
+$\norm{\Phi} = \norm{\mu} = \abs{\mu}(X)$.
+\end{izrek}
+
+\begin{trditev}
+Let $X$ be a completely regular space. Endow the space
+$\mathcal{C}(X)$ with the topology induced by the seminorms
+$\setb{p_K}{\text{$K \subseteq X$ is compact}}$. If
+$L \in \mathcal{C}(X)^*$, then there exists a compact set
+$K \subseteq X$ and a regular Borel measure on $K$ such that
+\[
+L(f) = \lint_K f\,d\mu
+\]
+for all $f \in \mathcal{C}(X)$. Conversely, every such $(K, \mu)$
+defines a functional $L \in \mathcal{C}(X)^*$.
+\end{trditev}
+
+\begin{proof}
+Suppose that
+\[
+L(f) = \lint_K f\,d\mu
+\]
+for some compact set $K$ and measure $\mu$. Then we have
+\[
+\abs{L(f)} =
+\abs{\lint_K f\,d\mu} \leq
+\norm{\mu} \cdot \sup_K \abs{f} = \norm{\mu} \cdot p_K(f),
+\]
+so $L$ is continuous.
+
+Let now $L \in \mathcal{C}(X)^*$. We can therefore write
+\[
+\abs{L(f)} \leq \sum_{k=1}^r \alpha_k p_{K_j}(f)
+\]
+for some compact sets $K_j$. We can simplify the above to
+\[
+\abs{L(f)} \leq \alpha \cdot p_K(f),
+\]
+where
+\[
+K = \bigcup_{j=1}^r K_j.
+\]
+Note that if we have $f \in \mathcal{C}(X)$ and
+$\eval{f}{K}{} = 0$, it follows that $L(f) = 0$. Now define
+$F \colon \mathcal{C} \to \F$ as follows; for any
+$g \in \mathcal{C}$ choose an extension
+$\widetilde{g} \in \mathcal{C}(X)$ of $g$ and set
+\[
+F(g) = L \br{\widetilde{g}}.
+\]
+This map is well defined by the above observation. We can check
+that $F$ is indeed linear. Note that
+\[
+\abs{F(g)} =
+\abs{L \br{\widetilde{g}}} \leq
+\alpha \cdot p_K \br{\widetilde{g}} =
+\alpha \cdot \norm{g}_{\infty, K},
+\]
+therefore, $F$ is continuous. By the Riesz-Markov theorem there
+exists a regular Borel measure $\mu$ on $K$ such that
+\[
+F(g) = \lint_K g\,d\mu.
+\]
+If $f \in \mathcal{C}(X)$, we have
+$g = \eval{f}{K}{} \in \mathcal{C}(K)$, so
+\[
+L(f) = F(g) = \lint_K g\,d\mu. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Krein-Milman theorem}
+
+\begin{definicija}
+Let $X$ be a vector space and $C \subseteq X$ a convex subset.
+
+\begin{enumerate}[i)]
+\item A non-empty convex subset $F \subseteq C$ is a
+\emph{face}\index{face} if for all $t \in (0, 1)$ and $x, y \in C$
+satisfying $tx + (1-t)x \in F$, we also have $x, y \in F$.
+\item A point $x \in C$ is an
+\emph{extreme point}\index{extreme point} if $\set{x} \subseteq C$
+is a face. We denote the set of extreme points of $C$ by $\ext C$.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+For a vector space $X$ and $A \subseteq X$ define the
+\emph{convex hull}\index{convex hull} of $A$ as
+\[
+\co A =
+\setb{\sum_{i=1}^n \alpha_i x_i}
+{n \in \N \land \alpha_j \in \R_{\geq 0} \land
+\sum_{i=1}^n \alpha_i = 1 \land x_i \in A}.
+\]
+If $X$ is a topological vector space, define the
+\emph{closed convex hull}\index{closed convex hull} as
+\[
+\oline{\co}\,A = \oline{\co A}.
+\]
+\end{definicija}
+
+\begin{trditev}
+The set $\co A$ is the smallest convex set that contains $A$. The
+set $\oline{\co}\,A$ is the smallest closed set that contains $A$.
+\end{trditev}
+
+\begin{proof}
+The only nontrivial part of the proof is convexity of the set
+$\oline{\co}\,A$. Let $(x_i)_{i \in I}$ and $(y_i)_{i \in I}$ be
+two nets that converge to $x$ and $y$, where
+$x, y \in \oline{\co}\,A$. For any $t \in (0, 1)$ we have
+\[
+tx + (1-t)y =
+\lim_{i \in I} \br{t x_i + (1-t) y_i} \in
+\oline{\co}\,A. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $X$ be a topological vector space and $C \subseteq X$ be a
+non-empty compact convex subset. Then for any $\phi \in X^*$ the
+set
+\[
+F = \setb{x \in C}{\Re \phi(x) = \min_C \Re \phi}
+\]
+is a closed face of $C$.
+\end{lema}
+
+\begin{proof}
+As $C$ is a compact set, the set $F$ is obviously non-empty. Also
+note that, as a preimage of a closed point, $F$ is a closed set.
+Convexity of $F$ follows from linearity of $\phi$. Suppose that
+$tx + (1-t)y \in F$. As
+\[
+\min_C \Re \phi =
+\Re \phi(tx + (1-t)y) =
+t \phi(x) + (1-t) \phi(y) \geq
+\min_C \Re \phi,
+\]
+it follows that $x, y \in F$. By definition, $F$ is a face.
+\end{proof}
+
+\begin{izrek}[Krein-Milman]
+\index{Krein-Milman theorem}
+Let $X$ be a locally convex space and $C \subseteq X$ a non-empty
+convex compact subset. Then
+\[
+C = \oline{\co}\, \br{\ext C}.
+\]
+\end{izrek}
