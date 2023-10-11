@@ -378,6 +378,7 @@ $\abs{f'(0)} = 0$, the same argument works for $z_0 = 0$.
 \subsection{The \texorpdfstring{$\oline{\partial}$}{d} equation}
 
 \begin{lema}
+\label{hol:lem:bound_diff}
 Let $g \in \mathcal{C}^\infty(\C)$ be a function with compact
 support. Then there exists a function
 $f \in \mathcal{C}^\infty(\C)$ such that $\parc{f}{\oline{z}} = g$.
@@ -447,6 +448,20 @@ function $\chi \colon \R^n \to [0, 1]$ such that
 $\eval{\chi}{U}{} = 1$ and $\supp \chi \subseteq V$.
 \end{lema}
 
+\begin{proof}
+There is a unit partition on the sets $V$ and
+$\R^n \setminus \oline{U}$.
+\end{proof}
+
+\datum{2023-10-11}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be an open subset. Let
+$h_j \colon \Omega \to \C$ be holomorphic functions. If the
+sequence $(h_j)_{j \in \N}$ converges uniformly on compact sets,
+the limit is also holomorphic on $\Omega$.
+\end{lema}
+
 \begin{izrek}[Dolbeault lemma]
 \index{Dolbeaut lemma}
 Let $g \in \mathcal{C}^\infty(\dsk(R))$ for some
@@ -454,3 +469,69 @@ $R \in (0, \infty]$. Then there exists a function
 $f \in \mathcal{C}^\infty(\dsk(R))$ such that
 $\parc{f}{\oline{z}} = g$.
 \end{izrek}
+
+\begin{proof}
+Define discs $X_j$ as follows:
+
+\begin{enumerate}[i)]
+\item If $R = \infty$, set $X_j = \dsk(j)$.
+\item If $R < \infty$, set $X_j = \dsk \br{R - \frac{1}{j}}$ (for
+large enough $j$).
+\end{enumerate}
+
+Applying the above lemma, define functions $\chi_j$ with
+$\eval{\chi_j}{X_j}{} = 1$ and $\supp \chi_j \subseteq X_{j+1}$ and
+set
+\[
+g_j =
+\begin{cases}
+\chi_j \cdot g & z \in \dsk(R), \\
+       0       & z \not \in \dsk(R).
+\end{cases}
+\]
+This is of course a smooth function, so by
+lemma~\ref{hol:lem:bound_diff} there exists a function
+$f_j \in \mathcal{C}^\infty(\C)$ with
+\[
+\parc{f_j}{\oline{z}} = g_j.
+\]
+
+We inductively construct a new sequence
+$\widetilde{f}_j \in \mathcal{C}^\infty(\C)$ such that
+\[
+\parc{\widetilde{f}_j}{\oline{z}} = g
+\]
+on $X_j$ and
+\[
+\norm{\widetilde{f}_j - \widetilde{f}_{j-1}}_{X_{j-2}} \leq 2^{-j}.
+\]
+Set $\widetilde{f}_1 = f_1$. Observe the function
+$F = f_{j+1} - \widetilde{f}_j$ on $X_j$. By construction, we have
+$\parc{F}{\oline{z}} = 0$ on $X_j$. It follows that $F$ can be
+developed into a power series
+\[
+F = \sum_{k=0}^\infty c_k z^k
+\]
+on $X_j$. As power series converge uniformly on compact sets, there
+exists some polynomial $p \in \C[z]$ such that
+\[
+\norm{F - p}_{X_{j-1}} \leq 2^{-j}.
+\]
+Now just set $\widetilde{f}_{j+1} = f_{j+1} - p$.
+
+Let $z \in \dsk(R)$ be arbitrary. By construction, it is contained
+in some $X_{j_0}$, therefore, $\widetilde{f}_j$ is defined for
+$j \geq j_0$. As $\br{\widetilde{f}_j(z)}_{j \geq j_0}$ is a
+Cauchy sequence, we can define
+\[
+f(z) = \lim_{j \to \infty} \widetilde{f}_j(z).
+\]
+But as
+\[
+f - \widetilde{f}_j =
+\sum_{k=j}^\infty \br{\widetilde{f}_{j+1} - \widetilde{f}_j}
+\]
+is a sum of holomorphic functions that converges uniformly, the
+function $f - \widetilde{f}_j$ is a holomorphic function.
+Therefore, $f$ is smooth and satisfies $\parc{f}{\oline{z}} = g$.
+\end{proof}
