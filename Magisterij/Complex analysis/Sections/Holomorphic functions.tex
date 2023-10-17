@@ -535,3 +535,150 @@ is a sum of holomorphic functions that converges uniformly, the
 function $f - \widetilde{f}_j$ is a holomorphic function.
 Therefore, $f$ is smooth and satisfies $\parc{f}{\oline{z}} = g$.
 \end{proof}
+
+\newpage
+
+\subsection{Meromorphic functions}
+
+\datum{2023-10-17}
+
+\begin{definicija}
+Let $\Omega \subset \C$ be an open subset. We call a function $f$
+\emph{meromorphic}\index{meromorphic function} of $\Omega$ if there
+exists $A \subset \Omega$ such that
+$f \in \mathcal{O}(\Omega \setminus A)$, $A$ has no accumulation
+points in $\Omega$ and for all $a \in A$ there exists some
+$k \in \N$ such that
+\[
+\lim_{z \to a} f(z) \cdot (z-a)^k \ne 0
+\]
+exists. We call $A$ the set of \emph{poles}\index{pole} of the
+function $f$. We denote the set of meromorphic functions on
+$\Omega$ with $\mathcal{M}(\Omega)$.
+\end{definicija}
+
+\begin{izrek}
+Let $0 \leq r < r \leq \infty$. Suppose that
+$f \in \mathcal{O}(D_{R,r}(a))$ is a holomorphic function, where
+\[
+D_{R,r}(a) = \setb{z \in \C}{r < \abs{z-a} < R}.
+\]
+Then there exists a uniquely determined
+\emph{Laurent series}\index{Laurent series}
+\[
+\sum_{k \in \Z} c_k (z-a)^k
+\]
+that converges to $f$ uniformly and absolutely on compact subsets
+of $D_{R,r}(a)$. We have
+\[
+c_k = \frac{1}{2 \pi i} \olint_{\partial \dsk(a, \rho)}
+\frac{f(w)}{(w - a)^k}\,dw
+\]
+for $r < \rho < R$.
+\end{izrek}
+
+\begin{definicija}
+Let
+\[
+\sum_{k \in \Z} c_k (z-a)^k
+\]
+be a Laurent series. The series
+\[
+\sum_{k=-\infty}^{-1} c_k (z-a)^k
+\]
+is called the \emph{principle part}\index{principle part}.
+\end{definicija}
+
+\begin{lema}
+Let $f \in \mathcal{O}(\Omega \setminus \set{a})$ be a holomorphic
+function. Then $f$ is meromorphic on $\Omega$ if and only if $f$
+has a finite principle part in $a$.
+\end{lema}
+
+\begin{proof}
+Suppose that $f$ is meromorphic on $\Omega$. If $a$ is a removable
+singularity, $f$ is holomorphic in $a$, therefore the principle
+part is trivial. Otherwise, set $m \in \N$ such that
+\[
+\lim_{z \to a} (z-a)^m f(z) \ne 0
+\]
+exists and set $g(z) = (z-a)^m f(z)$. As $g$ is bounded near $a$,
+we can extend it to $\Omega$ by the Riemann removable singularity
+theorem. The power series of $g$ corresponds to a finite Laurent
+series of $f$.
+
+The converse is obvious.
+\end{proof}
+
+\begin{izrek}
+If $f \in \mathcal{M}(\C)$ is a meromorphic function, there exist
+entire functions $g$ and $h$ such that $f = \frac{g}{h}$.
+\end{izrek}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open set. An
+\emph{additive cousin problem}\index{additive Cousin problem} on
+$\Omega$ is an open cover $\setb{U_j}{j \in J}$ of $\Omega$ and
+functions $f_j \in \mathcal{M}(U_j)$ such that
+$\eval{f_j - f_k}{U_j \cap U_k}{}$ is holomorphic for all
+$j, k \in J$. A function $f \in \mathcal{M}(\Omega)$ is a solution
+to the additive Cousin problem if $\eval{f}{U_j}{} - f_j$ is
+holomorphic for all $j \in J$.
+\end{definicija}
+
+\begin{izrek}[Mittag-Leffler]
+\index{Mittag-Leffler theorem}
+Let $(a_k)_{k \in \N}$ be a sequence without repetition and
+accumulation points. Let
+\[
+f_k(z) = \sum_{\ell = -m_k}^{-1} c_{k,\ell} (z-a_k)^\ell
+\]
+be finite principal parts. Then there exists a meromorphic function
+$f \in \mathcal{M}(\C)$ with poles in $(a_k)_{k \in \N}$ such that
+$f$ has principle part $f_k$ in $a_k$ for each $k \in \N$.
+\end{izrek}
+
+\begin{proof}
+We assume that we can solve the additive Cousin problem. For each
+$a_k$ choose a disk $U_k$ containing no other $a_k$. Also set
+$U_0 = \C \setminus \setb{a_k}{k \in \N}$ and $f_0 = 0$. As
+$\setb{U_k}{k \in \N_0}$ is an open cover of $\C$, there exists a
+meromorphic function $f \in \mathcal{M}(\C)$ that solves the
+corresponding additive Cousin problem. It is easy to see that the
+principle parts of $f$ at $a_k$ are precisely $f_k$.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open subset. A
+\emph{generalized additive Cousin problem}\index{additive Cousin problem!generalized}
+is an open cover $\setb{U_j}{j \in J}$ of $\Omega$ and functions
+$f_{j,k} \in \mathcal{O}(U_j \cap U_k)$ for each $(j,k) \in J^2$,
+such that
+
+\begin{enumerate}[i)]
+\item $f_{j,k} = -f_{k,j}$ on $U_j \cap U_k$ for all
+$(j, k) \in J^2$ and
+\item $f_{j,k} + f_{k, \ell} + f_{\ell, j} = 0$ on
+$U_j \cap U_k \cap U_\ell$ for all $(j, k, \ell) \in J^3$.
+\end{enumerate}
+
+A solution to the generalized additive Cousin problem is given by
+functions $f_j \in \mathcal{O}(U_j)$ for each $j \in J$ such that
+$F_{j,k} = f_j - f_k$ for each $(j, k) \in J^2$.
+\end{definicija}
+
+\begin{lema}
+If the generalized additive Cousin problem is solvable, then so is
+the additive Cousin problem.
+\end{lema}
+
+\begin{proof}
+An additive Cousin problem induces a generalized additive Cousin
+problem for functions $f_{j,k} = f_j - f_k$. Let $g_j$ be a
+solution to the generalized problem. As
+$f_j - f_k = f_{j,k} = g_j - g_k$ on $U_j \cap U_k$, we can define
+a function $f \in \mathcal{M}(\Omega)$ with
+$\eval{f}{U_j}{} = f_j - g_j$. This function is of course well
+defined. As $\eval{f}{U_j}{} - f_j = g_j \in \mathcal{O}(U_j)$,
+this function indeed solves the additive Cousin problem.
+\end{proof}
