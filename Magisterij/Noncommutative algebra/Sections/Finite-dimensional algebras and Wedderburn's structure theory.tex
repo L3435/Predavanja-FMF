@@ -70,9 +70,9 @@ is defined analogously.
 Let $R$ be a ring and $M$ an $R$-module.
 
 \begin{enumerate}[i)]
-\item $M$ is \emph{noetherian}\index{neotherian module} if the set
+\item $M$ is \emph{noetherian}\index{noetherian!module} if the set
 of submodules of $M$ satisfies the ascending chain condition.
-\item $M$ is \emph{artinian}\index{artinian module} if the set of
+\item $M$ is \emph{artinian}\index{artinian!module} if the set of
 submodules of $M$ satisfies the descending chain condition.
 \end{enumerate}
 \end{definicija}
@@ -149,4 +149,376 @@ g(M_i) \arrow[r] &
 By the short five lemma, $i$ is an isomorphism, so $M_n = M_i$.
 \item Same as~\ref{fin_wed:prop:noet}. \qedhere
 \end{enumerate}
+\end{proof}
+
+\datum{2023-10-12}
+
+\begin{definicija}
+A ring $R$ is \emph{left-noetherian}\index{noetherian!ring} if it
+is noetherian as a left $R$-module. We analogously define
+\emph{right-noetherian}, \emph{left-artinian}\index{artinian!ring}
+and \emph{right-artinian} rings.
+
+A ring $R$ is \emph{noetherian}, if it is both left-noetherian and
+right-noetherian. We similarly define \emph{artinian} rings.
+\end{definicija}
+
+\begin{opomba}
+A ling $R$ is left-noetherian if and only if each left ideal of $R$
+is finitely generated.
+\end{opomba}
+
+\begin{trditev}
+If $R$ is a notherian ring and $M$ is a finitely generated
+$R$-module, $M$ is noetherian.
+\end{trditev}
+
+\begin{proof}
+As $M$ is finitely generated, there exists an endomorphism
+$\varphi \colon R^n \to M$ for some $n \in \N$. Consider the short
+exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & R \arrow[r] & R^n \arrow[r] & R^{n-1} \arrow[r] & 0.
+\end{tikzcd}
+\]
+By induction on $n$, $R^n$ is noetherian. As $M$ is a quotient of
+$R^n$, $M$ is also noetherian.
+\end{proof}
+
+\newpage
+
+\subsection{Simple modules}
+
+\begin{definicija}
+A nontrivial $R$-module $M$ is \emph{simple}\index{simple module}
+if it has no proper nontrivial submodules. An $R$-module $M$ is
+\emph{cyclic}\index{cyclic module} with generator $m \in M$ if
+$M = R \cdot m$.
+\end{definicija}
+
+\begin{trditev}
+For $R$-modules $M$, the following are equivalent:
+
+\begin{enumerate}[i)]
+\item The module $M$ is simple.
+\item The module $M$ is cyclic and its every non-zero element is a
+generator.
+\item We have $M \cong \kvoc{R}{I}$ for some maximal left ideal
+$I \edn R$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Suppose that $M$ is simple. Then for every
+$m \in M \setminus \set{0}$, $Rm \leq M$ is a nontrivial submodule.
+It follows that $m$ is a generator.
+
+Suppose now that every non-zero element is a generator. Define the
+homomorphism $\phi \colon R \to M$ with $\phi(r) = rm$. Set
+$I = \ker \phi = \ann(m)$. By the isomorphism theorem, we have
+$Rm = M \cong \kvoc{R}{I}$. There is bijective correspondence
+between ideals $I \edn J \edn R$ and submodules of $M$. As any
+element of a proper submodule cannot generate $M$, $I$ must be
+maximal.
+
+Suppose now that $M \cong \kvoc{R}{I}$ for some maximal $I \edn R$
+and suppose that $M' \leq M$ is a submodule. It follows that $M'$
+corresponds to a left ideal $J$ such that $I \edn J \edn R$. Thus,
+$J = I$ or $J = R$, or equivalently, $M' = M$ or $M' = (0)$.
+\end{proof}
+
+\begin{posledica}
+\label{fin_dim_alg:psl:vec_simp}
+Let $D$ be a division ring and $V$ be an $n$-dimensional vector
+space over $D$. Let $R = \End_D(V)$. Then, $V$ is a simple
+$R$-module.
+\end{posledica}
+
+\begin{proof}
+For every $v \in V \setminus \set{0}$ we have $Rv = V$.
+\end{proof}
+
+\begin{izrek}[Schur's lemma]
+\index{Schur's lemma}
+Let $M$ and $N$ be simple $R$-modules and $f \colon M \to N$ a
+homomorphism. Then $f$ is either and isomorphism or the zero map.
+In particular, $\End_R(M)$ is a division ring.
+\end{izrek}
+
+\begin{proof}
+Note that $\ker f \leq M$ and $\im f \leq N$. The conclusion
+follows.
+\end{proof}
+
+\begin{trditev}
+Let $D$ be a division ring and $V$ a $D$-module. Then,
+$D \cong \End_R(V)$, where $R = \End_D(V)$.
+\end{trditev}
+
+\begin{proof}
+Define a homomorphism $\Psi \colon D \to \End_R(V)$ as
+$\Psi(d) = (f \mapsto df)$. It is clear that $\Psi$ is injective.
+Now let $T \in \End_R(V)$ be an arbitrary endomorphism. Choose a
+$v \in V \setminus \set{0}$. For any $w \in V$ there exists an
+endomorphism of $V$ that sends $w$ to $v$, therefore,
+$V = R \cdot v$. Every $R$-endomorphism is therefore determined
+by its image on $v$. To prove that $\Psi$ is surjective, it is
+hence enough to show that $Tv = d \cdot v$ for some $d \in D$.
+
+Let $p \in R$ be a projection onto $Dv$. It is easy to check that
+\[
+Tv = T(p(v)) = p(T(v)) \in Dv. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+A finite dimensional division algebra $D$ over an algebraically
+closed field $k$ is $k$ itself.
+\end{lema}
+
+\begin{proof}
+Note that, for $\alpha \in D$, $\kvoc{k(\alpha)}{k}$ is a finite
+field extension, but as $k$ is algebraically closed,
+$k(\alpha) = k$.
+\end{proof}
+
+\newpage
+
+\subsection{Semisimple modules}
+
+\begin{definicija}
+A module is \emph{semisimple}\index{semisimple!module} if it is a
+direct sum of simple modules.
+\end{definicija}
+
+\begin{trditev}
+If an $R$-module $M$ is a sum of simple submodules $M_i$ for
+$i \in I$, then $M$ is semisimple. Moreover, there exists a subset
+$I' \subseteq I$ such that
+\[
+M = \bigoplus_{i \in I'} M_i.
+\]
+\end{trditev}
+
+\begin{proof}
+Set
+\[
+\mathcal{I} =
+\setb{J \subseteq I}{\text{$\br{M_j}_{j \in J}$ is independent}}.
+\]
+As $\mathcal{I}$ is a non-empty set and every chain in $M$ has an
+upper bound, we can apply Zorn's lemma. Let $I'$ be a maximal
+element of $\mathcal{I}$. Note that
+\[
+M' = \bigoplus_{i \in I'} M_i \leq M.
+\]
+If $M' \cap M_i = \set{0}$ for some $i \in I$, the set $I'$ is not
+maximal as we can take $I' \cup \set{i}$. Therefore,
+$M' \cap M_i = M_i$ for all $i$ as $M_i$ are simple modules. It
+follows that $M' = M$.
+\end{proof}
+
+\begin{posledica}
+If $M$ is semisimple, then so is every submodule and quotient of
+$M$. Furthermore, every submodule of $M$ is a direct summand.
+\end{posledica}
+
+\begin{proof}
+Let
+\[
+M = \bigoplus_{i \in I} M_i
+\]
+be a direct sum of simple modules and $M' \leq M$. The module
+$\kvoc{M}{M'}$ is then generated by the images $\oline{M}_i$ of
+$M_i$ under the quotient map. If $\oline{M}_i \ne \set{0}$, we have
+$\oline{M}_i \cong M_i$ since $M_i$ is simple. Therefore,
+$\kvoc{M}{M'}$ is a sum of modules $M_i$, and as such semisimple.
+As we can write
+\[
+M = \br{\bigoplus_{i \in I'} M_i} \oplus M',
+\]
+we can write
+\[
+M' = \bigoplus_{i \in I \setminus I'} M_i. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Let $M$ be a module such that every submodule of $M$ is a direct
+summand.\footnote{We call this the \emph{complement property}.}
+Then $M$ is semisimple.
+\end{trditev}
+
+\begin{proof}
+Let $M' \leq M$ be a non-zero cyclic submodule, say $M' = Rm$ for
+$m \ne 0$. Suppose $M'$ is not simple. By Zorn's lemma, there
+exists a maximal submodule $M'' \leq M'$ with $m \not \in M''$. The
+module $\kvoc{M'}{M''}$ is therefore simple. As $M'$ also has the
+complement property, we can write $M' = M'' \oplus S$ for some
+$S \leq M'$. Since $S \cong \kvoc{M'}{M''}$, it is a simple
+submodule. In both cases, we have found a simple submodule of $M$.
+
+Let $M_1$ be the sum of all simple submodules of $M$. Then there
+exists a submodule $M_2 \leq M$, such that $M = M_1 \oplus M_2$.
+If $M_2 \ne \set{0}$, by the same argument as above, $M_2$ has a
+simple module. This is of course not possible.
+\end{proof}
+
+\newpage
+
+\subsection{Endomorphism ring of a semisimple module}
+
+\begin{trditev}
+Let $M$ be an $R$-module, $S = \End_R(M)$ and $p, m, n \in \N$.
+There is a canonical isomorphism of abelian groups
+\[
+\Hom_R(M^n, M^m) \cong S^{m \times n},
+\]
+such that the composition
+\[
+\Hom_R(M^n, M^m) \times \Hom_R(M^p, M^n) \to \Hom_R(M^p, M^m)
+\]
+corresponds to matrix multiplication. In particular,
+$\End_R(M^n) \cong S^{n \times n} = M_n(S)$ is an isomorphism of
+rings.
+\end{trditev}
+
+\begin{proof}
+The isomorphism is given by the map
+$f \mapsto [\pi_i \circ f \circ \iota_j]_{i,j}$.
+\end{proof}
+
+\begin{opomba}
+For $r \in R$ the map $T_r \colon R \to R$ given by $T_r(x) = xr$
+is $R$-linear. We can therefore define a homomorphism
+$\Phi \colon R \to \End_R(R)$ by $\Phi(r) = T_r$. As
+$\Phi$ is injective and $f = T_{f(1)}$, we have
+$\End_R(R) \cong R^{\mathsf{op}}$.
+\end{opomba}
+
+\begin{posledica}
+For a division ring $D$, we have
+$\End_D(D^n) = M_n(D^{\mathsf{op}})$.
+\end{posledica}	
+
+\begin{definicija}
+A semisimple module has \emph{finite length}\index{finite length}
+if it is a finite direct sum of simple modules.
+\end{definicija}
+
+\begin{trditev}
+\label{fin_dim_alg:td:mat_prod}
+If $M$ is a semisimple $R$-module of finite length, then
+$\End_R(M)$ is isomorphic to a finite product of matrix rings over
+division rings.
+\end{trditev}
+
+\begin{proof}
+Let
+\[
+M \cong \bigoplus_{i=1}^k M_i^{n_i}
+\]
+for distinct simple modules $M_i$. By Schur's lemma, we can write
+\[
+\End_R(M) =
+\End_R \br{\bigoplus_{i=1}^k M_i} =
+\prod_{i=1}^k \End_R \br{M_i^{n_i}} =
+\prod_{i=1}^k M_{n_i} \br{\End_R(M_i)}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Semisimple rings}
+
+\begin{definicija}
+A ring $R$ is \emph{semisimple}\index{semisimple!ring} if it is a
+semisimple left $R$-module.
+\end{definicija}
+
+\begin{izrek}
+Let $R$ be a ring. The following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The ring $R$ is semisimple.
+\item Every $R$-module is semisimple.
+\item Every short exact sequence of $R$-modules split.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Suppose that $R$ is semisimple. As all $R$-modules are quotients of
+a free module $R^I$, which is semisimple, all $R$-modules are
+semisimple.
+
+Suppose that every $R$-module is semisimple. As those have the
+complement property, every short exact sequence splits.
+
+Suppose that every short exact sequence splits and let $I \leq R$
+be a submodule over $R$. As
+\[
+\begin{tikzcd}
+0 \arrow[r] & I \arrow[r] & R \arrow[r] &
+\kvoc{R}{I} \arrow[r] & 0.
+\end{tikzcd}
+\]
+is a short exact sequence, it splits, so $I$ is a direct summand
+of $R$. It follows that $R$ has the complement property, therefore,
+it is semisimple.
+\end{proof}
+
+\begin{posledica}
+Suppose that $R$ is a semisimple ring. Then $R$ as an $R$-module
+has finite length and any simple $R$-module is isomorphic to a
+simple component of $R$.
+\end{posledica}
+
+\begin{proof}
+We can write
+\[
+R = \bigoplus_{i \in I} M_i
+\]
+for simple $R$-modules $M_i$. By considering $1 \in R$, we see that
+$I$ is a finite set.
+
+Let $M$ be a simple $R$-module. As we have $M = R \cdot m$, there
+exist maps $M_i \to M$. As $R \to M$ is surjective, at least one
+of those maps is non-zero and therefore an isomorphism by Schur's
+lemma.
+\end{proof}
+
+\begin{trditev}
+Let $D$ be a division ring and $V$ be an $n$-dimensional vector
+space over $D$. Then $R = \End_D(V)$ is semisimple.
+\end{trditev}
+
+\begin{proof}
+The map $f \mapsto \br{f(e_1), f(e_2), \dots, f(e_n)}$ is an
+isomorphism of $R$-modules $R$ and $V^n$. As $V$ is simple by
+corollary~\ref{fin_dim_alg:psl:vec_simp}, $R$ is semisimple.
+\end{proof}
+
+\newpage
+
+\subsection{Wedderburn structure theorem}
+
+\begin{izrek}[Wedderburn]
+\index{Wedderburn's theorem}
+Every semisimple ring $R$ is isomorphic to a finite product of
+matrix rings over division rings. If $R$ is also commutative, it is
+a finite direct products of fields.
+\end{izrek}
+
+\begin{proof}
+By proposition~\ref{fin_dim_alg:td:mat_prod}, we can write
+\[
+R^{\mathsf{op}} \cong \End_R(R) \cong \prod_{i=1}^k M_{n_i}(D_i).
+\]
+It follows that
+\[
+R \cong
+\br{\prod_{i=1}^k M_{n_i}(D_i)}^{\mathsf{op}} =
+\prod_{i=1}^k M_{n_i} \br{D_i^{\mathsf{op}}}. \qedhere
+\]
 \end{proof}
