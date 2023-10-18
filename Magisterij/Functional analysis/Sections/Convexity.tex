@@ -295,7 +295,7 @@ Let $X$ be a $\F$-vector space. A set $A \subseteq$ is
 \item \emph{balanced}\index{balanced set}, if for all $x \in A$
 and $\alpha \in \F$ with $\abs{\alpha} \leq 1$ we have
 $\alpha x \in A$,
-\item \emph{absorbing}\index{absorbing set}, if for all $x \in A$
+\item \emph{absorbing}\index{absorbing set}, if for all $x \in X$
 there exists some $\varepsilon > 0$ such that for all
 $t \in (0, \varepsilon)$ we have $tx \in A$,
 \item \emph{absorbing in $a \in A$} if $A - a$ is absorbing.
@@ -460,7 +460,7 @@ Taking a limit, we get the desired inequality.
 \begin{izrek}[Riesz-Markov]
 \index{Riesz-Markov theorem}
 Let $X$ be a compact Hausdorff space and
-$\Phi \in \mathcal{C}(X)˘*$. Then there exists a unique regular
+$\Phi \in \mathcal{C}(X)^*$. Then there exists a unique regular
 Borel measure $\mu$ such that
 \[
 \Phi(f) = \lint_X f\,d\mu
@@ -586,6 +586,7 @@ tx + (1-t)y =
 \end{proof}
 
 \begin{lema}
+\label{conv:lm:cls_face}
 Let $X$ be a topological vector space and $C \subseteq X$ be a
 non-empty compact convex subset. Then for any $\phi \in X^*$ the
 set
@@ -617,3 +618,150 @@ convex compact subset. Then
 C = \oline{\co}\, \br{\ext C}.
 \]
 \end{izrek}
+
+\datum{2023-10-18}
+
+\begin{proof}
+Let $\mathcal{F} = \set{\text{closed faces in $C$}}$ be a set,
+ordered with $\supseteq$. As $C \in \mathcal{F}$, this is a
+non-empty set. As each increasing chain in $\mathcal{F}$ has its
+intersection\footnote{The intersection is non-empty as $C$ is
+compact.} as an upper bound, we can apply Zorn's lemma and find a
+maximal element $F_0 \in \mathcal{F}$.
+
+Suppose there are distinct elements $x, y \in F_0$. By Hahn-Banach,
+there exists a functional $\phi \in X^*$ such that
+$\Re \phi(x) < \Re \phi(y)$. Now let
+\[
+F_1 = \setb{z \in F_0}{\Re \phi(z) = \min_{F_0} \Re \phi}.
+\]
+As $F_1 \subset F_0$ is a closed face in $F_0$ by
+lemma~\ref{conv:lm:cls_face}, it is a closed face in $C$. This is a
+contradiction, so $\abs{F_0} = 1$. Therefore,
+$\ext C \ne \emptyset$.
+
+It is clear that
+$\oline{\co}\,(\ext C) \subseteq C = \oline{\co}\,C$. Suppose that
+$x \in C \setminus \oline{\co}\,(\ext C)$. By Hahn-Banach, there
+exists a functional $\psi \in X^*$ such that
+\[
+\Re \psi(x) < \min_{\oline{\co}\,(\ext C)} \Re \psi.
+\]
+Let
+\[
+F = \setb{z \in C}{\Re \psi(z) = \min_C \Re \psi}
+\]
+be a closed face in $C$. As there exists some
+$z \in \ext F \subseteq \ext C$, we have
+\[
+\min_C \Re \psi =
+\Re \psi(z) =
+\min_{\oline{\co}\,(\ext C)} \Re \psi >
+\Re \psi(x) \geq
+\min_C \Re \psi.
+\]
+Such $x$ therefore cannot exist.
+\end{proof}
+
+\begin{trditev}
+The space $c_0$ is not the dual space of a Banach space.
+\end{trditev}
+
+\begin{proof}
+Let $X$ be a Banach space. By Banach-Alaoglu, the set $(X^*)_1$ is
+compact, therefore, $(X^*)_1 = \oline{\co}\,(\ext (X^*)_1)$ by
+Krein-Milman. In particular, $(X^*)_1$ has extreme points.
+
+Let $x \in (c_0)_1$. There exists some $N \in \N$ such that
+$\abs{x_n} < \frac{1}{2}$ for all $n > N$. Now define
+$y, z \in c_0$ with $y_n = z_n = x_n$ for $n \leq N$ and
+\[
+y_n = x_n + \frac{1}{2^n}, \quad z_n = x_n - \frac{1}{2^n}
+\]
+for $n > N$. Clearly, $x = y + z$, therefore,
+$x \not \in \ext (c_0)_1$. It follows that $(c_0)_1$ has no extreme
+points.
+\end{proof}
+
+\begin{izrek}[Milman]
+\index{Milman theorem}
+Let $X$ be a locally convex space and $K \subseteq K$ a compact
+space. Suppose that $\oline{\co}\,(K)$ is compact. Then
+$\ext (\oline{\co}\,K) \subseteq K$.
+\end{izrek}
+
+\begin{proof}
+Assume that there exists some
+$x_0 \in \ext(\oline{\co}\,K) \setminus K$. Then there exists a
+basis neighbourhood $V$ of $0$ in $X$ such that
+$x_0 \not \in K + \oline{V}$. Now write
+\[
+K \subseteq \bigcup_{x \in K} (x + V).
+\]
+As $K$ is compact, we can write
+\[
+K \subseteq \bigcup_{i=1}^n (x_i + V)
+\]
+for some points $x_i \in K$. Now form
+\[
+K_i = \oline{\co}\,(K \cap (x_j + V)).
+\]
+Note that $K_j$ is convex and compact as it is a subset of
+$\oline{\co}\,K$. We also have
+\[
+K_j \subseteq x_j + \oline{V}.
+\]
+Note that
+\[
+K \subseteq \bigcup_{i=1}^n K_i.
+\]
+Let
+\[
+\Sigma = \setb{t \in [0,1]^n}{\sum_{i=1}^n t_i = 1}.
+\]
+Define the map
+\[
+f \colon \Sigma \times \prod_{i=1}^n K_i \to X
+\]
+with
+\[
+f(t, k) = \sum_{i=1}^n t_i k_i.
+\]
+Note that $C = \im f$. As
+\[
+C \subseteq \co \br{\bigcup_{i=1}^n K_i},
+\]
+the set $C$ is convex. As it is the image of a compact set, it is
+also compact. Because $K_j \subseteq C$ for all $j$, it follows
+that
+\[
+C = \co \br{\bigcup_{i=1}^n K_i}.
+\]
+It follows that
+\[
+\oline{\co}\,K \subseteq
+\oline{\co}\,\br{\bigcup_{i=1}^n K_i} =
+\co \br{\bigcup_{i=1}^n K_i}.
+\]
+We can therefore deduce
+\[
+\oline{\co}\,K = \co \br{\bigcup_{i=1}^n K_i}.
+\]
+As $x_0$ is an element of this set, we can write
+\[
+x_0 = \sum_{i=1}^n t_i y_i
+\]
+for $t_i \in [0,1]$ and $y_i \in K_i$. As $x_0$ is an extreme
+point, we must have $y_j = x_0$ for some $j$, therefore
+$x_0 \in K_j \subseteq x_j + \oline{V} \subseteq K + \oline{V}$,
+which is a contradiction.
+\end{proof}
+
+\begin{opomba}
+In finite-dimensional vector spaces, the convex hull of a compact
+set is compact.
+\end{opomba}
+
+\begin{opomba}
+The set $\ext C$ is not always closed.
+\end{opomba}

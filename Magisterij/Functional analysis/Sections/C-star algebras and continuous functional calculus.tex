@@ -1,0 +1,260 @@
+\section{\texorpdfstring{$C^*$}{C*}-algebras and continuous functional calculus}
+
+\subsection{Spectrum}
+
+\begin{definicija}
+Let $A$ be a complex algebra with unity $1$. Define the set
+\[
+\GL(A) = \setb{a \in A}{\exists b \in A \colon ab = ba = 1}.
+\]
+The \emph{spectrum}\index{spectrum} of $x \in A$ is the set
+\[
+\sigma_A(x) =
+\setb{\lambda \in \C}{x - \lambda \cdot 1 \not \in \GL(A)}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Let $A$ be a complex algebra with unity $1$ and $x, y \in A$. Then
+\[
+\sigma_A(xy) \cup \set{0} = \sigma_A(yx) \cup \set{0}.
+\]
+\end{trditev}
+
+\begin{proof}
+By scaling, it is enough to check that
+$1 \in \sigma_A(xy) \iff 1 \in \sigma_A(yx)$. Suppose that
+$1 - xy \in \GL(A)$. We can check that $1 - yx$ is invertible with
+\[
+(1-yx)^{-1} = 1 + y (1 - xy)^{-1} x. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Banach and \texorpdfstring{$C^*$}{C*}-algebras}
+
+\begin{definicija}
+A \emph{Banach algebra}\index{Banach algebra} is a Banach space $A$
+that is also an algebra, such that
+$\norm{xy} \leq \norm{x} \cdot \norm{y}$ holds for all
+$x, y \in A$. If a Banach algebra has an unity, we also demand
+$\norm{1} = 1$.
+\end{definicija}
+
+\begin{definicija}
+An \emph{involution}\index{involution} on a Banach algebra $A$ is a
+skew-linear map $* \colon A \to A$, satisfying the following for
+all $x, y \in A$:
+
+\begin{enumerate}[i)]
+\item $(xy)^* = y^* x^*$,
+\item $(x^*)^* = x$,
+\item $\norm{x^*} = \norm{x}$.
+\end{enumerate}
+
+A Banach algebra with involution is called a
+\emph{Banach *-algebra}.
+\end{definicija}
+
+\begin{definicija}
+A Banach *-algebra $A$ that also satisfies
+$\norm{x^* x} = \norm{x}^2$ for all $x \in A$ is called a
+\emph{$C^*$-algebra}\index{C star algebra@$C^*$-algebra}.
+\end{definicija}
+
+\begin{trditev}
+Let $A$ be a Banach *-algebra. Then, for all $x \in A$ we have
+$(x^*)^{-1} = (x^{-1})^*$ and
+$\sigma_A(x^*) = \oline{\sigma_A(x)}$.
+\end{trditev}
+
+\begin{trditev}
+Let $A$ be a Banach algebra. The following statements are true:
+
+\begin{enumerate}[i)]
+\item Let $x \in A$. If $\norm{x} < 1$, then $1 - x \in \GL(A)$ and
+\[
+(1-x)^{-1} = \sum_{n \in \N_0} x^n.
+\]
+\item The set $\GL(A)$ is an open subset of $A$ and the map
+$x \mapsto x^{-1}$ is continuous on $\GL(A)$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Let $y \in \GL(A)$. If $\norm{x-y} < \frac{1}{\norm{y^{-1}}}$, then
+\[
+\norm{1-xy^{-1}} = \norm{(y-x) y^{-1}} < 1,
+\]
+therefore, $xy^{-1}$ is invertible. It follows that $x$ is also
+invertible, so $\GL(A)$ is open.
+
+Note that
+\begin{align*}
+\norm{(xy^{-1})^{-1}} &=
+\norm{\br{1 - (1 - xy^{-1})}^{-1}}
+\\
+&\leq
+\sum_{n \in \N_0} \norm{1 - xy^{-1}}^n
+\\
+&\leq
+\sum_{n \in \N_0} \norm{y^{-1}}^n \cdot \norm{x-y}^n
+\\
+&=
+\frac{1}{1 - \norm{y^{-1}} \norm{x-y}}.
+\end{align*}
+It follows that
+\begin{align*}
+\norm{x^{-1} - y^{-1}} &=
+\norm{x^{-1} (y-x) y^{-1}}
+\\
+&\leq
+\norm{y^{-1} (xy^{-1})^{-1}} \cdot
+\norm{y^{-1}} \cdot \norm{x-y}
+\\
+&\leq
+\frac{\norm{y^{-1}}^2}{1 - \norm{y^{-1}} \cdot \norm{x-y}} \cdot
+\norm{x-y}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{trditev}
+Let $A$ be a Banach algebra and $x \in A$. Then $\sigma_A(x)$ is a
+non-empty compact set.
+\end{trditev}
+
+\begin{proof}
+Introduction to functional analysis, theorem~6.1.15.
+\end{proof}
+
+\begin{izrek}[Gelfald-Mazur]
+\index{Gelfald-Mazur theorem}
+If $A$ is a Banach algebra that is also a division ring, then
+$A = \C$.
+\end{izrek}
+
+\begin{proof}
+Let $x \in A$ and $\lambda \in \sigma_A(x)$. As
+$x - \lambda \cdot 1 \not \in \GL(A) = A \setminus \set{0}$, we
+have $x = \lambda \cdot 1 \in \C$.
+\end{proof}
+
+\begin{definicija}
+If
+\[
+f(x) = \sum_{j=0}^n a_j x^j
+\]
+is a polynomial and $a \in A$ an element of an algebra, we define
+\[
+f(a) = \sum_{j=0}^n a_j a^j \in A.
+\]
+\end{definicija}
+
+\begin{izrek}[Spectral mapping theorem for polynomials]
+\index{spectral mapping theorem}
+Let $A$ be an algebra and $f \in \C[x]$. Then
+\[
+f(\sigma_A(a)) = \sigma_A(f(a))
+\]
+holds for all $a \in A$.
+\end{izrek}
+
+\begin{proof}
+Let $\lambda \in \sigma_A(a)$ and
+\[
+f(x) = \sum_{j=0}^n a_j x^j.
+\]
+We can write
+\[
+f - f(\lambda) =
+(x - \lambda) \cdot
+\sum_{j=1}^n a_j \sum_{k=0}^{j-1} x^k \lambda^{j-i-k}.
+\]
+It follows that
+\[
+f(a) - f(\lambda) =
+(a - \lambda) \cdot
+\sum_{j=1}^n a_j \sum_{k=0}^{j-1} a^k \lambda^{j-1-k}.
+\]
+As $a - \lambda$ is not invertible and commutes with the second
+factor, it follows that $f(a) - f(\lambda)$ is also not invertible.
+
+Conversely, if $\mu \not \in f(\sigma_A(a))$, we can write
+\[
+f - \mu = a_n \cdot \prod_{j=1}^n (x - \lambda_j).
+\]
+As $f(\lambda) - \mu \ne 0$ for all $\lambda \in \sigma_A(a)$, we
+have $\lambda_i \not \in \sigma_A(a)$ for all $i$. Therefore, it
+follows that $f(a) - \mu \in \GL(A)$.
+\end{proof}
+
+\begin{definicija}
+Let $A$ be a Banach algebra and $x \in A$. The
+\emph{spectral radius}\index{spectral radius} of $x$ is
+\[
+r(x) = \sup_{\lambda \in \sigma_A(x)} \abs{\lambda}.
+\]
+\end{definicija}
+
+\begin{izrek}[Spectral radius formula]
+\index{spectral radius formula}
+Let $A$ be a Banach algebra and $x \in A$. Then, the limit
+\[
+\lim_{n \to \infty} \sqrt[n]{\norm{x^n}}
+\]
+exists and
+\[
+r(x) = \lim_{n \to \infty} \sqrt[n]{\norm{x^n}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Introduction to functional analysis, theorem~6.1.20.
+\end{proof}
+
+\begin{definicija}
+Let $A$ be a Banach *-algebra and $x \in A$.
+
+\begin{enumerate}[i)]
+\item The element $x$ is \emph{normal}\index{normal} if
+$x x^* = x^* x$.
+\item The element $x$ is \emph{selfadjoint}\index{selfadjoint} if
+$x = x^*$.
+\item The element $x$ is
+\emph{skew selfadjoint}\index{skew selfadjoint} if $x = -x^*$.
+\end{enumerate}
+\end{definicija}
+
+\begin{posledica}
+Let $A$ be a Banach *-algebra and $x \in A$ a normal element. Then
+\[
+r(x^* x) \leq r(x)^2.
+\]
+If $A$ is a $C^*$-algebra, then $r(x^* x) = r(x)^2$.
+\end{posledica}
+
+\begin{proof}
+Note that
+\[
+r(x^* x) =
+\lim_{n \to \infty} \sqrt[n]{\norm{(x^* x)^n}} \leq
+\lim_{n \to \infty} \sqrt[n]{\norm{x^n}}^2 = r(x)^2.
+\]
+If $A$ is a $C^*$-algebra, we have equality.
+\end{proof}
+
+\begin{trditev}
+Let $A$ be a $C^*$-algebra and $x \in A$ a normal element. Then
+\[
+r(x) = \norm{x}.
+\]
+\end{trditev}
+
+\begin{proof}
+The statement holds for selfadjoint elements by Introduction to
+functional analysis, corollary~6.1.20.1. We can therefore write
+\[
+\norm{x}^2 = \norm{x^* x} = r(x^* x) = r(x)^2. \qedhere
+\]
+\end{proof}
