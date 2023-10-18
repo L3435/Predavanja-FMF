@@ -617,8 +617,8 @@ entire functions $g$ and $h$ such that $f = \frac{g}{h}$.
 
 \begin{definicija}
 Let $\Omega \subseteq \C$ be an open set. An
-\emph{additive cousin problem}\index{additive Cousin problem} on
-$\Omega$ is an open cover $\setb{U_j}{j \in J}$ of $\Omega$ and
+\emph{additive Cousin problem}\index{additive Cousin problem} on
+$\Omega$ is an open cover $\set{U_j}_{j \in J}$ of $\Omega$ and
 functions $f_j \in \mathcal{M}(U_j)$ such that
 $\eval{f_j - f_k}{U_j \cap U_k}{}$ is holomorphic for all
 $j, k \in J$. A function $f \in \mathcal{M}(\Omega)$ is a solution
@@ -626,32 +626,10 @@ to the additive Cousin problem if $\eval{f}{U_j}{} - f_j$ is
 holomorphic for all $j \in J$.
 \end{definicija}
 
-\begin{izrek}[Mittag-Leffler]
-\index{Mittag-Leffler theorem}
-Let $(a_k)_{k \in \N}$ be a sequence without repetition and
-accumulation points. Let
-\[
-f_k(z) = \sum_{\ell = -m_k}^{-1} c_{k,\ell} (z-a_k)^\ell
-\]
-be finite principal parts. Then there exists a meromorphic function
-$f \in \mathcal{M}(\C)$ with poles in $(a_k)_{k \in \N}$ such that
-$f$ has principle part $f_k$ in $a_k$ for each $k \in \N$.
-\end{izrek}
-
-\begin{proof}
-We assume that we can solve the additive Cousin problem. For each
-$a_k$ choose a disk $U_k$ containing no other $a_k$. Also set
-$U_0 = \C \setminus \setb{a_k}{k \in \N}$ and $f_0 = 0$. As
-$\setb{U_k}{k \in \N_0}$ is an open cover of $\C$, there exists a
-meromorphic function $f \in \mathcal{M}(\C)$ that solves the
-corresponding additive Cousin problem. It is easy to see that the
-principle parts of $f$ at $a_k$ are precisely $f_k$.
-\end{proof}
-
 \begin{definicija}
 Let $\Omega \subseteq \C$ be an open subset. A
 \emph{generalized additive Cousin problem}\index{additive Cousin problem!generalized}
-is an open cover $\setb{U_j}{j \in J}$ of $\Omega$ and functions
+is an open cover $\set{U_j}_{j \in J}$ of $\Omega$ and functions
 $f_{j,k} \in \mathcal{O}(U_j \cap U_k)$ for each $(j,k) \in J^2$,
 such that
 
@@ -667,10 +645,64 @@ functions $f_j \in \mathcal{O}(U_j)$ for each $j \in J$ such that
 $F_{j,k} = f_j - f_k$ for each $(j, k) \in J^2$.
 \end{definicija}
 
-\begin{lema}
-If the generalized additive Cousin problem is solvable, then so is
-the additive Cousin problem.
+\datum{2023-10-18}
+
+\begin{lema}[Partition of unity]
+Let $\Omega \subseteq \C$ be an open set and $\set{U_j}_{j \in J}$
+be an open cover of $\Omega$. Then there exists a partition of
+unity subordinate to $\set{U_j}_{j \in J}$.
 \end{lema}
+
+\begin{lema}
+Given a generalized additive Cousin problem on
+$\Omega \subseteq \C$, there exist functions
+$g_j \in \mathcal{C}^\infty(U_j)$ such that $f_{j,k} = g_j - g_k$
+for all $(j, k) \in J^2$.
+\end{lema}
+
+\begin{proof}
+Let $\set{(V_a, \chi_a)}_{a \in A}$ be a partition of unity,
+subordinate to $\set{U_j}_{j \in J}$. For all $a \in A$ choose a
+$j(a) \in J$ such that $V_a \subseteq U_{j(a)}$. For all $k \in J$,
+define
+\[
+g_k = -\sum_{a \in A} \chi_a \cdot f_{j(a), k}.
+\]
+This is of course a smooth function on $U_k$. Now note that
+\[
+g_k - g_\ell =
+\sum_{a \in A} \chi_a \cdot \br{-f_{j(a),k} + f_{j(a),\ell}} =
+\sum_{a \in A} \chi_a \cdot f_{k, \ell} =
+f_{k, \ell}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+The generalized additive Cousin problem is solvable for
+$\Omega = \dsk(r)$ and $\Omega = \C$.
+\end{trditev}
+
+\begin{proof}
+Let $f_{j,k} = g_j - g_k$ for $g_j \in \mathcal{C}^\infty(U_j)$.
+Note that
+\[
+\parc{g_j}{\oline{z}} = \parc{g_k}{\oline{z}},
+\]
+therefore,
+\[
+\eval{h}{U_j}{} = \parc{g_j}{\oline{z}}
+\]
+induces a smooth function $h \colon \Omega \to \C$. By the
+Dolbeault lemma, there exists a function
+$g \in \mathcal{C}^\infty(\Omega)$ such that
+$\parc{g}{\oline{z}} = h$. It is clear that $f_j = g_j - g$ solves
+the generalized additive Cousin problem.
+\end{proof}
+
+\begin{trditev}
+The additive Cousin problem is solvable for $\Omega = \dsk(r)$ and
+$\Omega = \C$.
+\end{trditev}
 
 \begin{proof}
 An additive Cousin problem induces a generalized additive Cousin
@@ -681,4 +713,25 @@ a function $f \in \mathcal{M}(\Omega)$ with
 $\eval{f}{U_j}{} = f_j - g_j$. This function is of course well
 defined. As $\eval{f}{U_j}{} - f_j = g_j \in \mathcal{O}(U_j)$,
 this function indeed solves the additive Cousin problem.
+\end{proof}
+
+\begin{izrek}[Mittag-Leffler]
+\index{Mittag-Leffler theorem}
+Let $(a_k)_{k \in \N}$ be a sequence without repetition and
+accumulation points. Let
+\[
+f_k(z) = \sum_{\ell = -m_k}^{-1} c_{k,\ell} (z-a_k)^\ell
+\]
+be finite principal parts. Then there exists a meromorphic function
+$f \in \mathcal{M}(\C)$ with poles in $(a_k)_{k \in \N}$ such that
+$f$ has principle part $f_k$ in $a_k$ for each $k \in \N$.
+\end{izrek}
+
+\begin{proof}
+For each $a_k$ choose a disk $U_k$ containing no other $a_k$. Also
+set $U_0 = \C \setminus \setb{a_k}{k \in \N}$ and $f_0 = 0$. As
+$\setb{U_k}{k \in \N_0}$ is an open cover of $\C$, there exists a
+meromorphic function $f \in \mathcal{M}(\C)$ that solves the
+corresponding additive Cousin problem. It is easy to see that the
+principle parts of $f$ at $a_k$ are precisely $f_k$.
 \end{proof}

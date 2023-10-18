@@ -1,2 +1,5 @@
 "This was a lemma. Now we will look at a theorem, which is called a lemma."
  - viš. znan. sod. dr. Rafael Benedikt Andrist, 10. 10. 2023
+
+"We use the coboundary condition, which ... is no longer here."
+ - viš. znan. sod. dr. Rafael Benedikt Andrist, 18. 10. 2023
