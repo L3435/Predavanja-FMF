@@ -522,3 +522,336 @@ R \cong
 \prod_{i=1}^k M_{n_i} \br{D_i^{\mathsf{op}}}. \qedhere
 \]
 \end{proof}
+
+\datum{2023-10-19}
+
+\begin{definicija}
+A ring is \emph{simple}\index{simple!ring} if it has no nontrivial
+proper two-sided ideals.
+\end{definicija}
+
+\begin{opomba}
+Simple rings are not necessarily semisimple.
+\end{opomba}
+
+\begin{opomba}
+Every semisimple ring $R$ is isomorphic to a finite product of
+simple rings.
+\end{opomba}
+
+\begin{trditev}[Uniqueness of the decomposition]
+Suppose that
+\[
+R = \prod_{i=1}^n R_i = \prod_{i=1}^m R_i'
+\]
+for simple rings $R_i$ and $R_i'$. Then, $n = m$ and $R_i'$ are a
+permutation of $R_i$.
+\end{trditev}
+
+\begin{proof}
+As $R_i \edn R$, we have $R_i R = R_i$. It follows that
+\[
+R_i = \prod_{j=1}^m R_i R_j'.
+\]
+As $R_i R_j' \edn R_i$ is a nontrivial ideal, we must have
+$R_i R_j' = R_i$. Likewise, it follows that $R_i R_j' = R_j'$.
+\end{proof}
+
+\newpage
+
+\subsection{Jacobson radical}
+
+\begin{definicija}
+The \emph{Jacobson radical}\index{Jacobson radical} of a ring $R$
+is the set
+\[
+\rad R = \bigcap \setb{M \edn R}{\text{$M$ is maximal in $R$}}.
+\]
+\end{definicija}
+
+\begin{lema}
+\label{fin_dim_alg:lm:jac_rad}
+For all $y \in R$ the following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item We have $y \in \rad R$.
+\item For all $x \in R$ the element $(1-xy)$ is left invertible.
+\item For all simple $R$-modules $M$ we have $yM = (0)$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Suppose that $y \in \rad R$. If there exists some $x \in R$ such
+that $(1 - xy)$ is not left invertible. Therefore, the set
+$R (1 - xy)$ is a proper ideal of $R$. By Zorn's lemma, there
+exists some maximal ideal $M \edn R$ such that $R (1 - xy) \leq M$.
+In particular, we have $(1 - xy) \leq M$. As $y \in M$, we have
+$1 \in M$, which is of course not possible.
+
+Suppose that $(1 - xy)$ is left invertible for all $x \in R$. If
+we have $ym \ne 0$ for an element $m \in M$ of a simple $R$-module,
+we get $R(ym) = M$. Therefore, there exists some $x \in R$ such
+that $xym = m$, or, equivalently, $(1 - xy) \cdot m = 0$. This is
+again a contradiction.
+
+Suppose now that $y$ annihilates all simple $R$-modules and let
+$M \edn R$ be any maximal ideal. As $\kvoc{R}{M}$ is a simple
+$R$-module, we get $y \cdot \kvoc{R}{M} = (0)$, therefore,
+$y \in M$.
+\end{proof}
+
+\begin{definicija}
+The \emph{annihilator}\index{annihilator} of an $R$-module $M$ is
+the set
+\[
+\ann(M) = \setb{y \in R}{y \cdot M = (0)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+We have $\ann M \edn R$.
+\end{opomba}
+
+\begin{posledica}
+We have
+\[
+\rad R = \bigcap \setb{\ann M}{\text{$M$ is a simple $R$-module}}.
+\]
+In particular, $\rad R \edn R$.
+\end{posledica}
+
+\begin{lema}
+An element $y \in R$ is an element of the Jacobson radical if and
+only if $1 - xyz$ is invertible for all $x, z \in R$.
+\end{lema}
+
+\begin{proof}
+If $1 - xy \cdot 1$ is invertible, we have $y \in \rad R$.
+
+Suppose now that $y \in \rad R$ and fix $x, z \in R$. As
+$yz \in \rad R$, the element $1 - xyz$ is left invertible with
+inverse $u \in R$. But as $xyz \in \rad R$, we also have that the
+element $1 + u \cdot (xyz) = u$ is left invertible.
+\end{proof}
+
+\begin{trditev}
+The following statements are true:
+
+\begin{enumerate}[i)]
+\item The set $\rad R$ is the largest (left) ideal $J$ satisfying
+$1 + J \subseteq R^{-1}$.
+\item The left radical is the same as the right radical.
+\item Suppose that $I \edn R$ is an ideal with
+$I \subseteq \rad R$. Then
+\[
+\rad \br{\kvoc{R}{I}} = \kvoc{\rad R}{I}.
+\]
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Maximal left ideals in $\kvoc{R}{I}$ correspond with maximal left
+ideals in $R$ which contain $I$.
+\end{proof}
+
+\begin{definicija}
+A ring $R$ is \emph{J-semisimple}\index{J-semisimple module} if
+$\rad R = (0)$.
+\end{definicija}
+
+\begin{opomba}
+For each ring $R$, the quotient $\kvoc{R}{\rad R}$ is J-semisimple.
+\end{opomba}
+
+\begin{trditev}
+The following statements are true:
+
+\begin{enumerate}[i)]
+\item $R$ and $\kvoc{R}{\rad R}$ have the same simple left modules.
+\item An element $x \in R$ is (left) invertible if and only if
+$x + \rad R$ is (left) invertible in $\kvoc{R}{\rad R}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Follows from lemma~\ref{fin_dim_alg:lm:jac_rad}.
+\item If $x$ is invertible, then so is $x + \rad R$. Suppose now
+that for some $y \in R$ we have
+$(y + \rad R) (x + \rad R) = 1 + \rad R$. As $1 - yx \in \rad R$,
+we have that $yx$ is invertible, so $x$ has a left inverse.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+A one-sided or two-sided ideal $I \subseteq R$ is
+
+\begin{enumerate}[i)]
+\item \emph{nil}\index{nil ideal} if all its elements are
+nilpotent,
+\item \emph{nilpotent}\index{nilpotent ideal} if $I^n = (0)$ for
+some $n \in \N$.
+\end{enumerate}
+\end{definicija}
+
+\begin{lema}
+If a left ideal $I \subseteq R$ is nil, then $I \subseteq \rad R$.
+\end{lema}
+
+\begin{proof}
+Fix an element $y \in I$. For all $x \in R$, the element $xy \in I$
+is nilpotent, say $(xy)^n = 0$. As
+\[
+(1 - xy) \cdot \sum_{k=0}^{n-1} (xy)^k = 1,
+\]
+the element $1 - xy$ is invertible. Therefore, $y \in \rad R$.
+\end{proof}
+
+\begin{izrek}
+Suppose that $R$ is a left-artinian ring. Then $\rad R$ is the
+largest nilpotent left
+ideal.\footnote{Also the \emph{Wedderburn radical}.}
+\end{izrek}
+
+\begin{proof}
+As every nilpotent ideal is contained in the radical, it suffices
+to show that $\rad R$ is nilpotent.
+
+Consider the decreasing chain
+\[
+\rad R \supseteq \rad R \supseteq (\rad R)^2 \supseteq \dots
+\]
+As $R$ is artinian, this chain is eventually constant -- call that
+ideal $I$. Assume that $I \ne (0)$. By the artinian property, there
+exists a minimal left ideal $I_0$ such that $I \cdot I_0 \ne 0$.
+Therefore, there exists some $a \in I_0$ such that
+$I \cdot a \ne (0)$. Then $I \cdot (Ia) = Ia \ne (0)$. It follows
+that $I \cdot a = I_0$. In particular, for some $y \in I$ we have
+$ya = a$, or $(1-y) a = 0$. As $y \subseteq \rad R$, we get
+$a = 0$, which is a contradiction, therefore $I = (0)$.
+\end{proof}
+
+\begin{izrek}
+For a ring $R$ the following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The ring $R$ is semisimple.
+\item The ring $R$ is J-semisimple and left-artinian.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+A semisimple ring is left-artinian by the Wedderburn theorem. Since
+$R$ is semisimple, there exists a left $R$-module $I \leq R$ such
+that $R = \rad R \oplus I$. If $\rad R \ne (0)$, $I$ is a proper
+ideal and therefore contained in a maximal ideal $M$. But as
+$\rad R$ is also contained in the same ideal $M$, it follows that
+$R \subseteq M$, which is impossible.
+
+Now suppose that $R$ is J-semisimple and left-artinian. By
+the artinian property, we can write $\rad R$ as a finite
+intersection of maximal submodules
+\[
+(0) = \rad R = \bigcap_{i=1}^n M_i.
+\]
+Consider the homomorphism
+\[
+\varphi \colon R \to \bigoplus_{i=1}^n \kvoc{R}{M_i}
+\]
+with
+\[
+\varphi(x) = \prod_{i=1}^n (x + M_i).
+\]
+As $\ker \varphi = (0)$, it is injective. We can therefore write
+\[
+R \leq \bigoplus_{i=1}^n \kvoc{R}{M_i},
+\]
+so $R$ is semisimple.
+\end{proof}
+
+\begin{lema}[Nakayama]
+For a left ideal $J \leq R$ the following statements are
+equivalent:
+
+\begin{enumerate}[i)]
+\item $J \subseteq \rad R$
+\item The only finitely generated $R$-module $M$ such that
+$JM = M$ is $M = (0)$.
+\item For all $R$-modules $N$ and $M$ such that $N \leq M$ and
+$\kvoc{M}{N}$ is finitely generated, we have
+\[
+N + J M = M \implies N = M.
+\]
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Suppose that $J \subseteq \rad R$ and that $M \ne (0)$ is finitely
+generated with a minimal set of generators $\set{x_1, \dots, x_k}$.
+Since $J \cdot M = M$, we can write
+\[
+x_k = \sum_{i=1}^k a_i x_i
+\]
+for some $a_i \in J$. But as $1 - a_k$ is invertible, we can
+express $x_k$ as a linear combination of $x_1$, $x_2$, \dots,
+$x_{k-1}$, which is a contradiction.
+
+Suppose that the second statement holds and let $N \leq M$ be
+modules. If $N \ne M$, it follows that
+$J \cdot \kvoc{M}{N} \ne \kvoc{M}{N}$, so $N + JM \ne M$.
+
+No suppose that the third statement holds and let
+$y \in J \setminus \rad R$. Let $M$ be a maximal submodule of $R$
+such that $y \not \in M$. As $M + J = R$, it follows that $M = R$,
+which is a contradiction.
+\end{proof}
+
+\newpage
+
+\subsection{Group rings and Maschke's theorem}
+
+\begin{izrek}[Maschke]
+\index{Maschke's theorem}
+Suppose that $G$ is a finite group and $k$ a field such that
+$\chr k \nmid \abs{G}$. Then $kG$ is semisimple.
+\end{izrek}
+
+\begin{proof}
+By Algebra 3, theorem~4.2.2, every submodule $W$ of $V$ is a direct
+summand, so $M$ has the complement property.
+\end{proof}
+
+\begin{trditev}
+If $k$ is a field and $G$ is an infinite group, then $kG$ is not
+semisimple.
+\end{trditev}
+
+\begin{proof}
+Consider the map $\varepsilon \colon kG \to k$ such that
+$\eval{\varepsilon}{k}{} = \id$ and $\varepsilon(g) = 1$ for all
+$g \in G$. Let $I = \ker \varepsilon$ and note that $I \edn kG$.
+
+Suppose that $kG$ is semisimple. Therefore, there exists a
+submodule $J \leq kG$ such that $I \oplus J = kG$. Write
+$1 = e + f$ where $e \in I$ and $f \in J$. As $e = e^2 + ef$, it
+follows that $ef = 0$ and $e = e^2$. Similarly, we have $f = f^2$.
+Analogously, we get that $b = be$ for all $b \in I$, so $I = (kG)e$
+and $J = (kG)f$.
+
+Note that for all $g \in G$ we have $g - 1 \in I$, so $gf = f$. It
+is now clear that $f \ne 0$ must have the same non-zero coefficient
+in front of every element $g \in G$ in its linear combination of
+elements of $G$. This is not possible, as the linear combination is
+finite.
+\end{proof}
+
+\begin{opomba}
+The ring $\C G$ is always J-semisimple.
+\end{opomba}
+
+\begin{opomba}
+If $G$ is a finite group and $\chr k \mid \abs{G}$, the ring $kG$
+is also not semisimple.
+\end{opomba}
