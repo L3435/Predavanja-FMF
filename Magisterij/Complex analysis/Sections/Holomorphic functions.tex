@@ -378,7 +378,7 @@ $\abs{f'(0)} = 0$, the same argument works for $z_0 = 0$.
 \subsection{The \texorpdfstring{$\oline{\partial}$}{d} equation}
 
 \begin{lema}
-\label{hol:lem:bound_diff}
+\label{hol:lm:bound_diff}
 Let $g \in \mathcal{C}^\infty(\C)$ be a function with compact
 support. Then there exists a function
 $f \in \mathcal{C}^\infty(\C)$ such that $\parc{f}{\oline{z}} = g$.
@@ -490,7 +490,7 @@ g_j =
 \end{cases}
 \]
 This is of course a smooth function, so by
-lemma~\ref{hol:lem:bound_diff} there exists a function
+lemma~\ref{hol:lm:bound_diff} there exists a function
 $f_j \in \mathcal{C}^\infty(\C)$ with
 \[
 \parc{f_j}{\oline{z}} = g_j.
@@ -735,3 +735,129 @@ meromorphic function $f \in \mathcal{M}(\C)$ that solves the
 corresponding additive Cousin problem. It is easy to see that the
 principle parts of $f$ at $a_k$ are precisely $f_k$.
 \end{proof}
+
+\newpage
+
+\subsection{Sequences of holomorphic functions}
+
+\datum{2023-10-24}
+
+\begin{definicija}
+A family of functions $\mathcal{F}$ from $\Omega$ to $\C$ is
+\emph{locally bounded}\index{locally bounded functions}, if for all
+$p \in \Omega$ there exist a $\rho > 0$ and $M > 0$ such that
+\[
+\sup_{f \in \mathcal{F}} \sup_{z \in \dsk(p, \rho)} \abs{f(z)} < M.
+\]
+\end{definicija}
+
+\begin{lema}
+\label{hol:lm:loc_equi}
+Let $\Omega \subseteq \C$ be an open subset and
+$\mathcal{F} \subseteq \mathcal{O}(\Omega)$ a locally bounded
+family of functions. Then for all $p \in \Omega$ there exists a
+$\rho > 0$ such that $\mathcal{F}$ is equi-continuous on
+$\Omega \cap \dsk(p, \rho)$.
+\end{lema}
+
+\begin{proof}
+Fix $p \in \Omega$ and choose $r > 0$ such that
+$D = \oline{\dsk(p, 2r)} \subseteq \Omega$. For any $z, w \in D$
+and $f \in \mathcal{F}$ we have
+\[
+f((z) - f(w) =
+\frac{1}{2 \pi i} \olint_{\partial D} \frac{f(\xi)}{\xi-z}\,d\xi -
+\frac{1}{2 \pi i} \olint_{\partial D} \frac{f(\xi)}{\xi-w}\,d\xi =
+\frac{z-w}{2 \pi i} \olint_{\partial D}
+\frac{f(\xi)}{(\xi-z)(\xi-w)}\,d\xi.
+\]
+Note that the family $\mathcal{F}$ is bounded on every compact.
+Therefore, we can write
+\[
+\sup_{f \in \mathcal{F}} \sup_{z \in \partial D} \abs{f(z)} < M.
+\]
+Now, for $z, w \in \dsk(p, r)$ we have
+\[
+\abs{f((z) - f(w)} =
+\abs{\frac{z-w}{2 \pi i} \olint_{\partial D}
+\frac{f(\xi)}{(\xi-z)(\xi-w)}\,d\xi} \leq
+\abs{z-w} \cdot \frac{2M}{r}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Arzelà-Ascoli]
+\index{Arzelà-Ascoli theorem}
+Let $\Omega \subseteq \C$ be an open subset and let
+$\mathcal{F} \subseteq \mathcal{O}(\Omega)$ be an infinite family
+such that the following conditions hold:
+
+\begin{enumerate}[i)]
+\item $\mathcal{F}$ is point-wise bounded.
+\item $\mathcal{F}$ is locally equi-continuous.
+\end{enumerate}
+
+Then there $\mathcal{F}$ contains a sequence that converges
+uniformly on compacts of $\Omega$.
+\end{izrek}
+
+\begin{proof}
+Choose a dense countable subset $A \subseteq \Omega$ and enumerate
+it as a sequence $(a_k)_{k \in \N}$. Pick any sequence
+$(f_n)_{n \in \N} \subseteq \mathcal{F}$ with pairwise distinct
+terms. As $\abs{f_n(a_1)} < M$ for all $n$, we can choose a
+subsequence $(f_{1,n})_{n \in \N}$ such that $f_{1,n}(a_1)$
+converges by Bolzano-Weierstrass.
+
+Similarly, for every $k \in \N$ there exists a subsequence
+$(f_{k,n})_{n}$ of $(f_{k-1,n})_n$ such that $(f_{k,n}(a_k))_n$
+converges. Now define $F_n = f_{n,n}$. Observe that $(F_n)$
+converges at every point in $A$.
+
+Fix a $p \in \Omega$. By local equi-continuity, there exists a
+$\rho > 0$ such that for all $\varepsilon > 0$ there exists a
+$\delta > 0$ such that $\delta < \rho$ and
+$\abs{F_n(z) - F_n(w)} < \frac{\varepsilon}{3}$ for all
+$z, w \in \dsk(p, \rho)$ such that $\abs{z-w} < \delta$. Choose an
+element $a \in A \cap \dsk(z, \delta)$.\footnote{By compactness of
+$\oline{\dsk(p, \rho)}$ we can choose $a$ from a finite set.} Then,we have
+\[
+\abs{F_n(z) - F_m(z)} \leq
+\abs{F_n(z) - F_n(a)} +
+\abs{F_n(a) - F_m(a)} +
+\abs{F_m(a) - F_m(z)} <
+3 \cdot \frac{\varepsilon}{3}.
+\]
+It follows that $(F_n)$ is locally uniformly convergent, therefore
+it converges uniformly on compact sets.
+\end{proof}
+
+\begin{izrek}[Montel]
+\index{Montel's theorem}
+Let $\Omega \subseteq \C$ be an open subset and
+$f_n \colon \Omega \to \C$ be a locally bounded sequence of
+holomorphic functions. Then $(f_n)_n$ contains a subsequence that
+converges uniformly on compacts.
+\end{izrek}
+
+\begin{proof}
+As the sequence is locally bounded, it is locally equi-continuous
+by lemma~\ref{hol:lm:loc_equi}. By Arzelà-Ascoli, there exists a
+convergent subsequence.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open subset. A family of functions
+$\mathcal{F} \subseteq \mathcal{O}(\Omega)$ is
+\emph{normal}\index{normal family} if every sequence in
+$\mathcal{F}$ contains a subsequence that converges uniformly on
+compacts.
+\end{definicija}
+
+\begin{izrek}[Montel]
+\index{Montel's theorem}
+Let $\Omega \subseteq \C$ be an open subset. A family
+$\mathcal{F} \subseteq \mathcal{O}(\Omega)$ is normal if and only
+if it is locally bounded.
+\end{izrek}
+
+\obvs
