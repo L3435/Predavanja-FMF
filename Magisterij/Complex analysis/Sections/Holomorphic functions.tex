@@ -861,3 +861,109 @@ if it is locally bounded.
 \end{izrek}
 
 \obvs
+
+\datum{2023-10-25}
+
+\begin{izrek}[Vitali]
+\index{Vitali's theorem}
+Let $\Omega \subseteq \C$ be a domain and
+$(f_n)_n \subseteq \mathcal{O}(\Omega)$ a locally bounded sequence
+of holomorphic functions. The following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The sequence $(f_n)_n$ converges uniformly on compact subsets
+of $\Omega$.
+\item For a point $p \in \Omega$ and $k \in \N_0$ the sequence
+$(f_n^{(k)}(p))_n$ converges.
+\item The set
+\[
+A =
+\setb{z \in \Omega}{\lim_{n \to \infty} f_n(z)~\text{converges}}
+\]
+has an accumulation point in $\Omega$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Suppose that the sequence converges uniformly on compact subsets.
+Given a $p \in \Omega$, choose a $\delta > 0$ such that
+$D = \oline{\dsk(p, \delta)} \subseteq \Omega$. Note that
+\[
+\abs{g^{(k)}(p)} \leq \frac{k!}{\delta^k} \cdot \norm{g}_D
+\]
+holds for all holomorphic functions $g$. As
+$\norm{f - f_n}$ converges to $0$, the derivatives of $f_n$
+converge.
+
+Suppose that the sequence of derivatives converges in each point.
+Fix a point $p \in \Delta$ and choose a $\delta > 0$ such that
+$D = \oline{\dsk(p, \delta)} \subseteq \Omega$. As the sequence is
+locally bounded, there exists a constant $M$ such that
+$\norm{f_n}_D \leq M$ holds for all $n \in \N$. We can now develop
+power series
+\[
+f_n(z) = \sum_{k=0}^\infty a_{k,n} (z-p)^k.
+\]
+They converge uniformly on compact subsets of $\dsk(p, \delta)$.
+Note that
+\[
+a_{k,n} = \frac{f_n^{(k)}(p)}{k!}.
+\]
+As derivatives converge, we can define the limit
+\[
+a_k = \lim_{n \to \infty} a_{k,n}.
+\]
+Now define the formal power series
+\[
+f(z) = \sum_{k=0}^\infty a_k (z-p)^k.
+\]
+The Cauchy bounds give us the inequality
+\[
+\abs{a_{k,n}} =
+\frac{\abs{f^{(k)}(p)}}{k!} \leq \frac{M}{\delta^k},
+\]
+therefore
+\[
+\limsup_{k \to \infty} \sqrt[k]{\abs{a_k}} \leq
+\limsup_{k \to \infty} \frac{\sqrt[k]{M}}{\delta} =
+\frac{1}{\delta}.
+\]
+We conclude that the radius of convergence is at least $\delta$.
+Consider some $\rho \in (0, \delta)$ and
+$z \in \dsk(p, \rho)$. We have
+\begin{align*}
+\abs{f_n(z) - f(z)} &\leq
+\abs{\sum_{k=0}^m (a_{k,n} - a_k) \cdot (p-z)^k} +
+\abs{\sum_{k=m+1}^\infty (a_{k,n} - a_k) \cdot (p-z)^k}
+\\
+&\leq
+\sum_{k=0}^m \abs{a_{n,k} - a_k} \rho^k +
+\sum_{k=m+1}^\infty 2M \cdot \frac{\rho^k}{\delta^k}
+\\
+&=
+\sum_{k=0}^m \abs{a_{n,k} - a_k} \rho^k +
+2M \cdot \br{\frac{\rho}{\delta}}^{m+1} \cdot
+\frac{\delta}{\delta - \rho}
+\\
+&=
+2 \cdot \frac{\varepsilon}{2}
+\end{align*}
+for large enough $m$ and $n$. It follows that $p$ is an
+accumulation point of $A$.
+
+Suppose now that $A$ has an accumulation point in $\Omega$. By
+Montel's theorem there exists a subsequence $(f_{n_m})_m$ that
+converges uniformly on compact subsets of $\Omega$ to a limit
+function $f$. Note that all such subsequences have the same limit
+by the identity principle.
+
+Assume that the sequence $(f_n)_n$ does not converge uniformly on
+a compact subset $K \subseteq \Omega$. We can therefore construct
+another subsequence $(g_n)_n$ of $(f_n)_n$ such that
+\[
+\norm{g_n - f}_K > \varepsilon
+\]
+for all $n \in \N$. But note that $(g_n)_n$ also has a convergent
+subsequence by Montel's theorem, which is of course a
+contradiction, as it cannot converge to $f$.
+\end{proof}
