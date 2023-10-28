@@ -1,0 +1,359 @@
+\section{Fundamental group}
+
+\subsection{Definition}
+
+\begin{definicija}
+Let $\alpha, \beta \colon I \to X$ be two paths with
+$\alpha(1) = \beta(0)$. The
+\emph{concatenation product}\index{concatenation product} is the
+path
+\[
+(\alpha \cdot \beta)(t) =
+\begin{cases}
+\alpha(2t),    & t \leq \frac{1}{2}, \\
+\beta(2t - 1), & t \geq \frac{1}{2}.
+\end{cases}
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $X$ be a topological space and $x_0 \in X$. The set of
+\emph{loops}\index{loops} with starting point $x_0$ is the set
+\[
+\Omega(X, x_0) = \mathcal{C}((I, \partial I), (X, x_0)).
+\]
+\end{definicija}
+
+\begin{izrek}
+Concatenation on $\Omega(X, x_0)$ induces a group structure on
+\[
+\kvoc{\Omega(X, x_0)}{\simeq~\rel \partial I}.
+\]
+\end{izrek}
+
+\begin{definicija}
+The above group is called the
+\emph{fundamental group}\index{fundamental group} and is denoted by
+$\pi_1(X, x_0)$.
+\end{definicija}
+
+\datum{2023-10-16}
+
+\begin{opomba}
+Suppose that $C_{x_0}$ is the path-component of $X$ containing
+$x_0$. Then we have $\pi_1(X, x_0) = \pi_1(C_{x_0}, x_0)$.
+\end{opomba}
+
+\begin{definicija}
+Suppose $x_0, x_1 \in X$ are connected by a path
+$\gamma \colon (I, 0, 1) \to (X, x_0, x_1)$. Define the map
+$\tr_\gamma \colon \pi_1(X, x_0) \to \pi_1(X, x_1)$ as
+$\tr_\gamma([\alpha]) =
+[\oline{\gamma} \cdot \alpha \cdot \gamma]$.
+\end{definicija}
+
+\begin{trditev}
+Suppose $x_0, x_1$ are connected by a path
+$\gamma \colon (I, 0, 1) \to (X, x_0, x_1)$. Then the map
+$\tr_\gamma$ is an isomorphism with inverse
+$\br{\tr_\gamma}^{-1} = \tr_{\oline{\gamma}}$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+For paths $\gamma, \delta \colon (I, 0, 1) \to (X, x_0, x_1)$ we
+have
+\[
+\tr_\delta = \tr_{\oline{\gamma} \delta} \circ \tr_\gamma.
+\]
+\end{trditev}
+
+\obvs
+
+\begin{opomba}
+If $\pi_1(X, x_1)$ is commutative, the $\tr$-isomorphisms are
+independent from the chosen paths. We write
+$\pi_1(X) = \pi_1(X, x_0)$.
+\end{opomba}
+
+\begin{trditev}
+Let $f \colon (X, x_0) \to (Y, y_0)$ be a map. Then $f$ induces a
+homomorphism $f_* \colon \pi_1(X, x_0) \to \pi_1(Y, y_0)$.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+The fundamental group is a functor
+$\pi_1 \colon \catt{HoTop}_\bullet \to \catt{Grp}$.
+\end{trditev}
+
+\begin{posledica}
+The following statements are true:
+
+\begin{enumerate}[i)]
+\item If $f \colon (X, x_0) \to (Y, y_0)$ is a homotopy
+equivalence relative to $x_0$, the induced map
+$f_* \colon \pi_1(X, x_0) \to \pi_1(X, x_1)$ is an isomorphism.
+\item If $f \colon X \to Y$ is a homotopy equivalence, then the map
+$f_* \colon \pi_1(X, x_0) \to \pi_1(Y, f(x_0))$ is an isomorphism.
+\item If $X$ is contractible, then $\pi(X, x_0) \cong \set{1}$.
+\item For $x_0 \in X$ and $y_0 \in Y$ we have that
+\[
+\br{(p_X)_*, (p_Y)_*} \colon
+\pi_1(X \times Y, (x_0, y_0)) \to
+\pi_1(X, x_0) \times \pi_1(Y, y_0)
+\]
+is an isomorphism.
+\item If $A$ is a retract of $X$, then
+$i_* \colon \pi_1(A, x_0) \to \pi_1(X, x_0)$ is a monomorphism for
+all $x_0 \in A$. If $\pi_1(X, x_0)$ is commutative, the group
+$\pi_1(A, x_0)$ is a direct summand.
+\end{enumerate}
+\end{posledica}
+
+\datum{2023-10-19}
+
+\begin{proof}
+Assume that $A$ is a retract of $X$. As
+$\pi_1 \colon \catt{HoTop}_\bullet \to \catt{Grp}$ is a functor, we
+can apply it to the diagram
+\[
+\begin{tikzcd}
+(A, x_0) \arrow[r, hook, "i"] &
+(X, x_0) \arrow[r, "r"] &
+(A, x_0).
+\end{tikzcd}
+\]
+It follows that $i_* \colon \pi_1(A, x_0) \to \pi_1(X, x_0)$ is a
+monomorphism.
+\end{proof}
+
+\begin{izrek}[Fundamental group of $S^1$]
+The fundamental group of $S^1$ is isomorphic to $\Z$.
+\end{izrek}
+
+\begin{proof}
+Let $\alpha \colon (I, 0, 1) \to (S^1, 1, 1)$ be a loop. We can
+lift the map $\alpha$ to a unique map
+$\widetilde{\alpha} \colon (I, 0) \to (\R, 0)$, as $\R$ is a
+covering space of $S^1$. Observe the map
+$\Phi_0 \colon \Omega(S^1, 1) \to \Z$, given by
+$\Phi_0(\alpha) = \alpha(1)$. As any homotopy
+$h \colon \alpha \simeq \beta~(\rel \partial I)$ can be lifted to a
+unique homotopy $H \colon \widetilde{\alpha} \simeq
+\widetilde{\beta}~(\rel \partial I)$, the map $\Phi_0$ is constant
+on equivalence classes and therefore induces a map
+$\Phi \colon \pi_1(S^1, 1) \to \Z$. Note that it is an isomorphism,
+therefore, $\pi_1(S^1, 1) \cong \Z$.
+\end{proof}
+
+\begin{posledica}[Brouwer]
+\index{Brouwer theorem}
+Every map $f \colon B^2 \to B^2$ has a fixed point.
+\end{posledica}
+
+\begin{proof}
+If $f$ had no fixed point, we could construct a retraction
+$r \colon B^2 \to S^1$. This is of course not possible, as $\Z$ is
+not a subgroup of the trivial group.
+\end{proof}
+
+\begin{trditev}
+Let $q \colon I \to S^1$ be the quotient map. Then, the induced map
+$q^* \colon [(S^1, 1), (X, x_0)] \to \pi_1(X, x_0)$ is an
+isomorphism of groups.
+\end{trditev}
+
+\begin{definicija}
+The \emph{degree}\index{degree} of $\alpha$ is the number
+$\deg \alpha$, where $\deg \colon [(S^1, 1), (S^1, 1)] \to \Z$ is
+the above isomorphism.
+\end{definicija}
+
+\begin{izrek}[Borsuk-Ulam]
+\index{Borsuk-Ulam theorem}
+For any continuous map $f \colon S^1 \to \R$ there exists some
+$x \in S^1$ such that $f(x) = f(-x)$.
+\end{izrek}
+
+\begin{proof}
+Let $g(x) = f(x) - f(-x)$. Note that $g$ is an odd function and
+assume that $g(x) \ne 0$ for all $x$. Observe that
+\[
+\frac{g}{\abs{g}} \colon S^1 \to \set{-1, 1}
+\]
+is a well defined, continuous odd function. This is of course
+impossible, as $S^1$ is connected.
+\end{proof}
+
+\datum{2023-10-23}
+
+\begin{lema}
+For any odd function $f \colon S^1 \to S^1$ we have
+$2 \nmid \deg(f)$.
+\end{lema}
+
+\begin{proof}
+Without loss of generality assume $f(1) = 1$. Let
+$q \colon I \to S^1$ be the quotient map. Note that we can lift the
+map $f \circ q$ to a map $F \colon I \to \R$ with $F(0) = 0$. Then,
+$\deg(f) = F(1)$. Note that
+\[
+f \circ q \br{\frac{1}{2}} = f(-1) = -1,
+\]
+so $F \br{\frac{1}{2}} = k + \frac{1}{2}$. As $f$ is odd, the map
+\[
+G(x) =
+\begin{cases}
+F(x), & x \leq \frac{1}{2}, \\
+F \br{\frac{1}{2}} + F \br{x - \frac{1}{2}}, & x \geq \frac{1}{2}
+\end{cases}
+\]
+is also a lift of $f \circ q$. By uniqueness, we have $F = G$ and
+therefore $F(1) = 2k+1$.
+\end{proof}
+
+\begin{posledica}
+There are no odd maps $f \colon S^n \to S^1$ for $n > 1$.
+\end{posledica}
+
+\begin{proof}
+Assume that such a map $f$ exists. Note that the inclusion
+$\iota \colon S^1 \hookrightarrow S^n$ is null-homotopic. But then
+$f \circ \iota$ should also be null-homotopic, hence have degree
+$0$.
+\end{proof}
+
+\begin{izrek}[Borsuk-Ulam]
+\index{Borsuk-Ulam theorem}
+For any map $f \colon S^2 \to \R^2$ there exists some $x \in S^2$
+such that $f(x) = - f(-x)$.
+\end{izrek}
+
+\begin{proof}
+Suppose otherwise and note that $g \colon S^2 \to S^1$, given by
+\[
+g(x) = \frac{f(x) - f(-x)}{\norm{f(x) - f(-x)}},
+\]
+is an odd map.
+\end{proof}
+
+\begin{opomba}
+The theorem holds for all maps $f \colon S^n \to \R^n$.
+\end{opomba}
+
+\begin{izrek}[Stone-Tukey]
+\index{Stone-Tukey theorem}
+Let $A$, $B$ and $C$ be bounded measurable subsets of $\R^3$. Then
+there exists a plane which bisects all of $A$, $B$ and
+$C$.\footnote{Also called the \emph{Ham Sandwich theorem}.}
+\end{izrek}
+
+\begin{izrek}[Lusternik-Schnirelmann]
+\index{Lusternik-Schnirelmann theorem}
+Let $A$, $B$ and $C$ form a closed cover of $S^2$. Then, at least
+one of them contains a pair of antipodal points.
+\end{izrek}
+
+\begin{izrek}[Fundamental theorem of algebra]
+\index{Fundamental theorem of algebra}
+Every non-constant polynomial $p \in \C[x]$ has a complex root.
+\end{izrek}
+
+\begin{proof}
+Let $n = \deg p$ and assume $0 \not \in p(\C)$. Define
+\[
+H(z, t) = \sum_{i=0}^n a_i z^i t^{n-i}.
+\]
+Note that $H \colon S^1 \times I \to \C \setminus \set{0}$ is a
+homotopy between $z^n$ and $p(z)$. Also, the map
+\[
+K(z, t) = p(zt)
+\]
+is a homotopy between $a_0$ and $p(z)$. It follows that $p$ is
+null-homotopic, so $\deg p = 0$.
+\end{proof}
+
+\newpage
+
+\subsection{Computation of the fundamental group}
+
+\datum{2023-10-26}
+
+\begin{definicija}
+The \emph{coproduct}\index{coproduct} of groups $G$ and $H$ is the
+group
+\[
+G * H =
+\setb{\prod_{i=1}^n g_i h_i}
+{n \in \N \land g_i \in G \land h_i \in H}.
+\]
+\end{definicija}
+
+\begin{opomba}
+The definition coincides with coproducts in the category
+$\catt{Grp}$.
+\end{opomba}
+
+\begin{izrek}[Seifert-van Kampen]
+\index{Seifert-van Kampen theorem}
+Let $X$ and $Y$ be open subspaces in $X \cup Y$ and
+$x_0 \in X \cap Y$. Suppose that $X$, $Y$ and $X \cap Y$ are
+path-connected. Denote by $i_Z \colon X \cap Y \hookrightarrow Z$
+and $j_Z \colon Z \hookrightarrow X \cup Y$ the inclusions for
+$Z \in \set{X, Y}$. Then
+\[
+\varphi = ((j_X)_*, (j_Y)_*) \colon
+\pi_1(X, x_0) * \pi_1(Y, x_0) \to \pi_1(X \cup Y, x_0)
+\]
+is an epimorphism with
+\[
+\ker \varphi =
+\skl{\setb{(i_X)_*(\alpha) \cdot (i_Y)_* \br{\alpha^{-1}}}
+{\alpha \in \pi_1(X \cap Y, x_0)}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $\alpha \in \pi_1(X \cup Y, x_0)$ be an arbitrary loop. Note
+that, using the Lebesgue number, we can split $\alpha$ into
+finitely many paths in $X$ and $Y$. Using the path-connectedness of
+$X \cap Y$, we can join the path segments into loops starting at
+$x_0$, thus constructing an element of
+$\pi_1(X, x_0) * \pi_1(Y, x_0)$ that maps to $\alpha$.
+
+Let
+\[
+N = \skl{\setb{(i_X)_*(\alpha) \cdot (i_Y)_*\br{\alpha^{-1}}}
+{\alpha \in \pi_1(X \cap Y, x_0)}}.
+\]
+Note that
+\begin{align*}
+\varphi \br{(i_X)_*(\alpha) \cdot (i_Y)_*\br{\alpha^{-1}}} &=
+(j_X)_*((i_X)_*(\alpha)) \cdot (j_Y)_* \br{(i_Y)_*\br{\alpha^{-1}}}
+\\
+&=
+(j_Y)_*((i_Y)_*(\alpha)) \cdot (j_Y)_* \br{(i_Y)_*\br{\alpha}}^{-1}
+\\
+&=
+1,
+\end{align*}
+as $j_X \circ i_X = j_Y \circ i_Y$. It follows that
+$N \leq \ker \varphi$. It remains to check that
+$\ker \varphi \leq N$.
+%TODO Copy proof from Hatcher, p.44
+\end{proof}
+
+\begin{definicija}
+A path-connected topological space $X$ is
+\emph{simply connected}\index{simply connected} if any two paths
+$\alpha, \beta \colon I \to X$, such that
+$\eval{\alpha}{\partial I}{} = \eval{\beta}{\partial I}{}$, are
+homotopic relative to $\partial I$.
+\end{definicija}
+
+\begin{opomba}
+Equivalently, $X$ is path-connected with $\pi_1(X) \cong \set{1}$.
+\end{opomba}

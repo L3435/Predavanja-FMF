@@ -40,11 +40,12 @@ $\mathcal{C}( (X, A), (Y, B))$ and $[(X,A), (Y,B)]$.
 \end{definicija}
 
 \begin{definicija}
-Let $A \subseteq X$ and $f, g \colon X \to Y$ be maps, such that
-$\eval{f}{A}{} = \eval{g}{A}{}$. $G \colon X \times I \to Y$ is a
+Let $A \subseteq X$ and $f, g \colon X \to Y$ be maps satisfying
+$\eval{f}{A}{} = \eval{g}{A}{}$. The map
+$G \colon X \times I \to Y$ is a
 \emph{homotopy relative to $A$}\index{homotopy!relative to a subspace}
 if $H \colon f \simeq g$ and $\eval{H_t}{A}{} = \eval{f}{A}{}$ for
-all $t \in I$.
+all $t \in I$. We write $H \colon f \simeq g~(\rel A)$.
 \end{definicija}
 
 \datum{2023-10-6}
@@ -134,8 +135,8 @@ are homotopy equivalent, we write $X \simeq Y$.
 
 \begin{opomba}
 A map $f \colon X \to Y$ is a homotopy equivalence if there exists
-a map $g \colon Y \to X$ such that $g \circ f \simeq \id_X$ and
-$f \circ g \simeq \id_Y$. The map $g$ is a
+a map $g \colon Y \to X$ such that both $g \circ f \simeq \id_X$
+and $f \circ g \simeq \id_Y$ hold. The map $g$ is a
 \emph{homotopy inverse}\index{homotopy!inverse} of $f$.
 \end{opomba}
 
@@ -176,7 +177,7 @@ inclusion.
 \begin{definicija}
 A subspace $A \subseteq X$ is a
 \emph{strong deformation retract}\index{strong deformation retract}
-is a retract and the retraction is a homotopy inverse of the
+if it is a retract and the retraction is a homotopy inverse of the
 inclusion relative to $A$.
 \end{definicija}
 
@@ -209,9 +210,9 @@ Suppose that $L$ is a retract of $X$. It is easy to see that
 $\oline{H} = (H \cup f) \circ r$ is the required homotopy
 extension, where $r \colon X \times I \to L$ is a retraction.
 
-Now suppose that $A$ has the homotopy extension property. Let
+Now suppose that $A$ has the homotopy extension property. Define
 $i_0 \colon X \hookrightarrow L$ and
-$H \colon A \times I \hookrightarrow L$ be inclusions. By the
+$H \colon A \times I \hookrightarrow L$ as the inclusions. By the
 homotopy extension property, there exists a homotopy
 $\oline{H} \colon X \times I \to L$, which is of course a
 retraction.
@@ -242,4 +243,46 @@ compact. The induced map $\oline{H}$ is therefore well defined.
 But now $H_1$ induces a map $h \colon \kvoc{X}{A} \to X$. Note
 that, by definition, $h \circ q = H_1 \simeq H_0 = \id_X$, and
 $q \circ h = \oline{H}_1 \simeq \oline{H}_0 = \id_{\kvoc{X}{A}}$.
+\end{proof}
+
+\datum{2023-10-13}
+
+\begin{trditev}
+Suppose the map $A \hookrightarrow X$ has the homotopy extension
+property and $f, g \colon A \to Y$ are homotopic. Then we have
+$X \cup_f Y \simeq X \cup_g Y$.
+\end{trditev}
+
+\begin{trditev}
+Suppose the map $A \hookrightarrow X$ has the homotopy extension
+property. If $A \hookrightarrow X$ is a homotopy equivalence, then
+$A$ is a strong deformation retract of $X$.
+\end{trditev}
+
+\begin{definicija}
+Let $f \colon X \to Y$ be a map. The
+\emph{mapping cylinder}\index{mapping cylinder} of $f$ is the space
+\[
+M_f = \kvoc{X \times I \sqcup Y}{(x,0) \sim f(x)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+The subspace $X \approx X \times \set{1} \subseteq M_f$ has the
+homotopy extension property.
+\end{opomba}
+
+\begin{trditev}
+Suppose that $f \colon X \to Y$ is a homotopy equivalence. Then
+both $X$ and $Y$ are strong deformation retracts of $M_f$.
+\end{trditev}
+
+\begin{proof}
+Note that the map $H((x,s),t) = [(x, s(1-t)]$ is a homotopy between
+$\id$ and a retraction $r \colon M_f \to Y$, therefore $Y$ is a
+strong deformation retract of $M_f$. In particular, $r$ is a
+homotopy equivalence. Denote by $i \colon X \hookrightarrow M_f$
+the inclusion of $X \simeq X \times \set{1}$ in $M_f$. Note that
+$f = r \circ i$, therefore $i$ is also a homotopy equivalence. It
+follows that $X$ is also a strong deformation retract of $M_f$.
 \end{proof}
