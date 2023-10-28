@@ -152,7 +152,7 @@ f(a) = \sum_{j=0}^n a_j a^j \in A.
 \end{definicija}
 
 \begin{izrek}[Spectral mapping theorem for polynomials]
-\index{spectral mapping theorem}
+\index{spectral!mapping theorem}
 Let $A$ be an algebra and $f \in \C[x]$. Then
 \[
 f(\sigma_A(a)) = \sigma_A(f(a))
@@ -191,14 +191,14 @@ follows that $f(a) - \mu \in \GL(A)$.
 
 \begin{definicija}
 Let $A$ be a Banach algebra and $x \in A$. The
-\emph{spectral radius}\index{spectral radius} of $x$ is
+\emph{spectral radius}\index{spectral!radius} of $x$ is
 \[
 r(x) = \sup_{\lambda \in \sigma_A(x)} \abs{\lambda}.
 \]
 \end{definicija}
 
 \begin{izrek}[Spectral radius formula]
-\index{spectral radius formula}
+\index{spectral!radius!formula}
 Let $A$ be a Banach algebra and $x \in A$. Then, the limit
 \[
 \lim_{n \to \infty} \sqrt[n]{\norm{x^n}}
@@ -257,4 +257,349 @@ functional analysis, corollary~6.1.20.1. We can therefore write
 \[
 \norm{x}^2 = \norm{x^* x} = r(x^* x) = r(x)^2. \qedhere
 \]
+\end{proof}
+
+\datum{2023-10-25}
+
+\begin{posledica}
+Let $A$ and $B$ be $C^*$-algebras and $\Phi \colon A \to B$ a
+*-homomorphism.\footnote{$\Phi(x^*) = \Phi(x)^*$ for all
+$x \in A$.} Then $\Phi$ is a contraction. Furthermore, if $\Phi$ is
+a *-isomorphism, it is isometric.
+\end{posledica}
+
+\begin{proof}
+Note that $\Phi(\GL(A)) \subseteq \GL(B)$, therefore
+$\sigma_B(\Phi(x)) \subseteq \sigma_A(x)$. It follows that
+$r(\Phi(x)) \leq r(x)$. Now observe that
+\[
+\norm{\Phi(x)}^2 =
+\norm{\Phi(x) \cdot \Phi(x)^*} =
+\norm{\Phi(xx^*)} =
+r(\Phi(xx^*)) \leq
+r(xx^*) =
+\norm{x}^2. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+If $A$ is a *-algebra, there exists at most one norm on $A$ such
+that $A$ is a $C^*$-algebra.
+\end{posledica}
+
+\obvs
+
+\begin{lema}
+Let $A$ be a $C^*$-algebra and $x \in A$ a selfadjoint element.
+Then $\sigma_A(x) \subseteq \R$.
+\end{lema}
+
+\begin{proof}
+Let $\lambda = \alpha + i \beta \in \sigma_A(x)$ for some
+$\alpha, \beta \in \R$. Define $y = x - \alpha + it$ for some
+$t \in \R$. Note that $i \cdot (\beta + t) \in \sigma_A(y)$ and
+that $y$ is normal. It follows  that
+\[
+\abs{i \cdot (\beta + t)}^2 \leq
+r(y)^2 =
+\norm{y}^2 =
+\norm{y y^*} =
+\norm{(x - \alpha)^2 + t^2} \leq
+\norm{x - \alpha}^2 + t^2.
+\]
+Rearranging the above inequality, we get
+\[
+\beta^2 + 2 \beta t \leq \norm{x - \alpha}^2.
+\]
+As $t \in \R$ was arbitrary, it follows that $\beta = 0$.
+\end{proof}
+
+\begin{lema}
+Let $A$ be a Banach algebra and $x \in A \setminus \GL(A)$. If the
+sequence $(x_n)_n$ of elements of $\GL(A)$ converges to $x$, then
+\[
+\lim_{n \to \infty} \norm{x_n^{-1}} = \infty.
+\]
+\end{lema}
+
+\begin{proof}
+If the sequence were bounded, we'd have
+\[
+\lim_{n \to \infty} \norm{1 - x x_n^{-1}} \leq
+\lim_{n \to \infty} \norm{x_n - x} \cdot \norm{x_n^{-1}} = 0.
+\]
+In particular, $\norm{1 - x x_n^{-1}} < 1$ for some $n \in \N$.
+It follows that $x x_n^{-1}$ is invertible, therefore $x$ is also
+invertible.
+\end{proof}
+
+\begin{trditev}
+Let $B$ be a $C^*$-algebra and $A \subseteq B$ a unital
+$C^*$-subalgebra. Then for all $x \in A$ we have
+$\sigma_A(x) = \sigma_B(x)$.
+\end{trditev}
+
+\begin{proof}
+Note that $\GL(A) \subseteq \GL(B)$. Let $x \in A \setminus \GL(A)$
+be a selfadjoint element. Note that $it \not \in \sigma_A(x)$ for
+$t \in \R^*$. As $x$ is not invertible in $A$, we have
+\[
+\lim_{n \to \infty} \norm{(x - it)^{-1}} = \infty
+\]
+by the previous lemma. Since the inversion map is continuous, it
+follows that $x \not \in \GL(B)$.
+
+Let now $x \in A \cap \GL(B)$ be an arbitrary element. We know that
+$x^*$ is also invertible, therefore $x^* x \in \GL(B) \cap A$. From
+the first part of the proof we now know $x^* x \in \GL(A)$, so
+we can write
+\[
+x^{-1} = (x^* x)^{-1} \cdot x^*. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Gelfald transform}
+
+\begin{definicija}
+Let $A$ be an abelian Banach algebra. The
+\emph{spectrum}\index{spectrum} of $A$ is the set
+\[
+\sigma(A) =
+\setb{\varphi \colon A \to \C}
+{\text{$\varphi \ne 0$ is a continuous homomorphism}}
+\]
+with the weak-* topology. We call elements of $\sigma(A)$
+\emph{characters}\index{character}.
+\end{definicija}
+
+\begin{opomba}
+For all characters $\varphi \in \sigma(A)$ we have
+$\ker \varphi \cap \GL(A) = \emptyset$.
+\end{opomba}
+
+\begin{trditev}
+For all $\varphi \in \sigma(A)$ and $x \in A$ we have
+$\varphi(x) \in \sigma_A(x)$.
+\end{trditev}
+
+\begin{proof}
+We have $\varphi(x - \varphi(x)) = 0$.
+\end{proof}
+
+\begin{posledica}
+We have $\sigma(A) \subseteq (A^*)_1$. In particular, $\sigma(A)$
+is a compact Hausdorff space.
+\end{posledica}
+
+\begin{proof}
+For all characters $\varphi \in \sigma(A)$ we have
+$\abs{\varphi(x)} \leq r(x) \leq \norm{x}$, therefore
+$\norm{\varphi} \leq 1$.\footnote{In fact, as $\varphi(1) = 1$, we
+have $\norm{\varphi} = 1$.}
+\end{proof}
+
+\begin{trditev}
+Let $A$ be an abelian Banach algebra. The map
+$\varphi \mapsto \ker \varphi$ is a bijection between $\sigma(A)$
+and maximal ideals $I \edn A$.
+\end{trditev}
+
+\begin{proof}
+Let $\varphi \in \sigma(A)$ be an arbitrary character. Note that
+$\ker \varphi \edn A$. Suppose that
+$\ker \varphi \subset I \edn A$ and let
+$x \in I \setminus \ker \varphi$. Let
+$y = 1 - \frac{x}{\varphi(x)} \in \ker \varphi$. It follows that
+\[
+1 = y + \frac{1}{\varphi(x)} \cdot x \in I,
+\]
+therefore $\ker \varphi$ is maximal.
+
+Let $I \edn A$ be a maximal ideal. Note that
+$I \cap \GL(A) = \emptyset$ as $I \ne A$. It follows that
+$\norm{1 - y} \geq 1$ for all $y \in I$. The set $\oline{I}$ is
+again an ideal, but as $1 \not \in \oline{I}$, it follows that
+$I = \oline{I}$. Note that $\kvoc{A}{I}$ is an abelian Banach
+algebra. Since $I$ was maximal, it is also a division ring. By
+Gelfald-Mazur theorem, we have $\kvoc{A}{I} \cong \C$. The
+projection $\pi \colon A \to \kvoc{A}{I}$ is therefore a character
+with $\ker \pi = I$.
+\end{proof}
+
+\begin{posledica}
+\label{Cstar:ps:ann}
+Let $A$ be an abelian Banach algebra and
+$x \in A \setminus \GL(A)$. Then there exists a
+$\varphi \in \sigma(A)$ such that $\varphi(x) = 0$.
+\end{posledica}
+
+\begin{proof}
+By Zorn's lemma, there exists a maximal ideal containing $\skl{x}$.
+\end{proof}
+
+\begin{izrek}[Stone-Čech]
+\index{Stone-Čech theorem}
+Let $X$ be a topological space. For each $x \in X$ define
+$\beta_x \colon \mathcal{C}_b(X) \to \C$ as the evaluation
+homomorphism. Then the map
+$\beta \colon X \to \sigma(\mathcal{C}_b(X))$ given by
+$\beta(x) = \beta_x$ is continuous with dense image and the
+following universal property: for every continuous map
+$\pi \colon X \to K$, where $K$ is a compact Hausdorff topological
+space, there exists a unique continuous map
+$\beta_\pi \colon \sigma(\mathcal{C}_b(X)) \to K$ such that
+$\pi = \beta_\pi \circ \beta$. In particular, if $X$ is a compact
+Hausdorff space, then $\beta$ is a homeomorphism.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+X \arrow[r, "\beta"] \arrow[dr, "\pi"] &
+\sigma(\mathcal{C}_b(X)) \arrow[d, dashed, "\beta_\pi"] \\
+&
+K
+\end{tikzcd}
+\]
+\end{izrek}
+
+\begin{proof}
+Let $(x_i)_I$ be a net with limit $x$. For all
+$f \in \mathcal{C}_b(X)$
+\[
+\lim_{i \in I} \beta_{x_i}(f) =
+\lim_{i \in I} f(x_i) =
+\beta_x(f),
+\]
+therefore $\beta$ is continuous. Suppose that
+$\varphi \in \sigma(\mathcal{C}_b(X)) \setminus \oline{\beta(X)}$
+and denote $I = \ker \varphi$. For all $\psi \in \oline{\beta(X)}$
+there exists a $f_\psi \in I$ such that
+$f_\psi \not \in \ker \psi$. Therefore there exist $c_\psi > 0$ and
+an open neighbourhood $U_\psi$ of $\psi$ such that
+$\abs{\widetilde{\psi} \br{f_\psi}} > c_\psi$ for all
+$\widetilde{\psi} \in U_\psi$. This is of course an open cover of
+$\oline{\beta(X)}$, therefore there exists a finite subcover.
+Equivalently, there exist elements $f_1, f_2, \dots f_n \in I$ and
+$c > 0$ such that
+\[
+\sum_{i=1}^n \psi \br{\abs{f_i}^2} > c
+\]
+for all $\psi \in \oline{\beta(X)}$. In particular, we have
+\[
+\sum_{i=1}^n \abs{f_i(x)}^2 =
+\sum_{i=1}^n \beta_x \br{\abs{f_i}^2} >
+c
+\]
+for all $x \in X$. It follows that the function
+\[
+\sum_{i=1}^n \abs{f_i}^2 \in I
+\]
+is invertible, therefore we have $I = \mathcal{C}_b(X)$. This is
+of course impossible.
+
+If $X$ is compact and Hausdorff, then $\beta$ is surjective, as its
+image is a closed dense set. As $X$ is compact and Hausdorff, it is
+normal and therefore $\mathcal{C}_b(X)$ separates points by Tietze.
+It follows that $\beta$ is injective as well. As $\beta$ is a map
+between compact Hausdorff spaces, it is closed, therefore a
+homeomorphism.
+
+Let $\pi \colon X \to K$ be a continuous map, where $K$ is a
+compact Hausdorff space. Note that there exists a continuous map
+$\pi^* \colon \mathcal{C}(K) \to \mathcal{C}_b(X)$ with
+$\pi^*(f) = f \circ \pi$. Similarly, there exists a continuous map
+$\widetilde{\pi} \colon
+\sigma(\mathcal{C}_b(X)) \to \sigma(\mathcal{C}(K))$ with
+$\widetilde{\pi}(\varphi) = \varphi \circ \pi^*$.
+
+As $K$ is a compact Hausdorff space, the map
+$\beta^K \colon K \to \sigma(\mathcal{C}(K))$ is a homeomorphism by
+the previous part of the proof. Now define
+$\beta_\pi \colon \sigma(\mathcal{C}_b(X)) \to K$ by
+$\beta_\pi = \br{\beta^K}^{-1} \circ \widetilde{\pi}$. Indeed,
+\[
+\widetilde{\pi}(\beta_x)(g) =
+\beta_x(\pi^*(g)) =
+g(\pi(x)) =
+\beta_{\pi(x)}^K(g),
+\]
+therefore $\pi(x) = \beta_\pi(\beta(x))$.
+\end{proof}
+
+\begin{definicija}
+Let $A$ be an abelian Banach algebra. The
+\emph{Gelfald transform}\index{Gelfald!transform} of $A$ is the map
+$\Gamma \colon A \to \mathcal{C}(\sigma(A))$ with
+$\Gamma(x) = (\varphi \mapsto \varphi(x))$.
+\end{definicija}
+
+\begin{izrek}
+The Gelfald transform of an abelian Banach algebra $A$ is a
+homomorphism and a contraction. For $x \in A$, we have
+\[
+\Gamma(x) \in \GL(\mathcal{C}(\sigma(A))) \iff x \in \GL(A).
+\]
+\end{izrek}
+
+\begin{proof}
+The Gelfald transform is obviously a homomorphism. Note that
+\[
+\norm{\Gamma(x)} =
+\sup_{\varphi \in \sigma(A)} \norm{\Gamma(x)(\varphi)} =
+\sup_{\varphi \in \sigma(A)} \norm{\varphi(x)} \leq
+\norm{x}.
+\]
+If $x$ is invertible, then so is $\Gamma(x)$. Now suppose that
+$x \in A$ is not invertible. By corollary~\ref{Cstar:ps:ann} there
+exists a character $\varphi \in \sigma(A)$ such that
+$\varphi(x) = 0$. As $\Gamma(x)(\varphi) = 0$, the map $\Gamma(x)$
+is not invertible either.
+\end{proof}
+
+\begin{posledica}
+Let $A$ be an abelian Banach algebra. Then
+$\sigma(\Gamma(x)) = \sigma(x)$ and $\norm{\Gamma(x)} = r(x)$.
+\end{posledica}
+
+\begin{izrek}[Gelfald]
+\index{Gelfald!theorem}
+Let $A$ be an abelian $C^*$-algebra. Then $\Gamma$ is a
+*-isomorphism.
+\end{izrek}
+
+\begin{proof}
+Let $x \in A$ be a selfadjoint element. We then have
+$\sigma(\Gamma(x)) = \sigma(x) \subseteq \R$, therefore
+$\oline{\Gamma(x)} = \Gamma(x)$. For an arbitrary $x \in A$, write
+$x = a + bi$ for selfadjoint $a, b \in A$. It follows that
+\[
+\Gamma(x^*) = \Gamma(a - ib) = \oline{\Gamma(x)},
+\]
+therefore $\Gamma$ is a *-homomorphism.
+
+Since $A$ is abelian, every element is normal. We therefore have
+\[
+\norm{x} = r(x) = r(\Gamma(x)) = \norm{\Gamma(x)},
+\]
+so $\Gamma$ is injective and therefore injective. Note that
+$\Gamma(A)$ is closed under $*$, closed as a subalgebra in
+$\mathcal{C}(\sigma(A))$ and separates points. By
+Stone-Weierstrass, $\Gamma(A) = \mathcal{C}(\sigma(A))$.
+\end{proof}
+
+\begin{opomba}
+If $A$ is a $C^*$-algebra and $x \in A$ a normal element, then the
+$C^*$-subalgebra generated by\footnote{Also denoted by $C^*(x)$.}
+$x$ is abelian.
+\end{opomba}
+
+\begin{posledica}
+Let $A$ be an abelian $C^*$-algebra, generated by $x$. Then
+$\sigma(A) \approx \sigma(x)$.
+\end{posledica}
+
+\begin{proof}
+Define a map $\Phi \colon \sigma(A) \to \sigma(x)$ with
+$\Phi(\varphi) = \varphi(x) = \Gamma(x)(\varphi)$. Observe that
+$\Phi$ is well defined as $\varphi(x) \in \sigma(x)$.
 \end{proof}
