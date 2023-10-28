@@ -32,8 +32,7 @@ Let $R$ be a ring and $\sigma \in \End(R)$. The
 R[x, \sigma] =
 \setb{\sum_{i=0}^n b_i x^i}{n \in \N \land b_i \in R}
 \]
-in which for all $b \in R$ the equality in $x b = \sigma(b) x$
-holds.
+in which for all $b \in R$ the equality $x b = \sigma(b) x$ holds.
 \end{definicija}
 
 \begin{definicija}
@@ -45,7 +44,7 @@ $\sigma(ab) = a\sigma(b) + \sigma(a)b$.} on $R$. The
 R[x, \sigma] =
 \setb{\sum_{i=0}^n b_i x^i}{n \in \N \land b_i \in R}
 \]
-in which for all $b \in R$ the equality in $x b = b x + \sigma(b)$
+in which for all $b \in R$ the equality $x b = b x + \sigma(b)$
 holds.
 \end{definicija}
 
@@ -164,7 +163,7 @@ right-noetherian. We similarly define \emph{artinian} rings.
 \end{definicija}
 
 \begin{opomba}
-A ling $R$ is left-noetherian if and only if each left ideal of $R$
+A ring $R$ is left-noetherian if and only if each left ideal of $R$
 is finitely generated.
 \end{opomba}
 
@@ -191,7 +190,7 @@ $R^n$, $M$ is also noetherian.
 \subsection{Simple modules}
 
 \begin{definicija}
-A nontrivial $R$-module $M$ is \emph{simple}\index{simple module}
+A nontrivial $R$-module $M$ is \emph{simple}\index{simple!module}
 if it has no proper nontrivial submodules. An $R$-module $M$ is
 \emph{cyclic}\index{cyclic module} with generator $m \in M$ if
 $M = R \cdot m$.
@@ -565,7 +564,7 @@ $R_i R_j' = R_i$. Likewise, it follows that $R_i R_j' = R_j'$.
 The \emph{Jacobson radical}\index{Jacobson radical} of a ring $R$
 is the set
 \[
-\rad R = \bigcap \setb{M \edn R}{\text{$M$ is maximal in $R$}}.
+\rad R = \bigcap \setb{I \edn R}{\text{$I$ is maximal in $R$}}.
 \]
 \end{definicija}
 
@@ -721,7 +720,7 @@ to show that $\rad R$ is nilpotent.
 
 Consider the decreasing chain
 \[
-\rad R \supseteq \rad R \supseteq (\rad R)^2 \supseteq \dots
+R \supseteq \rad R \supseteq (\rad R)^2 \supseteq \dots
 \]
 As $R$ is artinian, this chain is eventually constant -- call that
 ideal $I$. Assume that $I \ne (0)$. By the artinian property, there

@@ -1,0 +1,211 @@
+\section{Primitive rings}
+
+\subsection{Density theorem}
+
+\datum{2023-10-26}
+
+\begin{definicija}
+A ring $R$ is \emph{primitive}\index{primitive ring} if it has a
+faithful\footnote{$\ann(M) = (0)$.} simple module $M$.
+\end{definicija}
+
+\begin{opomba}
+Equivalently, the representation $R \to \End(M)$ is injective and
+irreducible.
+\end{opomba}
+
+\begin{definicija}
+Let $V$ be a vector space over a division ring $D$, and let
+$R \subseteq \End_D(V)$ be a subring. The ring $R$ is a
+\emph{dense ring of linear transformations}\index{dense ring}\footnote{$R$ acts densely on $V$.}
+if for every finite set $\set{v_1, \dots, v_n} \subseteq V$ of
+linearly independent vectors and any
+$\set{w_1, \dots, w_n} \subseteq V$ there exists some $\phi \in R$
+such that $\phi(v_i) = w_i$ for all $i \leq n$.
+\end{definicija}
+
+\begin{izrek}[Density]
+\index{density theorem!semisimple modules}
+Let $M$ be a semisimple module over a ring $R$. We denote
+$S = \End_R(M)$ and let $\phi \in \End_S(M)$. Then for any finite
+set $\set{x_1, \dots, x_n} \subseteq M$ there exists an element
+$r \in R$ such that $\phi(x_i) = r x_i$ for all $i \leq n$.
+\end{izrek}
+
+\begin{proof}
+For $n = 1$ we can write
+\[
+M = R x_1 \oplus M'
+\]
+as $M$ is semisimple. Note that $\pi \colon M \to R x_1$ is an
+element of $S$. It follows that
+\[
+\phi(x_1) = \phi(\pi(x_1)) = \pi(\phi(x_1)),
+\]
+therefore $\phi(x_1) \in R x_1$.
+
+Consider now $M^n$ and $\phi^{(n)} \colon M^n \to M^n$ as the
+point-wise application of $\phi$. Observe that
+$\phi^{(n)} \in \End_{\End_R(M^n)}(M^n)$. As $M^n$ is a semisimple
+$R$-module, we can apply the $n=1$ case.
+\end{proof}
+
+\begin{izrek}[Jacobson]
+\index{Jacobson theorem}
+A ring $R$ is primitive if and only if $R$ is a dense ring of
+linear transformations on a vector space over a division ring.
+\end{izrek}
+
+\begin{proof}
+Assume that $R$ is a primitive ring and let $M$ be a faithful and
+simple $R$-module. By Schur's lemma, $D = \End_R(M)$ is a division
+ring, therefore, $M$ is a $D$-vector space. Since $M$ is faithful,
+we have $R \subseteq \End_D(M)$, therefore $R$ acts as a ring of
+linear transformations on $M$. By the density theorem for modules
+the ring $R$ is dense.
+
+Assume now that $R$ is a dense ring of linear transformations on a
+vector space $V$ over a division ring $D$. In particular, $V$ is
+an $R$-module. By definition we have $R \subseteq \End_D(V)$,
+therefore $V$ is a faithful $R$-module. It is clear that every
+non-zero element generates $V$, therefore $V$ is simple.
+\end{proof}
+
+\begin{posledica}
+Any simple artinian ring $R$ is isomorphic to $M_n(D)$ for a
+division ring $D$.
+\end{posledica}
+
+\begin{proof}
+As $R$ is simple, it is primitive. Let $M$ be a faithful and simple
+$R$-module and denote $D = \End_R(M)$. This is of course a division
+ring by Schur's lemma. By Jacobson's theorem, $R$ is a dense
+subring of $\End_D(M)$.
+
+Assume that $\dim_D M = \infty$ and let $(v_n)_n$ be an infinite
+sequence of linearly independent vectors in $M$. Let
+\[
+I_n = \setb{r \in R}{\forall i \leq n \colon r v_i = 0}
+\]
+be a submodule of $R$. Note that these submodules form a strictly
+decreasing chain, which is impossible.
+
+As $\dim_D M < \infty$, we know that
+$R = \End_D(M) \cong M_{\dim_D M}(D)$.
+\end{proof}
+
+\begin{izrek}[Structure]
+\index{structure theorem!primitive rings}
+Let $R$ be a primitive ring with a faithful simple module $M$ and
+denote $D = \End_R(M)$. Then either
+
+\begin{enumerate}[i)]
+\item $R \cong M_n(D)$ for some $n \in \N$ or
+\item for all $m \in \N$ there exists a subring $R_m \subseteq R$
+and an endomorphism $R_m \to M_m(D)$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+If $\dim_D M < \infty$, we have $R = \End_D(M) = M_n(D)$ for
+$n = \dim_D M$. Now assume that $\dim_D M = \infty$. If
+$(v_n)_n$ is an infinite sequence of linearly independent vectors
+in $M$, form $V_m = \Lin_D \setb{v_i}{i \leq m}$. Now set
+\[
+R_m = \setb{r \in R}{r \cdot V_m \subseteq V_m}.
+\]
+Note that
+\[
+I_m = \setb{r \in R}{r V_m = 0}
+\]
+is an ideal in $R_m$. By Jacobson's theorem we have
+$\kvoc{R_m}{I_m} \cong M_m(D)$.
+\end{proof}
+
+\begin{opomba}
+In the case of finite-dimensional algebras the notions of primitive
+and simple coincide.
+\end{opomba}
+
+\begin{opomba}
+The free algebra is primitive. Every algebra is the image of some
+primitive algebra.
+\end{opomba}
+
+\newpage
+
+\subsection{An application of primitive rings}
+
+\begin{trditev}
+Suppose that $R$ is a ring in which $x^3 = x$ holds for all
+$x \in R$. Then $R$ is commutative.
+\end{trditev}
+
+\begin{proof}
+Note that if $ab = 0$, we also have $ba = (ba)^3 = 0$. Let
+$e \in R$ be an idempotent. Note that for all $x \in R$ we have
+$e (x - ex) = 0$, therefore $xe = exe$. Similarly, we have
+$(x - xe) e = 0$, therefore $ex = exe$. This implies that
+$e \in Z(R)$.
+
+Let $x \in R$ and note that $(x^2)^2 = x^2$. Therefore, $x^2$ is an
+idempotent and we have $x^2 \in Z(R)$. Also note that for all
+$c \in R$ such that $c^2 = 2c$ we have $c = 2c^2 \in Z(R)$.
+
+Now let $x \in R$. Note that
+\[
+(x^2 + x)^2 = x^4 + 2x^3 + x^2 = 2(x^2 + x),
+\]
+therefore, we have both $x^2 + x \in Z(R)$ and
+$x = (x^2 + x) - x^2 \in Z(R)$.
+\end{proof}
+
+\begin{izrek}[Jacobson]
+\index{Jacobson theorem}
+Suppose that $R$ is a ring such that for all $x$ there exists an
+$n > 1$ such that $x^n = x$. Then $R$ is commutative.
+\end{izrek}
+
+\begin{izrek}[Jacobson-Herstein]
+\index{Jacobson-Herstein theorem}
+A ring $R$ is commutative if and only if for all $x, y \in R$
+there exists an $n > 1$ such that
+\[
+(xy - yx)^n = xy - yx.
+\]
+\end{izrek}
+
+\begin{trditev}
+A ring $R$ is J-semisimple if and only if it has a faithful
+semisimple module $M$.
+\end{trditev}
+
+\begin{proof}
+Suppose that $R$ has a faithful semisimple module $M$. Recall that
+the radical is the set of all elements that act trivially on all
+simple $R$-modules. It follows that $\rad R \cdot M = 0$, whence
+$\rad R = (0)$ as $M$ is faithful.
+
+Suppose now that $R$ is J-semisimple. Let $(M_i)_{i \in I}$ be all
+non-isomorphic simple $R$-modules and
+\[
+M = \bigoplus_{i \in I} M_i.
+\]
+Note that
+\[
+\ann(M) = \bigcap_{i \in I} \ann(M_i) = \rad(R) = (0). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Every J-semisimple ring $R$ is a subdirect product of primitive
+rings.
+\end{posledica}
+
+\begin{proof}
+The inclusion
+\[
+R \hookrightarrow \kvoc{\prod_{i \in I} R}{\ann M_i}
+\]
+is the desired representation.
+\end{proof}
