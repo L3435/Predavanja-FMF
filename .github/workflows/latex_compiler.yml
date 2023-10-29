@@ -85,7 +85,7 @@ jobs:
               -  "Magisterij/*/*.pdf"
             tex:
               -  "*letnik/**/*.tex"
-              -  "Magisterij/*/*.tex"
+              -  "Magisterij/**/*.tex"
           list-files: shell
           
       - name: Add pdfs
