@@ -357,3 +357,20 @@ homotopic relative to $\partial I$.
 \begin{opomba}
 Equivalently, $X$ is path-connected with $\pi_1(X) \cong \set{1}$.
 \end{opomba}
+
+\datum{2023-10-30}
+
+\begin{trditev}
+Let $X$, $Y$ and $X \cap Y$ be path-connected and
+$x_0 \in X \cap Y$. Assume that $X \cap Y$ is a strong deformation
+retract of its open neighbourhood $U$. The conclusion of
+Seifert-van Kampen then holds for $\pi_1(X \cup Y, x_0)$.
+\end{trditev}
+
+\begin{proof}
+Set $X' = X \cup U$ and $Y' = Y \cup U$. Note that
+$X' \cap Y' = U$, therefore, $X'$ and $Y'$ satisfy the assumptions
+of Seifert-van Kampen theorem. Observe that $X$ is a strong
+deformation retract of $X'$, therefore
+$\pi_1(X, x_0) \cong \pi_1(X', x_0)$.
+\end{proof}

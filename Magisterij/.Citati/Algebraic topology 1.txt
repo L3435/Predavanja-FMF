@@ -3,3 +3,12 @@
 
 "If you picture it, it looks like a fat letter L."
  - prof. dr. Petar Pavešić, 9. 10. 2023
+
+"So what I just proved is the monodromy theorem for this specific example, let's call it the baby version."
+ - prof. dr. Petar Pavešić, 19. 10. 2023
+
+"I think we used this last weekend."
+ - asist. Lukasz Michalak, 24. 10. 2023
+
+"Actually, it is not contractible. Actually, its fundamental group is not trivial. Actually, it is uncountable.
+ - prof. dr. Petar Pavešić, 30. 10. 2023
