@@ -449,7 +449,7 @@ $\eval{\chi}{U}{} = 1$ and $\supp \chi \subseteq V$.
 \end{lema}
 
 \begin{proof}
-There is a unit partition on the sets $V$ and
+There is a partition of unity on the sets $V$ and
 $\R^n \setminus \oline{U}$.
 \end{proof}
 
@@ -461,6 +461,10 @@ $h_j \colon \Omega \to \C$ be holomorphic functions. If the
 sequence $(h_j)_{j \in \N}$ converges uniformly on compact sets,
 the limit is also holomorphic on $\Omega$.
 \end{lema}
+
+\begin{proof}
+Apply Morera's theorem.\footnote{Analysis 2b, theorem~3.4.6.}
+\end{proof}
 
 \begin{izrek}[Dolbeault lemma]
 \index{Dolbeaut lemma}
@@ -873,8 +877,8 @@ of holomorphic functions. The following statements are equivalent:
 \begin{enumerate}[i)]
 \item The sequence $(f_n)_n$ converges uniformly on compact subsets
 of $\Omega$.
-\item For a point $p \in \Omega$ and $k \in \N_0$ the sequence
-$(f_n^{(k)}(p))_n$ converges.
+\item For a point $p \in \Omega$ the sequence $(f_n^{(k)}(p))_n$
+converges for all $k \in \N_0$.
 \item The set
 \[
 A =
@@ -895,8 +899,8 @@ holds for all holomorphic functions $g$. As
 $\norm{f - f_n}$ converges to $0$, the derivatives of $f_n$
 converge.
 
-Suppose that the sequence of derivatives converges in each point.
-Fix a point $p \in \Delta$ and choose a $\delta > 0$ such that
+Suppose that the sequences of derivatives converge at a point
+$p \in \Omega$ and choose a $\delta > 0$ such that
 $D = \oline{\dsk(p, \delta)} \subseteq \Omega$. As the sequence is
 locally bounded, there exists a constant $M$ such that
 $\norm{f_n}_D \leq M$ holds for all $n \in \N$. We can now develop
