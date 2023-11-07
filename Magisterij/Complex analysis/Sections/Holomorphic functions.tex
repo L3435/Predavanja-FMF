@@ -177,17 +177,7 @@ to $\Omega$.
 
 \datum{2023-10-4}
 
-\begin{izrek}[Open mapping]
-\index{open mapping theorem}
-Let $\Omega \subseteq \C$ be a domain and
-$f \in \mathcal{O}(\Omega)$ a function. If $f$ is not constant, it
-is an open map.
-\end{izrek}
-
-\begin{proof}
-We first prove the following lemma:
-
-\begin{lema*}
+\begin{lema}\label{hol:lm:root}
 Let $\Omega \subseteq \C$ be a domain and
 $f \in \mathcal{O}(\Omega)$. Suppose that for $a \in \Omega$ and
 $r > 0$ we have $\oline{\dsk(a, r)} \subseteq \Omega$. If
@@ -195,9 +185,9 @@ $r > 0$ we have $\oline{\dsk(a, r)} \subseteq \Omega$. If
 \abs{f(a)} < \min_{\partial \dsk(a, r)} \abs{f},
 \]
 then $f$ has a zero in $\dsk(a, r)$.
-\end{lema*}
+\end{lema}
 
-\begin{proof}[Proof (lemma)]
+\begin{proof}
 Assume otherwise. From the inequality it follows that $f$ has no
 zeroes on the boundary either. By continuity, $f$ has no zero on an
 open set $V$ with $\dsk(a, r) \subseteq V$. We can therefore define
@@ -222,7 +212,14 @@ but as the condition on $f$ can be rewritten as
 we have reached a contradiction.
 \end{proof}
 
-Let $U \subseteq \Omega$ be an open set and $w_0 \in f(U)$. Choose
+\begin{izrek}[Open mapping]
+\index{open mapping theorem}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{O}(\Omega)$ a function. If $f$ is not constant, it
+is an open map.
+\end{izrek}
+
+\begin{proof}Let $U \subseteq \Omega$ be an open set and $w_0 \in f(U)$. Choose
 a $z_0 \in U$ such that $f(z_0) = w_0$. Choose a $\rho > 0$ such
 that $\dsk(z_0, \rho) \subseteq U$ and $z_0$ is the only pre-image
 of $w_0$ in $\dsk(z_0, 2\rho)$.\footnote{If such a disk does not
@@ -475,7 +472,7 @@ $\parc{f}{\oline{z}} = g$.
 \end{izrek}
 
 \begin{proof}
-Define discs $X_j$ as follows:
+Define disks $X_j$ as follows:
 
 \begin{enumerate}[i)]
 \item If $R = \infty$, set $X_j = \dsk(j)$.
@@ -970,4 +967,217 @@ another subsequence $(g_n)_n$ of $(f_n)_n$ such that
 for all $n \in \N$. But note that $(g_n)_n$ also has a convergent
 subsequence by Montel's theorem, which is of course a
 contradiction, as it cannot converge to $f$.
+\end{proof}
+
+\newpage
+
+\subsection{Riemann mapping theorem}
+
+\datum{2023-11-7}
+
+\begin{definicija}
+A domain $\Omega \subseteq \C$ is
+\emph{simply connected}\index{simply connected} if every closed
+path in $\Omega$ is homotopic to a constant path in $\Omega$.
+\end{definicija}
+
+\begin{lema}
+\label{hol:lm:inj_exis}
+Let $\Omega \subset \C$ be a domain and $a \in \Omega$. Assume that
+$\Omega$ admits a square root for all function
+$g \in \mathcal{O}^*(\Omega)$. Then there exists a holomorphic
+injection $f \colon \Omega \to \dsk$ such that $f(a) = 0$.
+\end{lema}
+
+\begin{proof}
+Fix a point $p \in \C \setminus \Omega$. By our assumption, there
+exists a function $v \in \mathcal{O}^*(\Omega)$ such that
+$v(z)^2 = z-p$. Note that $v$ is injective. Similarly, we have
+$v(\Omega) \cap -v(\Omega) = \emptyset$. Now choose a point
+$b \in -v(\Omega)$. As $v$ is not constant, it is an open map.
+Therefore, there exists some $r > 0 $ such that
+$\dsk(b, r) \cap v(\Omega) = \emptyset$. The Möbius transformation
+\[
+h(w) = r \cdot \br{\frac{1}{w-b} - \frac{1}{v(a)-b}}
+\]
+thus maps $v(\Omega)$ into $\dsk$. The map $f$ is therefore given
+as $f = h \circ v$.
+\end{proof}
+
+\begin{definicija}
+An \emph{expansion}\index{expansion} if a map
+$\kappa \colon \Omega \to \dsk$ where $0 \in \Omega \subset \dsk$
+such that $\kappa(0) = 0$ and $\abs{\kappa(z)} > \abs{z}$ holds for
+all $z \ne 0$.
+\end{definicija}
+
+\begin{lema}
+Let $\Omega \subset \dsk$ be a domain with $0 \in \Omega$. Assume
+that $\Omega$ admits a square root for all function
+$g \in \mathcal{O}^*(\Omega)$. Choose $c \in \dsk$ such that
+$c^2 \not \in \Omega$. For all $a \in \dsk$, let
+\[
+g_a = \frac{z - a}{\oline{a} z - 1}
+\]
+and choose $v \in \mathcal{O}(\Omega)$ such that
+$v(z)^2 = g_{c^2}(z)$ and $v(0) = c$. Then the map
+$\kappa = g_c \circ v$ is an expansion and
+\[
+g_{c^2} \circ (z \mapsto z^2) \circ g_c \circ \kappa =
+\id_{\Omega}.
+\]
+\end{lema}
+
+\begin{proof}
+Note that $v$ is indeed well-defined. Also note that
+\[
+g_{c^2} \circ (z \mapsto z^2) \circ g_c \circ \kappa =
+g_{c^2} \circ (z \mapsto z^2) \circ v =
+g_{c^2} \circ g_{c^2} =
+\id.
+\]
+We of course have $\kappa(0) = 0$. Denote
+$\psi_c = g_{c^2} \circ (z \mapsto z^2) \circ g_c$. It remains to
+check that $\abs{\kappa(z)} > \abs{z}$, which is equivalent to
+$\abs{\psi_c(z)} < \abs{z}$ for $z \ne 0$ as
+$\psi_c \circ \kappa = \id$. Note that
+$\psi_c \colon \dsk \to \dsk$ is holomorphic. As it is not a
+rotation (it is not injective), the conclusion follows from the
+Schwarz lemma.
+\end{proof}
+
+\begin{lema}[Hurwitz]
+\index{Hurwitz!lemma}
+Let $\Omega \subseteq \C$ be a domain and let
+$f_n \colon \Omega \to \C$ be holomorphic functions. Suppose that
+the sequence $(f_n)_n$ converges uniformly on compacts of $\Omega$
+to a non-constant function $f \colon \Omega \to \C$. Then for all
+points $p \in \Omega$ there exists a sequence
+$(p_n)_n \subseteq \Omega$ with limit $p$ such that
+$f_n(p_n) = f(p)$ for all $n > N$.
+\end{lema}
+
+\begin{proof}
+Let $w = f(p)$. There exists a disk $\dsk(p, \delta)$ such that
+$f(z) \ne w$ for all points
+$z \in \oline{\dsk(p, \delta)} \setminus \set{p}$. Note that we
+have
+\[
+\min_{z \in \partial \dsk(p, \delta)} \abs{f(z) - w} >
+\abs{f(p) - w} =
+0.
+\]
+As $(f_n)_n$ converges uniformly on $\oline{\dsk(p, \delta)}$,
+there exists some $n_0 \in \N$ such that for all $n \geq n_0$ we
+have
+\[
+\min_{z \in \partial \dsk(p, \delta)} \abs{f_n(z) - w} >
+\abs{f_n(p) - w}.
+\]
+By lemma~\ref{hol:lm:root}, $f_n(z) - w$ has a root
+$p_n \in \dsk(p, \delta)$. For any convergent subsequence
+$(p_{n_k})_k$ with limit $q$ we have
+\[
+f(p) = \lim_{k \to \infty} f_{n_k}(p_{n_k}) = f(q),
+\]
+therefore $p = q$.
+\end{proof}
+
+\begin{posledica}
+Let $\Omega \subseteq \C$ be a domain and
+$f_n \colon \Omega \to \C$ be holomorphic functions such that
+$(f_n)_n$ converges uniformly on compacts of $\Omega$ to
+$f \colon \Omega \to \C$. If all the $f_n$ are nowhere vanishing
+and $f \ne 0$, then $f$ is nowhere vanishing.
+\end{posledica}
+
+\obvs
+
+\begin{izrek}[Hurwitz]
+\index{Hurwitz!theorem}
+Let $\Omega, \Omega' \subseteq \Omega$ be domains and
+$f_n \colon \Omega \to \Omega'$ be holomorphic functions that
+converge uniformly on compacts of $\Omega$ to
+$f \colon \Omega \to \Omega'$. Assume that $f$ is not constant.
+
+\begin{enumerate}[i)]
+\item If $f_n \colon \Omega \to \Omega'$ is injective, $f$ is also
+injective.
+\item We have $f(\Omega) \subseteq \Omega'$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Let $p \in \Omega$ and observe the functions
+$g_n(z) = f_n(z) - f_n(p)$. This is a sequence of nowhere vanishing
+functions. As $f$ is not constant, $f(z) - f(p)$ is nowhere
+vanishing as well. It follows that $f$ is injective.
+\item Suppose otherwise and apply the Hurwitz lemma for a point
+$p$ with $f(p) \not \in \Omega'$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Riemann mapping]
+\index{Riemann!mapping theorem}
+For a proper domain $\Omega \subset \C$ the following are
+equivalent:
+
+\begin{enumerate}[i)]
+\item $\Omega$ is simply connected.
+\item $\Omega$ admits a logarithm for any
+$f \in \mathcal{O}^*(\Omega)$.
+\item $\Omega$ admits a square root for any
+$f \in \mathcal{O}^*(\Omega)$.
+\item $\Omega$ is biholomorphic to $\dsk$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Note that if $\Omega$ is biholomorphic to $\dsk$, it is of course
+simply connected. Suppose that $\Omega$ is simply connected. Then
+\[
+F(z) = a + \int_{z_0}^z \frac{f'(z)}{f(z)}\,dz
+\]
+defines a logarithm for any $f \in \mathcal{O}^*(\Omega)$. Given a
+logarithm of a function, we can of course construct a square root
+with $\sqrt{f} = e^{\frac{1}{2} \ln f}$. It remains to check that
+all domains admitting square roots are biholomorphic to $\dsk$.
+
+By lemma~\ref{hol:lm:inj_exis} we can assume that
+$\Omega \subseteq \dsk$ and $0 \in \Omega$. Now define the family
+of functions
+\[
+\mathcal{F} = \setb{f \colon \Omega \to \dsk}
+{f \in \mathcal{O}(\Omega) \land
+f(0) = 0 \land \text{$f$ is injective}}.
+\]
+If $\mathcal{F}$ has no biholomorphic map, it is infinite. Note
+that $\mathcal{F}$ is bounded, so it is normal by Montel.
+
+Choose a point $p \in \Omega$ with $p \ne 0$. We claim that if
+$h \in \mathcal{F}$ and
+\[
+\abs{h(p)} = \sup_{f \in \mathcal{F}} \abs{f(p)},
+\]
+we have $h(\Omega) = \dsk$. Indeed, if that were not the case, we'd
+reach a contradiction with the expansion $\kappa$ of $\Omega$ as
+\[
+\abs{\kappa(h(p))} > \abs{h(p)}
+\]
+and $\kappa \circ h \in \mathcal{F}$.
+
+Let
+\[
+M = \sup_{f \in \mathcal{F}} \abs{f(p)}
+\]
+and find a sequence $(f_n)_n \subseteq \mathcal{F}$ with
+\[
+\lim_{n \to \infty} \abs{f_n(p)} = M.
+\]
+As $\mathcal{F}$ is a normal family, there exists a convergent
+subsequence. The limit is not constant as $f(p) \ne 0$. By Hurwitz,
+$f$ is injective and $f(\Omega) \subseteq \dsk$. By the above
+claim, we have $f(\Omega) = \dsk$.
 \end{proof}
