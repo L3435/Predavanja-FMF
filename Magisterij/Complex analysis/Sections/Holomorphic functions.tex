@@ -1181,3 +1181,109 @@ subsequence. The limit is not constant as $f(p) \ne 0$. By Hurwitz,
 $f$ is injective and $f(\Omega) \subseteq \dsk$. By the above
 claim, we have $f(\Omega) = \dsk$.
 \end{proof}
+
+\datum{2023-11-8}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a bounded domain and
+$f \colon \oline{\Omega} \to \C$ a continuous map such that
+$\eval{f}{\Omega}{}$ is an open map. Let $a \in \Omega$ be a point
+such that
+\[
+s = \min_{z \in \partial \Omega} \abs{f(z) - f(a)} > 0.
+\]
+Then $f(\Omega)$ contains the disk $\dsk(f(a), s)$.
+\end{lema}
+
+\begin{proof}
+By compactness, there exists a $w_0 \in \partial f(\Omega)$ such
+that $d(\partial f(\Omega), f(a)) = \abs{w_0 - f(a)}$. Let
+$(z_k)_k \subseteq \Omega$ be a sequence, convergent to $z_0$, such
+that
+\[
+\lim_{k \to \infty} f(z_k) = w_0.
+\]
+Of course $f(z_0) = w_0$. Note that, as $\eval{f}{\Omega}{}$ is
+open, we have $z_0 \in \partial \Omega$. But then
+\[
+d(\partial f(\Omega), f(a)) = \abs{f(z_0) - f(a)} \geq s. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $f$ be a non-constant function, holomorphic in a neighbourhood
+of $\oline{\dsk(a, r)}$. Assume that
+\[
+\sup_{z \in \oline{\dsk(a,r)}} \abs{f'(z)} \leq 2 \abs{f'(a)}.
+\]
+Then $\dsk(f(a), R) \subseteq f(\dsk(a, r))$, where
+\[
+R = \br{3 - 2 \sqrt{2}} \cdot r \cdot \abs{f'(a)}.
+\]
+\end{lema}
+
+\begin{proof}
+Without loss of generality assume that $a = f(a) = 0$. Define
+\[
+A(z) = f(z) - f'(0) z = \int_0^1 \br{f'(tz) - f'(0)} z \,dt.
+\]
+Note that
+\[
+f'(v) - f'(0) =
+\frac{1}{2 \pi i} \olint_{\partial \dsk(a, r)}
+f'(\xi) \cdot \br{\frac{1}{\xi-v} - \frac{1}{\zeta}}\,d\xi,
+\]
+therefore
+\[
+\abs{f'(v) - f'(0)} \leq
+\frac{1}{2 \pi} \cdot \abs{v} \cdot
+\frac{\norm{f'}_{\dsk(a,r)}}{r \cdot (r - \abs{v})} \cdot 2 \pi r =
+\abs{v} \cdot \frac{\norm{f'}_{\dsk(a,r)}}{r - \abs{v}}.
+\]
+It follows that
+\begin{align*}
+\abs{A(z)} &\leq
+\int_0^1 \abs{z} \cdot \abs{f'(tz) - f'(0)}\,dt
+\\
+&\leq
+\abs{z} \cdot \int_0^1
+\abs{tz} \cdot \frac{\norm{f'}_{\dsk(a,r)}}{r - \abs{tz}}\,dt
+\\
+&\leq
+\abs{z}^2 \cdot \norm{f'}_{\dsk(a,r)} \cdot \int_0^1
+t \cdot \frac{1}{r - \abs{z}}
+\\
+&=
+\abs{z}^2 \cdot
+\frac{\abs{f'(0)}}{r - \abs{z}}.
+\end{align*}
+Now, using the triangle inequality, we get
+\[
+\abs{f(z)} \geq \abs{z} \cdot \abs{f'(0)} - \abs{A(z)}.
+\]
+Let $\abs{z} = \rho \in (0, r)$. We get
+\[
+\abs{f(z)} \geq
+\rho \cdot \abs{f'(0)} - \abs{A(z)} \geq
+\rho \cdot \abs{f'(0)} -
+\frac{\rho^2}{r - \rho} \cdot \abs{f'(0)} \geq
+\abs{f'(0)} \cdot \br{\rho - \frac{\rho^2}{r - \rho}}.
+\]
+Note that there exists a $\rho_0$ such that
+\[
+\rho - \frac{\rho^2}{r - \rho} =
+r \cdot \br{3 - 2 \sqrt{2}}.
+\]
+Therefore, we get
+\[
+\abs{f(z)} \geq \abs{f'(0)} \cdot r \cdot \br{3 - 2 \sqrt{2}}.
+\]
+Now just apply the previous lemma to the disk $\dsk(0, \rho_0)$.
+\end{proof}
+
+\begin{izrek}[Bloch]
+\index{Bloch's theorem}
+Let $f$ be a function, holomorphic in a neighbourhood of $\dsk$,
+with $f'(0) = 1$. Then $f(\dsk)$ contains a disk of radius
+$\frac{3}{2} - \sqrt{2}$.
+\end{izrek}
