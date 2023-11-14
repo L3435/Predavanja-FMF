@@ -1,0 +1,517 @@
+\section{Theorems about holomorphic functions}
+
+\subsection{Riemann mapping theorem}
+
+\datum{2023-11-7}
+
+\begin{definicija}
+A domain $\Omega \subseteq \C$ is
+\emph{simply connected}\index{simply connected} if every closed
+path in $\Omega$ is homotopic to a constant path in $\Omega$.
+\end{definicija}
+
+\begin{lema}
+\label{thm_hol:lm:inj_exis}
+Let $\Omega \subset \C$ be a domain and $a \in \Omega$. Assume that
+$\Omega$ admits a square root for all function
+$g \in \mathcal{O}^*(\Omega)$. Then there exists a holomorphic
+injection $f \colon \Omega \to \dsk$ such that $f(a) = 0$.
+\end{lema}
+
+\begin{proof}
+Fix a point $p \in \C \setminus \Omega$. By our assumption, there
+exists a function $v \in \mathcal{O}^*(\Omega)$ such that
+$v(z)^2 = z-p$. Note that $v$ is injective. Similarly, we have
+$v(\Omega) \cap -v(\Omega) = \emptyset$. Now choose a point
+$b \in -v(\Omega)$. As $v$ is not constant, it is an open map.
+Therefore, there exists some $r > 0 $ such that
+$\dsk(b, r) \cap v(\Omega) = \emptyset$. The Möbius transformation
+\[
+h(w) = r \cdot \br{\frac{1}{w-b} - \frac{1}{v(a)-b}}
+\]
+thus maps $v(\Omega)$ into $\dsk$. The map $f$ is therefore given
+as $f = h \circ v$.
+\end{proof}
+
+\begin{definicija}
+An \emph{expansion}\index{expansion} if a map
+$\kappa \colon \Omega \to \dsk$ where $0 \in \Omega \subset \dsk$
+such that $\kappa(0) = 0$ and $\abs{\kappa(z)} > \abs{z}$ holds for
+all $z \ne 0$.
+\end{definicija}
+
+\begin{lema}
+Let $\Omega \subset \dsk$ be a domain with $0 \in \Omega$. Assume
+that $\Omega$ admits a square root for all function
+$g \in \mathcal{O}^*(\Omega)$. Choose $c \in \dsk$ such that
+$c^2 \not \in \Omega$. For all $a \in \dsk$, let
+\[
+g_a = \frac{z - a}{\oline{a} z - 1}
+\]
+and choose $v \in \mathcal{O}(\Omega)$ such that
+$v(z)^2 = g_{c^2}(z)$ and $v(0) = c$. Then the map
+$\kappa = g_c \circ v$ is an expansion and
+\[
+g_{c^2} \circ (z \mapsto z^2) \circ g_c \circ \kappa =
+\id_{\Omega}.
+\]
+\end{lema}
+
+\begin{proof}
+Note that $v$ is indeed well-defined. Also note that
+\[
+g_{c^2} \circ (z \mapsto z^2) \circ g_c \circ \kappa =
+g_{c^2} \circ (z \mapsto z^2) \circ v =
+g_{c^2} \circ g_{c^2} =
+\id.
+\]
+We of course have $\kappa(0) = 0$. Denote
+$\psi_c = g_{c^2} \circ (z \mapsto z^2) \circ g_c$. It remains to
+check that $\abs{\kappa(z)} > \abs{z}$, which is equivalent to
+$\abs{\psi_c(z)} < \abs{z}$ for $z \ne 0$ as
+$\psi_c \circ \kappa = \id$. Note that
+$\psi_c \colon \dsk \to \dsk$ is holomorphic. As it is not a
+rotation (it is not injective), the conclusion follows from the
+Schwarz lemma.
+\end{proof}
+
+\begin{lema}[Hurwitz]
+\index{Hurwitz!lemma}
+Let $\Omega \subseteq \C$ be a domain and let
+$f_n \colon \Omega \to \C$ be holomorphic functions. Suppose that
+the sequence $(f_n)_n$ converges uniformly on compacts of $\Omega$
+to a non-constant function $f \colon \Omega \to \C$. Then for all
+points $p \in \Omega$ there exists a sequence
+$(p_n)_n \subseteq \Omega$ with limit $p$ such that
+$f_n(p_n) = f(p)$ for all $n > N$.
+\end{lema}
+
+\begin{proof}
+Let $w = f(p)$. There exists a disk $\dsk(p, \delta)$ such that
+$f(z) \ne w$ for all points
+$z \in \oline{\dsk(p, \delta)} \setminus \set{p}$. Note that we
+have
+\[
+\min_{z \in \partial \dsk(p, \delta)} \abs{f(z) - w} >
+\abs{f(p) - w} =
+0.
+\]
+As $(f_n)_n$ converges uniformly on $\oline{\dsk(p, \delta)}$,
+there exists some $n_0 \in \N$ such that for all $n \geq n_0$ we
+have
+\[
+\min_{z \in \partial \dsk(p, \delta)} \abs{f_n(z) - w} >
+\abs{f_n(p) - w}.
+\]
+By lemma~\ref{hol:lm:root}, $f_n(z) - w$ has a root
+$p_n \in \dsk(p, \delta)$. For any convergent subsequence
+$(p_{n_k})_k$ with limit $q$ we have
+\[
+f(p) = \lim_{k \to \infty} f_{n_k}(p_{n_k}) = f(q),
+\]
+therefore $p = q$.
+\end{proof}
+
+\begin{posledica}
+Let $\Omega \subseteq \C$ be a domain and
+$f_n \colon \Omega \to \C$ be holomorphic functions such that
+$(f_n)_n$ converges uniformly on compacts of $\Omega$ to
+$f \colon \Omega \to \C$. If all the $f_n$ are nowhere vanishing
+and $f \ne 0$, then $f$ is nowhere vanishing.
+\end{posledica}
+
+\obvs
+
+\begin{izrek}[Hurwitz]
+\index{Hurwitz!theorem}
+Let $\Omega, \Omega' \subseteq \Omega$ be domains and
+$f_n \colon \Omega \to \Omega'$ be holomorphic functions that
+converge uniformly on compacts of $\Omega$ to
+$f \colon \Omega \to \Omega'$. Assume that $f$ is not constant.
+
+\begin{enumerate}[i)]
+\item If $f_n \colon \Omega \to \Omega'$ is injective, $f$ is also
+injective.
+\item We have $f(\Omega) \subseteq \Omega'$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Let $p \in \Omega$ and observe the functions
+$g_n(z) = f_n(z) - f_n(p)$. This is a sequence of nowhere vanishing
+functions. As $f$ is not constant, $f(z) - f(p)$ is nowhere
+vanishing as well. It follows that $f$ is injective.
+\item Suppose otherwise and apply the Hurwitz lemma for a point
+$p$ with $f(p) \not \in \Omega'$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Riemann mapping]
+\index{Riemann!mapping theorem}
+For a proper domain $\Omega \subset \C$ the following are
+equivalent:
+
+\begin{enumerate}[i)]
+\item $\Omega$ is simply connected.
+\item $\Omega$ admits a logarithm for any
+$f \in \mathcal{O}^*(\Omega)$.
+\item $\Omega$ admits a square root for any
+$f \in \mathcal{O}^*(\Omega)$.
+\item $\Omega$ is biholomorphic to $\dsk$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Note that if $\Omega$ is biholomorphic to $\dsk$, it is of course
+simply connected. Suppose that $\Omega$ is simply connected. Then
+\[
+F(z) = a + \int_{z_0}^z \frac{f'(z)}{f(z)}\,dz
+\]
+defines a logarithm for any $f \in \mathcal{O}^*(\Omega)$. Given a
+logarithm of a function, we can of course construct a square root
+with $\sqrt{f} = e^{\frac{1}{2} \ln f}$. It remains to check that
+all domains admitting square roots are biholomorphic to $\dsk$.
+
+By lemma~\ref{thm_hol:lm:inj_exis} we can assume that
+$\Omega \subseteq \dsk$ and $0 \in \Omega$. Now define the family
+of functions
+\[
+\mathcal{F} = \setb{f \colon \Omega \to \dsk}
+{f \in \mathcal{O}(\Omega) \land
+f(0) = 0 \land \text{$f$ is injective}}.
+\]
+If $\mathcal{F}$ has no biholomorphic map, it is infinite. Note
+that $\mathcal{F}$ is bounded, so it is normal by Montel.
+
+Choose a point $p \in \Omega$ with $p \ne 0$. We claim that if
+$h \in \mathcal{F}$ and
+\[
+\abs{h(p)} = \sup_{f \in \mathcal{F}} \abs{f(p)},
+\]
+we have $h(\Omega) = \dsk$. Indeed, if that were not the case, we'd
+reach a contradiction with the expansion $\kappa$ of $\Omega$ as
+\[
+\abs{\kappa(h(p))} > \abs{h(p)}
+\]
+and $\kappa \circ h \in \mathcal{F}$.
+
+Let
+\[
+M = \sup_{f \in \mathcal{F}} \abs{f(p)}
+\]
+and find a sequence $(f_n)_n \subseteq \mathcal{F}$ with
+\[
+\lim_{n \to \infty} \abs{f_n(p)} = M.
+\]
+As $\mathcal{F}$ is a normal family, there exists a convergent
+subsequence. The limit is not constant as $f(p) \ne 0$. By Hurwitz,
+$f$ is injective and $f(\Omega) \subseteq \dsk$. By the above
+claim, we have $f(\Omega) = \dsk$.
+\end{proof}
+
+\newpage
+
+\subsection{Picard's little theorem}
+
+\datum{2023-11-8}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a bounded domain and
+$f \colon \oline{\Omega} \to \C$ a continuous map such that
+$\eval{f}{\Omega}{}$ is an open map. Let $a \in \Omega$ be a point
+such that
+\[
+s = \min_{z \in \partial \Omega} \abs{f(z) - f(a)} > 0.
+\]
+Then $f(\Omega)$ contains the disk $\dsk(f(a), s)$.
+\end{lema}
+
+\begin{proof}
+By compactness, there exists a $w_0 \in \partial f(\Omega)$ such
+that $d(\partial f(\Omega), f(a)) = \abs{w_0 - f(a)}$. Let
+$(z_k)_k \subseteq \Omega$ be a sequence, convergent to $z_0$, such
+that
+\[
+\lim_{k \to \infty} f(z_k) = w_0.
+\]
+Of course $f(z_0) = w_0$. Note that, as $\eval{f}{\Omega}{}$ is
+open, we have $z_0 \in \partial \Omega$. But then
+\[
+d(\partial f(\Omega), f(a)) = \abs{f(z_0) - f(a)} \geq s. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+\label{thm_hol:lm:bloch}
+Let $f$ be a non-constant function, holomorphic in a neighbourhood
+of $\oline{\dsk(a, r)}$. Assume that
+\[
+\sup_{z \in \oline{\dsk(a,r)}} \abs{f'(z)} \leq 2 \abs{f'(a)}.
+\]
+Then $\dsk(f(a), R) \subseteq f(\dsk(a, r))$, where
+\[
+R = \br{3 - 2 \sqrt{2}} \cdot r \cdot \abs{f'(a)}.
+\]
+\end{lema}
+
+\begin{proof}
+Without loss of generality assume that $a = f(a) = 0$. Define
+\[
+A(z) = f(z) - f'(0) z = \int_0^1 \br{f'(tz) - f'(0)} z \,dt.
+\]
+Note that
+\[
+f'(v) - f'(0) =
+\frac{1}{2 \pi i} \olint_{\partial \dsk(a, r)}
+f'(\xi) \cdot \br{\frac{1}{\xi-v} - \frac{1}{\zeta}}\,d\xi,
+\]
+therefore
+\[
+\abs{f'(v) - f'(0)} \leq
+\frac{1}{2 \pi} \cdot \abs{v} \cdot
+\frac{\norm{f'}_{\dsk(a,r)}}{r \cdot (r - \abs{v})} \cdot 2 \pi r =
+\abs{v} \cdot \frac{\norm{f'}_{\dsk(a,r)}}{r - \abs{v}}.
+\]
+It follows that
+\begin{align*}
+\abs{A(z)} &\leq
+\int_0^1 \abs{z} \cdot \abs{f'(tz) - f'(0)}\,dt
+\\
+&\leq
+\abs{z} \cdot \int_0^1
+\abs{tz} \cdot \frac{\norm{f'}_{\dsk(a,r)}}{r - \abs{tz}}\,dt
+\\
+&\leq
+\abs{z}^2 \cdot \norm{f'}_{\dsk(a,r)} \cdot \int_0^1
+t \cdot \frac{1}{r - \abs{z}}
+\\
+&=
+\abs{z}^2 \cdot
+\frac{\abs{f'(0)}}{r - \abs{z}}.
+\end{align*}
+Now, using the triangle inequality, we get
+\[
+\abs{f(z)} \geq \abs{z} \cdot \abs{f'(0)} - \abs{A(z)}.
+\]
+Let $\abs{z} = \rho \in (0, r)$. We get
+\[
+\abs{f(z)} \geq
+\rho \cdot \abs{f'(0)} - \abs{A(z)} \geq
+\rho \cdot \abs{f'(0)} -
+\frac{\rho^2}{r - \rho} \cdot \abs{f'(0)} \geq
+\abs{f'(0)} \cdot \br{\rho - \frac{\rho^2}{r - \rho}}.
+\]
+Note that there exists a $\rho_0$ such that
+\[
+\rho_0 - \frac{\rho_0^2}{r - \rho_0} =
+r \cdot \br{3 - 2 \sqrt{2}}.
+\]
+Therefore, we get
+\[
+\abs{f(z)} \geq \abs{f'(0)} \cdot r \cdot \br{3 - 2 \sqrt{2}}.
+\]
+Now just apply the previous lemma to the disk $\dsk(0, \rho_0)$.
+\end{proof}
+
+\begin{izrek}[Bloch]
+\index{Bloch's theorem}
+Let $f$ be a function, holomorphic in a neighbourhood of
+$\oline{\dsk}$, with $f'(0) = 1$. Then $f(\dsk)$ contains a disk of
+radius $\frac{3}{2} - \sqrt{2}$.
+\end{izrek}
+
+\datum{2023-11-14}
+
+\begin{proof}
+Define $h(z) = \abs{f'(z)} (1-\abs{z}) \geq 0$. Not that
+$h \not \equiv 0$ as $f$ is not constant. Therefore $h$ attains a
+maximum in a point $p \in \oline{\dsk}$. In particular, as
+$\eval{h}{\partial \dsk}{} = 0$, we have $p \in \dsk$. Observe
+$\Omega = \dsk \br{p, t}$ for
+$t = \frac{1}{2} \cdot (1 - \abs{p})$.
+For all $z \in \Omega$, we have $1 - \abs{z} \geq t$ and
+\[
+\abs{f'(z)} \cdot (1 - \abs{z}) \leq
+\abs{f'(p)} \cdot (1 - \abs{p}) =
+\abs{f'(p)} \cdot 2t \leq
+\abs{f'(p)} \cdot 2 \cdot (1 - \abs{z}).
+\]
+Now, applying lemma~\ref{thm_hol:lm:bloch}, we have
+$\dsk(f(p), R) \subseteq f(\dsk)$ with
+\[
+R =
+\br{3 - 2 \sqrt{2}} \cdot \frac{1}{2}
+\cdot (1 - \abs{p}) \cdot \abs{f'(p)} \geq
+\frac{3}{2} - \sqrt{2}
+\]
+by choice of $p$.
+\end{proof}
+
+\begin{opomba}
+Let
+\[
+\mathcal{F} =
+\setb{\text{$f$ holomorphic on a neighbourhood of $\oline{\dsk}$}}
+{f'(0) = 1}.
+\]
+For $f \in \mathcal{F}$, denote by $L_f$ the supremum of radii of
+disks contained in $f(\dsk)$, and by $B_f$ the supremum of radii of
+disks contained in $f(\dsk)$ that is a biholomorphic image of some
+subdomain of $\dsk$. We then define the \emph{Landau's constant}
+\[
+L = \inf_{f \in \mathcal{F}} L_f
+\]
+and the \emph{Bloch's constant}
+\[
+B = \inf_{f \in \mathcal{F}} B_f.
+\]
+The current known bounds for the constants are
+\[
+0.5 < L < 0.544
+\quad \text{and} \quad
+\frac{\sqrt{3}}{4} + 10^{-14} < B \leq
+\sqrt{\frac{\sqrt{3} - 1}{2}} \cdot
+\frac{\Gamma \br{\frac{1}{3}} \cdot \Gamma \br{\frac{11}{12}}}
+{\Gamma \br{\frac{1}{4}}}.
+\]
+\end{opomba}
+
+\begin{posledica}
+\label{thm_hol:cor:bloch}
+Let $\Omega \subseteq \C$ be a domain, $f \in \mathcal{O}(\Omega)$
+a function and $p \in \Omega$. Let $r = d(p, \partial \Omega)$.
+Then $f(\Omega)$ contains a disk of radius
+\[
+\br{\frac{3}{2} - \sqrt{2}} \cdot r \cdot \abs{f'(p)}.
+\]
+\end{posledica}
+
+\obvs
+
+\begin{opomba}
+Liouville's theorem follows from this corollary.
+\end{opomba}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a simply connected domain and
+$1, -1 \not \in f(\Omega)$. Then there exists a function
+$F \in \mathcal{O}(\Omega)$ such that $f = \cos(F)$.
+\end{lema}
+
+\begin{proof}
+Note that, as $\Omega$ is simply connected, we can define
+\[
+F(z) =
+\frac{1}{i} \cdot \ln \br{f(z) + \sqrt{f(z)^2-1}}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Let $\Omega \subseteq \C$ be a simply connected domain and let
+$f \in \mathcal{O}(\Omega)$. Suppose that
+$0, 1 \not \in f(\Omega)$. Then the following statements are true:
+
+\begin{enumerate}[i)]
+\item There exists a function $g \in \mathcal{O}(\Omega9$ such that
+\[
+f = \frac{1}{2} \br{1 + \cos(\pi \cdot \cos(\pi \cdot g))}.
+\]
+\item If any $g \in \mathcal{O}(\Omega)$ satisfies the above
+equality, then $g(\Omega)$ contains no disk of radius $1$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Apply the previous lemma twice.
+\item Define
+\[
+A =
+\setb{m \pm \frac{i}{\pi} \ln \br{n + \sqrt{n^2-1}}}
+{m \in \Z \land n \in \N}.
+\]
+We claim that $g(\Omega) \cap A = \emptyset$. Indeed, for $a \in A$
+we have
+\[
+f(a) = \frac{1}{2} \br{1 + \cos(\pm \pi \cdot n)} \in \set{0,1}.
+\]
+Now note that
+\begin{align*}
+\ln \br{n+1 + \sqrt{n^2 + 2n}} - \ln \br{n + \sqrt{n^2-1}} &=
+\ln \br{\frac{n+1 + \sqrt{n^2 + 2n}}{n + \sqrt{n^2 - 1}}}
+\\
+&\leq
+\ln \br{\frac{2n + 2}{n}}
+\\
+&\leq \ln(4)
+\\
+&<
+\pi.
+\end{align*}
+It's straightforward to check that every disk of radius $1$
+intersects $A$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Picard's little theorem]
+\index{Picard's little theorem}
+Every non-constant entire function omits at most one complex value.
+\end{izrek}
+
+\begin{proof}
+Without loss of generality assume that $f$ omits $0$ and $1$.
+Applying the above theorem, we can write
+\[
+f = \frac{1}{2} \br{1 + \cos(\pi \cdot \cos(\pi \cdot g))}.
+\]
+Recall that $g(\C)$ contains no disk of radius $1$. If $g$ is
+not constant, $g(\C)$ contains arbitrarily large disks by
+corollary~\ref{thm_hol:cor:bloch}, which is a contradiction.
+\end{proof}
+
+\begin{posledica}
+Suppose that $f \in \mathcal{M}(\C)$ is a non-constant function.
+Then $f$ omits at most $2$ values.
+\end{posledica}
+
+\begin{proof}
+Suppose that $f$ omits distinct values $a$, $b$ and $c$. Then
+\[
+g(z) = \frac{1}{f(z) - a}
+\]
+is an entire function that omits values $\frac{1}{b-a}$ and
+$\frac{1}{c-a}$, therefore it is constant.
+\end{proof}
+
+\begin{izrek}
+Let $f \in \mathcal{O}(\C)$ be an entire function. Then either
+$f \circ f$ has a fixed point of $f(z) = z + c$.
+\end{izrek}
+
+\begin{proof}
+If $f \circ f$ has no fixed point, the same holds for $f$. We can
+therefore define an entire holomorphic function $g$ with
+\[
+g(z) = \frac{f(f(z)) - z}{f(z) - z}.
+\]
+Note that $g$ omits both $0$ and $1$, therefore it is constant. But
+then
+\[
+f(f(z)) - z = \lambda (f(z) - z)
+\]
+for some $\lambda \not \in \set{0, 1}$ by Picard's little theorem.
+Taking the derivative, we get
+\[
+f'(f(z)) \cdot f'(z) - 1 = \lambda (f'(z) - 1),
+\]
+or equivalently
+\[
+f'(z) \cdot \br{f'(f(z)) - \lambda} = 1 - \lambda \ne 0.
+\]
+Note that $f' \circ f$ omits both $\lambda$ and $0$, therefore it
+is constant. But then $f'$ is constant as well. The only option is
+$f'(z) = 1$.
+\end{proof}
