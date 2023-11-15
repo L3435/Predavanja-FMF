@@ -213,7 +213,7 @@ claim, we have $f(\Omega) = \dsk$.
 
 \newpage
 
-\subsection{Picard's little theorem}
+\subsection{Bloch's theorem}
 
 \datum{2023-11-8}
 
@@ -394,7 +394,7 @@ Then $f(\Omega)$ contains a disk of radius
 Liouville's theorem follows from this corollary.
 \end{opomba}
 
-\begin{lema}
+\begin{lema}\label{thm_hol:lm:arcos}
 Let $\Omega \subseteq \C$ be a simply connected domain and
 $1, -1 \not \in f(\Omega)$. Then there exists a function
 $F \in \mathcal{O}(\Omega)$ such that $f = \cos(F)$.
@@ -414,7 +414,7 @@ $f \in \mathcal{O}(\Omega)$. Suppose that
 $0, 1 \not \in f(\Omega)$. Then the following statements are true:
 
 \begin{enumerate}[i)]
-\item There exists a function $g \in \mathcal{O}(\Omega9$ such that
+\item There exists a function $g \in \mathcal{O}(\Omega)$ such that
 \[
 f = \frac{1}{2} \br{1 + \cos(\pi \cdot \cos(\pi \cdot g))}.
 \]
@@ -514,4 +514,124 @@ f'(z) \cdot \br{f'(f(z)) - \lambda} = 1 - \lambda \ne 0.
 Note that $f' \circ f$ omits both $\lambda$ and $0$, therefore it
 is constant. But then $f'$ is constant as well. The only option is
 $f'(z) = 1$.
+\end{proof}
+
+\datum{2023-11-15}
+
+\begin{lema}
+For all $w \in \C$ there exists a $v \in \C$ such that
+$\cos(\pi v) = w$ and $\abs{v} \leq 1 + \abs{w}$.
+\end{lema}
+
+\begin{proof}
+Let $v = \alpha + i \beta$ and note that
+\[
+\abs{w}^2 =
+\cos(\pi \alpha)^2 + \sinh(\pi \beta)^2 \geq
+\pi^2 \beta^2.
+\]
+Observe that we can choose some $\alpha$ such that
+$\abs{\alpha} \leq 1$, therefore
+\[
+1 + \abs{w} \geq
+1 + \pi \cdot \abs{\beta} \geq
+\abs{\alpha} + \abs{\beta} \geq
+\abs{v}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Let $f$ be a function, holomorphic on a neighbourhood of
+$\oline{\dsk}$, such that $0, 1 \not \in f(\Omega)$. There exists a
+function $g$, holomorphic on a neighbouhood of $\oline{\dsk}$, such
+that
+
+\begin{enumerate}[i)]
+\item the equality
+\[
+f = \frac{1}{2} \br{1 + \cos(\pi \cdot \cos(\pi \cdot g))}
+\]
+holds with $\abs{g(0)} \leq 3 + 2 \abs{f(0)}$, and
+\item the inequality
+\[
+\abs{g(z)} \leq \abs{g(0)} + \frac{\theta}{\gamma (1 - \theta)}
+\]
+holds for all $\abs{z} \leq \theta$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Again, apply lemma~\ref{thm_hol:lm:arcos} and let
+\[
+2f - 1 = \cos(\pi \cdot F).
+\]
+Using the above lemma, we can transform $F$ such that
+$\abs{F(0)} \leq 1 + \abs{2f(0) - 1}$. Applying
+lemma~\ref{thm_hol:lm:arcos} again, we define $g$ such that
+\[
+F = \cos(\pi g).
+\]
+Again, using the above lemma, set $\abs{g(0)} \leq 1 + \abs{F(0)}$.
+We therefore have
+\[
+\abs{g(0)} \leq
+1 + \abs{F(0)} \leq
+2 + \abs{2f(0) - 1} \leq
+3 + 2 \abs{f(0)}.
+\]
+Recall that $g(\dsk)$ does not contain a disk of radius $1$. Let
+$z \in \oline{\dsk(\theta)}$. Then, by Bloch's theorem, $g(\dsk)$
+contains a disk of radius
+$R = \gamma \cdot \abs{g'(z)} \cdot (1 - \theta)$. Therefore, we
+must have
+\[
+\abs{g'(z)} < \frac{1}{\gamma (1 - \theta)}.
+\]
+It follows that
+\[
+\abs{g(z)} =
+\abs{g(0) + \int_0^z g'(\xi)\,d\xi} \leq
+\abs{g(0)} + \int_0^z \abs{g'(\xi)}\,d\xi \leq
+\abs{g(0)} + \abs{z} \cdot \frac{1}{\gamma (1 - \theta)}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+For $r \geq 0$, let
+\[
+S(r) =
+\setb{\text{$f$ holomorphic on a neighbourhood of $\oline{\dsk}$}}
+{0, 1 \not \in f \br{\oline{\dsk}} \land \abs{f(0)} \leq r}.
+\]
+For $\theta \in (0, 1)$ and $r > 0$, let
+\[
+L(\theta, r) =
+\exp \br{\pi \cdot
+\exp \br{3 + 2r + \frac{\theta}{\gamma (1 - \theta)}}},
+\]
+where $\gamma$ is any constant such that Bloch's theorem holds,
+e.g.~$\gamma = \frac{3}{2} - \sqrt{2}$.
+\end{definicija}
+
+\begin{izrek}[Schottky]
+\index{Schottky's theorem}
+Let $f \in S(r)$. Then for all $z \in \dsk$ such that
+$\abs{z} < \theta$ we have
+\[
+\abs{f(z)} \leq L(\theta, r).
+\]
+\end{izrek}
+
+\begin{proof}
+Let $g$ be a holomorphic function as in the previous theorem. Note
+that $\abs{\cos(w)} \leq e^{\abs{w}}$. We must therefore also have
+\[
+\frac{1}{2} \cdot \abs{1 + \cos(w)} \leq e^{\abs{w}}.
+\]
+Using this inequality, we get
+\[
+\abs{f(z)} \leq
+\exp \br{\pi \cdot \exp \br{\pi \cdot \abs{g(z)}}} \leq
+L(\theta, r). \qedhere
+\]
 \end{proof}
