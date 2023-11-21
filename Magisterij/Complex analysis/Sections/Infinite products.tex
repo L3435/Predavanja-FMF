@@ -1,0 +1,37 @@
+\section{Infinite products}
+
+\subsection{Definition}
+
+\begin{definicija}
+\index{infinite product}
+Let $(a_k)_k$ be a sequence of complex numbers. The sequence
+\[
+n \mapsto \prod_{k=1}^n a_k
+\]
+is called the
+\emph{sequence of partial products}\index{partial products} with
+factors $a_k$. We denote
+\[
+p_{m,n} = \prod_{k=m}^n a_k.
+\]
+We say that the infinite product is \emph{convergent} if there
+exists an index $m \in \N$ such that the limit
+\[
+\widehat{a}_m = \lim_{n \to \infty} p_{m,n}
+\]
+exists and is non-zero. We then define
+\[
+\prod_{k=1}^\infty a_k = p_{1, m-1} \cdot  \widehat{a}_m.
+\]
+as the limit of the infinite product.
+\end{definicija}
+
+\begin{opomba}
+The limit is uniquely defined.
+\end{opomba}
+
+\begin{opomba}
+An infinite product is convergent if and only if the product of all
+its non-zero factors has a non-zero limit and only finitely many
+factors are non-zero.
+\end{opomba}

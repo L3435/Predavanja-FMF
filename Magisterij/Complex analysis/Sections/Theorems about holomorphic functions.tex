@@ -112,7 +112,7 @@ f(p) = \lim_{k \to \infty} f_{n_k}(p_{n_k}) = f(q),
 therefore $p = q$.
 \end{proof}
 
-\begin{posledica}
+\begin{posledica}\label{thm_hol:cor:hurw}
 Let $\Omega \subseteq \C$ be a domain and
 $f_n \colon \Omega \to \C$ be holomorphic functions such that
 $(f_n)_n$ converges uniformly on compacts of $\Omega$ to
@@ -634,4 +634,182 @@ Using this inequality, we get
 \exp \br{\pi \cdot \exp \br{\pi \cdot \abs{g(z)}}} \leq
 L(\theta, r). \qedhere
 \]
+\end{proof}
+
+\newpage
+
+\subsection{The great Picard theorem}
+
+\datum{2023-11-21}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a domain, $\omega \in \Omega$ and
+$r \in (0, \infty)$. Let
+\[
+\mathcal{F} =
+\setb{f \in \mathcal{O}(\Omega)}{0, 1 \not \in f(\Omega)}.
+\]
+and $\mathcal{F}_{\omega,r} \subseteq \mathcal{F}$ a subfamily with
+$\abs{f(\omega)} \leq r$ for all $f \in \mathcal{F}_{\omega,r}$.
+
+\begin{enumerate}[i)]
+\item There exists some $t > 0$ such that
+$\eval{\mathcal{F}_{\omega,r}}{\dsk(\omega,t)}{}$ is bounded.
+\item The family $\mathcal{F}_{\omega,1}$ is locally bounded in
+$\Omega$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Choose a $t > 0$ such that
+$\oline{\dsk(\omega, 2t)} \subseteq \Omega$ and set
+$\varphi(z) = 2tz + \omega$. By Schottky's theorem, we have
+\[
+\abs{f \circ \varphi(z)} \leq L \br{\frac{1}{2}, r}
+\]
+for $\abs{z} < \frac{1}{2}$, or equivalently
+\[
+\sup_{v \in \dsk(w, t)} \abs{f(v)} \leq L \br{\frac{1}{2}, r}.
+\]
+The family $\mathcal{F}_{\omega, r}$ is therefore bounded.
+
+\item Let
+\[
+\mathcal{U} =
+\setb{u \in \Omega}
+{\text{$\mathcal{F}_{\omega, 1}$ is bounded in a neighbourhood of
+$u$}}.
+\]
+Note that $\omega \in \mathcal{U}$, therefore the set is non-empty.
+Also observe that $\mathcal{U}$ is open. Suppose that
+$\mathcal{U} \ne \Omega$ and let
+$v \in \partial \mathcal{U} \cap \Omega$. Then there exists a
+sequence
+$(f_n)_n \subseteq \mathcal{F}_{\omega, 1}$ such that
+\[
+\lim_{n \to \infty} \abs{f_n(v)} = \infty.
+\]
+Define $g_n = \frac{1}{f_n}$. These functions are holomorphic and
+omit both $0$ and $1$ by definition, therefore
+$g_n \in \mathcal{F}$. Applying the item i) for the sequence
+$(g_n)_n$ at point $v$, the sequence is bounded in a neighbourhood
+of $v$. By Montel's theorem, there exists a subsequence
+$\br{g_{n_k}}_k$ that converges to a function $g$ uniformly on
+compacts of $\dsk(v, s)$. By corollary~\ref{thm_hol:cor:hurw},
+the function $g$ is constant. But then
+\[
+\lim_{k \to \infty} \abs{f_{n_k}(z)} = \infty
+\]
+for all $z \in \dsk(v, s)$, which is not possible as $v$ is a
+boundary point. It follows that $\mathcal{U} = \Omega$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be a domain and
+$f_n \colon \Omega \to \C$ a sequence of functions. We say that
+$f_n$ \emph{converges to $\infty$}\index{convergence to $\infty$}
+if
+\[
+\lim_{n \to \infty} \norm{f_n}_K = \infty
+\]
+for every compact $K \subset \Omega$.
+\end{definicija}
+
+\begin{izrek}[Montel -- sharp]
+\index{Montel's theorem}
+Let $\Omega \subseteq \C$ be a domain and
+\[
+\mathcal{F} =
+\setb{f \in \mathcal{O}(\Omega)}{0, 1 \not \in f(\Omega)}.
+\]
+Then $\mathcal{F}$ is normal in $\Omega$ where we also allow
+convergence to $\infty$.
+\end{izrek}
+
+\begin{proof}
+Let $\Omega \subseteq \C$ be a domain and $p \in \Omega$. Consider
+the family $\mathcal{F}_{p,1}$. Let $(f_n)_n \subseteq \mathcal{F}$
+be a sequence. If there exists a subsequence
+$\br{f_{n_k}}_k \subseteq \mathcal{F}_{p,1}$, we can apply the
+above lemma. By the classical Montel's theorem, this subsequence
+has a convergent subsequence.
+
+Suppose now that no such subsequence exists, that is $(f_n)_n$ has
+only finitely many terms in $\mathcal{F}_{p,1}$. But then there
+exists a subsequence
+$\br{\frac{1}{f_{n_k}}}_k \subseteq \mathcal{F}_{p,1}$. As before,
+this sequence has a convergent subsequence with limit $g$. If $g$
+is nowhere-vanishing, then $\frac{1}{g}$ is the limit of a
+subsequence of $(f_n)_n$. Otherwise, by
+corollary~\ref{thm_hol:cor:hurw}, we have $g = 0$ and therefore
+$(f_n)_n$ converges to $\infty$.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open set and $p \in \Omega$. A
+function $f \in \mathcal{O}(\Omega \setminus \set{p})$ has an
+\emph{essential singularity}\index{essential singularity} in $p$ if
+the limit
+\[
+\lim_{z \to p} f(z)
+\]
+does not exist and
+\[
+\lim_{z \to p} \abs{f(z)} \ne \infty.
+\]
+\end{definicija}
+
+\begin{izrek}[Picard's great theorem]
+\index{Picard's great theorem}
+Let $\Omega \subseteq \C$ be an open set $p \in \Omega$ a point and
+$f \in \mathcal{O}(\Omega \setminus \set{p})$ a function. If $f$
+has an essential singularity at $p$, then $f$ assumes every complex
+number as a value infinitely many times with at most one exception.
+\end{izrek}
+
+\begin{proof}
+Without loss of generality assume that $p = 0$ and consider
+$\Omega = \dsk(\varepsilon)$. Suppose that $f$ omits two values on
+$\dsk(\varepsilon)$, without loss of generality $0$ and $1$.
+
+We now claim that $f$ or $\frac{1}{f}$ is bounded in a
+neighbourhood of $0$. Define the sequence of holomorphic functions
+$(f_n)_n$ with $f_n(z) = f \br{\frac{z}{n}}$. This sequence also
+omits $0$ and $1$, therefore either $(f_n)_n$ or
+$\br{\frac{1}{f_n}}_n$ has a convergent subsequence that converges
+uniformly on compacts by the sharp version of Montel's theorem.
+Denote the subsequence by $\br{g_{n_k}}_k$ and set $g = f$ or
+$g = \frac{1}{f}$ accordingly.
+
+Observe that there exists a constant $M$ such that
+\[
+\norm{g_{n_k}}_{\partial \dsk \br{\frac{\varepsilon}{2}}} \leq M
+\]
+holds for all $k \in \N$. This is equivalent to
+\[
+\abs{g(z)} \leq M
+\]
+for $\abs{z} = \frac{1}{n_k} \cdot \frac{\varepsilon}{2}$. By the
+maximum principle, we have
+\[
+\abs{g(z)} \leq M
+\]
+for all $z$ such that
+\[
+\frac{\varepsilon}{2} \cdot \frac{1}{n_k} \leq
+\abs{z} \leq
+\frac{\varepsilon}{2}.
+\]
+But as $(n_k)_k$ diverges, the inequality $g(z) \leq M$ holds for
+all $z$ such that $\abs{z} \leq \frac{\varepsilon}{2}$, therefore
+$f$ or $\frac{1}{f}$ is bounded near $0$.
+
+Observe that $f$ is not bounded in a neighbourhood of $0$, as
+otherwise $0$ is a removable singularity, which is not possible.
+Similarly, if $\frac{1}{f}$ is bounded, then $f$ has either a
+removable singularity or a pole at $0$, which is again a
+contradiction.
 \end{proof}
