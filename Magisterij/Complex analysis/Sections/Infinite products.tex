@@ -1,6 +1,6 @@
 \section{Infinite products}
 
-\subsection{Definition}
+\subsection{Definition and convergence}
 
 \begin{definicija}
 \index{infinite product}
@@ -35,3 +35,147 @@ An infinite product is convergent if and only if the product of all
 its non-zero factors has a non-zero limit and only finitely many
 factors are non-zero.
 \end{opomba}
+
+\datum{2023-11-22}
+
+\begin{lema}
+Let $(a_k)_k \subseteq \R_{\geq 0}$ be a sequence such that
+\[
+\sum_{k=1}^\infty (1 - a_k) = \infty.
+\]
+Then
+\[
+\lim_{n \to \infty} \prod_{k=p}^n a_k = 0
+\]
+for all $p \in \N$. In particular, the infinite product is
+divergent.
+\end{lema}
+
+\begin{proof}
+Observe that
+\[
+0 \leq
+\prod_{k=p}^n a_k \leq
+\prod_{k=p}^n e^{a_k - 1},
+\]
+which converges to $0$.
+\end{proof}
+
+\begin{definicija}
+Let $X \subseteq \C$ be a set.
+
+\begin{enumerate}[i)]
+\item A series
+\[
+\sum_{k=1}^\infty g_k
+\]
+of continuous functions $g_k \in \mathcal{C}(X)$ is
+\emph{normally convergent}\index{normally convergent series} if for
+every compact $K \subseteq X$ the series
+\[
+\sum_{k=1}^\infty \norm{g_k}_K
+\]
+converges.
+
+\item A product
+\[
+\prod_{k=1}^\infty f_k
+\]
+of continuous functions $f_k = 1 + g_k \in \mathcal{C}(X)$ is
+\emph{normally convergent} if the series
+\[
+\sum_{k=1}^\infty g_k
+\]
+is normally convergent.
+\end{enumerate}
+\end{definicija}
+
+\begin{definicija}
+Let $X \subseteq \C$ be a set and $f_k \in \mathcal{C}(X)$ be
+continuous functions. Denote
+\[
+p_{m,n} = \prod_{k=m}^n f_k.
+\]
+We say that the infinite product
+\[
+\prod_{k=1}^\infty f_k
+\]
+converges \emph{uniformly}\index{uniform convergence} on a set
+$L \subseteq X$ if there exists an index $m \in \N$ such that
+$\eval{f_k}{L}{}$ has no zeroes for $k \geq m$ and
+\[
+\lim_{n \to \infty} p_{m,n} = \widehat{f}_k
+\]
+exists, is uniform on $L$ and has no zeroes on $L$. We define
+\[
+\prod_{k=1}^\infty f_k = \prod_{k=1}^{m-1} f_k \cdot \widehat{f}_m
+\]
+on $L$.
+\end{definicija}
+
+\begin{izrek}[Reordering of infinite products]
+\index{reordering theorem}
+Let
+\[
+\prod_{k=1}^\infty f_k
+\]
+be a normally convergent product in $X \subseteq \C$. Then there
+exists a functions $f \colon X \to \C$ such that for all bijections
+$\tau \colon \N \to \N$ the product
+\[
+\prod_{k=1}^\infty f_{\tau(k)}
+\]
+converges to $f$ uniformly on compacts of $X$. In particular, the
+infinite product converges uniformly on compacts.
+\end{izrek}
+
+\begin{proof}
+Recall that, for $w \in \dsk$, we can define
+\[
+\log(1+w) = \sum_{k=1}^\infty \frac{(-1)^{k+1}}{k} w^k.
+\]
+Then,
+\[
+\abs{\log(1+w)} \leq
+\abs{w} \cdot \sum_{k=0}^\infty \abs{w}^k =
+\frac{\abs{w}}{1 - \abs{w}}.
+\]
+In particular, if $\abs{w} \leq \frac{1}{2}$, we have
+\[
+\abs{\log(1+w)} \leq 2 \abs{w}.
+\]
+Let $L \subseteq X$ be a compact and write $f_k = 1 + g_k$. For
+all $k > N$ we have $\norm{g_k}_L \leq \frac{1}{2}$, therefore we
+can write
+\[
+\log f_k =
+\log(1 + g_k) =
+\sum_{\ell=1}^\infty \frac{(-1)^{\ell+1}}{\ell} g_k^\ell.
+\]
+But then
+\[
+\norm{\log f_k}_L \leq 2 \norm{g_k}_L.
+\]
+It follows that the series
+\[
+\sum_{k=N}^\infty \norm{\log f_k}_L
+\]
+converges. But then the series
+\[
+h_N = \sum_{k=N}^\infty \log f_k
+\]
+converges absolutely, and therefore all reorderings of the series
+converge as well to the same limit $h_N$.
+
+Observe that
+\[
+e^{h_N} = \prod_{k=N}^\infty e^{\log f_k} = \prod_{k=N}^\infty f_k.
+\]
+This product therefore converges uniformly on $L$, independently of
+reorderings. We now define
+\[
+f = \prod_{k=1}^{N-1} f_k \cdot e^{h_N}.
+\]
+Note that this holds for all reorderings, as they differ from a
+suitable one by only finitely many transpositions.
+\end{proof}
