@@ -70,8 +70,8 @@ Let $X \subseteq \C$ be a set.
 \sum_{k=1}^\infty g_k
 \]
 of continuous functions $g_k \in \mathcal{C}(X)$ is
-\emph{normally convergent}\index{normally convergent series} if for
-every compact $K \subseteq X$ the series
+\emph{normally convergent}\index{normal convergence} if for every
+compact $K \subseteq X$ the series
 \[
 \sum_{k=1}^\infty \norm{g_k}_K
 \]
@@ -108,7 +108,7 @@ $\eval{f_k}{L}{}$ has no zeroes for $k \geq m$ and
 \]
 exists, is uniform on $L$ and has no zeroes on $L$. We define
 \[
-\prod_{k=1}^\infty f_k = \prod_{k=1}^{m-1} f_k \cdot \widehat{f}_m
+\prod_{k=1}^\infty f_k = p_{1, m-1} \cdot \widehat{f}_m
 \]
 on $L$.
 \end{definicija}
@@ -178,4 +178,261 @@ f = \prod_{k=1}^{N-1} f_k \cdot e^{h_N}.
 \]
 Note that this holds for all reorderings, as they differ from a
 suitable one by only finitely many transpositions.
+\end{proof}
+
+\newpage
+
+\subsection{Zeroes of infinite products}
+
+\datum{2023-11-28}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open set and
+$f \in \mathcal{O}(\Omega)$. The \emph{zero set}\index{zero set} of
+$f$ is the set
+\[
+Z(f) = \setb{z \in \Omega}{f(z) = 0}.
+\]
+For all $c \in \Omega$, define the
+\emph{zero order}\index{zero order} of $f$ in $c$ as follows: if
+\[
+f(z) = (z - c)^k \cdot g(z)
+\]
+where $g(c) \ne 0$ is a holomorphic function, then $\ord_c(f) = k$.
+\end{definicija}
+
+\begin{opomba}
+For non-zero $f \in \mathcal{O}(\Omega)$, the set $Z(f)$ is
+discrete in $\Omega$.
+\end{opomba}
+
+\begin{opomba}
+We have
+\[
+\ord_c \br{\prod_{k=1}^n f_k} = \sum_{k=1}^n \ord_c(f_k).
+\]
+\end{opomba}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a domain and
+\[
+f = \prod_{k=1}^\infty f_k
+\]
+be a normally convergent product in $\Omega$, where
+$f_k \in \mathcal{O}(\Omega)$ are non-zero holomorphic functions.
+Then $f$ is a non-zero function with
+\[
+Z(f) = \bigcup_{k=1}^\infty Z(f_k)
+\]
+and
+\[
+\ord_c(f) = \sum_{k=1}^\infty \ord_c(f_k).
+\]
+\end{lema}
+
+\begin{proof}
+Recall that normally convergent products converge uniformly on
+compacts of $\Omega$. In particular, $f$ is a holomorphic function.
+
+Pick a point $c \in \Omega$. By definition of convergence, there
+exists some $m \in \N$ such that $\widehat{f}_m(c) \ne 0$. As
+$\widehat{f}_m$ is holomorphic as well, we have
+\[
+f(c) = \br{p_{1, m-1} \cdot \widehat{f}_m}(c),
+\]
+but then
+\[
+\ord_c(f) =
+\sum_{k=1}^{m-1} \ord_c(f_k) =
+\sum_{k=1}^\infty \ord_c(f_k). \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be a domain. If
+\[
+f = \prod_{k=1}^\infty f_k
+\]
+is a normally convergent product in $\Omega$, where
+$f_k \in \mathcal{O}(\Omega)$ are holomorphic functions, then the
+sequence $\br{\widehat{f}_n}_n$ converges to $1$ uniformly on
+compacts.
+\end{lema}
+
+\begin{proof}
+Choose $m \in \N$ such that $\widehat{f}_m \ne 0$. Then the set
+$Z \br{\widehat{f}_m}$ has no accumulation points in $\Omega$. We
+can therefore write
+\[
+\widehat{f}_n = \frac{\widehat{f}_m}{p_{m,n-1}}
+\]
+on $\Omega \setminus Z \br{\widehat{f}_m}$. As $p_{m,n-1}$
+converges to $\widehat{f}_m$ on compacts of $\Omega$,
+\[
+\lim_{n \to \infty} \widehat{f}_n = 1
+\]
+uniformly on compacts of $\Omega \setminus Z \br{\widehat{f}_m}$.
+For any compact set $K \subseteq \Omega$, taking $m$ large enough,
+we have $Z \br{\widehat{f}_m} \cap K = \emptyset$. The conclusion
+follows.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{O}(\Omega)$. The meromorphic function
+$\frac{f'}{f}$ is called the
+\emph{logarithmic derivative}\index{logarithmic derivative} of $f$.
+\end{definicija}
+
+\begin{opomba}
+For holomorphic functions $f_1, \dots, f_n \in \mathcal{O}(\Omega)$
+we have
+\[
+\br{\prod_{k=1}^n f_k}' \cdot \br{\prod_{k=1}^n f_k}^{-1} =
+\sum_{k=1}^n \frac{f_k'}{f_k}.
+\]
+\end{opomba}
+
+\begin{definicija}
+Let $g_k \in \mathcal{M}(\Omega)$ be meromorphic functions. The
+series
+\[
+\sum_{k=1}^\infty g_k
+\]
+is \emph{normally convergent}\index{normal convergence} in $\Omega$
+if for every compact $L \subseteq \Omega$ there exists some
+$m \in \N$ such that
+\[
+\sum_{k=m}^\infty \norm{g_k}_L
+\]
+converges.
+\end{definicija}
+
+\begin{izrek}[Logarithmic differentiation]
+Let $\Omega \subseteq \C$ be a domain and
+\[
+f = \prod_{k=1}^\infty f_k
+\]
+be a normally convergent product in $\Omega$, where
+$f_k \in \mathcal{O}(\Omega)$ are non-zero functions. Then
+\[
+\sum_{k=1}^\infty \frac{f_k'}{f_k}
+\]
+is normally convergent in $\Omega$ and
+\[
+\sum_{k=1}^\infty \frac{f_k'}{f_k} = \frac{f'}{f}.
+\]
+\end{izrek}
+
+\begin{proof}
+As $\widehat{f}_n$ converges to $1$ uniformly on compacts, the
+sequence $\br{f_n'}_n$ converges to $0$ uniformly on compacts by
+Cauchy estimates. Then for any compact $L$,
+$\frac{\widehat{f}_n'}{\widehat{f}_n}$ converges to $0$ as
+$\widehat{f}_n$ has no zeroes in $L$ for $n$ large enough. It
+follows that
+\[
+\lim_{n \to \infty} \frac{f'}{f} - \sum_{k=1}^n \frac{f_k'}{f_k} =
+\lim_{n \to \infty} \frac{\widehat{f}_{n+1}'}{\widehat{f}_{n+1}} =
+0.
+\]
+Write $f_k = 1 + g_k$ and fix a compact set $L \subseteq \Omega$.
+Choose an index $m$ such that we have
+$Z \br{\widehat{f}_m} \cap L = \emptyset$ and
+\[
+\min_{z \in L} \abs{f_k(z)} \geq \frac{1}{2}.
+\]
+Choose $\varepsilon > 0$ such that
+\[
+L_\varepsilon =
+\setb{z \in \C}{d(z, L) \leq \varepsilon} \subseteq
+\Omega.
+\]
+By the Cauchy estimates, we have
+$\norm{g_k'}_L \leq \frac{1}{\varepsilon} \norm{g_k}_L$. But then
+\[
+\sum_{k=m}^\infty \norm{\frac{f_k'}{f_k}}_L =
+\sum_{k=m}^\infty \norm{\frac{g_k'}{f_k}}_L \leq
+2 \cdot \sum_{k=m}^\infty \norm{g_k'}_L \leq
+\frac{2}{\varepsilon} \cdot \sum_{k=m}^\infty \norm{g_k},
+\]
+which is convergent by our assumptions.
+\end{proof}
+
+\begin{lema}
+Let $g$ be meromorphic on $\C$ with poles in $\Z$ with principal
+parts $\frac{1}{z-m}$. Moreover, assume that $g$ is an odd
+function that satisfies
+\[
+2 g(2z) = g(z) + g \br{z + \frac{1}{2}}.
+\]
+Then $g(z) = \pi \cdot \cot(\pi z)$.
+\end{lema}
+
+\begin{proof}
+Simple calculations show that $\pi \cdot \cot(\pi z)$ is indeed a
+solution of the functional equation. Define
+$h(z) = g(z) - \pi \cdot \cot(\pi z)$. This another solution of the
+functional equation, and an odd function. In particular,
+$h(0) = 0$. Observe that the principal parts of $h$ are $0$,
+therefore $h \in \mathcal{O}(\C)$ is an entire function.
+
+Suppose that $h$ is not constant. In particular, there exists some
+$c \in \partial \dsk(2)$ such that
+\[
+\abs{h(z)} < \abs{h(c)}
+\]
+for all $z \in \dsk(2)$. As
+$\frac{c}{2}, \frac{c+1}{2} \in \dsk(2)$ , we can write
+\[
+2 \abs{h(c)} =
+\abs{h \br{\frac{c}{2}} + h \br{\frac{c+1}{2}}} \leq
+\abs{h \br{\frac{c}{2}}} + \abs{h \br{\frac{c+1}{2}}} <
+2 \abs{h(c)},
+\]
+which is a contradiction. It follows that $h = 0$.
+\end{proof}
+
+\begin{posledica}
+We have
+\[
+\pi \cdot \cot(\pi z) =
+\frac{1}{z} + \sum_{k=1}^\infty \frac{2z}{z^2 - k^2}.
+\]
+\end{posledica}
+
+\begin{proof}
+Note that
+\[
+\frac{1}{z} + \sum_{k=1}^\infty \frac{2z}{z^2 - k^2} =
+\frac{1}{z} + \sum_{k=1}^\infty \br{\frac{1}{z-k} + \frac{1}{z+k}},
+\]
+therefore the series has poles in $\Z$ with principal parts
+$\frac{1}{z-m}$. It is also an odd function. A calculation shows
+that, for
+\[
+r_n(z) = \frac{1}{z} + \sum_{k=1}^n \frac{2z}{z^2 - k^2},
+\]
+we have
+\[
+r_n(z) + r_n \br{z + \frac{1}{2}} =
+2 r_{2n}(2z) + \frac{2}{2z + 2n + 1}.
+\]
+Taking $n \to \infty$, the conclusion follows.
+\end{proof}
+
+\begin{izrek}
+We have
+\[
+\sin(\pi z) =
+\pi z \cdot \prod_{k=1}^\infty \br{1 - \frac{z^2}{k^2}}.
+\]
+\end{izrek}
+
+\begin{proof}
+The above product is obviously normally convergent, therefore we
+can take its logarithmic derivative. A simple calculation shows
+that it is equal to $\pi \cot(\pi z)$. As logarithmic derivatives
+are equal only for scalar multiples, we only have to check equality
+in one point.
 \end{proof}
