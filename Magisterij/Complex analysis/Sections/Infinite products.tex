@@ -436,3 +436,181 @@ that it is equal to $\pi \cot(\pi z)$. As logarithmic derivatives
 are equal only for scalar multiples, we only have to check equality
 in one point.
 \end{proof}
+
+\newpage
+
+\subsection{The Euler gamma function}
+
+\datum{2023-11-29}
+
+\begin{lema}
+The infinite product
+\[
+\prod_{k=1}^\infty \br{1 + \frac{1}{k}} e^{-\frac{z}{k}}
+\]
+in normally convergent in $\C$.
+\end{lema}
+
+\begin{proof}
+Write
+\begin{align*}
+\abs{1 - (1-\omega) e^\omega} &=
+\abs{1 - e^\omega + \omega e^\omega}
+\\
+&=
+\abs{-\sum_{k=1}^\infty \frac{\omega^k}{k!} +
+\sum_{k=0}^\infty \frac{\omega^{k+1}}{k!}}
+\\
+&=
+\abs{\omega^2 \cdot \sum_{k=1}^\infty
+\br{\frac{1}{k!} - \frac{1}{(k+1)!}} \omega^{k-1}}
+\\
+&\leq
+\abs{\omega}^2 \cdot \sum_{k=1}^\infty
+\br{\frac{1}{k!} - \frac{1}{(k+1)!}}
+\\
+&=
+\abs{\omega}^2
+\end{align*}
+for $\abs{\omega} \leq 1$. But then the sum
+\[
+\sum_{k = \ceil{\abs{z}}}^\infty
+\abs{1 - \br{1 + \frac{z}{k}} e^{-\frac{z}{k}}} \leq
+\sum_{k = \ceil{\abs{z}}}^\infty \abs{\frac{z^2}{k^2}}
+\]
+converges normally. The infinite product must then converge
+normally in $\C$ as well.
+\end{proof}
+
+\begin{lema}
+Let
+\[
+H(z) =
+z \cdot \prod_{k=1}^\infty \br{1 + \frac{z}{k}} e^{-\frac{z}{k}}.
+\]
+Then $H(1) = e^{-\gamma}$, where $\gamma$ is the
+\emph{Euler-Mascheroni constant}\index{Euler-Mascheroni constant},
+that is
+\[
+\gamma = \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k} - \log(n).
+\]
+\end{lema}
+
+\begin{proof}
+First note that
+\[
+\prod_{k=1}^n \br{1 + \frac{1}{k}} =
+\prod_{k=1}^n \frac{k+1}{k} =
+n+1.
+\]
+We therefore have
+\[
+\prod_{k=1}^n \br{1 + \frac{1}{k}} e^{-\frac{1}{k}} =
+\exp \br{\log(n+1) - \sum_{k=1}^n \frac{1}{k}},
+\]
+therefore
+\[
+H(1) =
+\lim_{n \to \infty}
+\exp \br{\log(n+1) - \sum_{k=1}^n \frac{1}{k}} =
+e^{-\gamma}. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $\Delta(z) = e^{\gamma z} H(z)$.
+
+\begin{enumerate}[i)]
+\item We have $\Delta(1) = 1$ and $\Delta(z) = z \Delta(z+1)$.
+\item We have $\pi \cdot \Delta(z) \Delta(1-z) = \sin(\pi z)$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Note that $\Delta(1) = 1$ by the previous lemma. Rewrite the
+partial products as
+\[
+z \cdot \prod_{k=1}^n \br{1 + \frac{z}{k}} e^{-\frac{z}{k}} =
+\frac{z}{n!} \cdot \prod_{k=1}^n (z+k) \cdot
+\exp \br{-z \sum_{k=1}^n \frac{1}{k}}.
+\]
+We therefore have
+\begin{align*}
+\Delta(z) &=
+\lim_{n \to \infty}
+\frac{e^{\gamma z}}{n!} \cdot \prod_{k=0}^n (z+k) \cdot
+\exp \br{-z \sum_{k=1}^n \frac{1}{k}}
+\\
+&=
+\lim_{n \to \infty}
+\frac{e^{\gamma z}}{n! \cdot n^z} \cdot \prod_{k=0}^n (z+k) \cdot
+\exp \br{z \log(n) -z \sum_{k=1}^n \frac{1}{k}}
+\\
+&=
+\lim_{n \to \infty}
+\frac{1}{n! \cdot n^z} \cdot \prod_{k=0}^n (z+k).
+\end{align*}
+We can now calculate
+\[
+z \cdot \Delta(z+1) =
+\lim_{n \to \infty}
+z \cdot \frac{1}{n! \cdot n^{z+1}} \cdot \prod_{k=1}^{n+1} (z+k) =
+\Delta(z) \cdot \lim_{n \to \infty} \frac{z + n + 1}{n} =
+\Delta(z).
+\]
+It remains to check the equality
+$\pi \cdot \Delta(z) \Delta(1-z) = \sin(\pi z)$. We have
+\begin{align*}
+\pi \cdot \Delta(z) \Delta(1-z) &=
+\pi \cdot \Delta(z) \cdot \frac{\Delta(-z)}{-z}
+\\
+&=
+\pi e^{\gamma z} \cdot z \cdot
+\prod_{k=1}^\infty \br{1 + \frac{z}{k}} e^{-\frac{z}{k}} \cdot
+e^{-\gamma z} \cdot \frac{-z}{-z} \cdot
+\prod_{k=1}^\infty \br{1 - \frac{z}{k}} e^{\frac{z}{k}}
+\\
+&=
+\pi z \cdot \prod_{k=1}^\infty \br{1 - \frac{z^2}{k^2}}
+\\
+&=
+\sin(\pi z). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{definicija}
+The \emph{Euler gamma function}\index{Euler gamma function} is
+defined as
+\[
+\Gamma(z) = \frac{1}{\Delta(z)}.
+\]
+\end{definicija}
+
+\begin{izrek}
+The $\Gamma$ function satisfies the following properties:
+
+\begin{enumerate}
+\item The function $\Gamma$ is meromorphic with simple poles in
+$-\N_0$.
+\item We have $\Gamma(1) = 1$.
+\item The function $\Gamma$ satisfies $\Gamma(z+1) = z \Gamma(z)$.
+\item The function $\Gamma$ satisfies
+\[
+\Gamma(z) \cdot \Gamma(1-z) = \frac{\pi}{\sin(\pi z)}.
+\]
+\item We have
+\[
+\Gamma(z) =
+\lim_{n \to \infty}
+n! \cdot n^z \cdot \br{\prod_{k=0}^n (z+k)}^{-1}.
+\]
+\end{enumerate}
+\end{izrek}
+
+\obvs
+
+\begin{izrek}
+Let $F$ be holomorphic in $\setb{z \in \C}{\Re(z) > 0}$ and assume
+$F(z+1) = z \cdot F(z)$. Furthermore, assume that $F$ is bounded
+on the strip $1 \leq \Re(z) < 2$ and $F(1) = 1$. Then $F = \Gamma$.
+\end{izrek}
