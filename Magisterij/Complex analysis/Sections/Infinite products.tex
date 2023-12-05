@@ -614,3 +614,203 @@ Let $F$ be holomorphic in $\setb{z \in \C}{\Re(z) > 0}$ and assume
 $F(z+1) = z \cdot F(z)$. Furthermore, assume that $F$ is bounded
 on the strip $1 \leq \Re(z) < 2$ and $F(1) = 1$. Then $F = \Gamma$.
 \end{izrek}
+
+\newpage
+
+\subsection{Weierstraß factors}
+
+\datum{2023-12-5}
+
+\begin{definicija}
+The \emph{Weierstraß factors}\index{Weierstraß!factors} are
+functions
+\[
+E_n(z) = (1-z) \cdot \exp \br{\sum_{\ell=1}^n \frac{z^n}{n}}.
+\]
+\end{definicija}
+
+\begin{lema}
+The Weierstraß factors satisfy the following:
+
+\begin{enumerate}[i)]
+\item For $n \geq 1$ we have
+\[
+E_n'(z) = -z^n \cdot \exp \br{\sum_{\ell=1}^n \frac{z^n}{n}}.
+\]
+\item For $n \geq 0$ we have
+\[
+E_n(z) = 1 + \sum_{k=n+1}^\infty a_k z^k,
+\]
+where
+\[
+\sum_{k=n+1}^\infty \abs{a_k} = 1.
+\]
+\item For $n \geq 0$ and $\abs{z} \leq 1$ we have
+\[
+\abs{E_n(z) - 1} \leq \abs{z}^{n+1}.
+\]
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Evident.
+\item Observing the derivative, we see that
+$a_1 = a_2 = \dots = a_n = 0$, and $a_k \leq 0$ for $k > n$. But
+then
+\[
+\sum_{k=n+1}^\infty \abs{a_k} =
+-\sum_{k=n+1}^\infty a_k =
+1 - E_n(1) =
+1.
+\]
+\item We have
+\[
+\abs{E_n(z) - 1} =
+\abs{\sum_{k=n+1}^\infty a_k z^k} \leq
+\sum_{k=n+1}^\infty \abs{a_k} \cdot \abs{z}^k \leq
+\abs{z}^{n+1}. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{lema}
+Let $(a_k)_k \subset \C^*$ be a sequence of complex numbers with no
+accumulation point and let $(p_k)_k \subseteq \N_0$ be non-negative
+integers with
+\[
+\sum_{k=1}^\infty \abs{\frac{r}{a_k}}^{p_k+1}
+\]
+converges for every $r > 0$. Then the
+\emph{Weierstraß product}\index{Weierstraß!product}
+\[
+\prod_{k=1}^\infty E_{p_k} \br{\frac{z}{a_k}}
+\]
+converges normally on $\C$.
+\end{lema}
+
+\begin{proof}
+Note that $\abs{a_k} > \abs{z}$ for all but finitely many $k$. Now
+just apply the previous lemma.
+\end{proof}
+
+\begin{izrek}[Weierstraß factorization theorem]
+\index{Weirestraß!factorization theorem}
+For any sequence $(a_k)_k \subset \C$ with no accumulation point
+there exists a Weierstraß product
+\[
+z^q \cdot \prod_{\substack{k=1 \\ a_k \ne 0}}^\infty
+E_{p_k} \br{\frac{z}{a_k}}
+\]
+that converges normally on $\C$.
+\end{izrek}
+
+\begin{proof}
+Set $p_k = k-1$. For any $r > 0$ choose $m \in \N_0$ such that
+$\abs{a_k} > 2r$ for all $k \geq m$. We then have
+\[
+\sum_{k=m}^\infty \abs{\frac{r}{a_k}}^{p_k+1} \leq
+\sum_{k=m}^\infty \frac{1}{2^k} \leq
+2. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Weierstraß product theorem]
+\index{Weirestraß!product theorem}
+Let $f \in \mathcal{O}(\C) \setminus \set{0}$ be a holomorphic
+function. Then there exists a function $g \in \mathcal{O}(\C)$ such
+that
+\[
+f = e^g \cdot z^q \cdot \prod_{\substack{k=1 \\ a_k \ne 0}}^\infty
+E_{k-1} \br{\frac{z}{a_k}},
+\]
+where $a_k$ are zeroes of $f$ on $\C \setminus \set{0}$, counted
+with multiplicities, and $q = \ord_0(f)$.
+\end{izrek}
+
+\obvs
+
+\begin{lema}
+Let $\Omega \subset \C$ be an open subset, $(a_k)_k \subset \Omega$
+a sequence with no accumulation point in $\Omega$ and
+$A = \setb{a_k}{k \in \N}$. Let
+$(b_k)_k \subset \C \setminus \Omega$ and $(p_k)_k \subseteq \N$ be
+sequences such that the series
+\[
+\sum_{k=1}^\infty \abs{r (a_k - b_k)}^{p_k+1}
+\]
+converges for all $r > 0$ and denote $B = \setb{b_k}{k \in \N}$.
+Then the infinite product
+\[
+\prod_{k=1}^\infty E_{p_k} \br{\frac{a_k - b_k}{z - b_k}}
+\]
+converges normally on $\C \setminus \oline{B}$.
+\end{lema}
+
+\begin{proof}
+Let $L \subseteq \C \setminus \oline{B}$ be a compact set and let
+$\ell = d\br{L, \oline{B}} > 0$. We then have
+$\abs{z - b_k} \geq \ell$ for all $z \in L$ and $k \in \N$.
+
+We can now bound
+\[
+\norm{\frac{a_k - b_k}{z - b_k}}_L \leq
+\frac{\abs{a_k - b_k}}{\ell}.
+\]
+By the assumption of convergence for $r = \frac{1}{\ell}$, we must
+have
+\[
+\abs{r \cdot (a_k - b_k)} < 1
+\]
+for all $k \geq n(L)$, but then
+\[
+\sum_{k=n(L)}^\infty
+\norm{E_{p_k} \br{\frac{a_k - b_k}{z - b_k}} - 1}_L \leq
+\sum_{k=n(L)}^\infty 
+\norm{\frac{a_k - b_k}{z - b_k}}_L^{p_k+1}\leq
+\sum_{k=n(L)}^\infty \abs{r \cdot \br{a_k - b_k}}^{p_k+1},
+\]
+which converges.
+\end{proof}
+
+\begin{opomba}
+The Weierstraß factor $E_{p_k} \br{\frac{a_k - b_k}{z - b_k}}$ is
+zero if and only if $z = a_k$.
+\end{opomba}
+
+\begin{lema}
+Let $A \subset \C$ be a discrete set and define
+$A' = \oline{A} \setminus A$. Suppose that $A' \ne \emptyset$ and
+let
+\[
+A_1 = \setb{z \in A}{\abs{z} \cdot d(z, A') \geq 1}
+\]
+and $A_2 = A \setminus A_1$. Now let
+\[
+A_2(\varepsilon) = \setb{z \in A_2}{d(z, A') \geq \varepsilon}.
+\]
+Then $A_1$ is a closed set and $A_2(\varepsilon)$ is finite for any
+$\varepsilon > 0$.
+\end{lema}
+
+\begin{proof}
+Assume $A_1$ has an accumulation point $a$ and let
+$(a_k)_k \subseteq A$ be a sequence, converging to $a$. But then
+\[
+\lim_{k \to \infty} \abs{a_k} \cdot d(a_k, A') = 0,
+\]
+which is a contradiction.
+
+Note that, for all $z \in A_2(\varepsilon)$, we have
+$\abs{z} < \frac{1}{\varepsilon}$. If the set is infinite, it has
+an accumulation point, which is impossible as
+$d(z, A') \geq \varepsilon$.
+\end{proof}
+
+\begin{opomba}
+If $A \subset \C$ is a discrete set, then $A'$ is a closed set in
+$\C$.
+\end{opomba}
+
+
