@@ -718,6 +718,7 @@ $\abs{a_k} > 2r$ for all $k \geq m$. We then have
 
 \begin{izrek}[Weierstraß product theorem]
 \index{Weirestraß!product theorem}
+\label{inf_prod:thm:w_prod_1}
 Let $f \in \mathcal{O}(\C) \setminus \set{0}$ be a holomorphic
 function. Then there exists a function $g \in \mathcal{O}(\C)$ such
 that
@@ -732,6 +733,7 @@ with multiplicities, and $q = \ord_0(f)$.
 \obvs
 
 \begin{lema}
+\label{inf_prod:lm:w_prod_omega}
 Let $\Omega \subset \C$ be an open subset, $(a_k)_k \subset \Omega$
 a sequence with no accumulation point in $\Omega$ and
 $A = \setb{a_k}{k \in \N}$. Let
@@ -813,4 +815,103 @@ If $A \subset \C$ is a discrete set, then $A'$ is a closed set in
 $\C$.
 \end{opomba}
 
+\datum{2023-12-6}
 
+\begin{izrek}[Weierstraß product theorem]
+\index{Weierstraß!product theorem}
+Let $\Omega \subseteq \C$ be an open subset. Let
+$(a_k)_k \subset \Omega$ be a sequence without accumulation points
+in $\Omega$ and denote $A = \setb{a_k}{k \in \N}$ and
+$A' = \oline{A} \setminus A$. Then there exists a Weierstraß
+product for $(a_k)_k$ that converges normally in $\C \setminus A'$.
+This product has zeros precisely in $(a_k)_k$, counted with
+multiplicities.
+\end{izrek}
+
+\begin{proof}
+Assume that $\Omega \ne \C$ and
+$A' \ne \emptyset$.\footnote{Otherwise just apply
+theorem~\ref{inf_prod:thm:w_prod_1}.} Write $A = A_1 \cup A_2$ as
+in the above lemma. Recall that $A_1$ has no accumulation points,
+therefore we can apply theorem~\ref{inf_prod:thm:w_prod_1} for
+$A_1$. It remains to construct a Weierstraß product for $A_2$.
+
+Observe that $A' = A_2'$. As this is a closed space, for all
+$a_k \in A_2$ there exists some $b_k \in A_2'$ such that
+\[
+\abs{a_k - b_k} = d(a_k, A_2').
+\]
+Observe that
+\[
+\lim_{\substack{k \to \infty \\ a_k \in A_2}} \abs{a_k - b_k} = 0,
+\]
+as the sets $A_2(\varepsilon)$ are finite. Now set $p_k = k$ and
+apply lemma~\ref{inf_prod:lm:w_prod_omega}.
+\end{proof}
+
+\begin{posledica}[Blaschke products]
+\index{Blaschke products}
+Let $(a_k)_k \subset \dsk \setminus \set{0}$ be a sequence without
+accumulation points in $\dsk$. If the series
+\[
+\sum_{k=1}^\infty \br{1 - \abs{a_k}}
+\]
+converges, then the product
+\[
+\prod_{k=1}^\infty
+E_0 \br{\frac{a_k - \frac{1}{\oline{a}_k}}
+{z - \frac{1}{\oline{a}_k}}}
+\]
+converges normally in $\dsk$ and has zeros precisely in $(a_k)_k$,
+counted with multiplicities.
+\end{posledica}
+
+\begin{proof}
+Note that
+\[
+\abs{a_k - b_k} =
+\abs{a_k - \frac{1}{\oline{a}_k}} =
+\abs{\frac{1}{\oline{a}_k}} \cdot \abs{\abs{a_k}^2 - 1} =
+\abs{\frac{1}{\oline{a}_k}} \cdot
+(1 - \abs{a_k}) (1 + \abs{a_k}) \leq
+\frac{2}{m} \cdot \br{1 - \abs{a_k}},
+\]
+where
+\[
+m = \min \setb{\abs{a_k}}{k \in \N}.
+\]
+It follows that the series
+\[
+\sum_{k=1}^\infty r \cdot \abs{a_k - b_k}
+\]
+converges, therefore we can apply
+lemma~\ref{inf_prod:lm:w_prod_omega}.
+\end{proof}
+
+\begin{izrek}
+Let $\Omega \subseteq \Omega$ be a domain and
+$f \in \mathcal{O}(\Omega) \setminus \set{0}$. Then we can write
+\[
+f = g \cdot \prod_{k=1}^\infty f_k,
+\]
+where $g \in \mathcal{O}^*(\Omega)$ and $f_k$ are Weierstraß
+factors.
+\end{izrek}
+
+\obvs
+
+\begin{izrek}
+Let $\Omega \subseteq \C$ be a domain and
+$f \in \mathcal{M}(\Omega)$. Then we can write $f = \frac{g}{h}$,
+where $g, h \in \mathcal{O}(\Omega)$.
+\end{izrek}
+
+\begin{proof}
+Define $h$ as the Weierstraß product of the poles of $f$.
+\end{proof}
+
+\begin{opomba}
+Let $\Omega \subseteq \C$ be a domain. Then $\mathcal{O}(\Omega)$
+is not a factorial ring,\footnote{``Kolobar z enolično
+faktorizacijo.''} but $\gcd(f, g) \in \mathcal{O}(\Omega)$ exists.
+\end{opomba}
