@@ -782,6 +782,7 @@ zero if and only if $z = a_k$.
 \end{opomba}
 
 \begin{lema}
+\label{inf_prod:lm:divideA}
 Let $A \subset \C$ be a discrete set and define
 $A' = \oline{A} \setminus A$. Suppose that $A' \ne \emptyset$ and
 let
@@ -792,8 +793,8 @@ and $A_2 = A \setminus A_1$. Now let
 \[
 A_2(\varepsilon) = \setb{z \in A_2}{d(z, A') \geq \varepsilon}.
 \]
-Then $A_1$ is a closed set and $A_2(\varepsilon)$ is finite for any
-$\varepsilon > 0$.
+Then $A = A_1 \cup A_2$, $A_1$ is a closed set and
+$A_2(\varepsilon)$ is finite for any $\varepsilon > 0$.
 \end{lema}
 
 \begin{proof}
@@ -915,3 +916,228 @@ Let $\Omega \subseteq \C$ be a domain. Then $\mathcal{O}(\Omega)$
 is not a factorial ring,\footnote{``Kolobar z enolično
 faktorizacijo.''} but $\gcd(f, g) \in \mathcal{O}(\Omega)$ exists.
 \end{opomba}
+
+\datum{2023-12-12}
+
+\begin{definicija}
+Let $\Omega$ be an open subset and $\set{a_k}_k$ be a sequence
+without accumulation pints and without repetition. Let
+\[
+q_k(z) = \sum_{n=1}^\infty c_{k, m} (z - a)^{-m}
+\]
+be a principal part in $a_k$ for each $k$.
+
+If there exist functions $g_k \in \mathcal{O}(\Omega)$ for each $k$
+such that
+\[
+\sum_{k=1}^\infty q_k - g_k
+\]
+converges normally in $\Omega$, we call it the
+\emph{Mittag-Leffler series}\index{Mittag-Leffler!series} for the
+distribution of principal part $(a_k, q_k)$.
+\end{definicija}
+
+\begin{opomba}
+We adopt the following conventions: If $0 \in \set{a_k}_k$, then
+$a_1 = 0$.
+\end{opomba}
+
+\begin{izrek}[Mittag-Leffler for $\C$]
+\label{inf_prod:thm:MLforC}
+\index{Mittag-Leffler!theorem}
+For every distribution of principal parts in $\C$ there exists a
+corresponding Mittag-Leffler series.
+\end{izrek}
+
+\begin{proof}
+Let $g_k$ be the Taylor series of $q_k$ about $0$ in the disk
+$\dsk(\abs{a_k})$ such that the inequality
+$\norm{q_k - g_k} < 2^{-k}$ holds for each $k \geq 2$. Note that
+\[
+\lim_{k \to \infty} \abs{a_k} = \infty
+\]
+as the points don't accumulate. For each $r > 0$ we can therefore
+find an integer $n$ such that $r < \frac{1}{2} \abs{a_k}$ for all
+$k \geq n$. Then
+\[
+\sum_{k = n}^{\infty} \norm{q_k - g_k}_{\oline{\dsk(r)}} \leq 1.
+\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+The above series
+$f \in \mathcal{O}(\C \setminus \set{a_1, a_2, \dots})$ with
+principal parts $q_k$ in $a_k$ for each $k \in \N$. If the
+principal part are finite, then $f \in \mathcal{M}$.
+\end{opomba}
+
+\begin{lema}
+Let $a \in \C$, $q \in \mathcal{O} (\Omega \setminus \set{a})$ be a
+principal part and $b \in \C \setminus \set{a}$. Then $q$ has a
+Laurent series expansion about $b$ in the annulus
+$\setb{z \in \C}{\abs{z - b} > \abs{a - b}}$ of the form
+\[
+q(z) = \sum_{m=1}^\infty c_m (z-b)^{-m}
+\]
+that converges uniformly for $\abs{z - b} > r > \abs{a - b}$.
+\end{lema}
+
+\begin{proof}
+Choose a path $\gamma_r$ that goes around the circle centered at
+$b$ of radius $r$. We claim that
+\[
+c_m =
+\frac{1}{2 \pi} \lint_{\gamma_r} \frac{q(z)}{(z-b)^{-m+1}}\,dz
+\]
+for $m \in \Z$ suffice. We can estimate
+\[
+\abs{c_m} \geq
+\frac{1}{2 \pi} \cdot 2 \pi \frac{\norm{q}_{\gamma_r}}{r^{- m}} =
+\frac{\norm{q}_{\gamma_r}}{r^{-m}}.
+\]
+We know that $q(z)$ is of the form
+\[
+q(z) = \sum_{m = 1}^{\infty} d_m (z - a)^{-m}
+\]
+for some $d_m \in \C$ when developed into a Laurent series around
+$a$. It is trivial to show that
+\[
+\lim_{\abs{z}\to \infty}q(z) = 0.
+\]
+Thus, $\norm{q}_{\gamma_r}$ approaches zero as $r$ goes to
+infinity. If $m \leq 0$, then
+\[
+\lim_{r \to \infty} \norm{q}_{\gamma_r} r^{m} = 0.
+\]
+Therefore, $c_m = 0$ for $m \leq 0$ and
+\[
+q(z) = \sum_{m = 1}^{\infty} c_m (z - b)^{ - m}
+\]
+is indeed a power series in $z-b$ which converges uniformly for
+$\abs{z - b}^{-1} \leq r$.
+\end{proof}
+
+\begin{definicija}
+The partial sums of
+\[
+q_\ell(z) = \sum_{m = 1}^{\ell} c_m (z - b)^{ - m}
+\]
+are called the
+\emph{$\ell$-th Laurent terms}\index{Laurent terms} of $q$ about
+$b$.
+\end{definicija}
+
+\begin{lema}
+\label{inf_prod:lm:sufficientForML}
+Let $(a_k, q_k)_k$ be a distribution of principal parts in an open
+set $\Omega \subseteq \C$, $A = \setb{a_k}{k \in \N}$ and
+$A' = \oline{A} \setminus A$.\footnote{The closure is taken in
+$\C$.} Assume there exists a sequence $(b_k)_k \subseteq A'$ with
+\[
+\lim_{k \to \infty} \abs{a_k - b_k} = 0.
+\]
+Let $q_{k, \ell}$ be the $\ell$-th Laurent term of $q_k$ about
+$b_k$. Then there exists a sequence $(\ell_k)_k \subseteq \N_0$
+such that
+\[
+\sum_{k=1}^{\infty}(q_k - q_{k, \ell_k})
+\]
+is a Mittag-Leffler series for $(a_k, q_k)_k$.
+\end{lema}
+
+\begin{proof}
+For a principal part $q_k$ the Laurent series converges uniformly
+on $\abs{z - b_k} > r$ for any $r > \abs{a_k - b_k}$ by the
+previous lemma. Thus, we can choose $\ell_k$ large enough such that
+\[
+\abs{q_k(z) - q_{k, \ell}(z)} < 2^{-k}
+\]
+for all $z$ such that $\abs{z - b_k} \geq 2 \abs{a_k - b_k}$.
+
+For any compact set $L \subseteq \C \setminus A'$, the distance to
+$A'$ is strictly positive. Since
+\[
+\lim_{k \to \infty} \abs{a_k - b_k} = 0,
+\]
+the point $b_k$ must lie outside $L$ for large enough $k$. Thus,
+there exists some $n(L) \in \N$ such that
+\[
+L \subseteq
+\bigcap_{k \geq n(L)}
+\setb{z \in \C}{\abs{z - b_k} \geq 2 \abs{a_k - b_k}}.
+\]
+Therefore, we can use the previous estimate on $L$, to get 
+\[
+\sum_{k \geq n(L)} \norm{q_k - q_{k, \ell_k}}_L \leq
+\sum_{k \geq n(L)} 2^{- k} \leq
+2. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Mittag-Leffler for open subsets]
+\label{inf_prod:lm:MLTOpen}
+\index{Mittag-Leffler!theorem}
+Let $\Omega \subseteq \C$ be an open subset. Let $(a_k, q_k)_k$ be
+a distribution of principal parts in $\Omega \subseteq$ and
+$A = \setb{a_k}{k \in \N}$. Then there exists a Mittag-Leffler
+series for $(a_k, q_k)$ that converges normally in
+$\C \subseteq A' = \oline{A} \setminus A$.
+\end{izrek}
+
+\begin{proof}
+By lemma~\ref{inf_prod:lm:divideA}, $(A_1)'$ is empty and
+$(A_2)' = A'$. If $A'$ is empty, then
+\[
+\lim_{k \to \infty} \abs{a_k} = \infty
+\]
+and we can apply theorem~\ref{inf_prod:thm:MLforC}. Similarly, we
+can assume $\Omega \neq \C$. Again by the lemma, $A_2(\epsilon)$ is
+finite. Hence, there exist $(b_k)_k \in A'$ such that
+\[
+\lim_{k \to \infty} \abs{a_k - b_k} = 0.
+\]
+We can apply lemma~\ref{inf_prod:lm:sufficientForML} to obtain a
+Mittag-Leffler series. Now we apply
+theorem~\ref{inf_prod:thm:MLforC} for $\C$ to $A_1$. Sum up this
+two series to get the series from the statement.
+\end{proof}
+
+\begin{izrek}[Mittag-Leffler osculation theorem]
+\label{inf_prod:thm:MLOsculation}
+\index{Mittag-Leffler!osculation theorem}
+Let $\Omega \subseteq \C$ be an open subset and
+$(a_k)_k \subseteq \Omega$ be a sequence without accumulation
+points and without repetition. Furthermore, let
+\[
+f_k(z) =
+\sum_{\ell=-\infty}^{n(k)} c_{k, \ell}(z - a_k)^\ell,
+\]
+where $n(k) \in \N_0$, be normally convergent on $\C \setminus A$,
+where $A$ is the set of $a_k$. Then there exists a function
+$f \in \mathcal{O}(\Omega \setminus A)$ such that
+$\ord_{a_k}(f - f_k) > n(k)$ for all $k \in \N$.
+\end{izrek}
+
+\begin{proof}
+By the Weierstraß product theorem, there exists a function
+$h \in \mathcal{O}(\Omega)$ such that $\ord_{a_k}(h) > n(k)$ and
+$h$ has no zeroes on $\C \setminus A$. Then
+$\br{a_k, \frac{f_k}{h}}_k$ is a distribution of principal parts.
+By theorem~\ref{inf_prod:lm:MLTOpen}, there exists a
+$g \in \mathcal{O}(\Omega \setminus A)$ with these principal parts.
+
+Now define $f = g \cdot h$. Then
+\[
+f - f_k = g \cdot h - f_k = h \cdot \br{g - \frac{f_k}{h}},
+\]
+which vanishes to order larger than $n(k)$ in $a_k$.
+\end{proof}
+
+\begin{posledica}
+For every sequence $(a_k)_k \subseteq \Omega$ without accumulation
+points and without repetition and every sequence
+$(c_k)_k \subseteq \C$ there exists a function
+$f \in \mathcal{O}(\Omega)$ such that $f(a_k) = c_k$ for each
+$k \in \N$.
+\end{posledica}
