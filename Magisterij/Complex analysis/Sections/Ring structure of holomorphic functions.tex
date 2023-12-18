@@ -1,89 +1,188 @@
 \section{Ring structure of holomorphic functions}
+
+\subsection{Ideals of holomorphic functions}
+
 \begin{definicija}
-    A divisor of $f \in \mathcal{M}^*(\Omega)$, denoted by $(f) : \Omega \rightarrow \Z$ by 
-    $$
-        (f)(z) = \begin{cases}
-            0 & \text{$f$ has a pole in $z$} \\
-            n & \text{$f$ has a zero of order $n$ in $z$} \\
-            -n & \text{$f$ has a zero of order $n$ in $z$} \\
-        \end{cases}.
-    $$
+Let $\Omega \subseteq \C$ be an open set. A
+\emph{divisor}\index{divisor} of a meromorphic function
+$f \in \mathcal{M}^*(\Omega)$ is the function
+$(f) \colon \Omega \to \Z$, given by
+\[
+(f)(z) = \begin{cases}
+ n & \text{$f$ has a zero of order $n$ in $z$} \\
+-n & \text{$f$ has a pole of order $n$ in $z$} \\
+ 0 & \text{otherwise}.                         \\
+\end{cases}
+\]
 \end{definicija}
+
 \begin{opomba}
-    The divisor of a product is the sum of divisors, i.e.\ $(f \cdot g) = (f) + (g)$.
+The divisor of a product is the sum of divisors,
+i.e.~$(f \cdot g) = (f) + (g)$.
 \end{opomba}
 
 \begin{definicija}
-    Let $S \subseteq \mathcal{O}(\Omega)$ be a subset that contains a zero holomorphic function.
+Let $S \subseteq \mathcal{O}(\Omega)$ be a subset that contains a
+non-zero holomorphic function.
 
-    To define $\gcd(S)$ we first define $d(z) = \min_{f \in S \setminus \set{0}} f(z) \in \N_0$. By Weierstraß product theorem there exists $g \in \mathcal{O}(\Omega)$ such that $(g) = d$. Then $g$ divides every $f \in S$.
+Define
+\[
+d(z) = \min_{f \in S \setminus \set{0}} (f)(z) \in \N_0.
+\]
+By Weierstraß product theorem there exists a function
+$g \in \mathcal{O}(\Omega)$ such that $(g) = d$. We define
+$\gcd(S) = g$\index{greatest common divisor}.\footnote{There are of
+course multiple possible functions that satisfy this condition, but
+their quotients are invertible.}
 \end{definicija}
 
+\datum{2023-12-18}
+
 \begin{lema}[Wedderburn]
-    Let $\Omega \subseteq \C$ be a domain $f, g \in \mathcal{O}(|Omega)$ such that $\gcd(f, g) = 1$. Then There exist $a, b \in \mathcal{O}(\Omega)$ so that $a f + b g =1$. Morover, we can choose $a, b$ to be nonwhere vanishing. 
+\index{Wedderburn!lemma}
+Let $\Omega \subseteq \C$ be a domain and
+$f, g \in \mathcal{O}(\Omega)$ be functions with $\gcd(f, g) = 1$.
+Then there exist functions $a, b \in \mathcal{O}(\Omega)$ so that
+$a f + b g = 1$. Moreover, we can choose $a$ to be nonwhere
+vanishing. 
 \end{lema}
+
 \begin{proof}
-    If $g = 0$ and $f \neq 0$ then $f$ can vanish by assumption on $\gcd$ and so $a = \frac{1}{g}$ and $g = 0$ suffice. Therefore, we can assume both $f, g$ and are nonzero, Then $Z(f) \cap Z(g)$ is empty, since in the other case $(z - p)$ would therefore divide $\gcd(f, g)$ for $p$ an element of the intersection. The set $Z(f) \cap Z(g)$ is thus discrete. Further, for each zero $p$ of $g$, there exists a disk of radius $\epsilon$ and a holomorphic function $f_p \in \mathcal{O}(D_{\epsilon}(p))$ such that $f = e^{f_p}$. By the Mittag-Leffler osculation theorem \ref{inf_prod:thr:MLOsculation} there exists a $h \in \mathcal{O}(\Omega)$ such that $\ord_p(h - f) > \ord_p(g)$.
+If $g = 0$ and $f \neq 0$ then $f$ cannot vanish by assumption on
+$\gcd$, therefore $a = \frac{1}{f}$ and $b = 1$ suffice. Therefore,
+we can assume both $f, g$ and are nonzero. Note that
+$Z(f) \cap Z(g)$ is empty, since $(z - p)$ divides $\gcd(f, g)$ for
+any $p \in Z(f) \cap Z(g)$. The set $Z(f) \cup Z(g)$ is thus
+discrete. Further, for each zero $p$ of $g$, there exists a disk of
+radius $\varepsilon$ and a holomorphic function
+$f_p \in \mathcal{O}(\dsk(p, \varepsilon))$ such that
+\[
+f = e^{f_p}.
+\]
+By the Mittag-Leffler osculation theorem there exists a function
+$h \in \mathcal{O}(\Omega)$ such that
+$\ord_p(h - f_p) > \ord_p(g)$.
 
-    Here we stop for a short observation. Developing into the power series, we get that $e^{w^n} - 1 = w^n + O(w^{2 n})$.
+Here we stop for a short observation. Developing into the power
+series, we get that $e^{w^n} - 1 = w^n + O(w^{2 n})$. Then, 
+\[
+\ord_p \br{f - e^h} =
+\ord_p \br{e^h \cdot \br{e^{f_p - h} - 1}} =
+\ord_p \br{\br{e^{f_p - h} - 1}} =
+\ord_p \br{f_p - h} >
+\ord_p(g).
+\]
 
-    Then, 
-    $$
-        \ord_p{f - e^h} = \ord_p{e^h \cdot (e^{f_p - h} - 1)} = \ord_p{(e^{f_p - h} - 1)} = \ord_p(f_p - h) > \ord_p(g).
-    $$
-
-    Define $k \vcentcolon= \frac{f - e^h}{g} \in \mathcal{O}(\Omega)$. We claim that $a = e^{-h}$ and $b = -k e^{-h}$. Clearly $a$ doesnt vanish, and, since $k$ does not vanish by the previous calculation of the order, so does not $g$. Furthermore, 
-    $$
-        a f + b g = e^{-h}g  - k e ^{-h} g = e^{-h}(f - k g) = e^{- h}(f - \frac{f - e^h}{g}g) = e^{-h} e^h = 1.
-    $$
+Define $k = \frac{f - e^h}{g} \in \mathcal{O}(\Omega)$. We claim
+that $a = e^{-h}$ and $b = -k e^{-h}$ satisfy the conditions.
+Clearly, $a$ doesn't vanish, and
+\[
+a f + b g =
+e^{-h} f - k e ^{-h} g =
+e^{-h}(f - k g) =
+e^{- h} \br{f - \frac{f - e^h}{g} g} =
+e^{-h} e^h =
+1. \qedhere
+\]
 \end{proof}
 
 \begin{posledica}
-    For holomorphic functions $f_j \in \mathcal{O}(\Omega), j = 1, 2, \ldots n$ then $f \gcd(f_1, f_2, \ldots, f_n)$ can be written as 
-    $$
-        f = \sum_{j = 1}^{n a_j f_j} 
-    $$
+For holomorphic functions $f_j \in \mathcal{O}(\Omega)$, where
+$j \leq n$, we can write $f = \gcd(f_1, f_2, \dots, f_n)$ as 
+\[
+f = \sum_{j=1}^n a_j f_j
+\]
 \end{posledica}
+
 \begin{proof}
-    We proceed by induction. The base case is the lemma of Wedderburn. Now let $\hat{f} = \gcd(f_2, f_3, \ldots f_n)$, which can be written as $\hat{f} = \sum_{j = 2}^{n \hat{a}_j f_j}$. Then $\frac{f_1}{f}, \frac{\hat{f}}{f} \in \mathcal{O}(\Omega)$ and have $\gcd$ equal to $1$. Then we can apply lemma of Wedderburn to get $a, b$ such that $a \frac{f_1}{f} + b \frac{\hat{f}}{f} = 1$. We read coefficients $a_1 = a$ and $a_j = b \hat{a}_j$.
+We proceed by induction. The base case is just Wedderburn's lemma.
+Now let $\hat{f} = \gcd(f_2, f_3, \dots f_n)$, which can be
+written as
+\[
+\hat{f} = \sum_{j=2}^n \hat{a}_j f_j
+\]
+by the induction hypothesis. Then
+$\frac{f_1}{f}, \frac{\hat{f}}{f} \in \mathcal{O}(\Omega)$ are
+holomorphic functions with $\gcd$ equal to $1$. We can therefore
+apply Wedderburn' lemma to get functions $a$ and $b$ such that
+\[
+a \frac{f_1}{f} + b \frac{\hat{f}}{f} = 1.
+\]
+The conclusion follows
 \end{proof}
 
 \begin{izrek}
-    If $I \subseteq \mathcal{O}(\Omega)$ be the ideal generated by holomoprhic functions $f_1, f_2, \ldots f_n$ on $\Omega$. Then there exists $f$ holomorphic that $I = (f)$. 
+Let $I \edn \mathcal{O}(\Omega)$ be the ideal generated by
+holomorphic functions $f_1, f_2, \dots f_n$ on $\Omega$. Then there
+exists a holomorphic function $f$ such that $I = (f)$.
 \end{izrek}
+
 \begin{proof}
-    Take $f$ the $\gcd$ of the $f_j$. This is in $I$ since it is a sum of $f_j$ by the previous corollary. Since $f | f_j$, this implies that $I = (f)$
+Take $f = \gcd(f_j)$. This function is an element of $I$ by the
+previous corollary. Since $f \mid f_j$, this implies that
+$I = (f)$.
 \end{proof}
 
 \begin{definicija}
-    Let $\Omega \subseteq \C$ be a domain and $I \vartriangleleft \mathcal{O}(\Omega)$.
-    \begin{itemize}
-        \item We call $I$ closed if for every sequence $(f_n)_n \subseteq I$ that converges uniformly on compacts of $\Omega$ to some $f \in I$
-        \item We dcall $p \in \Omega$ a zero of $I$ if $f(p) = 0$ for every $f \in I$
-    \end{itemize}
+Let $\Omega \subseteq \C$ be a domain and
+$I \edn \mathcal{O}(\Omega)$ an ideal.
+
+\begin{enumerate}[i)]
+\item We call $I$ \emph{closed}\index{closed ideal} if for every
+sequence $(f_n)_n \subseteq I$ that converges uniformly on compacts
+of $\Omega$ to some function $f$, we also have $f \in I$.
+\item We call $p \in \Omega$ a \emph{zero}\index{zero} of $I$ if
+$f(p) = 0$ for every $f \in I$.
+\end{enumerate}
 \end{definicija}
 
 \begin{lema}
-    Let $\Omega \subseteq \C$ be a domain and $I \vartriangleleft \mathcal{O}(\Omega)$. Let $p \in \Omega$ be a point that is not a zero of $I$. Let $f, g \in \mathcal{O}(\Omega)$, where $f$ may have its only zero in $p$. If $f g \in I$, then $g \in I$.
+Let $\Omega \subseteq \C$ be a domain and
+$I \edn \mathcal{O}(\Omega)$ and ideal. Let $p \in \Omega$ be a
+point that is not a zero of $I$. Let
+$f, g \in \mathcal{O}(\Omega)$ be functions such that $f(z) \ne 0$
+for all $z \ne p$. If $f g \in I$, then $g \in I$.
 \end{lema}
+
 \begin{proof}
-    Since $p$ is not a zero of $I$, then $h \in I$ such that $h(p) \neq0$. Let $n$ be $\ord_p(f)$. If $n = 0$, then $f$ is a unit, so $g \in I$. So assume $n \geq 1$. Then, 
-    $$
-        \frac{f(z)}{z - p}g = -\frac{1}{h(p)}\frac{h - h(p)}{z - p} fg - \frac{f g}{z - p} h \in I
-    $$
-    since $\frac{f}{z - p}$ is holomoprhic.
+Since $p$ is not a zero of $I$, then there exists a function
+$h \in I$ such that $h(p) \ne 0$. Let $n = \ord_p(f)$. If $n=0$,
+then $f$ is a unit, so $g \in I$. Otherwise, we have
+\[
+\frac{f(z)}{z - p}g =
+-\frac{1}{h(p)} \cdot
+\br{\frac{h - h(p)}{z - p} fg - \frac{f g}{z - p} h} \in I
+\]
+since $\frac{f}{z - p}$ is holomorphic.
     
-    Iterate this, replacing $f$ with $\frac{f}{z - p}$ in each step. Thus, $\frac{f}{(z - p)^n} g \in I$. Since $\frac{f}{(z - p)^n}$ is a unit $g$ must be an element of $I$.
+We can iterate this process to find $\frac{f}{(z - p)^n} g \in I$.
+Since $\frac{f}{(z - p)^n}$ is a unit, $g$ must be an element of
+$I$.
 \end{proof}
 
 \begin{izrek}
-    Let $\Omega \subseteq \C$ be a domain and $I \vartriangleleft \mathcal{O}(\Omega)$. If $I$ has no zeroes and is closed, then $I = \mathcal{O}(\Omega)$.
+Let $\Omega \subseteq \C$ be a domain and
+$I \edn \mathcal{O}(\Omega)$ an ideal. If $I$ has no zeroes and is
+closed, then $I = \mathcal{O}(\Omega)$.
 \end{izrek}
+
 \begin{proof}
-    Let $f$ be an arbitrary nonzero element of $I$. By Weierstraß product theorem, 
-    $$
-        f = \prod_{k = 1}^{\infty} f_k,
-    $$ 
-    where each $f_k$ has exactly one zero in $\Omega$, and the tails $\hat{f}_n \vcentcolon= \prod_{k = n}^{\infty} f_k$, converge to $1$ uniformly on compacts of $\Omega$. As $f = \hat{f}_1 = f_1 \hat{f}_2$, we can apply the preivous lemma, so $\hat{f}_2 \in I$. Inductively, $\hat{f}_n \in I$ and since the ideal $I$ is assumed to be closed, $1 = \lim_k \hat{f}_k \in I$. Thus $I = \mathcal{O}(\Omega)$.
+Let $f$ be an arbitrary nonzero element of $I$. By the Weierstraß
+product theorem, we can write
+\[
+f = \prod_{k = 1}^{\infty} f_k,
+\]
+where each $f_k$ has exactly one zero in $\Omega$, and the tails
+\[
+\widehat{f}_n = \prod_{k = n}^{\infty} f_k
+\]
+converge to $1$ uniformly on compacts of $\Omega$. As
+$f = \widehat{f}_1 = f_1 \widehat{f}_2$, we can apply the preivous
+lemma to find $\widehat{f}_2 \in I$. Inductively,
+$\widehat{f}_n \in I$ and since the ideal $I$ is assumed to be
+closed, we have
+\[
+1 = \lim_{k \to \infty} \widehat{f}_k \in I. \qedhere
+\]
 \end{proof}
 
