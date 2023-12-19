@@ -14,3 +14,9 @@
  - asist. dr. Riccardo Ugolini
 "I have one."
  - Luka Horjak, 27. 11. 2023
+
+"Tomorrow we will look at the pole shifting lemma, which allows us to move the poles away."
+ - viš. znan. sod. dr. Rafael Benedikt Andrist, 19. 12. 2023
+
+"In general, we have to allow poles."
+ - viš. znan. sod. dr. Rafael Benedikt Andrist, 19. 12. 2023
