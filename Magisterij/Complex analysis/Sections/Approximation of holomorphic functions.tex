@@ -222,10 +222,10 @@ we find
 \index{Runge approximation theorem}
 Let $\Omega \subseteq \C$ be an open subset and let
 $K \subseteq \Omega$ be a compact. If every bounded component of
-$\C \setminus K$ intersects every bounded component of
-$\C \setminus \Omega$, then for every function $f$ that is
-holomorphic on a neighbourhood of $K$ and every $\varepsilon > 0$
-there exists a function $q \in \mathcal{O}(\Omega)$ such that
+$\C \setminus K$ intersects $\C \setminus \Omega$, then for every
+function $f$ that is holomorphic on a neighbourhood of $K$ and
+every $\varepsilon > 0$ there exists a function
+$q \in \mathcal{O}(\Omega)$ such that
 \[
 \norm{f - q}_K < \varepsilon.
 \]
@@ -249,4 +249,93 @@ $q \in \C[z]$ such that
 
 \begin{proof}
 Choose $P = \emptyset$ in theorem~\ref{app:thm:runge_app}.
+\end{proof}
+
+\datum{2024-1-3}
+
+\begin{definicija}
+Let $V$ be a vector space over $\C$, equipped with a topology. Let
+$T \colon V \to V$ be a linear map.
+
+\begin{enumerate}[i)]
+\item We call $T$ \emph{cyclic}\index{cyclic!map} if there exists
+some $f \in V$, called a \emph{cyclic vector}\index{cyclic!vector},
+such that
+\[
+\spn_\C \setb{T^n(f)}{n \in \N_0} = V.
+\]
+\item We call $T$ \emph{hypercyclic}\index{hypercyclic map} if
+there exists some $f \in V$, such that
+\[
+\oline{\setb{T^n(f)}{n \in \N_0}} = V.
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}[Birkhoff]
+\index{Birkhoff's theorem}
+Let $\tau \colon \C \to \C$ be given by $\tau(z) = z + a$ for some
+$a \ne 0$. Then the map
+$T \colon \mathcal{O}(\C) \to \mathcal{O}(\C)$, given by
+$T(f) = f \circ \tau$, is hypercyclic.
+\end{izrek}
+
+\begin{proof}
+Set $K_n = \oline{\dsk(\ell_n \cdot a, n)}$ for a sequence
+$(\ell_n)_n \subseteq \N$, such that all $K_n$ are pairwise
+disjoint and $K_n \cap \dsk(0, n) = \emptyset$ for all $n \in \N$.
+Choose a sequence $(\varepsilon_n)_n \subseteq \R^+$, converging to
+$0$. Furthermore, let $(p_n)_n$ be a sequence of all polynomials
+$(\Q \oplus i\Q)[z]$.
+
+We first construct a sequence of holomorphic functions $(f_n)_n$,
+such that the following conditions hold:
+
+\begin{enumerate}[i)]
+\item For all $n \in \N$, we have
+\[
+\norm{\sum_{k=1}^n f_k - \tau^{-\ell_n} \circ p_n}_{K_n} <
+\frac{\varepsilon_n}{2^n}.
+\]
+\item For all $m < n$, we have
+\[
+\norm{f_n}_{K_m} < \frac{\varepsilon_m}{2^n}.
+\]
+\item For all $n \in \N$, we have
+\[
+\norm{f_n}_{\dsk(0,n)} < \frac{1}{2^n}.
+\]
+\end{enumerate}
+
+Choose $\ell_n$ such that $\dsk(0,n) \cap K_m = \emptyset$ for all
+$m < n$. Then the set
+\[
+\C \bigsetminus \br{\bigcup_{m=1}^n K_m \cup \dsk(0,n)}
+\]
+is obviously connected. We can now just apply Runge's little
+theorem by choosing the function $0$ on $\dsk(0,n)$ and $K_m$ for
+$m < n$, and
+\[
+\tau^{-\ell_n} \circ p_n - \sum_{k=1}^{n-1}
+\]
+on $K_n$.
+
+Note that the series
+\[
+f = \sum_{n=1}^\infty f_n
+\]
+is uniformly convergent by the third condition. We now compute
+\begin{align*}
+\norm{f \circ \tau^{\ell_n} - p_n}_{\tau^{-\ell_n}(K_n)} &=
+\norm{f - \tau^{-\ell_n} \circ p_n}_{K_n}
+\\
+&\leq
+\sum_{k > n} \norm{f_k}_{K_n} +
+\norm{\sum_{k=1}^n f_k - \tau^{-\ell_n} \circ p_n}_{K_n}
+\\
+&<
+\varepsilon_n.
+\end{align*}
+It follows that we can approximate every rational polynomial with
+iterations $T^n(f)$.
 \end{proof}
