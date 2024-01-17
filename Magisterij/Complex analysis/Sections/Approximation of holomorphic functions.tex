@@ -339,3 +339,74 @@ is uniformly convergent by the third condition. We now compute
 It follows that we can approximate every rational polynomial with
 iterations $T^n(f)$.
 \end{proof}
+
+% TODO insert previous lecture
+
+\datum{2024-1-16}
+
+this is the remainder of the proof that we did not finish last time, TODO merge
+\begin{proof}
+    Suppose $\Omega \setminus K$ has no relatively compact components. Let $p \in \Omega \setminus K$. Consider $\Omega \setminus (K \cup \set{p})$. This has the same connnected components not containing $p$ which are still not relatively compact. Removing the point $p$ does not disconnect and open connected component, so the connected component that contained $p$ is still relatively compact. We can use the fourth item from the statement on the function $g|_K = 0$ and $g(p) = 1$, which is holomorphic in a neighbourhood of $K \cup p$. Thus there exist $h$, a holomorphic function on $\Omega$ such that $\norm{g - h}_{K \cup p} < \frac{1}{2}$. Then $\norm{h}_K < \frac{1}{2} < \abs{h(p)}$ which is exactly the fifth item.
+\end{proof}
+
+\begin{lema}
+    Let $\Omega \subseteq \C$ is an open subset and $K \subseteq \Omega$ a compact. Then there exists a compact $K'$ such that $K \subseteq K' \subseteq \Omega$ and every bounded component of $\C \setminus K'$ intersects $\C \setminus \Omega$ and contains a compact component of $\C \setminus \Omega$.
+\end{lema}
+\begin{proof}
+    For the case $\Omega = \C$, we can take $K' = \oline{D}_r(0)$, where $r$ is large enough so that $K \subseteq K'$. So suppose $\Omega \neq \C$. Choose $0 < \rho < d(K, \partial{\Omega}) = d(K, \C \setminus \Omega)$. Let $M = \setb{z \in \Omega}{d(z \C \setminus \Omega) \geq \rho}$. Choose $r > 0$ such that $K \subseteq \oline{D}_r(0)$. Let $K' = M \cap \oline{D}_r(0)$, which is clearly compact, contained inside $\Omega$, and contains $K$. We are left to prove the statement about the bounded components.
+
+    Let $Z$ be a bounded component of $\C \setminus K'$. Note that $\C \setminus \oline{D}_r(0)$ is connected and unbounded and contains $Z$. If $Z$ were also not in $C \setminus M$, then it would be in the unbounded component of $\C \setminus K'$. Thus $Z \subseteq \C \setminus M$.  
+
+    We can rewrite $\C \setminus M = \bigcup_{w \in \C \setminus \Omega} D_{\rho}(w)$ by the definition of $M$. We have that  $D_{\rho}(w) \subseteq Z$ or $D_{\rho}(w) \cap Z = \emptyset$. Thus $Z = \bigcup_{w \in Z \setminus \Omega} D_{\rho}(w)$ so $Z$ intersects $\C \setminus \Omega$. Let $S$ be the component of $\C \setminus \Omega$ that $Z$ intersects $\C \setminus \Omega \subseteq \C \setminus K'$. Then $S \subseteq Z$ since $Z$ is a max connected set in $\C \setminus K'$. Since $Z$ is bounded, $S$ is bounded.
+\end{proof}
+
+\begin{definicija}
+    Let $\Omega \subseteq \C$ be an open subset. We call every bounded component of $\C \setminus \Omega$ a \emph{hole} of $\Omega$.
+\end{definicija}
+
+\begin{opomba}
+    If $K$ is the Cantor set, then $\Omega = \C \setminus K$ has uncountably many holes.
+\end{opomba}
+
+\begin{izrek}[Runge's Theorem for rational apporximations]
+    Let $\Omega \subseteq \C$ be an open subset $P \subseteq \C \setminus \Omega$ such that $\oline{P}$ intersects every hole of $\Omega$. Then $\C_P[z]$ is dense in $\mathcal{O}(\Omega)$.
+\end{izrek}
+\begin{proof}
+    Let $K \subseteq \Omega$ be compact. Let $K'$ be from the previous lemma. Then $\oline{P}$ intersects every bounded componont of $\C \setminus K'$. We can thus apply the lemma \ref{app:lm:app_by_ra} on $K'$. 
+\end{proof}
+\begin{posledica}[Runge's theorem for polynomial approximation]
+    If $\Omega$ has no holes then $\C[z]$ is dense in $\mathcal{O}(\Omega)$.
+\end{posledica}
+\begin{proof}
+    Take $P = \emptyset$
+\end{proof}
+
+\begin{opomba}
+    This gives us another proof of the Mittag-Leffler theorem \ref{inf_prod:lm:MLTOpen}.
+\end{opomba}
+\begin{proof}
+    Let $A = \bigcup_{k \in \N} \set{a_k} \subseteq \partial{\Omega}$. Let $K_j = \oline{\setb{z \in \Omega \setminus A}{\abs{z} \leq j, d(z, \partial{\Omega  \setminus A}) \geq \frac{1}{j}}}$, which form an exhaustion by compacts. Let $K_j'$ be the compact furnished by the previous lemma for $K_j$. Choose a subsequence $(L_j)_{j \in \N}$ of $(K_j')_{j \in \N}$ that is an exhaustion by compacts, which can be done by the properties of exhaustion, i.\ e.\ for every $K_j'$ there exists $k \in \N$ so that $K_j' \subseteq K_k \subseteq K_k'$ and apply induction.
+
+    We may assume $K_1 \cap \oline{A} = \emptyset$. Let $A_n = A \cap (L_{n + 1} \setminus L_n)$. For each $a \in A_n$ the principal part of $q$ is holomorphic in $L_n$. By the approximation with holomorphic functions on $\Omega$, there exists $g \in \mathcal{O}(\Omega)$ such that $\norm{q - g}_{L_n} < \max(1, \abs{A_n}) 2^{- n}$. Then
+    \[
+        \sum_{n = 1}^{\infty} \norm{q_n - g_n}_{L_n} \leq \sum_{n = 1}^{\infty} 2^{ - n} - 1.
+    \]
+    Thus the series converges uniformly on compacts.
+\end{proof}
+
+\begin{definicija}
+    $(\Omega, \Omega')$ is a \emph{Runge pair}\index{Runge!pair} if for every $f \in \mathcal{O}(\Omega)$ and each $\epsilon > 0$ and compact $K \subseteq K$ there exists $F \mathcal{O}(\Omega')$ such that $\norm{f - F}_K < \epsilon$.
+\end{definicija}
+
+\begin{izrek}
+    Let $\Omega \subseteq \Omega' \subseteq \C$ be open sets. The following statements are equivalent:
+    \begin{enumerate}
+        \item $\Omega' \setminus \Omega$ has no compact components,
+        \item $\C_P[z]$ with $P \subseteq \C \setminus \Omega'$ is dense in $\mathcal{O}(\Omega)$,
+        \item $(\Omega, \Omega')$ is a Runge pair,
+        \item $\Omega' \setminus \Omega$ contains no open compact.
+    \end{enumerate}
+\end{izrek}
+\begin{proof}
+    
+\end{proof}
