@@ -340,7 +340,44 @@ It follows that we can approximate every rational polynomial with
 iterations $T^n(f)$.
 \end{proof}
 
-% TODO insert previous lecture
+\datum{2024-1-10}
+\begin{lema}
+    Let $\Omega \subseteq \C$ be an open subset $K \subseteq \Omega$ a compact.
+    \begin{enumerate}
+        \item For every component $Z$ of $\Omega \setminus K$ we have $\Omega \cap \partial{Z} \subseteq K$. If $Z \subseteq \Omega$ is relatively compact, then $\norm{f}_Z \leq \norm{f}_K$ for all $f \in \mathcal{O}(\Omega)$.
+        \item Every of $Z_0$ be a component of $\C \setminus K$ that is contained in $\Omega$ is a component of $\C \setminus K$. If $Z_0$ is bounded, then $Z_0 \subseteq \Omega$ is relatively compact.
+    \end{enumerate}
+\end{lema}
+\begin{proof}
+    Let $p$ be a point in $\Omega \cap \partial{Z}$ that is not in $K$. Let $D$ be a disk centered at $p$ contained in $\Omega \setminus K$. Then every point of $D$ is in the same connected components as $p$. But then $p \notin \partial{Z}$, since $D \subseteq Z$.
+
+    Suppose now that $Z$ is additionally relatively compact. By the above $\partial{Z} \subseteq K$ and so $\norm{f}Z = \norm{f}{\partial{Z}}\leq \norm{f}_K$ by the maximum modulus princinple.
+
+    For the second item, let $Z_0$ be a component of $\C \setminus K$ contained in $\Omega$. There must exist a $Z_1 \subseteq \Omega \setminus K$ a connected component that contains $Z_0$. By maximality of connected component $Z_0 = Z_1$.
+
+    Suppose it is additionally bounded. The closure of $Z_0$ in $\C$ is contained in $\Omega$ by the first item. But then it is compact as it is bounded and closed in $\Omega$.
+\end{proof}
+
+\begin{izrek}
+    Let $\Omega \subseteq \C$ be an open subset and $K \subseteq \Omega$ a compact. The following are equivalent:
+    \begin{enumerate}
+        \item $\Omega \setminus K$ has no relatively compact components,
+        \item every bounded component of $\C \setminus K$ intersects $\C \setminus \Omega$
+\item every function holomorphic in a neighbourhood of $K$ ca be approximated uniformly on $K$ by rational functions without poles in $\Omega$,
+        \item every function holomorphic in a neighbourhood of $K$ can be approximated by a function that is holomorphic in $\Omega$,
+        \item for every $p \in \Omega \setminus K$ there exists a $f \in \mathcal{O}(\Omega)$ such that $\abs{f(p)} > \norm{f}K$
+        \item $\hat{K}{\mathcal{O}(\Omega)} = K$
+    \end{enumerate} 
+\end{izrek}
+\begin{proof}
+    From Approximation lemma we immediately get that 2. implies 3. Trivially, we have that 3. implies 4. Items 5. and 6. are the same by definition.
+
+    Next we prove that 1. implies 2. If $Z_0$ is a component of $\C \setminus K$ that is contained in $\Omega$, then it is a component of $\Omega \setminus K$ and relatively compact in $\Omega$ by the previous lemma. By 1., this cannot happen so no bounded component of $\C \setminus K$ lies in $\Omega$ which is precisely 2. 
+
+    Suppose 4. holds and $\Omega \setminus K$ has a relatively compact component $Z$. Choose $a \in Z$ and consider $f(z) = \frac{1}{z - a}$. By assumption this function can be approximated by $g \in \mathcal{O}(\Omega)$ so that for $\delta = \norm{z - a}_K$ we have $\norm{\frac{1}{z - a} - g}_K < \frac{1}{\delta}$. Then $\norm{1 - (z - a)g}_K < 1$. By the first item of the previous lemma, we have $\norm{1 - (z - a)g}_Z \leq \norm{1 - (z - a)g}_K < 1$. For $z = a$, this is a contradicition. This implies 1.
+
+    Suppose 5. holds and $Z$ is a relatively compact component. As in the previous paragraph, we have that $\norm{f}_Z \leq \norm{f}_K$ for all $f \in \mathcal{O}(\Omega)$, in particular this holds for $f$ from the assumption of 5., which is again a contradiction. 
+\end{proof}
 
 \datum{2024-1-16}
 
@@ -357,7 +394,7 @@ this is the remainder of the proof that we did not finish last time, TODO merge
 
     Let $Z$ be a bounded component of $\C \setminus K'$. Note that $\C \setminus \oline{D}_r(0)$ is connected and unbounded and contains $Z$. If $Z$ were also not in $C \setminus M$, then it would be in the unbounded component of $\C \setminus K'$. Thus $Z \subseteq \C \setminus M$.  
 
-    We can rewrite $\C \setminus M = \bigcup_{w \in \C \setminus \Omega} D_{\rho}(w)$ by the definition of $M$. We have that  $D_{\rho}(w) \subseteq Z$ or $D_{\rho}(w) \cap Z = \emptyset$. Thus $Z = \bigcup_{w \in Z \setminus \Omega} D_{\rho}(w)$ so $Z$ intersects $\C \setminus \Omega$. Let $S$ be the component of $\C \setminus \Omega$ that $Z$ intersects $\C \setminus \Omega \subseteq \C \setminus K'$. Then $S \subseteq Z$ since $Z$ is a max connected set in $\C \setminus K'$. Since $Z$ is bounded, $S$ is bounded.
+    We can rewrite $\C \setminus M = \bigcup_{w \in \C \setminus \Omega} D_{\rho}(w)$ by the definition of $M$. We have that  $D_{\rho}(w) \subseteq Z$ or $D_{\rho}(w) \cap Z = \emptyset$. Thus $Z = \bigcup_{w \in Z \setminus \Omega} D_{\rho}(w)$ so $Z$ intersects $\C \setminus \Omega$. Let $S$ be the component of $\C \setminus \Omega$ that $Z$ intersects $\C \setminus \Omega \subseteq \C \setminus K'$. Then $S \subseteq Z$ since $Z$ is a maximal connected set in $\C \setminus K'$. Since $Z$ is bounded, $S$ is bounded.
 \end{proof}
 
 \begin{definicija}
@@ -378,14 +415,17 @@ this is the remainder of the proof that we did not finish last time, TODO merge
     If $\Omega$ has no holes then $\C[z]$ is dense in $\mathcal{O}(\Omega)$.
 \end{posledica}
 \begin{proof}
-    Take $P = \emptyset$
+    Take $P = \emptyset$.
 \end{proof}
 
 \begin{opomba}
     This gives us another proof of the Mittag-Leffler theorem \ref{inf_prod:lm:MLTOpen}.
 \end{opomba}
 \begin{proof}
-    Let $A = \bigcup_{k \in \N} \set{a_k} \subseteq \partial{\Omega}$. Let $K_j = \oline{\setb{z \in \Omega \setminus A}{\abs{z} \leq j, d(z, \partial{\Omega  \setminus A}) \geq \frac{1}{j}}}$, which form an exhaustion by compacts. Let $K_j'$ be the compact furnished by the previous lemma for $K_j$. Choose a subsequence $(L_j)_{j \in \N}$ of $(K_j')_{j \in \N}$ that is an exhaustion by compacts, which can be done by the properties of exhaustion, i.\ e.\ for every $K_j'$ there exists $k \in \N$ so that $K_j' \subseteq K_k \subseteq K_k'$ and apply induction.
+    Let $A = \bigcup_{k \in \N} \set{a_k} \subseteq \partial{\Omega}$. Let 
+    \[
+        K_j = \oline{\setb{z \in \Omega \setminus A}{\abs{z} \leq j, d(z, \partial{\Omega  \setminus A}) \geq \frac{1}{j}}},
+    \] which form an exhaustion by compacts. Let $K_j'$ be the compact furnished by the previous lemma for $K_j$. Choose a subsequence $(L_j)_{j \in \N}$ of $(K_j')_{j \in \N}$ that is an exhaustion by compacts, which can be done by the properties of exhaustion, i.\ e.\ for every $K_j'$ there exists $k \in \N$ so that $K_j' \subseteq K_k \subseteq K_k'$ and apply induction.
 
     We may assume $K_1 \cap \oline{A} = \emptyset$. Let $A_n = A \cap (L_{n + 1} \setminus L_n)$. For each $a \in A_n$ the principal part of $q$ is holomorphic in $L_n$. By the approximation with holomorphic functions on $\Omega$, there exists $g \in \mathcal{O}(\Omega)$ such that $\norm{q - g}_{L_n} < \max(1, \abs{A_n}) 2^{- n}$. Then
     \[
