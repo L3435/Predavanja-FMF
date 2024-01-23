@@ -172,8 +172,8 @@ For any set $P \subseteq \C$ denote by $\C_P[z]$ the family of
 rational functions with poles in $P$.
 \end{definicija}
 
-\begin{izrek}[Runge approximation]
-\index{Runge approximation theorem}
+\begin{izrek}[Runge's approximation theorem]
+\index{Runge's!theorem}
 \label{app:thm:runge_app}
 Let $K \subseteq \C$ be a compact. If $P$ intersects every bounded
 connected component of $\C \setminus K$, then for every function
@@ -218,8 +218,8 @@ we find
 \]
 \end{proof}
 
-\begin{izrek}[Runge approximation]
-\index{Runge approximation theorem}
+\begin{izrek}[Runge's approximation theorem]
+\index{Runge's!theorem}
 Let $\Omega \subseteq \C$ be an open subset and let
 $K \subseteq \Omega$ be a compact. If every bounded component of
 $\C \setminus K$ intersects $\C \setminus \Omega$, then for every
@@ -237,7 +237,7 @@ theorem~\ref{app:thm:runge_app}.
 \end{proof}
 
 \begin{posledica}[Runge's little theorem]
-\index{Runge's little theorem}
+\index{Runge's!little theorem}
 Let $K \subseteq \C$ be a compact set such that $\C \setminus K$ is
 connected. Then for every holomorphic function on a neighbourhood
 of $K$ and $\varepsilon > 0$ there exists a polynomial
@@ -254,8 +254,8 @@ Choose $P = \emptyset$ in theorem~\ref{app:thm:runge_app}.
 \datum{2024-1-3}
 
 \begin{definicija}
-Let $V$ be a vector space over $\C$, equipped with a topology. Let
-$T \colon V \to V$ be a linear map.
+Let $V$ be a vector space over $\C$, equipped with a topology, and
+let $T \colon V \to V$ be a linear map.
 
 \begin{enumerate}[i)]
 \item We call $T$ \emph{cyclic}\index{cyclic!map} if there exists
@@ -307,8 +307,8 @@ such that the following conditions hold:
 \]
 \end{enumerate}
 
-Choose $\ell_n$ such that $\dsk(0,n) \cap K_m = \emptyset$ for all
-$m < n$. Then the set
+Choose $\ell_n$ inductively such that $K_n \cap K_m = \emptyset$
+for all $m < n$. Then the set
 \[
 \C \bigsetminus \br{\bigcup_{m=1}^n K_m \cup \dsk(0,n)}
 \]
@@ -316,7 +316,7 @@ is obviously connected. We can now just apply Runge's little
 theorem by choosing the function $0$ on $\dsk(0,n)$ and $K_m$ for
 $m < n$, and
 \[
-\tau^{-\ell_n} \circ p_n - \sum_{k=1}^{n-1}
+\tau^{-\ell_n} \circ p_n - \sum_{k=1}^{n-1} f_k
 \]
 on $K_n$.
 
@@ -339,3 +339,279 @@ is uniformly convergent by the third condition. We now compute
 It follows that we can approximate every rational polynomial with
 iterations $T^n(f)$.
 \end{proof}
+
+\datum{2024-1-10}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be an open subset and
+$K \subseteq \Omega$ a compact subset.
+
+\begin{enumerate}[i)]
+\item For every component $Z$ of $\Omega \setminus K$ we have
+$\Omega \cap \partial{Z} \subseteq K$. If $Z$ is relatively compact
+in $\Omega$, then $\norm{f}_Z \leq \norm{f}_K$ for all
+$f \in \mathcal{O}(\Omega)$.
+\item Every component $Z_0$ of $\C \setminus K$ that is contained
+in $\Omega$ is a component of $\Omega \setminus K$. If $Z_0$ is
+bounded, then $Z_0 \subseteq \Omega$ is relatively compact.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+Let $p$ be a point in $\Omega \cap \partial Z$ that is not in $K$.
+Then there exists a disk $D$, centered at $p$, that is contained in
+$\Omega \setminus K$. Note that every point of $D$ is in the same
+connected components as $p$, which implies $p \in \Int Z$, a
+contradiction.
+
+Suppose now that $Z$ is relatively compact. As
+$\partial Z \subseteq K$, we must have
+\[
+\norm{f}_Z = \norm{f}_{\partial Z} \leq \norm{f}_K
+\]
+by the maximum modulus principle.
+
+For the second item, let $Z_0$ be a component of $\C \setminus K$
+contained in $\Omega$. There must exist a connected component
+$Z_1 \subseteq \Omega \setminus K$ that contains $Z_0$. Since
+$Z_1$ is also a connected domain in $\C \setminus K$, it follows
+that $Z_0 = Z_1$.
+
+Finally, suppose that $Z_0$ is bounded. The closure of $Z_0$ in
+$\C$ is contained in $\Omega$ by the first item. But then it is
+compact as it is bounded and closed in $\Omega$.
+\end{proof}
+
+\begin{izrek}
+Let $\Omega \subseteq \C$ be an open subset and
+$K \subseteq \Omega$ a compact subset. The following statements are
+equivalent:
+
+\begin{enumerate}[i)]
+\item The set $\Omega \setminus K$ has no relatively compact
+components.\label{app:eqthm:1}
+\item Every bounded component of $\C \setminus K$ intersects
+$\C \setminus \Omega$.\label{app:eqthm:2}
+\item Every function, holomorphic in a neighbourhood of $K$, can be
+approximated uniformly on $K$ by rational functions without poles
+in $\Omega$.\label{app:eqthm:3}
+\item Every function, holomorphic in a neighbourhood of $K$, can be
+approximated uniformly by functions, holomorphic in
+$\Omega$.\label{app:eqthm:4}
+\item For every point $p \in \Omega \setminus K$ there exists a
+function $f \in \mathcal{O}(\Omega)$ such that
+$\abs{f(p)} > \norm{f}_K$.\label{app:eqthm:5}
+\item We have
+$\widehat{K}_{\mathcal{O}(\Omega)} = K$.\label{app:eqthm:6}
+\end{enumerate}
+\end{izrek}
+
+\datum{2024-1-16}
+
+\begin{proof}
+As usual, we will prove a sequence of implications.
+
+Suppose first that $\Omega \setminus K$ has no relatively compact
+components. If $Z_0$ is a bounded component of $\C \setminus K$
+that is contained in $\Omega$, then it is also a component of
+$\Omega \setminus K$ and relatively compact in $\Omega$ by the
+previous lemma. This is a clear contradiction,
+therefore~\ref{app:eqthm:1} implies~\ref{app:eqthm:2}.
+    
+From theorem~\ref{app:thm:runge_app} we immediately get that
+statement~\ref{app:eqthm:2} implies~\ref{app:eqthm:3}. Trivially,
+we have that~\ref{app:eqthm:3} implies~\ref{app:eqthm:4}.
+
+Suppose now that~\ref{app:eqthm:4} holds and that the set
+$\Omega \setminus K$ has a relatively compact component $Z$. Choose
+a point $a \in Z$ and consider the function
+$f(z) = \frac{1}{z - a}$. By our assumption, there exists a
+function $g \in \mathcal{O}(\Omega)$ such that
+\[
+\norm{\frac{1}{z - a} - g}_K < \frac{1}{\norm{z-a}_K}.
+\]
+Then $\norm{1 - (z - a)g}_K < 1$. By the previous lemma, we
+conclude
+\[
+\norm{1 - (z - a)g}_Z \leq \norm{1 - (z - a)g}_K < 1,
+\]
+but this is not the case for $z = a$. This
+implies~\ref{app:eqthm:1}.
+
+As~\ref{app:eqthm:5} and~\ref{app:eqthm:6} are equivalent by
+definition, it remains to check that~\ref{app:eqthm:5} is
+equivalent to~\ref{app:eqthm:1}.
+
+Suppose that~\ref{app:eqthm:5} holds and that $Z$ is a relatively
+compact component of $\Omega \setminus K$. As before, we have that
+$\norm{f}_Z \leq \norm{f}_K$ for all functions
+$f \in \mathcal{O}(\Omega)$. In particular, this holds for $f$ from
+the assumption of statement~\ref{app:eqthm:5}, which is again a
+contradiction.
+
+Finally, suppose that $\Omega \setminus K$ has no relatively
+compact components and let $p \in \Omega \setminus K$ be a point.
+Consider the set $\Omega' = \Omega \setminus (K \cup \set{p})$,
+which has the same connected components as $\Omega \setminus K$,
+and are therefore still not relatively compact.\footnote{We did
+remove a point from one of the components, but this property
+remains unchanged.} From the previous arguments, it follows
+that~\ref{app:eqthm:4} holds for $\Omega'$. In particular, let $g$
+be a holomorphic function, defined on a neighbourhood of
+$K \cup \set{p}$, with $\eval{g}{K}{} = 0$ and $g(p) = 1$. Thus
+there exist a function $h \in \mathcal{O}(\Omega)$ such that
+\[
+\norm{g - h}_{K \cup p} < \frac{1}{2}.
+\]
+Then $\norm{h}_K < \frac{1}{2} < \abs{h(p)}$, which is exactly the
+statement~\ref{app:eqthm:5}.
+\end{proof}
+
+\begin{lema}
+Let $\Omega \subseteq \C$ be an open subset and
+$K \subseteq \Omega$ a compact subset. Then there exists a compact
+set $K'$ with $K \subseteq K' \subseteq \Omega$, such that every
+bounded component of $\C \setminus K'$ intersects
+$\C \setminus \Omega$ and contains a compact component of
+$\C \setminus \Omega$.
+\end{lema}
+
+\begin{proof}
+For the case $\Omega = \C$, we can take $K' = \oline{\dsk(0,r)}$,
+where $r$ is large enough so that $K \subseteq K'$. Suppose then
+that $\Omega \ne \C$. Choose
+$0 < \rho < d(K, \partial \Omega) = d(K, \C \setminus \Omega)$ and
+let
+\[
+M = \setb{z \in \Omega}{d(z, \C \setminus \Omega) \geq \rho}.
+\]
+Choose $r > 0$ such that $K \subseteq \oline{\dsk(0,r)}$ and set
+$K' = M \cap \oline{\dsk(0,r)}$, which is clearly compact,
+contained inside $\Omega$, and contains $K$. It remains to prove
+the statement about the bounded components.
+
+Let $Z$ be a bounded component of $\C \setminus K'$. Note that
+$\C \setminus K' =
+\br{\C \setminus M} \cup \br{\C \setminus \oline{\dsk(0,r)}}$. As
+$Z$ is bounded, it must then be contained in $\C \setminus M$, as
+$\C \setminus \oline{\dsk(0,r)}$ is connected and unbounded.
+
+We can rewrite
+\[
+\C \setminus M = \bigcup_{w \in \C \setminus \Omega} \dsk(w, \rho)
+\]
+by the definition of $M$. For each such disk, we either have
+$\dsk(w, \rho) \subseteq Z$ or $\dsk(w, \rho) \cap Z = \emptyset$.
+Thus we can write
+\[
+Z = \bigcup_{w \in Z \setminus \Omega} \dsk(w, \rho).
+\]
+In particular, $Z$ intersects $\C \setminus \Omega$. Let $S$ be the
+component of $\C \setminus \Omega$ that $Z$ intersects. As
+$\C \setminus \Omega \subseteq \C \setminus K'$, $S$ is also
+connected in $\C \setminus K'$. As $Z$ is a maximal connected
+subset, we conclude that $S \subseteq Z$, as desired.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open subset. We call every bounded
+component of $\C \setminus \Omega$ a \emph{hole}\index{hole} of
+$\Omega$.
+\end{definicija}
+
+\begin{opomba}
+If $K$ is the Cantor set, then $\Omega = \C \setminus K$ has
+uncountably many holes.
+\end{opomba}
+
+\begin{izrek}[Runge's theorem for rational approximations]
+\index{Runge's!theorem}
+Let $\Omega \subseteq \C$ be an open set and
+$P \subseteq \C \setminus \Omega$ a set such that $\oline{P}$
+intersects every hole of $\Omega$. Then $\C_P[z]$ is dense in
+$\mathcal{O}(\Omega)$.
+\end{izrek}
+
+\begin{proof}
+Let $K \subseteq \Omega$ be compact subset. Construct $K'$ as in
+the previous lemma. Then $\oline{P}$ intersects every bounded
+component of $\C \setminus K'$. We can thus apply
+theorem~\ref{app:thm:runge_app} for the compact $K'$.
+\end{proof}
+
+\begin{posledica}[Runge's theorem for polynomial approximation]
+\index{Runge's!theorem}
+If $\Omega$ has no holes then $\C[z]$ is dense in
+$\mathcal{O}(\Omega)$.
+\end{posledica}
+
+\begin{proof}
+Take $P = \emptyset$.
+\end{proof}
+
+\begin{izrek}[Mittag-Leffler for open subsets]
+\index{Mittag-Leffler!theorem}
+Let $\Omega \subseteq \C$ be an open subset. Let $(a_k, q_k)_k$ be
+a distribution of principal parts in $\Omega$ and
+$A = \setb{a_k}{k \in \N}$. Then there exists a Mittag-Leffler
+series for $(a_k, q_k)$ that converges normally in
+$\C \setminus A'$ where $A' = \oline{A} \setminus A$.
+\end{izrek}
+
+\begin{proof}
+This is the same theorem as~\ref{inf_prod:lm:MLTOpen}. We present
+another proof using Runge's approximation theorem.
+
+First note that $A' \subseteq \partial \Omega$. Let 
+\[
+K_j =
+\oline{\setb{z \in \Omega}
+{\abs{z} \leq j \land d(z, \partial \Omega) \geq \frac{1}{j}}},
+\]
+which form an exhaustion by compacts. Let $K_j'$ be the compact
+furnished by the previous lemma for $K_j$. Choose a subsequence
+$(L_j)_j$ of $(K_j')_j$ that is an exhaustion by compacts, which
+can be done by the properties of exhaustion, i.e.~for every $K_j'$
+there exists some $k \in \N$ so that
+$K_j' \subseteq K_k \subseteq K_k'$.
+
+We may assume $K_1 \cap \oline{A} = \emptyset$. Let
+$A_n = A \cap (L_{n + 1} \setminus L_n)$. For each $a \in A_n$ the
+principal part of $q$ is holomorphic in $L_n$. By Runge's theorem,
+there exists a function $g \in \mathcal{O}(\Omega)$ such that
+\[
+\norm{q - g}_{L_n} < \frac{1}{2^n \cdot \abs{A_n}}.
+\]
+Then
+\[
+\sum_{n=1}^\infty \norm{q_n - g_n}_{L_n} \leq
+\sum_{n=1}^\infty 2^{-n} = 1,
+\]
+thus the series converges uniformly on compacts, as each compact
+subset is contained in all but finitely many $L_n$.
+\end{proof}
+
+\begin{definicija}
+A pair of sets $(\Omega, \Omega')$ is a
+\emph{Runge pair}\index{Runge pair} if for every function
+$f \in \mathcal{O}(\Omega)$, $\varepsilon > 0$ and compact
+$K \subseteq \Omega$ there exists a function
+$F \in \mathcal{O}(\Omega')$ such that
+\[
+\norm{f - F}_K < \varepsilon.
+\]
+\end{definicija}
+
+\begin{izrek}
+Let $\Omega \subseteq \Omega' \subseteq \C$ be open sets. The
+following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The set $\Omega' \setminus \Omega$ has no compact components.
+\item The set $\C_P[z]$ with $P = \C \setminus \Omega'$ is dense in
+$\mathcal{O}(\Omega)$.
+\item The pair $(\Omega, \Omega')$ is a Runge pair.
+\item The set $\Omega' \setminus \Omega$ contains no non-empty open
+compact set.
+\end{enumerate}
+\end{izrek}

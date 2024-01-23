@@ -921,9 +921,9 @@ faktorizacijo.''} but $\gcd(f, g) \in \mathcal{O}(\Omega)$ exists.
 
 \begin{definicija}
 Let $\Omega$ be an open subset and $\set{a_k}_k$ be a sequence
-without accumulation pints and without repetition. Let
+without accumulation points and without repetitions. Let
 \[
-q_k(z) = \sum_{n=1}^\infty c_{k, m} (z - a)^{-m}
+q_k(z) = \sum_{m=1}^\infty c_{k, m} (z - a)^{-m}
 \]
 be a principal part in $a_k$ for each $k$.
 
@@ -934,11 +934,11 @@ such that
 \]
 converges normally in $\Omega$, we call it the
 \emph{Mittag-Leffler series}\index{Mittag-Leffler!series} for the
-distribution of principal part $(a_k, q_k)$.
+distribution of principal parts $(a_k, q_k)$.
 \end{definicija}
 
 \begin{opomba}
-We adopt the following conventions: If $0 \in \set{a_k}_k$, then
+We adopt the following convention: If $0 \in \set{a_k}_k$, then
 $a_1 = 0$.
 \end{opomba}
 
@@ -952,7 +952,8 @@ corresponding Mittag-Leffler series.
 \begin{proof}
 Let $g_k$ be the Taylor series of $q_k$ about $0$ in the disk
 $\dsk(\abs{a_k})$ such that the inequality
-$\norm{q_k - g_k} < 2^{-k}$ holds for each $k \geq 2$. Note that
+$\norm{q_k - g_k}_{\oline{\dsk(\frac{1}{2} \abs{a_k})}} < 2^{-k}$
+holds for each $k \geq 2$. Note that
 \[
 \lim_{k \to \infty} \abs{a_k} = \infty
 \]
@@ -980,7 +981,7 @@ $\setb{z \in \C}{\abs{z - b} > \abs{a - b}}$ of the form
 \[
 q(z) = \sum_{m=1}^\infty c_m (z-b)^{-m}
 \]
-that converges uniformly for $\abs{z - b} > r > \abs{a - b}$.
+that converges uniformly for $\abs{z - b} \geq r > \abs{a - b}$.
 \end{lema}
 
 \begin{proof}
@@ -992,7 +993,7 @@ c_m =
 \]
 for $m \in \Z$ suffice. We can estimate
 \[
-\abs{c_m} \geq
+\abs{c_m} \leq
 \frac{1}{2 \pi} \cdot 2 \pi \frac{\norm{q}_{\gamma_r}}{r^{- m}} =
 \frac{\norm{q}_{\gamma_r}}{r^{-m}}.
 \]
@@ -1079,10 +1080,10 @@ Therefore, we can use the previous estimate on $L$, to get
 \label{inf_prod:lm:MLTOpen}
 \index{Mittag-Leffler!theorem}
 Let $\Omega \subseteq \C$ be an open subset. Let $(a_k, q_k)_k$ be
-a distribution of principal parts in $\Omega \subseteq$ and
+a distribution of principal parts in $\Omega$ and
 $A = \setb{a_k}{k \in \N}$. Then there exists a Mittag-Leffler
 series for $(a_k, q_k)$ that converges normally in
-$\C \subseteq A' = \oline{A} \setminus A$.
+$\C \setminus A'$ where $A' = \oline{A} \setminus A$.
 \end{izrek}
 
 \begin{proof}
@@ -1099,7 +1100,7 @@ finite. Hence, there exist $(b_k)_k \in A'$ such that
 \]
 We can apply lemma~\ref{inf_prod:lm:sufficientForML} to obtain a
 Mittag-Leffler series. Now we apply
-theorem~\ref{inf_prod:thm:MLforC} for $\C$ to $A_1$. Sum up this
+theorem~\ref{inf_prod:thm:MLforC} for $\C$ to $A_1$. Sum up these
 two series to get the series from the statement.
 \end{proof}
 
