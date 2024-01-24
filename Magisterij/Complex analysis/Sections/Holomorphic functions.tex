@@ -1,5 +1,9 @@
 \section{Holomorphic functions}
 
+\epigraph{``This was a lemma. Now we will look at a theorem, which
+is called a lemma.''} {-- viš.~znan.~sod.~dr.~Rafael Benedikt
+Andrist}
+
 \subsection{Properties of holomorphic functions}
 
 \datum{2023-10-3}
@@ -7,7 +11,7 @@
 \begin{definicija}
 Let $\Omega \subseteq \C$ be an open subset. A function
 $f \colon \Omega \to \C$ is
-\emph{complex differentiable}\index{function!complex differentiable}
+\emph{complex differentiable}\index{complex differentiable function}
 in a point $a \in \Omega$ if the limit
 \[
 \lim_{z \to a} \frac{f(z) - f(a)}{z - a}
@@ -49,11 +53,11 @@ In that case, we also have
 \begin{definicija}
 Let $\Omega \subseteq \C$ be an open subset. A function
 $f \colon \Omega \to \C$ is
-\emph{holomorphic in $a$}\index{function!holomorphic} if it is
-complex differentiable in an open neighbourhood of $a$. The
-function $f$ is \emph{holomorphic} if it is holomorphic in every
-point of $\Omega$. We denote the set of holomorphic functions in
-$\Omega$ as $\mathcal{O}(\Omega)$.
+\emph{holomorphic in $a$}\index{holomorphic} if it is complex
+differentiable in an open neighbourhood of $a$. The function $f$ is
+\emph{holomorphic} if it is holomorphic in every point of $\Omega$.
+We denote the set of holomorphic functions in $\Omega$ as
+$\mathcal{O}(\Omega)$.
 \end{definicija}
 
 \begin{izrek}[Inhomogeneous Cauchy integral formula]
@@ -324,7 +328,7 @@ which exists. Uniqueness follows from the identity theorem.
 \end{proof}
 
 \begin{izrek}[Schwarz lemma]
-\index{Schwarz!lemma}
+\index{Schwarz lemma}
 Let $f \colon \dsk \to \dsk$ be a holomorphic function with
 $f(0) = 0$. Then, $\abs{f'(0)} \leq 1$ and the inequality
 $\abs{f(z)} \leq \abs{z}$ holds for all $z \in \dsk$. If
@@ -820,7 +824,8 @@ $\delta > 0$ such that $\delta < \rho$ and
 $\abs{F_n(z) - F_n(w)} < \frac{\varepsilon}{3}$ for all
 $z, w \in \dsk(p, \rho)$ such that $\abs{z-w} < \delta$. Choose an
 element $a \in A \cap \dsk(z, \delta)$.\footnote{By compactness of
-$\oline{\dsk(p, \rho)}$ we can choose $a$ from a finite set.} Then,we have
+$\oline{\dsk(p, \rho)}$ we can choose $a$ from a finite set.}
+Then,we have
 \[
 \abs{F_n(z) - F_m(z)} \leq
 \abs{F_n(z) - F_n(a)} +

@@ -1,5 +1,9 @@
 \section{Approximation of holomorphic functions}
 
+\epigraph{``Tomorrow we will look at the pole shifting lemma, which
+allows us to move the poles away.''}
+{-- viš.~znan.~sod.~dr.~Rafael Benedikt Andrist}
+
 \subsection{Runge's little theorem}
 
 \datum{2023-12-19}
@@ -251,6 +255,10 @@ $q \in \C[z]$ such that
 Choose $P = \emptyset$ in theorem~\ref{app:thm:runge_app}.
 \end{proof}
 
+\newpage
+
+\subsection{Applications of Runge's little theorem}
+
 \datum{2024-1-3}
 
 \begin{definicija}
@@ -339,6 +347,208 @@ is uniformly convergent by the third condition. We now compute
 It follows that we can approximate every rational polynomial with
 iterations $T^n(f)$.
 \end{proof}
+
+\datum{2024-1-9}
+
+\begin{definicija}
+Let $X$ and $Y$ be topological spaces and $f \colon X \to Y$ a map.
+We call $f$ \emph{proper}\index{proper map} if for every compact
+set $K \subseteq Y$ its preimage $f^{-1}(K)$ is also compact.
+\end{definicija}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open set. A map
+$f \colon \Omega \to \C^n$  is
+\emph{holomorphic}\index{holomorphic} if every component is
+holomorphic.
+\end{definicija}
+
+\begin{opomba}
+If $\Omega \subseteq \C$ is a bounded domain, a continuous map
+$f \colon \Omega \to \C^n$ is proper if and only if for every
+sequence $(z_n)_n$ with limit $z \in \partial \Omega$ we have
+\[
+\lim_{n \to \infty} \norm{f(z_n)} = \infty.
+\]
+\end{opomba}
+
+\begin{definicija}
+A \emph{horseshoe compact}\index{horseshoe compact} is the set
+\[
+A(r,R) \setminus T,
+\]
+where $A(r,R)$ is a closed annulus with $r < R < 1$ and $T$ is an
+open triangle with vertices $1$, $i \varepsilon$ and
+$-i \varepsilon$.
+\end{definicija}
+
+\begin{lema}
+Let $K_n$ be a sequence of horseshoe compacts that approximate the
+boundary of $\dsk$ away from $1$. Then there exists some
+$f \in \mathcal{O}(\dsk)$ such that
+\[
+\min_{z \in K_n} \abs{f(z)} \geq 2^n.
+\]
+
+\begin{figure}[!ht]
+\centering
+\begin{asy}
+size(7cm);
+real EPS = 0.2;
+path horseshoe(real r, real R){
+	pair X = intersectionpoint(circle(0,r),(0,EPS)--(1,0));
+	pair Y = intersectionpoint(circle(0,R),(0,EPS)--(1,0));
+	pair Z = intersectionpoint(circle(0,R),(0,-EPS)--(1,0));
+	pair W = intersectionpoint(circle(0,r),(0,-EPS)--(1,0));
+	return arc(0,Y,Z)--reverse(arc(0,X,W))--cycle;
+}
+draw(circle(0,1));
+label(Label("$\dsk$", Relative(0.125)), circle(0,1));
+path[] p;
+real[] radii = {0.3, 0.5, 0.6, 0.75, 0.8, 0.9, 0.94, 0.97};
+for(int t = 0; t < radii.length - 1; t += 2){
+	p = p ^^ horseshoe(radii[t], radii[t+1]);
+}
+filldraw(p, cyan+opacity(0.2), blue);
+\end{asy}
+\caption{A sequence of horseshoe compacts}
+\end{figure}
+\end{lema}
+
+\begin{proof}
+Choose a sequence of disks $(V_n)_n$ such that
+\[
+\bigcup_{i=1}^{n-1} K_i \subset V_n,
+\]
+$V_{n-1} \subset V_n \subset \dsk$, $K_n \cap V_n \ne \emptyset$
+and
+\[
+\bigcup_{n=1}^\infty V_n = \dsk.
+\]
+We now inductively construct a sequence of polynomials. Choose
+$p_0(z) = 69$. For $p_n$, we choose a polynomial with
+\[
+\norm{p_n}_{V_n} < 2^{-n}
+\quad \text{and} \quad
+\min_{z \in K_n} \br{\abs{\sum_{i=0}^n p_i(z)}} \geq 2^n + 1.
+\]
+This can be done by Runge's little theorem. We can now take
+\[
+f(z) = \sum_{n=0}^\infty p_n(z),
+\]
+which converges normally on $\dsk$. We indeed have
+\[
+\abs{f(z)} \geq
+\abs{\sum_{i=0}^n p_i(z)} - \sum_{i=n+1}^\infty \abs{p_i(z)} \geq
+2^n
+\]
+for $z \in K_n$.
+\end{proof}
+
+\begin{izrek}
+There exists a proper holomorphic embedding\footnote{Injective
+immersion.} $F \colon \dsk \to \C^3$.
+\end{izrek}
+
+\begin{proof}
+Take
+\[
+F(z) = \br{f(z), g(z), \frac{1}{1-z}},
+\]
+where $f$ and $g$ are as in the above lemma for alternating
+sequences of horseshoe compacts. This map is clearly proper.
+\end{proof}
+
+\begin{opomba}
+We can holomorphically embed the unit disk into $\C^2$.
+\end{opomba}
+
+\begin{izrek}
+There exists a sequence $(p_n)_n$ of polynomials such that the
+following conditions hold:
+
+\begin{enumerate}[i)]
+\item We have
+\[
+\lim_{n \to \infty} p_n(z) =
+\begin{cases}
+1, & z  =  0, \\
+0, & z \ne 0.
+\end{cases}
+\]
+\item For all $k \geq 1$ and $z \in \C$, we have
+\[
+\lim_{n \to \infty} p_n^{(k)}(z) = 0.
+\]
+\item The sequence $\br{p_n^{(k)}}_n$ converges uniformly on
+compacts of $\C \setminus \R_{\geq 0}$, but does not converge
+uniformly on any neighbourhood of any point in $\R_{\geq 0}$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Define
+\[
+I_n =
+\setb{z \in \oline{\dsk \br{n}}}
+{d \br{z, \R_{\geq 0}} \geq \frac{1}{n}}
+\]
+and
+\[
+K_n = \set{0} \cup \left[\frac{1}{n}, n \right] \cup I_n.
+\]
+Choose disjoint rectangular neighbourhoods $R_n$ of $0$ and $S_n$
+of $\left[\frac{1}{n}, n \right]$, which are also disjoint with
+$I_{n+1}$. Now define
+\[
+g_n(z) =
+\begin{cases}
+1, & z \in R_n,              \\
+0, & z \in S_n \cup I_{n+1}.
+\end{cases}
+\]
+As $\C \setminus \br{I_n \cup R_n \cup S_n}$ is connected, we can
+apply Runge's little theorem to find a polynomial $p_n \in \C[z]$
+with
+\[
+\norm{p_n - q_n}_{I_n \cup R_n \cup S_n} < \frac{1}{n^n}.
+\]
+It is clear that such a sequence of polynomials satisfies the first
+condition. For any $k > 0$, Cauchy estimates give us
+\[
+\norm{p_n^{(k)}}_{I_{n-1}} =
+\norm{p_n^{(k)} - q_n^{(k)}}_{I_{n-1}} \leq
+\norm{p_n - q_n}_{I_n} \cdot
+\frac{k!}{\br{\frac{1}{n(n-1)}}^k} \leq
+\frac{k!}{n^n} \cdot (n(n-1))^k,
+\]
+which converges to $0$. The second condition is hence satisfied as
+well. As $(I_n)_n$ exhausts $\C \setminus \R_{\geq 0}$, the
+sequences of derivatives converge uniformly on this set.
+
+Suppose now that $\br{p_n^{(k)}}_n$ converges uniformly on some
+neighbourhood $U$ of a point in $\R_{\geq 0}$. It follows
+(inductively) that the sequence $\br{p_n}_n$ converges uniformly on
+$U$ as well. If $0 \in U$, this is clearly a contradiction, as the
+limit function is not even continuous. Otherwise, let
+$z_0 \in U \cap \R^+$. It is clear that the sequence $\br{p_n}_n$
+converges uniformly on $\dsk(\abs{z_0})$. By the maximum principle,
+it converges uniformly on $\dsk(\abs{z_0})$ as well, which is again
+a contradiction.
+\end{proof}
+
+\begin{definicija}
+Let $\Omega \subseteq \C$ be an open set and $K \subseteq \Omega$
+be a compact. The
+\emph{$\mathcal{O}(\Omega)$-convex hull}\index{O(Omega)-convex hull@$\mathcal{O}(\Omega)$-convex hull}
+of $K$ is the set
+\[
+\widehat{K}_{\mathcal{O}(\Omega)} =
+\setb{z \in \Omega}
+{\forall f \in \mathcal{O}(\Omega) \colon
+\abs{f(z)} \leq \norm{f}_K}.
+\]
+\end{definicija}
 
 \datum{2024-1-10}
 
@@ -602,6 +812,27 @@ $F \in \mathcal{O}(\Omega')$ such that
 \]
 \end{definicija}
 
+\datum{2024-1-17}
+
+\begin{izrek}[Šura-Bura]
+Every compact connected component $K$ of a locally compact
+Hausdorff space $X$ has a neighbourhood basis consisting of open
+compact sets in $X$.
+\end{izrek}
+
+\begin{lema}Let $\Omega \subseteq \Omega' \subseteq \C$ be open
+sets.
+
+\begin{enumerate}[i)]
+\item Every component of $Z$ of $\C \setminus \Omega$ with
+$Z \subset \Omega'$ is a component of $\Omega' \setminus \Omega$.
+\item For every open compact set
+$K \subseteq \Omega' \setminus \Omega$ there exists a relatively
+compact open set $V \subseteq \Omega'$ such that $K \subseteq V$
+and $\partial V \subseteq \Omega$.
+\end{enumerate}
+\end{lema}
+
 \begin{izrek}
 Let $\Omega \subseteq \Omega' \subseteq \C$ be open sets. The
 following statements are equivalent:
@@ -615,3 +846,38 @@ $\mathcal{O}(\Omega)$.
 compact set.
 \end{enumerate}
 \end{izrek}
+
+\begin{proof}
+Suppose first that $\Omega' \setminus \Omega$ has no compact
+components and set
+$P = \C \setminus \Omega' \subseteq \C \setminus \Omega$. If
+$Z \subseteq \C \setminus \Omega$ with $Z \subseteq \Omega'$ is a
+component, it is also a component of $\Omega' \setminus \Omega$ by
+the previous lemma. The set $Z$ therefore can't be compact. It
+follows that every component either intersects $P$ or is unbounded.
+By Runge's theorem for rational approximations, the set $\C_P[z]$
+is dense in $\mathcal{O}(\Omega)$.
+
+Note that the second statement implies the third by definition.
+
+Suppose now that $(\Omega, \Omega')$ is a Runge pair and consider
+an open compact set $K \subseteq \Omega' \setminus \Omega$ and
+$a \in K$. Take the function $z \mapsto \frac{1}{z-a}$. By
+definition of a Runge pair, we can find a sequence of holomorphic
+functions $(g_n)_n \subseteq \mathcal{O}(\Omega')$ such that
+\[
+\lim_{n \to \infty} \norm{g_n - \frac{1}{z-a}}_{\partial V} = 0,
+\]
+where $V$ is chosen as in the above lemma. As $\partial V$ is
+bounded, this implies
+\[
+\lim_{n \to \infty} \norm{g_n(z) \cdot (z-a) - 1}_{\partial V} = 0.
+\]
+By the maximum principle, we actually have
+\[
+\lim_{n \to \infty} \norm{g_n(z) \cdot (z-a) - 1}_V = 0,
+\]
+which gives a contradiction for $z=a$.
+
+The last implication follows from Šura-Bura's theorem.
+\end{proof}
