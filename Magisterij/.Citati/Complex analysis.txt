@@ -23,3 +23,6 @@
 
 "So... you make a hamburger."
  - asist. dr. Riccardo Ugolini, 15. 1. 2024
+
+"This is not a planar graph."
+ - viš. znan. sod. dr. Rafael Benedikt Andrist, 17. 01. 2024

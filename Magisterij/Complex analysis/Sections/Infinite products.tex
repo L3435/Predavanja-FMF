@@ -38,7 +38,7 @@ The limit is uniquely defined.
 \begin{opomba}
 An infinite product is convergent if and only if the product of all
 its non-zero factors has a non-zero limit and only finitely many
-factors are non-zero.
+factors are zero.
 \end{opomba}
 
 \datum{2023-11-22}
@@ -332,7 +332,7 @@ is normally convergent in $\Omega$ and
 \begin{proof}
 As $\widehat{f}_n$ converges to $1$ uniformly on compacts, the
 sequence $\br{f_n'}_n$ converges to $0$ uniformly on compacts by
-Cauchy estimates. Then for any compact $L$,
+Cauchy estimates. Then, for any compact $L$,
 $\frac{\widehat{f}_n'}{\widehat{f}_n}$ converges to $0$ as
 $\widehat{f}_n$ has no zeroes in $L$ for $n$ large enough. It
 follows that
@@ -377,8 +377,8 @@ Then $g(z) = \pi \cdot \cot(\pi z)$.
 \begin{proof}
 Simple calculations show that $\pi \cdot \cot(\pi z)$ is indeed a
 solution of the functional equation. Define
-$h(z) = g(z) - \pi \cdot \cot(\pi z)$. This another solution of the
-functional equation, and an odd function. In particular,
+$h(z) = g(z) - \pi \cdot \cot(\pi z)$. This is another solution of
+the functional equation, and an odd function. In particular,
 $h(0) = 0$. Observe that the principal parts of $h$ are $0$,
 therefore $h \in \mathcal{O}(\C)$ is an entire function.
 
@@ -413,8 +413,8 @@ Note that
 \frac{1}{z} + \sum_{k=1}^\infty \br{\frac{1}{z-k} + \frac{1}{z+k}},
 \]
 therefore the series has poles in $\Z$ with principal parts
-$\frac{1}{z-m}$. It is also an odd function. A calculation shows
-that, for
+$\frac{1}{z-m}$. It is also an odd function. A direct calculation
+shows that, for
 \[
 r_n(z) = \frac{1}{z} + \sum_{k=1}^n \frac{2z}{z^2 - k^2},
 \]
@@ -630,7 +630,7 @@ on the strip $1 \leq \Re(z) < 2$ and $F(1) = 1$. Then $F = \Gamma$.
 The \emph{Weierstraß factors}\index{Weierstraß!factors} are
 functions
 \[
-E_n(z) = (1-z) \cdot \exp \br{\sum_{\ell=1}^n \frac{z^n}{n}}.
+E_n(z) = (1-z) \cdot \exp \br{\sum_{\ell=1}^n \frac{z^\ell}{\ell}}.
 \]
 \end{definicija}
 
@@ -640,7 +640,7 @@ The Weierstraß factors satisfy the following:
 \begin{enumerate}[i)]
 \item For $n \geq 1$ we have
 \[
-E_n'(z) = -z^n \cdot \exp \br{\sum_{\ell=1}^n \frac{z^n}{n}}.
+E_n'(z) = -z^n \cdot \exp \br{\sum_{\ell=1}^n \frac{z^\ell}{\ell}}.
 \]
 \item For $n \geq 0$ we have
 \[
@@ -683,7 +683,7 @@ then
 \begin{lema}
 Let $(a_k)_k \subset \C^*$ be a sequence of complex numbers with no
 accumulation point and let $(p_k)_k \subseteq \N_0$ be non-negative
-integers with
+integers such that
 \[
 \sum_{k=1}^\infty \abs{\frac{r}{a_k}}^{p_k+1}
 \]
@@ -973,7 +973,7 @@ $k \geq n$. Then
 
 \begin{opomba}
 The above series
-$f \in \mathcal{O}(\C \setminus \set{a_1, a_2, \dots})$ with
+$f \in \mathcal{O}(\C \setminus \set{a_1, a_2, \dots})$ has
 principal parts $q_k$ in $a_k$ for each $k \in \N$. If the
 principal part are finite, then $f \in \mathcal{M}$.
 \end{opomba}
@@ -1066,7 +1066,7 @@ $A'$ is strictly positive. Since
 \[
 \lim_{k \to \infty} \abs{a_k - b_k} = 0,
 \]
-the point $b_k$ must lie outside $L$ for large enough $k$. Thus,
+the points $b_k$ must lie outside $L$ for large enough $k$. Thus,
 there exists some $n(L) \in \N$ such that
 \[
 L \subseteq

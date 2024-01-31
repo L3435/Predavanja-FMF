@@ -28,12 +28,15 @@ $v(z)^2 = z-p$. Note that $v$ is injective. Similarly, we have
 $v(\Omega) \cap -v(\Omega) = \emptyset$. Now choose a point
 $b \in -v(\Omega)$. As $v$ is not constant, it is an open map.
 Therefore, there exists some $r > 0 $ such that
-$\dsk(b, r) \cap v(\Omega) = \emptyset$. The Möbius transformation
+$\oline{\dsk(b, r)} \cap v(\Omega) = \emptyset$. The Möbius
+transformation
 \[
-h(w) = r \cdot \br{\frac{1}{w-b} - \frac{1}{v(a)-b}}
+h(w) = \frac{r}{w-b}
 \]
 thus maps $v(\Omega)$ into $\dsk$. The map $f$ is therefore given
-as $f = h \circ v$.
+as $f = \varphi \circ h \circ v$, where
+$\varphi \colon \dsk \to \dsk$ is a disk automorphism that sends
+$h(v(a))$ to $0$.
 \end{proof}
 
 \begin{definicija}
@@ -127,7 +130,7 @@ and $f \ne 0$, then $f$ is nowhere vanishing.
 
 \begin{izrek}[Hurwitz]
 \index{Hurwitz!theorem}
-Let $\Omega, \Omega' \subseteq \Omega$ be domains and
+Let $\Omega$ and $\Omega' \subseteq \Omega$ be domains and
 $f_n \colon \Omega \to \Omega'$ be holomorphic functions that
 converge uniformly on compacts of $\Omega$ to
 $f \colon \Omega \to \Omega'$. Assume that $f$ is not constant.
@@ -287,12 +290,11 @@ It follows that
 \abs{tz} \cdot \frac{\norm{f'}_{\dsk(a,r)}}{r - \abs{tz}}\,dt
 \\
 &\leq
-\abs{z}^2 \cdot \norm{f'}_{\dsk(a,r)} \cdot \int_0^1
-t \cdot \frac{1}{r - \abs{z}}
+\abs{z}^2 \cdot 2 \abs{f'(0)} \cdot \int_0^1
+t \cdot \frac{1}{r - \abs{z}}\,dt
 \\
-&=
-\abs{z}^2 \cdot
-2 \frac{\abs{f'(0)}}{r - \abs{z}}.
+&\leq
+\abs{z}^2 \cdot \frac{\abs{f'(0)}}{r - \abs{z}}.
 \end{align*}
 Now, using the triangle inequality, we get
 \[
@@ -303,7 +305,7 @@ Let $\abs{z} = \rho \in (0, r)$. We get
 \abs{f(z)} \geq
 \rho \cdot \abs{f'(0)} - \abs{A(z)} \geq
 \rho \cdot \abs{f'(0)} -
-\frac{\rho^2}{r - \rho} \cdot \abs{f'(0)} \geq
+\frac{\rho^2}{r - \rho} \cdot \abs{f'(0)} =
 \abs{f'(0)} \cdot \br{\rho - \frac{\rho^2}{r - \rho}}.
 \]
 Note that there exists a $\rho_0$ such that
@@ -331,7 +333,7 @@ radius $\frac{3}{2} - \sqrt{2}$.
 Define $h(z) = \abs{f'(z)} (1-\abs{z}) \geq 0$. Not that
 $h \not \equiv 0$ as $f$ is not constant. Therefore $h$ attains a
 maximum in a point $p \in \oline{\dsk}$. In particular, as
-$\eval{h}{\partial \dsk}{} = 0$, we have $p \in \dsk$. Observe
+$\eval{h}{\partial \dsk}{} = 0$, we have $p \in \dsk$. Consider
 $\Omega = \dsk \br{p, t}$ for
 $t = \frac{1}{2} \cdot (1 - \abs{p})$.
 For all $z \in \Omega$, we have $1 - \abs{z} \geq t$ and
@@ -452,7 +454,7 @@ Now note that
 &\leq \ln(4)
 \\
 &<
-\pi.
+\sqrt{3}.
 \end{align*}
 It's straightforward to check that every disk of radius $1$
 intersects $A$. \qedhere
@@ -627,7 +629,8 @@ $\abs{z} < \theta$ we have
 
 \begin{proof}
 Let $g$ be a holomorphic function as in the previous theorem. Note
-that $\abs{\cos(w)} \leq e^{\abs{w}}$. We must therefore also have
+that, for all $w \in \C$, the inequality
+$\abs{\cos(w)} \leq e^{\abs{w}}$ holds. We must therefore also have
 \[
 \frac{1}{2} \cdot \abs{1 + \cos(w)} \leq e^{\abs{w}}.
 \]
