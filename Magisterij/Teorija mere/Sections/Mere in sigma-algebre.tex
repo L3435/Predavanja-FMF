@@ -1,0 +1,211 @@
+\section{Mere in \texorpdfstring{$\sigma$}{sigma}-algebre}
+
+\subsection{\texorpdfstring{$\sigma$}{Sigma}-algebre in Borelove množice}
+
+\datum{2024-2-19}
+
+\begin{definicija}
+Naj bo $X$ neprazna množica. Družina $\mathcal{A}$ podmnožic $X$ je
+\emph{$\sigma$-algebra}\index{sigma-algebra@$\sigma$-algebra}, če
+ima naslednje lastnosti:
+
+\begin{enumerate}[i)]
+\item Velja $X \in \mathcal{A}$.
+\item Če je $A \in \mathcal{A}$, je tudi
+$A^{\mathsf{c}} \in \mathcal{A}$.
+\item Če je $\br{A_n}_{n \in \N} \subseteq \mathcal{A}$, je tudi
+\[
+\bigcup_{n \in \N} A_n \in \mathcal{A}.
+\]
+\end{enumerate}
+
+Pravimo, da je $(X, \mathcal{A})$
+\emph{merljiv prostor}\index{merljiv prostor}.
+\end{definicija}
+
+\begin{opomba}
+Velja tudi $\emptyset \in \mathcal{A}$, poleg tega pa $\mathcal{A}$
+vsebuje vse števne preseke svojih elementov.
+\end{opomba}
+
+\begin{trditev}
+Naj bo $\mathcal{B}$ družina podmnožic neprazne množice $X$. Tedaj
+je presek vseh $\sigma$-algeber, ki vsebujejo $\mathcal{B}$,
+$\sigma$-algebra. Označimo jo s $\sigma(B)$.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+Naj bo $(X, \tau)$ topološki prostor.
+\emph{Borelova $\sigma$-algebra}\index{Borelova sigma-algebra@Borelova $\sigma$-algebra}
+prostora $X$ je $\sigma$-algebra $\mathcal{B}_X = \sigma(\tau)$.
+\end{definicija}
+
+\begin{trditev}
+Borelova $\sigma$-algebra na $\R$ je generirana z vsako od množic
+\begin{align*}
+&\setb{(a,b)}{a < b}, &
+&\setb{[a,b]}{a < b}, &
+&\setb{(a,b]}{a < b}, &
+&\setb{[a,b)}{a < b}, \\
+&\setb{(a,\infty)}{a \in \R}, &
+&\setb{(\infty,b)}{b \in \R}, &
+&\setb{[a,\infty)}{a \in \R}, &
+&\setb{(\infty,b]}{b \in \R}.
+\end{align*}
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Pozitivne mere}
+
+\begin{definicija}
+Naj bo $(X, \mathcal{A})$ merljiv prostor. Preslikava
+$\mu \colon \mathcal{A} \to [0, \infty]$ je
+\emph{pozitivna mera}\index{pozitivna mera}, če velja naslednje:
+
+\begin{enumerate}[i)]
+\item Velja $\mu(\emptyset) = 0$.
+\item Če so $\br{A_n}_{n \in \N} \subseteq \mathcal{A}$ disjunktne
+množice, je
+\[
+\mu \br{\bigcup_{n \in \N} A_n} = \sum_{n \in \N} \mu(A_n).
+\]
+\end{enumerate}
+
+Pravimo, da je $(X, \mathcal{A}, \mu)$
+\emph{merljiv prostor s pozitivno mero}\index{merljiv prostor!z mero}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X \ne \emptyset$ in $x \in X$.
+\emph{Diracova delta}\index{Diracova delta} je mera na
+$\mathcal{P}(X)$, podana s predpisom
+\[
+\delta_x(A) =
+\begin{cases}
+1, & x \in A, \\
+0, & x \not \in A.
+\end{cases}
+\]
+\end{definicija}
+
+\begin{opomba}
+Prostor $(X, \mathcal{P}(X), \delta_x)$ je merljiv prostor s
+pozitivno mero.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $(X, \mu)$ merljiv prostor s pozitivno mero.
+
+\begin{enumerate}[i)]
+\item Mera $\mu$ je \emph{končna}\index{končna mera}, če
+je $\mu(X) < \infty$. Pravimo, da je prostor $X$
+\emph{končen merljiv}\index{končen merljiv prostor}.
+\item Mera $\mu$ je
+\emph{$\sigma$-končna}\index{sigma-končna@$\sigma$-končna},
+če velja
+\[
+X = \bigcup_{n=1}^\infty A_n,
+\]
+kjer je $\mu(A_n) < \infty$. Pravimo, da je $X$
+\emph{$\sigma$-končen}\index{sigma-končen merljiv prostor@$\sigma$-končen merljiv prostor}
+merljiv prostor.
+\item Mera $\mu$ je \emph{verjetnostna}\index{verjetnostna mera},
+če je $\mu(X) = 1$.
+\end{enumerate}
+\end{definicija}
+
+\begin{lema}
+Naj bo $\mu \colon \mathcal{A} \to [0, \infty]$ končno aditivna
+funkcija. Če za množici $A, B \in \mathcal{A}$ velja
+$A \subseteq B$, je $\mu(A) \leq \mu(B)$.
+\end{lema}
+
+\begin{proof}
+Zapišemo lahko
+\[
+\mu(B) = \mu(A) + \mu \br{B \setminus A} \geq \mu(A). \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Naj bo $(X, \mathcal{A}, \mu)$ merljiv prostor s pozitivno mero.
+Tedaj za vse $(A_n)_{n \in \N} \subseteq A$ velja
+\[
+\mu \br{\bigcup_{n=1}^\infty A_n} \leq \sum_{n=1}^\infty \mu(A_n).
+\]
+\end{trditev}
+
+\begin{proof}
+Za množice
+\[
+B_n = A_n \bigsetminus \bigcup_{k=1}^{n-1} A_k
+\]
+velja
+\[
+\mu \br{\bigcup_{n=1}^\infty A_n} =
+\mu \br{\bigcup_{n=1}^\infty B_n} =
+\sum_{n=1}^\infty \mu(B_n) \leq
+\sum_{n=1}^\infty \mu(A_n). \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Za merljiv prostor $(X, \mu)$ s pozitivno mero so naslednje trditve
+ekvivalentne:
+
+\begin{enumerate}[i)]
+\item Mera $\mu$ je $\sigma$-končna.
+\item Zapišemo lahko
+\[
+X = \bigcup_{n=1}^\infty A_n,
+\]
+pri čemer je $A_n \subseteq A_{n+1}$ in $\mu(A_n) < \infty$ za vsak
+$n \in \N$.
+\item Zapišemo lahko
+\[
+X = \bigcup_{n=1}^\infty A_n
+\]
+za disjunktne množice $A_n$, za katere velja $\mu(A_n) < \infty$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Končno aditivna funkcija $\mu \colon \mathcal{A} \to [0, \infty]$
+za merljiv prostor $(X, \mu)$ je pozitivna mera natanko tedaj, ko
+za vsako naraščajoče zaporedje množic
+$(A_n)_{n \in \N} \subseteq \mathcal{A}$ velja
+\[
+\mu \br{\bigcup_{n=1}^\infty A_n} = \lim_{n \to \infty} \mu(A_n).
+\]
+\end{trditev}
+
+\begin{proof}
+Denimo najprej, da je $\mu$ pozitivna mera. Tedaj je res
+\[
+\mu \br{\bigcup_{n=1}^\infty A_n} =
+\mu \br{A_1 \cup \bigcup_{n=2}^\infty A_n \setminus A_{n-1}} =
+\mu(A_1) + \sum_{n=2}^\infty \mu(A_n \setminus A_{n-1}) =
+\lim_{n \to \infty} \mu(A_n).
+\]
+Predpostavimo sedaj, da velja drugi pogoj in naj bodo
+$(A_n)_{n \in \N} \subseteq \mathcal{A}$ disjunktne množice. Tedaj
+velja
+\[
+\sum_{n=1}^\infty \mu(A_n) =
+\lim_{k \to \infty} \sum_{n=1}^k \mu(A_n) =
+\lim_{k \to \infty} \mu \br{\bigcup_{n \leq k} A_n} =
+\mu \br{\bigcup_{n=1}^\infty A_n},
+\]
+zato je $\mu$ res pozitivna.
+\end{proof}
+
+\begin{opomba}
+Podobna trditev za preseke ne velja.
+\end{opomba}
