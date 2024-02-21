@@ -1,0 +1,158 @@
+\section{Operators on Hilbert spaces}
+
+\subsection{Matrices and bounded operators}
+
+\datum{2024-2-21}
+
+\begin{definicija}
+Let $V$ be a finite-dimensional vector space over a field $K$. A
+\emph{linear operator}\index{linear operator} $A$ in $V$ is a
+linear map $A \colon V \to V$.
+\end{definicija}
+
+\begin{definicija}
+Let $A \colon V \to V$ be a linear operator. A closed subspace
+$U \leq V$ is an
+\emph{invariant subspace}\index{invariant subspace} for $A$ if
+$A(U) \subseteq U$. The set of all invariant subspaces of $A$ is
+denoted by $\Lat(A)$.
+\end{definicija}
+
+\begin{opomba}
+An operator $A$ is invariant for $U$ if we can write
+\[
+A =
+\begin{bmatrix}
+B & C \\
+0 & D
+\end{bmatrix}
+\]
+in the decomposition $V = U \oplus W$.
+\end{opomba}
+
+\begin{opomba}
+If $U \in \Lat(A)$, then $p_{\eval{A}{U}{}} \mid p_A$.
+\end{opomba}
+
+\begin{definicija}
+Let $q \in \N$ be the minimal integer such that\footnote{Such a $q$
+exists as $V$ is finite-dimensional.}
+\[
+\ker (A - \lambda)^q = \ker (A - \lambda)^{q+1}.
+\]
+The subspace
+$N_\lambda = \ker (A - \lambda)^q$ is called the
+\emph{root subspace}\index{root subspace} of $A$.
+\end{definicija}
+
+\begin{definicija}
+A subspace $U \leq V$ is a
+\emph{cyclic subspace}\index{cyclic subspace} for
+$A \colon V \to V$ if
+\[
+U = \spn \setb{A^n x}{0 \leq n \leq q}
+\]
+for some $x \in V$.
+\end{definicija}
+
+\begin{definicija}
+Let $X$ be a Banach space. A linear operator $A \colon X \to X$ is
+\emph{bounded}\index{bounded operator} if the set
+\[
+\setb{\frac{\norm{Ax}}{\norm{x}}}{x \in X \setminus \set{0}}
+\]
+is bounded.
+\end{definicija}
+
+\newpage
+
+\subsection{Compact operators on Banach spaces}
+
+\begin{definicija}
+Let $X$ and $Y$ be Banach spaces. A linear operator
+$T \colon X \to Y$ is \emph{compact}\index{compact operator} if $T$
+maps bounded sets in $X$ into pre-compact sets in $Y$.
+Equivalently, the set $T(B_X)$ is pre-compact.
+\end{definicija}
+
+\begin{trditev}
+Let $k \in \mathcal{C}([0,1]^2)$ be a continuous function. Then the
+integral operator
+\[
+(Kf)(x) = \int_0^1 k(x,y) f(y)\,dy
+\]
+is a compact operator on $(\mathcal{C}([0,1]), \norm{\cdot}_2)$ and
+$(\mathcal{C}([0,1]), \norm{\cdot}_\infty)$.
+\end{trditev}
+
+\begin{proof}
+Introduction to functional analysis, proposition~5.4.9.
+\end{proof}
+
+\begin{definicija}
+A sequence $(x_n)_{n \in \N} \subseteq X$ is
+\emph{weakly convergent}\index{weak convergence} with limit $x$ if
+\[
+\lim_{n \to \infty} f(x_n) = f(x)
+\]
+for all functionals $f \in X^*$.
+\end{definicija}
+
+\begin{definicija}
+A sequence $(x_n)_{n \in \N} \subseteq X$ is
+\emph{normally convergent}\index{normal convergence} with limit $x$
+if
+\[
+\lim_{n \to \infty} \norm{x_n - x} = 0.
+\]
+\end{definicija}
+
+\begin{izrek}
+A compact operator maps weakly convergent sequences into normal
+convergent sequences.
+\end{izrek}
+
+\begin{proof}
+Let $T \colon X \to Y$ be a compact operator and let
+$(x_n)_{n \in \N}$ be a weakly convergent sequence with limit $x$.
+By the uniform boundedness principle,\footnote{Introduction to
+functional analysis, theorem~3.3.5.} the sequence
+$\br{\norm{x_n}}_{n \in \N}$ is bounded. But then for every
+functional $f \in Y^*$ it holds that
+\[
+f(Tx_n) - f(Tx) = (T^* f)(x_n - x),
+\]
+hence $\br{Tx_n}_{n \in \N}$ is weakly convergent. Suppose that it
+is not normally convergent -- that is, there exists some 
+$\varepsilon > 0$ and a subsequence $\br{x_{n_k}}_{k \in \N}$ such
+that
+\[
+\norm{Tx_{n_k} - Tx} \geq \varepsilon
+\]
+holds for all $k$. As $T$ is compact, this subsequence has an
+accumulation point. The only possible accumulation point is
+clearly $Tx$.
+\end{proof}
+
+\begin{opomba}
+If $T$ is a bounded operator on a reflexive Banach space $X$, the
+converse holds as well.
+\end{opomba}
+
+\begin{izrek}
+If $(T_n)_{n \in \N}$ is a sequence of compact operator with
+bounded limit $T$, then $T$ is compact.
+\end{izrek}
+
+\begin{proof}
+Introduction to functional analysis, theorem~5.4.4.
+\end{proof}
+
+\begin{izrek}
+Every compact operator on a Hilbert space is a normal limit of
+finite rank operators.
+\end{izrek}
+
+\begin{proof}
+Introduction to functional analysis, theorem~5.4.10.
+\end{proof}
