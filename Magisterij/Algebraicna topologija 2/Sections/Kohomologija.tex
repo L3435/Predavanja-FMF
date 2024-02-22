@@ -1,0 +1,110 @@
+\section{Kohomologija}
+
+\subsection{Homologija s koeficienti}
+
+\datum{2024-2-22}
+
+\begin{definicija}
+Naj bo $(C_*, \partial_*)$ verižni kompleks in $G$ abelova grupa.
+Tenzorski produkti $C_n \otimes_\Z G$ inducirajo verižni kompleks
+$(C_* \otimes G, \partial_* \otimes \id)$. Pripadajočo homologijo
+imenujemo
+\emph{homologija s koeficienti v $G$}\index{homologija s koeficienti}.
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $A$ in $G$ abelovi grupi. Naj bo $F$ prosta abelova grupa
+in $\varphi \colon F \to A$ epimorfizem.
+\emph{Torzijski produkt}\index{torzijski produkt} je grupa
+$\Tor(A, G)$, za katero je zaporedje
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Tor(A, G) \arrow[r] &
+\ker \varphi \otimes G \arrow[r] &
+F \otimes G \arrow[r] &
+A \otimes G \arrow[r] &
+0
+\end{tikzcd}
+\]
+eksaktno.
+\end{definicija}
+
+\begin{opomba}
+Torzijski koeficient je funktor.
+\end{opomba}
+
+\begin{izrek}[Univerzalni koeficient za homologijo]
+Naj bo $(C_*, \partial_*)$ verižni kompleks prostih abelovih grup
+in $G$ abelova grupa. Potem je zaporedje
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+H_n(C_*) \otimes G \arrow[r] &
+H_n(C_*, G) \arrow[r] &
+\Tor(H_{n-1}(C_*), G) \arrow[r] &
+0
+\end{tikzcd}
+\]
+eksaktno, funktorialno in razcepno.
+\end{izrek}
+
+\begin{proof}
+Zaporedje
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+Z_* \arrow[r, "i_*"] &
+C_* \arrow[r, "\partial_*"] &
+B_{*-1} \arrow[r] &
+0
+\end{tikzcd}
+\]
+je eksaktno in zato razcepno. Sledi, da je tudi zaporedje
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+Z_* \otimes G \arrow[r, "i_* \otimes \id"] &
+C_* \otimes G \arrow[r, "\partial_* \otimes \id"] &
+B_{*-1} \otimes G \arrow[r] &
+0
+\end{tikzcd}
+\]
+eksaktno. Pripadajoče dolgo eksaktno zaporedje je
+\[
+\begin{tikzcd}
+\cdots \arrow[r] &
+B_n \otimes G \arrow[r, "\delta_n"] &
+Z_n \otimes G \arrow[r] &
+H_n(C_*^G) \arrow[r] &
+B_{n-1} \otimes G \arrow[r, "\delta_{n-1}"] &
+Z_{n-1} \otimes G \arrow[r] &
+\cdots
+\end{tikzcd}
+\]
+Dobimo inducirano kratko eksaktno zaporedje
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\coker \delta_n \arrow[r] &
+H_n(C_*^G) \arrow[r] &
+\ker \delta_{n-1} \arrow[r] &
+0.
+\end{tikzcd}
+\]
+%TODO
+\end{proof}
+
+\begin{opomba}
+Razcep ni funkctorialen.
+\end{opomba}
+
+\newpage
+
+\subsection{Kohomologija}
+
+\begin{definicija}
+Naj bo $(C_*, \partial_*)$ verižni kompleks abelovih grup in $G$
+abelova grupa. Funktor $\Hom(\cdot, G)$ določa
+\emph{kohomologijo}\index{kohomologija}.
+\end{definicija}
