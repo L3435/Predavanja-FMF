@@ -1,0 +1,252 @@
+\section{Distribution of prime numbers}
+
+\subsection{Riemann zeta function}
+
+\datum{2024-2-23}
+
+\begin{definicija}
+The \emph{prime counting function}\index{prime counting function}
+is defined as
+\[
+\pi(x) = \abs{\setb{p \in \P}{p \leq x}}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $(a_n)_n \subseteq \C$ be a sequence. The infinite product
+\[
+\prod_{n=1}^\infty a_n
+\]
+converges \emph{absolutely}\index{absolute convergence} if it
+converges normally as a product of constant functions.
+\end{definicija}
+
+\begin{izrek}
+Let $\sigma > 1$ be a real number. For $s \in \C$ with
+$\Re(s) \geq \sigma$, we have
+\[
+\sum_{n=1}^\infty = \prod_{p \in \P} (1 - p^{-s})^{-1},
+\]
+with both the product and sum converging uniformly and
+absolutely.\footnote{See Complex analysis, section 3 for definition
+and properties of convergence for products.}
+\end{izrek}
+
+\begin{proof}
+Note that
+\[
+\sum_{n=1}^\infty \abs{\frac{1}{n^s}} =
+\sum_{n=1}^\infty \frac{1}{n^{\Re(s)}} \leq
+\sum_{n=1}^\infty \frac{1}{n^\sigma}
+\]
+is convergent, hence the given series converges as well. To prove
+the convergence of the product, first note that
+\[
+\prod_{p \in \P} (1-p^{-s})^{-1} =
+\prod_{p \in \P} \br{\sum_{k=0}^\infty p^{-sk}}.
+\]
+As
+\[
+\sum_{p \in \P} \abs{\sum_{k=1}^\infty p^{-sk}} \leq
+\sum_{p \in \P} \br{\sum_{k=1}^\infty (p^k)^{-\sigma}} \leq
+\sum_{n=1}^\infty n^{-\sigma}
+\]
+converges normally, so does the product. To prove equality, we can
+bound
+\[
+\abs{\prod_{\substack{p \in \P \\ p \leq x}}
+\frac{1}{1 - p^{-s}} - \sum_{n=1}^x \frac{1}{n^s}} \leq
+\sum_{n=x+1}^\infty \abs{\frac{1}{n^s}} \leq
+\sum_{n=x+1}^\infty \frac{1}{n^\sigma},
+\]
+which converges to $0$ as $x \to \infty$.
+\end{proof}
+
+\begin{definicija}
+The \emph{Riemann zeta function}\index{Riemann zeta function} is
+defined as
+\[
+\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}
+\]
+for $\Re(s) > 1$.
+\end{definicija}
+
+\begin{lema}
+If $\Re(s) > 1$, then $\zeta(s) \ne 0$.
+\end{lema}
+
+\begin{proof}
+No term in the infinite product is equal to $0$.
+\end{proof}
+
+\begin{trditev}
+The function $\zeta(s) - \frac{1}{s-1}$ has a holomorphic
+continuation to $\Re(s) > 0$.
+\end{trditev}
+
+\begin{proof}
+We can write
+\begin{align*}
+\zeta(s) - \frac{1}{s-1} &=
+\sum_{n=1}^\infty n^{-s} - \int_1^\infty x^{-s}\,dx
+\\
+&=
+\sum_{n=1}^\infty \br{n^{-s} - \int_n^{n+1} x^{-s}\,dx}
+\\
+&=
+\sum_{n=1}^\infty \int_n^{n+1} \br{n^{-s} - x^{-s}}\,dx
+\end{align*}
+as long as $\Re(s) > 1$. Now, for $n \leq x \leq n+1$, we can bound
+\[
+\abs{n^{-s} - x^{-s}} =
+\abs{\int_n^x s u^{-s-1}\,du} \leq
+\frac{\abs{s}}{n^{\Re(s)+1}}.
+\]
+Let $L \subseteq \setb{z \in \C}{\Re(z) > 0}$ be a compact set. As
+\[
+\abs{\sum_{n=1}^\infty \int_n^{n+1} \br{n^{-s} - x^{-s}}\,dx} \leq
+\sum_{n=1}^\infty \frac{\abs{s}}{n^{\Re(s)+1}} \leq
+\norm{\id}_L \cdot \sum_{n=1}^\infty \frac{1}{n^{\sigma+1}}
+\]
+for all $s \in L$, where $\sigma = \min_L \abs{z}$, the series
+converges uniformly on compact sets.
+\end{proof}
+
+\begin{opomba}
+The $\zeta$ function can be analytically extended to
+$\C \setminus \set{1}$ by
+\[
+\zeta(1-s) =
+2 \cdot (2 \pi)^{-s} \cos \br{\frac{\pi}{2} s} \Gamma(s) \zeta(s).
+\]
+It has a simple pole with residue $1$ at $1$.
+\end{opomba}
+
+\begin{lema}
+The equation $\oline{\zeta(\oline{s})} = \zeta(s)$ holds for all
+$s \in \C \setminus \set{1}$.
+\end{lema}
+
+\begin{proof}
+The function $\oline{\zeta(\oline{s})}$ is holomorphic. As it
+coincides with $\zeta(s)$ for $s \geq 1$, the functions are equal.
+\end{proof}
+
+\newpage
+
+\subsection{Prime number theorem}
+
+\begin{trditev}
+\label{prime:prop:phi}
+The series
+\[
+\sum_{p \in \P} \frac{\log(p)}{p^s}
+\]
+converges uniformly and absolutely for $\Re(s) \geq \sigma > 1$.
+\end{trditev}
+
+\begin{proof}
+We can bound
+\[
+\sum_{p \in \P} \abs{\frac{\log(p)}{p^s}} \leq
+\sum_{p \in \P} \frac{\log(p)}{p^\sigma} \leq
+\sum_{n=1}^\infty \frac{\log(p)}{n^\varepsilon} \cdot
+\frac{1}{n^{\sigma-\varepsilon}},
+\]
+which clearly converges for $0 < \varepsilon < \sigma-1$.
+\end{proof}
+
+\begin{definicija}
+We define functions
+\[
+\theta(x) =
+\sum_{\substack{p \in \P \\ p \leq x}} \log(p)
+\]
+and
+\[
+\phi(s) = \sum_{p \in \P} \frac{\log(p)}{p^s}.
+\]
+\end{definicija}
+
+\begin{opomba}
+The function $\phi$ is holomorphic for $\Re(s) > 1$.
+\end{opomba}
+
+\begin{trditev}
+The function $\phi$ has a meromorphic continuation to
+$\Re(s) > \frac{1}{2}$. It has simple poles at points $s=1$ and
+zeros of $\zeta(s)$.
+\end{trditev}
+
+\begin{proof}
+Calculate the logarithmic derivative of $\zeta$ as
+\begin{align*}
+- \frac{\zeta'(s)}{\zeta(s)} &=
+-\sum_{p \in \P} \frac{\br{(1-p^{-s})^{-1}}'}{(1-p^{-s})^{-1}}
+\\
+&=
+-\sum_{p \in \P}
+\frac{-(1-p^{-s})^{-2} \cdot p^{-s} \log(p)}{(1-p^{-s})^{-1}}
+\\
+&=
+\sum_{p \in \P} \frac{\log(p)}{p^s-1}
+\\
+&=
+\phi(s) + \sum_{p \in \P} \frac{\log(p)}{p^s(p^s-1)}.
+\end{align*}
+Similarly as in the proof of proposition~\ref{prime:prop:phi}, we
+can show that the above series converges uniformly and absolutely
+for $\Re(s) > \frac{1}{2}$.
+\end{proof}
+
+\begin{izrek}
+If $\Re(s) = 1$, then $\zeta(s) \ne 0$.
+\end{izrek}
+
+\begin{proof}
+Let $\mu = \ord_{1 + ib} \zeta \geq 0$. As
+$\zeta(\oline{z}) = \oline{\zeta(z)}$, we also have
+$\mu = \ord_{1 - ib} \zeta$.
+$\theta = \ord_{1 + 2ib} \zeta = \ord_{1 - 2ib} \zeta$. As $\phi$
+has a simple pole at $1$, we have
+\[
+\lim_{\varepsilon \to 0} \varepsilon \phi(1+\varepsilon) = 1.
+\]
+Similarly,
+\[
+\lim_{\varepsilon \to 0} \varepsilon \phi(1 + \varepsilon \pm ib) =
+-\mu,
+\]
+as the logarithmic derivative of $\zeta$ at $b$ has residue $-\mu$,
+and
+\[
+\lim_{\varepsilon \to 0}
+\varepsilon \phi(1 + \varepsilon \pm 2ib) =
+-\theta.
+\]
+Now compute
+\[
+f(\varepsilon) =
+\sum_{r=-2}^2 \binom{4}{2+r} \phi(1 + \varepsilon + rib) =
+\sum_{p \in \P} \frac{\log(p)}{p^{1+\varepsilon}} \cdot
+\br{p^{\frac{ib}{2}} - p^{-\frac{ib}{2}}}^4 =
+\sum_{p \in \P} \frac{\log(p)}{p^{1+\varepsilon}} \cdot
+\br{2 \Re \br{p^{\frac{ib}{2}}}}^4.
+\]
+It follows that
+\[
+0 \leq
+\lim_{\varepsilon \to 0} \varepsilon \cdot f(\varepsilon) =
+6 - 8 \mu - 2 \theta.
+\]
+As $\theta \geq 0$, we have $\mu = 0$.
+\end{proof}
+
+\begin{posledica}
+The function $\phi$ is holomorphic for $\Re(s) = 1$, except for a
+simple pole with residue $1$ at $1$. In particular, the function
+\[
+g(z) = \frac{\phi(z+1)}{z+1} - \frac{1}{z}
+\]
+is holomorphic for $\Re(z) \geq 0$.
+\end{posledica}
