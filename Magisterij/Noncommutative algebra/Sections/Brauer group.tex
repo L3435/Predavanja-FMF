@@ -1,0 +1,832 @@
+\section{Brauer group}
+
+\epigraph{``The goal of university bureaucrats is for everyone to
+have an above-average grade.''}{-- prof.~dr.~Igor Klep}
+
+\subsection{Definition}
+
+\begin{definicija}
+Let $S, T$ be finite-dimensional central simple algebras over $k$.
+We say that $S$ and $T$ are \emph{similar}\index{similar algebras}
+if any of the following equivalent conditions hold:
+
+\begin{enumerate}[i)]
+\item If $S \cong M_n(D)$ and $T \cong M_m(E)$ for division rings
+$D$ and $E$, then $D \cong E$.
+\item There exist numbers $m, n \in \N$ such that
+$S \otimes_k M_m(k) \cong T \otimes_k M_n(k)$.
+\item There exist numbers $m, n \in \N$ such that
+$M_m(S) \cong M_n(T)$.
+\item If $M$ and $N$ are the unique $S$ and $T$-modules
+respectively, then we have $\End_S(M) \cong \End_T(N)$.
+\end{enumerate}
+
+In this case we write $S \sim T$.
+\end{definicija}
+
+\begin{opomba}
+The tensor product of central simple algebras is again a central
+simple algebra. The tensor product of division algebras is not
+necessarily a division algebra.
+\end{opomba}
+
+\begin{definicija}
+Let $k$ be a field. The \emph{Brauer group}\index{Brauer group}
+$\Br(k)$ of $k$ is the set of equivalence classes of
+finite-dimensional central simple algebras over $k$ with respect to
+the similarity relation. The group operation is induced by the
+tensor product.
+\end{definicija}
+
+\begin{opomba}
+The identity element is $[k]$.
+\end{opomba}
+
+\begin{opomba}
+If $k$ is a finite field or algebraically closed, then the Brauer
+group is trivial.
+\end{opomba}
+
+\begin{opomba}
+We have $[M_n(k)] = [k]$.
+\end{opomba}
+
+\begin{opomba}
+If $A$ and $B$ are finite-dimensional central simple algebras over
+$k$, then $A \cong B$ if and only if $[A] = [B]$ and
+$\dim A = \dim B$.
+\end{opomba}
+
+\begin{lema}
+We have the following:
+
+\begin{enumerate}[i)]
+\item For all $k$-algebras $R$, we have
+$M_n(R) \cong R \otimes_k M_n(k)$.
+\item We have $M_m(k) \otimes M_m(k) \cong M_{mn}(k)$.
+\end{enumerate}
+\end{lema}
+
+\begin{lema}
+If $S_1 \sim S_2$ and $T_1 \sim T_2$, then
+$S_1 \otimes T_1 \sim S_2 \otimes T_2$.
+\end{lema}
+
+\begin{proof}
+Set $S_j \cong M_{n_j}(D)$ and $T_j \cong M_{m_j}(E)$. Then
+\begin{align*}
+S_j \otimes T_j &\cong
+M_{n_j}(D) \otimes M_{m_j}(E)
+\\
+&\cong
+D \otimes M_{n_j}(k) \otimes M_{m_j}(k) \otimes E
+\\
+&\cong
+D \otimes E \otimes M_{n_j m_j}(k)
+\\
+&\cong
+M_{n_j m_j}(D \otimes E). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{izrek}
+The set $\Br(k)$ is an abelian group.
+\end{izrek}
+
+\begin{proof}
+By the above lemma, the operation is well defined. It is obviously
+associative, commutative and has unit $[k]$. Note that every
+element has an inverse, as
+\[
+S \otimes S^{\mathsf{op}} \cong M_n(k) \sim k. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Relative Brauer group}
+
+\begin{definicija}
+Let $\kvoc{K}{k}$ be a field extension and
+$\Phi \colon \Br(k) \to \Br(K)$ a homomorphism, given by
+$\Phi([S]) = [K \otimes_k S]$. The
+\emph{relative Brauer group}\index{relative Brauer group} is the
+group
+\[
+\Br \br{\kvoc{K}{k}} = \ker \br{\Phi}.
+\]
+\end{definicija}
+
+\begin{opomba}
+These are precisely the central division algebras over $k$ that
+split over $K$.
+\end{opomba}
+
+\begin{definicija}
+Let $S$ be a simple $k$-algebra. A
+\emph{self-centralizing subfield}\index{self-centralizing subfield}
+of $S$ is a field $K \subseteq S$ such that $C(K) = K$.
+\end{definicija}
+
+\begin{opomba}
+In division rings, maximal subfields coincide with
+self-centralizing ones. This is not true in general and in fact
+fails for some central simple algebras (even when both exist).
+\end{opomba}
+
+\begin{izrek}
+The following statements are true:
+
+\begin{enumerate}[i)]
+\item Let $S$ be a central simple algebra over $k$ with
+$\dim_k S = n^2$. Then any self-centralizing subfield $K$ of $S$ is
+a splitting field for $S$ and $[K : k] = [S : k] = n$.
+\item Given any field extension $\kvoc{K}{k}$ with $[K : k] = n$,
+any element of $\Br \br{\kvoc{K}{k}}$ has a unique representative
+$S$ of degree $n^2$ that contains $K$ as a self-centralizing
+subfield.
+\end{enumerate}
+\end{izrek}
+
+\datum{2023-11-30}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Using the centralizer theorem, we find that
+\[
+n^2 = [S : k] = [K : k] \cdot [C(K) : k] = [K : k]^2.
+\]
+It remains to check that $K$ is a splitting field for $S$. Let
+$f \colon S \otimes_k K \to \End_K(S) \cong M_n(K)$ be given by
+$f(s \otimes x) = (s' \mapsto s s' x)$. As $S$ is central simple
+and $K$ is simple, their tensor product $S \otimes_k K$ is central
+simple. As $f$ is not constant, it must therefore be injective. But
+as
+\[
+[S \otimes K : k] = n^3 = [M_n(K) : k],
+\]
+the map $f$ must be an isomorphism.
+\item Let $[D] \in \Br \br{\kvoc{K}{k}}$ for a division algebra
+$D$. Equivalently, $K \otimes_k D^{\mathsf{op}} \cong M_m(K)$ for
+some positive integer $m$. In particular,
+$[D^{\mathsf{op}} : k] = m^2$.
+
+Let $V$ be the unique $K \otimes_k D^{\mathsf{op}}$-module. As
+$K \otimes_k D^{\mathsf{op}} \cong V^m$, we then have
+\[
+[K : k] \cdot [D^{\mathsf{op}} : k] =
+[K \otimes_k D^{\mathsf{op}} : k] =
+[V^m : k] =
+m \cdot [V : k] =
+m \cdot [V : D^{\mathsf{op}}] \cdot [D^{\mathsf{op}} : k].
+\]
+Observe that $K$ acts on $V$ and that the action commutes with
+$D^{\mathsf{op}}$. We can therefore embed $K$ into
+$\End_{D^{\mathsf{op}}}(V) \cong M_{[V : D^{\mathsf{op}}]}(D) = S$.
+Clearly $[S] = [D]$, and
+\[
+[S : k] =
+[V : D^{\mathsf{op}}]^2 \cdot [D : k] =
+[V : D^{\mathsf{op}}]^2 \cdot m^2 =
+[K : k]^2.
+\]
+By the double centralizer theorem, we find that
+$[K : k]^2 = [S : k] = [K : k] \cdot [C(K) : k]$. It follows that
+$[K : k] = [C(K) : k]$, but as $K \subseteq C(K)$, we must have
+equality. It follows that $S$ is indeed self-centralizing. It is
+unique by the dimension requirement. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}[Jacobson-Noether theorem]
+\index{Jacobson-Noether theorem}
+For any division algebra with center $k$ there exists a splitting
+field $K \subseteq D$ that is separable over $k$.
+\end{opomba}
+
+\begin{posledica}
+Let $D$ be a finite-dimensional division algebra with center $k$.
+Then there exists a finite Galois extension $\kvoc{K}{k}$ which is
+a splitting field for $D$.
+\end{posledica}
+
+\begin{proof}
+By the Jacobson-Noether theorem there exists a maximal splitting
+subfield $L \subseteq D$ that is separable over $k$. Let $K$ be the
+normal closure of $L$. Then $\kvoc{K}{k}$ is a Galois extension and
+\[
+D \otimes_k K \cong
+(D \otimes_k L) \otimes_L K \cong
+M_n(L) \otimes_L K \cong
+M_n(K). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Suppose that $D$ is a central division $k$-algebra with
+$[D : k] = n^2$. Then any splitting field $K$ of $D$ satisfies
+$n \mid [K : k]$.
+\end{posledica}
+
+\begin{proof}
+Note that $D \otimes_k K \cong M_n(K)$ by comparing dimensions over
+$k$. Let $V$ be the unique simple $M_n(K)$-module. In particular,
+$V \cong K^n$. As $V$ is also a $D$-vector space, we can write
+$V \cong D^s$. But then
+\[
+s n^2 =
+s \cdot [D : k] =
+[V : k] =
+n \cdot [K : k]. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Factor sets and crossed product algebras}
+
+\begin{definicija}
+Let $\kvoc{K}{k}$ be a Galois field extension and denote
+$G = \Gal \br{\kvoc{K}{k}}$. Let $S$ be a central simple
+$k$-algebra with center $K$. For every $\sigma \in G$ choose an
+element $x_\sigma \in S^{-1}$ such that
+$x_\sigma \cdot a \cdot x_\sigma^{-1} = \sigma(a)$ for all
+$a \in K$. Furthermore, let
+$a_{\sigma, \tau} =
+x_\sigma \cdot x_\tau \cdot x_{\sigma \tau}^{-1}$. The set
+$\br{a_{\sigma, \tau}}_{\sigma, \tau \in G}$ is called the
+\emph{factor set}\index{factor set} of $S$ relative to $K$.
+\end{definicija}
+
+\begin{opomba}
+Such elements $x_\sigma$ exist by the Skolem-Noether theorem. A
+simple calculation shows that $a_{\sigma, \tau} \in K$ as
+$x_\sigma^{-1} \cdot x_\sigma' \in K$.
+\end{opomba}
+
+\begin{definicija}
+A factor set is \emph{normalized}\index{normalized factor set} if
+$x_{\id} = 1$.
+\end{definicija}
+
+\begin{opomba}
+If the factor set is normalized, we have
+$a_{\sigma, \id} = a_{\id, \sigma} = 1$.
+\end{opomba}
+
+\begin{opomba}
+\label{brg:rmk:eq_cls}
+Suppose that $x_\sigma' = f_\sigma \cdot x_\sigma$ gives a factor
+set $\br{b_{\sigma, \tau}}_{\sigma, \tau \in G}$. Then
+\[
+b_{\sigma, \tau} f_{\sigma, \tau} x_{\sigma, \tau} =
+b_{\sigma, \tau} x_{\sigma, \tau}' =
+x_\sigma' x_\tau' =
+f_\sigma x_\sigma f_\tau x_\tau =
+f_\sigma \sigma(f_\tau) x_\sigma x_\tau,
+\]
+therefore
+\[
+b_{\sigma, \tau} =
+\frac{f_\sigma \sigma(f_\tau)}{f_{\sigma, \tau}} a_{\sigma, \tau}.
+\]
+\end{opomba}
+
+\begin{trditev}
+The set $(x_\sigma)_{\sigma \in G}$ is a basis for $S$ over $K$.
+\end{trditev}
+
+\begin{proof}
+Observe that $\abs{G} = [K : k] = [S : K]$, therefore we only need
+to check linear independence. Suppose then that they are linearly
+dependent and let $J \subset G$ be a maximal set such that
+$(x_\sigma)_{\sigma \in J}$ is linearly independent.
+
+Let $\sigma \in G \setminus J$ and write
+\[
+x_\sigma = \sum_{\tau \in J} a_\tau x_\tau
+\]
+for $a_\tau \in K$. For any $r \in K$, we find that
+\[
+\sum_{\tau \in J} \sigma(r) a_\tau x_\tau =
+\sigma(r) x_\sigma =
+x_\sigma r =
+\sum_{\tau \in J} a_\tau x_\tau r =
+\sum_{\tau \in J} a_\tau \tau(r) x_\tau.
+\]
+By linear independence, we must have
+$\sigma(r) a_\tau = a_\tau \tau(r)$ for all $\tau \in J$. But as
+at least one of $a_\tau$ is non-zero, in which case we have
+$\sigma(r) = \tau(r)$ and therefore $\sigma = \tau \in J$.
+\end{proof}
+
+\begin{posledica}
+As a $K$-vector space,
+\[
+S = \bigoplus_{\sigma \in G} K x_{\sigma}
+\]
+with multiplication $x_\sigma \cdot a = \sigma(a) \cdot x_\sigma$
+and $x_\sigma \cdot x_\tau = a_{\sigma, \tau} x_{\sigma \tau}$.
+\end{posledica}
+
+\begin{definicija}
+Any set $(a_{\sigma, \tau})_{\sigma, \tau} \subseteq K^{-1}$ that
+satisfies
+\[
+\rho(a_{\sigma, \tau}) a_{\rho, \sigma \tau} =
+a_{\rho, \sigma} \cdot a_{\rho \sigma, \tau}
+\]
+is called a \emph{factor set}\index{factor set} relative to $K$.
+\end{definicija}
+
+\begin{opomba}
+Note that a factor set of $S$ is indeed a factor set by this
+definition, as
+\[
+\rho(a_{\sigma, \tau}) a_{\rho, \sigma \tau} x_{\rho \sigma \tau} =
+\rho(a_{\sigma, \tau}) x_\rho x_{\sigma \tau} =
+x_\rho x_\sigma x_\tau =
+a_{\rho, \sigma} a_{\rho \sigma, \tau} x_{\rho \sigma \tau}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Let $\kvoc{K}{k}$ be a Galois extension with
+$G = \Gal \br{\kvoc{K}{k}}$. Then any factor set relative to $K$ is
+a factor set of some central simple algebra over $K$. Furthermore,
+$A$ contains $K$ as a self-centralizing subfield.
+\end{trditev}
+
+\begin{proof}
+Let $A$ be the $K$-vector space with basis
+$(e_\sigma)_{\sigma \in G}$. We define multiplication on $A$ as
+\[
+\alpha e_\sigma \cdot \beta e_\tau =
+\alpha \sigma(\beta) a_{\sigma, \tau} e_{\sigma \tau}.
+\]
+Associativity follows from the fact that
+$(a_{\sigma, \tau})_{\sigma, \tau \in G}$ is a factor set. Note
+that $a_{\id, \id}^{-1} e_{\id}$ is the identity element. Then $K$
+is clearly a subfield of $A$ by inclusion
+$r \mapsto r a_{\id, \id}^{-1} e_{\id}$.
+
+Next, we prove that $K$ is self-centralizing. Suppose that
+\[
+x = \sum_{\sigma \in G} a_\sigma e_\sigma \in C(K).
+\]
+Multiplication by $a \in K$ gives us $a a_\sigma = a_\sigma a$ for
+all $\sigma$. If $a_\sigma \ne 0$ for some $\sigma \ne \id$, this
+gives a clear contradiction as $a = \sigma(a)$ does not hold for
+all $a \in K$. Hence $x \in K$.
+
+We now check that $Z(A) = K$. Clearly, $Z(A) \subseteq K$. Let
+$a \cdot e_{\id} \in Z(A)$. In particular,
+$a e_{\id} e_\sigma = e_\sigma a e_{\id}$, which implies
+\[
+a a_{\id, \sigma} e_\sigma = \sigma(a) a_{\sigma, \id} e_\sigma.
+\]
+But as $a_{\id, \sigma} = a_{\id, \id}$ and
+$a_{\sigma, \id} = \sigma(a_{\id, \id})$ by
+definition, it follows that
+\[
+a \cdot a_{\id, \id} = \sigma(a \cdot a_{\id, \id}),
+\]
+hence $a a_{\id, \id} \in K^G = k$. But then
+\[
+a \cdot e_{id} =
+a a_{\id, \id} \cdot a_{\id, id}^{-1} e_{\id} \in k.
+\]
+Finally, we prove that $A$ is simple. Suppose that $I \edn A$ is
+a proper ideal. Then the map $K \mapsto \kvoc{A}{I}$ is injective.
+Let $\oline{e}_\sigma$ be the image of $e_\sigma$ in $\kvoc{A}{I}$.
+Then $\oline{e}_\sigma a = a \oline{e}_\sigma$ for all $a \in k$.
+Similarly as above, we can see that
+$\br{\oline{e}_\sigma}_{\sigma \in G}$ are linearly independent,
+hence $\dim \kvoc{A}{I} \geq \abs{G} = \dim A$. It follows that
+$I = (0)$.
+\end{proof}
+
+\begin{definicija}
+The above algebra $A$ is called the
+\emph{crossed product}\index{crossed product} of $K$ and $G$
+relative to the factor set
+$(a_{\sigma, \tau})_{\sigma, \tau \in G}$. We write
+$A = (K, G, a)$.
+\end{definicija}
+
+\begin{lema}
+For factor sets with $x_\sigma' = f_\sigma \cdot x_\sigma$ with
+factor sets $b$ and $a$, the map $(K, G, b) \to (K, G, a)$, given
+by $x_\sigma' \mapsto f_\sigma x_\sigma$, is a $k$-algebra
+isomorphism.
+\end{lema}
+
+\begin{izrek}
+Let $\kvoc{K}{k}$ be a finite Galois extension with
+$G = \Gal \br{\kvoc{K}{k}}$. Then there exists a bijective
+correspondence between $\Br \br{\kvoc{K}{k}}$ and equivalence
+classes\footnote{Factor sets are equivalent if they satisfy the
+equation in remark~\ref{brg:rmk:eq_cls}.} of factor sets.
+\end{izrek}
+
+\begin{proof}
+Recall that for each $x \in \Br \br{\kvoc{K}{k}}$ there exists a
+unique central simple algebra $A$ such that $[A] = x$. This gives
+rise to a map $\Br \br{\kvoc{K}{k}}$ and factor sets. Conversely,
+the crossed product algebras give us the reverse map. It is clear
+that they are inverses.
+\end{proof}
+
+\newpage
+
+\subsection{Group cohomology and Brauer group}
+
+\begin{definicija}
+Let $G$ be a group that acts on an abelian group $M$. The $n$-th
+\emph{cochain group}\index{cochain group} is the group
+$C^n(G, M) = \set{f \colon G^n \to M}$ under pointwise addition.
+\end{definicija}
+
+\begin{opomba}
+The group $G$ acts on $C^n(G, M)$.
+\end{opomba}
+
+\begin{definicija}
+The $n$-th \emph{coboundary map}\index{coboundary map} is the
+homomorphism $\delta_n \colon C^n(G, M) \to C^{n+1}(G, M)$, defined
+as
+\[
+\delta_n f =
+g_1 f(g_2, \dots, g_{n+1}) +
+\sum_{i=1}^n (-1)^i f(g_1, \dots, g_i g_{i+1}, \dots, g_{n+1}) +
+(-1)^{n+1} f(g_1, \dots, g_n).
+\]
+\end{definicija}
+
+\begin{trditev}
+For all $n \in \N_0$ we have $\delta_n \circ \delta_{n+1} = 0$.
+\end{trditev}
+
+\begin{proof}
+Direct calculation.
+\end{proof}
+
+\datum{2023-12-7}
+
+\begin{definicija}
+The sequence $(C^n(G, M), \delta_n)$ forms a
+\emph{cochain complex}\index{cochain complex}. We define
+\emph{$n$-cocylces}\index{cocycle} as $Z^n = \ker(\delta_n)$ and
+\emph{$n$-coboundaries}\index{coboundaries} as
+x$B^n = \im(\delta_{n-1})$.
+\end{definicija}
+
+\begin{definicija}
+The \emph{$n$-th cohomology group}\index{cohomology group} of $G$
+with coefficients in $M$ is the group
+\[
+H^n(G, M) = \kvoc{Z^n}{B^n}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $\kvoc{K}{k}$ be a finite Galois extension,
+$G = \Gal \br{\kvoc{K}{k}}$ and $M = K^{-1}$. The
+\emph{$n$-th Galois cohomology group}\index{Galois cohomology group}
+of the extension $\kvoc{K}{k}$ with coefficients in $K^{-1}$ is the
+group $H^n \br{G, K^{-1}}$.
+\end{definicija}
+
+\begin{lema}
+Let $K$ be a field and $\sigma_1, \dots, \sigma_n$ be distinct
+automorphisms of $K$. Then $\sigma_1, \dots, \sigma_n$ are linearly
+independent.
+\end{lema}
+
+\begin{proof}
+Permuting the automorphisms if needed, suppose that
+\[
+\sum_{j=1}^r c_j \sigma_j = 0,
+\]
+where $c_j \ne 0$ and $r$ is minimal. Note that $r > 1$, as
+otherwise we'd have $0 = c_1 \sigma_1(1) = c_1$.
+
+There exists some $a \in K$ such that
+$\sigma_1(a) \ne \sigma_r(a)$. For all $x \in K$ we have
+\[
+0 =
+\sum_{j=1}^r c_j \sigma_j(ax) =
+\sum_{j=1}^r c_j \sigma_j(a) \sigma_j(x).
+\]
+But then
+\[
+\sum_{j=1}^{r-1}
+\br{c_j \cdot \br{\sigma_j(a) - \sigma_r(a)}} \sigma_j(x) = 0,
+\]
+which is a contradiction.
+\end{proof}
+
+\begin{izrek}[Hilbert's theorem 90]
+\index{Hilbert's theorem 90}
+The first two Galois cohomology groups are
+$H^0(G, K^{-1}) = k^{-1}$ and $H^1(G, K^{-1}) = 1$, respectively.
+\end{izrek}
+
+\begin{proof}
+Notice that
+\[
+\ker \delta_0 =
+\setb{f \in K^{-1}}{\forall g \in G \colon gf = f} =
+K^{\Gal(\kvoc{K}{k})} \setminus \set{0} =
+k^{-1},
+\]
+which proves $H^0(G, K^{-1}) = k^{-1}$.
+
+Now let $f \in Z^1$, that is
+\[
+1 =
+(\delta_1 f)(\sigma, \tau) =
+\sigma(f(\tau)) \cdot f(\sigma \tau)^{-1} \cdot f(\sigma).
+\]
+Equivalently, we have
+\[
+f(\sigma \tau) = f(\sigma) \cdot \sigma(f(\tau)).
+\]
+We claim that $f \in B^1$, which is equivalent to $f = \delta_0 g$
+for $g \in K^{-1}$, that is
+\[
+f(\tau) = \tau(g) \cdot g^{-1}.
+\]
+Consider
+\[
+\sum_{\tau \in G} f(\tau) \tau.
+\]
+By the above lemma, this linear combination is non-zero. Choose
+$a \in K^{-1}$ such that
+\[
+b = \sum_{\tau \in G} f(\tau) \tau(a) \ne 0.
+\]
+We now have
+\[
+\sigma(b) =
+\sum_{\tau \in G} \sigma(f(\tau)) \cdot (\sigma \tau)(a) =
+f(\sigma)^{-1} \cdot \sum_{\tau \in G}
+f(\sigma \tau) \cdot (\sigma \tau)(a) =
+f(\sigma)^{-1} \cdot b.
+\]
+We therefore have
+\[
+f(\sigma) = \frac{b}{\sigma(b)} = \frac{\sigma(b^{-1})}{b^{-1}}.
+\qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Observe that $1 = \delta_2(a)(\rho, \sigma, \tau)$ is equivalent to
+\[
+\rho(a_{\sigma, \tau}) \cdot a_{\rho, \sigma \tau} =
+a_{\rho, \sigma} \cdot a_{\rho \sigma, \tau}.
+\]
+That is, cocycles of $C^2(G, K^{-1})$ are precisely factor sets
+relative to $K$. As $B^2(G, K^{-1})$ consists of elements
+$\sigma(f_\tau) f_{\sigma, \tau}^{-1} f_\sigma$, the second
+cohomology group is in bijective correspondence with equivalence
+classes of factor sets.
+\end{opomba}
+
+\begin{lema}
+The map $\Psi \colon H^2(G, K^{-1}) \to \Br \br{\kvoc{K}{k}}$ with
+$\Psi(a) = [(K, G, a)]$ is a group isomorphism.
+\end{lema}
+
+\begin{proof}
+The map is bijective by the earlier observations. Let
+$A = [(K, G, a)]$, $B = [(K, G, b)]$ and $C = [(K, G, ab)]$ and
+define $M = A^{\mathsf{op}} \otimes_K B$ as a $K$-module. Then
+$M$ is also a right $A \otimes_k B$-module with the natural
+multiplication.
+
+We claim that $M$ is a $C$-module as well. Indeed, let
+$(u_\sigma)_{\sigma \in G}$, $(v_\sigma)_{\sigma \in G}$ and
+$(w_\sigma)_{\sigma \in G}$ be basis for $A$, $B$ and $C$, and
+define
+\[
+(x \cdot w_\sigma) \cdot (a \otimes_K b) =
+x u_\sigma a \otimes_K v_\sigma b.
+\]
+This makes $M$ into a left $C$-module, as
+\begin{align*}
+(x w_\sigma x' w_\tau) \cdot a \otimes_K b &=
+x \sigma(x') a_{\sigma, \tau} b_{\sigma, \tau}
+u_{\sigma \tau} a \otimes_K v_{\sigma \tau} b
+\\
+&=
+x \sigma(x') a_{\sigma, \tau} u_{\sigma \tau} a \otimes_K
+b_{\sigma, \tau} v_{\sigma \tau} b
+\\
+&=
+x \sigma(x') u_\sigma u_\tau a \otimes_K
+v_\sigma v_\tau b
+\\
+&=
+x w_\sigma \cdot (x' w_\tau \cdot a \otimes_K b).
+\end{align*}
+It follows that there exists a $k$-algebra homomorphism
+$\Phi \colon (A \otimes_k B)^{\mathsf{op}} \to \End_C(M)$, given
+by $x \mapsto (m \mapsto mx)$. As $A \otimes_k B$ is a central
+simple algebra, $\Phi$ is injective.
+
+Now let $n = \abs{G} = [K : k]$. As
+$n = [A : K] = [B : K] = [C : K]$, we find that $[M : K] = n^2$.
+But then $[M : k] = n^2 \cdot [K : k] = n^3 = n \cdot [C : k]$.
+As $C$ is simple, we get $M \cong C^n$ and therefore
+\[
+\End_C(M) \cong
+M_n(\End_C(C)) \cong
+M_n \br{C^{\mathsf{op}}} \cong
+C^{\mathsf{op}} \otimes_k M_n(k).
+\]
+But then $\dim_k \End_C(M) = n^2 \cdot [C : k] = n^4 =
+\dim_k (A \otimes_k B)$ and $\Phi$ is indeed bijective. It follows
+that $(A \otimes_k B)^{\mathsf{op}} \cong
+C^{\mathsf{op}} \otimes_k M_n(k)$ and so
+$A \otimes_k B \sim C$, as required.
+\end{proof}
+
+\begin{izrek}
+If $G$ is a finite group, then $\abs{G} \cdot H^2(G, M) = 0$.
+\end{izrek}
+
+\begin{proof}
+For $f \in Z^2$, we can express
+\[
+f(g_1, g_2) = g_1 f(g_2, g_3) - f(g_1 g_2, g_3) + f(g_1, g_2 g_3).
+\]
+Taking a sum over all $g_3 \in G$, we get
+\[
+\abs{G} \cdot f(g_1, g_2) =
+g_1 \cdot h(g_2) - h(g_1 g_2) + h(g_1) = \delta_1(h),
+\]
+where
+\[
+h(g) = \sum_{x \in G} f(g, x). \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+Similarly, $\abs{G} \cdot H^n(G, M) = 0$.
+\end{opomba}
+
+\begin{posledica}
+For any field $k$, $\Br(k)$ is a torsion abelian group.
+\end{posledica}
+
+\begin{proof}
+Recall that $\Br(k)$ is the union of $\Br \br{\kvoc{K}{k}}$ over
+all Galois extensions $\kvoc{K}{k}$. As each such group is torsion,
+so is $\Br(k)$.
+\end{proof}
+
+\newpage
+
+\subsection{Primary decomposition for division algebras}
+
+\begin{definicija}
+Let $K$ be a splitting field for a central division algebra $D$
+over $k$, that is $D \otimes_k K \cong M_n(K)$. The
+\emph{degree}\index{degree} of $D$ is defined as
+\[
+\deg D = n = \sqrt{[D : k]}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $A$ be a central simple algebra over $k$ with $A \cong M_m(D)$
+for a division algebra $D$. The \emph{index}\index{index} of $A$
+is defined as $\ind A = \deg D$. The
+\emph{exponent}\index{exponent} of $A$ is defined as
+$\exp A = \ord_{\Br(k)} [A]$.
+\end{definicija}
+
+\begin{trditev}
+For a central simple algebra $A$ over $k$ we have
+$[A]^{\ind A} = 1$, that is $\exp A \mid \ind A$.
+\end{trditev}
+
+\begin{proof}
+Write $[A] = [(K, G, a)]$ for some finite Galois extension
+$\kvoc{K}{k}$. As $A \cong M_r(D)$ for some division algebra $D$,
+we can write $[D : k] = m^2$ and $\ind A = m$. Furthermore,
+$[A : k] = n^2$, where $n = mr$. As $[A]^m = [(K, G, a^m)]$, it
+suffices to show that $a^m \in B^2$.
+
+Let $V = (D^{\mathsf{op}})^r$, which is a left
+$\End_{D^{\mathsf{op}}}(V)$-module. As
+$A \cong M_r(D) \cong \End_{D^{\mathsf{op}}}(V)$, it is also an
+$A$-module and hence a $K$-vector space. But then
+\[
+r m^2 =
+[V : D^{\mathsf{op}}] \cdot [D^{\mathsf{op}} : k] =
+[V : k] =
+[V : K] \cdot n =
+[V : K] \cdot rm,
+\]
+hence $[V : K] = m$.
+
+Fix a basis $\setb{v_i}{i \leq m}$ for $V$ over $K$. For any
+$c \in A$, we can write
+\[
+c v_i = \sum_{j=1}^m c_{i,j} v_j.
+\]
+This gives us a map $A \to M_m(K)$. Let $X_\sigma$ be the
+corresponding matrix for the element $x_\sigma$. Then
+\[
+a_{\sigma, \tau} X_{\sigma \tau} v =
+a_{\sigma, \tau} x_{\sigma \tau} v =
+x_\sigma (x_\tau v) =
+x_\sigma X_\tau v =
+\sigma(X_\tau) X_\sigma v.
+\]
+Hence
+$a_{\sigma, \tau} X_{\sigma \tau} = \sigma(X_{\tau}) X_\sigma$.
+Taking the determinant, we find
+\[
+a_{\sigma, \tau}^m =
+\frac{\sigma(\det X_\tau) \det X_\sigma}{\det X_{\sigma \tau}},
+\]
+which is of course an element of $B^2$.
+\end{proof}
+
+\datum{2023-12-14}
+
+\begin{trditev}
+Every prime divisor of $\ind A$ divides $\exp A$.
+\end{trditev}
+
+\begin{proof}
+Take $[A] = [(K, G, a)] = [M_m(D)] = [D]$ as usual and denote
+$d = \ind A = \deg D$. Suppose that $p \mid d$. As
+$\abs{G}^2 = [(K, G, a) : k] = m^2 d^2$, $p \mid \abs{G}$. Let then
+$G_p$ be the $p$-Sylow subgroup of $G$ and let
+$K_p = K^{G_p} \subseteq K$. By the fundamental theorem of Galois
+theory, $[K : K_p] = p^r$ for some $r \in \N$, and as $G_p$ is
+a Sylow subgroup, $p \nmid [K_p : k]$. In particular, $K_p$ cannot
+split $A$, hence $\exp \br{A_{K_p}} \ne 1$.
+
+As $A \otimes_k K = (A \otimes_k K_p) \otimes_{K_p} K$ splits and
+$[K : K_p] = p^r$, it follows that $\ind \br{A_{K_p}} \mid p^r$.
+But then $\exp \br{A_{K_p}} \mid p^r$, hence
+$p \mid \exp \br{A_{K_p}}$. As the scalar extension map
+$\Br(k) \to \Br(K_p)$, given by $[S] \mapsto [S_{K_p}]$, is a
+group homomorphism, we get $\exp \br{A_{K_p}} \mid \exp A$.
+\end{proof}
+
+\begin{trditev}
+Suppose that $D_1$ and $D_2$ are central division algebras with
+coprime degrees. Then $D_1 \otimes D_2$ is a division algebra.
+\end{trditev}
+
+\begin{proof}
+We can write $D_1 \otimes D_2 \cong M_m(D)$ for some division
+algebra $D$. Write $D_1^{\mathsf{op}} \otimes D_1 \cong M_n(k)$.
+Then $n = [D_1 : k]$ and
+\[
+M_n(D_2) \cong
+M_n(k) \otimes D_2 \cong
+D_1^{\mathsf{op}} \otimes M_m(D) \cong
+M_m(D_1^{\mathsf{op}} \otimes D) \cong
+M_m(M_r(D')) \cong
+M_{mr}(D').
+\]
+By uniqueness of Wedderburn's decomposition, we get $mr = n$ and
+$D' = D_2$, hence $m \mid n = [D_1 : k]$. Similarly,
+$m \mid [D_2 : k]$ and so $m = 1$.
+\end{proof}
+
+\begin{izrek}
+Let $D$ be a finite-dimensional central division algebra over $k$
+with
+\[
+\deg D = \prod_{i=1}^r p_i^{n_i}.
+\]
+Then there exists a unique decomposition
+\[
+D = \bigotimes_{i=1}^r D_i,
+\]
+where $D_j$ are central division algebras with
+$\deg D_j = p_j^{n_j}$.
+\end{izrek}
+
+\begin{proof}
+It suffices to show that we can write $D = D_1 \otimes D_2$ with
+$\deg D_j = n_j$ if $n = n_1 n_2$ and $\gcd(n_1, n_2) = 1$. Write
+$u n_1 + v n_2 = 1$ and let $D_1$ be the unique central division
+algebra with $[D_1] = [D]^{vn_2}$. Define $D_2$ similarly. Then
+$[D_1 \otimes D_2] = [D]$ and $[D_1]^{n_1} = [k]$, hence
+$\exp D_1 \mid n_1$ and $\exp D_2 \mid n_2$. As $\exp A$ and
+$\ind A$ have the same prime factors, $(\ind D_1, \ind D_2) = 1$.
+It follows that $D_1 \otimes D_2$ is in fact a division algebra,
+therefore $D_1 \otimes D_2 \cong D$. A comparison of dimensions
+shows that $\deg D_j = n_j$.
+\end{proof}

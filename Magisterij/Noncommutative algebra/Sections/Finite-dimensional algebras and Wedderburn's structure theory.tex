@@ -1,5 +1,8 @@
 \section{Finite-dimensional algebras, Wedderburn's structure theory}
 
+\epigraph{``We can do the proof, because it's very simple --
+actually, it's semisimple.''}{-- prof.~dr.~Igor Klep}
+
 \subsection{Free algebras}
 
 \datum{2023-10-5}
@@ -168,7 +171,7 @@ is finitely generated.
 \end{opomba}
 
 \begin{trditev}
-If $R$ is a notherian ring and $M$ is a finitely generated
+If $R$ is a noetherian ring and $M$ is a finitely generated
 $R$-module, $M$ is noetherian.
 \end{trditev}
 
@@ -190,8 +193,8 @@ $R^n$, $M$ is also noetherian.
 \subsection{Simple modules}
 
 \begin{definicija}
-A nontrivial $R$-module $M$ is \emph{simple}\index{simple!module}
-if it has no proper nontrivial submodules. An $R$-module $M$ is
+A non-trivial $R$-module $M$ is \emph{simple}\index{simple!module}
+if it has no proper non-trivial submodules. An $R$-module $M$ is
 \emph{cyclic}\index{cyclic module} with generator $m \in M$ if
 $M = R \cdot m$.
 \end{definicija}
@@ -210,8 +213,8 @@ $I \edn R$.
 
 \begin{proof}
 Suppose that $M$ is simple. Then for every
-$m \in M \setminus \set{0}$, $Rm \leq M$ is a nontrivial submodule.
-It follows that $m$ is a generator.
+$m \in M \setminus \set{0}$, $Rm \leq M$ is a non-trivial
+submodule. It follows that $m$ is a generator.
 
 Suppose now that every non-zero element is a generator. Define the
 homomorphism $\phi \colon R \to M$ with $\phi(r) = rm$. Set
@@ -361,7 +364,7 @@ submodule. In both cases, we have found a simple submodule of $M$.
 Let $M_1$ be the sum of all simple submodules of $M$. Then there
 exists a submodule $M_2 \leq M$, such that $M = M_1 \oplus M_2$.
 If $M_2 \ne \set{0}$, by the same argument as above, $M_2$ has a
-simple module. This is of course not possible.
+simple submodule. This is of course not possible.
 \end{proof}
 
 \newpage
@@ -525,7 +528,7 @@ R \cong
 \datum{2023-10-19}
 
 \begin{definicija}
-A ring is \emph{simple}\index{simple!ring} if it has no nontrivial
+A ring is \emph{simple}\index{simple!ring} if it has no non-trivial
 proper two-sided ideals.
 \end{definicija}
 
@@ -552,7 +555,7 @@ As $R_i \edn R$, we have $R_i R = R_i$. It follows that
 \[
 R_i = \prod_{j=1}^m R_i R_j'.
 \]
-As $R_i R_j' \edn R_i$ is a nontrivial ideal, we must have
+Take $R_i R_j' \edn R_i$ to be a non-trivial ideal. It follows that
 $R_i R_j' = R_i$. Likewise, it follows that $R_i R_j' = R_j'$.
 \end{proof}
 
@@ -564,7 +567,7 @@ $R_i R_j' = R_i$. Likewise, it follows that $R_i R_j' = R_j'$.
 The \emph{Jacobson radical}\index{Jacobson radical} of a ring $R$
 is the set
 \[
-\rad R = \bigcap \setb{I \edn R}{\text{$I$ is maximal in $R$}}.
+\rad R = \bigcap \setb{I \edn_L R}{\text{$I$ is maximal in $R$}}.
 \]
 \end{definicija}
 
@@ -581,11 +584,11 @@ For all $y \in R$ the following statements are equivalent:
 
 \begin{proof}
 Suppose that $y \in \rad R$. If there exists some $x \in R$ such
-that $(1 - xy)$ is not left invertible. Therefore, the set
-$R (1 - xy)$ is a proper ideal of $R$. By Zorn's lemma, there
-exists some maximal ideal $M \edn R$ such that $R (1 - xy) \leq M$.
-In particular, we have $(1 - xy) \leq M$. As $y \in M$, we have
-$1 \in M$, which is of course not possible.
+that $(1 - xy)$ is not left invertible, the set $R (1 - xy)$ is a
+proper ideal of $R$. By Zorn's lemma, there exists some maximal
+ideal $M \edn R$ such that $R (1 - xy) \leq M$. In particular, we
+have $1 - xy \in M$. As $y \in M$, we have $1 \in M$, which is of
+course not possible.
 
 Suppose that $(1 - xy)$ is left invertible for all $x \in R$. If
 we have $ym \ne 0$ for an element $m \in M$ of a simple $R$-module,
@@ -819,7 +822,7 @@ $\chr k \nmid \abs{G}$. Then $kG$ is semisimple.
 
 \begin{proof}
 By Algebra 3, theorem~4.2.2, every submodule $W$ of $V$ is a direct
-summand, so $M$ has the complement property.
+summand, so $kG$ has the complement property.
 \end{proof}
 
 \begin{trditev}

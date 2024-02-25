@@ -1,5 +1,8 @@
 \section{Primitive rings}
 
+\epigraph{``The word primitive often carries a negative
+connotation, but these are pretty cool.''}{-- prof.~dr.~Igor Klep}
+
 \subsection{Density theorem}
 
 \datum{2023-10-26}
@@ -17,11 +20,11 @@ irreducible.
 \begin{definicija}
 Let $V$ be a vector space over a division ring $D$, and let
 $R \subseteq \End_D(V)$ be a subring. The ring $R$ is a
-\emph{dense ring of linear transformations}\index{dense ring}\footnote{$R$ acts densely on $V$.}
-if for every finite set $\set{v_1, \dots, v_n} \subseteq V$ of
-linearly independent vectors and any
-$\set{w_1, \dots, w_n} \subseteq V$ there exists some $\phi \in R$
-such that $\phi(v_i) = w_i$ for all $i \leq n$.
+\emph{dense ring of linear transformations}\index{dense ring}\footnote{$R$
+acts densely on $V$.} if for every finite set
+$\set{v_1, \dots, v_n} \subseteq V$ of linearly independent vectors
+and any $\set{w_1, \dots, w_n} \subseteq V$ there exists some
+$\phi \in R$ such that $\phi(v_i) = w_i$ for all $i \leq n$.
 \end{definicija}
 
 \begin{izrek}[Density]
@@ -87,7 +90,7 @@ sequence of linearly independent vectors in $M$. Let
 \[
 I_n = \setb{r \in R}{\forall i \leq n \colon r v_i = 0}
 \]
-be a submodule of $R$. Note that these submodules form a strictly
+be submodules of $R$. Note that these submodules form a strictly
 decreasing chain, which is impossible.
 
 As $\dim_D M < \infty$, we know that
@@ -97,20 +100,20 @@ $R = \End_D(M) \cong M_{\dim_D M}(D)$.
 \begin{izrek}[Structure]
 \index{structure theorem!primitive rings}
 Let $R$ be a primitive ring with a faithful simple module $M$ and
-denote $D = \End_R(M)$. Then either
+denote $D = \End_R(M)$. Then
 
 \begin{enumerate}[i)]
 \item $R \cong M_n(D)$ for some $n \in \N$ or
 \item for all $m \in \N$ there exists a subring $R_m \subseteq R$
-and an endomorphism $R_m \to M_m(D)$.
+and an epimorphism $R_m \to M_m(D)$.
 \end{enumerate}
 \end{izrek}
 
 \begin{proof}
 If $\dim_D M < \infty$, we have $R = \End_D(M) = M_n(D)$ for
-$n = \dim_D M$. Now assume that $\dim_D M = \infty$. If
-$(v_n)_n$ is an infinite sequence of linearly independent vectors
-in $M$, form $V_m = \Lin_D \setb{v_i}{i \leq m}$. Now set
+$n = \dim_D M$. Now assume that $\dim_D M = \infty$. For an
+infinite sequence $(v_n)_n$ of linearly independent vectors in $M$,
+form $V_m = \Lin_D \setb{v_i}{i \leq m}$. Now set
 \[
 R_m = \setb{r \in R}{r \cdot V_m \subseteq V_m}.
 \]
@@ -135,6 +138,41 @@ primitive algebra.
 \newpage
 
 \subsection{An application of primitive rings}
+
+\begin{trditev}
+A ring $R$ is J-semisimple if and only if it has a faithful
+semisimple module $M$.
+\end{trditev}
+
+\begin{proof}
+Suppose that $R$ has a faithful semisimple module $M$. Recall that
+the radical is the set of all elements that act trivially on all
+simple $R$-modules. It follows that $\rad R \cdot M = 0$, whence
+$\rad R = (0)$ as $M$ is faithful.
+
+Suppose now that $R$ is J-semisimple. Let $(M_i)_{i \in I}$ be all
+non-isomorphic simple $R$-modules and
+\[
+M = \bigoplus_{i \in I} M_i.
+\]
+Note that
+\[
+\ann(M) = \bigcap_{i \in I} \ann(M_i) = \rad(R) = (0). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}\label{prim_ring:cl:prod_dec}
+Every J-semisimple ring $R$ is a subdirect product of primitive
+rings.
+\end{posledica}
+
+\begin{proof}
+The inclusion
+\[
+R \hookrightarrow \kvoc{\prod_{i \in I} R}{\ann M_i}
+\]
+is the desired representation.
+\end{proof}
 
 \begin{trditev}
 Suppose that $R$ is a ring in which $x^3 = x$ holds for all
@@ -163,7 +201,8 @@ $x = (x^2 + x) - x^2 \in Z(R)$.
 \begin{izrek}[Jacobson]
 \index{Jacobson theorem}
 Suppose that $R$ is a ring such that for all $x$ there exists an
-$n > 1$ such that $x^n = x$. Then $R$ is commutative.
+$n > 1$ such that $x^n = x$.\footnote{We say that $x$ is
+\emph{torsion}.} Then $R$ is commutative.
 \end{izrek}
 
 \begin{izrek}[Jacobson-Herstein]
@@ -175,37 +214,36 @@ there exists an $n > 1$ such that
 \]
 \end{izrek}
 
-\begin{trditev}
-A ring $R$ is J-semisimple if and only if it has a faithful
-semisimple module $M$.
-\end{trditev}
+\datum{2023-11-2}
 
 \begin{proof}
-Suppose that $R$ has a faithful semisimple module $M$. Recall that
-the radical is the set of all elements that act trivially on all
-simple $R$-modules. It follows that $\rad R \cdot M = 0$, whence
-$\rad R = (0)$ as $M$ is faithful.
+Assume that the conclusion holds for division rings.\footnote{To be
+proven in the next section.}
 
-Suppose now that $R$ is J-semisimple. Let $(M_i)_{i \in I}$ be all
-non-isomorphic simple $R$-modules and
-\[
-M = \bigoplus_{i \in I} M_i.
-\]
-Note that
-\[
-\ann(M) = \bigcap_{i \in I} \ann(M_i) = \rad(R) = (0). \qedhere
-\]
-\end{proof}
+Suppose that $R$ is primitive. Using the structure theorem, we
+split two cases:
 
-\begin{posledica}
-Every J-semisimple ring $R$ is a subdirect product of primitive
-rings.
-\end{posledica}
+\begin{enumerate}[i)]
+\item There exists a division ring $D$ and $n \in \N$ such that
+$R \cong M_n(D)$. Note that this is not possible for $n \geq 2$, as
+$[E_{1,1}, E_{1,2}] = E_{1,2}$, which is nilpotent. It follows that
+$R \cong D$.
+\item There exists an epimorphism $R_2 \to M_2(D)$ for a subring
+$R_2 \subseteq R$. As in case i), this is of course not possible.
+\end{enumerate}
 
-\begin{proof}
-The inclusion
-\[
-R \hookrightarrow \kvoc{\prod_{i \in I} R}{\ann M_i}
-\]
-is the desired representation.
+In both cases the conclusion holds.
+
+Suppose now that $R$ is J-semisimple. By
+corollary~\ref{prim_ring:cl:prod_dec}, we can map $R$ into a
+product of primitive rings $R_i$. By the previous step, the rings
+$R_i$ are commutative, but then so is $R$.
+
+Now let $R$ be an arbitrary ring. Note that $\kvoc{R}{\rad R}$ is a
+J-semisimple ring that satisfies the given relation. By the
+previous step, $\kvoc{R}{\rad R}$ is commutative.
+
+Fix two elements $a, b \in R$. Note that $d = [a, b] \in \rad R$.
+As we have $d^n = d$, we can write $d \cdot (1 - d^{n-1}) = 0$, but
+as $1 - d^{n-1}$ is invertible, it follows that $d = 0$.
 \end{proof}

@@ -1,0 +1,985 @@
+\section{Central simple algebras}
+
+\epigraph{``Coming soon, poker, chess, or three in a
+line.''}{-- prof.~dr.~Igor Klep}
+
+\subsection{Cyclic algebras}
+
+\begin{trditev}
+Let $k$ be a field and $\sigma \in \Aut(k)$. Let
+\[
+D =
+k((x, \sigma)) =
+\setb{\sum_{i=m}^\infty a_i x^i}{m \in \Z \land a_i \in k},
+\]
+with $x \cdot a = \sigma(a) x$ for all $a \in k$, be a division
+ring. Denote $k_0 = \setb{a \in k}{\sigma(a) = a}$. Then
+\[
+Z(D) =
+\begin{cases}
+k_0((x^s)), & \ord \sigma = s, \\
+k_0, & \text{$\sigma$ has infinite order}.
+\end{cases}
+\]
+Moreover, $\dim_{Z(D)} D < \infty$ is equivalent to $\sigma$ being
+of finite order.
+\end{trditev}
+
+\begin{proof}
+Let
+\[
+f = \sum_{i=m}^\infty a_i x^i \in Z(D)
+\]
+with $a_j \ne 0$. Note that, as $af = fa$ for all $a \in k$, we
+must have $a a_j = \sigma^j(a) a_j$, therefore $\sigma^j(a) = a$
+for all $a \in k$. If $\sigma$ has infinite order, it follows that
+$f = a_0$. But as $xf = fx$, we get $a_0 \in k_0$ and therefore
+$Z(D) = k_0$.
+
+Suppose now that $s = \ord \sigma$. With same notation and argument
+as above, we see that $s \mid j$. As $xf = fx$, we also see that
+all coefficients of $f$ are elements of $k_0$. The reverse
+inclusion follows from a trivial calculation.
+\end{proof}
+
+\begin{definicija}
+Let $\kvoc{K}{F}$ be a cyclic Galois extension with
+$\Gal \br{\kvoc{K}{F}} = \skl{\sigma}$ and let $s = [K : F]$. Fix a
+non-zero $a \in F \setminus \set{0}$. The
+\emph{cyclic algebra}\index{cyclic algebra}
+$\br{\kvoc{K}{F}, \sigma, a}$
+is the vector space
+\[
+D = \bigoplus_{i=0}^{s-1} K x^i
+\]
+with multiplication on defined with $x^s = a$ and
+$x \cdot b = \sigma(b) x$.
+\end{definicija}
+
+\begin{opomba}
+We have $\dim_F \br{\kvoc{K}{F}, \sigma, a} = \ord(\sigma)^2$.
+\end{opomba}
+
+\begin{opomba}
+We have
+$\br{\kvoc{K}{F}, \sigma, a} \cong \kvoc{K[t, \sigma]}{(t^s - a)}$,
+where $K$ is the skew polynomial ring.
+\end{opomba}
+
+\begin{izrek}
+Let $D = \br{\kvoc{K}{F}, \sigma, a}$ be a cyclic algebra.
+
+\begin{enumerate}[i)]
+\item The algebra $D$ is a simple $F$-algebra.
+\item We have
+$C_D(K) = \setb{y \in D}{\forall b \in K \colon by = yb} = K$.
+\item The field $K$ is a maximal subfield of $D$.
+\item We have $Z(D) = F$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{a}
+\nopagebreak
+\begin{enumerate}[i)]
+\item Let $I \edn D$ be a non-trivial ideal in $D$ and let
+$z \in I$ be a non-zero element. Let
+\[
+z = \sum_{k=1}^r b_{i_k} x^{i_k},
+\]
+where $i_k \leq s-1$ and suppose that $r$ is minimal. Assume that
+$r > 1$. Note that $\sigma^{i_1} \ne \sigma^{i_r}$, so suppose they
+differ at $b \in K$. But then the element
+\[
+\sigma^{i_r}(b) z - zb \in I
+\]
+has smaller $r$, which is a contradiction if $r > 1$. It follows
+that $z$ is invertible and therefore $I = D$.
+\item Clearly $K \subseteq C_D(K)$. Choose an arbitrary element
+$d \in C_D(K)$ and write
+\[
+z = \sum_{i=0}^{s-1} b_i x^i.
+\]
+As before, compute both elements $bd$ and $db$ and note that
+$b_i = 0$ for all $i > 0$.
+\item Suppose that $L \subseteq D$ is a subfield with
+$K \subseteq L$. But as $L$ is a field, we have
+$L \subseteq C_D(K)$, therefore $L = K$.
+\item Note that $F \subseteq Z(D)$. Now let $b \in Z(D)$ be an
+arbitrary element. It follows that $b \in C_D(K) = K$. Computing
+elements $bx$ and $xb$, we note that $\sigma(b) = b$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Let $\kvoc{K}{F}$ be a cyclic Galois extension with
+$\Gal \br{\kvoc{K}{F}} = \skl{\sigma}$ and let $s = [K : F]$. The
+\emph{norm}\index{norm} is the map $N_{\kvoc{K}{F}} \colon K \to F$
+given by
+\[
+N_{\kvoc{K}{F}}(a) = \prod_{k=0}^{s-1} \sigma^k(a).
+\]
+\end{definicija}
+
+\begin{izrek}
+If $a \in N_{\kvoc{K}{F}}(K)$, then
+$D = \br{\kvoc{K}{F}, \sigma, a} \cong M_s(F)$.
+\end{izrek}
+
+\begin{proof}
+Let $d \in K$ be an element with $N_{\kvoc{K}{F}}(d) \cdot a = 1$
+and let $y = dx$. A simple calculation shows that
+$y^s = N_{\kvoc{K}{F}}(d) x^s = 1$. For all $b \in K$, we also have
+$yb = \sigma(b) y$. We can therefore write
+$D \cong \br{\kvoc{K}{F}, \sigma, 1}$.
+
+Recall that
+$\br{\kvoc{K}{F}, \sigma, 1} \cong \kvoc{B}{(t^s-1)}$, where
+$B = K[t, \sigma]$. Of course it holds that
+$(t^s-1) \subseteq B(t-1)$, which is a maximal submodule in $B$ as
+$\kvoc{B}{B(t-1)} \cong K$. It follows that $M = \kvoc{B}{B(t-1)}$
+is a simple module of
+$\kvoc{B}{(t^s-1)} \cong  \br{\kvoc{K}{F}, \sigma, 1}$. The module
+structure then yields a homomorphism
+$\br{\kvoc{K}{F}, \sigma, 1} \to \End_F(M) \cong M_s(F)$. Since
+$\br{\kvoc{K}{F}, \sigma, 1}$ is simple, the homomorphism is
+injective. Furthermore, as both dimensions are equal to $s^2$, this
+is an isomorphism.
+\end{proof}
+
+\begin{opomba}
+The converse is also true. Furthermore, if $s$ is a prime, then the
+algebra $\br{\kvoc{K}{F}, \sigma, a}$ is a division algebra if and
+only if $a \not \in N_{\kvoc{K}{F}}(K)$.
+\end{opomba}
+
+\newpage
+
+\subsection{Tensor product of algebras}
+
+\begin{definicija}
+The \emph{tensor product}\index{tensor product} of $k$-algebras $R$
+and $S$ is the algebra $R \otimes_k S$ with multiplication
+\[
+(r \otimes s) \cdot (r' \otimes s') = rr' \otimes ss'.
+\]
+\end{definicija}
+
+\begin{opomba}
+If $(e_\alpha)_\alpha$ is a basis for $S$ over $k$, each
+$x \in R \otimes S$ has a unique expansion
+\[
+x = \sum_{\alpha} r_\alpha \otimes e_\alpha.
+\]
+The algebra $R \otimes S$ is a free $R$-module with basis
+$(1 \otimes e_\alpha)_\alpha$. In particular, homomorphisms
+$i \colon r \mapsto r \otimes 1$ and
+$j \colon s \mapsto 1 \otimes s$ are injective.
+\end{opomba}
+
+\begin{trditev}[Universal property]
+\index{universal property}
+Given any $k$-algebras $R$, $S$ and $T$ and $k$-algebra
+homomorphism $f \colon R \to T$ and $g \colon S \to T$ such that
+$f(R)$ and $g(S)$ commute element-wise and
+$\eval{f}{k}{} = \eval{g}{k}{}$. Then there exists a unique
+$k$-algebra homomorphism $h \colon R \otimes S \to T$ such that
+$hi = h$ and $hj = g$.
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+& R \arrow[dl, "i"'] \arrow[dr, "f"] \\
+R \otimes S \arrow[rr, dashed, "h"] && T \\
+& S \arrow[ul, "j"] \arrow[ur, "g"']
+\end{tikzcd}
+\]
+\end{trditev}
+
+\begin{proof}
+Define the map $\varphi \colon R \times S \to T$, given by
+\[
+\varphi(r, s) =  f(r) \cdot g(s).
+\]
+This is a $k$-bilinear map. Indeed,
+\[
+\varphi(r_1 + r_2, s) =
+f(r_1 + r_2) \cdot g(s) =
+f(r_1) \cdot g(s) + f(r_2) \cdot g(s) =
+\varphi(r_1, s) + \varphi(r_2, s)
+\]
+and similarly for $s = s_1 + s_2$, and
+\[
+\varphi(kr, s) =
+f(kr) \cdot g(s) =
+k f(r) \cdot g(s) =
+k \cdot \varphi(r, s) =
+f(r) \cdot g(ks) =
+\varphi(r, ks).
+\]
+By the universal property of tensor products of modules, it follows
+that $\varphi$ induces a unique homomorphism
+$h \colon R \otimes S \to T$ of $k$-modules with $hi = f$ and
+$hj = g$. Also note that $\varphi$ is the unique map such that
+$hi = f$ and $hj = g$ hold. The $k$-module homomorphism $h$ is
+therefore unique. It follows that if $h$ is a $k$-algebra
+homomorphism, it is unique as well.
+
+It remains to check that $h$ is indeed a $k$-algebra homomorphism.
+It is clearly enough to check this on the basis, which we do with a
+straightforward calculation:
+\begin{align*}
+h((r_1 \otimes s_1) \cdot (r_2 \otimes s_2)) &=
+h(r_1 r_2 \otimes s_1 s_2)
+\\
+&=
+\varphi(r_1 r_2, s_1 s_2)
+\\
+&=
+f(r_1 r_2) \cdot g(s_1 s_2)
+\\
+&=
+f(r_1) g(s_1) \cdot f(r_2) g(s_2)
+\\
+&=
+h(r_1 \otimes s_1) \cdot h(r_2 \otimes s_2). \qedhere
+\end{align*}
+\end{proof}
+
+\newpage
+
+\subsection{Scalar extensions and semisimplicity}
+
+\begin{definicija}
+Let $R$ be a $k$-algebra and $\kvoc{K}{k}$ a field extension. Then
+the algebra $R_K = K \otimes_k R$ is the
+\emph{extension of scalars}\index{extension of scalars}.
+\end{definicija}
+
+\begin{izrek}[Primitive element]
+\index{primitive element theorem}
+If $\kvoc{K}{k}$ is a finite separable field extension, then
+$K = k(c)$ for some $c \in K$.
+\end{izrek}
+
+\begin{proof}
+Algebra 3, theorem 1.1.8.
+\end{proof}
+
+\begin{izrek}
+Let $\kvoc{L}{k}$ be a finite field extension. Then
+$L_K = K \otimes_k L$ is semisimple for all $\kvoc{K}{k}$ if and
+only if $\kvoc{L}{k}$ is separable.
+\end{izrek}
+
+\datum{2023-11-7}
+
+\begin{proof}
+Suppose that $\kvoc{L}{k}$ is separable. By the primitive element
+theorem we can write $L = k(\theta)$. Then $L$ has basis
+$\setb{\theta^a}{0 \leq a < n}$ and $\theta$ has minimal polynomial
+$f$ of degree $n$, that is $L = \kvoc{k[t]}{(f)}$. Note that $L_K$
+has the same basis and $\theta$ satisfies the same polynomial
+condition. It follows that $L_K = \kvoc{K[t]}{(f)}$. Since $f$ is
+separable, it factors into distinct irreducible polynomials
+$f_1, \dots, f_r$. By the Chinese remainder theorem, we have
+\[
+L_K = \kvoc{K[t]}{(f)} \cong \prod_{j=1}^r \kvoc{K[t]}{(f_j)}.
+\]
+It follows that $L_K$ is a product of fields and therefore
+semisimple.
+
+Now suppose that $\kvoc{L}{k}$ is not separable. Suppose that
+$\theta \in L$ is not separable, that is its minimal polynomial $f$
+is not separable. Equivalently, $f$ has repeated factors in
+$K = k(f)$. Then $k(\theta) = \kvoc{K[t]}{(f)}$ has nilpotent
+elements. But as $k(\theta) \subseteq L$, it follows that
+$(a) \edn L_K$ is nil, therefore $\rad L_K \ne (0)$.
+\end{proof}
+
+\begin{posledica}
+The tensor product of two field extensions over $k$ is semisimple,
+provided one of the factors is finite and separable over $k$.
+\end{posledica}
+
+\newpage
+
+\subsection{Tensor products, simplicity}
+
+\begin{definicija}
+Given an algebra $S$ over $k$, its \emph{center}\index{center} is
+the set
+\[
+Z(S) = \setb{y \in S}{\forall x \in S \colon xy = yx}.
+\]
+We call $S$ \emph{central}\index{central algebra} over $k$ if
+$k = Z(S)$. We call $S$ \emph{central simple} if $S$ is both simple
+and central.
+\end{definicija}
+
+\begin{lema}
+Let $S$ and $R$ be algebras over $k$ with $S$ being central simple.
+If $J \edn R \otimes S$ is a non-trivial ideal, then
+$J \cap R \ne (0)$.
+\end{lema}
+
+\begin{proof}
+Let $x \in J$ be a minimal\footnote{With respect to the length of
+basis expansions.} non-zero element. Write
+\[
+x = \sum_{i=1}^\ell r_i \otimes s_i.
+\]
+Then both $(r_i)_i$ and $(s_i)_i$ are $k$-linearly independent. In
+particular, $s_1 \ne 0$ and thus $(s_1) = S$. We therefore have
+\[
+1 = \sum_{i=1}^m x_i s_1 y_i.
+\]
+Let
+\[
+x' =
+\sum_{j=1}^m (1 \otimes x_j) x (1 \otimes y_j) =
+\sum_{j=1}^m \br{\sum_{i=1}^\ell r_i \otimes x_j s_i y_j} =
+\sum_{i=1}^\ell r_i \otimes \sum_{j=1}^m x_j s_i y_j =
+\sum_{i=1}^\ell r_i \otimes s_i'.
+\]
+Note that $s_1' = 1$. Obviously, $x' \in J$. As $(r_i)_i$ are
+$S$-linearly independent, we get $x' \ne 0$.
+
+For any $s \in S$ observe the element
+\[
+y =
+(1 \otimes s) x' - x' (1 \otimes s) =
+\sum_{i=1}^\ell r_i \otimes s s_i' -
+\sum_{i=1}^\ell r_i \otimes s_i' s =
+\sum_{i=1}^\ell r_i \otimes \br{s s_i' - s_i' s} =
+\sum_{i=2}^\ell r_i \otimes \br{s s_i' - s_i' s}.
+\]
+As $y \in J$, we have $y = 0$ by minimality of $x$. It follows that
+$s_i' \in Z(S) = k$ for all $i$. Now rewrite
+\[
+x' =
+\sum_{i=1}^\ell r_i \otimes s_i' =
+\br{\sum_{i=1}^\ell r_i s_i'} \otimes 1 \in R. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Let $S$ and $R$ be algebras over $k$ with $S$ being central simple.
+
+\begin{enumerate}[i)]
+\item Every two-sided ideal of $R \otimes S$ has the form
+$I \otimes S$ for some ideal $I \edn R$. In particular, if $R$ is
+simple, then so is $R \otimes S$.
+\item We have $Z(R \otimes S) = Z(R)$. In particular, if $R = K$ is
+a field, then $S_K = K \otimes S$ is a central simple algebra over
+$K$.
+\end{enumerate}
+\end{izrek}
+
+\pagebreak[3]
+
+\begin{proof}
+\phantom{a}
+\begin{enumerate}[i)]
+\item Let $J \edn R \otimes S$ be an ideal and let $I = J \cap R$.
+Consider the map
+$\psi \colon R \otimes S \to \br{\kvoc{R}{I}} \otimes S$ with
+$\psi(r \otimes s) = (r + I) \otimes s$. We claim that
+$\ker \psi = I \otimes S$. Pick a basis $(x_i)_i$ for
+$I \subseteq R$ and extend it to a basis $(x_i, y_j)_{i,j}$ of $R$.
+Then $(y_j + I)_j$ is a basis for $\kvoc{R}{I}$. Now note that
+\[
+\sum x_i \oplus a_i + \sum y_j \otimes b_j \in \ker \psi \iff
+\forall j \colon b_j = 0.
+\]
+By the isomorphism theorem, we have
+\[
+\kvoc{R \otimes S}{I \otimes S} \cong \kvoc{R}{I} \otimes S.
+\]
+Note that $I \otimes S \subseteq J$. If $I \otimes S \subset J$,
+the image of the map
+$\Phi \colon J \to \kvoc{R \otimes S}{I \otimes S}$  is nonzero. By
+the above lemma, we have $\im(\Phi) \cap \kvoc{R}{I} \ne (0)$,
+which is in contradiction with the choice of $I$.
+\item Let $x = \sum r_i \otimes s_i \in Z(R \otimes S)$, where
+$r_i$ are linearly independent. For any $s \in S$, we can write
+\[
+0 =
+(1 \otimes s) x - x (1 \otimes s) =
+\sum r_i \otimes (s s_i - s_i s),
+\]
+therefore $s_i \in Z(S) = k$ for all $i$. It follows that
+\[
+\sum r_i \otimes s_i = \sum r_i s_i \otimes 1 = r \otimes 1.
+\]
+Now, for $y \in R$, we must also have
+\[
+0 =
+(y \otimes 1) x - x (y \otimes 1) =
+(yr - ry) \otimes 1,
+\]
+therefore $r \in Z(R)$, as desired. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{posledica}
+If $R$ and $S$ are central simple algebras, then so is
+$R \otimes S$.
+\end{posledica}
+
+\begin{opomba}
+If $R = R_1 \times R_2$, then
+$R \otimes S = (R_1 \otimes S) \times (R_2 \otimes S)$.
+\end{opomba}
+
+\begin{trditev}
+Suppose that $S$ is a simple $k$-algebra with center $C$. Then $S$
+is a central simple algebra over $C$ and
+$C \cong \End_{S \otimes S^{\mathsf{op}}}(S)$.
+\end{trditev}
+
+\begin{proof}
+Note that, for $a \in C \setminus \set{0}$, we have $(a) = S$. It
+follows that $1 = ab = ba$ for some $b \in S$. In particular, $C$
+is a field.
+
+Now let $\Phi \colon C \to \End_{S \otimes S^{\mathsf{op}}}(S)$ be
+given by $\Phi(c) = (s \mapsto cs)$. First observe that this is in
+fact a well defined map, as
+\[
+\Phi(c) \br{s_1 \otimes s_2^{\mathsf{op}} \cdot s} =
+\Phi(c)(s_1 s s_2) =
+c s_1 s s_2 =
+s_1 \otimes s_2^{\mathsf{op}} \cdot cs =
+s_1 \otimes s_2^{\mathsf{op}} \cdot \Phi(c)(s).
+\]
+It is clear that the map is a field homomorphism. Suppose that
+$\Phi(c) = \Phi(d)$. Then, $\Phi(c)(1) = \Phi(d)(1)$, hence $c = d$
+and $\Phi$ is injective. Now choose an arbitrary
+$\varphi \in \End_{S \otimes S^{\mathsf{op}}}(S)$ and set
+$x = \varphi(1)$. Observe that
+\[
+sx =
+s \otimes 1^{\mathsf{op}} \cdot x =
+\varphi \br{s \otimes 1^{\mathsf{op}} \cdot 1} =
+\varphi(s) =
+\varphi \br{1 \otimes s^{\mathsf{op}} \cdot 1} =
+1 \otimes s^{\mathsf{op}} \cdot x =
+xs,
+\]
+therefore $x \in C$. It is evident that $\varphi = \Phi(x)$, hence
+$\Phi$ is surjective and therefore an isomorphism.
+\end{proof}
+
+\begin{opomba}
+We have $R \otimes_k S = (R \otimes_k C) \otimes_C S$.
+\end{opomba}
+
+\begin{definicija}
+Let $S$ be a finite-dimensional semisimple algebra over $k$. If
+$C = Z(S)$, then
+\[
+C = \prod_{i=1}^m C_i
+\]
+for some fields $C_i$. The algebra $S$ is
+\emph{separable}\index{separable algebra} if each $\kvoc{C_i}{k}$
+is separable.
+\end{definicija}
+
+\begin{trditev}
+If $S$ is separable, then $S_K$ is semisimple for all field
+extensions $\kvoc{K}{k}$.
+\end{trditev}
+
+\datum{2023-11-9}
+
+\begin{izrek}
+If $D$ is a finite-dimensional division algebra over $k = Z(D)$,
+then $\dim_k D$ is a perfect square.
+\end{izrek}
+
+\begin{proof}
+Note that $\dim_k D = \dim_{\oline{k}} D_{\oline{k}}$, where
+$\oline{k}$ is the algebraic closure of $k$ and
+$D_{\oline{k}} = \oline{k} \otimes D$. This is a simple artinian
+algebra, so by Wedderburn's theorem
+$D_{\oline{k}} \cong M_n(E)$ for some finite-dimensional division
+algebra $E$ over $\oline{k}$. It follows that $E = \oline{k}$ as
+it is algebraically closed, therefore
+$\dim_{\oline{k}} D_{\oline{k}} = n^2$.
+\end{proof}
+
+\begin{posledica}
+If $A$ is a finite-dimensional simple algebra over $Z(A)$ then
+$\dim_{Z(A)} A$ is a perfect square.
+\end{posledica}
+
+\begin{proof}
+By Wedderburn we have $A \cong M_n(D)$ for some finite-dimensional
+division algebra $D$ over $Z(A)$. But then
+\[
+[A : Z(A)] = [A : D] \cdot [D : Z(A)] = n^2 \cdot [D : Z(A)],
+\]
+which is a perfect square.
+\end{proof}
+
+\begin{trditev}
+For all finite-dimensional central simple algebra $R$ over $k$ we
+have $R \otimes R^{\mathsf{op}} \cong M_n(k)$, where
+$n = \dim_k R$.
+\end{trditev}
+
+\begin{proof}
+Denote
+\[
+A = \setb{L_r \in \End_k(R)}{r \in R}
+\quad \text{and} \quad
+B = \setb{T_r \in \End_k(R)}{r \in R},
+\]
+where $L_r(x) = rx$ and $T_r(x) = xr$. Note that $A \cong R$ and
+$B \cong R^{\mathsf{op}}$. Elements of $A$ and $B$ obviously
+commute.
+
+By the universal property there exists a homomorphism
+$\Omega \colon R \otimes R^{\mathsf{op}} \to \End_k(R)$ given by
+$\Omega(r \otimes s) = L_r \circ T_s$. As both $R$ and
+$R^{\mathsf{op}}$ are central simple algebras,
+$R \otimes R^{\mathsf{op}}$ is simple and $\Omega$ is injective.
+Since the dimensions are equal, $\Omega$ is an isomorphism.
+\end{proof}
+
+\newpage
+
+\subsection{Skolem-Noether theorem}
+
+\begin{lema}
+Let $R$ be a finite-dimensional simple $k$-algebra. Suppose $M_1$
+and $M_2$ are $R$-modules that are finite-dimensional over $k$. If
+$\dim_k M_1 = \dim_k M_2$, then $M_1 \cong M_2$.
+\end{lema}
+
+\begin{proof}
+Note that $R$ is simple and artinian. By Wedderburn's theorem there
+exists a unique simple $R$-module $M$, thus
+$M_j \cong M^{\alpha_j}$. As dimensions are equal,
+$\alpha_1 = \alpha_2$.
+\end{proof}
+
+\begin{izrek}[Skolem-Noether]
+\index{Skolem-Noether theorem}
+Let $S$ be a finite-dimensional central simple algebra over $k$ and
+$R$ be a simple $k$-algebra. If $f, g \colon R \to S$ are
+homomorphisms, then there exists an inner automorphism
+$\alpha \colon S \to S$ such that
+$\alpha \cdot f = g \cdot \alpha$.
+\end{izrek}
+
+\begin{proof}
+Note that $S$ is artinian, so by Wederburn's theorem
+$S \cong \End_D(V)$ for some division algebra $D$ and
+finite-dimensional vector space $V$ over $D$.
+
+Homomorphisms $f$ and $g$ induce an $R$-module structure on $V$ by
+$r \cdot v = f(r) v$ and $r \cdot g = g(r) v$. These two actions
+obviously commute with the actions of $D$. The space $V$ becomes an
+$R \otimes D$-module in two different ways. Now as $R \otimes D$ is
+artinian and simple, the two modules are isomorphic by the previous
+lemma. That is, there exists an abelian group isomorphism
+$h \colon V \to V$ such that $h(f(r) \cdot v) = g(r) \cdot h(v)$
+and $h(dv) = d h(v)$ holds for all $d \in D$, $r \in R$ and
+$v \in V$. But then $h \in \End_D(V) = S$ and
+$h \cdot f(r) = g(r) \cdot h$.
+\end{proof}
+
+\begin{opomba}
+Equivalently, if $R_1$ and $R_2$ are simple subalgebras of $S$,
+then for all homomorphisms $f \colon R_1 \to R_2$ there exists an
+inner automorphism $\alpha \colon S \to S$ such that
+$\eval{\alpha}{R_1}{} = f$. In particular, every automorphism of
+$S$ is inner.
+\end{opomba}
+
+\begin{posledica}
+If $\alpha \colon M_n(k) \to M_n(k)$ is an automorphism, then there
+exists a matrix $P \in \GL_n(k)$ such that $\alpha(x) = P^{-1} x P$
+for all $x \in M_n(k)$.
+\end{posledica}
+
+\newpage
+
+\subsection{The (double) centralizer theorem}
+
+\begin{definicija}
+Let $R$ be an algebra and $S \subseteq R$. The
+\emph{centralizer}\index{centralizer} of $S$ in $R$ is the
+subalgebra
+\[
+C_R(S) = C(S) = \setb{r \in R}{\forall s \in S \colon rs = sr}.
+\]
+\end{definicija}
+
+\begin{opomba}
+If $S$ is a central simple algebra, then $C(C(S)) = C(k) = S$.
+\end{opomba}
+
+\begin{opomba}
+For arbitrary $R$, we have $R \subseteq C(C(R))$.
+\end{opomba}
+
+\begin{definicija}
+Let $S$ be a finite-dimensional simple algebra. By Wedderburn's
+theorem, $S \cong M_n(D)$ for a division ring $D$. We write
+$S \sim D$ and say that $S$ and $D$ are \emph{equivalent}.
+\end{definicija}
+
+\begin{opomba}
+Note that the division ring $D$ is unique.
+\end{opomba}
+
+\begin{izrek}[Centralizer]
+\index{centralizer!theorem}
+Let $S$ be a finite-dimensional central simple algebra over $k$ and
+$R$ be a simple subalgebra of $S$.
+
+\begin{enumerate}[i)]
+\item The subalgebra $C(R)$ is simple.
+\item If $S \sim D_1$ and $R \otimes D_1^{\mathsf{op}} \sim D_2$,
+then $C(R) \sim D_2^{\mathsf{op}}$.
+\item We have $[S : k] = [R : k] \cdot [C(R) : k]$.
+\item We have $C(C(R)) = R$.\footnote{Also known as the
+\emph{double centralizer theorem}.}
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Applying Wedderburn's theorem to $S$, we get
+$S \cong \End_D(V) \cong M_n(D^{\mathsf{op}})$, where $D$ is a
+division algebra and $V$ a $n$-dimensional $D$-vector space. Note
+that $V$ is an $R \otimes D$-module and
+$C(R) = \End_{R \otimes D}(V)$.
+
+\begin{enumerate}[i)]
+\item The algebra $R \otimes D$ is simple, therefore it is
+isomorphic to $\End_E(W)$ where $W$ is the unique simple
+$R \otimes D$-module and $E = \End_{R \otimes D}(W)$. By
+Wedderburn, we have $V \cong W^m$ as an $R \otimes D$-module. Then
+\[
+C(R) =
+\End_{R \otimes D}(V) \cong
+\End_{R \otimes D}(W^m) \cong
+M_n(\End_{R \otimes D}(W)) =
+M_n(E),
+\]
+which is simple.
+\item We have $S \sim D^{\mathsf{op}} = D_1$ and
+$R \otimes D_1^{\mathsf{op}} =
+R \otimes D \sim E^{\mathsf{op}} = D_2$. It follows that
+$C(R) \sim E = D_2^{\mathsf{op}}$.
+\item We have $C(R) \cong M_m(E)$, therefore
+$[C(R) : k] = m^2 \cdot [E : k]$. We also have
+\[
+[V : k] = m \cdot [W : k] = m \cdot [W : E] \cdot [E : k],
+\]
+hence
+\[
+[C(R) : k] =
+m^2 \cdot \frac{[V : k]^2}{m^2 \cdot [W : E]^2 \cdot [E : k]} =
+\frac{[V : k]^2}{[W : E]^2 \cdot [E : k]}.
+\]
+Note that $W$ is a vector space over $D$, therefore $W \cong E^d$
+and $R \otimes D \cong M_d(E^{\mathsf{op}})$. It follows that
+\[
+[R : k] \cdot [D  : k] =
+[R \otimes D : k] =
+d^2 \cdot [E : k] =
+[W : E]^2 \cdot [E : k].
+\]
+Returning to the centralizer, we get
+\[
+[C(R) : k] =
+\frac{[V : k]^2}{[W : E]^2 \cdot [E : k]} =
+\frac{[V : k]^2}{[R : k] \cdot [D : k]} =
+\frac{[V : D]^2 \cdot [D : k]}{[R : k]} =
+\frac{[S : k]}{[R : k]}.
+\]
+\item Note that
+\[
+[R : k] \cdot [C(R) : k] =
+[S : k] =
+[C(R) : k] \cdot [C(C(R)) : k]. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{posledica}
+If $R$ is a central simple algebra contained in a
+finite-dimensional central simple algebra $S$, then
+$S \cong R \otimes C(R)$.
+\end{posledica}
+
+\begin{proof}
+Consider the homomorphism $\Psi \colon R \otimes C(R) \to S$ with
+$\Psi(r \otimes r') = rr'$. Since $R \otimes C(R)$ is simple,
+$\Psi$ is injective, but given
+\[
+[S : k] = [R : k] \cdot [C(R) : k] = [R \otimes C(R) : k],
+\]
+we conclude $\Psi$ is an isomorphism.
+\end{proof}
+
+\begin{definicija}
+Let $D$ be a division algebra over $k$. A field $K \supseteq k$
+such that $D_K = D \otimes D \cong M_n(K)$ is called a
+\emph{splitting filed}\index{splitting field} for $D$.
+
+A central simple algebra of the form $M_n(k)$ is a
+\emph{split}\index{split central simple algebra} central simple
+algebra. We call $n$ the \emph{degree}\index{degree} of $D$ and the
+number $n^2$ the \emph{rank}\index{rank} of $D$.
+\end{definicija}
+
+\begin{opomba}
+The algebraic closure of $k$ is a splitting field for any
+finite-dimensional division algebra $D$ over $k$.
+\end{opomba}
+
+\begin{opomba}
+If $K$ splits $D$ and $\kvoc{K'}{K}$ is an extension of $K$, then
+$K'$ also splits $D$, as
+\[
+D_{K'} \cong K' \otimes_K D_K \cong
+K' \otimes_K M_n(K) \cong M_n(K').
+\]
+\end{opomba}
+
+\begin{trditev}\label{thm_divr:prop:fie_dim}
+Let $D$ be a division algebra with center $k$ and $[D : k] = n^2$.
+If $K$ is a maximal subfield of $D$, then $[K : k] = n$.
+Furthermore, any such $K$ is a splitting field for $D$.
+\end{trditev}
+
+\begin{proof}
+For $\alpha \in C(K) \setminus K$ the field $K(\alpha)$ is a proper
+field extension of $K$. As $K$ is maximal, this is not possible,
+so we have $C(K) \subseteq K$ and therefore $C(K) = K$. We can then
+write
+\[
+n^2 = [D : k] = [K : k] \cdot [C(K) : k] = [K : k]^2.
+\]
+Note that $D$ is a simple $D \otimes K$-module, therefore
+\[
+\End_{D \otimes K}(D) \cong
+C_D(K)^{\mathsf{op}} =
+K^{\mathsf{op}} =
+K.
+\]
+Since $D \otimes K$ is simple, it is isomorphic to matrices over
+$\End_{D \otimes K}(D) \cong K$.
+\end{proof}
+
+\begin{izrek}[Wedderburn-Koethe]
+\index{Wedderburn-Koethe thorem}
+In any finite-dimensional division algebra there is a separable
+maximal subfield.
+\end{izrek}
+
+\newpage
+
+\subsection{Theorems about division rings}
+
+\begin{izrek}[Little Wedderburn]
+\index{little Wedderburn theorem}
+Every finite division ring is a field.
+\end{izrek}
+
+\begin{proof}
+Let $D$ be a finite division ring and denote $k = Z(D)$. Let $K$ be
+a maximal subfield of $D$ and assume $K \ne D$. Since
+$[D : k] = n^2$ for some $n \in \N$, we have $[K : k] = n$ by
+\ref{thm_divr:prop:fie_dim}. If $\abs{k} = q = p^m$, then
+$\abs{K} = q^n$. Any two subfields of $D$ of order $q^n$ are
+isomorphic. By the Skolem-Noether theorem, they are conjugate.
+
+Every element of $D$ is contained in a maximal subfield, so we have
+\[
+D = \bigcup_{x \in D^{-1}} x K x^{-1},
+\]
+so
+\[
+D^{-1} = \bigcup_{x \in D^{-1}} x K^{-1} x^{-1}.
+\]
+This is not possible, as a finite group cannot be a union of
+conjugates of a proper subgroup.
+\end{proof}
+
+\begin{izrek}[Frobenius]
+\index{Frobenius theorem}
+Let $D$ be a division algebra with $\R \subseteq Z(D)$ and suppose
+$[D : \R] < \infty$. Then $D$ is either $\R$, $\C$ or $\HH$.
+\end{izrek}
+
+\begin{proof}
+Without loss of generality assume $[D : \R] > 1$. For any
+$\alpha \in D \setminus \R$, the field $\R(\alpha)$ is a proper
+algebraic field extension of $\R$, so $\R(\alpha) = \C$. Fix a copy
+of $\C$ in $D$ and define
+\[
+D^+ = \setb{d \in D}{di = id}
+\quad \text{and} \quad
+D^- = \setb{d \in D}{di = -id}.
+\]
+Clearly, $D^+ \oplus D^- = D$. Note that $\kvoc{\C(d)}{\C}$ is an
+algebraic field extension for every $d \in D^+$. As $\C$ is
+algebraically closed, $D^+ = \C$.
+
+If $D^- = (0)$, then $D = D^+ = \C$. Otherwise, take
+$z \in D^- \setminus \set{0}$ and consider the map
+$\mu \colon D^- \to D^+$ with $\mu(x) = xz$. This is a well defined
+injective map. As it is linear over $\C$, we have
+$\dim_\C D^- \leq \dim_\C D^+ = 1$ and $D^- \cong \C$.
+
+Observe that $z$ is algebraic over $\R$, hence $z^2 \in \R + \R z$.
+As $z^2 = \mu(z) \in \C$, it follows that $z^2 \in \R$. Of course
+$z^2 \ne r^2$, as then $z = \pm r \in \R$. Hence $z^2 = -r^2$ for
+some $r > 0$. Taking $j = \frac{z}{r}$, we find that
+$j^2 = i^2 = -1$ and $ij = -ji$.
+\end{proof}
+
+\newpage
+
+\subsection{Jacobson-Herstein theorem}
+
+\datum{2023-11-23}
+
+\begin{trditev}
+Let $D$ be a division ring. If $y \in D$ commutes with all
+commutators, then $y \in Z(D)$.
+\end{trditev}
+
+\begin{proof}
+Assume that $y \not \in Z(D)$. Equivalently, there exists some
+$x \in D$ such that $[x,y] \ne 0$. Note that
+$[x,xy] = x \cdot [x,y]$, but as $y$ commutes with both
+$[x,y]$ and $[x,xy]$, it also commutes with $x$.
+\end{proof}
+
+\begin{posledica}
+\label{cen_alg:cor:com_field}
+If all commutators in a division ring $D$ are central, then $D$ is
+a field.
+\end{posledica}
+
+\begin{trditev}
+Let $D$ be a division ring and $K \subseteq D$ a finite subring.
+Then $K$ is a field.
+\end{trditev}
+
+\begin{proof}
+For every $a \in K \setminus \set{0}$ consider $L_a \colon K \to K$
+with $L_a(x) = ax$. This is an injective map, but as $K$ is finite,
+it is bijective. It follows that $K$ is a division ring. By the
+little Wedderburn theorem, $K$ is a field.
+\end{proof}
+
+\begin{lema}
+If $F$ is a field and $G \leq F^{-1}$ is a finite subgroup, then
+$G$ is cyclic.
+\end{lema}
+
+\begin{proof}
+Note that, as $G$ is a finite abelian group, we have
+\[
+G \cong \bigoplus_{i=1}^r \Z_{m_i}.
+\]
+Denote $n = \lcm(m_i)$. As $x^n - 1$ has at most $n$ solutions in
+$F$, we have $n \leq \abs{G} \leq n$ and therefore $G \cong \Z_n$.
+\end{proof}
+
+\begin{posledica}
+Let $D$ be a division ring with $\chr D = p > 0$. Then any finite
+subgroup $G \leq D^{-1}$ is also cyclic.
+\end{posledica}
+
+\begin{proof}
+Define
+\[
+K =
+\setb{\sum_{i=1}^r \alpha_i g_i}
+{r \in \N_0 \land \alpha_i \in \F_p \land g_i \in G}.
+\]
+As $K$ is a finite subgroup of $D$, it is a field. By construction
+$G \leq K^{-1}$, therefore it is cyclic.
+\end{proof}
+
+\begin{lema}
+Let $D$ be a division ring with $\chr D = p > 0$. Suppose that
+$a \in D$ is non-central and torsion. Then there exists some
+$y \in D^{-1}$ such that $y a y^{-1} = a^i \ne a$ for some
+$i \in \N$. Furthermore, we can choose $y$ to be a commutator.
+\end{lema}
+
+\begin{proof}
+Let $K = \F_p[a]$. Since $a$ is torsion, $K$ is a finite field,
+thus $\abs{K} = p^n$, in particular, $a^{p^n} = a$. Now define
+$\delta_a \colon D \to D$ as $\delta_a(r) = [a, r]$. Since $a$ is
+non-central, we have $\delta_a \ne 0$, but
+$\eval{\delta_a}{K}{} = 0$. It follows that
+$\delta_a \in \End_K(D)$.
+
+Denote $\delta_a = L_a - R_a$ where $L_a(x) = ax$ and
+$R_a(x) = xa$. We again have $L_a, R_a \in \End_K(D)$. Now compute
+\[
+\br{\delta_a}^{p^n} =
+\br{L_a - R_a}^{p^n} =
+L_a^{p^n} + (-R_a)^{p^n} =
+L_a^{p^n} - R_a^{p^n} =
+\delta_a.
+\]
+It follows that
+\[
+0 = \delta_a^{p^n} - \delta_a =
+\prod_{b \in K} (\delta_a - b) =
+\prod_{b \in K^{-1}} (\delta_a - b) \cdot \delta_a.
+\]
+Since $\delta_a \ne 0$, there exists a map $\delta_a - b$ that is
+not injective. Such $b$ is an eigenvalue for $\delta_a$ -- that is,
+there exists an element $x \in D^{-1}$ such that
+$\delta_a(x) = bx$.
+
+We can now write $ax - xa = bx$, which is equivalent to
+\[
+x a x^{-1} = b - a \in K \setminus{0}.
+\]
+As $a$ and $x a x^{-1}$ have the same order in the cyclic group
+$K^{-1}$, they generate the same subgroup. In particular,
+$x a x^{-1} = a^i \ne a$ for some $i \in \N$.
+
+Instead of $x$, we can also use $y = [a, x]$. Indeed,
+\[
+ya =
+(ax - xa) \cdot a =
+a^i \cdot ax - a^i \cdot xa =
+a^i y. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Jacobson-Herstein]
+Let $D$ be a division ring. If for all $a, b \in D$ there exists
+some $n > 1$ such that $(ab - ba)^n = ab - ba$, then $D$ is a
+field.
+\end{izrek}
+
+\begin{proof}
+Suppose that $D \ne Z(D)$. By lemma~\ref{cen_alg:cor:com_field}
+there exists elements $b_1, b_2 \in D$ such that
+$a = [b_1, b_2] \not \in Z(D)$. For each
+$c \in Z(D) \setminus \set{0}$, we have
+\[
+ca = [c b_1, b_2].
+\]
+By assumption, there exists some $k \geq 1$ such that
+$1 = a^k = (ca)^k$, therefore $c^k = 1$ as well. In particular,
+$\chr(D) = p > 0$. By the previous lemma there exists a commutator
+$y \in D$ such that $y a y^{-1} = a^i \ne a$. Now observe the
+group $\skl{a} \cdot \skl{y}$. This is again a finite group since
+$y$ normalizes $\skl{a}$. It follows that it is cyclic, thus
+abelian, but this contradicts $y a y^{-1} \ne a$.
+\end{proof}

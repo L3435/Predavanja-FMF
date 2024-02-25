@@ -1,0 +1,345 @@
+\section{Free algebras and polynomial identities}
+
+\epigraph{``Can I talk to my lawyer?''}{-- prof.~dr.~Igor Klep}
+
+\subsection{Basic definitions}
+
+\begin{definicija}
+Let $X = \setb{x_i}{i \in I}$ be a non-empty set. A
+\emph{word}\index{word} is a finite sequence of elements of $X$.
+The set $\skl{X}$ of all words, with concatenation, is called the
+\emph{free monoid}\index{free!monoid} on $X$.
+\end{definicija}
+
+\begin{definicija}
+Let $F$ be a field and $X \ne \emptyset$. The
+\emph{free algebra}\index{free!algebra} on $X$ over $F$ is the
+monoid algebra of $\skl{X}$ over $F$. We denote it by $F \skl{X}$.
+\end{definicija}
+
+\begin{izrek}[Universal property]
+Let $A$ be an $F$-algebra. All homomorphisms $F \skl{X} \to A$ are
+uniquely determined by the image of $X$. Conversely, any function
+$f \colon X \to A$ extends uniquely to a homomorphism
+$F \skl{X} \to A$.
+\end{izrek}
+
+\obvs
+
+\begin{definicija}
+A polynomial $f$ is
+\emph{multilinear}\index{multilinear polynomial} if it is linear in
+each variable.
+\end{definicija}
+
+\begin{trditev}
+Let $A$ be an $F$-algebra and $X \subseteq A$ any generating set.
+Then $A$ is a quotient of the algebra $F \skl{X}$.
+\end{trditev}
+
+\begin{proof}
+By the universal property, $\iota \colon X \hookrightarrow A$
+extends to a homomorphism $g \colon F \skl{X} \to A$. It is
+obviously surjective, therefore $A \cong \kvoc{F \skl{X}}{\ker g}$.
+\end{proof}
+
+\begin{definicija}
+Given $S = \setb{f_j}{j \in J} \subseteq F \skl{X}$, we denote
+\[
+F \skl{x_i, i \in I \mid f_j = 0, j \in J} = \kvoc{F \skl{X}}{(S)}.
+\]
+\end{definicija}
+
+\begin{definicija}
+The \emph{Grassman algebra}\index{Grassman algebra} is defined as
+\[
+G = F \skl{x_i, i \in \N~\middle\vert~x_i^2, x_i x_j + x_j x_i}.
+\]
+\end{definicija}
+
+\begin{trditev}
+The Grassman algebra is spanned by sorted words. Its center is
+spanned by words of even length.
+\end{trditev}
+
+\begin{proof}
+It suffices to show that a linear combination of sorted words is
+non-zero. In fact, it is enough to show that sorted words are
+non-zero, as we can eliminate words in the combination by
+multiplying them by a variable that appears only in some of them.
+
+Suppose therefore that $y_1 \cdots y_n \in I$, where
+$I = \skl{y_i^2, y_i y_j + y_i y_j}$. We can therefore write
+$y_1 \cdots y_n$ as a sum of elements of the form $m y_i^2 m'$ and
+$q (y_i y_j + y_j y_i) q'$ for monomials $m$, $m'$, $q$ and $q'$.
+But as $y_1 \cdots y_n$ is multilinear, it follows that we can
+write it as a sum of elements
+\[
+\prod_{i=0}^{k-1} y_{\sigma(i)} \cdot
+\br{y_{\sigma(k)} y_{\sigma(k+1)} +
+y_{\sigma(k+1)} y_{\sigma(k)}} \cdot
+\prod_{i=k+2}^n y_{\sigma(i)}.
+\]
+In such a representation, the sum of coefficients of monomials
+corresponding to even permutations is equal to that of monomials
+which correspond to odd permutations. We reached a contradiction.
+\end{proof}
+
+\begin{opomba}
+We denote by $G_0$ the span of words of even length and by $G_1$
+the span of words of odd length. Then $G = G_0 \oplus G_1$.
+\end{opomba}
+
+\begin{definicija}
+A multilinear polynomial
+$f = f(x_1, \dots, x_m, y_1, \dots, y_n) \in F \skl{X, Y}$ is
+\emph{alternating}\index{alternating polynomial} in
+$x_1, \dots, x_m$ if $f$ becomes $0$ whenever we replace a variable
+$x_i$ by $x_j$ for $j > i$.
+\end{definicija}
+
+\begin{trditev}
+Let $A$ be an $F$-algebra and assume that $a_1, \dots, a_m \in A$
+are linearly dependent. If
+$f = f(x_1, \dots, x_m, y_1, \dots, y_n)$ is an alternating
+polynomial, then $f(a_1, \dots, a_m, b_1, \dots, b_n) = 0$ for all
+$b_i \in A$.
+\end{trditev}
+
+\obvs
+
+\newpage
+
+\subsection{Polynomial identities}
+
+\datum{2024-1-18}
+
+\begin{definicija}
+A polynomial $f \in F \skl{X}$ is a
+\emph{polynomial identity}\index{polynomial identity} of an
+$F$-algebra $A$ if $f(a_1, \dots, a_n) = 0$ for all $a_i \in A$.
+An $F$-algebra $A$ is a \emph{PI-algebra}\index{PI-algebra} if
+there exists a non-trivial $f \in F \skl{x}$ such that $A$
+satisfies $f$.
+\end{definicija}
+
+\begin{opomba}
+Every finite-dimensional algebra is a PI-algebra, as it satisfies
+any alternating polynomial in $\dim A + 1$ variables. In
+particular, we can take the
+\emph{standard polynomial}\index{standard polynomial}
+\[
+s_n =
+\sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n x_{\sigma(i)}
+\]
+for $n = \dim A + 1$.
+\end{opomba}
+
+\begin{opomba}
+Subalgebras and quotients of PI-algebras are again PI-algebras,
+as they satisfy the same polynomial. Finite products of PI-algebras
+are also PI-algebras.
+\end{opomba}
+
+\begin{izrek}[Regev]
+\index{Regev theorem}
+A tensor product of two PI-algebras is again a PI-algebra.
+\end{izrek}
+
+\newpage
+
+\subsection{Linearization}
+
+\begin{izrek}
+If $A$ satisfies a non-zero polynomial identity, then it satisfies
+a non-zero multilinear identity of equal or lower degree.
+\end{izrek}
+
+\begin{proof}
+Let $f$ be the polynomial identity for $A$. Set
+$d_i = \deg_{x_i} f$ and $d = \max d_i$. Now induct on $d$.
+
+For $d = 1$, take a monomial $\lambda x_1 \dots x_m$ of minimal
+degree in $f$. Then $f(x_1, \dots, x_m, 0, \dots, 0)$ is a
+multilinear identity for $A$.
+
+Now suppose that $d > 1$. Without loss of generality let
+$d_i \leq d_{i+1}$ for all $i$ and let $k$ be the minimal index
+with $d_k = d$. Now define $g$ as
+\[
+g(x_1, \dots, x_{n+1}) =
+f(x_1, \dots, x_{n-1}, x_n + x_{n+1}) -
+f(x_1, \dots, x_n) - f(x_1, \dots, x_{n-1}, x_{n+1}).
+\]
+Note that all monomials in $f$ correspond with distinct monomials
+in $g$. In particular, $g \ne 0$. As $\deg_{x_n} g < d$ and
+$\deg_{x_{n+1}} g < d$, while $\deg_{x_i} g \leq d_i$, we can
+iterate this process until we decrease the degree of all variables.
+\end{proof}
+
+\newpage
+
+\subsection{Cayley-Hamilton theorem}
+
+\begin{definicija}
+Let $C$ be a commutative algebra. For $A \in M_n(C)$, define its
+\emph{characteristic polynomial}\index{characteristic polynomial}
+as $p_A(t) = \det(A - tI) \in C[t]$.
+\end{definicija}
+
+\begin{izrek}[Cayley-Hamilton]
+\index{Cayley-Hamilton theorem}
+For all $A \in M_n(C)$, we have $p_A(A) = 0$.
+\end{izrek}
+
+\begin{definicija}
+\emph{Elementary symmetric polynomials}\index{elementary symmetric polynomial}
+are defined as
+\[
+e_k =
+\sum_{\substack{I \subseteq \set{1, \dots, n} \\ \abs{I} = k}}
+\prod_{i \in I} w_i \in
+\Z[w_1, \dots, w_n].
+\]
+\end{definicija}
+
+\begin{definicija}
+\emph{Power sums}\index{power sum} are defined as
+\[
+p_j = \sum_{i=1}^n w_i^j \in \Z[w_1, \dots, w_n].
+\]
+\end{definicija}
+
+\begin{izrek}[Newton formulas]
+\index{Newton formulas}
+For $k \leq 1$, we have
+\[
+k e_k = \sum_{j=1}^k (-1)^{j-1} e_{k-j} p_j.
+\]
+\end{izrek}
+
+\begin{proof}
+Vieta's formulas give us
+\[
+\sum_{j=0}^n (-1)^j e_{n-j} w_i^j = 0,
+\]
+therefore
+\[
+\sum_{j=0}^n (-1)^j e_{n-j} p_j = 0.
+\]
+This is in fact the formula for $k=n$. Now set
+\[
+P_n = k e_k - \sum_{j=1}^k (-1)^{j-1} e_{k-j}.
+\]
+By the above observation, we have $P_k = 0$. This implies
+$P_n(w_1, \dots, w_k, 0, \dots, 0) = 0$. This means that $P$
+contains no monomials in $k$ variables, but as $\deg P_n \leq k$,
+this means that $P_n \equiv 0$.
+\end{proof}
+
+\begin{opomba}
+In characteristic $0$, we can write $e_k = q_k(p_1, \dots, p_k)$.
+\end{opomba}
+
+\begin{izrek}
+If $C$ is a commutative $\Q$-algebra, then all $A \in M_n(C)$
+satisfy
+\[
+p_A(t) =
+\sum_{j=0}^n
+(-1)^j q_{n-j} \br{\tr(A), \tr(A^2), \dots, \tr(A^{n-j})} t^j.
+\]
+\end{izrek}
+
+\begin{proof}
+It suffices to prove the theorem for $A = \br{w_{i,j}}_{i,j}$ and
+$C = \Q[w_{i,j}]$. We can embed $C$ into the algebraic closure of
+its quotient field. We can hence assume that $C$ is an
+algebraically closed field of characteristic $0$. Then
+\[
+p_A(t) = (-1)^n \prod_{i=1}^n (t - \lambda_i),
+\]
+where $\lambda_i$ are the eigenvalues of $A$, counted with
+multiplicities. Using the Jordan canonical form, we find that
+$\tr(A^i) = p_i(\lambda_1, \dots, \lambda_n)$. But then, by Vieta,
+\[
+p_A(t) =
+\sum_{j=0}^n (-1)^j e_{n-j}(\lambda_1, \dots, \lambda_n) t^j =
+\sum_{j=0}^n
+(-1)^j q_{n-j} \br{\tr(A), \tr(A^2), \dots, \tr(A^{n-j})} t^j.
+\qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Let $C$ be a commutative $\Q$-algebra. If a matrix $A \in M_n(C)$
+satisfies $\tr(A) = \tr(A^2) = \dots = \tr(A^n) = 0$, then
+$A^n = 0$.
+\end{posledica}
+
+\begin{proof}
+The theorem implies that $p_A(t) = (-1)^n t^n$. Now just apply
+Cayley-Hamilton.
+\end{proof}
+
+\newpage
+
+\subsection{Amitsur-Levitzki theorem}
+
+\begin{lema}
+A non-zero polynomial $f$ with $\deg f < 2n$ is not a polynomial
+identity of $M_n(F)$.
+\end{lema}
+
+\begin{proof}
+Without loss of generality let $f$ be multilinear of degree $2n-1$.
+Suppose that the monomial $\lambda x_1 x_2 \dots x_{2n-1}$ appears
+in $f$. Plugging the sequence
+$E_{1,1}, E_{1,2}, E_{2,2}, \dots, E_{n,n}$ into the polynomial, we
+find that only this monomial evaluates to a non-zero element. It
+follows that $f$ is not a polynomial identity.
+\end{proof}
+
+\begin{izrek}[Amitsur-Levitzki]
+\index{Amitsur-Levitzki theorem}
+The standard polynomial $s_{2n}$ is a polynomial identity of
+$M_n(C)$ for every commutative algebra $C$.
+\end{izrek}
+
+\begin{proof}
+Note that it suffices to prove the theorem for $C = F$, where $F$
+is a field of characteristic $0$. Let $A_i \in M_n(F)$. We will
+show that $s_{2n}(A_1, \dots, A_{2n}) = 0$. Let
+$G = G_0 \oplus G_1$ be the Grassman algebra over $F$ with
+generators $x_1, x_2, \dots$ and set
+\[
+A = \sum_{i=1}^{2n} A_i x_i.
+\]
+As $x_i G x_i = 0$, we find that
+\[
+A^{2n} =
+\sum_{\sigma \in S_{2n}}
+\prod_{i=1}^{2n} A_{\sigma(i)} x_{\sigma(i)} =
+\sum_{\sigma \in S_{2n}} \sgn(\sigma)
+\prod_{i=1}^{2n} A_{\sigma(i)} \cdot \prod_{i=1}^n x_i =
+s_{2n}(A_1, \dots, A_{2n}) \cdot \prod_{i=1}^n x_i.
+\]
+It suffices to show that $A^{2n} = (A^2)^n = 0$. But as
+$A^2 \in M_n(G_0)$ and $G_0$ is commutative, it is enough to show
+that $\tr(A^2) = \tr(A^4) = \dots = \tr(A^{2n})$.
+
+Let
+\[
+A^{2k-1} = \sum_{j} B_j y_j,
+\]
+where $B_j \in M_n(F)$ and $y_j \in G_1$. Then
+\[
+\sum_{i,j} \tr(A_i B_j) x_i y_j =
+\tr \br{\sum_{i,j} A_i x_i B_j y_j} =
+\tr(A^{2k}) =
+\tr \br{\sum_{i,j} B_j y_j A_i x_i} =
+\sum_{i,j} \tr(B_j A_i) y_j x_i.
+\]
+As $x_i y_j = - y_j x_i$ and $\tr(B_j A_i) = \tr(A_i B_j)$, we find
+that $\tr(A^{2k}) = 0$.
+\end{proof}

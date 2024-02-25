@@ -1,0 +1,664 @@
+\section{Local rings, idempotents and decompositions}
+
+\epigraph{``We will finish the drilling by end of
+August.''}{-- Construction workers}
+
+\subsection{Local rings}
+
+\begin{definicija}
+A ring $R$ is \emph{local}\index{local!ring} if $\kvoc{R}{\rad R}$
+is a division ring. It is \emph{semilocal}\index{semilocal ring}
+instead if $\kvoc{R}{\rad R}$ is semisimple.
+\end{definicija}
+
+\begin{izrek}
+For any ring $R$, the following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The ring $R$ has a unique maximal left ideal.
+\item The ring $R$ has a unique maximal right ideal.
+\item The ring $R$ is local.
+\item The set $R \setminus R^{-1}$ is an ideal in $R$.
+\item The set $R \setminus R^{-1}$ is a group under addition.
+\item If for some $a, b \in R$ we have $a + b \in R^{-1}$, then
+$a \in R^{-1}$ or $b \in R^{-1}$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Suppose first that $R$ has a unique maximal left ideal. Then the
+ring $\kvoc{R}{\rad R}$ only has the trivial left ideals. In
+particular, every element
+$x \in \kvoc{R}{\rad R} \setminus \set{0}$ has a left inverse $y$.
+But then so does $y$, which means that $y$ has both inverses, hence
+$xy = yx = 1$. The same argument works for right ideals.
+
+Now suppose that $R$ is a local ring. As there is a bijective
+correspondence between left (right) ideals in $\kvoc{R}{\rad R}$
+and left (right) ideals in $R$ that contain $\rad R$, it follows
+that maximal ideals (which by definition contain $\rad R$) must be
+equal to $\rad R$, therefore both i) and ii) hold.
+
+Continue with the assumption that $R$ is a local ring and recall
+that $x$ is invertible if and only if $x + \rad R$ is invertible in
+$\kvoc{R}{\rad R}$. But that means that
+$R \setminus R^{-1} = \rad R \edn R$.
+
+The next chain of implications is trivial. We are left to prove
+that item vi) implies that $R$ is local. Indeed, take
+$a \in R \setminus \rad R$ and let $M$ be a maximal left ideal of
+$R$ that does not contain $a$. By maximality, $M + Ra = R$, hence
+we can write $m + ba = 1$. By point vi), we find that $ba$ is
+invertible. Therefore both $a$ and $a + \rad R$ are invertible, and
+$\kvoc{R}{\rad R}$ is a division ring.
+\end{proof}
+
+\begin{trditev}
+Let $R$ be a local ring.
+
+\begin{enumerate}[i)]
+\item The ring $R$ has a unique maximal ideal.
+\item The ring $R$ has no non-trivial idempotents.
+\item The ring $R$ is Dedekind-finite.\footnote{The equation
+$ab = 1$ implies $ba = 1$.}
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item It is clear that $\rad R$ is the unique maximal ideal.
+\item Suppose that $e \in R$ is a non-trivial idempotent. Then
+$1-e$ is also an idempotent and $e \in R^{-1}$ or
+$(1-e) \in R^{-1}$. But as $e \cdot (1-e) = 0$, that means that
+either $e = 0$ or $e = 1$.
+\item Note that, as $(ba)^2 = ba$, we must have $ba = 0$ or
+$ba = 1$. The first one implies $0 = a \cdot ba = a$, which is
+impossible. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{trditev}
+If each $a \in R \setminus R^{-1}$ is nilpotent, then $R$ is a
+local ring.
+\end{trditev}
+
+\begin{proof}
+First note that $Ra \subseteq R \setminus R^{-1}$. Indeed, suppose
+that $a^k = 0$ where $k$ is minimal. If $ba$ is invertible for some
+$b \in R$, then $ba \cdot a^{k-1} = 0$, hence $a^{k-1} = 0$, which
+is a contradiction. But then $Ra \edn R$ is a nil ideal, hence
+$Ra \subseteq \rad R$. In particular, $a \in \rad R$, which implies
+that $R \setminus R^{-1} = \rad R$.
+\end{proof}
+
+\begin{trditev}
+Suppose that $R$ is a subring of a division ring $D$. If for each
+$d \in D$ we have $d \in R$ or $d^{-1} \in R$,\footnote{The ring
+$R$ is a \emph{valuation ring}\index{valuation ring} in $D$.} then
+$R$ is local.
+\end{trditev}
+
+\begin{proof}
+Suppose that $a+b = x \in R^{-1}$ and set $c = a^{-1} b$. If
+$c \in R$, then
+\[
+a^{-1} = a^{-1} (a+b) x^{-1} = (1 + c) x^{-1} \in R.
+\]
+Otherwise, compute $b^{-1}$ using $c^{-1}$.
+\end{proof}
+
+\datum{2023-12-21}
+
+\begin{definicija}
+Let $R$ be a commutative ring.
+
+\begin{enumerate}[i)]
+\item A set $S \subseteq R$ is
+\emph{multiplicative}\index{multiplicative subset} if $1 \in S$ and
+for all $a, b \in S$ we also have $ab \in S$.
+\item Define an equivalence relation on $R \times S$ by
+$(a, s) \sim (a', s') \iff
+\exists u \in S \colon u (as' - a's) = 0$. Denote
+$\frac{a}{s} = [(a,s)]_\sim$. The set
+\[
+S^{-1} R = \setb{\frac{a}{s}}{a \in R, s \in S}
+\]
+is the \emph{localization}\index{localization} of $R$ at $S$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+Note that the localization is again a ring with the usual
+operations on fractions.
+\end{opomba}
+
+\begin{opomba}
+There is a homomorphism $\varphi \colon R \to S^{-1} R$, given by
+$r \mapsto \frac{r}{1}$. If $S$ has no zero divisors, the
+homomorphism is injective.
+\end{opomba}
+
+\begin{opomba}
+If $0 \in S$, then $S^{-1} R = (0)$. If $R$ is an integral domain
+and $S = R \setminus \set{0}$, then $S^{-1} R$ is the quotient
+field of $R$.
+\end{opomba}
+
+\begin{trditev}[Universal property]
+\index{universal property}
+Suppose that $S \subseteq R$ is multiplicative and that
+$\psi \colon R \to T$ is a ring homomorphism. If $\psi(s)$ is
+invertible for all $s \in S$ then there exists a unique
+homomorphism $\widetilde{\psi} \colon S^{-1} R \to T$ such that
+$\psi = \widehat{\psi} \circ \varphi$.
+\end{trditev}
+
+\begin{trditev}
+Let $S \subseteq R$ be a multiplicative subset and
+$\varphi \colon R \to S^{-1} R$ be given by
+$\varphi(r) = \frac{r}{1}$. Then there exists a bijective
+correspondence between prime ideals of $S^{-1} R$ and prime ideals
+$P$ of $R$ such that $P \cap S = \emptyset$, given by
+$Q \mapsto \varphi^{-1}(Q)$ and $P \mapsto S^{-1}P$.
+\end{trditev}
+
+\begin{posledica}
+Let $P \edn R$ be a prime ideal. Then there exists a bijection
+between prime ideals of $R_P = (R \setminus P)^{-1} P$ and prime
+ideals $Q \edn R$ with $Q \subseteq P$. In particular, $R_P$ has a
+unique maximal ideal.
+\end{posledica}
+
+\newpage
+
+\subsection{Indecomposable modules}
+
+\begin{definicija}
+A left $R$-module $M$ is
+\emph{indecomposable}\index{indecomposable!module} if it is not of
+the form $M = A \oplus B$ for some non-trivial submodules $A$ and
+$B$.
+\end{definicija}
+
+\begin{lema}
+A module $M$ is indecomposable if and only if $E = \End(M)$ has no
+non-trivial idempotents.
+\end{lema}
+
+\begin{proof}
+If $e \in E$ is a non-trivial idempotent, then we can write
+$M = eM \oplus (1-e)M$. If $M$ is decomposable, that is
+$M = A \oplus B$ for non-trivial $A$ and $B$, then the projections
+are non-trivial idempotents.
+\end{proof}
+
+\begin{definicija}
+A left $R$-module $M$ is
+\emph{strongly indecomposable}\index{strongly indecomposable} if
+$\End(M)$ is a local ring.
+\end{definicija}
+
+\begin{definicija}
+A left $R$-module $M$ has \emph{finite length}\index{finite length}
+if all of its chains of submodules
+$(0) = N_0 < N_1 < \dots < N_s = M$ have bounded length. The
+largest such length $s$ is called the
+\emph{length}\index{length of module} of $M$.
+\end{definicija}
+
+\begin{opomba}
+If $M$ has finite length, then it is artinian and noetherian.
+Equivalently, $M$ has a composition series chain
+$(0) = N_0 < N_1 < \dots < N_s = M$ where each composition factor
+$\kvoc{N_i}{N_{i-1}}$ is simple. These composition factors are
+unique.
+\end{opomba}
+
+\begin{izrek}[Fitting lemma]
+\index{fitting lemma}
+Let $M$ be a left $R$-module with finite length and
+$f \in \End(M)$. Then for all large enough $n$ we have
+$M = \ker f^n \oplus \im f^n$.
+\end{izrek}
+
+\begin{proof}
+Consider the chains
+\[
+M \supseteq \im f \supseteq \im f^2 \supseteq \dots
+\quad \text{and} \quad
+(0) \subseteq \ker f \subseteq \ker f^2 \subseteq \dots
+\]
+As $M$ is both noetherian and artinian, both chains stabilize at
+some index $r$. We now claim that $M = \ker f^r \oplus \im f^r$.
+
+Suppose first that $a \in \ker f^r \cap \im f^r$. Write
+$a = f^r(b)$ and note that $0 = f^r(a) = f^{2r}(b)$, therefore
+$b \in \ker f^{2r} = \ker f^r$ and $a = 0$.
+
+Now take $c \in M$ and write $f^r(c) = f^{2r}(d)$. As
+$c = \br{c - f^r(d)} + f^r(d) \in \ker f^r + \im f^r$, we must have
+$M = \ker f^r + \im f^r$.
+\end{proof}
+
+\begin{izrek}
+Suppose that $M$ is an indecomposable left $R$-module of finite
+length. Then $E = \End(M)$ is a local ring and $\rad E$ is nil. In
+particular, $M$ is strongly indecomposable.
+\end{izrek}
+
+\begin{proof}
+We claim that all endomorphisms $f \in E \setminus E^{-1}$ are nil.
+Indeed, let $M = \ker f^r \oplus \im f^r$. By indecomposability of
+$M$, we must have either $\ker f^r = (0)$ or $\im f^r = (0)$. If
+$\ker f^r = (0)$, we find that $f$ is bijective, therefore
+invertible, which is a contradiction. It follows that $f^r = 0$.
+\end{proof}
+
+\begin{posledica}
+A right artinian ring is local if and only if it has no non-trivial
+idempotents.
+\end{posledica}
+
+\begin{proof}
+It is well known that a $M = R$ as a right $R$-module has finite
+length. Hence $E = \End(M) = R$ has no non-trivial idempotents and
+$M$ is indecomposable. By the previous theorem, $M$ is strongly
+indecomposable and $R$ is local.
+\end{proof}
+
+\begin{trditev}
+Suppose that a left $R$-module $M$ is noetherian or artinian. Then
+it can be written as a finite direct sum of indecomposable
+submodules.
+\end{trditev}
+
+\begin{proof}
+Assume the opposite. In particular, we can write it as
+$M = M_{1,1} \oplus M_{1,2}$ where $M_{1,1}$ cannot be decomposed
+into a finite direct sum of indecomposable submodules. We can
+repeat this process on $M_{n,1}$ indefinitely. But then the sums of
+modules $M_{i,2}$ and the chain of modules $M_{n,1}$ form infinite
+increasing and decreasing chains respectively, contradicting our
+assumption.
+\end{proof}
+
+\begin{definicija}
+We call such a decomposition a
+\emph{Krull-Schmidt decomposition}\index{Krull-Schmidt!decomposition}.
+\end{definicija}
+
+\begin{izrek}[Krull-Schmidt]
+\index{Krull-Schmidt!theorem}
+Suppose that $M$ is a left $R$-module of finite length. If
+\[
+M = \bigoplus_{i=1}^r M_r = \bigoplus_{i=1}^s N_i
+\]
+for indecomposable submodules $M_i$ and $N_i$, then $r = s$ and
+there exists a permutation $\sigma \in S_r$ such that
+$M_i = N_{\sigma(i)}$ for all $i$.
+\end{izrek}
+
+\begin{proof}
+Let $\alpha_i \colon M \to M_i$ and $\beta_i \colon M \to N_i$ be
+projections. Then
+\[
+\sum_{i=1}^r \alpha_i = 1 = \sum_{i=1}^s \beta_i.
+\]
+But then
+\[
+\sum_{i=1}^s \eval{\alpha_1 \beta_i}{M_1}{} =
+\eval{\alpha_1}{M_1}{} =
+\id_{M_1}.
+\]
+Since $M_1$ is indecomposable and of finite length, $\End(M_1)$ is
+a local ring. Hence we can assume that
+$\eval{\alpha_1 \beta_1}{M_1}{}$ is invertible. In particular,
+$\eval{\beta_1}{M_1}{}$ is injective. The short exact sequence
+\[
+\begin{tikzcd}[row sep = large, column sep = large]
+0 \arrow[r] & M_1 \arrow[r, "\beta_1"] &
+N_1 \arrow[r] & \kvoc{N_1}{M_1} \arrow[r] & 0
+\end{tikzcd}
+\]
+thus splits, therefore $N_1 = M_1 \oplus \kvoc{N_1}{M_1}$, which is
+only possible if $M_1 \cong N_1$.
+
+We now claim that
+\[
+M \cong M_1 \oplus \bigoplus_{i=2}^s N_i.
+\]
+Indeed, as $\eval{\beta_1}{M_1}{}$ is an isomorphism, the sum is
+direct. It remains to check that $N_1$ is a subset of the above
+direct sum. Let $a \in N_1$ and write $a = \beta_1(b)$. Note that
+\[
+a - b \in \ker \beta_1 = \bigoplus_{i=2}^s N_i,
+\]
+therefore $a = b + (a-b)$ is the required decomposition.
+
+As we have
+\[
+\bigoplus_{i=2}^r M_i = \kvoc{M}{M_1} = \bigoplus_{i=2}^s N_i,
+\]
+the theorem is proven by induction.
+\end{proof}
+
+\begin{opomba}
+The theorem does not hold in general. There are counterexamples
+that are artinian/noetherian.
+\end{opomba}
+
+\begin{trditev}
+If a ring $R$ has only finitely many maximal left ideals, it is
+semilocal.
+\end{trditev}
+
+\begin{proof}
+Without loss of generality let $\rad R = (0)$ and let
+$M_1, \dots, M_r$ be all the maximal left ideals. Now consider the
+$R$-module map
+\[
+\Phi \colon R \to \bigoplus_{i=1}^r \kvoc{R}{M_i},
+\]
+given by $\Phi_i(x) = x + M_i$. As $\rad R = (0)$, $\Phi$ is
+injective. As all $\kvoc{R}{M_i}$ are simple by maximality, $R$ is
+a submodule of a semisimple module and hence itself semisimple.
+\end{proof}
+
+\begin{opomba}
+If $R$ is commutative, the converse also holds.
+\end{opomba}
+
+\newpage
+
+\subsection{Idempotents}
+
+\begin{definicija}
+A ring $R$ is \emph{indecomposable}\index{indecomposable!ring} if
+it cannot be written as a direct product of non-trivial rings.
+\end{definicija}
+
+\begin{definicija}
+An idempotent $e \in R$ is \emph{central}\index{central idempotent}
+if $e \in Z(R)$.
+\end{definicija}
+
+\begin{trditev}
+A ring $R$ is indecomposable if and only if it does not have
+non-trivial central idempotents.
+\end{trditev}
+
+\begin{proof}
+If $e \in R$ is a non-trivial central idempotent, then
+$R = Re \oplus R(1-e)$ is a decomposition, hence $R$ is not
+indecomposable. If $R$ is decomposable, then projections of $1$ are
+non-trivial idempotents.
+\end{proof}
+
+\begin{lema}
+Let $e \in R$ be an idempotent and $f = 1-e$. Then $e$ is central
+if and only if $e R f = f R e = (0)$.
+\end{lema}
+
+\begin{proof}
+Both statements are equivalent to $er = ere = re$.
+\end{proof}
+
+\begin{definicija}[Pierce decomposition]
+\index{Pierce decomposition}
+Let $R$ be a ring and $e \in R$ an idempotent. For $f = 1-e$, we
+can write $R = Re \oplus Rf$ as a left $R$-module,
+$R = eR \oplus fR$ as a right $R$-module and
+\[
+R = eRe \oplus eRf \oplus fRe \oplus fRf
+\]
+as an abelian group.
+\end{definicija}
+
+\datum{2024-1-4}
+
+\begin{trditev}
+Suppose that $e, e' \in R$ are idempotents and let $M$ be a right
+$R$-module.
+
+\begin{enumerate}[i)]
+\item There exists an isomorphism of abelian groups
+$\lambda \colon \Hom(eR, M) \to Me$.
+\item The abelian groups $\Hom(eR, e'R)$ and $e'Re$ are isomorphic.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+The second item clearly follows from the first. Let
+$\theta \colon eR \to M$ be a homomorphism of right $R$-modules and
+set $m = \theta(e)$. Then clearly $me = \theta(e^2) = m$, hence
+$m \in Me$. We can now define $\lambda(\theta) = \theta(e)$, where
+$\lambda \colon \Hom(eR, M) \to Me$, as required. Note that
+$\theta$ is uniquely determined by $\theta(e)$, therefore $\lambda$
+is injective. To prove surjectivity, take $m \in Me$ and set
+$\theta(er) = mr$. It is well defined, as $er = 0$ implies
+$mr \in Mer = (0)$.
+\end{proof}
+
+\begin{posledica}
+For each idempotent $e \in R$ there is a canonical isomorphism of
+rings $\End(eR) \cong eRe$.
+\end{posledica}
+
+\begin{proof}
+Applying the above proposition, $\lambda \colon \End(eR) \to Me$ is
+a group isomorphism. For $\theta, \theta' \in \End(eR)$, we have
+\[
+\lambda(\theta \cdot \theta') =
+\theta(\theta'(e)) =
+\theta(m).
+\]
+But as $m \in eR$, we can further simplify the expression as
+\[
+\theta(m) =
+\theta(em) =
+\theta(e) \cdot m =
+\lambda(\theta) \cdot \lambda(\theta'),
+\]
+therefore $\lambda$ is multiplicative as well.
+\end{proof}
+
+\begin{definicija}
+Idempotents $e, f \in R$ are
+\emph{orthogonal}\index{orthogonal idempotents} if $ef = fe = 0$.
+\end{definicija}
+
+\begin{trditev}
+The following statements are equivalent for a non-zero idempotent
+$e \in R$:
+
+\begin{enumerate}[i)]
+\item The right $R$-module $eR$ is indecomposable.
+\item The left $R$-module $Re$ is indecomposable.
+\item The ring $eRe$ has no non-trivial idempotents.
+\item The idempotent $e$ does not decompose as $e = \alpha + \beta$
+for non-zero orthogonal idempotents $\alpha$ and $\beta$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+We clearly only need to prove that the items i), iii) and iv) are
+equivalent. As $eR$ is indecomposable precisely if
+$\End(eR) \cong eRe$ has no non-trivial idempotents, i) and iii)
+are indeed equivalent.
+
+If $\alpha \in eRe$ is a non-trivial idempotent, then so is
+$\beta = e - \alpha$. Furthermore, they are clearly orthogonal,
+hence $e$ is decomposable. Finally, if $e = \alpha + \beta$ for
+orthogonal idempotents $\alpha$ and $\beta$, then
+$e \alpha = \alpha = \alpha e \in eRe$ is a non-trivial idempotent.
+\end{proof}
+
+\begin{posledica}
+For any non-zero idempotent $e \in R$ the following statements are
+equivalent:
+
+\begin{enumerate}[i)]
+\item The right $R$-module $eR$ is strongly indecomposable.
+\item The left $R$-module $Re$ is strongly indecomposable.
+\item The ring $eRe$ is local.
+\end{enumerate}
+\end{posledica}
+
+\obvs
+
+\begin{definicija}
+An idempotent $e \in R$ is \emph{local}\index{local!idempotent} if
+the ring $eRe$ is local.
+\end{definicija}
+
+\begin{izrek}
+Suppose that $e \in R$ is an idempotent and let $J = \rad(R)$.
+
+\begin{enumerate}[i)]
+\item The radical of $eRe$ can be expressed as
+$\rad(eRe) = J \cap eRe = eJe$.
+\item For the quotient projection
+$\bar{~} \colon R \to \kvoc{R}{J}$ we have
+$\kvoc{eRe}{eJe} \cong \oline{e} \oline{R} \oline{e}$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+We will show that
+$\rad(eRe) \subseteq J \cap eRe \subseteq eJe \subseteq \rad(eRe)$.
+Suppose first that $r \in \rad(R)$. We will show that $1 - yr$ has
+a left inverse in $R$ for all $y \in R$. Indeed, we can write
+$b(e - eye r) = e$ for some $b \in eRe$. But as $b, r \in eRe$,
+this implies $b(1 - yr) = e$, hence $yrb(1-yr) = yre = yr$. Adding
+$1-yr$ to both sides, we find that $yrb + 1$ is the sought left
+inverse.
+
+Now let $r \in J \cap eRe$. Then $ere = r$, but as $r \in J$, we
+find that $r = ere \in eJe$.
+
+Finally, let $r \in eJe$. We will show that $e - yr$ has a left
+inverse in $eRe$ for all $y \in eRe$. Indeed, as $r \in J$, we can
+write $x (1 - yr) = 1$ for some $x \in R$. But then
+\[
+e = ex (1 - yr) e = ex (e - yr) = exe (e - yr),
+\]
+therefore $exe$ is the left inverse.
+
+For the second part just apply the isomorphism theorem for
+$\bar{} \colon eRe \to \oline{e} \oline{R} \oline{e}$.
+\end{proof}
+
+\datum{2024-1-11}
+
+\begin{izrek}
+Let $e \in R$ be an idempotent.
+
+\begin{enumerate}[i)]
+\item If $I \subseteq eRe$ is a left ideal, then $RI \cap eRe = I$.
+In particular, the map $I \mapsto RI \edn R$ for $I \edn eRe$ is
+injective.
+\item For $I \edn eRe$, we have $e(RIR)e = I$. In particular, the
+map $I \mapsto RIR \edn R$ for $I \edn eRe$ is injective.
+\item If $e$ satisfies $ReR = R$,\footnote{Such idempotents are
+called \emph{full}\index{full idempotent}.} then the map in ii) is
+surjective.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item It is clear that $I \subseteq RI \cap eRe = I_0$. But as
+$I_0 = eI_0 \subseteq eRI = eRe I = I$, we must have $I = I_0$.
+\item We can write $eRIRe = (eRe) I (eRe) = I$.
+\item Let $J \edn R$ and set $I = eJe \edn eRe$. Then
+\[
+RIR = R e J e R = R e (RJR) e R = R J R = J. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{posledica}
+Let $e \in R$ be a non-zero idempotent. If $R$ is $J$-semisimple,
+semisimple, simple, or left/right noetherian/artinian, then so is
+$eRe$.
+\end{posledica}
+
+\begin{izrek}
+Suppose that $I \edn R$ is nil. If $a \in R$ is such that
+$\oline{a} = a + \kvoc{R}{I}$ is an idempotent, then there exists
+some idempotent $e \in R$ such that $\oline{e} = \oline{a}$.
+\end{izrek}
+
+\begin{proof}
+Set $b = 1 - a$. Then clearly $ab = ba = a - a^2 \in I$. As $I$
+is nil, we can find an integer $m$ such that $(ab)^m = 0$. Now
+write
+\[
+1 = (a + b)^{2m-1} =
+\underbrace{\sum_{i=0}^{m-1} \binom{2m-1}{i} a^{2m-1-i} b^i}_e +
+\underbrace{\sum_{i=m}^{2m-1} \binom{2m-1}{i} a^{2m-1-i} b^i}_f.
+\]
+Then clearly $ef = 0$ and $e = e^2 + ef = e^2$ is an idempotent.
+As $e \equiv a^{2m} \equiv a \pmod{I}$, we indeed have
+$\oline{e} = \oline{a}$.
+\end{proof}
+
+\newpage
+
+\subsection{Block decomposition and central idempotents}
+
+\begin{definicija}
+An idempotent $c \in R$ is
+\emph{centrally primitive}\index{centrally primitive idempotent} if
+$c \in Z(R)$ and it cannot be written as a sum of two non-zero
+orthogonal central idempotents.
+\end{definicija}
+
+\begin{trditev}
+Suppose that $1 \in R$ decomposes as
+\[
+1 = \sum_{i=1}^r c_i,
+\]
+where $c_i$ are orthogonal centrally primitive idempotents.
+
+\begin{enumerate}[i)]
+\item Every central idempotent is of the form
+\[
+c = \sum_{i \in I} c_i.
+\]
+\item The idempotents $c_i$ are the only centrally primitive
+idempotents.
+\item The decomposition is unique.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Suppose that $c \in R$ is a central idempotent. As $c_i$ is
+primitive and $c c_i$ is an idempotent, we must have either
+$c c_i = 0$ or $c c_i = c_i$. But then
+\[
+c = \sum_{c c_i = c_i} c_i.
+\]
+The second statement is a direct corollary of the first. The
+uniqueness of the decomposition follows from the fact that
+\[
+0 = \sum_{i \in I} c_i
+\]
+implies that $c_i = c_i^2 = 0$ for all $i \in I$, as $c_j$ are
+orthogonal.
+\end{proof}
+
+\begin{definicija}
+If the above decomposition exists, then
+\[
+R = \prod_{i=1}^m c_i R
+\]
+is a \emph{block decomposition}\index{block decomposition}.
+\end{definicija}
+
+\begin{izrek}
+If $R$ is left noetherian/artinian, then a block decomposition
+exists.
+\end{izrek}
