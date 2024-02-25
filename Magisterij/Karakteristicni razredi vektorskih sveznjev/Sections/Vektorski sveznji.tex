@@ -1,0 +1,57 @@
+\section{Vektorski svežnji}
+
+\subsection{Podmnogoterosti}
+
+\begin{definicija}
+Množica $M \subseteq \R^n$ je
+\emph{gladka, vložena podmnogoterost}\index{vložena podmnogoterost}
+dimenzije $m$, če za vsako točko $p \in M$ obstaja njena okolica
+$U$ v $\R^n$ in difeomorfizem
+$\Phi \colon U \to \Phi(U) \subseteq \R^n$, za katerega je
+$\Phi(U \cap M) = \R^m \times \set{0}^{n-m}$. Preslikavi
+$\eval{\Phi}{U \cap M}{}$ pravimo
+\emph{lokalna karta}\index{lokalna!karta}, preslikavi
+$\br{\eval{\Phi}{U \cap M}{}}^{-1}$ pa
+\emph{lokalna parametrizacija}\index{lokalna!parametrizacija}.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $M \subseteq \R^n$ gladka, vložena podmnogoterost in
+$p \in M$. \emph{Tangentni prostor}\index{tangentni prostor} $M$ v
+točki $p$ je množica
+\[
+\T_p M =
+\setb{\dot{\gamma}(0)}
+{\gamma \colon (-\varepsilon, \varepsilon) \to M}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Prostor $\T_p M$ je vektorski podprostor $\R^n$ z bazo
+\[
+\setb{\parc{r}{x_i}(0)}{i \leq m},
+\]
+kjer je $r$ lokalna parametrizacija $M$ v neki okolici $p$, za
+katero je $r(0) = p$.
+\end{trditev}
+
+\begin{proof}
+Naj bo $\gamma \colon (-\varepsilon, \varepsilon) \to M$ gladka pot
+z $\gamma(0) = p$. Predpostavimo še, da $\gamma$ slika v
+$M \cap U$, ki je parametrizirana z $r = \Phi^{-1}$. Tedaj je
+\[
+\Phi \circ \gamma = (v_1, \dots, v_m, 0)
+\]
+pot v $\R^n$. Tako dobimo
+\[
+\dot{\gamma}(0) =
+\dot{\br{r \circ \Phi \circ \gamma}}(0) =
+dr \cdot \dot{v}(0) =
+\sum_{i=1}^m v_i(0) \parc{r}{x_i}(0).
+\]
+Vsi bazni elementi so elementi tangentnega prostora, saj jih dobimo
+s potmi s parametrizacijo
+\[
+t \mapsto r(0, \dots, t, 0, \dots, 0).
+\]
+\end{proof}

@@ -1,0 +1,272 @@
+\section{Kohomologija}
+
+\subsection{Aksiomatična kohomologija}
+
+\datum{2024-2-22}
+
+\begin{definicija}
+Naj bo $R$ komutativen kolobar in $\catt{Top_2}$ kategorija
+topoloških parov z zveznimi preslikavami. Naj bo
+$\kappa \colon \catt{Top_2} \to \catt{Top_2}$ funktor, ki objektu
+$(X, A)$ priredi $(A, \emptyset)$, morfizmu
+$f \colon (X, A) \to (Y, B)$ pa $\eval{f}{A}{}$.
+\emph{Kohomološka teorija}\index{kohomološka teorija} z vrednostmi
+v $\catt{_{R}Mod}$ je sestavljena iz zaporedja kofunktorjev
+$h^n \colon \catt{Top_2} \to \catt{_RMod}$ in naravnih
+transformacij $\delta^{n-1} \colon h^{n-1} \circ \kappa \to h^n$,
+ki zadošča naslednjim aksiomom:
+
+\begin{itemize}
+\item Homotopija: Če je $F \colon (X, A) \times I \to (Y, B)$
+homotopija parov, velja $h^n(F_0) = h^n(F_1)$ za vsak $n$.
+\item Eksaktnost: Zaporedje
+\[
+\begin{tikzcd}[row sep=large]
+\cdots \arrow[r] &
+h^n(X, A) \arrow[r] &
+h^n(X, \emptyset) \arrow[r] &
+h^n(A, \emptyset) \arrow[lld, "\delta_{(X,A)}^n"'] \\&
+h^{n+1}(X, A) \arrow[r] &
+h^{n+1}(X, \emptyset) \arrow[r] &
+h^{n+1}(A, \emptyset) \arrow[r] &
+\cdots
+\end{tikzcd}
+\]
+v $\catt{_RMod}$ je eksaktno.
+\item Izrez: Naj bo $(X, A)$ par in $U \subseteq A$. Denimo, da
+obstaja taka zvezna preslikava $\tau \colon X \to I$, da je
+$U \subseteq \tau^{-1}(0) \subseteq \tau^{-1}([0,1)) \subseteq A$.
+Tedaj je z inkluzijo inducirani morfizem
+$h^n(X, A) \to h^n(X \setminus U, A \setminus U)$ izomorfizem za
+vsak $n$.
+\end{itemize}
+
+Zaporedju modulov $\setb{h^n(\bullet)}{n \in \Z}$ pravimo
+\emph{koeficienti teorije}\index{koeficienti kohomološke teorije}.
+Kohomološko teorijo v celoti označimo s $h^*$. Pišemo
+$h^n(X) = h^n(X, \emptyset)$.
+\end{definicija}
+
+\begin{opomba}
+Ker je $\delta^{n-1}$ naravna transformacija, vsaka zvezna
+preslikava parov $f \colon (A, X) \to (Y, B)$ inducira morfizem
+eksaktnih zaporedij.
+\end{opomba}
+
+\begin{definicija}
+Če velja $h^n(\bullet) = 0$ za vse $n \ne 0$, pravimo, da gre za
+\emph{običajno kohomološko teorijo}\index{običajna kohomološka teorija}
+s koeficienti v $R$-modulu $h^0(\bullet)$.
+\end{definicija}
+
+\begin{izrek}[Eksaktno zaporedje trojice]
+Za dano trojico $B \subset A \subset X$ je zaporedje
+\[
+\begin{tikzcd}[row sep=large]
+\cdots \arrow[r] &
+h^n(X, A) \arrow[r] &
+h^n(X, B) \arrow[r] &
+h^n(A, B) \arrow[dll, "\delta_{(X,A,B)}^n"']
+\\ &
+h^{n+1}(X,A) \arrow[r] &
+h^n(X, B) \arrow[r] &
+h^n(A, B) \arrow[r] &
+\cdots
+\end{tikzcd}
+\]
+eksaktno, kjer je $\delta_{(X,A,B)}^n$ takšna, da diagram
+\[
+\begin{tikzcd}[row sep=large]
+h^n(A,B) \arrow[r] \arrow[dr, "\delta_{(X,A,B)}^n"'] &
+h^n(A, \emptyset) \arrow[d, "\delta_{(X,A)}^n"] \\ &
+h^{n+1}(X,A)
+\end{tikzcd}
+\]
+komutira.
+\end{izrek}
+
+\begin{proof}
+Oglejmo si naslednji diagram:
+\[
+\begin{tikzcd}
+h^{n-1}(B) \arrow[dr, blue] \arrow[dd, out=225, in=135, red]&
+&
+h^n(X,A) \arrow[dl, "\alpha"']
+\arrow[dd, out=315, in=45, green!70!black]
+\\
+&
+h^n(X,B) \arrow[dl, "\beta"'] \arrow[dr, blue]
+\\
+h^n(A,B) \arrow[dr, red]
+\arrow[dd, out=225, in=135, "\delta_{(X,A,B)}^n"'] &
+&
+h^n(X) \arrow[dl, green!70!black] \arrow[dd, out=315, in=45, blue]
+\\
+&
+h^n(A) \arrow[dl, green!70!black] \arrow[dr, red]
+\\
+h^{n+1}(X,A) \arrow[dr, "\gamma"] &
+&
+h^n(B) \arrow[dl, blue]
+\\
+&
+h^{n+1}(X,B)
+\end{tikzcd}
+\]
+Vsako izmed barvitih zaporedij je eksaktno po definiciji homološke
+teorije. Diagram je komutativen, saj $\delta$ naravne
+transformacije. Od tod takoj dobimo
+$\delta_{(X,A,B)}^n \circ \beta = 0$ in
+$\gamma \circ \delta_{(X,A,B)}^n = 0$.
+
+Opazimo, da diagram inkluzij
+\[
+\begin{tikzcd}
+(X,A) \arrow[r, hook] \arrow[d, hook] & (X,B) \arrow[d, hook] \\
+(A,A) \arrow[r, hook] & (A,B)
+\end{tikzcd}
+\]
+komutira, zato komutira tudi diagram
+\[
+\begin{tikzcd}
+h^n(A,B) & h^n(X,B) \arrow[l, "\beta"'] \\
+h^n(A,A) \arrow[u] & h^n(X,A). \arrow[u, "\alpha"'] \arrow[l]
+\end{tikzcd}
+\]
+Ker je $h^n(A,A) = 0$, je tako tudi $\beta \circ \alpha = 0$.
+Sledi, da je iskano zaporedje verižni kompleks. Eksaktnost sledi iz
+lovljenja po diagramu.\footnote{Rezultatu pravimo tudi
+\emph{lema o kiti}\index{lema o kiti}.}
+\end{proof}
+
+\datum{2024-2-23}
+
+\begin{trditev}
+Če je $f \colon (X, A) \to (Y, B)$ homotopska ekvivalenca parov, so
+morfizmi $f^* = h^n(f) \colon h^n(Y, B) \to h^n(X, A)$ izomorfizmi.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+Če je $f \colon (X, A) \to (Y, B)$ preslikava, za katero sta
+$f$ in $\eval{f}{A}{}$ homotopski ekvivalenci, so
+$f^* \colon h^n(Y, B) \to h^n(X, A)$ izomorfizmi.
+\end{trditev}
+
+\begin{proof}
+Uporabimo lemo o petih na diagramu
+\[
+\begin{tikzcd}
+\cdots \arrow[r] &
+h^{n-1}(B) \arrow[r] \arrow[d, "f^*"', "\cong"] &
+h^n(Y, B) \arrow[r] \arrow[d, "f^*"'] &
+h^n(X) \arrow[r] \arrow[d, "f^*"', "\cong"] &
+\cdots \\
+\cdots \arrow[r] &
+h^{n-1}(B) \arrow[r] &
+h^n(Y, B) \arrow[r] &
+h^n(X) \arrow[r] &
+\cdots
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Obstaja izomorfizem\footnote{\emph{Suspenzijski izomorfizem}.}
+\index{suspenzijski izomorfizem}
+$\sigma \colon
+h^{k-1}(S^{n-1}, \set{e_1}) \to h^k(S^n, \set{e_1})$.
+\end{trditev}
+
+\begin{proof}
+Imamo diagram inkluzij
+\[
+\begin{tikzcd}[row sep=large]
+(S^n, S^n \setminus \set{-e_{n+1}}) &
+(S_-^n, S_-^n \setminus \set{-e_{n+1}}) \arrow[l, hook] \\
+(S^n, S_+^n) \arrow[u, hook] &
+(S_-^n, S^{n-1}) \arrow[u, hook] \arrow[l, hook],
+\end{tikzcd}
+\]
+ki seveda komutira. Tako dobimo sledeč komutativen diagram:
+\[
+\begin{tikzcd}[row sep=large, column sep=small]
+&
+h^k(S^n, S^n \setminus \set{-e_{n+1}})
+\arrow[r, "\alpha_1"] \arrow[d, "\alpha_2"'] &
+h^k(S_-^n, S_-^n \setminus \set{-e_{n+1}}) \arrow[d, "\alpha_3"] \\
+h^{k-1}(S_+^n, \set{e_1}) \arrow[r] &
+h^k(S^n, S_+^n) \arrow[r, "\beta"'] \arrow[d] &
+h^k(S_-^n, S^{n-1}) \arrow[r] &
+h^k(S_-^n, \set{e_1})
+\\
+h^k(S_+^n, \set{e_1}) &
+h^k(S^n, \set{e_1}) \arrow[l] &
+h^{k-1}(S^{n-1}, \set{e_1}) \arrow[u] &
+h^{k-1}(S_-^n, \set{e_1}). \arrow[l]
+\end{tikzcd}
+\]
+Morfizem $\alpha_1$ je izomorfizem po lastnosti izreza, $\alpha_2$
+in $\alpha_3$ pa sta izomorfizma po prejšnji trditvi. Sledi, da je
+tudi $\beta$ izomorfizem. Ker pa je $h^l(S_*^n, \set{e_1}) = 0$ za
+vse $l$ po prejšnji trditvi, dobimo
+\[
+h^k(S^n, \set{e_1}) \cong
+h^k(S^n, S_+^n) \cong
+h^k(S_-^n, S^{n-1}) \cong
+h^{k-1}(S^{n-1}, \set{e_1}). \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Velja $h^k(S^n, \set{e_1}) \cong h^{k-n}(\set{e_1})$.
+\end{posledica}
+
+\begin{definicija}
+Triada $(X, A, B)$, pri čemer je $X = A \cup B$, je
+\emph{izrezna}\index{izrezna triada}, če so morfizmi
+$i^* \colon h^n(X, A) \to h^n(B, A \cap B)$ izomorfizmi.
+\end{definicija}
+
+\begin{opomba}
+Izrezna triada $(X, A, B)$ inducira komutativno lestev
+\[
+\begin{tikzcd}[row sep=large, column sep=small]
+\cdots \arrow[r] &
+h^n(X,A) \arrow[r] \arrow[d, "i^*"', "\cong"] &
+h^n(X) \arrow[r] \arrow[d] &
+h^n(A) \arrow[r] \arrow[d] &
+h^{n+1}(X,A) \arrow[r] \arrow[d, "i^*"', "\cong"] &
+\cdots \\
+\cdots \arrow[r] &
+h^n(B,A \cap B) \arrow[r] &
+h^n(B) \arrow[r] &
+h^n(A \cap B) \arrow[r] &
+h^{n+1}(B,A \cap B) \arrow[r] &
+\cdots,
+\end{tikzcd}
+\]
+in njeno pripadajoče
+\emph{Mayer-Vietorisovo zaporedje}\index{Mayer-Vietorisovo zaporedje}.
+Podobno v primeru, ko je $(A \cup B, A, B)$ izrezna triada za
+$A \cup B \subset X$, dobimo komutativno lestev
+\[
+\begin{tikzcd}[row sep=large, column sep=small]
+\cdots \arrow[r] &
+h^n(X, A \cup B) \arrow[r] \arrow[d] &
+h^n(X, A) \arrow[r] \arrow[d] &
+h^n(A \cup B, A) \arrow[r] \arrow[d, "i^*"', "\cong"] &
+h^{n+1}(X,A \cup B) \arrow[r] \arrow[d] &
+\cdots \\
+\cdots \arrow[r] &
+h^n(X, B) \arrow[r] &
+h^n(X, A \cap B) \arrow[r] &
+h^n(B, A \cap B) \arrow[r] &
+h^{n+1}(X, B) \arrow[r] &
+\cdots
+\end{tikzcd}
+\]
+in njeno pripadajoče Mayer-Vietorisovo zaporedje.
+\end{opomba}
