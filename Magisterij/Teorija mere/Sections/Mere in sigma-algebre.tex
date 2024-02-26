@@ -20,7 +20,8 @@ $A^{\mathsf{c}} \in \mathcal{A}$.
 \end{enumerate}
 
 Pravimo, da je $(X, \mathcal{A})$
-\emph{merljiv prostor}\index{merljiv prostor}.
+\emph{merljiv prostor}\index{merljiv prostor}, množicam
+$\mathcal{A}$ pa \emph{merljive množice}\index{merljiva množica}.
 \end{definicija}
 
 \begin{opomba}
@@ -206,6 +207,233 @@ velja
 zato je $\mu$ res pozitivna.
 \end{proof}
 
+\datum{2024-2-26}
+
+\begin{posledica}
+Naj bo $(X, \mathcal{A}, \mu)$ merljiv prostor s pozitivno mero in
+naj bo $(A_n)_n$ padajoče zaporedje merljivih množic. Če je
+$\mu(A_1) < \infty$, velja
+\[
+\mu \br{\bigcap_{n=1}^\infty A_n} =
+\lim_{n \to \infty} \mu(A_n).
+\]
+\end{posledica}
+
+\begin{proof}
+Uporabimo prejšnjo trditev na zaporedju $(A_1 \setminus A_n)_n$.
+\end{proof}
+
+\newpage
+
+\subsection{Napolnitev prostora z mero}
+
+\begin{definicija}
+Merljiv prostor $(X, \mathcal{A}, \mu)$ s pozitivno mero je
+\emph{poln}\index{poln prostor z mero}, če za vsako množico
+$A \in \mathcal{A}$, za katero je $\mu(A) = 0$, tudi za vse
+$B \subseteq A$ velja $\mu(B) = 0$.
+\end{definicija}
+
+\begin{definicija}
+Množica $A \in \mathcal{A}$ je
+\emph{$\mu$-ničelna}\index{mu-ničelna@$\mu$-ničelna množica}, če je
+$\mu(A) = 0$.
+\end{definicija}
+
 \begin{opomba}
-Podobna trditev za preseke ne velja.
+Števna unija $\mu$-ničelnih množic je spet $\mu$-ničelna.
 \end{opomba}
+
+\begin{izrek}
+Naj bo $(X, \mathcal{A}, \mu)$ merljiv prostor s pozitivno mero in
+naj bo
+\[
+\oline{\mathcal{A}} =
+\setb{B = A \cup S}
+{A \in \mathcal{A} \land
+\exists N \in \mathcal{A} \colon \mu(N) = 0 \land S \subseteq N}.
+\]
+Tedaj je $\oline{\mathcal{A}}$ $\sigma$-algebra. S predpisom
+$\oline{\mu}(A \cup S) = \mu(A)$ postane
+$(X, \oline{\mathcal{A}}, \oline{\mu})$ poln merljiv prostor s
+pozitivno mero.
+\end{izrek}
+
+\begin{proof}
+Preverimo najprej, da je $\oline{\mathcal{A}}$ $\sigma$-algebra.
+Očitno je $X \in \oline{\mathcal{A}}$. Ker je
+\[
+\br{A \cup S}^{\mathsf{c}} =
+A^{\mathsf{c}} \cap S^{\mathsf{c}} =
+A^{\mathsf{c}} \cap \br{N^{\mathsf{c}} \cup N \setminus S} =
+\br{A^{\mathsf{c}} \cap N^{\mathsf{c}}} \cup
+\br{A^{\mathsf{c}} \cap N \setminus S},
+\]
+kar je očitno element $\oline{\mathcal{A}}$, je družina zaprta za
+preseke. Zaprtost za števne unije je očitna.
+
+Sedaj preverimo, da je $\oline{\mu}$ pozitivna mera. Mera je dobro
+definirana, saj iz $A_1 \cup S_1 = A_2 \cup S_2$ sledi
+\[
+\mu(A_1) = \mu(A_1 \cup N_1) \geq \mu(A_2)
+\]
+in simetrično. Ker je
+$\oline{\mu}(\emptyset) = 0$ in
+\[
+\oline{\mu} \br{\bigcup_{n=1}^\infty \br{A_n \cup S_n}} =
+\oline{\mu} \br{\bigcup_{n=1}^\infty A_n \cup
+\bigcup_{n=1}^\infty S_n} =
+\mu \br{\bigcup_{n=1}^\infty A_n} =
+\sum_{n=1}^\infty \mu(A_n) =
+\sum_{n=1}^\infty \oline{\mu}(A_n \cup S_n),
+\]
+je mera pozitivna.
+
+Denimo sedaj, da velja $\oline{\mu}(N) = 0$ za nek
+$N \in \oline{\mathcal{A}}$ in $B \subseteq N$. Ker je
+$N \subseteq M$ za nek $M \in \mathcal{A}$ z $\mu(M) = 0$, je tak
+tudi $B$, zato je $\mu(B) = 0$. Prostor je zato res poln.
+\end{proof}
+
+\begin{definicija}
+\emph{Lebesgueova $\sigma$-algebra}\index{Lebesgueova sigma-algebra@Lebesgueova $\sigma$-algebra}
+$\mathcal{L}_\R$ na $\R$ je napolnitev Borelove.
+\end{definicija}
+
+\begin{izrek}
+Naj bo $C$ Cantorjeva množica. Tedaj je
+$\abs{\mathcal{L}_\R} = 2^{\abs{C}}$.
+\end{izrek}
+
+\begin{proof}
+Cantorjeva množica je $\mu$-ničelna, zato je
+$\abs{\mathcal{L}_\R} \geq 2^{\abs{C}}$. Ker pa je
+$\mathcal{L}_R \subseteq \pot(\R)$ in je
+$\abs{C} = \abs{\R}$, sledi
+tudi obratna neenakost.
+\end{proof}
+
+\newpage
+
+\subsection{Zunanje mere}
+
+\begin{definicija}
+\emph{Zunanja mera}\index{zunanja mera} na $X \ne \emptyset$ je
+funkcija $\xi \colon \pot(X) \to [0, \infty]$, za katero velja
+naslednje:
+
+\begin{enumerate}[i)]
+\item Velja $\xi(\emptyset) = 0$.
+\item Če je $A \subseteq B$, je $\xi(A) \leq \xi(B)$.
+\item Če so $(A_n)_n \subseteq X$ množice, velja
+\[
+\xi \br{\bigcup_{n=1}^\infty A_n} \leq
+\sum_{n=1}^\infty \xi(A_n).
+\]
+\end{enumerate}
+\end{definicija}
+
+\begin{trditev}
+Naj bo $\mathcal{S}$ družina podmnožic neprazne množice $X$, pri
+čemer je $\emptyset, X \in \mathcal{S}$. Naj bo
+$\mu \colon \mathcal{S} \to [0, \infty]$ funkcija, ki zadošča
+$\mu(\emptyset) = 0$. Definiramo
+$\mu^* \colon \pot(X) \to [0, \infty]$ s predpisom
+\[
+\mu^*(Y) =
+\inf \setb{\sum_{n=1}^\infty \mu(A_n)}
+{(A_n)_n \subseteq \mathcal{S} \land
+Y \subseteq \bigcup_{n=1}^\infty A_n}.
+\]
+Tedaj je $\mu^*$ zunanja mera na $X$.
+\end{trditev}
+
+\begin{proof}
+Očitno je $\mu^*(\emptyset) = 0$. Prav tako ni težko videti, da je
+$\mu^*$ monotona. Sedaj za vsak $A_n$ izberimo pokritje, za
+katerega je\footnote{Če je katera izmed $\mu^*(A_n) = \infty$, je
+ta lastnost očitna.}
+\[
+\sum_{k=1}^\infty \mu(A_{n,k}) <
+\mu^*(A_n) + \frac{\varepsilon}{2^n}.
+\]
+Tedaj je
+\[
+\mu^* \br{\bigcup_{n=1}^\infty A_n} \leq
+\sum_{n,k \in \N} \mu(A_{n,k}) <
+\sum_{n=1}^\infty \mu^*(A_n) +
+\sum_{n=1}^\infty \frac{\varepsilon}{2^n} =
+\sum_{n=1}^\infty \mu^*(A_n) + \varepsilon. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Naj bo $\xi$ zunanja mera na $X$. Množica $A \subseteq X$ je
+\emph{$\xi$-merljiva}\index{merljiva množica}, če velja
+\[
+\xi(Y) = \xi(Y \cap A) + \xi(Y \cap A^{\mathsf{x}})
+\]
+za vse $Y \subseteq X$.
+\end{definicija}
+
+\begin{opomba}
+Ekvivalentno iz $\xi(Y) < \infty$ sledi
+\[
+\xi(Y) \geq \xi(Y \cap A) + \xi(Y \cap A^{\mathsf{c}}).
+\]
+\end{opomba}
+
+\begin{izrek}[Carathéodory]
+\index{Carathéodoryjev izrek}
+Naj bo $\xi$ zunanja mera za $X$. Tedaj je
+\[
+\mathcal{A}_\xi =
+\setb{A \subseteq X}{\text{$A$ je $\xi$-merljiva}}
+\]
+$\sigma$-algebra na $X$, $\eval{\xi}{\mathcal{A}_\xi}{}$ pozitivna
+mera in $(X, \mathcal{A}_\xi, \eval{\xi}{\mathcal{A}_\xi}{})$ poln
+merljiv prostor.
+\end{izrek}
+
+\begin{proof}
+Najprej opazimo, da je $X \in \mathcal{A}_\xi$, in da je
+$\mathcal{A}_\xi$ zaprta za komplemente. Pokažimo, da je zaprta
+tudi za končne unije -- naj bosta $A, B \in \mathcal{A}_\xi$. Tedaj
+je
+\begin{align*}
+\xi \br{Y \cap \br{A \cup B}} +
+\xi \br{Y \cap \br{A \cup B}^\mathsf{c}} &=
+\xi \br{(Y \cap A) \cup (Y \cap B \cap A^\mathsf{c})} +
+\xi \br{Y \cap A^\mathsf{c} \cap B^\mathsf{c}}
+\\
+&\leq
+\xi(Y \cap A) + \xi(Y \cap B \cap A^\mathsf{c}) +
+\xi \br{Y \cap A^\mathsf{c} \cap B^\mathsf{c}}
+\\
+&=
+\xi(Y \cap A) + \xi(Y \cap A^\mathsf{c})
+\\
+&=
+\xi(Y).
+\end{align*}
+%TODO
+\end{proof}
+
+%TODO dodaj to po definiciji Lebesgueove mere
+%\begin{trditev}
+%Obstajajo Lebesgueovo nemerljive množice.
+%\end{trditev}
+%
+%\begin{proof}
+%Na $\R$ vpeljemo ekvivalenčno relacijo $\sim$ kot
+%$x \sim y \iff x-y \in \Q$. Za vsak $x \in [-1, 1]$ izberimo
+%predstavnika njegovega ekvivalenčnega razreda iz
+%$x+\Q \cap [-1, 1]$ in naj bo $S$ množica teh predstavnikov.
+%Označimo $\Q_1 = \Q \cap [-2, 2]$. Množica
+%$\mathcal{F} = \setb{r + S}{r \in \Q_1}$ je seveda števna. Hitro se
+%prepričamo, da so elementi $\mathcal{F}$ disjunktni. Poleg tega je
+%\[
+%[-1, 1] \subseteq \bigcup_{r \in \Q_1} (r + S) \subseteq [-3, 3].
+%\]
+%Sledi, da $S$ ni merljiva.
+%\end{proof}
