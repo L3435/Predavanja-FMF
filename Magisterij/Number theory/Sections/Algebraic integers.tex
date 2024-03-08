@@ -1,0 +1,156 @@
+\section{Algebraic integers}
+
+\subsection{Gaussian integers}
+
+\datum{2024-3-8}
+
+\begin{definicija}
+A domain $R$ is \emph{Euclidean}\index{Euclidean domain} if there
+is a $\delta \colon \R \setminus \set{0} \to \N_0$, such that for
+all $a \in R$ and $b \in R \setminus \set{0}$ we can write
+$a = bq + r$ for $q, r \in R$, such that $r = 0$ or
+$\delta(r) < \delta(b)$.
+\end{definicija}
+
+\begin{trditev}
+The Gaussian integers are an Euclidean domain.
+\end{trditev}
+
+\begin{proof}
+Algebra 2, theorem 6.3.4.
+\end{proof}
+
+\begin{definicija}
+A domain $R$ is a
+\emph{unique factorisation domain}\index{unique factorisation domain}
+if every $\alpha \in R$ is of the form
+\[
+\alpha = \prod_{i=1}^n p_i
+\]
+for irreducible elements in a unique way up to permutation and
+multiplication of factors by a unit element.
+\end{definicija}
+
+\begin{opomba}
+Principal ideal domains (and therefore $\Z[i]$) are unique
+factorisation domains.
+\end{opomba}
+
+\begin{lema}
+The function $N \colon \Z[i] \to \N_0$, given by
+$N(a + bi) = a^2 + b^2$, has the following properties:
+
+\begin{enumerate}[i)]
+\item The equality $N(\alpha) = 0$ is equivalent to $\alpha = 0$.
+\item For all $\alpha, \beta \in \Z[i]$ we have
+$N(\alpha \beta) = N(\alpha) \cdot N(\beta)$.
+\item An element $\alpha \in \Z[i]$ is invertible if and only if
+$N(\alpha) = 1$.
+\end{enumerate}
+\end{lema}
+
+\obvs
+
+\begin{lema}
+Let $p \in \P$ be a prime. Then $-1$ is a quadratic residue modulo
+$p$ if and only if $p = 2$ or $p \equiv 1 \pmod{4}$.
+\end{lema}
+
+\begin{proof}
+If $p \equiv 1 \pmod{4}$, we can write
+$-1 \equiv \br{e^{\frac{p-1}{4}}}^2 \pmod{p}$.
+If $p \equiv 3 \pmod{4}$ and $p \mid c^2 + 1$, then
+\[
+1 \equiv \br{c^2}^{\frac{p-1}{2}} \equiv (-1)^{\frac{p-1}{2}} = -1,
+\]
+a clear contradiction.
+\end{proof}
+
+\begin{izrek}[Fermat]
+\index{Fermatov izrek}
+Let $p$ be an odd prime. Then $p$ can be written as a sum of two
+squares if and only if $p \equiv 1 \pmod{4}$.
+\end{izrek}
+
+\begin{proof}
+It is clear that primes $p \equiv 3 \pmod{4}$ cannot be written in
+such a way. Now suppose that $p \equiv 1 \pmod{4}$ and take
+$b \in \N$ such that $b^2 \equiv -1 \pmod{p}$. Now note that
+$p \mid (b-i)(b+i)$, but $p$ clearly can't divide either factor. It
+follows that $p$ is not a prime element, hence we can factor it as
+$p = \alpha \beta$.
+
+Now, write $p^2 = N(p) = N(\alpha) \cdot N(\beta)$, therefore
+$N(\alpha) = p$, which gives us a representation of $p$ as a sum of
+two squares.
+\end{proof}
+
+\begin{trditev}
+Up to associativity, the prime elements of $\Z[i]$ are the
+following:
+
+\begin{enumerate}[i)]
+\item $1 + i$,
+\item $a + bi$ with $a^2 + b^2 = p \in \P$ with
+$p \equiv 1 \pmod{4}$ and $0 < \abs{b} < a$,
+\item $p \in \P$ with $p \equiv 3 \pmod{4}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+It is clear that $1+i$ is a prime element. Elements of the second
+form are prime by the proof of the previous theorem. For the last
+one, if $p = \alpha \beta$ for non-invertible $\alpha$ and $\beta$,
+then $N(\alpha) = N(\beta) = p$, which is of course impossible.
+Clearly, they are not associated.
+
+Suppose now that $p \in \Z[i]$ is a prime element. Then
+$N(p) = p \oline{p}$, which can be factored in integers. But then
+$p$ divides some prime element $q \in \P$. It follows that
+$N(p) \mid q^2$, but as $q^2$ can be factored by the above prime
+elements, $p$ is of such form.
+\end{proof}
+
+\begin{izrek}
+Let $n \in \N$. Then there exist integers $a$ and $b$ such that
+$n = a^2 + b^2$ if and only if $2 \mid \nu_p(n)$ for all prime
+numbers $p \equiv 3 \pmod{4}$.
+\end{izrek}
+
+\begin{proof}
+It is clear that all such numbers can be written as a sum of two
+squares, as the property is multiplicative. For the converse,
+suppose that $n = a^2 + b^2$ and take any prime number $p \in \P$
+such that $p \equiv 3 \pmod{4}$ and $p \mid n$. Then, if $b$ is
+invertible in $\Z_p$, we can write
+\[
+\left.p~\middle\vert~\br{\frac{a}{b}}^2 + 1\right.,
+\]
+which is impossible. It follows that $p \mid a, b$. The theorem is
+now proven by infinite descent.
+\end{proof}
+
+\begin{opomba}
+This theorem can also be proven by factoring $\alpha = a + bi$.
+\end{opomba}
+
+\begin{opomba}
+A positive integer $n$ can be written as a sum of $3$ squares if
+and only if it is not of the form $n = 4^a \cdot (8k+7)$.
+\end{opomba}
+
+\begin{trditev}
+Let $\alpha \in \Q(i)$. Then $\alpha \in \Z[i]$ if and only if
+there exist some $c, d \in \Z$ such that $\alpha$ is a root of the
+polynomial $P(x) = x^2 + cx + d$.
+\end{trditev}
+
+\begin{proof}
+We see that $P(\alpha) = 0$ and $\alpha \not \in \Q$ is equivalent
+to $P(x) = (x - \alpha) \br{x - \oline{\alpha}}$. Of course, if
+$\alpha \in \Q$, we must have $\alpha \in \Z$ by 
+characterisation of rational roots of integer polynomials.
+Otherwise, for $\alpha = a + bi$, the condition is equivalent to
+$2a \in \Z$ and $a^2 + b^2 \in \Z$, which is only possible if both
+$a \in \Z$ and $b \in \Z$.
+\end{proof}
