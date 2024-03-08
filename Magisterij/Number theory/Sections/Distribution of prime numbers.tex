@@ -25,7 +25,8 @@ converges normally as a product of constant functions.
 Let $\sigma > 1$ be a real number. For $s \in \C$ with
 $\Re(s) \geq \sigma$, we have
 \[
-\sum_{n=1}^\infty = \prod_{p \in \P} (1 - p^{-s})^{-1},
+\sum_{n=1}^\infty \frac{1}{n^s} =
+\prod_{p \in \P} (1 - p^{-s})^{-1},
 \]
 with both the product and sum converging uniformly and
 absolutely.\footnote{See Complex analysis, section 3 for definition
@@ -195,8 +196,8 @@ Calculate the logarithmic derivative of $\zeta$ as
 \phi(s) + \sum_{p \in \P} \frac{\log(p)}{p^s(p^s-1)}.
 \end{align*}
 Similarly as in the proof of proposition~\ref{prime:prop:phi}, we
-can show that the above series converges uniformly and absolutely
-for $\Re(s) > \frac{1}{2}$.
+can show that the above series converges locally uniformly and
+absolutely for $\Re(s) > \frac{1}{2}$.
 \end{proof}
 
 \begin{izrek}
@@ -243,6 +244,7 @@ As $\theta \geq 0$, we have $\mu = 0$.
 \end{proof}
 
 \begin{posledica}
+\label{prime:cor:g_def}
 The function $\phi$ is holomorphic for $\Re(s) = 1$, except for a
 simple pole with residue $1$ at $1$. In particular, the function
 \[
@@ -250,3 +252,299 @@ g(z) = \frac{\phi(z+1)}{z+1} - \frac{1}{z}
 \]
 is holomorphic for $\Re(z) \geq 0$.
 \end{posledica}
+
+\obvs
+
+\datum{2024-3-1}
+
+\begin{lema}
+Let $x \geq 0$. Then $\theta(x) \leq 4x$.
+\end{lema}
+
+\begin{proof}
+First let $n \in \N$ be an integer. Then
+\[
+e^{\theta(2n) - \theta(n)} =
+\prod_{n < p \leq 2n} p \leq
+\binom{2n}{n} \leq
+2^{2n},
+\]
+therefore $\theta(2n) - \theta(n) \leq 2n \log(2)$. Now let
+$n = \ceil{\frac{x}{2}}$. Then
+\[
+\theta(x) - \theta \br{\frac{x}{2}} \leq
+\theta(2n) - \theta(n-1) \leq
+\log(n) + 2n \log(2) \leq
+3n \leq
+2x
+\]
+for all $x \geq 6$, but we can manually check that it holds for
+$x < 6$ as well. But then
+\[
+\theta(x) =
+\sum_{n=0}^\infty
+\br{\theta \br{\frac{x}{2^n}} - \theta \br{\frac{x}{2^{n+1}}}} \leq
+\sum_{n=0}^\infty \frac{2x}{2^n} =
+4x. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $h \colon \R_{\geq 0} \to \C$ be bounded and locally
+integrable. Then the following statements are true:
+
+\begin{enumerate}[i)]
+\item The Laplace transform
+\[
+H(z) = \int_0^\infty h(t) e^{-zt}\,dt
+\]
+of $h$ is holomorphic for $\Re(z) > 0$.
+\item The function
+\[
+\int_0^T h(t) e^{-zt}\,dt
+\]
+is holomorphic for all $z \in \C$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Analysis 2b, proposition 4.1.4.
+\item Evident. \qedhere % Morera če si fancy
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}
+\label{prime:thm:ana}
+Let $h \colon \R_{\geq 0} \to \C$ be bounded and locally
+integrable. Suppose that its Laplace transform
+\[
+H(z) = \int_0^\infty h(t) e^{-zt}\,dt
+\]
+extends to a holomorphic function on $\Re(z) \geq 0$. Then
+\[
+H(0) = \int_0^\infty h(t)\,dt.
+\]
+\end{izrek}
+
+\begin{proof}
+Define
+\[
+H_T(z) = \int_0^T h(t) e^{-zt}\,dt
+\]
+for $T > 0$. Fix some $R > 0$ and consider the region
+\[
+\Omega = \setb{z \in \dsk(R)}{\Re(z) \geq -\delta}.
+\]
+By compactness of $i[-R, R]$, we can pick a $\delta$ such that
+$H$ is holomorphic on $\Omega$. Now partition $\partial \Omega$
+into sets $C_1 = \setb{z \in \partial \Omega}{\Re(z) \geq 0}$,
+$C_2 = \setb{z \in \partial \Omega}{-\delta < \Re(z) < 0}$ and
+$C_3 = \setb{z \in \partial \Omega}{\Re(z) = -\delta}$. Taking
+\[
+I(z) = \frac{H(z) - H_T(z)}{z} e^{zT} \br{1 + \frac{z^2}{R^2}},
+\]
+we can write
+\[
+H(0) - H_T(0) =
+\frac{1}{2 \pi i} \olint_{\partial \Omega} I(z)\,dz
+\]
+using the Cauchy integral formula. Setting
+$B = \max \setb{\abs{h(t)}}{t \in \R_{\geq 0}}$, we can bound
+\[
+\abs{H(z) - H_T(z)} \leq
+\int_T^\infty \abs{h(t)} \cdot \abs{e^{-zt}}\,dt \leq
+B \frac{e^{- \Re(z) T}}{\Re(z)},
+\]
+hence
+\[
+\abs{I(z)} \leq
+\frac{B}{\Re(z)} \cdot \abs{1 + \frac{z^2}{R^2}} \cdot
+\abs{\frac{1}{z}} =
+\frac{B}{R \Re(z)} \cdot \abs{\frac{z}{R} + \frac{R}{z}} =
+\frac{B}{R \Re(z)} \cdot 2 \Re \br{\frac{z}{R}} =
+\frac{2B}{R^2}
+\]
+for $z \in C_1$. Integrating, we find that
+\[
+\frac{1}{2 \pi} \cdot \lint_{C_1} \abs{I(z)}\,dz \leq
+\frac{B}{R}.
+\]
+
+Next, we bound the integral of $H_T$ over $C_2 \cup C_3$. As
+$H_T$ is holomorphic, we can write
+\[
+\lint_{C_2 \cup C_3} H_T(z)\,dz =
+\lint_{-C_1} H_T(z)\,dz,
+\]
+but as
+\[
+\abs{H_T(z)} \leq
+\int_0^T \abs{h(z) e^{-zt}}\,dt \leq
+B \int_0^T e^{-\Re(z) t}\,dt =
+\frac{B}{\Re(z)} \cdot \br{1 - e^{-\Re(z) T}} \leq
+B \frac{e^{-\Re(z)T}}{\abs{\Re(z)}},
+\]
+which is the same bound as above. 
+As
+\[
+\abs{H(z) \cdot \br{1 + \frac{z^2}{R^2}} \cdot \frac{1}{z}} \leq M
+\]
+on $C_2 \cup C_3$ for some $M > 0$, we see that
+\[
+\abs{H(z) \cdot \br{1 + \frac{z^2}{R^2}} \cdot \frac{1}{z}} \cdot
+\abs{e^{zT}}
+\]
+converges to $0$ as $T \to \infty$. By the dominated convergence
+theorem, the integral
+\[
+\frac{1}{2 \pi} \cdot \lint_{C_2 \cup C_3}
+\abs{H(z) \br{1 + \frac{z^2}{R^2}} \cdot \frac{1}{z}} \cdot
+\abs{e^{zT}}\,dz
+\]
+converges to $0$ as well. Then
+\[
+\limsup_{T \to \infty} \abs{H(0) - H_T(0)} \leq \frac{2B}{R},
+\]
+which, by taking $R \to \infty$, implies
+\[
+\lim_{T \to \infty} H_T(0) = H(0). \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+For $\Re(z) > 0$, we have
+\[
+g(z) = \int_0^\infty \br{\theta \br{e^t} e^{-t} - 1} e^{-zt}\,dt,
+\]
+where $g$ is defined as in corollary~\ref{prime:cor:g_def}.
+\end{lema}
+
+\begin{proof}
+Note that $\theta \br{e^t} e^{-t} - 1$ is bounded, hence the
+given Laplace transform exists. Let $(p_n)_n$ be the ascending
+sequence of prime numbers. Setting $p_0 = 1$, we have
+\begin{align*}
+\phi(s) &=
+\sum_{p \in \P} \frac{\log(p)}{p^s}
+\\
+&=
+\sum_{j=1}^\infty \frac{\theta(p_j) - \theta(p_{j-1})}{p_j^s}
+\\
+&=
+\sum_{j=0}^\infty \theta(p_j) \cdot
+\br{\frac{1}{p_j^s} - \frac{1}{p_{j+1}^s}}
+\\
+&=
+\sum_{j=0}^\infty \theta(p_j) s
+\int_{p_j}^{p_{j+1}} \frac{1}{x^{s+1}}\,dx
+\\
+&=
+\sum_{j=0}^\infty s
+\int_{p_j}^{p_{j+1}} \frac{\theta(x)}{x^{s+1}}\,dx
+\\
+&=
+s \int_1^\infty \frac{\theta(x)}{x^{s+1}}\,dx
+\\
+&=
+s \int_0^\infty \theta(e^t) e^{-st}\,dt
+\end{align*}
+for all $\Re(s) > 1$. Hence
+\[
+g(z) =
+\int_0^\infty \theta(e^t) e^{-(z+1)t}\,dt -
+\int_0^\infty e^{-zt}\,dt =
+\int_0^\infty \br{\theta \br{e^t} e^{-t} - 1} e^{-zt}\,dt. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+The integral
+\[
+\int_1^\infty \frac{\theta(x) - x}{x^2}\,dx
+\]
+exists.
+\end{izrek}
+
+\begin{proof}
+We compute
+\[
+\int_1^{e^T} \frac{\theta(x) - x}{x^2}\,dx =
+\int_0^T \br{\theta \br{e^t} e^{-t} - 1}\,dt.
+\]
+Applying theorem~\ref{prime:thm:ana}, the claim follows.
+\end{proof}
+
+\begin{izrek}
+We have $\theta(x) \sim x$, that is
+\[
+\lim_{x \to \infty} \frac{\theta(x)}{x} = 1.
+\]
+\end{izrek}
+
+\begin{proof}
+Suppose otherwise. We split two cases:
+
+\begin{enumerate}[i)]
+\item For some $\lambda > 1$, there exist arbitrarily large $x$
+such that $\theta(x) \geq \lambda x$. We can compute
+\[
+\int_x^{\lambda x} \frac{\theta(t) - t}{t^2}\,dt \geq
+\int_x^{\lambda x} \frac{\lambda x - t}{t^2}\,dt =
+\int_1^\lambda \frac{\lambda x - xy}{x^2 y^2} x\,dy =
+\int_1^\lambda \frac{\lambda - y}{y^2}\,dy =
+c >
+0.
+\]
+This contradicts the previous theorem.
+\item For some $\lambda < 1$, there exist arbitrarily large $x$
+such that $\theta(x) \leq \lambda x$. As above, we can compute
+\[
+\int_{\lambda x}^x \frac{\theta(t) - t}{t^2}\,dt \leq
+\int_{\lambda x}^x \frac{\lambda x - t}{t^2}\,dt =
+\int_\lambda^1 \frac{\lambda - y}{y^2}\,dy =
+c <
+0.
+\]
+This again contradicts the previous theorem. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Prime number theorem]
+\index{prime number theorem}
+The prime counting function is asymptotically equivalent to
+$\frac{x}{\log(x)}$.
+\end{izrek}
+
+\begin{proof}
+Note that
+\[
+\theta(x) \leq \log(x) \cdot \pi(x)
+\]
+and
+\[
+\theta(x) \geq
+\sum_{\substack{p \in \P \\ x^{1-\varepsilon} \leq p \leq x}}
+\log(p) \geq
+(1 - \varepsilon) \log(x) \cdot \br{\pi(x) - x^{1-\varepsilon}},
+\]
+therefore
+\[
+\frac{\theta(x)}{x} \leq
+\frac{\pi(x) \log(x)}{x} \leq
+\frac{\theta(x)}{(1-\varepsilon)x} + \frac{\log(x)}{x^\varepsilon}.
+\]
+This implies
+\[
+1 \leq
+\limsup_{x \to \infty} \frac{\pi(x) \log(x)}{x} \leq
+\frac{1}{1-\varepsilon}
+\]
+and
+\[
+1 \leq
+\liminf_{x \to \infty} \frac{\pi(x) \log(x)}{x} \leq
+\frac{1}{1-\varepsilon}. \qedhere
+\]
+\end{proof}
