@@ -1,0 +1,792 @@
+\section{Decomposition of primes in extensions}
+
+\epigraph{The even case is a bit more odd.}
+{-- gost.~izr.~prof.~dr.~rer.~nat.~Daniel Smertnig}
+
+\subsection{Prime ideals in extensions}
+
+\datum{2024-5-10}
+
+\begin{lema}
+Let $K \subseteq L$ be number fields,
+$\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$ and
+$\mathfrak{P} \in \mathcal{P}(\mathcal{O}_L)$. Then
+\[
+\mathfrak{P} \mid \mathfrak{p} \mathcal{O}_L \iff
+\mathfrak{p} \subseteq \mathfrak{P} \iff
+\mathfrak{P} \cap \mathcal{O}_K = \mathfrak{p}.
+\]
+\end{lema}
+
+\begin{proof}
+Suppose first that $\mathfrak{P} \mid \mathfrak{p} \mathcal{O}_L$.
+Then we have
+$\mathfrak{p} \subseteq
+\mathfrak{p} \mathcal{O}_L \subseteq
+\mathfrak{P}$.
+
+Now suppose that $\mathfrak{p} \subseteq \mathfrak{P}$. Then as
+$\mathfrak{p} \subseteq \mathfrak{P} \cap \mathcal{O}_K$ is a
+maximal ideal, it must be equal to this intersection.
+
+Finally, suppose that the last condition holds. Then
+\[
+\mathfrak{p} \mathcal{O}_L =
+\br{\mathfrak{P} \cap \mathcal{O}_K} \mathcal{O}_L \subseteq
+\mathfrak{P} \mathcal{O}_L =
+\mathfrak{P}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+If any of the above conditions hold, we say that
+$\mathfrak{P}$ \emph{lies over}\index{lies over, under}
+$\mathfrak{p}$. Similarly, $\mathfrak{p}$ \emph{lies under}
+$\mathfrak{P}$.
+\end{definicija}
+
+\begin{lema}
+Every $\mathfrak{P} \in \mathcal{P}(\mathcal{O}_L)$ lies over a
+unique $\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$.
+\end{lema}
+
+\begin{proof}
+Uniqueness follows from the previous lemma, therefore we only need
+to show that $\mathfrak{p} = \mathfrak{P} \cap \mathcal{O}_K$ is a
+prime ideal. To see that it is non-empty, apply
+lemma~\ref{dedek:lm:pr_id_intsc}. Now it is clear that it is a
+prime ideal by definition.
+\end{proof}
+
+\begin{opomba}
+By lemma~\ref{dedek:lm:pr_id_intsc}, the quotient
+$\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L}$ is finite,
+therefore each prime ideals lies under at most finitely many prime
+ideals.
+\end{opomba}
+
+\begin{opomba}
+The ring homomorphism
+$\mathcal{O}_K \hookrightarrow
+\mathcal{O}_L \to
+\kvoc{\mathcal{O}_L}{\mathfrak{P}}$
+induces a field embedding
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}} \to
+\kvoc{\mathcal{O}_L}{\mathfrak{P}}$.
+\end{opomba}
+
+\begin{definicija}
+Let $\mathfrak{P} \in \mathcal{P}(\mathcal{O}_L)$ and
+$\mathfrak{p} = \mathfrak{P} \cap \mathcal{O}_K$.
+
+\begin{enumerate}[i)]
+\item The quotient $\kvoc{\mathcal{O}_L}{\mathfrak{P}}$ is the
+\emph{residue field}\index{residue field} of $\mathfrak{P}$.
+\item The number
+$\left[\kvoc{\mathcal{O}_L}{\mathfrak{P}} :
+\kvoc{\mathcal{O}_K}{\mathfrak{p}}\right]$
+is the \emph{inertia degree}\index{inertia degree}, which we denote
+by $f = f(\mathfrak{P} \mid \mathfrak{p})$.
+\item The multiplicity
+$\nu_{\mathfrak{P}}(\mathfrak{p} \mathcal{O}_L)$ of $\mathfrak{P}$
+in $\mathfrak{p} \mathcal{O}_L$ is the
+\emph{ramification index}\index{ramification index} of
+$\mathfrak{P}$, which we denote by
+$e = e(\mathfrak{P} \mid \mathfrak{p})$.
+\end{enumerate}
+\end{definicija}
+
+\begin{izrek}
+Let $n = [L : K]$, where $K \subseteq L$ are number fields. Let
+$\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$ and
+$\mathfrak{P}_1, \dots, \mathfrak{P}_r \in
+\mathcal{P}(\mathcal{O}_L)$ be the distinct prime ideals over
+$\mathfrak{p}$. Denote by
+$e_i = e(\mathfrak{P}_i \mid \mathfrak{p})$ and
+$f_i = f(\mathfrak{P}_i \mid \mathfrak{p})$. Then
+\[
+\sum_{i=1}^r e_i f_i = n.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $\kappa = \kvoc{\mathcal{O}_K}{\mathfrak{p}}$. Let
+$\alpha_1, \dots, \alpha_m \in \mathcal{O}_L$ be such that
+$\oline{\alpha}_1, \dots, \oline{\alpha}_m \in
+\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L}$ is a
+$\kappa$-basis.
+
+Suppose that
+\[
+\sum_{i=1}^m c_i \alpha_i = 0
+\]
+where $c_i \in K$ are not all equal to $0$. By clearing
+denominators, we can take $c_i \in \mathcal{O}_K$. Denote
+\[
+0 \ne \mathfrak{c} =
+\skl{c_1, \dots, c_m}_{\mathcal{O}_K} \edn \mathcal{O}_K
+\]
+and let
+$d \in \mathfrak{c}^{-1} \setminus \mathfrak{c}^{-1} \mathfrak{p}$.
+Then
+\[
+\sum_{i=1}^m d c_i \alpha_i = 0
+\]
+and all $d c_i$ are elements of $\mathcal{O}_K$, but
+$d c_i \not \in \mathfrak{p}$ for some index $i$. It follows that
+\[
+\sum_{i=1}^r \oline{d c_i} \oline{\alpha}_i = 0,
+\]
+which is a contradiction.
+
+Now let $M = \skl{\alpha_1, \dots, \alpha_m}_{\mathcal{O}_K}$ and
+write $N = \kvoc{\mathcal{O}_L}{M}$ as a $\mathcal{O}_K$-module.
+Note that, by the choice of $\alpha_i$,
+$\mathcal{O}_L = M + \mathfrak{p} \mathcal{O}_L$ holds. We can
+check that $N = \mathfrak{p} N$.
+
+As $\mathcal{O}_L$ is a finitely generated $\Z$-module, it is
+finitely generated as a $\mathcal{O}_K$-module. Denote
+$N = \skl{\beta_1, \dots, \beta_s}_{\mathcal{O}_K}$. Note that we
+can write
+\[
+\beta_i = \sum_{j=1}^s c_{i,j} \beta_j
+\]
+for $c_{i,j} \in \mathfrak{p}$. Let
+$C = \begin{bmatrix} c_{i,j} \end{bmatrix}_{i,j}$. It follows that
+$(C-I) \beta = 0$. By construction we have
+$d = \det(C-I) = (-1)^s \pmod{\mathfrak{p}}$, hence
+\[
+d \beta = \adj(C-I) \cdot (C-I) \beta = 0
+\]
+and so $d \beta_i = 0$ for all $i$. By definition, it follows
+that $dN = 0$, therefore $d \mathcal{O}_L \subseteq M$. But then
+\[
+L =
+dL =
+d \skl{\mathcal{O}_L}_K \subseteq
+\skl{M}_K =
+\skl{\alpha_1, \dots, \alpha_m}_K,
+\]
+therefore $\setb{\alpha_i}{i \leq m}$ is a $K$-basis of $L$.
+
+In particular,
+$\dim_\kappa \kvoc{\mathcal{O}_L}{\mathfrak{p}\mathcal{O}_L} =
+\dim_K L = n$. But then
+\[
+N(\mathfrak{p} \mathcal{O}_L) =
+\abs{\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L}} =
+\abs{\kappa}^n =
+N(\mathfrak{p})^n,
+\]
+and
+\[
+N(\mathfrak{p} \mathcal{O}_L) =
+\prod_{i=1}^r N(\mathfrak{P}_i)^{e_i} =
+\prod_{i=1}^r N(\mathfrak{p})^{e_i f_i}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+The \emph{conductor}\index{conductor} of $\mathcal{O}_K[\alpha]$ in
+$\mathcal{O}_L$ is the set
+\[
+\mathfrak{f} =
+\setb{\beta \in \mathcal{O}_L}
+{\beta \mathcal{O}_L \subseteq \mathcal{O}_K[\alpha]}.
+\]
+\end{definicija}
+
+\begin{opomba}
+The conductor is the largest common ideal of $\mathcal{O}_L$ and
+$\mathcal{O}_K[\alpha]$.
+\end{opomba}
+
+\begin{lema}
+If $\alpha \in \mathcal{O}_L$, then the minimal polynomial $g$ of
+$\alpha$ over $K$ has coefficients in $\mathcal{O}_K$.
+\end{lema}
+
+\begin{proof}
+Denote $n = [K(\alpha) : K]$ and let
+$\Hom_K(K(\alpha), \C) = \setb{\sigma_i}{i \leq n}$. Then
+$\sigma_i(\alpha)$ are algebraic conjugates of $\alpha$ and
+therefore algebraic integers. It follows that the coefficients of
+$g$ are algebraic integers as well by Vieta's formulae. As they are
+contained in $K$ by definition, the coefficients are elements of
+$\mathcal{O}_K$.
+\end{proof}
+
+\begin{izrek}[Dedekind-Kummer]
+\index{Dedekind-Kummer theorem}
+\label{decomp:thm:dedekum}
+Let $\alpha \in \mathcal{O}_L$ be an element such that
+$L = K(\alpha)$ and let $\mathfrak{f}$ be the conductor of
+$\mathcal{O} = \mathcal{O}_K[\alpha]$ in $\mathcal{O}_L$. Let
+$g \in \mathcal{O}_K[x]$ be the minimal polynomial of $\alpha$ over
+$K$ and let $\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$ be
+coprime to $\mathfrak{f} \cap \mathcal{O}_K$. Suppose that
+monic polynomials $g_1, \dots, g_r \in \mathcal{O}_K[x]$ and
+integers $e_1, \dots, e_r \in \N$ are such that
+\[
+\oline{g} = \prod_{i=1}^r \oline{g}_i^{e_i}
+\]
+is the prime factorisation of $\oline{g}$ in
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}}[x]$. Finally, for
+$i \leq r$, let
+$\mathfrak{P}_i =
+\mathfrak{p} \mathcal{O}_L + g_i(\alpha) \mathcal{O}_L$. Then
+$\mathfrak{P}_i$ are the prime ideals of $\mathcal{O}_L$ lying over
+$\mathfrak{p}$, $e_i = e(\mathfrak{P}_i \mid \mathfrak{p})$ and
+$\deg g_i = f(\mathfrak{P}_i \mid \mathfrak{p})$.
+\end{izrek}
+
+\begin{proof}
+Denote $\kappa = \kvoc{\mathcal{O}_K}{\mathfrak{p}}$. Consider the
+homomorphism
+$\varphi \colon \mathcal{O} \hookrightarrow
+\mathcal{O}_L \to
+\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L}$. By assumption,
+we have
+$\mathfrak{p} + \br{\mathfrak{f} \cap \mathcal{O}_K} =
+\mathcal{O}_K$, therefore
+$\mathfrak{p} \mathcal{O}_L + \mathfrak{f} = \mathcal{O}_L$.
+Since $\mathfrak{f} \subseteq \mathcal{O}$, $\varphi$ is
+surjective. Note that
+$\ker \varphi = \mathcal{O} \cap \mathfrak{p} \mathcal{O}_L$. As
+$\mathfrak{p} \mathcal{O} + \mathfrak{f} = \mathcal{O}$, we have
+\[
+\ker \varphi =
+\mathfrak{p} \mathcal{O}_L \cap \mathcal{O} =
+\br{\mathfrak{p} \mathcal{O} + \mathfrak{f}}
+\br{\mathfrak{p} \mathcal{O}_L \cap \mathcal{O}} \subseteq
+\mathfrak{p} \mathcal{O},
+\]
+therefore $\ker \varphi = \mathfrak{p} \mathcal{O}$ and so
+\[
+\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L} \cong
+\kvoc{\mathcal{O}}{\mathfrak{p} \mathcal{O}}.
+\]
+But as
+\[
+\kvoc{\mathcal{O}}{\mathfrak{p} \mathcal{O}} \cong
+\kvoc{\mathcal{O}_K[x]}{(\mathfrak{p}, g)} \cong
+\kvoc{\kvoc{\mathcal{O}_K}{\mathfrak{p}}[x]}{(g)},
+\]
+we in fact have
+\[
+\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L} \cong
+\kvoc{\kappa[x]}{\br{\oline{g}}}.
+\]
+By the Chinese remainder theorem, we can further write
+\[
+R = \kvoc{\kappa[x]}{\br{\oline{g}}} \cong
+\prod_{i=1}^r \kvoc{\kappa[x]}{\br{\oline{g}_i^{e_i}}}
+\]
+The ideals of each component are precisely $\br{\oline{g}_i^j}$ for
+some $j \leq e_i$, therefore $R$ has precisely $r$ maximal ideals.
+Denote them by $\mathfrak{m}_i$. Note that
+\[
+\dim_\kappa \kvoc{R}{\mathfrak{m}_i} =
+\dim_\kappa \kvoc{\kappa[x]}{\br{\oline{g}_i}} =
+\deg(g_i)
+\]
+and
+\[
+\bigcap_{i=1}^r \mathfrak{m}_i^{e_i} = \set{0}.
+\]
+Let now $\oline{\mathfrak{P}}_i$ be the preimages of
+$\mathfrak{m}_i$ under the above ring isomorphism -- it therefore
+has the same properties as described above. Furthermore,
+$\mathfrak{P}_i$ are precisely the preimages of
+$\oline{\mathfrak{P}}_i$ under the homomorphism
+$\mathcal{O}_L \to
+\kvoc{\mathcal{O}_L}{\mathfrak{p} \mathcal{O}_L}$. They are the
+maximal ideals containing $\mathfrak{p} \mathcal{O}_L$ and
+\[
+f(\mathfrak{P}_i \mid \mathfrak{p}) =
+\left[\kvoc{\mathcal{O}_L}{\mathfrak{P}_i} : \kappa \right] =
+\deg \br{\oline{g}_i} =
+f_i.
+\]
+We can easily check that $\mathfrak{P}_i^{e_i}$ are the preimages
+of $\oline{\mathfrak{P}}_i$, therefore
+\[
+\prod_{i=1}^r \mathfrak{P}_i^{e_i} =
+\cap_{i=1}^r \mathfrak{P}_i^{e_i} \subseteq
+\mathfrak{p} \mathcal{O}_L.
+\]
+We can therefore write
+\[
+\mathfrak{p} \mathcal{O}_L =
+\prod_{i=1}^r \mathfrak{P}_i^{m_i},
+\]
+but as
+\[
+n = \sum_{i=1}^r m_i f_i \leq \sum_{i=1}^r e_i f_i = \deg g = n,
+\]
+we in fact have $m_i = e_i$.
+\end{proof}
+
+\begin{definicija}
+Let $K \subseteq L$ be number fields with $n = [L : K]$. Let
+$\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$ be such that
+\[
+\mathfrak{p} \mathcal{O}_L =
+\prod_{i=1}^r \mathfrak{P}^{e_i}
+\]
+is a factorisation in $\mathcal{O}_L$. Denote
+$f_i = f(\mathfrak{P} \mid \mathfrak{p})$ and
+$e_i = e(\mathfrak{P}_i \mid \mathfrak{p})$.
+
+\begin{enumerate}[i)]
+\item The ideal $\mathfrak{p}$ is
+\emph{completely split}\index{completely split}\footnote{Also
+\emph{totally split}.} if $r=n$.
+\item The ideal $\mathfrak{p}$ is \emph{non-split}\index{non-split}
+if $r=1$.
+\item The ideal $\mathfrak{p}$ is \emph{inert}\index{inert} if
+$\mathfrak{p} \mathcal{O}_L$ is a prime ideal (equivalently,
+$r=e_1=1$ and $f_1=n$).
+\item The ideal $\mathfrak{P}_i$ is
+\emph{unramified}\index{ramified, unramified} over $K$ if $e_i=1$
+and \emph{ramified} if $e_i>1$.
+\item The ideal $\mathfrak{P}_i$ is \emph{totally ramified} over
+$K$ if $e_i>1$ and $f_i=1$.
+\item The ideal $\mathfrak{p}$ is \emph{unramified} in $L$ if all
+$\mathfrak{P}_i$ are unramified and \emph{ramified} otherwise.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+The elements of $\Gal \br{\kvoc{L}{K}}$ permute prime ideals lying
+over $\mathfrak{p}$.
+\end{opomba}
+
+\begin{izrek}
+Let $\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)$ and let
+$p \in \P$ be such that $\mathfrak{p} \cap \Z = p\Z$. If
+$\mathfrak{p}$ is ramified in $L$, then $p \mid \disc(L)$. In
+particular, only finitely many primes of $\mathcal{O}_K$ ramify in
+$L$.
+\end{izrek}
+
+\begin{proof}
+Note that if $\mathfrak{p}$ is ramified in $L$, then $p\Z$ is also
+ramified in $L$. Since the set
+$\setb{\mathfrak{p} \in \mathcal{P}(\mathcal{O}_K)}
+{\mathfrak{p} \cap \Z = p\Z}$
+is finite for a fixed prime $p$, it suffices to consider $K = \Q$.
+
+Let now $p \in \P$ be a prime number and
+$\mathfrak{p} \in \mathcal{P}(\mathcal{O}_L)$ be a prime ideal with
+$p\Z \subseteq \mathfrak{p}$. Set
+$e = e(\mathfrak{p} \mid p\Z) > 1$. Write
+$p \mathcal{O}_L = \mathfrak{pa}$ for an ideal
+$\mathfrak{a} \edn \mathcal{O}_L$ and let
+$\mathfrak{p}_1, \dots, \mathfrak{p}_r \in
+\mathcal{P}(\mathcal{O}_L)$ be the prime ideals lying over
+$p \mathcal{O}_L$. Since $e>1$, we have
+\[
+\mathfrak{a} \subseteq \bigcap_{i=1}^r \mathfrak{p}_i.
+\]
+Let $\alpha_1, \dots, \alpha_n$ be an integral basis of
+$\mathcal{O}_L$ and choose an element
+$\alpha \in \mathfrak{a} \setminus p \mathcal{O}_L$. We can write
+\[
+\alpha = \sum_{i=1}^n c_i \alpha_i,
+\]
+where $p \nmid c_i$ for some $i$. Without loss of generality let
+$i = 1$. Consider now
+\[
+A =
+\skl{\alpha, \alpha_2, \dots, \alpha_n}_\Z =
+\skl{c_1 \alpha_1, \alpha_2, \dots, \alpha_n}_\Z \subseteq
+\mathcal{O}_L.
+\]
+As
+\[
+\disc(\alpha, \alpha_2, \dots, \alpha_n) =
+\abs{\mathcal{O}_L : A}^2 \cdot \disc(\mathcal{O}_L) =
+c_1^2 \cdot \disc(\mathcal{O}_L),
+\]
+it suffices to show that
+$p \mid d = \disc(\alpha, \alpha_2, \dots, \alpha_n)$.
+
+Let $\kvoc{N}{L}$ be a finite extension such that $\kvoc{N}{\Q}$ is
+Galois. Now we can extend the $n = [L : \Q]$ embeddings of $L$ into
+$\C$ to automorphisms $\sigma_i \in \Gal \br{\kvoc{N}{\Q}}$. For
+any $\mathfrak{P} \in \mathcal{P}(\mathcal{O}_N)$ lying over $p\Z$,
+the ideal $\mathfrak{P} \cap \mathcal{O}_L$ is a prime ideal of
+$\mathcal{O}_L$ lying over $p\Z$, hence
+$\alpha \in \mathfrak{P} \cap \mathcal{O}_L$. In particular,
+$\alpha$ is contained in every prime ideal of $\mathcal{O}_N$ lying
+over $p\Z$.
+
+Fix a prime ideal $\mathfrak{P} \in \mathcal{P}(\mathcal{O}_N)$
+lying over $p\Z$. For any $\sigma \in \Gal \br{\kvoc{N}{\Q}}$, the
+set $\sigma^{-1}(\mathfrak{P})$ is another such prime ideal,
+meaning $\alpha \in \sigma(\mathfrak{P})$. By the definition of the
+discriminant, we get $d \in \mathfrak{P} \cap \Z = p\Z$, hence
+$p \mid d$.
+\end{proof}
+
+\newpage
+
+\subsection{Quadratic fields, quadratic reciprocity and cyclotomic fields}
+
+\datum{2024-5-17}
+
+\begin{izrek}
+Let $K = \Q \br{\sqrt{d}}$, where $d \ne 1$ is a square-free
+integer.
+
+\begin{enumerate}[i)]
+\item Let $p$ be an odd prime. The prime factorisation of
+$p \mathcal{O}_K$ is of the following form:
+
+\begin{enumerate}
+\item If $p \nmid d$ and $d \equiv b^2 \pmod{p}$, then
+$p \mathcal{O}_K = \br{p, \sqrt{d}+b} \br{p, \sqrt{d}-b}$.
+\item If $d$ is a non-square modulo $p$, then $p \mathcal{O}_K$ is
+a prime ideal.
+\item If $p \mid d$, then
+$p \mathcal{O}_K = \br{p, \sqrt{d}}^2$.
+\end{enumerate}
+
+\item The prime factorisation of $2 \mathcal{O}_K$ is of the
+following form:
+
+\begin{enumerate}
+\item If $2 \mid d$, then $2 \mathcal{O}_K = \br{2, \sqrt{d}}^2$.
+\item If $d \equiv 3 \pmod{4}$, then
+$2 \mathcal{O}_K = \br{2, 1+\sqrt{d}}^2$.
+\item If $d \equiv 1 \pmod{8}$, then
+$2 \mathcal{O}_K =
+\br{2, \frac{1+\sqrt{d}}{2}} \br{2, \frac{1-\sqrt{d}}{2}}$.
+\item If $d \equiv 5 \pmod{8}$, then $2 \mathcal{O}_K$ is a prime
+ideal.
+\end{enumerate}
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Note that $\mathfrak{f} \cap \Z \in \set{\Z, 2\Z}$, which is
+coprime to $p\Z$.
+
+\begin{enumerate}
+\item We can factor
+\[
+x^2 - \oline{d} = \br{x - \oline{b}} \br{x + \oline{b}} \in
+\F_p[x].
+\]
+As $p$ is odd, the factors are distinct. The conclusion follows
+from theorem~\ref{decomp:thm:dedekum}.
+\item Note that $x^2 - \oline{d}$ is irreducible in $\F_p[x]$ and
+apply theorem~\ref{decomp:thm:dedekum}.
+\item The polynomial $x^2$ factors trivially, so we can again apply
+theorem~\ref{decomp:thm:dedekum}.
+\end{enumerate}
+
+\item \phantom{i}
+\begin{enumerate}
+\item Note that $\mathcal{O}_K = \Z \left[\sqrt{d}\right]$ and
+$\mathfrak{f} = \mathcal{O}_K$. We can therefore again apply
+theorem~\ref{decomp:thm:dedekum} with the trivial factorisation.
+\item Same as the previous case.
+\item Now $\mathcal{O}_K = \Z \left[\frac{1+\sqrt{d}}{2}\right]$.
+The minimal polynomial is therefore given by
+\[
+g(x) = x^2 - x + \frac{1-d}{4}.
+\]
+Since $d \equiv 1 \pmod{8}$, we have
+$\oline{g}(x) = x(x-1) \in \F_2[x]$. Now apply
+theorem~\ref{decomp:thm:dedekum}.
+\item Same as the previous case, but now
+$\oline{g}(x) = x^2 + x + \oline{1}$ is irreducible. \qedhere
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Let $p$ be a prime number. An integer $a$ is a
+\emph{quadratic residue}\index{quadratic residue} modulo $p$ if
+$a \equiv b^2 \pmod{p}$ for some integer $b$. We define the
+\emph{Legendre symbol}\index{Legendre symbol} as
+\[
+\br{\frac{a}{p}} =
+\begin{cases}
+1, & \text{$p \nmid a$ and $a$ is a quadratic residue modulo $p$,}
+\\
+-1, & \text{$p \nmid a$ and $a$ is a quadratic non-residue modulo
+$p$,}
+\\
+0, & p \mid a.
+\end{cases}
+\]
+\end{definicija}
+
+\begin{opomba}
+For $p \ne 2$, then $\br{\F_p^*}^2$ is the unique subgroup of index
+$2$ of $\F_p^*$. From this we deduce that
+\[
+\br{\frac{ab}{p}} = \br{\frac{a}{p}} \cdot \br{\frac{b}{p}}.
+\]
+In particular, $\br{\frac{\cdot}{p}} \colon \F_p^* \to S^0$ is a
+group homomorphism with kernel $\br{\F_p^*}^2$.
+\end{opomba}
+
+\begin{lema}
+Let $p$ be an odd prime and $a \in \Z$. Then
+\[
+\br{\frac{a}{p}} \equiv a^{\frac{p-1}{2}} \pmod{p}.
+\]
+\end{lema}
+
+\begin{proof}
+The group $\F_p^*$ is cyclic with order $p-1$, and the generator
+maps to $-1$ under both homomorphisms.
+\end{proof}
+
+\begin{izrek}[Quadratic reciprocity law]
+\index{Quadratic reciprocity law}
+Let $p$ and $q$ be distinct odd primes. Then
+\[
+\br{\frac{p}{q}} \cdot \br{\frac{q}{p}} =
+(-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $\zeta \in \mu_p^*(\C)$. The following calculations are all
+done in $\Z[\zeta]$.
+
+Define the Gauss sum
+\[
+\tau =
+\sum_{a \in \F_p^*} \br{\frac{a}{p}} \zeta^a =
+\sum_{j=1}^{n-1} \br{\frac{j}{p}} \zeta^j.
+\]
+Let $c$ be a quadratic non-residue modulo $p$. Then
+\[
+-\sum_{a \in \F_p^*} \br{\frac{a}{p}} =
+\br{\frac{c}{p}} \cdot \sum_{a \in \F_p^*} \br{\frac{a}{p}} =
+\sum_{a \in \F_p^*} \br{\frac{ac}{p}} =
+\sum_{a \in \F_p^*} \br{\frac{a}{p}},
+\]
+therefore
+\[
+\sum_{a \in \F_p^*} \br{\frac{a}{p}} = 0.
+\]
+Also, recall that
+\[
+\sum_{a \in \F_p^*} \zeta^{ab} = -1
+\]
+for all $b \in \F_p^*$, as $\zeta^b$ is also a primitive root of
+unity. As $\br{\frac{a}{p}} = \br{\frac{a^{-1}}{p}}$, we find that
+\begin{align*}
+\tau^2 &=
+\sum_{a, b \in \F_p^*}
+\br{\frac{a}{p}} \br{\frac{b}{p}} \zeta^{a+b}
+\\
+&=
+\br{\frac{-1}{p}} \cdot \sum_{a, b \in \F_p^*}
+\br{\frac{ab^{-1}}{p}} \zeta^{a-b}
+\\
+&=
+\br{\frac{-1}{p}} \cdot \sum_{b, c \in \F_p^*}
+\br{\frac{c}{p}} \zeta^{cb - b}
+\\
+&=
+\br{\frac{-1}{p}} \cdot
+\br{\sum_{b \in \F_p^*} 1 +
+\sum_{\substack{c \in \F_p^* \\ c \ne 1}}
+\br{\frac{c}{p}} \cdot \sum_{b \in \F_p^*} \zeta^{b(c-1)}}
+\intertext{As $c-1 \ne 0$ in the innermost sum, we can further
+compute}
+\tau^2 &=
+\br{\frac{-1}{p}} \cdot \br{p-1 -
+\sum_{\substack{c \in \F_p^* \\ c \ne 1}} \br{\frac{c}{p}}}
+\\
+&=
+p \cdot \br{\frac{-1}{p}}.
+\end{align*}
+In $\Z_q[\zeta]$ we can now compute
+\[
+\tau^q =
+\tau \cdot \br{(-1)^{\frac{p-1}{2}} \cdot p}^{\frac{q-1}{2}} =
+\tau \cdot (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}} \cdot
+\br{\frac{p}{q}}
+\]
+and
+\[
+\tau^q =
+\sum_{a \in \F_p^*} \br{\frac{a}{p}} \zeta^{aq} =
+\br{\frac{q}{p}} \cdot \sum_{a \in \F_p^*}
+\br{\frac{aq}{p}} \zeta^{aq} =
+\br{\frac{q}{p}} \tau.
+\]
+Equating and multiplying by $\tau$, we get
+\[
+\br{\frac{-1}{p}} p \cdot
+(-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}} \cdot
+\br{\frac{p}{q}} =
+\tau^2 \cdot (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}} \cdot
+\br{\frac{p}{q}} =
+\tau^2 \cdot \br{\frac{q}{p}} =
+\br{\frac{-1}{p}} \cdot p \cdot \br{\frac{q}{p}}.
+\]
+As $p$ is invertible in $\Z_q[\zeta]$, we get the sought equality.
+\end{proof}
+
+\begin{trditev}
+If $p$ is an odd prime, then
+\[
+\br{\frac{2}{p}} = (-1)^{\frac{p^2-1}{8}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Note that, in $\Z_p[i]$, we have
+\[
+1 + i \cdot (-1)^{\frac{p-1}{2}} =
+1 + i^p =
+(1+i)^p =
+(1+i) \cdot 2^{\frac{p-1}{2}} \cdot i^{\frac{p-1}{2}} =
+\br{\frac{2}{p}} \cdot (1+i) \cdot i^{\frac{p-1}{2}}.
+\]
+If $p \equiv 1 \pmod{4}$, we multiply the above equation by
+$\frac{1-i}{2}$ to get
+\[
+1 = \br{\frac{2}{p}} \cdot (-1)^{\frac{p-1}{4}}
+\]
+in $\Z_p[i]$. Similarly, if $p \equiv 3 \pmod{4}$, multiply the
+equation by $\frac{1+i}{2}$ instead to get
+\[
+1 =
+\br{\frac{2}{p}} \cdot i \cdot i^{\frac{p-1}{2}} =
+\br{\frac{2}{p}} \cdot (-1)^{\frac{p+1}{4}}. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+Let $p$ be a prime number and $k, m \in \N$ be integers such that
+$p \nmid m$. Let
+\[
+f =
+\ord_{\Z_m^*} \br{\oline{p}} =
+\min \setb{\ell \in \N}{p^\ell \equiv 1 \pmod{m}}.
+\]
+
+\begin{enumerate}[i)]
+\item If $\zeta \in \F_{p^k}$ is a primitive $m$-th root of unity
+and $g \in \F_p[x]$ is the minimal polynomial of $\zeta$, then
+\[
+\F_p(\zeta) \cong \kvoc{\F_p[x]}{(g)} \cong \F_{p^f}.
+\]
+In particular, $\deg g = f$.
+\item If $\Phi_m \in \Z[x]$ is the $m$-th cyclotomic polynomial,
+then
+\[
+\oline{\Phi} = \prod_{i=1}^r \oline{g}_i \in \F_p[x]
+\]
+for pairwise distinct monic irreducible polynomials
+$\oline{g}_i \in \F_p[x]$ with $\deg \br{\oline{g}_i} = f$ for all
+$i$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Note that
+\[
+\F_p(\zeta) \cong \kvoc{\F_p[x]}{(g)}
+\]
+is a finite field, therefore $\F_p(\zeta) \cong \F_{p^k}$ for some
+$k \geq 1$. Note that $\F_{p^k}^*$ contains a primitive $m$-th
+root of unity if and only if $p^k \equiv 1 \pmod{m}$. By choice
+of $f$, we have $f \mid k$ and therefore
+\[
+\F_{p^f} = \setb{x \in \F_{p^k}}{x^{p^f} = x}.
+\]
+By definition of $f$, it contains all $m$-th roots of unity of
+$\F_{p^k}$, hence $\F_p(\zeta) \subseteq \F_{p^f}$. It follows that
+$k=f$.
+\item Recall that
+\[
+x^m-1 = \prod_{\ell \mid m} \Phi_\ell.
+\]
+In particular, every $m$-th root of unity of $\F_{p^f}$ is a root
+of some cyclotomic polynomial $\oline{\Phi}_\ell \in \F_p[x]$ with
+$\ell \mid m$. As $\F_{p^f}$ contains precisely $\varphi(\ell)$
+primitive $\ell$-th roots of unity, they are exactly the roots of
+$\oline{\Phi}_\ell$. In particular, $\oline{\Phi}_m$ has no
+repeated roots in $\F_{p^f}$. We can therefore factor
+\[
+\oline{\Phi}_m = \prod_{i=1}^r \oline{g}_i,
+\]
+where each $\oline{g}_i$ is a minimal polynomial of some primitive
+$m$-th root of unity. In particular, $\deg \br{\oline{g}_i} = f$.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+\datum{2024-5-24}
+
+\begin{izrek}
+Let $n$ be a natural number and $\zeta \in \mu_n^*(\C)$. Denote
+$K = \Q(\zeta)$ and let $p \in \P$. Let $v = \nu_p(n)$ and denote
+$m = \frac{n}{p^v}$ and
+\[
+f =
+\ord_{\Z_m^*} \br{\oline{p}} =
+\min \setb{\ell \in \N}{p^\ell \equiv 1 \pmod{m}}.
+\]
+Then
+$p \mathcal{O}_K =
+(\mathfrak{p}_1 \cdots \mathfrak{p}_r)^{\varphi(p^v)}$ with
+distinct $\mathfrak{p}_i$ and $f(\mathfrak{p}_i \mid p) = f$.
+\end{izrek}
+
+\begin{proof}
+As the conductor is trivial, we can apply the Dedekind-Kummer
+theorem to all $p \in \P$. The minimal polynomial of $\zeta$ is of
+course $\Phi_n$. Recall that
+\[
+\mu_n^*(\C) =
+\setb{\xi \cdot \omega}
+{\xi \in \mu_{p^v}^*(\C) \land \omega \in \mu_m^*(\C)}.
+\]
+For such $\xi$ we have
+\[
+(\xi - 1)^{p^v} \equiv \xi^{p^v} - 1 \equiv 0 \pmod{\mathfrak{p}}
+\]
+for all $\mathfrak{p} \mid p \mathcal{O}_K$, therefore
+$\xi \equiv 1 \pmod{\mathfrak{p}}$. We can therefore factor
+\[
+\Phi_n =
+\prod_{\substack{\xi \in \mu_{p^v}^*(\C) \\ \omega \in \mu_m^*(\C)}}
+\br{x - \xi \omega} \equiv
+\prod_{\omega \in \mu_m^*(\C)} (x - \omega)^{\varphi(p^v)} \equiv
+\Phi_m^{\varphi(p^v)} \pmod{\mathfrak{p}}.
+\]
+But then $\Phi_n = \Phi_m^{\varphi(p^v)}$ in $\F_p[x]$, hence
+\[
+\oline{\Phi}_n = \prod_{i=1}^r \oline{g}_i^{\varphi(p^v)}
+\]
+by the previous proposition. Furthermore, $\oline{g}_i$ are monic,
+irreducible and distinct with $\deg \br{\oline{g}_i} = f$.
+\end{proof}
+
+\begin{posledica}
+A prime $p \ne 2$ is completely split if and only if
+$p \equiv 1 \pmod{n}$.
+\end{posledica}
+
+\begin{posledica}
+A prime number $p \in \P$ is ramified if and only if $p \mid n$,
+except if $p = 2 = \gcd(n, 4)$.
+\end{posledica}

@@ -1,5 +1,9 @@
 \section{Distribution of prime numbers}
 
+\epigraph{They didn't have internet or Netflix, so it seemed more
+appealing to compute values of the $\zeta$ function.}
+{-- gost.~izr.~prof.~dr.~rer.~nat.~Daniel Smertnig}
+
 \subsection{Riemann zeta function}
 
 \datum{2024-2-23}
@@ -207,7 +211,7 @@ If $\Re(s) = 1$, then $\zeta(s) \ne 0$.
 \begin{proof}
 Let $\mu = \ord_{1 + ib} \zeta \geq 0$. As
 $\zeta(\oline{z}) = \oline{\zeta(z)}$, we also have
-$\mu = \ord_{1 - ib} \zeta$.
+$\mu = \ord_{1 - ib} \zeta$. Now denote
 $\theta = \ord_{1 + 2ib} \zeta = \ord_{1 - 2ib} \zeta$. As $\phi$
 has a simple pole at $1$, we have
 \[
@@ -311,7 +315,7 @@ is holomorphic for all $z \in \C$.
 \phantom{i}
 \begin{enumerate}[i)]
 \item Analysis 2b, proposition 4.1.4.
-\item Evident. \qedhere % Morera če si fancy
+\item Evident. \qedhere
 \end{enumerate}
 \end{proof}
 
@@ -425,31 +429,23 @@ where $g$ is defined as in corollary~\ref{prime:cor:g_def}.
 Note that $\theta \br{e^t} e^{-t} - 1$ is bounded, hence the
 given Laplace transform exists. Let $(p_n)_n$ be the ascending
 sequence of prime numbers. Setting $p_0 = 1$, we have
-\begin{align*}
-\phi(s) &=
-\sum_{p \in \P} \frac{\log(p)}{p^s}
-\\
-&=
-\sum_{j=1}^\infty \frac{\theta(p_j) - \theta(p_{j-1})}{p_j^s}
-\\
-&=
+\[
+\phi(s) =
+\sum_{p \in \P} \frac{\log(p)}{p^s} =
+\sum_{j=1}^\infty \frac{\theta(p_j) - \theta(p_{j-1})}{p_j^s} =
 \sum_{j=0}^\infty \theta(p_j) \cdot
-\br{\frac{1}{p_j^s} - \frac{1}{p_{j+1}^s}}
-\\
-&=
+\br{\frac{1}{p_j^s} - \frac{1}{p_{j+1}^s}}.
+\]
+Using the definite integral of $\frac{1}{x^{s+1}}$, we can rewrite
+\[
+\phi(s) =
 \sum_{j=0}^\infty \theta(p_j) s
-\int_{p_j}^{p_{j+1}} \frac{1}{x^{s+1}}\,dx
-\\
-&=
+\int_{p_j}^{p_{j+1}} \frac{1}{x^{s+1}}\,dx =
 \sum_{j=0}^\infty s
-\int_{p_j}^{p_{j+1}} \frac{\theta(x)}{x^{s+1}}\,dx
-\\
-&=
-s \int_1^\infty \frac{\theta(x)}{x^{s+1}}\,dx
-\\
-&=
+\int_{p_j}^{p_{j+1}} \frac{\theta(x)}{x^{s+1}}\,dx =
+s \int_1^\infty \frac{\theta(x)}{x^{s+1}}\,dx =
 s \int_0^\infty \theta(e^t) e^{-st}\,dt
-\end{align*}
+\]
 for all $\Re(s) > 1$. Hence
 \[
 g(z) =
@@ -464,11 +460,11 @@ The integral
 \[
 \int_1^\infty \frac{\theta(x) - x}{x^2}\,dx
 \]
-exists.
+converges.
 \end{izrek}
 
 \begin{proof}
-We compute
+Using the substitution $x = e^t$, we find that
 \[
 \int_1^{e^T} \frac{\theta(x) - x}{x^2}\,dx =
 \int_0^T \br{\theta \br{e^t} e^{-t} - 1}\,dt.

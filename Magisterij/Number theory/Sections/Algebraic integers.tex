@@ -1,13 +1,17 @@
 \section{Algebraic integers}
 
+\epigraph{This is usually attributed to Fermat, but it's not quite
+correct.}
+{-- gost.~izr.~prof.~dr.~rer.~nat.~Daniel Smertnig}
+
 \subsection{Gaussian integers}
 
 \datum{2024-3-8}
 
 \begin{definicija}
 A domain $R$ is \emph{Euclidean}\index{Euclidean domain} if there
-is a $\delta \colon \R \setminus \set{0} \to \N_0$, such that for
-all $a \in R$ and $b \in R \setminus \set{0}$ we can write
+is a function $\delta \colon R \setminus \set{0} \to \N_0$, such
+that for all $a \in R$ and $b \in R \setminus \set{0}$ we can write
 $a = bq + r$ for $q, r \in R$, such that $r = 0$ or
 $\delta(r) < \delta(b)$.
 \end{definicija}
@@ -58,8 +62,9 @@ $p$ if and only if $p = 2$ or $p \equiv 1 \pmod{4}$.
 
 \begin{proof}
 If $p \equiv 1 \pmod{4}$, we can write
-$-1 \equiv \br{e^{\frac{p-1}{4}}}^2 \pmod{p}$.
-If $p \equiv 3 \pmod{4}$ and $p \mid c^2 + 1$, then
+$-1 \equiv \br{e^{\frac{p-1}{4}}}^2 \pmod{p}$, where $e$ is a
+primitive root modulo $p$. If $p \equiv 3 \pmod{4}$ and
+$p \mid c^2 + 1$, then
 \[
 1 \equiv \br{c^2}^{\frac{p-1}{2}} \equiv (-1)^{\frac{p-1}{2}} = -1,
 \]
@@ -67,7 +72,7 @@ a clear contradiction.
 \end{proof}
 
 \begin{izrek}[Fermat]
-\index{Fermatov izrek}
+\index{Fermat's theorem}
 Let $p$ be an odd prime. Then $p$ can be written as a sum of two
 squares if and only if $p \equiv 1 \pmod{4}$.
 \end{izrek}
@@ -80,9 +85,9 @@ $p \mid (b-i)(b+i)$, but $p$ clearly can't divide either factor. It
 follows that $p$ is not a prime element, hence we can factor it as
 $p = \alpha \beta$.
 
-Now, write $p^2 = N(p) = N(\alpha) \cdot N(\beta)$, therefore
-$N(\alpha) = p$, which gives us a representation of $p$ as a sum of
-two squares.
+Now, note that $p^2 = N(p) = N(\alpha) \cdot N(\beta)$, but as
+$\alpha$ and $\beta$ are not invertible, we have $N(\alpha) = p$,
+which gives us a representation of $p$ as a sum of two squares.
 \end{proof}
 
 \begin{trditev}
@@ -91,7 +96,7 @@ following:
 
 \begin{enumerate}[i)]
 \item $1 + i$,
-\item $a + bi$ with $a^2 + b^2 = p \in \P$ with
+\item $a + bi$, where $a^2 + b^2 = p \in \P$ with
 $p \equiv 1 \pmod{4}$ and $0 < \abs{b} < a$,
 \item $p \in \P$ with $p \equiv 3 \pmod{4}$.
 \end{enumerate}
@@ -99,14 +104,14 @@ $p \equiv 1 \pmod{4}$ and $0 < \abs{b} < a$,
 
 \begin{proof}
 It is clear that $1+i$ is a prime element. Elements of the second
-form are prime by the proof of the previous theorem. For the last
+form are prime since their norm is a prime number. For the last
 one, if $p = \alpha \beta$ for non-invertible $\alpha$ and $\beta$,
 then $N(\alpha) = N(\beta) = p$, which is of course impossible.
 Clearly, they are not associated.
 
 Suppose now that $p \in \Z[i]$ is a prime element. Then
 $N(p) = p \oline{p}$, which can be factored in integers. But then
-$p$ divides some prime element $q \in \P$. It follows that
+$p$ divides some prime number $q \in \P$. It follows that
 $N(p) \mid q^2$, but as $q^2$ can be factored by the above prime
 elements, $p$ is of such form.
 \end{proof}
@@ -119,10 +124,12 @@ numbers $p \equiv 3 \pmod{4}$.
 
 \begin{proof}
 It is clear that all such numbers can be written as a sum of two
-squares, as the property is multiplicative. For the converse,
-suppose that $n = a^2 + b^2$ and take any prime number $p \in \P$
-such that $p \equiv 3 \pmod{4}$ and $p \mid n$. Then, if $b$ is
-invertible in $\Z_p$, we can write
+squares, as the property is
+multiplicative.\footnote{$(a^2+b^2)(c^2+d^2) =
+(ac+bd)^2 + (ad-bc)^2$.} For the converse, suppose that
+$n = a^2 + b^2$ and take any prime number $p \in \P$ such that
+$p \equiv 3 \pmod{4}$ and $p \mid n$. Then, if $b$ is invertible in
+$\Z_p$, we can write
 \[
 \left.p~\middle\vert~\br{\frac{a}{b}}^2 + 1\right.,
 \]
@@ -148,9 +155,1183 @@ polynomial $P(x) = x^2 + cx + d$.
 \begin{proof}
 We see that $P(\alpha) = 0$ and $\alpha \not \in \Q$ is equivalent
 to $P(x) = (x - \alpha) \br{x - \oline{\alpha}}$. Of course, if
-$\alpha \in \Q$, we must have $\alpha \in \Z$ by 
-characterisation of rational roots of integer polynomials.
-Otherwise, for $\alpha = a + bi$, the condition is equivalent to
-$2a \in \Z$ and $a^2 + b^2 \in \Z$, which is only possible if both
-$a \in \Z$ and $b \in \Z$.
+$\alpha \in \Q$, we must have $\alpha \in \Z$ by the properties of
+rational roots of integer polynomials. Otherwise, for
+$\alpha = a + bi$, the condition is equivalent to $2a \in \Z$ and
+$a^2 + b^2 \in \Z$, which is only possible if both $a \in \Z$ and
+$b \in \Z$.
 \end{proof}
+
+\newpage
+
+\subsection{Number fields and their rings of integers}
+
+\datum{2024-3-15}
+
+\begin{definicija}
+A \emph{number field}\index{number field} is a subfield of $\C$
+such that $[K : \Q] < \infty$. Elements of $K$ are called
+\emph{algebraic numbers}\index{algebraic!number}.
+\end{definicija}
+
+\begin{definicija}
+A field extension $\kvoc{K}{\Q}$ is
+\emph{algebraic}\index{algebraic!field extension} if every element
+$\alpha \in K$ is a root of a polynomial $f \in \Q[x]$. We denote
+the minimal polynomial of $\alpha$ by $m_\alpha$. Furthermore, set
+$\deg(\alpha) = \deg(m_\alpha)$.\index{degree}
+\end{definicija}
+
+\begin{izrek}[Primitive element theorem]
+\index{primitive element theorem}
+Let $K$ be a number field. Then there exists some element
+$\alpha \in K$ such that $K = \Q(\alpha)$.\footnote{In other words,
+$\kvoc{K}{\Q}$ is simple.}
+\end{izrek}
+
+\begin{proof}
+Algebra 3, theorem~1.1.7.
+\end{proof}
+
+\begin{trditev}
+Let $K$ be a number field. Then $\kvoc{K}{\Q}$ is a separable
+extension.
+\end{trditev}
+
+\begin{proof}
+Suppose otherwise. Then $\gcd(m_\alpha, m_\alpha')$ is a polynomial
+of lower degree with $\alpha$ as a root.
+\end{proof}
+
+\begin{opomba}
+The roots of $m_\alpha$ are called the
+\emph{algebraic conjugates}\index{algebraic!conjugate} of $\alpha$.
+\end{opomba}
+
+\begin{posledica}
+There are exactly $\deg(\alpha)$ embeddings
+$\Q(\alpha) \hookrightarrow \C$.
+\end{posledica}
+
+\begin{definicija}
+A complex number $\alpha$ is an
+\emph{algebraic integer}\index{algebraic!integer} if there exists a
+monic polynomial $f \in \Z[x]$ such that $f(\alpha) = 0$.
+\end{definicija}
+
+\begin{lema}
+Let $f \in \Z[x]$ be monic and suppose that $f = gh$ for monic
+polynomials $g, h \in \Q[x]$. Then $g, h \in \Z[x]$.
+\end{lema}
+
+\begin{proof}
+Let $d, e \in \N$ be minimal integers such that $dg, eh \in \Z[x]$.
+Note that the coefficients of $dg$ (and similarly $eh$) are
+coprime. Suppose that $p \mid de$ for some $p \in \P$. It follows
+that $p \mid def = dg eh$. In particular, the ring
+$\kvoc{\Z[x]}{p \Z[x]}$ has a zero divisor, which is impossible, as
+$\kvoc{\Z[x]}{p \Z[x]} \cong Z_p[x]$ is an integral domain.
+\end{proof}
+
+\begin{lema}
+A complex number $\alpha$ is an algebraic integer if and only if
+$m_\alpha$ has integer coefficients.
+\end{lema}
+
+\obvs
+
+\begin{trditev}
+Let $K$ be a number field and $\alpha \in K$. Then the following
+statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The number $\alpha$ is an algebraic integer.
+\item The group $(\Z[\alpha], +)$ is finitely generated.
+\item There exists a subring $R \subseteq K$ such that
+$\alpha \in R$ and the group $(R, +)$ is finitely generated.
+\item There exists a finitely generated subgroup
+$(A, +) \subseteq (K, +)$ such that $A \ne 0$ and
+$\alpha A \subseteq A$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Note that we only need to prove that the last statement implies the
+first one. Write $A = \skl{\beta_i \mid i \leq n}$. We can
+therefore write
+\[
+\alpha \beta = C \beta,
+\]
+where
+\[
+\beta =
+\begin{bmatrix}
+\beta_1 \\ \vdots \\ \beta_n
+\end{bmatrix}
+\]
+and $C$ is some matrix with integer coefficients. In particular,
+$\alpha$ is an eigenvalue of $C$, which means it is a root of
+$\det(C - I \alpha)$, which is a polynomial with integer
+coefficients.
+\end{proof}
+
+\begin{posledica}
+Let $K$ be a number field. Then
+\[
+\mathcal{O}_K =
+\setb{\alpha \in K}{\text{$\alpha$ is an algebraic integer}}
+\]
+is a subring of $K$.
+\end{posledica}
+
+\begin{proof}
+Suppose that $\alpha, \beta \in \mathcal{O}_K$, that is,
+$\Z[\alpha]$ and $\Z[\beta]$ are finitely generated. Then
+$\Z[\alpha, \beta]$ is finitely generated as well. As both
+$\alpha + \beta$ and $\alpha \cdot \beta$ are elements of this
+subring, both are elements of $\mathcal{O}_K$.
+\end{proof}
+
+\begin{definicija}
+With the notation of the above corollary, we call $\mathcal{O}_K$
+the \emph{ring of integers}\index{ring of integers} in $K$.
+\end{definicija}
+
+\begin{trditev}
+Let $K = \Q \br{\sqrt{d}}$, where $d \in \Z$ is a square-free
+integer.
+
+\begin{enumerate}[i)]
+\item If $d \equiv 2 \pmod{4}$ or $d \equiv 3 \pmod{4}$, then
+$\mathcal{O}_K = \Z \left[\sqrt{d}\right]$.
+\item If $d \equiv 1 \pmod{4}$, then
+$\mathcal{O}_K = \Z \left[\frac{1+\sqrt{d}}{2}\right]$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Let $\alpha = \frac{a + b \sqrt{d}}{2}$ for $a, b \in \Q$. Clearly,
+$\Q \cap \mathcal{O}_K = \Z$. Suppose therefore that $b \ne 0$ and
+set $\alpha' = \frac{a - b \sqrt{d}}{2}$ and note that
+\[
+m_\alpha =
+(x - \alpha) \cdot (x + \alpha) =
+x^2 - ax + \frac{a^2 - db^2}{4}.
+\]
+It follows that $\alpha \in \mathcal{O}_K$ if and only if
+$a \in \Z$ and $a^2 - db^2 \in 4\Z$. in particular, $db^2 \in \Z$
+and hence $b \in \Z$, as $d$ is square-free.
+
+\begin{enumerate}[i)]
+\item Considering $a^2 - d b^2 \bmod 4$, we see that both $a$ and
+$b$ must be even, which gives
+$\alpha \in \Z \left[\sqrt{d}\right]$.
+\item The same equation modulo $4$ now gives us
+$a \equiv b \pmod{2}$. A direct calculation now shows that
+$\mathcal{O}_K = \Z \left[\frac{1+\sqrt{d}}{2}\right]$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+All quadratic number fields are of this form.
+\end{opomba}
+
+\begin{definicija}
+Let $\omega_n$ be a primitive $n$-th root of
+unity\index{root of unity}. The $n$-th
+\emph{cyclotomic field}\index{cyclitomic field} is the field
+$\Q(\omega_n)$. We denote by $\mu_n(\C)$ the $n$-th roots of unity
+and by $\mu_n^*(\C)$ the primitive ones.
+\end{definicija}
+
+\begin{opomba}
+For odd $n$, we have $\Q(\omega_n) = \Q(\omega_{2n})$.
+\end{opomba}
+
+\begin{trditev}
+Let $\omega \in \mu_n^*(\C)$. If $k \in \N$ is coprime with $n$,
+then $\omega$ and $\omega^k$ are algebraic conjugates.
+\end{trditev}
+
+\begin{proof}
+As algebraic conjugation is an equivalence relation, it suffices to
+prove the proposition for $k = p \in \P$. Let $f = x^n - 1$ and
+write $f = g m_\omega$. Suppose that $g(\omega^p) = 0$. Then
+$\omega$ is a root of $g(x^p)$, therefore it is divisible by
+$m_\omega$ in $\Z[x]$. Let $\oline{g}$ be the projection of $g$ in
+$\kvoc{\Z[x]}{p \Z[x]} \cong \Z_p[x]$. As
+$\oline{g}(x^p) = \oline{g}(x)^p$, we find that
+$\oline{m}_\alpha \mid \oline{g}(x)^p$. In particular,
+$\oline{m}_\alpha$ and $\oline{g}$ share a common factor
+$\oline{h} \in \Z_p[x]$. But then
+$\oline{f} = \oline{g} \cdot \oline{m}_\alpha$ is divisible by
+$\oline{h}^2$, therefore $\oline{f}$ and $\oline{f}'$ share a
+common factor. As $p \nmid n$,
+$\oline{f}' = n \cdot X^{n-1} \ne 0$, which is clearly coprime to
+$\oline{f}$.
+\end{proof}
+
+\begin{definicija}
+The $n$-th
+\emph{cyclotomic polynomial}\index{cyclotomic polynomial} is the
+polynomial
+\[
+\Phi_n = \prod_{\omega \in \mu_n^*(\C)} (x - \omega).
+\]
+\end{definicija}
+
+\begin{opomba}
+The polynomial $\Phi_n$ is irreducible by the previous proposition.
+We have $\deg \Phi_n = \varphi(n)$.
+\end{opomba}
+
+\begin{trditev}
+Let $\omega \in \mu_n^*(\C)$. Then
+$[\Q(\omega) : \Q] = \varphi(n)$. Furthermore, the map
+$\br{\kvoc{\Z}{n \Z}}^\times \to \Gal \br{\kvoc{\Q(\omega)}{\Q}}$
+given by $i \mapsto (\omega \mapsto \omega^i)$ is an isomorphism.
+In particular, $\kvoc{\Q(\omega)}{\Q}$ is Galois.
+\end{trditev}
+
+\begin{proof}
+Note that $[\Q(\omega) : \Q] = \deg \Phi_n = \varphi(n)$. The
+described map is obviously a bijective homomorphism.
+\end{proof}
+
+\begin{posledica}
+\label{alg_int:cor:root_mult}
+Let $\omega \in \mu_n^*(\C)$ Then the roots of unity in
+$\Q(\omega)$ are precisely $\mu_n(\C)$ is $n$ is even and
+$\mu_{2n}(\C)$ if $n$ is odd.
+\end{posledica}
+
+\begin{proof}
+It is enough to consider even $n$. Suppose that
+$\lambda \in \Q(\omega)$ is a primitive $k$-th root of unity for
+$k \nmid n$. We can assume that $\gcd(k, n) = 1$ by replacing
+$\lambda$ with $\lambda^{\gcd(k,n)}$. We now claim that
+$\lambda \omega$ is a primitive $kn$-th root of unity. Indeed, if
+$(\lambda \omega)^m = 1$, then $\omega^{km} = 1$ and
+$\lambda^{nm} = 1$, hence $n \mid km$ and $k \mid nm$. As $k$ and
+$n$ were chosen to be coprime, we find that $nk \mid m$. It follows
+that $\Q \subseteq \Q(\omega_{kn}) \subseteq \Q(\omega)$, which is
+impossible by considering the degrees over $\Q$, as
+$\varphi(kn) \mid \varphi(n)$ implies $k \in \set{1, 2}$.
+\end{proof}
+
+\begin{posledica}
+There is a bijection between $2 \N$ and cyclotomic fields, given by
+$m \mapsto \Q \br{e^{\frac{2 \pi i}{m}}}$.
+\end{posledica}
+
+\newpage
+
+\subsection{Trace, norm and discriminant}
+
+\begin{definicija}
+Let $\Q \subseteq K \subseteq L$ be number fields. We define
+\[
+\Hom_K(L, \C) =
+\setb{\sigma \colon L \to \C}{\eval{\sigma}{K}{} = \id}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Every $\varphi \in \Hom_\Q(K, \C)$ has precisely $[L : K]$ distinct
+extensions in $\Hom_\Q(L, \C)$.
+\end{opomba}
+
+\begin{definicija}
+Let $K \subseteq L$ be number fields,
+$\Hom_K(L, \C) = \setb{\sigma_i}{i \leq n}$ and $\alpha \in L$. The
+\emph{relative trace}\index{trace} and
+\emph{relative norm}\index{norm} of $\alpha$ are defined as
+\[
+T_K^L(\alpha) = \sum_{i=1}^n \sigma_i(\alpha)
+\quad \text{and} \quad
+N_K^L(\alpha) = \prod_{i=1}^n \sigma_i(\alpha).
+\]
+If $K = \Q$, we omit the subscript.
+\end{definicija}
+
+\begin{trditev}
+The trace is a linear map and the norm is multiplicative.
+\end{trditev}
+
+\obvs
+
+\datum{2024-3-22}
+
+\begin{trditev}
+Let $K \subseteq L$ be a number field with $[L : K] = n$. Let
+$\alpha \in L$ and set
+\[
+f = x^d + \sum_{k=0}^{d-1} a_k x^k
+\]
+to be the minimal polynomial of $\alpha$. Then
+$T(\alpha) = -\frac{n}{d} a_{d-1}$ and
+$N(\alpha) = (-1)^n a_0^{\frac{n}{d}}$. In particular,
+$N(\alpha), T(\alpha) \in K$.
+\end{trditev}
+
+\begin{proof}
+Let $K' = K(\alpha) \subseteq L$. Then $[K' : K] = d$ and
+$n = d \cdot [L : K']$.  We can factor $f$ as
+\[
+f = \prod_{\sigma \in \Hom_K(K', \C)} (x - \sigma(a)).
+\]
+As each $\sigma \in \Hom_K(K', \C)$ extends to exactly
+$\frac{n}{d}$ elements of $\Hom_K(L, \C)$, the proposition follows
+from Vieta's formulae.
+\end{proof}
+
+\begin{opomba}
+If $\alpha \in \mathcal{O}_L$, then
+$N(\alpha), T(\alpha) \in \mathcal{O}_K$.
+\end{opomba}
+
+\begin{lema}
+Let $K \subseteq L \subseteq M$ be number fields. Then
+\[
+N_K^M = N_K^L \circ N_L^M
+\quad \text{and} \quad
+T_K^M = T_K^L \circ T_L^M.
+\]
+\end{lema}
+
+\begin{proof}
+Take an element $\alpha \in M$. We now define an equivalence
+relation on $\Hom_K(M, \C)$ as
+$\sigma \sim \sigma' \iff
+\eval{\sigma}{L}{} = \eval{\sigma'}{L}{}$. Note that there are
+precisely $m = [L : K]$ equivalence classes. Let
+$\sigma_i \in \Hom_K(M, \C)$ be the representatives of the
+equivalence classes. Now denote
+$G_i = \Hom_{\sigma_i(L)}(\sigma_i(M), \C)$ and compute
+\[
+T_K^M(\alpha) =
+\sum_{i=1}^m \br{\sum_{\sigma \sim \sigma_i} \sigma(\alpha)} =
+\sum_{i=1}^m \br{\sum_{\sigma \in G_i} \sigma(\sigma_i(\alpha))} =
+\sum_{i=1}^m T_{\sigma_i(L)}^{\sigma_i(M)} \br{\sigma_i(\alpha)}.
+\]
+Now note that
+$\sigma_i \br{T_L^M(\alpha)} =
+T_{\sigma_i(L)}^{\sigma_i(M)} \br{\sigma_i(\alpha)}$, hence
+\[
+T_K^M(\alpha) =
+\sum_{i=1}^m \sigma_i \br{T_L^M(\alpha)} =
+T_K^L \circ T_L^M(\alpha).
+\]
+The proof for the norm is analogous.
+\end{proof}
+
+\begin{opomba}
+For $K \subseteq L$ and $\alpha \in L$, the map
+$\varphi_a \colon L \to L$ given by $x \mapsto \alpha x$ is
+$K$-linear. The norm and trace of $\alpha$ coincide with the
+determinant and trace of this map.
+\end{opomba}
+
+\begin{lema}
+Let $\alpha \in \mathcal{O}_K$. Then $\alpha$ is invertible
+if and only if $N_\Q^K(\alpha) = \pm 1$.
+\end{lema}
+
+\begin{proof}
+If $\alpha$ is invertible, then clearly $N_\Q^K(\alpha) = \pm 1$,
+as the norm is multiplicative. Now suppose that
+$N_\Q^K(\alpha) = \pm 1$ and let $d = \deg m_\alpha$ be the degree
+of the minimal polynomial
+\[
+m_\alpha = x^d + \sum_{k=0}^{d-1} a_k x^k
+\]
+of $\alpha$. By our assumption, $a_0 = \pm 1$, therefore
+\[
+1 = \pm \alpha \cdot \sum_{k=1}^d a_k x^{k-1}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+If $N_\Q^K(\alpha) \in \P$, then $\alpha$ is irreducible.
+\end{opomba}
+
+\begin{definicija}
+Let $K$ be a number field. Suppose that $[K : \Q] = n$ and denote
+$\Hom_\Q(K, \C) = \setb{\sigma_i}{i \leq n}$. The
+\emph{discriminant}\index{discriminant} of
+$(\alpha_1, \dots, \alpha_n)$ is defined as
+\[
+\disc(\alpha_1, \dots, \alpha_n) =
+\det
+\begin{bmatrix}
+\sigma_i(\alpha_j)
+\end{bmatrix}_{i, j \leq n}^2.
+\]
+\end{definicija}
+
+\begin{trditev}
+The following statements hold:
+
+\begin{enumerate}[i)]
+\item For any $\alpha_i \in K$ we have
+$\disc(\alpha_1, \dots, \alpha_n) =
+\det
+\begin{bmatrix}
+T_\Q^K(\alpha_i \alpha_j)
+\end{bmatrix}_{i,j}$.
+\item For any $\alpha_i \in K$ we have
+$\disc(\alpha_1, \dots, \alpha_n) \in \Q$. If
+$\alpha_i \in \mathcal{O}_K$, then the discriminant is an integer.
+\item If $\beta = A \alpha$ for some matrix $A \in M_n(\Q)$, then
+\[
+\disc(\beta_1, \dots, \beta_n) =
+\det(A)^2 \cdot \disc(\alpha_1, \dots, \alpha_n).
+\]
+\end{enumerate}
+\end{trditev}
+
+\pagebreak[3]
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Let
+$C = \begin{bmatrix} \sigma_i(\alpha_j) \end{bmatrix}_{i,j}$. Then
+\[
+\disc(\alpha_1, \dots, \alpha_n) =
+\det(C)^2 =
+\det(C^\top C).
+\]
+Now note that
+\[
+(C^\top C)_{i,j} =
+\sum_{k=1}^n \sigma_k(\alpha_i) \sigma_k(\alpha_j) =
+T_\Q^K(\alpha_i \alpha_j).
+\]
+\item Follows from the previous statement.
+\item Let $A = \begin{bmatrix} a_{i,j} \end{bmatrix}_{i,j}$. Then
+\[
+\sigma_i(\beta_j) = \sum_{k=1}^n a_{j,k} \sigma_i(a_k),
+\]
+hence
+\[
+\begin{bmatrix}
+\sigma_i(\beta_j)
+\end{bmatrix}_{i,j} =
+\begin{bmatrix}
+\sigma_i(\alpha_j)
+\end{bmatrix}_{i,j} \cdot
+A^\top. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{trditev}
+\label{alg_int:prop:disc_norm}
+Let $K = \Q(\alpha)$ and $n = [K : \Q]$. Denote by
+$\alpha_1, \dots, \alpha_n$ the algebraic conjugates of $\alpha$.
+Then
+\[
+\disc \br{1, \alpha, \dots, \alpha^{n-1}} =
+\prod_{i \ne j} (\alpha_j - \alpha_i)^2 =
+(-1)^{\frac{n(n-1)}{2}} \cdot N_\Q^K(f'(\alpha)),
+\]
+where $f$ is the minimal polynomial of $\alpha$ over $\Q$.
+\end{trditev}
+
+\begin{proof}
+Order $\alpha_i$ such that $\alpha = \alpha_1$ and
+$\sigma_i(\alpha) = \alpha_i$. The first equality is now clear from
+the Vandermonde determinant. Now note that
+\[
+f' =
+\sum_{i=1}^n \prod_{j \ne i} (x - \alpha_j),
+\]
+therefore
+\[
+f'(\alpha_i) = \prod_{j \ne i} (\alpha_i - \alpha_j).
+\]
+A straightforward calculation now shows that
+\[
+N_\Q^K(f'(\alpha)) =
+\prod_{i=1}^n \sigma_i(f'(\alpha)) =
+\prod_{i=1}^n f'(\alpha_i) =
+\prod_{i=1}^n \prod_{j \ne i} (\alpha_i - \alpha_j) =
+(-1)^{\frac{n(n-1)}{2}} \cdot
+\prod_{i \ne j} (\alpha_j - \alpha_i)^2. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Let $K$ be a number field with $n = [K : \Q]$. Elements
+$\alpha_1, \dots, \alpha_n \in K$ form a $\Q$-basis of $K$ if and
+only if
+\[
+\disc(\alpha_1, \dots, \alpha_n) \ne 0.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $K = \Q(\beta)$. Then $(1, \beta, \dots, \beta^{n-1})$ form a
+basis of $K$, so we can write $\alpha = A \beta$ for some matrix
+$A \in M_n(\Q)$. As we have
+\[
+\disc(\alpha_1, \dots, \alpha_n) =
+\det(A)^2 \cdot \disc(\beta_1, \dots, \beta_n)
+\]
+and $\disc(\beta_1, \dots, \beta_n) \ne 0$, the conclusion follows.
+\end{proof}
+
+\newpage
+
+\subsection{Integral bases}
+
+\begin{trditev}
+Let $K$ be a number field. Then
+\[
+K =
+\setb{\frac{\alpha}{d}}{d \in \N \land \alpha \in \mathcal{O}_K}.
+\]
+\end{trditev}
+
+\begin{proof}
+Take $\beta \in K$ and let
+\[
+f = \sum_{k=0}^n a_k x^k \in \Z[x]
+\]
+be a polynomial with $f(\beta) = 0$. Then, multiplying by
+$a_n^{n-1}$, we find a monic polynomial with $a_n \beta$ as a root,
+hence $a_n \beta \in \mathcal{O}_K$.
+\end{proof}
+
+\begin{definicija}
+Let $K$ be a number field. An
+\emph{integral basis}\index{integral basis} of $\mathcal{O}_K$ is
+a $\Z$-module basis of $\mathcal{O}_K$.
+\end{definicija}
+
+\begin{izrek}[Structure]
+\index{structure theorem}
+\phantom{i}
+\begin{enumerate}[i)]
+\item If $M$ is a finitely generated $\Z$-module, then
+$M = F \oplus T$ where $F$ is a finitely generated free $\Z$-module
+and $T$ is finite.
+\item Let $F$ be a finitely generated free $\Z$-module of rank $n$.
+If $G \subseteq F$ is a submodule, then $G$ is also finitely
+generated and free as a $\Z$-module with rank at most $n$.
+Furthermore, there exists a basis $(b_1, \dots, b_n)$ of $F$ and
+$d_1, \dots, d_m \in \N$ with $d_i \mid d_{i+1}$ such that
+$(d_1 b_1, \dots, d_m b_m)$ is a basis of $G$.
+\item Let $T$ be a finite abelian group. Then
+\[
+T = \bigoplus_{i=1}^r \Z_{n_i}.
+\]
+Furthermore, we can choose $n_i$ such that $n_i \mid n_{i+1}$ --
+such choice of $n_i$ is unique.
+\end{enumerate}
+\end{izrek}
+
+\begin{lema}
+\label{alg_int:lm:disc_base}
+Suppose that $(\alpha_1, \dots, \alpha_n)$ is a $\Q$-basis of $K$,
+contained in $\mathcal{O}_K$, and denote
+$d = \disc(\alpha_1, \dots, \alpha_n)$. Then
+\[
+\mathcal{O}_K \subseteq
+\frac{1}{d} \bigoplus_{i=1}^n \Z \alpha_i.
+\]
+\end{lema}
+
+\begin{proof}
+Let $\beta \in \mathcal{O}_K$ and write
+\[
+\beta = \sum_{i=1}^n x_i \alpha_i.
+\]
+Now compute
+\[
+T_\Q^K(\alpha_i \beta) =
+T_\Q^K \br{\sum_{j=1}^n x_j \alpha_i \alpha_j} =
+\sum_{j=1}^n x_j T_\Q^K(\alpha_i \alpha_j),
+\]
+hence
+\[
+b =
+\begin{bmatrix}
+T(\alpha_1 \beta) \\
+\vdots \\
+T(\alpha_n \beta)
+\end{bmatrix}
+=
+\underbrace{
+\begin{bmatrix}
+T_\Q^K(\alpha_i \alpha_j)
+\end{bmatrix}_{i,j}}_C
+\cdot
+\begin{bmatrix}
+x_1 \\
+\vdots \\
+x_n
+\end{bmatrix}.
+\]
+As $\det C = d \ne 0$, we can write $x = C^{-1} b$. As
+$\det C \cdot C^{-1} \in M_n(\Z)$, the conclusion follows.
+\end{proof}
+
+\begin{izrek}
+The set $\mathcal{O}_K$ is a free $\Z$-module of rank
+$n = [K : \Q]$. If $I \edn \mathcal{O}_K$ is a non-zero ideal, then
+$I$ is a finitely generated free $\Z$-module of rank $n$. In
+particular, $\mathcal{O}_K$ is a noetherian ring.
+\end{izrek}
+
+\begin{proof}
+Let $(\alpha_1, \dots, \alpha_n)$ be a $\Q$-basis of $K$ contained
+in $\mathcal{O}_K$ and set $d = \disc(\alpha_1, \dots, \alpha_n)$.
+Then
+\[
+\bigoplus_{i=1}^n \Z \alpha_i \subseteq
+\mathcal{O}_K \subseteq
+\bigoplus_{i=1}^n \Z \frac{\alpha_i}{d}.
+\]
+By the structure theorem, $\mathcal{O}$ is finitely generated.
+As it contains a submodule of rank $n$, it itself has rank $n$.
+
+Let $I \edn \mathcal{O}_K$ be a non-zero ideal and
+$\gamma \in I \setminus \set{0}$. As
+$\gamma \mathcal{O}_K \subseteq I \subseteq \mathcal{O}_K$, we can
+apply the same argument as above.
+\end{proof}
+
+\begin{opomba}
+If $(\alpha_1, \dots, \alpha_n)$ and $(\beta_1, \dots, \beta_n)$
+are two $\Z$-basis of $I$, then clearly
+$\disc(\alpha_1, \dots, \alpha_n) =
+\disc(\beta_1, \dots, \beta_n)$. We can therefore define
+$\disc(I) = \disc(\alpha_1, \dots, \alpha_n)$.
+\end{opomba}
+
+\begin{opomba}
+If $J \subseteq I$ are both finitely generated free $\Z$-modules,
+each containing a $\Q$-basis of $K$, then
+\[
+\disc(J) = \abs{\kvoc{I}{J}}^2 \cdot \disc(I)
+\]
+by the structure theorem.
+\end{opomba}
+
+\begin{izrek}
+Let $K$ be a number field and let $I \subseteq \mathcal{O}_K$ be a
+finitely generated free $\Z$-module containing a $\Q$-basis
+$(\alpha_1, \dots, \alpha_n)$ of $K$. Set
+$d = \abs{\disc(\alpha_1, \dots, \alpha_n)}$ and write
+$d = d_0^2 d_1$ with $d_1$ being square-free. For
+$1 \leq i \leq n$, choose $c_{i,j} \in \Z$ and $c_{i,i} \in \N$
+such that
+\[
+\beta_i = \frac{1}{d_0} \sum_{j=1}^i c_{i,j} \alpha_j \in I
+\]
+and $c_{i,i}$ are minimal. Then $(\beta_1, \dots, \beta_n)$ is a
+$\Z$-basis of $I$.
+\end{izrek}
+
+\datum{2024-3-29}
+
+\begin{proof}
+Write
+\[
+J = \bigoplus_{i=1}^n \Z \alpha_i \subseteq
+I \subseteq
+\mathcal{O}_K.
+\]
+Note that $\disc(I)$ and $\disc(J)$ are both integers and
+\[
+d_0^2 \cdot d_1 = d = \disc(J) = [I : J]^2 \cdot \disc(I),
+\]
+and as $d_1$ is square-free, it follows that $[I : J] \mid d_0$,
+therefore $d_0 I \subseteq J$. Note that
+$(\beta_1, \dots, \beta_n)$ are $\Q$-linearly independent and
+$\skl{\beta_i~\middle\vert~i \leq n}_\Z \subseteq I$. It therefore
+suffices to show that
+$I \subseteq \skl{\beta_i~\middle\vert i \leq n}_\Z$. Suppose
+otherwise, and let
+$\gamma \in I \setminus \skl{\beta_i~\middle\vert i \leq n}_\Z$. As
+$\gamma \in \frac{1}{d_0} J$, we can write
+\[
+\gamma = \frac{1}{d_0} \sum_{i=1}^s x_i \alpha_i
+\]
+with $x_i \in \Z$ and $x_s \ne 0$. Choose $\gamma$ such that $s$ is
+minimal, and among those, the one with minimal $\abs{x_s}$. Assume
+further that $x_s > 0$. But then, as $x_s \geq c_{s,s}$ by choice
+of $\beta_s$, we find that
+$x_s - \beta_s \in \skl{\beta_i~\middle\vert i \leq n}_\Z$ by
+minimality, which is a contradiction.
+\end{proof}
+
+\begin{posledica}
+The ring $\mathcal{O}_K$ has an integral basis of the form
+$\setb{\alpha_i}{i \leq n}$ with $\alpha_1 = 1$.
+\end{posledica}
+
+\begin{proof}
+Apply the previous theorem to a $\Q$-basis of $\mathcal{O}_K$ of
+the form $(1, \alpha_2', \dots, \alpha_n')$.
+\end{proof}
+
+\begin{opomba}
+If $\alpha_1, \dots, \alpha_n \in \mathcal{O}_K$ are elements such
+that $\disc(\alpha_1, \dots, \alpha_n)$ is square-free, they form
+an integral basis.
+\end{opomba}
+
+\begin{definicija}
+Let $K$ be a number field and $(\alpha_1, \dots, \alpha_n)$ an
+integral basis of $\mathcal{O}_K$. We then define
+\[
+\disc(K) =
+\disc(\mathcal{O}_K) =
+\disc(\alpha_1, \dots, \alpha_n) \in \Z.
+\]
+\end{definicija}
+
+\begin{opomba}
+If $d$ is square-free and $K = \Q \br{\sqrt{d}}$, then
+\[
+\disc(K) =
+\begin{cases}
+ d, & d \equiv 1 \pmod{4},   \\
+4d, & d \equiv 2, 3 \pmod{4}.
+\end{cases}
+\]
+\end{opomba}
+
+\newpage
+
+\subsection{Integral bases of Cyclotomic fields}
+
+\begin{lema}
+\label{alg_int:lm:pp}
+Suppose that $n = p^e$ with $p \in \P$ and $e \geq 1$. Choose
+$\zeta \in \mu_n^*(\C)$ and set $K = \Q(\zeta)$.
+
+\begin{enumerate}[i)]
+\item We have
+\[
+N^K(1-\zeta) = \prod_{p \nmid j} (1-\zeta^j) = p.
+\]
+If $n \ne 2$, then $N^K(1-\zeta) = N^K(\zeta-1)$.
+\item We have
+\[
+\left.(1-\zeta)^{\varphi(n)}~\middle\vert~p\right.
+\]
+in $\Z[\zeta]$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Recall that
+\[
+\Hom_\Q(K, \C) =
+\setb{\zeta \mapsto \zeta^j}{p \nmid j}.
+\]
+It follows that
+\[
+N^K(1-\zeta) =
+\prod_{\sigma \in \Hom_\Q(K, \C)} (1 - \sigma(\zeta)) =
+\prod_{p \nmid j} (1-\zeta^j).
+\]
+If $n \ne 2$, then $\varphi(n)$ is even and
+$N^K(1-\zeta) = N^K(\zeta-1)$ follows. Now note that
+\[
+\Phi_{p^e}(x) =
+\frac{x^{p^e}-1}{x^{p^{e-1}}-1} =
+\sum_{j=0}^{p-1} x^{j p^{e-1}} =
+\prod_{p \nmid j} (x - \zeta^j).
+\]
+Evaluating the expression at $x = 1$, we get $N^K(1-\zeta) = p$.
+\item Note first that $1-\zeta \mid 1-\zeta^j$ for all $j \in \N$.
+But then
+\[
+\left.(1-\zeta)^{\varphi(n)}~\middle\vert~
+\prod_{p \nmid j} (1-\zeta^j)\right. =
+p. \qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{lema}
+If $\zeta \in \mu_p^*(\C)$ for $p \in \P$, then
+\[
+\disc(1, \zeta, \dots, \zeta^{p-2}) =
+\begin{cases}
+ p^{p-2}, & p \equiv 1, 2 \pmod{4}, \\
+-p^{p-2}, & p \equiv 3 \pmod{4}.
+\end{cases}
+\]
+\end{lema}
+
+\begin{proof}
+Without loss of generality assume $p \ne 2$. Then
+\[
+m_\zeta = \Phi_p = \frac{x^p-1}{x-1} = \sum_{j=0}^{p-1} x^j.
+\]
+By proposition~\ref{alg_int:prop:disc_norm}, it holds that
+\[
+\disc(1, \zeta, \dots, \zeta^{p-2}) =
+(-1)^{\frac{(p-1)(p-2)}{2}} \cdot N^K(\Phi_p'(\zeta)).
+\]
+As
+\[
+\Phi_p + (x-1) \Phi_p' = p \cdot x^{p-1},
+\]
+we get
+\[
+\Phi_p'(\zeta) =
+\frac{p \cdot \zeta^{p-1}}{\zeta - 1},
+\]
+therefore
+\[
+N(\Phi_p'(\zeta)) =
+\frac{N(p) \cdot N(\zeta^{-1})}{N(\zeta-1)} =
+\frac{p^{p-1} \cdot 1}{p} =
+p^{p-2}. \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+Let $n \in \N$ and $\zeta \in \mu_n^*(\C)$. Then
+\[
+\left.\disc \br{1, \zeta, \dots, \zeta^{\varphi(n)-1}}
+~\middle\vert~n^{\varphi(n)}\right..
+\]
+\end{lema}
+
+\begin{proof}
+Write
+\[
+x^n-1 = \Phi_n(x) \cdot g(x)
+\]
+for $g \in \Z[x]$. Then
+$n x^{n-1} = \Phi_n'(x) \cdot g(x) + \Phi_n(x) \cdot g'(x)$,
+therefore
+\[
+n \zeta^{n-1} = \Phi_n'(\zeta) \cdot g(\zeta).
+\]
+Taking the norm, we get
+\[
+n^{\varphi(n)} \cdot N(\zeta^{n-1}) =
+N(\Phi_n'(\zeta)) \cdot  N(g(\zeta)),
+\]
+but as $N(g(\zeta)) \in \Z$ and $N(\zeta^{n-1}) = \pm 1$, the
+conclusion follows.
+\end{proof}
+
+\begin{izrek}
+\label{alg_int:thm:pp_basis}
+Let $n = p^e$ for $p \in \P$ and $e \geq 1$. Choose
+$\zeta \in \mu_n^*(\C)$ and set $K = \Q(\zeta)$. Then
+\[
+\mathcal{O}_K =
+\Z[\zeta] =
+\bigoplus_{j=0}^{\varphi(n)-1} \Z \zeta^j.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $m = [K : \Q] = \varphi(n)$. By the previous lemma, we have
+\[
+\disc(1, \zeta, \dots, \zeta^{m-1}) = \pm p^t
+\]
+for some $t \geq 0$. By lemma~\ref{alg_int:lm:disc_base}, we see
+that
+\[
+\mathcal{O}_K \subseteq
+\frac{1}{p^t} \cdot \skl{(1-\zeta)^j~\middle\vert~j \leq m-1}_\Z,
+\]
+as $\Z[\zeta] = \Z[1-\zeta]$. Suppose that
+$\Z[1-\zeta] \subset \mathcal{O}_K$. Then there exists some
+\[
+\alpha =
+\frac{1}{p} \cdot \sum_{j=i}^{m-1} a_j (1-\zeta)^j \in
+\mathcal{O}_K \setminus \Z[1-\zeta]
+\]
+with $0 \leq i \leq m-1$ and $a_j \in \Z$ with $p \nmid a_i$. By
+lemma~\ref{alg_int:lm:pp}, we get $(1-\zeta)^{i+1} \mid p$,
+therefore
+\[
+\frac{p \alpha}{(1-\zeta)^{i+1}} =
+\frac{a_i}{1-\zeta} + \sum_{j=i+1}^{m-1} a_j (1-\zeta)^{j-i-1},
+\]
+and so $1-\zeta \mid a_i$. But then
+$\pm p = N(1-\zeta) \mid N(a_i)$, which is impossible as we have
+$N(a_i) = a_i^m$.
+\end{proof}
+
+\begin{lema}
+Let $K$ and $L$ be number fields with $m = [K : \Q]$ and
+$n = [L : \Q]$. Assume that $[KL : \Q] = mn$. Then for every pair
+$\sigma \in \Hom_\Q(K, \C)$ and $\varphi \in \Hom_\Q(L, \C)$ there
+exists a unique $\psi \in \Hom_\Q(KL, \C)$ such that
+$\eval{\psi}{K}{} = \sigma$ and $\eval{\psi}{L}{} = \varphi$.
+\end{lema}
+
+\begin{proof}
+Note that every $\sigma \in \Hom_\Q(K, \C)$ extends to
+$\psi \in \Hom_\Q(KL, \C)$ in $[KL : K] = n$ distinct ways. The $n$
+maps $\eval{\psi}{L}{}$ are then clearly distinct, hence one of
+them is equal to $\varphi$. Uniqueness is obvious.
+\end{proof}
+
+\begin{izrek}
+Let $K$ and $L$ be number fields with $m = [K : \Q]$ and
+$n = [L : \Q]$. Suppose that $(\alpha_1, \dots, \alpha_m)$ and
+$(\beta_1, \dots, \beta_n)$ are integral basis of $\mathcal{O}_K$
+and $\mathcal{O}_L$ respectively. If $[KL : \Q] = mn$ and
+$\gcd(\disc(K), \disc(L)) = 1$, then
+\[
+(\alpha_i \beta_j \mid i \leq m \land j \leq n)
+\]
+is an integral basis for $\mathcal{O}_{KL}$. Furthermore,
+\[
+\disc(KL) = \disc(K)^n \cdot \disc(L)^m.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $\gamma \in \mathcal{O}_{KL}$ and write
+\[
+\gamma = \sum_{i,j} c_{i,j} \alpha_i \beta_j
+\]
+with $c_{i,j} \in \Q$. This representation is unique, as
+$\setb{\alpha_i \beta_j}{i \leq m \land j \leq n}$ is a $\Q$-basis
+of $\mathcal{O}_{KL}$. Now write
+\[
+\xi_j = \sum_{i=1}^m c_{i,j} \alpha_i \in K.
+\]
+That gives us
+\[
+\gamma = \sum_{j=1}^n \beta_j \xi_j.
+\]
+Let $\Hom_K(KL, \C) = \setb{\varphi_i}{i \leq n}$. Applying
+$\varphi_i$ to the above equation, we get
+\[
+b =
+\begin{bmatrix}
+\varphi_1(\gamma) \\
+\varphi_2(\gamma) \\
+\vdots \\
+\varphi_n(\gamma)
+\end{bmatrix}
+=
+\underbrace{\begin{bmatrix}
+\varphi_1(\beta_1) & \varphi_1(\beta_2) &
+\dots & \varphi_1(\beta_n) \\
+\varphi_2(\beta_1) & \varphi_2(\beta_2) &
+\dots & \varphi_2(\beta_n) \\
+\vdots & \vdots & \ddots & \vdots \\
+\varphi_n(\beta_1) & \varphi_n(\beta_2) &
+\dots & \varphi_n(\beta_n)
+\end{bmatrix}}_B
+\cdot
+\begin{bmatrix}
+\xi_1 \\ \xi_2 \\ \vdots \\ \xi_n
+\end{bmatrix}.
+\]
+Let $d = \disc(L) = \det(B)^2$. Then
+\[
+d \xi =
+d B^{-1} b =
+d \cdot \frac{\adj(B)}{\det(B)} \cdot b =
+\det(B) \cdot \adj(B) \cdot b.
+\]
+It follows that $d \xi_j$ are algebraic integers, therefore
+$d \cdot c_{i,j} \in \Z$ for all $i$ and $j$. By symmetry, the same
+holds for $d' = \disc(K)$. As $\gcd(d, d') = 1$, we get
+$c_{i,j} \in \Z$.
+
+Let now $\Hom_L(KL, \C) = \setb{\sigma_j}{j \leq m}$ and denote
+by $\psi_{i,j}$ the element of $\Hom_Q(KL, \C)$ with
+$\eval{\psi_{i,j}}{K}{} = \sigma_i$ and
+$\eval{\psi_{i,j}}{L}{} = \varphi_j$. Denote by $A$ the
+$(mn) \times (mn)$ matrix with
+\[
+A =
+\begin{bmatrix}
+\psi_{i,j}(\alpha_s \beta_t)
+\end{bmatrix}_{\substack{i,s \leq m \\ j,t \leq n}}
+=
+\begin{bmatrix}
+B & 0 & \dots & 0 \\
+0 & B & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & B
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\sigma_1(\alpha_1) I_n & \sigma_1(\alpha_2) I_n &
+\dots & \sigma_1(\alpha_m) I_n \\
+\sigma_2(\alpha_1) I_n & \sigma_2(\alpha_2) I_n &
+\dots & \sigma_2(\alpha_m) I_n \\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_m(\alpha_1) I_n & \sigma_m(\alpha_2) I_n &
+\dots & \sigma_m(\alpha_m) I_n
+\end{bmatrix}.
+\]
+Reindexing, we find that
+\[
+\det \begin{bmatrix}
+\sigma_1(\alpha_1) I_n & \sigma_1(\alpha_2) I_n &
+\dots & \sigma_1(\alpha_m) I_n \\
+\sigma_2(\alpha_1) I_n & \sigma_2(\alpha_2) I_n &
+\dots & \sigma_2(\alpha_m) I_n \\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_m(\alpha_1) I_n & \sigma_m(\alpha_2) I_n &
+\dots & \sigma_m(\alpha_m) I_n
+\end{bmatrix}
+=
+\det \begin{bmatrix}
+C & 0 & \dots & 0 \\
+0 & C & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & C
+\end{bmatrix},
+\]
+where
+\[
+C =
+\begin{bmatrix}
+\sigma_1(\alpha_1) & \sigma_1(\alpha_2) &
+\dots & \sigma_1(\alpha_m) \\
+\sigma_2(\alpha_1) & \sigma_2(\alpha_2) &
+\dots & \sigma_2(\alpha_m) \\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_1(\alpha_1) & \sigma_1(\alpha_2) &
+\dots & \sigma_1(\alpha_m)
+\end{bmatrix}.
+\]
+It follows that
+\[
+\disc(KL) =
+\det(A)^2 =
+\br{\det(B)^m \cdot \det(C)^n}^2 =
+\disc(L)^m \cdot \disc(K)^n. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+Let $n \geq 1$ and $\zeta \in \mu_n^*(\C)$. Denote $K = \Q(\zeta)$.
+Then $(1, \zeta, \dots, \zeta^{\varphi(n)-1})$ is an integral
+basis of $\mathcal{O}_K$.
+\end{izrek}
+
+\begin{proof}
+We prove the theorem by induction on the number of distinct prime
+factors of $n$. The claim clearly holds for $n=1$ and prime powers
+by theorem~\ref{alg_int:thm:pp_basis}. Now write $n=st$ for
+$s, t < n$ with $\gcd(s,t) = 1$. Choose $\zeta_s \in \mu_s^*(\C)$
+and $\zeta_t \in \mu_t^*(\C)$. By the proof of
+corollary~\ref{alg_int:cor:root_mult}, $\zeta_s \cdot \zeta_t$ is
+a primitive $st$-th root of unity, therefore
+$\Q(\zeta_n) = \Q(\zeta_s) \Q(\zeta_t)$. We therefore get
+\[
+[\Q(\zeta_n) : \Q] =
+\varphi(n) =
+\varphi(s) \cdot \varphi(t) =
+[\Q(\zeta_s) : \Q] \cdot [\Q(\zeta_t) : \Q].
+\]
+By the induction hypothesis,
+\[
+\disc(\Q(\zeta_s)) = \disc(\Z[\zeta_s]) \mid s^{\varphi(s)}
+\]
+and similarly for $t$. In particular,
+$\gcd(\disc(\Q(\zeta_s), \Q(\zeta_t)) = 1$, therefore
+\[
+\mathcal{O}_K = \Z[\zeta_s, \zeta_t] = \Z[\zeta_n]
+\]
+by the previous theorem.
+\end{proof}
+
+\begin{opomba}
+We can in fact show that
+\[
+\disc(K) =
+(-1)^{\frac{\varphi(n)}{2}} \cdot n^{\varphi(n)} \cdot
+\prod_{\substack{p \in \P \\ p \mid n}}
+p^{-\frac{\varphi(n)}{p-1}}.
+\]
+\end{opomba}
+
+\begin{izrek}[Stickelberger]
+\index{Stickelberger's discriminant theorem}
+Let $K$ be a number field. Then $\disc(K) \equiv 0, 1 \pmod{4}$.
+\end{izrek}
+
+\begin{proof}
+Let $L$ be the Galois closure of $K$, that is the smallest field
+$L$ containing $K$ such that
+$\Hom_\Q(L, \C) = \Gal \br{\kvoc{L}{\Q}}$. Denote $n = [K : \Q]$
+and choose
+$\setb{\sigma_i}{i \leq n} \subseteq \Gal \br{\kvoc{L}{\Q}}$ to be
+extensions of elements of $\Hom_\Q(K, \C)$. Furthermore, let
+$(\alpha_1, \dots, \alpha_n)$ be an integral basis of
+$\mathcal{O}_K$. Denote
+\[
+C =
+\begin{bmatrix}
+\sigma_1(\alpha_1) & \sigma_1(\alpha_2) &
+\dots & \sigma_1(\alpha_n) \\
+\sigma_2(\alpha_1) & \sigma_2(\alpha_2) &
+\dots & \sigma_2(\alpha_n) \\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_n(\alpha_1) & \sigma_n(\alpha_2) &
+\dots & \sigma_n(\alpha_n)
+\end{bmatrix}.
+\]
+Then $\disc(K) = \det(C)^2$. Write
+\[
+P =
+\sum_{\substack{\pi \in S_n \\ \sgn(\pi) = 1}}
+\prod_{i=1}^n \sigma_{\pi(i)}(\alpha_i)
+\quad \text{and} \quad
+N =
+\sum_{\substack{\pi \in S_n \\ \sgn(\pi) = -1}}
+\prod_{i=1}^n \sigma_{\pi(i)}(\alpha_i).
+\]
+As $\det(C) = P-N$, we get
+\[
+\disc(K) = (P-N)^2 = (P+N)^2 - 4 PN.
+\]
+It is clear that both $P+N$ and $PN$ are elements of
+$\mathcal{O}_L$. For all $\varphi \in \Gal \br{\kvoc{L}{\Q}}$ we
+have $\eval{\varphi \circ \sigma_i}{K}{} \in \Hom_\Q(K, \C)$,
+therefore there exists a permutation $\tau \in S_n$ such that
+$\eval{\varphi \circ \sigma_i}{K}{} =
+\eval{\sigma_{\tau(i)}}{K}{}$ for all $i$. As
+$\sgn(\tau \circ \pi) = \sgn(\tau) \cdot \sgn(\pi)$, we get
+\[
+\varphi(P) =
+\sum_{\substack{\pi \in S_n \\ \sgn(\pi)=1}}
+\prod_{i=1}^n \varphi(\sigma_{\pi(i)}(\alpha_i)) =
+\sum_{\substack{\pi \in S_n \\ \sgn(\pi) = \sgn(\tau)}}
+\prod_{i=1}^n \sigma_{\pi(i)}(\alpha_i) =
+\begin{cases}
+P, & \sgn(\tau) = 1,  \\
+N, & \sgn(\tau) = -1.
+\end{cases}
+\]
+We get a similar condition on $\varphi(N)$. It follows that
+$\varphi(P+N) = P+N$ and $\varphi(P \cdot N) = P \cdot N$.
+Therefore $P+N$ and $P \cdot N$ are both integers and hence
+\[
+\disc(K) \equiv (P+N)^2 \equiv 0, 1 \pmod{4}. \qedhere
+\]
+\end{proof}
+
+\begin{opomba}
+The Galois closure $L$ of $K$ if given by
+\[
+L = \prod_{\sigma \in \Hom_\Q(K, \C)} \sigma(K).
+\]
+\end{opomba}

@@ -1,0 +1,404 @@
+\section{Dedekind domains}
+
+\epigraph{Sorry if you're \TeX{}ing this now.}
+{-- gost.~izr.~prof.~dr.~rer.~nat.~Daniel Smertnig}
+
+\subsection{Prime ideal factorisation}
+
+\datum{2024-4-5}
+
+\begin{definicija}
+Let $D$ and $D'$ be domains with $D \subseteq D'$ and let $K$ be
+the quotient field of $D$. An element $\alpha' \in D'$ is
+\emph{integral}\index{integral element} over $D$ if there exists a
+monic polynomial $f \in D[x]$ such that $f(\alpha) = 0$. The domain
+$D$ is \emph{integrally closed}\index{integrally closed domain} if
+\[
+D = \setb{\alpha \in K}{\text{$\alpha$ is integral over $D$}}.
+\]
+\end{definicija}
+
+\begin{lema}
+\label{dedek:lm:pr_id_intsc}
+Let $K$ be a number field and $\mathfrak{a} \edn \mathcal{O}_K$ a
+non-zero ideal. Then
+$\abs{\kvoc{\mathcal{O}_K}{\mathfrak{a}}} < \infty$. Furthermore,
+if $\mathfrak{p} \edn \mathcal{O}_K$ is a non-zero prime ideal,
+then $\mathfrak{p} \cap \Z = p \Z$ for some prime number $p$. The
+ring $\kvoc{\mathcal{O}_K}{\mathfrak{p}}$ is a finite field
+extension of $\Z_p$.
+\end{lema}
+
+\begin{proof}
+Let $\alpha \in \mathfrak{a}$ be a non-zero element. As
+$\alpha$ is an algebraic integer, we can write
+\[
+\alpha^m + \sum_{j=0}^{m-1} a_j \alpha^j = 0
+\]
+for integers $a_j$, where we assume $a_0 \ne 0$. But then
+we must have $a_0 \in \mathfrak{a}$, therefore
+$a_0 \mathcal{O}_K \subseteq \mathfrak{a}$. Hence
+$\kvoc{\mathcal{O}_K}{\mathfrak{a}}$ is a quotient of
+$\kvoc{\mathcal{O}_K}{a_0 \mathcal{O}_K}$. By the structure theorem
+the quotient is finite, as the above free abelian groups both have
+the same rank.
+
+Now let $\mathfrak{p}$ be a prime ideal. Note that
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}}$ is a finite domain and
+therefore a field. Note that
+$a_0 \in \mathfrak{p} \cap \Z \setminus \set{0}$, therefore the
+intersection $\mathfrak{p} \cap \Z$ is non-trivial. In particular,
+it is a prime ideal of $\Z$ and hence
+$\mathfrak{p} \cap \Z = p \Z$ for some prime number $p$. As the
+kernel of the map $\Z \to \kvoc{\mathcal{O}_K}{\mathfrak{p}}$ is
+$p \Z$, it induces an injective map
+$\Z_p \to \kvoc{\mathcal{O}_K}{\mathfrak{p}}$.
+\end{proof}
+
+\begin{izrek}
+Let $K$ be a number field. Then $\mathcal{O}_K$ is a noetherian
+integrally closed domain and every non-zero prime ideal of
+$\mathcal{O}_K$ is maximal.
+\end{izrek}
+
+\begin{proof}
+We already know that $\mathcal{O}_K$ is noetherian. Let
+$\alpha \in K$ be integral over $\mathcal{O}_K$. It follows that
+$\mathcal{O}_K[\alpha]$ is a finitely-generated
+$\mathcal{O}_K$-module and hence a finitely-generated $\Z$-module.
+This implies that $\alpha$ is an algebraic integer.
+
+If $\mathfrak{p}$ is a non-zero prime ideal, then
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}}$ is a field and hence
+$\mathfrak{p}$ is maximal.
+\end{proof}
+
+\begin{definicija}
+A \emph{Dedekind domain}\index{Dedekind domain} is a noetherian
+integrally closed domain in which every non-zero prime ideal is
+maximal.
+\end{definicija}
+
+\begin{definicija}
+Let $D$ be a domain and $K$ its quotient field.
+
+\begin{enumerate}[i)]
+\item A \emph{fractional ideal}\index{fractional ideal} of $D$ is a
+$D$-submodule of $K$ that is of the form $c^{-1} I$ for some
+$c \in D \setminus \set{0}$ and $0 \ne I \edn D$.
+\item A fractional ideal $I$ is \emph{invertible} if there exists
+a fractional ideal $J$ such that $IJ = D$.
+\end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+For a fractional ideal $I$, we write
+\[
+I^{-1} = \setb{x \in K}{xI \subseteq D}.
+\]
+If $I$ is invertible, then $I^{-1}$ is its unique inverse.
+\end{opomba}
+
+\begin{lema}
+Let $D$ be a Dedekind domain that is not a field. For every
+non-zero ideal $I \edn D$ there exists an integer $r \geq 0$ and
+non-zero prime ideals $P_i \edn D$ such that
+\[
+\prod_{i=1}^r P_i \subseteq I.
+\]
+\end{lema}
+
+\begin{proof}
+Let $\Omega$ be the set of ideals $I$ for which the above does not
+hold. Suppose that $\Omega \ne \emptyset$. As $D$ is noetherian,
+there exists a maximal ideal $I \in \Omega$, which clearly cannot
+be a prime ideal. Also note that $I \ne D$. It follows that there
+exist $a, b \in D \setminus I$ such that $ab \in I$. But then both
+$aD + I$ and $bD + I$ are not in $\Omega$ by maximality of $I$. Now
+we can just take the product of their respective prime ideals,
+which gives a contradiction.
+\end{proof}
+
+\begin{lema}
+Let $D$ be a Dedekind domain that is not a field and $P \edn D$
+be a non-zero prime ideal. For every non-zero ideal $I \edn D$ we
+have $I \subset I P^{-1}$.
+\end{lema}
+
+\begin{proof}
+Consider first the case $I = D$. Let $a \in P \setminus \set{0}$
+and write
+\[
+\prod_{i=1}^r P_i \subseteq aD \subseteq P,
+\]
+where $r$ is minimal. As $P$ is a prime ideal, we must have
+$P_i \subseteq P$ for some $i$ -- without loss of generality let
+this be $P_1$. As prime ideals are maximal, we must hence have
+$P_1 = P$. By minimality of $r$, we must have
+\[
+\prod_{i=2}^r P_i \not \subseteq aD,
+\]
+hence it has an element $b$ such that $b \not \in aD$ but
+$bP \subseteq aD$. But then $\frac{b}{a} \in P^{-1} \setminus D$,
+as required.
+
+Now consider the general case. Note that, as $D$ is noetherian, the
+ideal $I$ is finitely generated -- write
+$I = \skl{a_i \mid i \leq m}_D$. Suppose that $I = I P^{-1}$ and
+let $x \in P^{-1}$.
+
+Choose $c_{i,j}$ such that
+\[
+xa =
+x \cdot
+\begin{bmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_m
+\end{bmatrix}
+=
+\underbrace{\begin{bmatrix}
+c_{1,1} & c_{1,2} &  \dots & c_{1,m} \\
+c_{2,1} & c_{2,2} &  \dots & c_{2,m} \\
+\vdots  & \vdots  & \ddots & \vdots  \\
+c_{m,1} & c_{m,2} &  \dots & c_{m,m} \\
+\end{bmatrix}}_C
+\cdot
+\begin{bmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_m
+\end{bmatrix}.
+\]
+But then $xa = Ca$, therefore $\det(xI_m - C) = 0$. Expanding the
+determinant, we get a monic polynomial with $x$ as a root,
+therefore $x$ is integral over $D$ and hence $x \in D$. It follows
+that $P^{-1} \subseteq D$, which we have already shown cannot
+happen.
+\end{proof}
+
+\begin{izrek}
+If $D$ is a Dedekind domain, then every non-zero ideal is a product
+of prime ideals. Such a representation is unique up to the order
+of factors.
+\end{izrek}
+
+\begin{proof}
+If $D$ is a field, its only ideals are $0$ and $D$ itself, which
+clearly factors.
+
+Let $\Omega$ be the set of all non-zero ideals of $D$ that cannot
+be factored as a product of prime ideals. As $D$ is noetherian,
+there exists a maximal element $I \in \Omega$. Note that $I \ne D$.
+Let $P$ be a maximal ideal of $D$ containing $I$. Then
+$I \subset I P^{-1}$ and $P \subset P P^{-1} subseteq D$, but as
+$P$ is maximal, we actually have $P P^{-1} = D$. By maximality of
+$P$, we can factor
+\[
+I P^{-1} = \prod_{r=2}^m P_i,
+\]
+but then
+\[
+I = I P P^{-1} = P \cdot \prod_{r=2}^m P_i.
+\]
+Next, we show that this factorisation is unique. Suppose otherwise
+that
+\[
+\prod_{i=1}^r P_i = \prod_{i=1}^s Q_i
+\]
+for prime ideals $P_i$ and $Q_i$. But this implies that
+$Q_i \subseteq P_1$ for some $i$, as $P_1$ is prime. Without loss
+of generality let $Q_1 \subseteq P_1$. As $Q_1$ is maximal, we must
+have $Q_1 = P_1$. Multiplying by $P_1^{-1}$ and using the fact that
+$P_1 P_1^{-1} = D$, we get uniqueness by induction.
+\end{proof}
+
+\begin{posledica}
+If $D$ is a Dedekind domain, then every fractional ideal is
+invertible.
+\end{posledica}
+
+\begin{proof}
+Let $I$ be a fractional ideal. Let $c \in D^*$ be an element such
+that $cI \edn D$. We can therefore factor $cI$ as a product of
+prime ideals $P_i$. But all of there are invertible and so
+\[
+I \cdot c \prod_{i=1}^r P_i^{-1} = D. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Fractional ideals and the class group}
+
+\begin{definicija}
+Let $D$ be a Dedekind domain and $P \edn D$ be a non-zero prime
+ideal. The
+\emph{$P$-adic valuation}\index{P-adic valuation@$P$-adic valuation}
+$\nu_P(I)$ of a non-zero ideal $I \edn D$ is the exponent of $P$ in
+the factorization of $I$.
+\end{definicija}
+
+\begin{opomba}
+We denote the prime ideals of $D$ by $\mathcal{P}(D)$. The monoid
+of of all non-zero ideals is denoted by $\mathcal{I}(D)^\bullet$,
+while the monoid of fractional ideals is denoted by
+$\mathcal{F}(D)$.
+\end{opomba}
+
+\begin{izrek}
+There is a group isomorphism
+$\mathcal{F}(D) \to \Z^{\mathcal{P}(D)}$,
+$I \mapsto \br{\nu_P(I)}_{P \in \mathcal{P}(D)}$, that restricts to
+a monoid isomorphism
+$\mathcal{I}(D)^\bullet \to \N_0^{\mathcal{P}(D)}$.
+\end{izrek}
+
+\begin{definicija}
+Let $D$ be a Dedekind domain. Let $\mathcal{H}(D)$ be all the
+non-zero principal ideals of $D$. The abelian group
+$\mathcal{C}(D) = \kvoc{\mathcal{F}(D)}{\mathcal{H}(D)}$ is the
+\emph{class group}\index{class group} of $D$.
+\end{definicija}
+
+\begin{opomba}
+The sequence
+\[
+\begin{tikzcd}
+1 \arrow[r] &
+D^* \arrow[r] &
+K^* \arrow[r] &
+\mathcal{F}(D) \arrow[r] &
+\mathcal{C}(D) \arrow[r] &
+1
+\end{tikzcd}
+\]
+is exact.
+\end{opomba}
+
+\datum{2024-4-12}
+
+\begin{izrek}
+Let $D$ be a Dedekind domain. The following statements are
+equivalent.
+
+\begin{enumerate}[i)]
+\item The domain $D$ is a unique factorisation domain.
+\item The class group $\mathcal{C}(D)$ is trivial.
+\item The domain $D$ is a principal ideal domain.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Note that we only need to prove that the class group of a unique
+factorisation domain is trivial. It therefore suffices to show that
+every prime ideal $P \subseteq D$ is principal. Let
+$a \in P \setminus \set{0}$ and write
+\[
+a = \prod_{i=1}^r p_i
+\]
+for prime elements $p_i$ of $D$. It follows that $p_i \in P$ for
+some $i$. But then $p_i D \subseteq P$ is also a prime ideal, which
+must be equal to $P$ by maximality.
+\end{proof}
+
+\begin{trditev}
+Every principal ideal domain is a Dedekind domain.
+\end{trditev}
+
+\begin{proof}
+As every ideal of $D$ is generated by one element, it is a
+noetherian ring.
+
+Let $K$ be the quotient field of $D$. Suppose that
+$f \br{\frac{a}{b}} = 0$ for a monic polynomial $f$ and
+$\frac{a}{b} \in K$. Since $D$ is a unique factorisation domain, we
+can further assume that $a$ and $b$ have no non-trivial common
+factor. As
+\[
+0 = b^m f \br{\frac{a}{b}},
+\]
+we can deduce that $b \mid a^m$ in $D$. This immediately shows that
+$b$ is a unit and therefore $\frac{a}{b} \in D$, which means that
+$D$ is integrally closed.
+
+Now let $P \edn D$ be a non-zero prime ideal, contained in a
+maximal ideal $M$. It is clear that $P = (p)$ and $M = (q)$ for
+some prime elements $p, q \in D$. But this implies $q \mid p$ and
+hence $(p) = (q)$, therefore $P = M$ is maximal.
+\end{proof}
+
+\newpage
+
+\subsection{Chinese remainder theorem}
+
+\begin{izrek}[Chinese remainder theorem]
+\index{Chinese remainder theorem}
+Let $R$ be a ring and let $I_1, \dots, I_m \edn R$ be ideals that
+are pairwise comaximal.\footnote{That is, $I_i + I_j = R$ for all
+$i \ne j$.} Then the map
+\[
+\kvoc{R}{\bigcap_{i=1}^m I_i} \to \prod_{i=1}^m \kvoc{R}{I_i},
+\]
+given by
+\[
+r + \bigcap_{i=1}^m I_i \mapsto \br{r+I_1, \dots, r+I_m},
+\]
+is an isomorphism of $R$-algebras.
+\end{izrek}
+
+\begin{proof}
+It suffices to show that the above homomorphism is surjective. Let
+$a_1, \dots, a_m \in R$. For all $i, j$ there exist elements
+$x_{i,j} \in I_i$ and $y_{i,j} \in I_j$ such that
+$x_{i,j} + y_{i,j} = 1$. Setting
+\[
+z_i = \prod_{j \ne i} y_{i,j},
+\]
+it is clear that $z_i \equiv \delta_{i,j} \pmod{I_j}$. But then
+\[
+\varphi \br{\sum_{i=1}^m z_i a_i} =
+\br{a_1 + I_1, \dots, a_m + I_m}. \qedhere
+\]
+\end{proof}
+
+\begin{posledica}
+Let $D$ be a Dedekind domain, $P_1, \dots, P_m \edn D$ be
+pairwise distinct prime ideals, and $e_1, \dots, e_m \in \N_0$. If
+$a_1, \dots, a_m \in D$, then there exists an element $a \in D$
+such that for all $i \leq m$ we have
+\[
+a \equiv a_i \pmod{P_i^{e_i}}.
+\]
+\end{posledica}
+
+\obvs
+
+\begin{posledica}
+Let $D$ be a Dedekind domain, $P_1, \dots, P_m \edn D$ be
+pairwise distinct prime ideals, and $e_1, \dots, e_m \in \Z$. Then
+there exists an element $x \in K^*$ with $v_{P_i}(x) = e_i$ for all
+$i \leq m$ and $v_P(x) \geq 0$ for all non-zero primes $P \ne P_i$.
+\end{posledica}
+
+\begin{proof}
+The case where $e_i \geq 0$ for all $i$ follows from the previous
+corollary. Construct an element $b \in D$ such that
+$\nu_{P_i}(b) = \max(0, -e_i)$ for all $i$. Then, construct an
+element $a \in D$ such that $\nu_{P_i}(a) = \max(0, e_i)$ for all
+$i$ and $\nu_Q(a) \geq \nu_Q(b)$ for all other prime ideals $Q$.
+Then $\frac{a}{b}$ is one such element.
+\end{proof}
+
+\begin{izrek}
+Let $D$ be a Dedekind domain and let $I \edn D$ be a non-zero
+ideal. If $a \in I$ is a non-zero element, then there exists some
+$b \in I$ such that $I = (a, b)$.
+\end{izrek}
+
+\begin{proof}
+Consider all prime ideals $P_i$ with $\nu_{P_i}(aD) > 0$. Note that
+$\nu_{P_i}(aD) \geq \nu_{P_i}(I)$. Choose an element
+$b$ such that $\nu_{P_i}(b) = \nu_{P_i}(I)$ for all $I$. It is
+clear that
+\[
+\nu_P(I) = \min(\nu_P(aD), \nu_P(bD)) = \nu_P(aD + bD)
+\]
+holds, hence $I = (a,b)$.
+\end{proof}

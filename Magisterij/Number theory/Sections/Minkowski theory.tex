@@ -1,0 +1,760 @@
+\section{Minkowski theory}
+
+\epigraph{We'll skip this so we don't have to do any actual
+integrals, so if you're bored ...}
+{-- gost.~izr.~prof.~dr.~rer.~nat.~Daniel Smertnig}
+
+\subsection{Lattices}
+
+\begin{definicija}
+Let $V$ be an $\R$-vector space of dimension $n$. A
+\emph{lattice}\index{lattice} is a subgroup
+\[
+\Gamma = \sum_{i=1}^m \Z v_i \subseteq V,
+\]
+where $v_i$ are $\R$-linearly independent vectors. The tuple
+$(v_1, \dots, v_m)$ is called the \emph{basis}\index{basis} of the
+lattice. The lattice is \emph{complete}\index{complete lattice} if
+$m = n$. The set
+\[
+F =
+\setb{\sum_{i=1}^m x_i v_i}{\forall i \leq m \colon x_i \in [0, 1)}
+\]
+is the \emph{fundamental domain}\index{fundamental domain} of the
+basis $(v_1, \dots, v_m)$.
+\end{definicija}
+
+\begin{trditev}
+Let $V$ be an $n$-dimensional $\R$-vector space and
+$\Gamma \subseteq V$ be a subgroup. Then the following statements
+are equivalent:
+
+\begin{enumerate}[i)]
+\item The set $\Gamma$ is a lattice.
+\item The point $0$ is not an accumulation point of $\Gamma$.
+\item The set $\Gamma$ is discrete.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+Suppose that $\Gamma$ is a lattice. Extend its basis
+$(v_1, \dots, v_m)$ to a basis of $\R^n$. Then
+\[
+\setb{\sum_{i=1}^n x_i v_i}{\forall i \colon x_i \in (-1,1)}
+\]
+contains no points of $\Gamma$ other than $0$.
+
+If $0$ is not an accumulation point of $\Gamma$, the set is clearly
+discrete, as accumulation points are translation invariant.
+
+Now suppose that $\Gamma$ is discrete and let $W = \R \Gamma$.
+Choose a basis $(w_1, \dots, w_m) \subseteq \Gamma$ for $W$. The
+set
+\[
+\Gamma_0 = \bigoplus_{i=1}^m w_i \Z \subseteq \Gamma
+\]
+is therefore a complete lattice in $W$. The fundamental domain
+$F_0$ of $\Gamma_0$ is a set of representatives for
+$\kvoc{W}{\Gamma_0}$. But then there exists a set $R \subseteq F_0$
+of representatives of $\kvoc{\Gamma}{\Gamma_0}$, which is both
+bounded and discrete, and therefore finite. For
+$d = [\Gamma : \Gamma_0]$ we then have
+$\Gamma \subseteq \frac{1}{d} \Gamma_0$, which must then be a free
+abelian group of rank $m$ by the structure theorem. Since it spans
+$W$, its generators must be $\R$-linearly independent.
+\end{proof}
+
+\begin{lema}
+A lattice $\Gamma \subseteq V$ is complete if and only if
+$\kvoc{V}{\Gamma}$ has a bounded system of representatives.
+\end{lema}
+
+\begin{proof}
+If $\Gamma$ is complete, then any fundamental domain gives us a
+bounded system of representatives.
+
+Suppose now that $\Gamma \subseteq V$ is a lattice and $B$ a
+bounded set with
+\[
+V = \bigcup_{\gamma \in \Gamma} (\gamma + B).
+\]
+Let $W = \Lin(\Gamma)$. As it is a finite-dimensional subspace in
+$V$, it is a closed subspace. Take an arbitrary $v \in V$. We can
+write $n \cdot v = \gamma_n + \beta_n$ for some
+$\gamma_n \in \Gamma$ and $\beta_n \in B$. It follows that
+\[
+v =
+\lim_{n \to \infty} \frac{1}{n} \cdot \br{\gamma_n + \beta_n} =
+\lim_{n \to \infty} \frac{1}{n} \cdot \gamma_n \in W. \qedhere
+\]
+\end{proof}
+
+\datum{2024-4-19}
+
+\begin{definicija}
+Let $\Gamma \subseteq \R^n$ be a complete lattice with fundamental
+domain $F$. We define its \emph{volume}\index{volume} as
+\[
+\vol(\Gamma) = \vol(F).
+\]
+\end{definicija}
+
+\begin{izrek}[Minkowski]
+\index{Minkowski's theorem}
+Let $\Gamma \subseteq \R^n$ be a complete lattice and
+$X \subseteq \R^n$ a set with the following properties:
+
+\begin{enumerate}[i)]
+\item It is symmetric around $0$.
+\item It is convex.
+\item We have $\vol(X) > 2^n \vol(\Gamma)$.
+\end{enumerate}
+
+Then $X$ contains a non-zero point of $\Gamma$.
+\end{izrek}
+
+\begin{proof}
+Suppose that the family
+$\set{\frac{1}{2} X + \gamma}_{\gamma \in \Gamma}$ is pairwise
+disjoint. We can write
+\[
+\R^n = \bigcup_{\gamma \in \Gamma} (\gamma + F),
+\]
+where $F$ is the fundamental domain of $\Gamma$. It follows that
+\[
+\frac{1}{2} X =
+\bigcup_{\gamma \in \Gamma} \br{\frac{1}{2} X \cap (\gamma + F)},
+\]
+therefore
+\[
+\frac{1}{2^n} \vol(X) =
+\sum_{\gamma \in \Gamma}
+\vol \br{\frac{1}{2} X \cap (\gamma + F)} =
+\sum_{\gamma \in \Gamma}
+\vol \br{\br{\frac{1}{2} X - \gamma} \cap F} \leq
+\vol(F),
+\]
+which is a contradiction.
+
+We can now write
+\[
+\gamma_1 + \frac{1}{2} x_1 = \gamma_2 + \frac{1}{2} x_2
+\]
+for some distinct $\gamma_i \in \Gamma$ and $x_i \in X$. It is
+clear that the point $\frac{1}{2} (x_1 - x_2) \ne 0$ is in both $X$
+and $\Gamma$.
+\end{proof}
+
+\newpage
+
+\subsection{From ideals to lattices}
+
+\begin{definicija}
+Let $K$ be a number field of degree $n$. An embedding
+$\sigma \in \Hom_\Q(K, \C)$ is called a
+\emph{real embedding}\index{real, complex embedding} if
+$\sigma(K) \subseteq \R$. Otherwise, it is called a
+\emph{complex embedding}.
+\end{definicija}
+
+\begin{opomba}
+A conjugate of a complex embedding is again a complex embedding.
+We denote by $r$ the number of real embeddings and by
+$s = \frac{n-r}{2}$ the number of pairs of conjugated complex
+embeddings.
+\end{opomba}
+
+\begin{opomba}
+Henceforth we assume the notation that $\sigma_1, \dots, \sigma_r$
+are real embeddings and $\sigma_{r+i} = \oline{\sigma}_{r+i+s}$.
+\end{opomba}
+
+\begin{opomba}
+We can embed $j \colon K \to \R^n$ as
+\[
+j(\alpha) =
+\br{\sigma_1(\alpha), \dots, \sigma_r(\alpha),
+\Re \sigma_{r+1}(\alpha), \dots, \Re \sigma_{r+s}(\alpha),
+\Im \sigma_{r+1}(\alpha), \dots, \Im \sigma_{r+s}(\alpha)}.
+\]
+\end{opomba}
+
+\begin{trditev}
+Let $\mathfrak{a} \subseteq K$ be a fractional ideal. Then
+$j(\mathfrak{a})$ is a complete lattice with
+\[
+\vol(j(\mathfrak{a})) = 2^{-s} \sqrt{\abs{\disc(\mathfrak{a})}}.
+\]
+\end{trditev}
+
+\begin{proof}
+Let $\alpha_1, \dots, \alpha_n$ be a $\Z$-basis of $\mathfrak{a}$.
+Then
+\[
+\disc(\mathfrak{a}) =
+\det \begin{bmatrix}
+\sigma_k(\alpha_\ell)
+\end{bmatrix}_{k, \ell \leq n}^2.
+\]
+Note that
+\[
+\begin{bmatrix}
+\Re \sigma_{r+\ell}(\alpha) \\
+\Im \sigma_{r+\ell}(\alpha)
+\end{bmatrix}
+=
+\begin{bmatrix}
+ \frac{1}{2} &  \frac{1}{2}  \\
+\frac{1}{2i} & -\frac{1}{2i}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\sigma_{r+\ell}(\alpha)   \\
+\sigma_{r+\ell+s}(\alpha)
+\end{bmatrix}.
+\]
+It follows that
+\[
+j(\alpha) =
+\underbrace{\begin{bmatrix}
+I_r &        0         &        0          \\
+ 0  &  \frac{1}{2} I_s &  \frac{1}{2} I_s  \\
+ 0  & \frac{1}{2i} I_s & -\frac{1}{2i} I_s
+\end{bmatrix}}_C
+\cdot
+\begin{bmatrix}
+\sigma_1(\alpha) \\
+\sigma_2(\alpha) \\
+     \vdots      \\
+\sigma_n(\alpha)
+\end{bmatrix}.
+\]
+As $\det(C) = \frac{1}{2^s} \cdot \br{-\frac{1}{i}}^s$, we get
+$\abs{\det(C)} = \frac{1}{2^s}$. Finally, we get
+\[
+\vol(j(\mathfrak{a})) =
+\abs{\det \br{j(\alpha_1), j(\alpha_2), \dots, j(\alpha_n)}} =
+\abs{\det C} \cdot
+\abs{\det \begin{bmatrix}
+\sigma_k(\alpha_\ell)
+\end{bmatrix}_{k, \ell \leq n}} =
+2^{-s} \cdot \sqrt{\abs{\disc(\mathfrak{a})}}. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+\label{mink:thm:bdb_disc_exist}
+Let $\mathfrak{a}$ be a fractional ideal of $\mathcal{O}_K$. For
+$i \leq r+s$ let $c_i > 0$ be real numbers such that
+\[
+\prod_{i=1}^r c_i \prod_{i=1}^s c_{i+r}^2 >
+\br{\frac{2}{\pi}}^s \sqrt{\abs{\disc(\mathfrak{a})}}.
+\]
+Then there exists a non-zero $\alpha \in \mathfrak{a}$ such that
+$\abs{\sigma_i(\alpha)} < c_i$ for all $i \leq n$.
+\end{izrek}
+
+\begin{proof}
+Let
+\[
+X = \setb{x \in \R^n}
+{\forall i \leq r \colon \abs{x_i} < c_i \land
+\forall i \leq s \colon x_{r+i}^2 + x_{r+s+i}^2 < c_{r+i}^2}.
+\]
+We can then calculate
+\[
+\vol(X) =
+\prod_{i=1}^r (2 c_i) \cdot
+\prod_{i=1}^s \br{c_{r+i}^2 \cdot \pi} =
+2^r \cdot \pi^s \cdot \prod_{i=1}^r c_i \prod_{i=1}^s c_{i+r}^2 >
+2^{r+s} \cdot \sqrt{\abs{\disc(\mathfrak{a})}} =
+2^n \cdot \vol(j(\mathfrak{a})).
+\]
+The set $j(\mathfrak{a}) \cap X$ therefore contains a non-zero
+element. Its preimage is the sought element.
+\end{proof}
+
+\begin{izrek}[Minkowski]
+\index{Minkowski's theorem}
+Let $\mathfrak{a}$ be a fractional ideal of $\mathcal{O}_K$. Then
+there exists a non-zero $\alpha \in \mathfrak{a}$ such that
+\[
+\abs{N^K(\alpha)} \leq
+\frac{n!}{n^n} \cdot \br{\frac{4}{\pi}}^s
+\sqrt{\abs{\disc(\mathfrak{a})}}.
+\]
+\end{izrek}
+
+\begin{proof}
+Choose a real $c > 0$ such that
+\[
+c^n > n! \cdot \br{\frac{4}{\pi}}^s
+\sqrt{\abs{\disc(\mathfrak{a})}}
+\]
+and let
+\[
+Y = \setb{x \in \R^n}{\sum_{i=1}^r \abs{x_i} +
+2 \sum_{i=1}^s \sqrt{x_{r+i}^2 + x_{r+s+i}^2} < c}.
+\]
+Someone who actually knows how to integrate can show that
+\[
+\vol(Y) =
+2^r \cdot \br{\frac{\pi}{2}}^s \cdot \frac{c^n}{n!} =
+2{r+s} \cdot \br{\frac{\pi}{4}}^s \cdot \frac{c^n}{n!} >
+2^{r+s} \cdot \sqrt{\abs{\disc(\mathfrak{a})}} =
+2^n \vol(j(\mathfrak{a})).
+\]
+It follows that $Y \cap j(\mathfrak{a})$ contains a non-zero
+element. Equivalently, there exists some non-zero
+$\alpha \in \mathfrak{a}$ such that $j(\alpha) \in Y$.
+
+Now note that
+\begin{align*}
+\sqrt[n]{N^K(\alpha)} &=
+\prod_{i=1}^r \abs{\sigma_i(\alpha)}^{\frac{1}{n}} \cdot
+\prod_{i=1}^s \sqrt{\br{\Re \sigma_{r+i}(\alpha)}^2 +
+\br{\Im \sigma_{r+i}(\alpha)}^2}^{\frac{2}{n}}
+\\
+&\leq
+\frac{1}{n} \cdot \br{
+\sum_{i=1}^r \abs{\sigma_i(\alpha)} + 2 \sum_{i=1}^s
+\sqrt{\br{\Re \sigma_{r+i}(\alpha)}^2 +
+\br{\Im \sigma_{r+i}(\alpha)}^2}}
+\\
+&< \frac{c}{n}.
+\end{align*}
+But then
+\[
+\abs{N^K(\alpha)} <
+\frac{c^n}{n^n} \leq
+\frac{n!}{n^n} \br{\frac{4}{\pi}}^s
+\sqrt{\abs{\disc(\mathfrak{a})}} + \varepsilon
+\]
+for some $\varepsilon > 0$. Note that the set
+$\abs{N^K(\mathfrak{a})}$ is discrete -- taking $c$ small enough
+we therefore get
+\[
+\abs{N^K(\alpha)} \leq
+\frac{n!}{n^n} \br{\frac{4}{\pi}}^s
+\sqrt{\abs{\disc(\mathfrak{a})}}. \qedhere
+\]
+\end{proof}
+
+\newpage
+
+\subsection{Finiteness of the class group}
+
+\begin{definicija}
+Let $\mathfrak{a} \edn \mathcal{O}_K$ be a non-zero ideal. We
+define the \emph{norm}\index{norm} of $\mathfrak{a}$ as
+\[
+N(\mathfrak{a}) = \abs{\kvoc{\mathcal{O}_K}{\mathfrak{a}}}.
+\]
+\end{definicija}
+
+\begin{trditev}
+Let $K$ be a number field.
+
+\begin{enumerate}[i)]
+\item If $\mathfrak{a}, \mathfrak{b} \edn \mathcal{O}_K$ are
+non-zero ideals, then
+$N(\mathfrak{ab}) = N(\mathfrak{a}) \cdot N(\mathfrak{b})$.
+\item If $\mathfrak{a} = (\alpha)$ for a non-zero
+$\alpha \in \mathcal{O}_K$, then
+$N(\mathfrak{a}) = \abs{N^K(\alpha)}$.
+\end{enumerate}
+\end{trditev}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item If $\mathfrak{a}$ and $\mathfrak{b}$ are coprime, the
+conclusion follows from the Chinese remainder theorem. It therefore
+suffices to consider the case where $\mathfrak{a}$ and
+$\mathfrak{b}$ are both powers of the same non-zero prime ideal
+$\mathfrak{p}$, that is,
+$N(\mathfrak{p}^{e+1}) = N(\mathfrak{p}^e) \cdot N(\mathfrak{p})$
+for $e \geq 0$.
+
+We will show that
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}} \cong
+\kvoc{\mathfrak{p}^e}{\mathfrak{p}^{e+1}}$. Take
+$a \in \mathfrak{p}^e \setminus \mathfrak{p}^{e+1}$ and consider
+the homomorphism $\varphi \colon \mathcal{O}_K \to
+\kvoc{\mathfrak{p}^e}{\mathfrak{p}^{e+1}}$, given by
+$\varphi(x) = ax + p^{e+1}$. This induces a homomorphism
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}} \to
+\kvoc{\mathfrak{p}^e}{\mathfrak{p}^{e+1}}$, which means that
+$\kvoc{\mathfrak{p}^e}{\mathfrak{p}^{e+1}}$ is a
+$\kvoc{\mathcal{O}_K}{\mathfrak{p}}$-vector space. If the above
+rings were not isomorphic, its dimension would be at least $2$,
+therefore it would have a non-trivial subspace of the form
+$\kvoc{\mathfrak{b}}{\mathfrak{p}^{e+1}}$ for an ideal
+$\mathfrak{b} \edn \mathcal{O}_K$. But then
+$\mathfrak{p}^{e+1} \subset \mathfrak{b} \subset \mathfrak{p}^e$,
+which implies
+$\mathfrak{p} \subset
+\mathfrak{p}^{-e} \mathfrak{b} \subset
+\mathcal{O}_K$,
+which contradicts $\mathfrak{p}$ being a maximal ideal.
+\item Let $\beta_1, \dots, \beta_n$ be a $\Z$-basis of
+$\mathcal{O}_K$. Then $\alpha \beta_1, \dots, \alpha \beta_n$ is a
+$\Z$-basis of $(\alpha)$. We therefore have
+\[
+\disc(\mathfrak{a}) =
+[\mathcal{O}_K : \mathfrak{a}]^2 \cdot \disc(\mathcal{O}_K).
+\]
+It therefore suffices to show that
+\[
+\disc(\mathfrak{a}) =
+N^K(\alpha)^2 \cdot \disc(\mathcal{O}_K).
+\]
+Indeed, we have
+\begin{align*}
+\disc(\mathfrak{a}) &=
+\det \begin{bmatrix}
+\sigma_k(\alpha \beta_\ell)
+\end{bmatrix}_{k, \ell \leq n}^2
+\\
+&=
+\det \begin{bmatrix}
+\sigma_k(\alpha) \sigma_k(\beta_\ell)
+\end{bmatrix}_{k, \ell \leq n}^2
+\\
+&=
+\prod_{k=1}^n \sigma_k(\alpha) \cdot
+\det \begin{bmatrix}
+\sigma_k(\beta_\ell)
+\end{bmatrix}_{k, \ell \leq n}^2
+\\
+&=
+N^K(\alpha)^2 \cdot \disc(\mathcal{O}_K). \qedhere
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+The norm multiplicatively extends to a map
+$\mathcal{F}(\mathcal{O}_K) \to \Q^*$.
+\end{opomba}
+
+\begin{izrek}
+The class group of $\mathcal{O}_K$ is finite. Furthermore, every
+ideal class contains a representative $\mathfrak{a}$ with
+\[
+N(\mathfrak{a}) \leq
+\frac{n!}{n^n} \br{\frac{4}{\pi}}^s \sqrt{\abs{\disc(K)}}.
+\]
+\end{izrek}
+
+\begin{proof}
+We claim that for every $M > 0$ there exist only finitely many
+non-zero ideals $\mathfrak{a} \edn \mathcal{O}_K$ with
+$N(\mathfrak{a}) \leq M$. Indeed, suppose that
+$\abs{\kvoc{\mathcal{O}_K}{\mathfrak{a}}} \leq M$. Then
+$M! \cdot \kvoc{\mathcal{O}_K}{\mathfrak{a}} = 0$, therefore
+\[
+M! \cdot \mathcal{O}_K \subseteq
+\mathfrak{a} \subseteq
+\mathcal{O}_K.
+\]
+But as $\kvoc{\mathcal{O}_K}{M! \mathcal{O}_K}$ is finite, there
+are only finitely many possible $\mathfrak{a}$ satisfying the above
+condition.
+
+It now suffices to show the above bound. Let
+$\mathfrak{a}_0 \edn \mathcal{O}_K$ be a representative of an ideal
+class and let $\mathfrak{b} = \alpha \mathfrak{a}_0^{-1}$ be an
+ideal. By Minkowski's theorem, there exists an element
+$\beta \in \mathfrak{b}$ with
+\[
+\abs{N^K(\beta)} \leq
+\frac{n!}{n^n} \cdot \br{\frac{4}{\pi}}^s \cdot
+\sqrt{\abs{\disc(\mathfrak{b})}}.
+\]
+As $\disc(\mathfrak{b}) = \disc(K) \cdot N(\mathfrak{b})^2$, we get
+\[
+N\br{\beta \mathfrak{b}^{-1}} =
+\abs{N^K(\beta)} \cdot N(\mathfrak{b})^{-1} \leq
+\frac{n!}{n^n} \cdot \br{\frac{4}{\pi}}^2 \cdot
+\sqrt{\abs{\disc(K)}}.
+\]
+But since $[\beta \mathfrak{b}^{-1}] = [\mathfrak{a}_0]$, this
+ideal satisfies our conditions.
+\end{proof}
+
+\begin{definicija}
+The \emph{class number}\index{class number} of $\mathcal{O}_K$ is
+defined as the size of its class group, that is
+$h_K = \abs{\mathcal{C}(\mathcal{O}_K)}$.
+\end{definicija}
+
+\begin{izrek}[Minkowski]
+\index{Minkowski's theorem}
+If $n = [K : \Q] \geq 2$, then
+\[
+\abs{\disc(K)} \geq
+\br{\frac{\pi^s n^n}{4^s n!}}^2 >
+1.
+\]
+Furthermore, the lower bound diverges as $n \to \infty$.
+\end{izrek}
+
+\begin{proof}
+By Minkowski's theorem, there exists an element
+$\alpha \in \mathcal{O}_K$ with
+\[
+\abs{N^K(\alpha)} \leq
+\frac{n!}{n^n} \cdot \br{\frac{4}{\pi}}^s \cdot
+\sqrt{\abs{\disc(K)}}.
+\]
+Since $\abs{N^K(\alpha)} \geq 1$, we get
+\[
+\abs{\disc(K)} \geq
+\br{\frac{n^n}{n!}}^2 \cdot \br{\frac{\pi}{4}}^{2s} \geq
+\br{\frac{n^n}{n!}}^2 \cdot \br{\frac{\pi}{4}}^n =
+f(n).
+\]
+Since $f(2) = \frac{\pi^2}{4} > 2$ and
+\[
+\frac{f(n+1)}{f(n)} =
+\frac{\pi}{4} \cdot \br{\frac{n+1}{n}}^{2n} \geq
+\frac{3 \pi}{4} >
+1
+\]
+by Bernoulli's inequality, the lower bound indeed diverges and is
+greater than $1$.
+\end{proof}
+
+\datum{2024-4-26}
+
+\begin{izrek}[Hermite]
+\index{Hermite's theorem}
+For all $D \geq 0$ there exist only finitely many number fields $K$
+with $\abs{\disc(K)} \leq D$.
+\end{izrek}
+
+\begin{proof}
+By Minkowski's theorem, it suffices to show that there exist only
+finitely many number fields $K$ with $\disc(K) = d$ and
+$[K : \Q] = n$. This is clear for $n=1$, hence assume $n>1$.
+
+First note that there exists some
+$\alpha \in \mathcal{O}_K \setminus \set{0}$ such that
+$\abs{\sigma_1(\alpha)} < \sqrt{d}+1$ and
+$\abs{\sigma_i(\alpha)} < 1$ for $i \geq 2$ by
+theorem~\ref{mink:thm:bdb_disc_exist}. But then all conjugates of
+$\alpha$ are bounded in terms of $d$, hence so are the coefficients
+of its minimal polynomial. Therefore there are only finitely many
+such $\alpha$ for fixed $n$.
+
+Next, we show that $K = \Q(\alpha)$, which shows that there are
+only finitely many such number fields. We split two cases.
+
+\begin{enumerate}[i)]
+\item Suppose that $r > 0$. Then
+\[
+\abs{\sigma_1(\alpha)} =
+\abs{N^K(\alpha)} \cdot \prod_{i=2}^n \abs{\sigma_i(\alpha)}^{-1} >
+\abs{N^K(\alpha)} \geq 1.
+\]
+Now consider
+$\eval{\sigma_1}{\Q(\alpha)}{} \in \Hom_\Q(\Q(\alpha), \C)$. It has
+exactly $[K : \Q(\alpha)]$ extensions to an element of
+$\Hom_\Q(K, \C)$. Since
+$\abs{\tilde{\sigma}_1(\alpha)} = \abs{\sigma_1(\alpha)} > 1$,
+we must have $\tilde{\sigma}_1 = \sigma_1$ and so
+$[K : \Q(\alpha)] = 1$.
+
+\item Now suppose that $r=0$. Modifying the proof of
+theorem~\ref{mink:thm:bdb_disc_exist}, we can further take
+$\abs{\Re \sigma_1(\alpha)} < 1$ and
+$\abs{\Im \sigma_1(\alpha)} < C \sqrt{d}$ for some constant $C$.
+Then
+\[
+\abs{\sigma_1(\alpha)}^2 =
+\abs{N^K(\alpha)} \cdot \prod_{i=2}^n \abs{\sigma_i(\alpha)}^{-2} >
+\abs{N^K(\alpha)} \geq 1.
+\]
+Again consider
+$\eval{\sigma_1}{\Q(\alpha)}{} \in \Hom_\Q(\Q(\alpha), \C)$. As
+above, we see that every extension satisfies
+$\abs{\tilde{\sigma}_1(\alpha)} = \abs{\sigma_1(\alpha)} > 1$,
+therefore $\tilde{\sigma}_1 \in \set{\sigma_1, \oline{\sigma}_1}$.
+Since they differ in $\alpha$ by our modified assumptions, only one
+extends $\eval{\sigma_1}{\Q(\alpha)}{}$ and so
+$[K : \Q(\alpha)] = 1$.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+A \emph{Pisot number}\index{Pisot number} is a real algebraic
+integer $\alpha > 1$ whose all conjugates have absolute value less
+than $1$.
+\end{opomba}
+
+\newpage
+
+\subsection{Dirichlet's unit theorem}
+
+\begin{definicija}
+Let $K$ be a number field. We denote the set of all roots of unity
+in $K$ by $\mu(K)$.
+\end{definicija}
+
+\begin{definicija}
+We define a map $\lambda \colon \mathcal{O}_K^* \to \R^{r+s}$ as
+\[
+\lambda(\alpha) =
+\br{\log \abs{\sigma_1(\alpha)}, \dots,
+\log \abs{\sigma_r(\alpha)},
+2 \log \abs{\sigma_{r+1}(\alpha)}, \dots,
+2 \log \abs{\sigma_{r+s}(\alpha)}}.
+\]
+\end{definicija}
+
+\begin{opomba}
+Note that $\lambda \colon (\mathcal{O}_K^*, \cdot) \to (\R, +)$ is
+a group homomorphism.
+\end{opomba}
+
+\begin{lema}
+The set $\lambda \br{\mathcal{O}_K^*}$ is a lattice in the
+hyperplane
+\[
+H = \setb{x \in \R^{r+s}}{\sum_{i=1}^{r+s} x_i = 0}.
+\]
+\end{lema}
+
+\begin{proof}
+It clearly suffices to show that $\lambda \br{\mathcal{O}_K^*}$ is
+discrete. That is, there exists a neighbourhood of $0$ containing
+only finitely many points in this set.
+
+Let $B = [-C, C]^{r+s}$. Clearly, $j \br{\lambda^{-1}(B)}$ is
+bounded. Since $j(\mathcal{O}_K)$ is a lattice, $\lambda^{-1}(B)$
+is finite and hence so is $B \cap \lambda(\mathcal{O}_K^*)$.
+\end{proof}
+
+\begin{lema}
+We have $\ker \lambda = \mu(K)$, which is a finite cyclic group.
+\end{lema}
+
+\begin{proof}
+First note that if $\zeta \in \mu(K)$, then clearly
+$\abs{\sigma_i(\zeta)} = 1$ and so $\lambda(\zeta) = 0$. As
+$\lambda(\ker(\lambda))$ is trivially bounded, the proof of the
+previous lemma shows that $\ker \lambda$ is finite. This means
+that every element of $\ker \lambda$ has finite order and is
+therefore a root of unity. As every finite multiplicative subgroup
+of a field is cyclic, the conclusion follows.
+\end{proof}
+
+\begin{trditev}
+We have $\mathcal{O}_K^* \cong \mu(K) \times \Z^t$ for some
+$t \leq r+s-1$.
+\end{trditev}
+
+\begin{proof}
+The short exact sequence
+\[
+\begin{tikzcd}
+1 \arrow[r] &
+\mu(K) \arrow[r, hook] &
+\mathcal{O}_K^* \arrow[r, "\lambda"] &
+\Z^t \arrow[r] &
+0
+\end{tikzcd}
+\]
+is exact and therefore splits.
+\end{proof}
+
+\begin{lema}
+Let $M \geq 0$. Up to associativity, there exist only finitely many
+elements $\alpha \in \mathcal{O}_K$ with $\abs{N^K(\alpha)} < M$.
+\end{lema}
+
+\begin{proof}
+The condition is equivalent to $N((\alpha)) < M$, but there are
+only finitely many such ideals.
+\end{proof}
+
+\begin{izrek}[Dirichlet's unit theorem]
+\index{Dirichlet's unit theorem}
+Let $K$ be a number field. Then $\mu(K)$ is a finite cyclic group
+and $\mathcal{O}_K^* \cong \mu(K) \times \Z^{r+s-1}$.
+\end{izrek}
+
+\begin{proof}
+We already know that $\mathcal{O}_K^* \cong \mu(K) \times \Z^t$ and
+that $\mu(K)$ is cyclic. It is therefore enough to show that
+$t = r+s-1$. To do so, we will show that
+$\lambda \br{\mathcal{O}_K^*} \subseteq H$ is a complete lattice.
+Equivalently, we need to show that
+$\kvoc{H}{\lambda \br{\mathcal{O}_K^*}}$ has a bounded system of
+representatives.
+
+Set $g(x) = \br{\abs{\sigma_1(x)}, \dots, \abs{\sigma_{r+s}(x)}}$
+and
+$l(x) =
+\br{\log x_1, \dots, \log x_r,
+2 \log x_{r+1}, \dots, 2 \log x_{r+s}}$, so that
+$\lambda = l \circ g$. Furthermore, let
+\[
+\norm{x} = \prod_{i=1}^r x_i \cdot \prod_{i=1}^s x_{r+i}^2.
+\]
+Then $\norm{g(x)} = 1$ for all $x \in \mathcal{O}_K^*$. Finally,
+set $S = l^{-1}(H)$.
+
+We claim that there exists a bounded set $T \subseteq S$ such that
+\[
+S = \bigcup_{\varepsilon \in \mathcal{O}_K^*} g(\varepsilon) T.
+\]
+To see this, choose $c \in \br{\R^+}^{r+s}$ such that
+\[
+\norm{c} > \br{\frac{2}{\pi}}^s \cdot \sqrt{\abs{\disc(K)}}
+\]
+and set
+\[
+X = \setb{x \in \br{\R^+}^{r+s}}{\forall i \colon x_i < c_i}.
+\]
+Note that, for any $y \in S$, we have $\norm{cy^{-1}} = \norm{c}$.
+By theorem~\ref{mink:thm:bdb_disc_exist} there exists a non-zero
+element $\alpha \in \mathcal{O}_K$ with $g(\alpha) \in yX$. This
+element also satisfies $\abs{N^K(\alpha)} \leq \norm{c}$. There are
+only finitely many such elements up to associativity -- denote them
+by $\alpha_1, \dots, \alpha_m$.
+
+We claim that
+\[
+T = S \cap \bigcup_{i=1}^m g(\alpha_i)^{-1} X
+\]
+satisfies the conditions. Indeed, it is clearly bounded. For any
+$y \in S$, and set $g(\alpha) = y^{-1} x$ for some
+$\alpha \in \mathcal{O}_K$ and $x \in X$, where
+$\abs{N^K(\alpha)} \leq \norm{c}$. This means that
+$\varepsilon = \alpha^{-1} \cdot \alpha_i \in \mathcal{O}_K^*$ for
+some $i \leq m$. Hence
+\[
+y =
+g(\alpha)^{-1} x =
+g \br{\alpha_i \cdot \varepsilon^{-1}}^{-1} x =
+g(\varepsilon) \cdot g(\alpha_i)^{-1} x \in
+g(\varepsilon) T,
+\]
+as required.
+
+For each $x \in T$, we now have that $x_i$ are bounded from above.
+But as $\norm{x} = 1$, they are also bounded from below. The set
+$l(T)$ is therefore bounded, but as
+\[
+H =
+l(S) =
+\bigcup_{\varepsilon \in \mathcal{O}_K^*} l(g(\varepsilon) T) =
+\bigcup_{\varepsilon \in \mathcal{O}_K^*}
+\br{\lambda(\varepsilon) + l(T)},
+\]
+the set $l(T)$ is a bounded set of representatives for
+$\kvoc{H}{\lambda(\mathcal{O}_K^*)}$.
+\end{proof}
