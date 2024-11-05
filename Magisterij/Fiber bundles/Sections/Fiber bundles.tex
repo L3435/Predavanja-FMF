@@ -1,0 +1,1038 @@
+\section{Fiber bundles}
+
+\subsection{Basic definitions}
+
+\begin{definicija}
+Let $E$ and $M$ be smooth manifolds and $\pi \colon E \to M$ be a
+smooth map. The triple $(E, M, \pi)$ is a
+\emph{submersion}\index{submersion} if
+$d \pi_p \colon \Tang_p \! E \to \Tang_{\pi(p)} \! M$ is surjective
+for all $p \in E$.
+\end{definicija}
+
+\datum{2024-10-15}
+
+\begin{definicija}
+A \emph{fiber bundle}\index{fiber bundle} is a quadruple
+$(E, M, F, \pi)$, where $E, M$ and $F$ are smooth manifolds and
+$\pi \colon E \to M$ is a surjective submersion such that every
+point $x \in M$ has a neighbourhood $U \subseteq M$ and a
+diffeomorphism $\varphi \colon \pi^{-1}(U) \to U \times F$ with
+$\pi = \pi_1 \circ \varphi$, where $\pi_1 \colon U \times F \to U$
+is the projection.
+\[
+\begin{tikzcd}
+\pi^{-1}(U) \arrow[r, "\varphi"] \arrow[dr, "\pi"'] &
+U \times F \arrow[d, "\pi_1"] \\ &
+U
+\end{tikzcd}
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $G$ be a Lie group. A fiber bundle $(E, M, F, \pi)$ is a
+\emph{bundle with structure group $G$}\index{structure group bundle}
+if the following conditions hold:
+
+\begin{enumerate}[i)]
+\item The group $G$ acts effectively on $F$.
+\item There exists an open covering $\setb{U_\alpha}{\alpha \in I}$
+of $M$ such that for all $\alpha \in I$ there exists 
+diffeomorphism
+$\varphi_\alpha \colon \pi^{-1}(U_\alpha) \to U_\alpha \times F$,
+such that if $U_\alpha \cap U_\beta \ne \emptyset$ there exists a
+smooth map $g_{\alpha, \beta} \colon U_\alpha \cap U_\beta \to G$
+satisfying
+\[
+\varphi_\alpha \circ \varphi_\beta^{-1}(x,f) =
+(x, g_{\alpha, \beta}(x) f)
+\]
+for all $x \in U_\alpha \cap U_\beta$ and $f \in F$.
+\end{enumerate}
+
+The set $\setb{\br{U_\alpha, \varphi_\alpha}}{\alpha \in I}$ is
+called the \emph{trivializing atlas}\index{trivializing atlas},
+while $\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$ are the
+\emph{(local) transition functions}\index{transition functions}.
+\end{definicija}
+
+\begin{opomba}
+Transition functions satisfy $g_{\alpha, \alpha}(x) = \id_F$ for
+all $x \in U_\alpha$. Furthermore, if
+$x \in U_\alpha \cap U_\beta$, then
+\[
+g_{\beta, \alpha}(x) \cdot g_{\alpha, \beta}(x) = \id_F.
+\]
+Finally, if $x \in U_\alpha \cap U_\beta \cap U_\gamma$, then
+\[
+g_{\alpha, \beta}(x) \cdot g_{\beta, \gamma}(x) \cdot
+g_{\gamma, \alpha}(x) =
+\id_F.
+\]
+These are called
+\emph{cocycle conditions}\index{cocycle conditions}.
+\end{opomba}
+
+\begin{definicija}
+Let $M$ and $M'$ be manifolds with fiber bundles
+$\pi_E \colon E \to M$ and $\pi_{E'} \colon E' \to M$. A
+\emph{morphism of bundles}\index{morphism of bundles} is a pair
+$(f, \varphi)$ of maps $f \colon M \to M'$ and
+$\varphi \colon E \to E'$ with
+$\pi_{E'} \circ \varphi = f \circ \pi_E$.
+\[
+\begin{tikzcd}
+E \arrow[r, "\varphi"] \arrow[d, "\pi_E"'] &
+E' \arrow[d, "\pi_{E'}"] \\
+M \arrow[r, "f"'] &
+M'
+\end{tikzcd}
+\]
+If $f$ and $\varphi$ are diffeomorphisms, the bundles are
+\emph{equivalent}\index{equivalent bundles}.
+\end{definicija}
+
+\begin{definicija}
+Let $U \subseteq M$ be an open set. The bundle $E$ is
+\emph{trivial over $U$}\index{trivial bundle} if the bundle
+$\eval{E}{U}{} = \pi^{-1}(U)$ is equivalent to $U \times F$.
+\end{definicija}
+
+\begin{trditev}
+Let $M$ be a manifold, $E$ a bundle over $M$ with fiber $F$, and
+$G$ its structure group. Let
+$\setb{\br{U_\alpha, \varphi_\alpha^E}}{\alpha \in I}$ be a
+trivializing atlas for $E$ with transition functions
+$\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$. Let $E'$ be
+another bundle over the manifold $M$ with trivializing atlas
+$\setb{\br{U_\alpha, \varphi_\alpha^{E'}}}{\alpha \in I}$, fiber
+$F'$, structure group $G'$ and transition functions
+$\setb{h_{\alpha, \beta}}{\alpha, \beta \in I}$. If a smooth map
+$\psi \colon E \to E'$ induces an equivalence $(\id, \psi)$ of
+bundles, then for all $\alpha \in I$, posing
+\[
+\psi_\alpha =
+\varphi_\alpha^{E'} \circ \psi \circ \br{\varphi_\alpha^E}^{-1} =
+\br{\psi_\alpha', \psi_\alpha''} \colon
+U_\alpha \times F \to U_\alpha \times F',
+\]
+we have $\psi_\alpha' = \id$,
+$\psi_\alpha(x, \cdot) \colon
+\set{x} \times F \to \set{x} \times F$
+is a diffeomorphism for all $x$, and if
+$U_\alpha \cap U_\beta \ne \emptyset$, then
+\[
+\psi_\beta''(x,t) =
+h_{\beta, \alpha}(x) \cdot
+\psi_\alpha'' \br{x, g_{\alpha, \beta}(x) t}.
+\]
+Vice-versa, suppose that there exists a family
+$\setb{\psi_\alpha = \br{\id, \psi_\alpha''}}{\alpha \in I}$ of
+smooth maps
+$\psi_\alpha \colon U_\alpha \times F \to U_\alpha \times F'$ such
+that, for every $x \in U_\alpha$,
+$\psi_\alpha''(x, \cdot) \colon
+\set{x} \times F \to \set{x} \times F$ is a diffeomorphism
+satisfying the above equation. Then there exists a bundle
+equivalence $(\id, \psi)$ such that
+$\psi_\alpha =
+\varphi_\alpha^{E'} \circ \psi \circ \br{\varphi_\alpha^E}^{-1}$
+for all $\alpha \in I$.
+\end{trditev}
+
+\begin{proof}
+Let $(x, t) \in U_\alpha  \times F$ and consider $\psi_\alpha$. We
+see that
+\begin{align*}
+\psi_\beta &=
+\varphi_\beta^{E'} \circ \psi \circ \br{\varphi_\beta^E}^{-1}
+\\
+&=
+\varphi_\beta^{E'} \circ \br{\varphi_\alpha^{E'}}^{-1} \circ
+\varphi_\alpha^{E'} \circ \psi \circ
+\br{\varphi_\alpha^E}^{-1} \circ \varphi_\alpha^E \circ
+\br{\varphi_\beta^E}^{-1}
+\\
+&=
+\br{\id, h_{\beta, \alpha}} \circ \psi_\alpha \circ
+\br{\id, g_{\alpha, \beta}},
+\end{align*}
+as required.
+
+Now define $\psi \colon E \to E'$ as
+\[
+\psi(e) =
+\br{\varphi_\alpha^{E'}}^{-1} \circ \psi_\alpha \circ
+\varphi_\alpha^E(e)
+\]
+for $e \in \pi^{-1}(U_\alpha)$. It can be verified that $\psi$ is
+well defined and is an equivalence of fibrations.
+\end{proof}
+
+\begin{izrek}
+Let $M$ and $F$ be manifolds and $G$ a Lie group acting effectively
+on $F$. Let $\setb{U_\alpha}{\alpha \in I}$ be an open cover of $M$
+with maps $g_{\alpha, \beta} \colon U_\alpha \cap U_\beta \to G$
+whenever $U_\alpha \cap U_\beta \ne \emptyset$ satisfying the
+cocycle condition. Then there exists a
+unique\footnote{Up to equivalence.} bundle $E$ with base $M$, fiber
+$F$, structure group $G$ and transition functions
+$\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$.
+\end{izrek}
+
+\begin{proof}
+Define
+\[
+E =
+\kvoc{\displaystyle \bigsqcup_{\alpha \in I} U_\alpha \times F}
+{\sim},
+\]
+where $(x, f) \sim (y, f')$ if $x = y$ and there exist
+$\alpha, \beta \in I$ such that $x \in U_\alpha \cap U_\beta$ and
+$f = g_{\alpha, \beta}(x) f'$. By the cocycle condition, this is in
+fact an equivalence relation. We define $\pi([x, f]) = x$, which is
+well defined and continuous. The local trivializations
+$\varphi_\alpha \colon \pi^{-1}(U_\alpha) \to U_\alpha \times F$
+are given by
+$\left[\widetilde{x}, \widetilde{f}\right] \mapsto (x,f)$, where
+$(x,f)$ is the unique representative of
+$\left[\widetilde{x}, \widetilde{f}\right]$ in $U_\alpha \times F$.
+We see that $\varphi_\alpha$ is bijective, its inverse being the
+quotient map $\rho$. It follows that it is a homeomorphism.
+
+Up to refining $\setb{U_\alpha}{\alpha \in I}$, we can assume that
+$(U_\alpha, \psi_\alpha)$ are local charts for $M$. Let
+$\setb{\br{W_j, \theta_j}}{j \in J}$ be another atlas for $F$. Then
+$\setb{[U_\alpha \times W_j]}{\alpha \in I \land j \in J}$ is an
+open cover of $E$. Define
+$\widetilde{\varphi}_{\alpha, j} \colon
+\psi_\alpha(U_\alpha) \times \theta_j(W_j)$ as
+$[x, f] \mapsto \br{\psi_\alpha(x), \theta_j(f)}$. We need to check
+that transition maps are smooth. Let
+$(p,t) \in \psi_\beta(U_\alpha \cap U_\beta) \times
+\theta_k(W_j \cap W_k)$. Then,
+\begin{align*}
+\widetilde{\varphi}_{\alpha, j} \circ
+\br{\widetilde{\varphi}_{\beta, k}}^{-1} (p,t) &=
+\widetilde{\varphi}_{\alpha, j}
+\br{\left[\psi_\beta^{-1}(p), \theta_k^{-1}(t)\right]}
+\\
+&=
+\widetilde{\varphi}_{\alpha, j}
+\br{\left[\psi_\beta^{-1}(p),
+g_{\alpha, \beta}(\psi_\beta^{-1}(p)) \cdot
+\theta_k^{-1}(t)\right]}
+\\
+&=
+\br{\psi_\alpha \circ \psi_\beta^{-1}(p),
+\theta_j \br{g_{\alpha, \beta}
+\br{\psi_\beta^{-1}(p)} \theta_k^{-1}(t)}},
+\end{align*}
+which is smooth, hence $E$ is a smooth manifold. We can check that
+$E$ has the given transition functions.
+\end{proof}
+
+\newpage
+
+\subsection{Vector bundles and principal bundles}
+
+\begin{definicija}
+A bundle $(E, M, \pi)$ with fiber $\R^k$ and structure group
+$\GL_k(\R)$ is a \emph{vector bundle}\index{vector bundle} of rank
+$k$, if there exists a trivializing atlas
+$\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ for $E$ such that
+for every point $x \in U_\alpha$, the map
+$\eval{\varphi_\alpha}{E_x}{} \colon E_x \to \set{x} \times \R^k$
+is a vector space isomorphism.
+\end{definicija}
+
+\begin{opomba}
+Let $M$ be a manifold and $f \colon \R \to \R$ a non-linear
+diffeomorphism. Define $E = M \times \R$ with cover $\set{M}$ that
+trivializes $E$ with the map $\varphi \colon E \to M \times \R$,
+$\varphi(x,v) \mapsto (x, f(v))$. This is a bundle with fiber $\R$
+and structure group $\GL_1(\R)$, but not a vector bundle.
+\end{opomba}
+
+\begin{definicija}
+Let $M$ and $M'$ be manifolds with vector bundles $E$ and $E'$. A
+bundle morphism $(f, \rho)$ is a
+\emph{vector bundle morphism}\index{vector bundle morphism} if the
+map $\varphi_x = \eval{\varphi}{E_x}{} \colon E_x \to E_{f(x)}'$ is
+a linear map for all $x \in M$.
+\end{definicija}
+
+\begin{lema}
+Let $M$ be a manifold and $E$ a bundle over $M$ with fiber $\R^k$
+and structure group $\GL_k(\R)$. Then there exists a vector space
+bundle $E'$ on $M$ that is equivalent to $E$ as a bundle.
+\end{lema}
+
+\begin{definicija}
+A Lie group $G$ \emph{acts on the right}\index{group action} on a
+manifold $F$ if $R \colon G \to \Diff(F)$ is such that
+$R(e) = \id$, $R \br{g^{-1}} = R(g)^{-1}$ and
+$R(gh) = R(h) R(g)$.
+\end{definicija}
+
+\begin{opomba}
+If $L$ is an action, then $R(g) = L \br{g^{-1}}$ is a right action.
+\end{opomba}
+
+\begin{zgled}
+Let $E$ be a bundle with fiber $F \cong G$ and structure group $G$.
+Then $G$ acts on $F$ as follows: Let $\theta \colon F \to G$ be a
+diffeomorphism. Define
+\[
+R_g(f) = \theta^{-1}(\theta(f) g)
+\]
+for $g \in G$, $f \in F$. Then $R_g = R(g) \in \Diff(F)$. We write
+$R_g(f) = fg$ when the choice for $\theta$ is clear.
+\end{zgled}
+
+\begin{definicija}
+Let $G$ be a Lie group. A bundle $(P, M, \pi)$ with fiber $G$ and
+structure group $G$ is a
+\emph{principal bundle}\index{principal bundle} if there exists a
+trivializing atlas
+$\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ for $P$ such that
+$\eval{\varphi_\alpha}{P_x}{} \colon P_x \to \set{x} \times G$ is
+$G$-equivariant for every $x \in U_\alpha$. That is, if
+$\varphi_\alpha(v) = (x, \varphi_\alpha''(x,v))$ for $v \in P_x$,
+then $\varphi_\alpha''(x, vg) = \varphi_\alpha''(x,v) g$ for all
+$g \in G$.
+\end{definicija}
+
+\begin{opomba}
+This action on the right commutes with the action we have from the
+fact that $P$ is a fiber bundle with structure group $G$.
+\end{opomba}
+
+\begin{definicija}
+Let $M$ and $M'$ be manifolds with principal bundles $P$ and $P'$
+with groups $G$ and $G'$. Let $\rho \colon G \to G'$ be a Lie group
+morphism. A bundle morphism $(f, \varphi)$ is a
+\emph{principal bundle $\rho$-morphism}\index{principal bundle morphism}
+if $\varphi_x(pg) = \varphi_x(p) \rho(g)$ holds for all $x \in M$,
+$p \in P_x$ and $g \in G$.
+\end{definicija}
+
+\begin{lema}
+Let $M$ be a manifold with bundle $P$ with fiber $G$ and structure
+group $G$. Then there exists a principal bundle $P'$ on $M$ which
+is equivalent to $P$ as a bundle.
+\end{lema}
+
+\begin{definicija}
+Let $G$ be a Lie group with Lie subgroup $H$ and let
+$f \colon H \hookrightarrow G$ be an immersion. Let $P$ and $P'$ be
+principal bundles on a manifold $M$ with group $G$ and $H$
+respectively. Then $P'$ is a \emph{reduction}\index{reduction} of
+$P$ if there exists a $\rho$-morphism of principal bundles
+$(\id, h)$, where with $h \colon P' \to P$ is injective.
+\end{definicija}
+
+\begin{trditev}
+Let $P$ be a principal bundle over $M$ with group $G$. Let
+$H \leq G$ be a Lie subgroup. Then we can reduce $G$ to $H$ if and
+only if there exists a trivializing atlas of $P$ with transition
+functions in $H$.
+\end{trditev}
+
+\datum{2024-10-22}
+
+\begin{proof}
+Suppose that
+$\setb{h_{\alpha, \beta} \colon U_\alpha \cap U_\beta \to H}
+{\alpha, \beta \in I}$
+are transition functions. They define a principal bundle $P'$ on
+$M$ with structure group $H$. Recall that
+\[
+P' =
+\kvoc{\displaystyle \bigsqcup_{\alpha \in I} U_\alpha \times H}
+{\sim}
+\quad \text{and} \quad
+P =
+\kvoc{\displaystyle \bigsqcup_{\alpha \in I} U_\alpha \times G}
+{\sim}.
+\]
+Note that there is a well defined map
+$U_\alpha \times H \hookrightarrow U_\alpha \times G$ given by
+$(x,h) \mapsto (x,h)$.
+
+Let $[x,g] = [x, g_{\alpha, \beta}(x) g] \in P'$ for $g \in H$.
+The above map hence induces a well defined map on the quotient,
+therefore we get an injective morphism of principal bundles.
+
+Now assume that $h \colon P' \to P$ is a reduction. Let
+$\setb{U_\alpha}{\alpha \in I}$ be a trivializing atlas for $P$ and
+$P'$, and denote by
+$\varphi_\alpha' \colon
+\eval{P'}{U_\alpha}{} \to U_\alpha \times H$
+the local trivialization for $P'$. We see that
+\[
+\varphi_\alpha'(p') =
+\br{x, \widetilde{\varphi}_\alpha'(x, p')} =
+\br{x, \widetilde{\varphi}_\alpha'(x,e) p'}.
+\]
+Let $p \in P_x$ for $x \in U_\alpha$. Then there exists some
+$g \in G$ and $p' \in P_x'$ such that $p = h(p') g$ and if
+$p = h(p_1') g_1$, then
+\[
+g g_1^{-1} =
+h(p')^{-1} h(p_1') =
+h \br{(p')^{-1} p_1'} \in H,
+\]
+hence $p' = p_1' \br{g_1 g^{-1}}$. We obtain that
+\[
+\widetilde{\varphi}_\alpha' (x, p') g =
+\widetilde{\varphi}_\alpha' \br{x, p_1' g_1 g^{-1}} =
+\widetilde{\varphi}_\alpha' \br{x, p_1'} g_1.
+\]
+We can now define
+$\psi_\alpha \colon \eval{P}{U_\alpha}{} \to U_\alpha \times G$ by
+$p \mapsto \br{x, \widetilde{\varphi}_\alpha' (x, p') g}$, where
+$p = h(p')$.
+
+Consider the transition functions $\varphi_{\alpha, \beta}'$ for
+$P'$. Observe that
+\[
+\varphi_{\alpha, \beta}'(x) =
+\widetilde{\varphi}_\alpha'(x,e)
+\br{\widetilde{\varphi}_\beta'(x,e)}^{-1}
+\]
+For $x \in U_\alpha \cap U_\beta$ and $t \in G$ we can now write
+\[
+\psi_\alpha \circ \psi_\beta^{-1}(x, t) =
+\psi_\alpha(p)
+\]
+for $p = h(p') g \in P_x$, where $p' \in P_x'$ and $g \in G$. This
+is now further equal to
+\begin{align*}
+\psi_\alpha(p) &=
+\br{x, \widetilde{\varphi}_\alpha'(x, p') g}
+\\
+&=
+\br{x, \widetilde{\varphi}_\alpha'(x,p')
+\br{\widetilde{\varphi}_\beta'(x, p')}^{-1} t}
+\\
+&=
+\br{x, \widetilde{\varphi}_\alpha'(x,e) p' \br{p'}^{-1}
+\widetilde{\varphi}_\beta'(x, e)^{-1} t}
+\\
+&=
+\br{x, \varphi_{\alpha, \beta}'(x) t}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{zgled}
+Let $E$ be a vector bundle over a manifold $M$. Then its transition
+maps $g_{\alpha, \beta} \colon U_\alpha \cap U_\beta \to \GL_n(\R)$
+give rise to a principal bundle $P(E)$ with fiber $\GL_n(\R)$.
+Vice-versa is also true -- principal $\GL_n(\R)$ bundles have
+unique associated vector bundles.
+\end{zgled}
+
+\begin{definicija}
+A
+\emph{complex vector bundle of complex rank $k$}\index{vector bundle}
+is a a vector bundle over a manifold $M$ with fiber $\C^k$
+and structure group $\GL_k(\C)$. If $M$ is a complex manifold and
+$\pi \colon E \to M$ is holomorphic, then $E$ is a
+\emph{holomorphic bundle}\index{holomorphic bundle}.
+\end{definicija}
+
+\begin{trditev}
+Let $L$ and $L'$ be holomorphic fiber bundles of rank $1$ in a
+complex manifold $M$. Denote by
+$\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$ and
+$\setb{g_{\alpha, \beta}'}{\alpha, \beta \in I}$ their respective
+transition functions. A holomorphic vector bundle isomorphism
+$f \colon L \to L'$ exists if and only if there exist holomorphic
+functions $f_\alpha \colon U_\alpha \to \C^*$ such that
+\[
+\eval{\frac{f_\beta}{f_\alpha}}{U_\alpha \cap U_\beta}{} =
+\frac{g_{\alpha, \beta}}{g_{\alpha, \beta}'}
+\]
+whenever $U_\alpha \cap U_\beta \ne \emptyset$.
+\end{trditev}
+
+%TODO Proof from exercises
+
+\begin{definicija}
+The \emph{tangent bundle}\index{tangent bundle} of a manifold $M$
+is defined as
+$\displaystyle \Tang \! M = \bigsqcup_{p \in M} \Tang_p \! M$.
+\end{definicija}
+
+\begin{trditev}
+The tangent bundle is a vector bundle of dimension $n = \dim M$. If
+$\varphi_{\alpha, \beta}$ are the transition maps of the manifold,
+then $g_{\alpha, \beta}(p)$ is the matrix of
+$\br{d \varphi_{\alpha, \beta}}_p$ in the standard basis of $\R^n$.
+\end{trditev}
+
+\begin{definicija}
+Let $E$ be a vector bundle of rank $r$ on a manifold $M$. For
+$p \in M$ let $F(E)_p$ denote the ordered bases of $E_p$. Then
+$\displaystyle F(E) = \bigsqcup_{p \in M} F(E)_p$ with the trivial
+projection is the \emph{frame bundle}\index{frame bundle}.
+\end{definicija}
+
+\begin{trditev}
+The frame bundle is a principal bundle with fiber $\GL_r(\R)$. It
+is equivalent to $P(E)$ as a principal bundle.
+\end{trditev}
+
+%TODO Proof from exercises
+
+\begin{definicija}
+When $E = \Tang \! M$, we write $FM = F(\Tang \! M)$.
+\end{definicija}
+
+\begin{zgled}
+The map $S^{2n+1} \to \proj{\C}{n}$, given by
+$\br{z_0, \dots, z_n} \mapsto [z_0 : \dots : z_n]$,\footnote{The
+\emph{Hopf fibration}\index{Hopf fibration}.} is a principal bundle
+with fiber $S^1$.
+\end{zgled}
+
+\begin{zgled}[Homogeneous spaces]
+Let $G$ be a Lie group and $H \subseteq G$ be a Lie subgroup. Then
+$G \to \kvoc{G}{H}$ is a principal bundle with fiber $H$.
+\end{zgled}
+
+\newpage
+
+\subsection{Sections}
+
+\begin{definicija}
+Let $M$ be a manifold with fiber bundle $\pi \colon E \to M$. Let
+$U \subseteq M$ be an open set. A \emph{section}\index{section} of
+$E$ over $U$ is a smooth map $s \colon U \to E$ such that
+$\pi \circ s = \id_U$. The set of sections of $E$ over $U$ is
+denoted by $\mathcal{C}^\infty(U, E)$. Sections with $U = M$ are
+called \emph{global sections}.
+\end{definicija}
+
+\begin{trditev}
+Let $E$ be a fiber bundle over $M$ with fiber $F$ and structure
+group $G$. Let $\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ be
+its trivializing atlas with transition maps
+$\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$. Let
+$U \subseteq M$ be an open set. If
+$s \in \mathcal{C}^\infty(U, E)$, denoting
+$s_\alpha = \pi_F \circ \varphi_\alpha \circ s$ we have
+\[
+s_\alpha = g_{\alpha, \beta} s_\beta
+\]
+for $U_\alpha \cap U_\beta \ne \emptyset$.
+
+Vice-versa, if $\setb{s_\alpha}{\alpha \in I}$ are smooth functions
+satisfying the above equation, there exists a unique
+$s \in \mathcal{C}^\infty(U, E)$ with
+$s_\alpha = \pi_F \circ \varphi_\alpha \circ s$.
+\end{trditev}
+
+\begin{proof}
+Note that $s(x) = \varphi_\alpha^{-1}(x, s_\alpha(x))$, therefore
+\[
+\br{x, s_\alpha(x)} =
+\varphi_\alpha(s(x)) =
+\varphi_\alpha \br{\varphi_\beta^{-1}(x, s_\beta(x))} =
+\br{x, g_{\alpha, \beta}(x) s_\beta(x)}.
+\]
+If this equation holds, we can define
+$s(x) = \varphi_\alpha^{-1}(x, s_\alpha(x))$. The same computation
+as above shows that this is in fact a well-defined section.
+\end{proof}
+
+\begin{definicija}
+The maps $s_\alpha$ are called the
+\emph{local data}\index{local data} of $s$.
+\end{definicija}
+
+\begin{definicija}
+Let $E$ be a vector bundle of rank $k$ over $M$ and $U \subseteq M$
+an open subset. Then $E$ is trivial over $U$ if and only if there
+exist $s_1, \dots, s_k \in \mathcal{C}^\infty(U, E)$ such that
+$\setb{s_j(x)}{j \leq k} \subseteq E_x$ is a basis for every
+$x \in U$.
+\end{definicija}
+
+\obvs
+
+\begin{trditev}
+A principal bundle $P$ over $M$ admits a global section if and only
+if $P$ is equivalent to $M \times G$ as a principal bundle.
+\end{trditev}
+
+\begin{proof}
+Trivial bundles clearly have sections. Now suppose that
+$s \colon M \to P$ is a section. Then for every $g \in P_x$ there
+exists a unique $h \in G$ with $s(x) h = g$. We can now define
+$\Phi \colon P \to M \times G$ as $g \mapsto (x, h)$.
+\end{proof}
+
+\begin{posledica}
+A principal bundle $P \to M$ is equivalent to $M \times G$ if and
+only if its structure group can be reduced to $\set{e}$.
+\end{posledica}
+
+\begin{proof}
+If a reduction exists, there exists an embedding
+$\Phi \colon M \times \set{e} \hookrightarrow P$. But then
+$x \mapsto \Phi(x, e)$ is a global section.
+\end{proof}
+
+\datum{2024-10-29}
+
+\begin{definicija}
+The \emph{alternator}\index{alternator}
+$A \in \End \br{V^{\otimes r}}$ is defined as
+\[
+A(v_1 \otimes \dots \otimes v_r) =
+\frac{1}{r!} \sum_{\sigma \in S_r} \sgn(\sigma)
+v_{\sigma(1)} \otimes \dots \otimes v_{\sigma(r)}.
+\]
+\end{definicija}
+
+\begin{opomba}
+It holds that $A^2 = A$.
+\end{opomba}
+
+\begin{definicija}
+The \emph{external product}\index{external product} is defined as
+\[
+\bigwedge\!^{\!r} V = A \br{V^{\otimes r}}.
+\]
+We write
+$v_1 \wedge \dots \wedge v_r = A(v_1 \otimes \dots \otimes v_r)$.
+\end{definicija}
+
+%TODO en kup definicij vsot vektorksih svežnjev, cba
+
+\begin{definicija}
+A \emph{differential form}\index{differential form} is a section of
+$\Tang^*\!M$.
+\end{definicija}
+
+%TODO Local charts sth sth
+
+%\begin{opomba}
+%Btw, $d x_j = d x_j$.
+%\end{opomba}
+
+\newpage
+
+\subsection{Pull-backs, subbundles and quotient bundles}
+
+\begin{definicija}
+Let $M$ and $N$ be manifolds, $f \colon M \to N$ a smooth map and
+$\pi \colon E \to N$ a bundle with fiber $F$ and structure group
+$G$. The \emph{pullback}\index{pullback} $f^*E$ with fiber $F$ and
+structure group $G$ over $M$ is the bundle
+\[
+f^*E = \setb{(m, e) \in M \times E}{f(m) = \pi(e)}.
+\]
+\end{definicija}
+
+\begin{trditev}
+If $\setb{g_{\alpha, \beta}}{\alpha, \beta \in I}$ are the
+transition functions for $E$, then the functions
+$\setb{g_{\alpha, \beta} \circ f}{\alpha, \beta \in I}$ are the
+transition functions of $f^*E$.
+\end{trditev}
+
+\begin{proof}
+Let $\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ be the local
+trivialization for $E$. Define the map
+\[
+\psi_\alpha \colon 
+\br{\pi'}^{-1} \br{f^{-1}(U_\alpha)} \to f^{-1}(U_\alpha) \times F
+\]
+by $\psi_\alpha(m, e) = \br{m, \pi_F \circ \varphi_\alpha(e)}$.
+These are trivializations for $f^*E$. Note that
+\[
+\pi_F \circ \varphi_\beta(e) =
+\pi_F \br{g_{\beta, \alpha} \br{\pi(e)} \cdot \varphi_\alpha(e)} =
+\pi_F \br{g_{\beta, \alpha} \br{f(m)}} \cdot
+\pi_F(\varphi_\alpha(e)),
+\]
+as required.
+\end{proof}
+
+\begin{trditev}
+Let $f \colon M \to N$ be a smooth map. Let $\pi \colon E \to N$
+and $\rho \colon E' \to M$ be fiber bundles with fibers $F$ and
+structure groups $G$. Suppose that $(f, g) \colon E' \to E$ is a
+fiber bundle equivalence. Then $E' \cong f^* E$.
+\end{trditev}
+
+\begin{proof}
+Let $\Phi \colon E' \to E$ be defined as
+$\widetilde{e} \mapsto
+\br{\rho \br{\widetilde{e}}, g \br{\widetilde{e}}}$.
+%TODO ??? (samo sketch, preveri kaj je dejansko treba nardit lol)
+\[
+\begin{tikzcd}
+E' \arrow[r, "g"] \arrow[d, "\rho"'] &
+E \arrow[d, "\pi"] \\
+M \arrow[r, "f"'] &
+N
+\end{tikzcd}
+\]
+\end{proof}
+
+\begin{definicija}
+Let $E$ and $F'$ be vector bundles over $M$. If there exists a
+vector bundle morphism $i \colon F' \to E$ which is injective on
+the fibers, we call $F = i(F')$ a \emph{subbundle}\index{subbundle}
+of $E$.
+\end{definicija}
+
+\begin{trditev}
+Let $M$ be a manifold with a vector bundle $\pi \colon E \to M$ of
+rank $k$ and let $F = i(F')$ be a subbundle of rank $\ell \leq k$.
+Then $i$ is an embedding and $F \subseteq E$ is a submanifold.
+Moreover, $\eval{\pi}{F}{} \colon F \to M$ is a vector bundle and
+there exists a trivializing atlas
+$\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ of $E$ such that
+$\setb{(U_\alpha, \pi_\ell \circ \varphi_\alpha)}{\alpha \in I}$ is
+a trivializing atlas for $F$, where $\pi_\ell$ is the projection on
+the first $\ell$ coordinates.
+\end{trditev}
+
+\begin{zgled}
+Let $S \subseteq M$ be a submanifold and
+$i \colon S \hookrightarrow M$ the inclusion map. Then
+$di \colon \Tang\! S \to \Tang\! M$ is a fiber-wise injection. In
+particular, $\Tang\! S \subseteq \eval{\Tang\! M}{S}{}$ is a
+subbundle over $S$.
+\end{zgled}
+
+\begin{definicija}
+Let $M$ be a manifold with a vector bundle $E \to M$ of rank $k$.
+Let $F \subseteq E$ be a subbundle of rank $\ell$. Define a
+relation $e \sim e' \iff e, e' \in E_x \land e - e' \in F_x$. We
+denote the set of equivalence classes by $\kvoc{E}{F}$.
+\end{definicija}
+
+\begin{trditev}
+The set $\kvoc{E}{F}$ is a vector bundle such that
+$\rho \colon E \to \kvoc{E}{F}$, given by $e \mapsto [e]$, is a
+morphism, and $\br{\kvoc{E}{F}}_x = \kvoc{E_x}{F_x}$ for all
+$x \in M$. Furthermore, if $Q \to M$ is a vector bundle with fibers
+$\kvoc{E_x}{F_x}$ and there exists a morphism
+$\rho' \colon E \to Q$ with $v \mapsto [v]$, then
+$Q \cong \kvoc{E}{F}$.
+\end{trditev}
+
+\begin{proof}
+Let $\pi' \colon \kvoc{E}{F} \mapsto M$ be given by
+$[e] \mapsto \pi(e)$, which is clearly well-defined. Let
+$\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ be a trivializing
+atlas, adapted to $F$. Define
+$P' \colon U_\alpha \times \R^k \to U_\alpha \times \R^{k-\ell}$
+as the projection onto the last $k-\ell$ coordinates. Note that
+$e \sim e'$ if and only if we have
+$P'(\varphi_\alpha(e)) = P'(\varphi_\alpha(e))$.
+
+Define a map
+$\psi_\alpha \colon
+\eval{\kvoc{E}{F}}{U_\alpha}{} \to U_\alpha \times \R^{k-\ell}$ by
+$\psi_\alpha([e]) = \br{\pi'(e), P' \circ \varphi_\alpha(e)}$. This
+is clearly well defined and bijective. The quotient topology on
+$\kvoc{E}{F}$ is the same as the one induced by
+$\setb{\psi_\alpha}{\alpha \in I}$. The transition maps are given
+by the block-matrix structure of subbundles transition maps.
+% Uniqueness and manifoldness was skipped lmao
+\end{proof}
+
+\begin{definicija}
+The bundle $\kvoc{E}{F}$ is called the
+\emph{quotient bundle}\index{quotient bundle}.
+\end{definicija}
+
+\begin{definicija}
+Let $S \subseteq M$ be a submanifold. The
+\emph{normal bundle}\index{normal bundle} to $S$ in $M$ is the
+quotient bundle
+$\operatorname{N}\!S = \kvoc{\eval{\Tang\! M}{S}{}}{\Tang\! S}$.
+\end{definicija}
+
+\newpage
+
+\subsection{Cartier divisors}
+
+\begin{definicija}
+Let $M$ be a complex manifold. An
+\emph{effective Cartier divisor}\index{Cartier divisor} $D$ on $M$
+is given by an open cover $\setb{U_\alpha}{\alpha \in I}$ and
+holomorphic functions $f_\alpha \colon U \to \C$, not identically
+zero, such that the quotients
+$f_{\alpha, \beta} = \frac{f_\alpha}{f_\beta}$ are holomorphic
+functions on $U_\alpha \cap U_\beta$ without zeros.
+\end{definicija}
+
+\begin{opomba}
+The functions $\setb{f_{\alpha, \beta}}{\alpha, \beta \in I}$
+satisfy the cocycle conditions, hence they induce a line bundle
+$\mathcal{O}(D)$. Vice-versa, given a line bundle and a non-zero
+global holomorphic section, its local data define a divisor.
+\end{opomba}
+
+%TODO another way to obtain divisors neki neki normalni sveženj
+
+\newpage
+
+\subsection{Kernel, image, and exact sequences}
+
+\datum{2024-11-5}
+
+\begin{trditev}
+Let $\varphi \colon E \to F$ be a morphism of vector bundles over a
+manifold $M$. Then $\ker \varphi$ and $\im \varphi$ are vector
+subbundles if and only if $\rank \varphi_x$ is constant for
+$x \in M$.
+\end{trditev}
+
+\begin{proof}
+Let $k = \rank \varphi_x$, $m = \rank E$ and $l = \rank F$. Let
+$U \subseteq M$ be a trivializing open set for $E$ and $F$.
+
+Locally, the map $\varphi \colon U \times \R^m \to U \times \R^l$
+is given by $\varphi(x, a) = (x, A(x) a)$ for a map
+$A \colon U \to \R^{l \times m}$. Let $x_0 \in U$ and assume that
+the first $k$ rows of $A(x_0)$ are independent. Replace $U$ by a
+smaller set such that the first $k$ rows of $A(x)$ are independent
+for all $x \in U$. Denote the first $k$ rows of $A(x)$ by $B(x)$.
+Then
+\[
+\ker \varphi = \setb{(x, a) \in U \times \R^m}{B(x) a = 0}.
+\]
+Note that the map $F \colon U \times \R^m \to \R^k$ has maximal
+rank, hence $F^{-1}(0) = \ker \varphi \cap \eval{E}{U}{}$ is a
+submanifold.
+
+We can also suppose that the $k \times k$ minor $B'(x)$ of $B(x)$,
+given by the first $k$ columns, is non-singular -- that is,
+$\det B'(x) \ne 0$. Let $B''$ be the remainder of the matrix. Then
+$B(x) a = 0$ if and only if $a' = -B'(x)^{-1} B''(x) a''$.
+
+We found $(m-k)$ independent solutions depending smoothly on
+$x \in U$ and pointwise generating $\ker \varphi$. Let
+$v_j(x) \in E_x$ be the image of $a_j(x)$ under the trivialization.
+We can complete $\setb{v_j(x)}{j \leq m-k}$ to a basis of sections
+of $\eval{E}{U}{}$. This basis trivializes $\eval{E}{U}{}$ as
+\[
+\sum_{j=1}^m b_j v_j(x) \mapsto \br{x, b_1, \dots, b_m},
+\]
+with
+\[
+\ker \varphi =
+\setb{(x, b_1, \dots, b_m) \in U \times \R^m}
+{\forall j > m-k \colon b_j = 0}
+\]
+locally. Thus,
+\[
+\sum_{j=1}^{m-k} b_j v_j(x) \mapsto \br{x, b_1, \dots, b_{m-k}},
+\]
+are local trivializations for $\ker \varphi$.
+%TODO Prove that these trivializations make \ker a vector bundle
+
+Let now $Q = \kvoc{E}{\ker \varphi}$. Then $\varphi \colon E \to F$
+induces a map $\rho \colon Q \to F$ which is injective on the
+fibers, hence $\rho(Q) = \varphi(E) = \im \varphi$ is a subbundle.
+\end{proof}
+
+\begin{definicija}
+Let $E$, $E'$ and $E''$ be vector bundles over a manifold $M$. Let
+$\alpha \colon E' \to E$ and $\beta \colon E \to E''$ be morphisms.
+If $\alpha$ is injective, $\beta$ is surjective, and
+$\im \alpha = \ker \beta$, then
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+E' \arrow[r, "\alpha"] &
+E \arrow[r, "\beta"] &
+E'' \arrow[r] &
+0
+\end{tikzcd}
+\]
+is a \emph{short exact sequence}.
+\end{definicija}
+
+\begin{opomba}
+In a short exact sequence, $E'' \cong \kvoc{E}{E'}$.
+\end{opomba}
+
+\begin{trditev}
+Suppose $E$, $E'$ and $E''$ form a short exact sequence with
+mophisms $\alpha$ and $\beta$ as above, and let $F$ be another
+vector bundle over $M$. Then the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+E' \otimes F \arrow[r, "\alpha \otimes \id"] &
+E \otimes F \arrow[r, "\beta \otimes \id"] &
+E'' \otimes F \arrow[r] &
+0
+\end{tikzcd}
+\]
+is also exact. Similarly, the sequences
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Hom(F, E') \arrow[r, "\alpha \circ \cdot"] &
+\Hom(F, E) \arrow[r, "\beta \circ \cdot"] &
+\Hom(F, E'') \otimes F \arrow[r] &
+0
+\end{tikzcd}
+\]
+and
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Hom(E', F) \arrow[r, "\cdot \circ \alpha"] &
+\Hom(E, F) \arrow[r, "\cdot \circ \beta"] &
+\Hom(E'', F) \otimes F \arrow[r] &
+0
+\end{tikzcd}
+\]
+are exact. Finally, if $f \colon N \to M$ is smooth, the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+f^*(E') \arrow[r] &
+f^*(E) \arrow[r] &
+f^*(E'') \arrow[r] &
+0
+\end{tikzcd}
+\]
+is also exact.
+\end{trditev}
+
+\begin{izrek}
+Suppose that $E$, $E'$ and $E''$ form a short exact sequence as
+above. Then $\det E \cong \det E' \otimes \det E''$.
+\end{izrek}
+
+\begin{proof}
+Take a trivialization adapted to $\alpha(E')$, that is
+\[
+g_{\alpha, \beta}^E =
+\begin{bmatrix}
+g_{\alpha, \beta}^{E'} & k_{\alpha, \beta}       \\
+         0             & g_{\alpha, \beta}^{E''}
+\end{bmatrix}.
+\]
+Then
+$\det g_{\alpha, \beta}^E =
+\det g_{\alpha, \beta}^{E'} \cdot \det g_{\alpha, \beta}^{E''}$.
+\end{proof}
+
+\begin{definicija}
+Let $M$ be a manifold. Then $K_M = \det(\Tang^*\! M)$ is the
+\emph{canonical bundle}\index{canonical bundle} of $M$.
+\end{definicija}
+
+\begin{opomba}
+Let $L$ be a line bundle. Since $L \otimes L^* \cong \Hom(L, L)$,
+it admits a global section $x \mapsto \id_L$. Hence $L \otimes L^*$
+is trivial and $E \otimes L \cong F$ if and only if
+$E \cong F \otimes L^*$ for any two vector bundles $E$ and $F$.
+\end{opomba}
+
+\begin{izrek}
+Let $S \subseteq M$ be a complex submanifold of codimension $1$.
+Then
+\[
+K_S = \eval{\br{K_M \otimes \mathcal{O}([S])}}{S}{}.
+\]
+\end{izrek}
+
+\begin{proof}
+We have a short exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Tang \! S \arrow[r] &
+\eval{\Tang \! M}{S}{} \arrow[r] &
+\operatorname{N} \! S \arrow[r] &
+0
+\end{tikzcd}
+\]
+over $S$. Taking the dual and using the previous theorem, we find
+that
+\[
+\eval{K_M}{S}{} \cong K_S \otimes \eval{\mathcal{O}([S])^*}{S}{}.
+\]
+As $\mathcal{O}([S])$ is a line bundle, we are done by the above
+remark.
+\end{proof}
+
+\newpage
+
+\subsection{Line bundles and the Picard group}
+
+For this section, let $M$ denote a complex manifold of dimension
+$n$.
+
+\begin{definicija}
+A holomorphic vector bundle of rank $1$ on $M$ is called a
+\emph{line bundle}\index{line bundle}. The set of all line bundles
+(modulo equivalence) is the \emph{Picard group}\index{Picard group}
+$\Pic(M)$.
+\end{definicija}
+
+\begin{trditev}
+The set $\Pic(M)$ is an abelian group with $L^{-1} = L^*$ and
+neutral element $M \times \C$.
+\end{trditev}
+
+\obvs
+
+%TODO \tiny{spoiler}?
+
+\begin{definicija}
+The \emph{tautological bundle}\index{tautological bundle} on
+$\proj{\C}{n}$ is given by
+\[
+\mathcal{O}(-1) =
+\setb{\br{[p], v} \in \proj{\C}{n} \times \C^{n+1}}
+{v \in \C \times p}.
+\]
+\end{definicija}
+
+%TODO this is actually a bundle (local trivialization sth sth)
+
+\begin{definicija}
+Define $\mathcal{O}(1) = \mathcal{O}(-1)^*$ and
+$\mathcal{O}(k) = \mathcal{O}(1)^k$.
+\end{definicija}
+
+%TODO Hyperplanes sth sth
+
+\begin{trditev}
+Let $k \geq 0$. The space
+$\mathcal{O} \br{\proj{\C}{n}, \mathcal{O}(k)}$ is isomorphic to
+the space of homogeneous polynomials of degree $k$ in $n+1$
+variables. In particular, the bundles $\mathcal{O}(k)$ are pairwise
+distinct for $k \in \Z$.
+\end{trditev}
+
+\begin{proof}
+Let $s \in \mathcal{O} \br{\proj{\C}{n}, \mathcal{O}(k)}$ and let
+$s_\alpha \colon U_\alpha \to \C$ be its local data. Observe that
+\[
+s_\alpha([z]) = \br{\frac{z_\alpha}{z_\beta}}^{-k} s_\beta([z])
+\]
+on $U_\alpha \cap U_\beta$. Thus
+$p(z) = z_\alpha^k s_\alpha$ is independent of $\alpha$ and
+holomorphic on $\C^{n+1}$. Furthermore,
+$p(\lambda z) = \lambda^k p(z)$, hence $p$ is homogeneous of degree
+$k$. Since $p$ is holomorphic on $\C^{n+1}$, we get $k \geq 0$.
+
+%TODO converse
+\end{proof}

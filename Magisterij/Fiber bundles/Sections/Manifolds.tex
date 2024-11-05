@@ -1,0 +1,320 @@
+\section{Manifolds}
+
+\subsection{Smooth manifolds}
+
+\datum{2024-10-1}
+
+\begin{definicija}
+A space $M$ is \emph{paracompact}\index{paracompact} if for every
+open covering $\setb{U_j}{j \in I}$ there exists a locally finite
+refinement. That is, every point $p \in M$ has a neighbourhood that
+intersects only finitely many sets of the refinement.
+\end{definicija}
+
+\begin{opomba}
+Instead of second-countable, we require manifolds to be
+paracompact.
+\end{opomba}
+
+\begin{definicija}
+The \emph{Grassmanian}\index{Grassmanian} is the space
+\[
+G_{k,n}(\C) =
+\setb{V \leq \C^n}{\dim V = k}.
+\]
+\end{definicija}
+
+\begin{trditev}
+The Grassmanian is a complex manifold of dimension $k (n-k)$.
+\end{trditev}
+
+\begin{proof}
+Let $M_{k,n}(\C)$ be the set of $k \times n$ matrices of maximal
+rank. This is an open subspace of $\C^{k \times n}$, therefore it
+is a manifold of dimension $k \cdot n$. We can then define a map
+$\pi \colon M_{k,n}(\C) \to G_{k,n}(\C)$ mapping each matrix to the
+span of its rows. Note that $\pi(A) = \pi(B)$ if and only if there
+exists some $g \in \GL_k(\C)$ with $gA = B$. That is,
+\[
+G_{k,n}(\C) = \kvoc{M_{k,n}(\C)}{\GL_k(\C)}.
+\]
+For $A \in M_{k,n}(\C)$, denote by $A_1, \dots, A_\ell$ its
+$k \times k$-minors. As $\rank A = k$, there exists an index $j$
+such that $\det A_j \ne 0$. Let
+\[
+U_j = \setb{\pi(A)}{\det A_j \ne 0}.
+\]
+By the above observation, this is an open covering of
+$G_{k,n}(\C)$. Define $\varphi_j \colon U_j \to \C^{k(n-k)}$ as
+follows -- choose a matrix $A$ such that $A_j \ne 0$. Then define
+\[
+\varphi_j(\pi(A)) = A_j^{-1} \cdot B_j,
+\]
+where $B_j$ is $A$ without the columns of $A_j$. This is clearly a
+homomorphism. It is easy to see that the transition maps are
+holomorphic.
+\end{proof}
+
+\begin{definicija}
+A smooth manifold is \emph{orientable}\index{orientable} if there
+exists an atlas such that the jacobians of its transition maps have
+positive determinants.
+\end{definicija}
+
+\datum{2024-10-8}
+
+\begin{trditev}
+Let $M$ be a complex manifold of complex dimension $n$. Then $M$ is
+also a smooth orientable manifold of real dimension $2n$.
+\end{trditev}
+
+\begin{proof}
+We can clearly see that $M$ is a smooth manifold of real dimension
+$2n$. Let $\setb{(U_\alpha, \varphi_\alpha)}{\alpha \in I}$ be a
+complex atlas for $M$. For $\alpha, \beta \in I$, take
+$F = \varphi_\alpha \circ \varphi_\beta^{-1}$ and write
+$F(z) = u(x,y) + i v(x,y)$, where $z = x + iy$ for $x, y \in \R^n$.
+Then
+\[
+dF =
+\begin{bmatrix}
+\parc{u}{x} & \parc{u}{y} \\
+\parc{v}{x} & \parc{v}{y}
+\end{bmatrix}
+=
+\begin{bmatrix}
+ \parc{u}{x} & \parc{u}{y} \\
+-\parc{u}{y} & \parc{u}{x}
+\end{bmatrix},
+\]
+therefore
+\[
+\det (dF) = \br{\det \parc{u}{x}}^2 + \br{\det \parc{u}{y}}^2 > 0.
+\qedhere
+\]
+%TODO wtf?
+\end{proof}
+
+\newpage
+
+\subsection{Structure sheaf, tangent bundle, and differentials}
+
+\begin{definicija}
+Let $M$ be a smooth manifold and $p \in M$.
+Consider\footnote{Replace $\mathcal{C}^\infty$ with $\mathcal{O}$
+for complex manifolds.}
+\[
+G_p =
+\setb{(U, f)}
+{p \in U \land f \in \mathcal{C}^\infty(U) \land 
+\text{$U$ is open}}.
+\]
+We define an equivalence relation on $G_p$ by
+$(U, f) \sim (V, g)$ if there exists an open set
+$W \subseteq U \cap V$ containing $p$ such that
+$\eval{f}{W}{} = \eval{g}{W}{}$. The set $\kvoc{G_p}{\sim}$ is the
+space of \emph{germs}\index{germs} of functions at $p$, denoted by
+$\mathcal{C}_{M,p}^\infty$. The equivalence class of $(U, f)$ is
+denoted by $f_p$.
+\end{definicija}
+
+\begin{opomba}
+The sets $\mathcal{C}_{M,p}^\infty$ and $\mathcal{O}_{M,p}$ are
+commutative rings with a neutral element. The latter is also an
+integral domain.
+\end{opomba}
+
+\begin{opomba}
+The map $\mathcal{C}_{M,p}^\infty \to \R$, given by
+$f_p \mapsto f(p)$, is well defined and the set
+$\mathcal{M}_{M,p} = \setb{f_p}{f(p) = 0}$ is a maximal ideal.
+\end{opomba}
+
+\begin{definicija}
+Let $U \subseteq M$ be an open set. Define
+\[
+\mathcal{C}_M^\infty(U) =
+\setb{f \colon U \to \R}{\text{$f$ is smooth}}.
+\]
+The operator $\mathcal{C}_M^\infty$ is called the
+\emph{structure sheaf}\index{structure sheaf} of $M$.
+\end{definicija}
+
+\begin{definicija}
+A \emph{derivation}\index{derivation} $v$ on
+$\mathcal{C}_{M,p}^\infty$ is a linear operator
+$v \colon \mathcal{C}_{M,p}^\infty \to \R$ such that
+\[
+v(f_p g_p) = f(p) v(g_p) + g(p) v(f_p)
+\]
+for all $f_p, g_p \in \mathcal{C}_{M,p}^\infty$. The set of all
+derivations on $\mathcal{C}_{M,p}^\infty$ is denoted by
+$\Tang_p \! M$.
+\end{definicija}
+
+\begin{opomba}
+Let $(U, \varphi)$ be a local chart around $p$ such that
+$\varphi(p) = 0$. Then
+$\varphi^* \colon
+\mathcal{C}_{\R^n,0}^\infty \to \mathcal{C}_{M,p}^\infty$, given by
+$\varphi^*(f) = f \circ \varphi$, is a ring isomorphism.
+\end{opomba}
+
+\begin{opomba}
+The map $d \varphi_p \colon \Tang_p M \to \Tang_0 \R^n$, given
+by
+\[
+d \varphi_p(v)(f) = v(f \circ \varphi),
+\]
+is an isomorphism of vector spaces.
+\end{opomba}
+
+\begin{definicija}
+We define
+\[
+\parc{}{x_j^\alpha}(p)(f) =
+\eval{\parc{\br{f \circ \varphi_\alpha^{-1}}}{x_j}}{0}{}
+\]
+for $f \in \mathcal{C}_{M,p}^\infty$.
+\end{definicija}
+
+\begin{lema}
+The set
+\[
+\setb{\parc{}{x_j}(p)}{j \leq n}
+\]
+is a basis of $\Tang_p \! M$.
+\end{lema}
+
+\begin{proof}
+We can assume $M=\R^n$ and $p=0$. Take
+$f \in \mathcal{C}_{\R^n,0}^\infty$ and $v \in \Tang_0 \! \R^n$.
+Then
+\[
+v(f) =
+v \br{f(0) + \sum_{j=1}^n c_j x_j + O \br{\abs{x}^2}} =
+\sum_{j=1}^n c_j v(x_j),
+\]
+since $v \br{O \br{\abs{x}^2}} = 0$. Hence
+\[
+v = \sum_{j=1}^n v(x_j) \parc{}{x_j}(p)
+\]
+as $c_j = \parc{f}{x_j}(0)$. It follows that the above set is in
+fact a generator of $\Tang_p \! M$. As they are clearly linearly
+independent, they indeed form a basis.
+\end{proof}
+
+\begin{definicija}
+Let $M$ and $N$ be manifolds and $f \colon M \to N$ be a smooth
+map. For $p \in M$, define
+$d f_p \colon \Tang_p \! M \to \Tang_{f(p)} \! N$ via
+\[
+d f_p (v)(h) = v(h \circ f)
+\]
+for $v \in \Tang_p \! M$ and $h \in \mathcal{C}_{N,f(p)}^\infty$.
+\end{definicija}
+
+\begin{trditev}
+Let $p \in M$ and $f \colon M \to N$ be a smooth map. Let
+$(U, \varphi)$ be a local chart around $p$ and $(V, \psi)$ be a
+local chart around $f(p)$. Then the matrix of the linear map
+$d f_p$ with respect to the standard bases is given by the jacobian
+matrix of $\psi \circ f \circ \varphi^{-1}$ in $\varphi(p)$.
+\end{trditev}
+
+\begin{definicija}
+Let $M$ be a smooth manifold of dimension $n$. A topological
+subspace $N \subseteq M$ is a
+\emph{regular submanifold}\index{regular submanifold} of
+codimension $k$ if for every point $p \in N$ there exists a local
+chart $(U, \varphi)$ near $p \in M$ such that
+\[
+\varphi(N \cap U) =
+\setb{x \in \varphi(U) \subseteq \R^n}
+{\forall j \leq k \colon x_j = 0}.
+\]
+\end{definicija}
+
+\begin{trditev}
+If $N$ is a regular submanifold, then for every point $p \in N$
+there exists a neighbourhood $U$ of $p$ and a smooth map
+$F \colon U \to \R^k$ such that
+$N \cap U = \setb{q \in U}{f(q) = 0}$ and $d F_q$ is surjective for
+all $q \in N \cap U$.
+\end{trditev}
+
+\begin{proof}
+Take $F$ to be the projection on the first $k$ coordinates.
+\end{proof}
+
+\begin{izrek}[Rank]
+\index{rank theorem}
+Let $M_1$ and $M_2$ be smooth manifolds of dimensions $n$ and $m$.
+Let $F \colon M_1 \to M_2$ be a smooth map. Assume that
+$\rank(d f_p) = k \in \N$ for all $p \in M_1$. Then for all
+$a \in F(M_1)$ we have that $F^{-1}(a)$ is a regular submanifold
+of dimension $k$ in $M_1$.
+\end{izrek}
+
+\begin{trditev}
+Let $(a_0, \dots, a_n) \in \C^{n+1} \setminus \set{0}$ and define
+\[
+H =
+\setb{[z_0 : \dots : z_n] \in \proj{\C}{n}}
+{\sum_{j=0}^n a_j z_j = 0}.
+\]
+Then $H$ is a submanifold.
+\end{trditev}
+
+\newpage
+
+\subsection{Coverings and group actions}
+
+\begin{trditev}
+Let $M$ be a smooth manifold with covering
+$\br{\widetilde{M},\pi}$. Then $\widetilde{M}$ has a unique smooth
+structure such that $\pi$ is smooth.
+\end{trditev}
+
+\begin{definicija}
+A group $G$ is a \emph{Lie group}\index{Lie group} if it is a
+topological space admitting a smooth structure such that the
+operation $G \times G \to G$, given by $(g,h) \mapsto g h^{-1}$, is
+smooth.
+\end{definicija}
+
+\begin{definicija}
+For a smooth manifold $M$ denote
+\[
+\Aut(M) = \setb{f \colon M \to M}{\text{$f$ is a diffeomorphism}}.
+\]
+A group $G$ \emph{acts}\index{group action} on $M$ via
+$\varphi \colon G \to \Aut(M)$ if $\varphi$ is a homomorphism. The
+action is \emph{faithful}\index{faithful action} or
+\emph{effective} if $\varphi$ is injective.
+\end{definicija}
+
+\begin{definicija}
+Given an action $\varphi \colon G \to \Aut(M)$, we define the
+\emph{orbit}\index{orbit} of $x \in M$ as
+\[
+Gx = \setb{\varphi(g)(x)}{g \in G}.
+\]
+Define an equivalence relation on $M$ as $x \sim y \iff Gx = Gy$.
+Denote $\kvoc{M}{G} = \kvoc{M}{\sim}$.
+\end{definicija}
+
+\begin{opomba}
+For a smooth manifold $M$, $\kvoc{M}{\Aut(M)}$ is a point.
+\end{opomba}
+
+\begin{definicija}
+A \emph{complex torus}\index{complex torus} is the quotient
+$\kvoc{\C^n}{G}$, where
+\[
+G =
+\setb{z \mapsto z + \sum_{j=1}^{2n} \lambda_j w_j}
+{\forall j \colon \lambda_j \in \Z}
+\]
+for $\R$-linearly independent vectors $w_j$.
+\end{definicija}
