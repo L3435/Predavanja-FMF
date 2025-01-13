@@ -9,7 +9,7 @@
 	top=2.5cm,
 	bottom=2.5cm
  }
- 
+
 \newif\if@mylang\@mylangfalse
 \DeclareOption{en}{\@mylangtrue}
 \ProcessOptions\relax
@@ -24,13 +24,9 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 
-\RequirePackage[xindy]{imakeidx}
+\RequirePackage[upmendex]{indextools}
 
-\if@mylang
-\makeindex[program=xindy,options=-L english -C utf8]
-\else
-\makeindex[program=xindy,options=-L slovenian -C utf8]
-\fi
+\makeindex[program=upmendex, options=-s "../../sty/svn.ist"]
 
 \RequirePackage[nottoc]{tocbibind}
 \RequirePackage[backend=biber]{biblatex}
@@ -91,7 +87,6 @@
     \apptocmd{\@epitext}{\em}{}{}
     \setlength{\epigraphrule}{0pt}
 
-\RequirePackage[parfill]{parskip}
 \RequirePackage{parskip}
 
 \RequirePackage[unicode]{hyperref}
@@ -176,6 +171,7 @@
 \DeclareMathOperator{\Sim}{Sim}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\Lin}{Lin}
@@ -188,6 +184,7 @@
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Fr}{Fr}
 \DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SO}{SO}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\rot}{rot}
@@ -223,9 +220,16 @@
 \DeclareMathOperator{\ind}{ind}
 \DeclareMathOperator{\Lat}{Lat}
 \DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\disc}{disc}
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\df}{def}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\ex}{ex}
 
 \providecommand{\pot}{\mathcal{P}}
 \providecommand{\rel}[1]{\mathrel{#1}}
@@ -271,6 +275,15 @@
  }{}
 \providecommand{\dsk}{\mathbbe{\Delta}}
 \providecommand{\dskx}{\mathbbe{\Delta}\!^*}
+
+\DeclareFontEncoding{FMS}{}{}
+\DeclareFontSubstitution{FMS}{futm}{m}{n}
+\DeclareFontEncoding{FMX}{}{}
+\DeclareFontSubstitution{FMX}{futm}{m}{n}
+\DeclareSymbolFont{fouriersymbols}{FMS}{futm}{m}{n}
+\DeclareSymbolFont{fourierlargesymbols}{FMX}{futm}{m}{n}
+\DeclareMathDelimiter{\VERT}{\mathord}{fouriersymbols}{152}{fourierlargesymbols}{147}
+\providecommand{\morm}[1]{\left\VERT #1 \right\VERT}
 
 \providecommand{\titleR}{\texorpdfstring{$\R$}{R}}
 \providecommand{\titleRn}[1]{\texorpdfstring{$\R^{#1}$}{R\^{}#1}}

@@ -1,0 +1,305 @@
+\section{Planar graphs}
+
+\subsection{Definition and Euler's formula}
+
+\datum{2024-12-19}
+
+\begin{definicija}
+Let $G$ be a graph. The
+\emph{drawing of $G$ into a plane}\index{drawing into a plane} is a
+function $h$ on $V(G) \cup E(G)$ such that $h(v) \in \R^2$ for all
+$v \in V$ and $h(uv)$ is a continuous $h(u) h(v)$-curve for each
+$uv \in E$.
+\end{definicija}
+
+\begin{definicija}
+A
+\emph{planar embedding}\index{planar embedding}\footnote{Also \emph{plane graph}.}
+of a graph $G$ is a drawing where the curves corresponding to edges
+intersect only in the common end vertices.
+\end{definicija}
+
+\begin{definicija}
+A graph $G$ is \emph{planar}\index{planar graph} if it admits a
+planar embedding.
+\end{definicija}
+
+\begin{izrek}[Jordan]
+\index{Jordan's curve theorem}
+Every closed simple curve in the plane divides it into exactly two
+regions.
+\end{izrek}
+
+\begin{definicija}
+Let $G$ be a plane graph. A \emph{face}\index{face} of $G$ is a
+maximal region that contains no points from the image of the
+embedding function.
+\end{definicija}
+
+\begin{definicija}
+A \emph{dual graph}\index{dual graph} of a plane graph $G$ is a
+graph $G^*$ with faces of $G$ as vertices, in which two vertices
+are connected if and only if their corresponding faces have an edge
+in common.
+\end{definicija}
+
+\begin{opomba}
+A dual graph need not be simple, even if $G$ is.
+\end{opomba}
+
+\begin{definicija}
+The \emph{length}\index{length} $\ell(F)$ of a face $F$ in a plane
+graph $G$ is the total length of walks along the boundary of $F$.
+\end{definicija}
+
+\begin{izrek}
+Let $G$ be a plane graph. The following statements are equivalent:
+
+\begin{enumerate}[i)]
+\item The graph $G$ is bipartite.
+\item Every face of $G$ has even length.
+\item The graph $G^*$ is Eulerian.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+If $G$ is bipartite, then every face must clearly have even length.
+If $G$ is not bipartite, let $C$ be an odd cycle. Then
+\[
+\sum_{\text{$F$ is inside $C$}} \ell(F) =
+\ell(C) + 2 \cdot \sum_{\text{$e$ is inside $C$}} 1 \equiv
+1 \pmod{2},
+\]
+therefore at least one face has odd length.
+
+Now we'll prove that the last two statements are equivalent. First
+note that $G^*$ is connected. As lengths of faces coincide with
+degrees in $G^*$, this is just Euler's theorem.
+\end{proof}
+
+\begin{izrek}
+Let $G$ is a plane graph and $D \subseteq E(G)$. The set $D$ is a
+set of edges of a cycle if and only if the corresponding dual edge
+set $D^*$ is a minimal edge cut.
+\end{izrek}
+
+\begin{proof}
+If $D$ is a cycle, then $D^*$ separates faces inside the cycle from
+the ones outside. It is clear that it is a minimal edge cut. If
+$E(C)$ is a proper subset of $D$, then $D^*$ is not a minimal cut.
+If $D$ does not contain a cycle, then $D^*$ is not even an edge
+cut.
+\end{proof}
+
+\begin{definicija}
+The planar graph $G$ is \emph{outerplanar}\index{outerplanar graph}
+if there exists an embedding such that the outer face contains all
+vertices.
+\end{definicija}
+
+\begin{opomba}
+If $G$ is outerplane and $2$-edge-connected, then it is
+Hamiltonian.
+\end{opomba}
+
+\begin{izrek}
+If $G$ is a simple outerplanar graph then $\delta(G) \leq 2$.
+\end{izrek}
+
+\begin{proof}
+The statement clearly holds for $n \leq 3$. For $n \geq 4$, we
+prove a stronger statement with induction -- there exist two
+distinct non neighbouring vertices $u$ and $v$ with degrees at most
+$2$. Since $K_4$ is not outerplanar, the statement holds for $n=4$.
+For general $n$, consider two cases:
+
+\begin{enumerate}[i)]
+\item There is a cut vertex $v$. Let $G_i$ be the graphs obtained
+by adding back $v$ to the components of $G \setminus v_i$. As every
+graph $G_i$ is outerplanar, they all contain at least one vertex of
+degree at most $2$ that is distinct from $v$. Taking one from each
+from $G_1$ and $G_2$, we satisfy all conditions.
+
+\item There is no cut vertex in $G$. In particular, there is no cut
+edge in $G$, hence the outer face is a Hamiltonian cycle. If $G$ is
+a cycle, the statement clearly holds. Otherwise, consider a chord
+$xy$. It splits the graph into two outerplanar graph, each
+containing a vertex of degree at most $2$ that is distinct from $x$
+and $y$. Furthermore, there is clearly no edge between such two
+vertices. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Euler's formula]
+\index{Euler's formula}
+Let $G$ be a plane graph with $k$ components. Then
+\[
+n + f - e = k+1.
+\]
+\end{izrek}
+
+\begin{opomba}
+If $G$ is a simple planar graph, then $e \leq 3n - 6$. Furthermore,
+if $G$ is $K_3$-free, then $e \leq 2n - 4$.
+\end{opomba}
+
+\datum{2025-1-9}
+
+\begin{definicija}
+A \emph{subdivision}\index{subdivision} of $G$ is a graph that is
+obtained by replacing some edges of $G$ with internally
+vertex-disjoint paths.
+\end{definicija}
+
+\begin{opomba}
+A subdivision of $G$ is planar if and only if $G$ is planar.
+\end{opomba}
+
+\begin{definicija}
+A \emph{Kuratowski graph}\index{Kuratowski graph} is a subdivision
+of $K_5$ or $K_{3,3}$.
+\end{definicija}
+
+\begin{trditev}
+If $G$ is a planar graph, it contains no Kuratowski graph.
+\end{trditev}
+
+\begin{proof}
+Neither $K_5$ or $K_{3,3}$ are planar graphs.
+\end{proof}
+
+\begin{lema}
+Let $G$ be a planar graph and $e \in E$. Then there exists an
+embedding of $G$ such that $e$ is on the boundary of the outer
+face.
+\end{lema}
+
+\begin{proof}
+Apply an inversion with center inside one of the neighbouring
+faces.
+\end{proof}
+
+\begin{lema}
+If $G$ is a minimal non-planar graph, then $G$ is $2$-connected.
+\end{lema}
+
+\begin{proof}
+Note that $G$ is clearly connected. Suppose that $G$ has a
+cut-vertex $v$, and let $G_1, G_2, \dots$ denote the subgraphs
+containing $v$ and a connected component of $G \setminus v$. By the
+minimality assumption, these are all planar. By the previous lemma,
+each has an embedding such that $v$ is on the edge of the outer
+face. Using an appropriate transformation, we can connect all these
+embeddings into an embedding of $G$.
+\end{proof}
+
+%TODO wtf is an S-lobe?
+
+\begin{lema}
+If $S = \set{x,y}$ is a minimum vertex-cut in $G$ and $G$ is
+non-planar, then $G \setminus S$ contains a component $G_i$ such
+that the $S$-lobe $H_i$ with the added edge $xy$ is non-planar.
+\end{lema}
+
+\begin{proof}
+Otherwise, embed each such $H_i$ into the plane such that $xy$ is
+on the boundary of the outer face. Using suitable transformations
+we can attach such embeddings using $x$ and $y$. This gives us an
+embedding of $G \cup xy$, which induces an embedding for $G$.
+\end{proof}
+
+\begin{lema}
+If $G$ is a non-planar graph without Kuratowski subgraphs and has
+the minimum number of edges among such graphs, then $G$ is
+$3$-connected.
+\end{lema}
+
+\begin{proof}
+As $G$ is minimal, it is $2$-connected. Suppose that
+$S = \set{x,y}$ is a vertex cut. Using the notation from the
+previous lemma, there exists a graph $H_i$ which is not planar. By
+the minimality of $m(G)$, it has a Kuratowski subgraph $F$, which
+must contain $xy$. But since there exists a path between $x$ and
+$y$ in $G \setminus F$, we can replace $xy$ with this path to
+obtain a Kuratowski subgraph in $G$.
+\end{proof}
+
+\begin{definicija}
+A \emph{contraction} $G \cdot e$ is the graph $\kvoc{G}{xy}$.
+\end{definicija}
+
+\begin{izrek}
+If $G$ is a $3$-connected graph with $n \geq 5$, then there exists
+an edge $e \in E$ such that $G \cdot e$ is $3$-connected.
+\end{izrek}
+
+\begin{proof}
+Suppose otherwise. Let $S$ be a vertex cut of $G \cdot e$ with $2$
+vertices. If $w = [x] \not \in S$, then $S$ remains a a vertex cut
+in $G$, which is not possible. Hence the minimum vertex cut
+contains $w$. Thus there exists a vertex cut $S' = \set{x,y,z}$ in
+$G$.
+
+We consider an edge $f = uv$ such that $G \setminus \set{u,v,z}$
+has the largest possible component $G_i$.
+
+Let $z'$ be a vertex adjacent to $z$ which is not in $S \cup G_i$.
+Then there exists a vertex $z^*$ such that $\set{z, z', z^*}$ is a
+vertex cut.
+
+Denote by $H$ the subgraph induced by $G_i \cup \set{u,v}$. We
+consider three cases:
+
+\begin{enumerate}[i)]
+\item If $z^* \in V(H)$ and $H \setminus z^*$ is disconnected, then
+$\set{z, z^*}$ is a vertex cut in $G$, which is not possible.
+\item If $z^* \in V(H)$ and $H \setminus z^*$ is connected, then
+$\set{z, z'}$ is a vertex cut in $G$, which is again not possible.
+\item If $z^* \not \in V(H)$, we get a contradiction with
+maximality. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{lema}
+If $G$ contains no Kuratowski subgraph, then $G \cdot e$ contains
+no Kuratowski subgraph for any edge $e$.
+\end{lema}
+
+\begin{proof}
+Suppose otherwise. Then the Kuratowski subgraph $F$ clearly
+contains $w$. We consider the following cases:
+
+\begin{enumerate}[i)]
+\item If $\deg(w) = 2$, then $G$ clearly already contained a
+Kuratowski subgraph.
+\item If $\deg(w) \geq 3$ and at most one neighbour of $w$ is not a
+neighbour of $x$, we can replace $w$ with $x$ to get a Kuratowski
+subgraph in $G$.
+\item In all other cases, we find that $\deg_F(w) \geq 4$, but as
+$F$ is a Kuratowski subgraph, we deduce that $\deg_F(w) = 4$ and
+that $F$ is a subdivision of $K_5$. It is easy to see that $G$ then
+contains a subdivision of $K_{3,3}$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+An embedding is \emph{convex}\index{convex embedding} if the
+boundary of every face is a convex polygon.
+\end{definicija}
+
+\begin{izrek}
+If $G$ is a $3$-connected graph without Kuratowski subgraphs, there
+exists a convex embedding of $G$ such that no three vertices are
+on a line.
+\end{izrek}
+
+\begin{proof}
+We induct on $n$. The statement clearly holds for $n=4$.
+%TODO next time
+\end{proof}
+
+\begin{izrek}[Kuratowski]
+\index{Kuratowski's theorem}
+A graph $G$ is planar if and only if it contains no Kuratowski
+subgraph.
+\end{izrek}

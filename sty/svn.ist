@@ -1,0 +1,5 @@
+icu_locale "sl"
+lethead_flag 1
+heading_prefix "\\textbf{"
+heading_suffix "}\\nopagebreak"
+preamble "\\renewcommand{\\leftmark}{\\indexname}\\begin{theindex}\n"

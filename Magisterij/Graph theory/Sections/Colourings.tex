@@ -1,0 +1,489 @@
+\section{Colourings}
+
+\subsection{Vertex colourings}
+
+\begin{definicija}
+Let $G$ be a simple graph. A
+\emph{$k$-colouring}\index{colouring} of $G$ is a map
+$\varphi \colon V \to [k]$ such that for all $xy \in E$ we have
+$\varphi(x) \ne \varphi(y)$. The graph $G$ is
+\emph{$k$-colourable}\index{colourable}\footnote{Also $k$-partite.}
+if it has a $k$-colouring.
+\end{definicija}
+
+\begin{definicija}
+The \emph{chromatic number}\index{chromatic number} $\chi(G)$ is
+the smallest integer $k$ such that $G$ is $k$-colourable.
+\end{definicija}
+
+\begin{definicija}
+Denote by $\omega(G)$ the order of the largest clique in $G$.
+\end{definicija}
+
+\begin{trditev}
+In a graph $G$, the inequality
+\[
+\omega(G) \leq \chi(G) \leq \Delta(G) + 1
+\]
+holds.
+\end{trditev}
+
+\obvs
+
+\begin{trditev}
+In a graph $G$, we have
+\[
+\frac{n}{\alpha(G)} \leq \chi(G).
+\]
+\end{trditev}
+
+\begin{proof}
+As every colour class is an independent set, it contains at most
+$\alpha(G)$ vertices.
+\end{proof}
+
+\begin{izrek}[Welsh-Powell]
+\index{Welsh-Powell theorem}
+If $d_1 \geq d_2 \geq \dots \geq d_n$ are the degrees of vertices
+in $G$, then
+\[
+\chi(G) \leq 1 + \max_{i \leq n} \br{\min(d_i, i-1)}.
+\]
+\end{izrek}
+
+\begin{proof}
+Colour the vertices in sequence $v_1, v_2, \dots, v_n$, always
+using the smallest possible number at each step.
+\end{proof}
+
+\datum{2024-11-28}
+
+\begin{trditev}
+We have the following characterisations:
+
+\begin{enumerate}[i)]
+\item For a graph $G$, $\chi(G) = 1$ if and only if
+$E = \emptyset$.
+\item For a graph $G$, $\chi(G) = 2$ if and only if $G$ is
+bipartite and $E \ne \emptyset$.
+\end{enumerate}
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[Brooks]
+\index{Brooks' theorem}
+Suppose $G$ is a connected graph that is neither a complete graph
+nor an odd cycle. Then $\chi(G) \leq \Delta(G)$.
+\end{izrek}
+
+\begin{proof}
+Denote $\Delta(G) = k$. Suppose first that $G$ is not regular and
+let $\deg(v) \leq k-1$. Colour the vertices greedily in decreasing
+order of distance from $v$. As we coloured at most $k-1$ neighbours
+of a vertex in each step, it is clear we need at most $k$ colours.
+
+Now consider regular graphs. For $k \leq 2$, excluding the special
+cases, the inequality clearly holds. Now assume $k \geq 3$. We
+consider three cases:
+
+\begin{enumerate}[i)]
+\item We have $\kappa(G) = 1$, that is, there exists a cut vertex
+$x$ that splits $G$ into parts $V_1$ and $V_2$. Denote
+$G_i = G[V_i \cup \set{x}]$. Note that $G_i$ is not $k$-regular,
+as $\deg_{G_i}(x) \leq k-1$. We can colour both $V_1$ and $V_2$
+with $k$ colours. By joining them at $x$, we find a $k$-colouring
+of $G$.
+
+\item Suppose that $G \setminus \set{x,y}$ is disconnected. Again,
+denote $G_i = G[V_i \cup \set{x,y}]$ and note that $G_i$ is not
+$k$-regular. As above, we colour both graphs and attempt to join
+the colourings. This is not possible only when every colouring of
+$G_1$ assigns the same colour to both vertices, while every
+colouring of $G_2$ assigns different colours to them, or
+vice-versa. In particular, $G_1 + xy$ is not $k$-colourable. We
+deduce that $\Delta(G_1 + xy) = k$, hence it is a $k$-regular
+graph. But then $\deg_{G_2}(x) = \deg_{G_2}(y) = 1$. As $k \geq 3$,
+we can colour $x$ and $y$ with the same colour in $G_2$, hence
+this case is not possible.
+
+\item Finally, consider $\kappa(G) \geq 3$. As $G \ne K_n$, we can
+find vertices $x$ and $y$ such that $d(x,y) = 2$. Let
+$z \in N(x) \cap N(y)$. Note that $G \setminus \set{x,y}$ is
+connected, hence there exists a path which contains neither from
+$z$ to any other vertex. We proceed to colour vertices greedily.
+First, colour $x$ and $y$ with the same colour. Then proceed to
+colour the vertices in decreasing order of distance from $z$ in
+$G \setminus{x,y}$. As we coloured at most $k-1$ neighbours of a
+vertex in each step, we need at most $k$ colours for every vertex.
+The exception is $z$, but two of its neighbours are already
+coloured with the same colour. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+A \emph{Mycielski construction}\index{Mycielski construction} of a
+graph $G$ with $V = \setb{v_i}{i \leq n}$ is a graph $M(G)$ with
+\begin{align*}
+V(M(G)) &= V \cup \setb{u_i}{i \leq n} \cup \set{z}
+\intertext{and}
+E(M(G)) &=
+E \cup \setb{u_i v_j}{v_i v_j \in E} \cup \setb{zu_i}{i \leq n}.
+\end{align*}
+\end{definicija}
+
+\begin{izrek}
+If $G$ is a graph with at least one edge, then
+$\chi(M(G)) = \chi(G) + 1$ and $\omega(M(G)) = \omega(G)$.
+\end{izrek}
+
+\begin{proof}
+Let $\chi(G) = k$. Note first that $M(G)$ is $(k+1)$-colourable.
+Indeed, we can copy a $k$-colouring of $G$ to both $v_i$ and $u_i$,
+then colour $z$ with a new colour. It is clear that this satisfies
+the conditions of a colouring.
+
+Suppose that $\chi(M(G)) \leq k$ and consider a $k$-colouring
+$\varphi$ of $M(G)$ where $\varphi(z)=k$. Denote
+$S = \setb{v_i}{\varphi(v_i) = k}$. We can define a new colouring
+on $G$ as
+\[
+\psi(v_i) =
+\begin{cases}
+\varphi(u_i), & v_i \in S, \\
+\varphi(v_i), & v_i \not \in S.
+\end{cases}
+\]
+It is easy to see that this is a $(k-1)$-colouring of $G$, as
+$\varphi(u_i) \ne k$ for all $i$. This is a contradiction as
+$\chi(G) = k$, hence $\chi(M(G)) = k+1$.
+
+As $G$ is a subgraph of $M(G)$, we obviously have
+$\omega(G) \leq \omega(M(G))$. If $z$ is in a clique of $M(G)$,
+then it has order at most $2$. Otherwise, if it contains a vertex
+$u_i$, it contains neither $v_i$ nor any other vertex $u_j$.
+By replacing $u_i$ with $v_i$, we preserve the clique. For every
+clique in $M(G)$, we found a corresponding clique in $G$ of the
+same size, hence $\omega(M(G)) \leq \omega(G)$.
+\end{proof}
+
+\datum{2024-12-5}
+
+\begin{izrek}
+If $G$ is a graph with $\chi(G) = k$, then
+$m(G) \geq \binom{k}{2}$.
+\end{izrek}
+
+\begin{proof}
+There is at least one edge between each pair of colours.
+\end{proof}
+
+\newpage
+
+\subsection{Turan's theorem and chordal graphs}
+
+\begin{definicija}
+A graph $G$ is a
+\emph{complete $k$-partite graph}\index{complete $k$-partite graph}
+if all pairs of vertices from different colour classes are
+connected. We denote it by $K_{n_1, \dots, n_k}$, where $n_i$ are
+sizes of the partite classes.
+\end{definicija}
+
+\begin{definicija}
+The \emph{Turan graph}\index{Turan graph} $T_{n,k}$ is the complete
+$k$-partite graph on $n$ vertices such that each of the partite
+classes is of size $\floor{\frac{n}{k}}$ of $\ceil{\frac{n}{k}}$.
+\end{definicija}
+
+\begin{izrek}[Turan]
+If $G$ is a graph of order $n$ with $\omega(G) \leq r$, then
+\[
+m \leq m(T_{n,r}).
+\]
+\end{izrek}
+
+\begin{proof}
+We induct on $r$. If $r = 1$, the inequality clearly holds. Now
+suppose $r \geq 2$ and denote $\Delta(G) = k$. In particular, let
+$\deg(v) = k$.
+
+Now let $G' = G[N(v)]$. We can see that $\omega(G') \leq r-1$. By
+the induction hypothesis, there are at most
+$m(T_{k,r-1})$ edges in $G'$.
+
+Construct another graph $H$ as follows -- add $n-k$ vertices to
+$T_{k,r-1}$ and connect each of these vertices to each vertex in
+$T_{k,r-1}$. Note that $n(H) = n$ and $\omega(H) = r$. Observe that
+\[
+m \leq
+\sum_{v \not \in G'} \deg(v) + m(G') \leq
+(n-k) \cdot k + m(T_{k,r-1}) =
+m(H).
+\]
+Furthermore, $H$ is a complete $r$-partite graph, hence
+\[
+E(H) =
+\sum_{i \ne j} \abs{V_i} \cdot \abs{V_j} =
+\frac{1}{2} \cdot \br{n^2 - \sum_{i=1}^r \abs{V_i}^2}.
+\]
+By Karamata's inequality, this is greatest when $H$ is a Turan
+graph.\footnote{For non-Turan graphs, the number of edges increases
+upon moving a vertex from a class $V_i$ into a class $V_j$ if
+$\abs{V_i} \geq \abs{V_j}+2$.}
+\end{proof}
+
+\begin{opomba}
+The bound is sharp with equality if and only if $G \cong T_{n,r}$.
+\end{opomba}
+
+\begin{posledica}
+If $G$ is a graph of order $n$ with $\chi(G) = r$, then
+\[
+m \leq m(T_{n,r}).
+\]
+The equality holds if and only if $G \cong T_{n,r}$.
+\end{posledica}
+
+\obvs
+
+\begin{definicija}
+Denote by $\ex(n, F)$ the maximum number of edges in a graph $G$
+with $n(G) = n$ such that $G$ does not contain $F$ as a subgraph.
+\end{definicija}
+
+\begin{definicija}
+A graph $G$ is a \emph{chordal graph}\index{chordal graph} if
+it has no induced subgraph that is isomorphic to a cycle $C_k$ with
+$k \geq 4$.
+\end{definicija}
+
+\begin{definicija}
+A vertex $v$ is a \emph{simplicial vertex}\index{simplicial vertex}
+in $G$ if $N(v)$ is a clique.
+\end{definicija}
+
+\begin{definicija}
+A
+\emph{simplicial elimination ordering}\index{simplicial elimination ordering}
+in $G$ is an order $v_1, \dots, v_n$ of vertices such that
+$N(v_i) \cap \setb{v_j}{j \geq i}$ induces a clique.
+\end{definicija}
+
+\begin{izrek}[Voloshin's lemma]
+\index{Voloshin's lemma}
+If $G$ is a chordal graph, then for every $x \in V(G)$ there exists
+a simplicial vertex among the ones farthest from $x$.
+\end{izrek}
+
+\begin{proof}
+We induct on $n$. For $n = 1$, the statement trivially holds. For
+$n \geq 2$, consider an arbitrary vertex $x$. If $x$ is a universal
+vertex in $G$, apply the induction hypothesis to $G \setminus x$.
+Otherwise, let $T$ be the set of vertices farthest from $x$. Denote
+by $H$ a component of $G[T]$ and let $S = N(H) \setminus H$.
+Finally, let $Q$ be the component of $G \setminus S$ containing
+$x$.
+
+We claim that $S$ induces a clique. Let $u, v \in S$ be distinct.
+Each vertex in $S$ clearly has neighbours both in $H$ and in $Q$.
+Since both $H$ and $Q$ induce connected subgraphs, we can find
+$u, v$-paths with internal vertices in $H$ and one with internal
+vertices in $Q$. Consider shortest such paths. These paths form
+a cycle of order $k \geq 4$, hence it also contains a chord. But by
+the above conditions, the only possible chord is $uv$. Applying
+this argument to all possible pairs of vertices in $S$, we conclude
+that $S$ is a clique.
+
+We now apply the induction hypothesis to $G[S \cup H]$. If this
+graph is a clique, then every vertex in $H$ is simplicial.
+Otherwise, take a vertex $u \in S$ such that
+$H \not \subseteq N(u)$. Then the induction hypothesis supplies us
+with a simplicial vertex in $H$. Since any simplicial vertex in
+$G[S \cup H]$ is also simplicial in $G$, we found a simplicial
+vertex in $T$.
+\end{proof}
+
+\datum{2024-12-12}
+
+\begin{izrek}
+A graph $G$ is chordal if and only if there exists a simplicial
+elimination ordering of the vertices in $G$.
+\end{izrek}
+
+\begin{proof}
+Suppose first that $G$ is chordal. Applying Voloshin's lemma, we
+find that $G$ has a simplicial vertex $v_1$. We can then apply
+Voloshin's lemma to $G \setminus v_1$. Repeating this process $n$
+times, we get a simplicial elimination ordering
+$v_1, v_2, \dots, v_n$.
+
+Suppose now that $G$ is not chordal -- that is, it contains an
+induced cycle $C_k$ with $k \geq 4$. Then no vertex in this cycle
+can be the first one to appear in a simplicial elimination
+ordering, therefore it cannot exist.
+\end{proof}
+
+\begin{izrek}
+If a graph $G$ is chordal, then $\chi(G) = \omega(G)$.
+\end{izrek}
+
+\begin{proof}
+Recall that $\chi(G) \geq \omega(G)$, hence we need only prove the
+reverse inequality. Let $v_1, v_2, \dots, v_n$ be a simplicial
+elimination ordering of $G$. Consider the greedy colouring of
+vertices in reverse order. It is clear that we only need
+$\omega(G)$ colours, as we coloured at most $\omega(G)-1$ vertices
+of the considered vertex in each step.
+\end{proof}
+
+\newpage
+
+\subsection{Perfect graphs and chromatic index}
+
+\begin{definicija}
+A graph $G$ is \emph{perfect}\index{perfect graph} if
+$\chi(H) = \omega(H)$ holds for every induced subgraph $H$ of $G$.
+\end{definicija}
+
+\begin{izrek}
+Every chordal graph is perfect.
+\end{izrek}
+
+\obvs
+
+\begin{izrek}
+Bipartite graphs are perfect.
+\end{izrek}
+
+\begin{proof}
+All induced subgraphs of $G$ are clearly bipartite as well, hence
+we only need to show that $\chi(G) = \omega(G)$, which is clear --
+they are both $1$ if $E = \emptyset$, otherwise they are both equal
+to $2$.
+\end{proof}
+
+\begin{definicija}
+An \emph{edge colouring}\index{edge!colouring} of $G$ is a function
+$c \colon E(G) \to \N$ such that every two distinct edges $e$ and
+$f$ with a vertex in common satisfy $c(e) \ne c(f)$. The
+\emph{chromatic index}\index{chromatic index} $\chi'(G)$ is the
+minimum number of colours needed for an edge colouring.
+\end{definicija}
+
+\begin{izrek}[Vizing]
+\index{Vizing's theorem}
+For every graph $G$ we have
+$\Delta(G) \leq \chi'(G) \leq \Delta(G)+1$.
+\end{izrek}
+
+\begin{izrek}
+If $G$ is a bipartite graph, then $\chi'(G) = \Delta(G)$.
+\end{izrek}
+
+\begin{proof}
+We consider two cases:
+
+\begin{enumerate}[i)]
+\item If $G$ is regular, then we can find a perfect matching. We
+colour all the edges in this matching with one colour and remove
+them. We can repeat this process $\Delta(G)$ times to obtain the
+desired colouring.
+
+\item Suppose that $G$ is not regular. First, add vertices to $G$
+in such a way that both its parts have the same size. Repeat the
+following process until the graph is regular: Choose a vertex in
+each part with degree less than $k = \Delta(G)$. Add the graph
+$K_{k,k}$ with one missing edge to $G$, then connect the chosen
+vertices to the endpoints of the missing edge. As
+\[
+\sum_{v \in G} (k - \deg(v))
+\]
+is a decreasing monovariant, the process eventually stops. We can
+thus colour the edges in the resulting graph with $k$ colours,
+which induces a colouring of our initial graph. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}
+If $G$ is a bipartite graph, then its line graph is perfect.
+\end{izrek}
+
+\begin{proof}
+Note that $\chi(L(G)) = \chi'(G)$. Since $G$ is bipartite, we have
+\[
+\chi'(G) = \Delta(G) = \omega(L(G)),
+\]
+since there are no $K_3$ subgraphs in $G$. Thus
+$\chi(L(G)) = \omega(L(G))$. Note that every induced subgraph of a
+line graph is a linegraph of a subgraph of the original graph. In
+particular, any induced subgraph $H$ of $L(G)$ is a line graph of a
+subgraph of $G$, hence it is a line graph of a bipartite graph as
+well. As above, $\chi(H) = \omega(H)$, hence $L(G)$ is perfect.
+\end{proof}
+
+\begin{izrek}[Perfect graph theorem]
+\index{Perfect graph theorem}
+A graph $G$ is perfect if and only if $\oline{G}$ is perfect.
+\end{izrek}
+
+\begin{izrek}[Strong perfect graph theorem]
+\index{Strong perfect graph theorem}
+A graph $G$ is perfect if and only if neither $G$ not $\oline{G}$
+has an induced odd cycle of length $k \geq 5$.
+\end{izrek}
+
+\begin{definicija}
+A graph $G$ is
+\emph{$(\beta, \alpha')$-perfect}\index{$(\beta, \alpha')$-perfect}
+if every induced subgraph $H$ of $G$ satisfies
+$\beta(H) = \alpha'(H)$.
+\end{definicija}
+
+\begin{izrek}
+A graph $G$ is $(\beta, \alpha')$-perfect if and only if $G$ is
+bipartite.
+\end{izrek}
+
+\begin{proof}
+Bipartite graphs are clearly $(\beta, \alpha')$-perfect by König's
+theorem. Suppose that $G$ is not bipartite and consider the
+shortest odd cycle in $G$. It must have no chords, hence the graph
+$H$ induced by these vertices is an odd cycle, therefore
+\[
+\beta(H) =
+\ceil{\frac{n(H)}{2}} \ne
+\floor{\frac{n(H)}{2}} =
+\alpha'(H). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Gallai-Roy-Vitaver]
+\index{Gallai-Roy-Vitaver's theorem}
+Let $G$ be a simple graph. Then
+\[
+\chi(G) =
+\min_{\text{$\vv{D}$ is an orientation}}
+\br{\max_{\text{$p$ is a path}} \ell(p)+1}.
+\]
+\end{izrek}
+
+\begin{proof}
+Let $\vv{D}$ be an orientation on $G$. Choose a maximal acyclic
+subgraph $\vv{D}'$. Let $d(v)$ be the length of the longest
+directed path in $\vv{D}'$ that ends in $v$ and define
+$c(v) = d(v) + 1$. We claim that this is a proper colouring. If
+$\vv{uv} \in \vv{D}'$, then clearly $c(u) \ne c(v)$. If
+$\vv{uv} \in \vv{D} \setminus \vv{D}'$, then by adding $\vv{uv}$ to
+$\vv{D}'$ we'd get a cycle, hence there exists a path from
+$v$ to $u$. As such, $c(u) \ne c(v)$. This shows that
+\[
+\chi(G) \leq
+\max_{\text{$p$ is a path}} \ell(p)+1.
+\]
+It remains to prove that the inequality is reversed for a
+particular orientation $\vv{D}$. Let $c$ be a colouring of $G$ with
+$\chi(G)$ colours and orient edges in $G$ such that
+$\vv{uv} \in \vv{D}$ if and only if $c(u) < c(v)$. Then clearly
+$\ell(p) + 1 \leq \chi(G)$ for all directed paths $p$.
+\end{proof}

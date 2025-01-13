@@ -1,0 +1,502 @@
+\section{Connectivity}
+
+\subsection{Connectivity number}
+
+\begin{definicija}
+The \emph{connectivity number}\index{connectivity number}
+$\kappa(G)$ is the minimum number of vertices such that we get
+either a disconnected graph or one vertex upon removing them. We
+say that $G$ is \emph{$k$-connected}\index{$k$-connected graph} if
+$\kappa(G) \geq k$.
+\end{definicija}
+
+\begin{opomba}
+We see that $\kappa(G) \leq \delta(G)$.
+\end{opomba}
+
+\begin{opomba}
+As an independent set is always disconnected (or just one vertex),
+we see that
+\[
+\kappa(G) \leq n - \alpha(G) = \beta(G).
+\]
+\end{opomba}
+
+\begin{izrek}
+The minimal number of edges in a $k$-connected graph of order $n$
+is $\ceil{\frac{nk}{2}}$.
+\end{izrek}
+
+\begin{proof}
+We see that $k \leq \kappa(G) \leq \delta(G)$, hence
+\[
+m(G) =
+\frac{1}{2} \sum_{v \in V} \deg(v) \geq
+\frac{nk}{2}.
+\]
+It remains to show that the bound $\ceil{\frac{nk}{2}}$ is
+achievable. We consider the following graphs:
+
+\begin{enumerate}[i)]
+\item If $k$ is even, take
+$H_{n,k} = C_n^{\frac{k}{2}}$.\footnote{Here $G^k$ is the graph
+with the same vertices as $G$, and $xy \in V(G^k)$ if and only if
+$d(x,y) \leq k$ in $G$.}
+\item If $k$ is odd and $n$ is even, take $H_{n,k}$ to be
+$C_n^{\frac{k-1}{2}}$ with additional edges between every pair of
+diametrically opposite vertices.
+\item If both $n$ and $k$ are odd, take $H_{n,k}$ to be
+$C_n^{\frac{k-1}{2}}$ with additional edges between
+$v_i$ and $v_{i+\frac{n-1}{2}}$ for $i \leq \frac{n+1}{2}$.
+\end{enumerate}
+
+It is clear that $m(H_{n,k}) = \ceil{\frac{nk}{2}}$. Next, we prove
+that each of these graphs is $k$-connected. Consider the graph
+$H_{n,k}$ with $k-1$ vertices removed.
+
+\begin{enumerate}[i)]
+\item Note that we can always go from one vertex to the next one
+left in the cycle, unless we removed $\frac{k}{2}$ consecutive
+vertices. But that can only happen once in the whole cycle, meaning
+we can just take the other way around.
+
+\item We can again try to go to the next vertex in the cycle. To
+have two breaks in the cycle, all $k-1$ removed vertices must be in
+the breaks. But the two components are still connected by a
+diameter.
+
+\item Same as the previous case. \qedhere
+\end{enumerate}
+\end{proof}
+
+\newpage
+
+\datum{2024-10-24}
+
+\subsection{Edge connectivity}
+
+\begin{definicija}
+A set $F \subseteq E$ is a
+\emph{disconnecting set}\index{disconnecting set} if
+$G \setminus F$ is disconnected.
+\end{definicija}
+
+\begin{definicija}
+Let $A \subseteq V$. The set of edges
+$E(A, A^{\mathsf{c}})$ is called an
+\emph{edge cut}\index{edge!cut}.
+\end{definicija}
+
+\begin{opomba}
+Every nontrivial edge cut is a disconnecting set. Every minimal
+disconnecting set is an edge cut.
+\end{opomba}
+
+\begin{definicija}
+The \emph{edge connectivity number}\index{edge!connectivity number}
+of $G$ is the minimum number of edges in a disconnecting set in an
+edge cut. We denote it by $\kappa'(G)$.
+\end{definicija}
+
+\begin{definicija}
+A graph $G$ is \emph{$k$-edge-connected}\index{$k$-edge-connected}
+if the removal of less than $k$ edges results in a connected graph.
+Equivalently, $k \leq \kappa'(G)$.
+\end{definicija}
+
+\begin{izrek}
+Let $G$ be a simple graph with $n \geq 2$ with $n \geq 2$. Then
+\[
+\kappa(G) \leq \kappa'(G) \leq \delta(G).
+\]
+\end{izrek}
+
+\begin{proof}
+The second inequality results from the edge cut with $A = \set{v}$,
+where $v$ is a vertex of minimal degree.
+
+Let $F \subseteq E(G)$ be an edge cut in $G$ with minimal
+cardinality, that is $\abs{F} = \kappa'(G)$. We consider two cases:
+
+\begin{enumerate}[i)]
+\item If $F$ forms a complete bipartite graph, then
+\[
+\kappa'(G) =
+\abs{A} \cdot \abs{A^{\mathsf{c}}} =
+\abs{A} \cdot \br{n - \abs{A}} \geq
+n-1 \geq
+\kappa(G).
+\]
+\item If $F$ does not form a complete bipartite graph, consider
+vertices $x \in A$ and $y \in A^{\mathsf{c}}$ with $xy \not \in E$.
+For each edge in $F$, choose an endpoint that is different from $x$
+and $y$. They clearly form a vertex cut of cardinality at most
+$\abs{F}$, hence $\kappa(G) \leq \kappa'(G)$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{posledica}
+The minimal number of edges in a $k$-edge-connected graph on $n$
+vertices is $\ceil{\frac{kn}{2}}$ when $n > k \geq 2$.
+\end{posledica}
+
+\begin{proof}
+Note that $k \leq \kappa'(G) \leq \delta(G)$. By the handshake
+lemma, we find that $m(G) \geq \frac{nk}{2}$. As $H_{n,k}$ is
+$k$-connected, it is also $k$-edge-connected.
+\end{proof}
+
+\newpage
+
+\subsection{\texorpdfstring{$2$}{2}-connected graphs}
+
+\begin{izrek}[Whitney]
+\index{Whitney theorem}
+If $G$ is a $2$-connected graph, then for every distinct vertices
+$u, v \in G$ there exist two internally disjoint $uv$-paths.
+\end{izrek}
+
+\begin{proof}
+Suppose the statement is false. Take a counterexample with minimal
+$k = d(u,v)$. Note that $k \geq 2$, as otherwise $G$ is not
+$2$-edge-connected, and hence is not $2$-connected.
+
+Let $w$ be a vertex with $d(u,w) = k-1$ and $d(v,w) = 1$. Note that
+there exists a $uv$-path $P$ not containing $w$ since $G$ is
+$2$-connected. Now consider two $uw$-paths, which exist by
+minimality. If $v$ is in this cycle, we trivially get two
+$uv$-paths. Otherwise, we get three $uv$-paths. To get two disjoint
+paths, travel along $P$ until the first intersection with one of
+the other paths, then switch to that one.
+\end{proof}
+
+\begin{lema}[Expansion]
+\index{Expansion lemma}
+Let $G$ be a $k$-connected graph. If we construct a graph by adding
+a new vertex and connecting it to at least $k$ vertices of $G$, the
+resulting graph is again $k$-connected.
+\end{lema}
+
+\obvs
+
+\datum{2024-11-7}
+
+\begin{izrek}
+If $G$ is a graph with $n \geq 3$, the following statements are
+equivalent:
+
+\begin{enumerate}[i)]
+\item The graph $G$ is $2$-connected.
+\item The graph $G$ is connected with no cut-vertex.
+\item For every vertices $u$ and $v$ there exist at least two
+internally vertex-disjoint paths between them.
+\item There exists a cycle through any two vertices.
+\item There exists a cycle through any two edges and
+$\delta(G) \geq 1$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+Using Whitney's theorem, we see that the first four statements are
+clearly equivalent. Suppose now that $G$ is $2$-connected 
+consider two distinct edges $e$ and $f$. Expand $G$ by adding new
+vertices $w$ and $w'$, where $w$ is connected to the vertices of
+$e$ and $w'$ is connected to the vertices of $f$. By the expansion
+lemma, there exists a cycle through $w$ and $w'$, which induces the
+sought cycle in $G$. If $e = f$, take another edge $e'$. By the
+above argument, there exists a cycle through $e$ and $e'$, which is
+the required cycle.
+
+Suppose now that the last condition holds. In particular, $G$ has
+no isolated edges. For any vertices $u, v \in G$, we can therefore
+take distinct edges $e, f \in E$ with $u \in e$ and $v \in f$.
+Since any cycle through $e$ and $f$ is also a cycle through $u$ and
+$v$, $G$ is $2$-connected.
+\end{proof}
+
+\begin{lema}[Subdivision]
+\index{subdivision lemma}
+Let $G'$ be a graph from $G$ that is obtained by subdividing an
+edge with a vertex. Then $G'$ is $2$-connected if and only if $G$
+is $2$-connected.
+\end{lema}
+
+\begin{proof}
+For any two edges in $G'$, take the corresponding edges in $G$
+(instead of taking subdivisions, take the whole edge). Cycles in
+$G'$ containing these two edges correspond precisely with cycles in
+$G$ containing the corresponding edges.
+\end{proof}
+
+\newpage
+
+\subsection{Ear decomposition of graphs}
+
+\begin{definicija}
+In a graph $G$, a path $P$ is an \emph{open ear}\index{ear} if all
+internal vertices of $P$ are of degree $2$, while the endpoints
+have degree at least $3$ in $G$.
+\end{definicija}
+
+\begin{definicija}
+An \emph{open ear decomposition}\index{ear decomposition} of $G$ is
+a sequence $P_0, P_1, \dots, P_k$, where $P_0$ is a cycle in $G$
+and $P_i$ is an ear for $i > 0$ in the graph
+\[
+G_i = \bigcup_{j=0}^i P_j
+\]
+and $G_k = G$. Furthermore, we require that $P_i$ be
+edge-disjoint.\footnote{Not stated in the lectures, but removes the
+edge case where $P_k = P_{k+1}$, which sounds annoying.}
+\end{definicija}
+
+\begin{izrek}
+\label{con:thm:ear}
+A graph $G$ is $2$-connected if and only if it admits an ear
+decomposition.
+\end{izrek}
+
+\begin{proof}
+Suppose that $G$ has an ear decomposition. By induction, we can
+prove that $G_i$ is $2$-connected, as we can apply the expansion
+and subdivision\footnote{Possibly the converse!} lemmas.
+
+Now suppose that $G$ is $2$-connected. Set $P_0$ to be an arbitrary
+cycle in $G$. If $G_i$ is not an induced graph of $G$, let
+$P_{i+1}$ be a missing edge. Otherwise, choose a vertex $u$ not in
+$G_i$. Take two edges, one in $G_i$ and one with vertex $u$. These
+lie in a cycle, which includes an ear containing $u$, which is our
+$P_{i+1}$. As we cover some edges on each step, the process is
+finite.
+\end{proof}
+
+\begin{trditev}
+A graph $G$ is $2$-edge-connected if and only if it is connected
+and every edge of $G$ lies in a cycle.
+\end{trditev}
+
+\obvs
+
+\begin{definicija}
+In a graph $G$, a cycle $P$ is a \emph{closed ear}\index{ear} if
+all but one vertex of $P$ are of degree $2$, while the last one has
+degree at least $4$ in $G$.
+\end{definicija}
+
+\begin{definicija}
+An \emph{closed ear decomposition}\index{ear decomposition} of $G$
+is a sequence $P_0, P_1, \dots, P_k$, where $P_0$ is a cycle in $G$
+and $P_i$ is an open or closed ear for $i > 0$ in the graph
+\[
+G_i = \bigcup_{j=0}^i P_j
+\]
+and $G_k = G$. Furthermore, we require that $P_i$ be edge-disjoint.
+\end{definicija}
+
+\begin{izrek}
+A graph $G$ is $2$-edge-connected if and only if it has a closed
+ear decomposition.
+\end{izrek}
+
+\begin{proof}
+Analogous as theorem~\ref{con:thm:ear}.
+\end{proof}
+
+\datum{2024-11-14}
+
+\begin{definicija}
+A directed graph $\vv{G}$ is
+\emph{strongly connected}\index{strongly connected} if for every
+$u, v \in V \br{\vv{G}}$ there exists a directed path from $u$ to
+$v$. A \emph{strong orientation}\index{strong orientation} of a
+graph $G$ is a directed graph $\vv{G}$ which is strongly connected.
+\end{definicija}
+
+\begin{izrek}[Robbin]
+\index{Robbin's theorem}
+A graph $G$ has a strong orientation if and only if it is $2$-edge
+connected.
+\end{izrek}
+
+\begin{proof}
+If $G$ has a strong orientation, it is clearly connected and every
+edge lies in a cycle. Now suppose that $G$ is $2$-edge connected.
+Let $P_0, P_1, \dots, P_k$ be a closed ear decomposition of $G$.
+Direct the edges of along the cycle in a cycle and along each ear
+in a path. It is clear that the resulting directed graph is
+$2$-edge connected.
+\end{proof}
+
+\newpage
+
+\subsection{Minimal cuts}
+
+\begin{definicija}
+Let $x, y \in V$ be non-adjacent vertices in $G$. A set
+$S \subseteq V$ is an \emph{$x,y$-cut}\index{edge!cut} if $x$ and
+$y$ belong to different components of $G \setminus S$. We denote
+the minimum size of an $x,y$-cut by $\kappa_G(x,y)$.
+\end{definicija}
+
+\begin{definicija}
+For $x, y \in V$, we denote by $\lambda_G(x,y)$ the maximal number
+of pairwise internally vertex-disjoint $x,y$-path.
+\end{definicija}
+
+\begin{izrek}[Menger]
+\index{Menger's theorem}
+Suppose that $x$ and $y$ are non-adjacent vertices in $G$. Then
+$\kappa_G(x,y) = \lambda_G(x,y)$.
+\end{izrek}
+
+\begin{proof}
+For convenience, we denote the above numbers by $\kappa$ and
+$\lambda$ respectively. Clearly $\kappa \geq \lambda$, as we need
+to select at least one vertex from each disjoint $x,y$-paths to
+disconnect them.
+
+To prove the reverse inequality, we induct on $n$. For $n = 2$, we
+clearly have $\kappa = \lambda = 0$.
+
+Suppose now that $n \geq 3$ and consider two cases:
+
+\begin{enumerate}[i)]
+\item There exists a minimum $x,y$-cut $S$ such that $S \ne N(x)$
+and $S \ne N(y)$. Let $V_x$ denote the set of vertices that can be
+reached from $x$ by a path with no internal vertices from $S$, and
+define $V_y$ analogously. By the minimality of $S$, we find that
+$S = V_x \cap V_y$.
+
+Let $G_x$ be the graph obtained from $G[V_1]$ by adding a vertex
+$y'$ that is adjacent to precisely the vertices in $S$. Note that,
+as $S \ne N(y)$, the number of vertices decreased, and that $S$ is
+a minimum $x,y'$-cut in $G_x$. It follows that
+$\kappa = \kappa_G(x,y) = \kappa_{G_x}(x,y') = \lambda_{G_x}(x,y')$
+by the induction hypothesis. Analogously,
+$\kappa = \lambda_{G_y}(x',y)$. By pairing up the $x,y'$-paths with
+$x',y$ paths according to the visited vertex in $S$, we obtain
+$\kappa$ internally vertex-disjoint $x,y$-paths, hence
+$\lambda \geq \kappa$.
+
+\item The only minimum $x,y$-cuts are $N(x)$ and/or $N(y)$. If $x$
+and $y$ have a neighbour $z$ in common, we can remove it from $G$
+and apply the induction hypothesis. Note that removing $z$ reduced
+both the number of $x,y$-paths and the minimum size of an $x,y$-cut
+by $1$, hence equality holds for $G$ as well.
+
+Suppose then that $N(x)$ and $N(y)$ are disjoint. If
+$N(x) \cup N(y) \cup \set{x,y} = V$, we can construct a bipartite
+graph $H$ with sets $N(x)$ and $N(y)$ (we disregard internal edges
+in both $N(x)$ and $N(y)$). The number of internally
+vertex-disjoint $x,y$-paths is clearly equal to the size of the
+maximum matching in $H$. Without loss of generality suppose that
+$N(x)$ is a minimum $x,y$-cut. Note that for every
+$A \subseteq N(x)$, we have $\abs{N_H(A)} \geq \abs{A}$, as
+otherwise we could obtain a smaller $x,y$-cut by replacing the
+vertices in $A$ with those in $N_H(A)$. By Hall's theorem, there
+exists a perfect matching, hence
+$\lambda = \alpha'(H) = N(x) = \kappa$.
+
+Finally, if there exists a vertex $v \ne x, y$ with
+$v \not \in N(x) \cup N(y)$, then $v$ does not belong to any
+minimum $x,y$-cuts, therefore
+$\kappa_{G \setminus v}(x,y) = \kappa$. Applying the induction
+hypothesis, we can find $\kappa$ internally vertex-disjoint
+$x,y$-paths in $G \setminus v$. Since these are also valid in $G$,
+we conclude $\lambda \geq \kappa$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+Let $x, y \in V$ be vertices in $G$. A set $R \subseteq E$ is an
+\emph{$x,y$-edge cut}\index{edge!cut} if $x$ and $y$ belong to
+different components of $G \setminus R$.
+\end{definicija}
+
+\datum{2024-11-21}
+
+\begin{definicija}
+For $x, y \in V$, we denote by $\kappa_G'(x,y)$ the minimal
+cardinality of an $x,y$-edge cut in $G$, and by
+$\lambda_G'(x,y)$ the maximal number of edge-disjoint $x,y$-path.
+\end{definicija}
+
+\begin{definicija}
+The \emph{line graph}\index{line graph} $L(G)$ of a graph $G$ has
+vertices representing the edges of $G$. Two vertices in $L(G)$ are
+connected if and only if they share a vertex in $G$.
+\end{definicija}
+
+\begin{izrek}[Menger]
+\index{Menger's theorem}
+For every $x, y \in V$ we have $\kappa_G'(x,y) = \lambda_G'(x,y)$.
+\end{izrek}
+
+\begin{proof}
+Define a new graph $G'$ by adding vertices $u$ and $v$ to $G$,
+which are connected to $x$ and $y$ respectively, and consider its
+line graph. Note that any path between the new edges in $L(G')$
+corresponds to a path between $x$ and $y$ in $G$. In particular,
+vertex-disjoint paths in $L(G')$ correspond to edge-disjoint paths
+in $G$. Hence
+\[
+\lambda_{L(G')}(xu, yv) = \lambda_G'(x,y).
+\]
+By Menger's theorem, we know that
+\[
+\lambda_{L(G')}(xu, yv) = \kappa_{L(G')}(xu, yv).
+\]
+Finally, by definition of a line graph, a vertex cut in $L(G')$
+that separates $xu$ and $yv$ corresponds to an edge cut in $G$ that
+separates $x$ and $y$, hence
+\[
+\kappa_{L(G')}(xu, yv) = \kappa_G(x,y). \qedhere
+\]
+\end{proof}
+
+\begin{lema}
+For each edge $e \in E$, we have
+\[
+\kappa(G) - 1 \leq \kappa \br{G \setminus \set{e}} \leq \kappa(G).
+\]
+\end{lema}
+
+\begin{proof}
+The second inequality follows from the fact that each vertex cut in
+$G$ is also a vertex cut in $G \setminus \set{e}$.
+
+Suppose that $\kappa \br{G \setminus \set{e}} < \kappa(G)$. Let $S$
+be a minimum vertex cut in $G' = G \setminus \set{e}$. If any of
+vertices $x$ and $y$ has degree at least two, we can add it to $S$
+to get a vertex cut in $G$. Otherwise, we find that
+$\abs{S} = n-2$, hence $S \cup \set{x}$ is a vertex cut in $G$.
+\end{proof}
+
+\begin{izrek}[Menger]
+\index{Menger's theorem}
+In any graph $G$ with at least two vertices, the following
+statements hold:
+
+\begin{enumerate}[i)]
+\item We have
+$\kappa'(G) = \displaystyle \min_{x \ne y} \lambda_G'(x,y)$.
+\item We have
+$\kappa(G) = \displaystyle \min_{x \ne y} \lambda_G(x,y)$.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+The only non-trivial part is showing that we can take the minimum
+over all $x \ne y$ in ii), not just non-adjacent
+ones.\footnote{Note that the equality clearly holds for complete
+graphs.} It suffices to show that for every adjacent vertices $x$
+and $y$ we have $\lambda_G(x,y) \geq \kappa(G)$. Denote
+$G' = G \setminus \set{xy}$ and note that
+\[
+\lambda_G(x,y) = \lambda_{G'}(x,y) + 1.
+\]
+Applying Menger's theorem and the above lemma, we get
+\[
+\lambda_G(x,y) = \kappa_{G'}(x,y) + 1 \geq \kappa(G). \qedhere
+\]
+\end{proof}

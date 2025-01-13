@@ -1,0 +1,339 @@
+\section{Matchings}
+
+\subsection{Independence, matchings and covers}
+
+\datum{2024-10-2}
+
+\begin{definicija}
+A set $S \subseteq V$ is \emph{independent}\index{independent set}
+if $G[S]$ contains no edges. We denote the maximal cardinality of
+an independent set, the independence number, by $\alpha(G)$.
+\end{definicija}
+
+\begin{definicija}
+A set $T \subseteq V$ is a \emph{vertex cover}\index{vertex cover}
+if it contains a vertex of each edge. We denote the minimal
+cardinality of a vertex cover, the vertex cover number, by
+$\beta(G)$.
+\end{definicija}
+
+\begin{trditev}
+The equality in $\alpha(G) + \beta(G) = n$ holds.
+\end{trditev}
+
+\begin{proof}
+The complement of an independent set is a vertex cover and
+vice-versa.
+\end{proof}
+
+\begin{definicija}
+A set $M \subseteq E$ is a \emph{matching}\index{matching} if no
+two of its edges contain the same vertex. We denote the maximal
+cardinality of a matching, the matching number, by $\alpha'(G)$.
+\end{definicija}
+
+\begin{definicija}
+A set $C \subseteq E$ is an \emph{edge cover}\index{edge!cover} if
+$\bigcup C = V$. If $\delta(G) \geq 1$, we denote the minimal
+cardinality of an edge cover, the edge cover number, by
+$\beta'(G)$.
+\end{definicija}
+
+\begin{trditev}
+We have $\alpha'(G) \leq \beta(G)$.
+\end{trditev}
+
+\begin{proof}
+We must choose a vertex from each edge of a matching to get a
+vertex cover.
+\end{proof}
+
+\begin{trditev}
+We have $\alpha(G) \leq \beta'(G)$.
+\end{trditev}
+
+\begin{proof}
+Every edge of an edge cover contains at most one vertex of an
+independent set.
+\end{proof}
+
+\begin{trditev}
+We have $\alpha'(G) \leq \frac{n}{2} \leq \beta'(G)$.
+\end{trditev}
+
+\obvs
+
+\begin{izrek}[Gallai]\index{Gallai's theorem}
+If $\delta(G) \geq 1$, then $\alpha'(G) + \beta'(G) = n$.
+\end{izrek}
+
+\begin{proof}
+Take a maximum matching $M$ on $G$ and let $S$ be its vertex set.
+We can construct an edge cover from $M$ by adding an edge for each
+missing vertex, resulting in $x$ new vertices. Then
+\[
+\alpha'(G) + \beta'(G) \leq
+\abs{M} + x \leq
+2 \cdot \abs{M} + \abs{S^{\mathsf{c}}} =
+n.
+\]
+Now let $C$ be a minimum edge cover. Note that each of its edges
+covers a vertex that is not covered by any other edge in $C$. That
+is, the graph $G[S]$ is a forest of $k$ stars. To construct a
+matching, we can choose an arbitrary edge of each star, which gives
+\[
+\alpha'(G) + \beta'(G) \geq k + (n-k) = n. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Let $M$ be a matching. A path is an
+\emph{$M$-alternating path}\index{$M$-alternating path} if its
+edges alternate between $M$ and $M^{\mathsf{c}}$.
+\end{definicija}
+
+\begin{definicija}
+An $M$-alternating path is called
+\emph{$M$-augmenting}\index{$M$-augmenting path} if its ends are
+not covered by $M$.
+\end{definicija}
+
+\datum{2024-10-3}
+
+\begin{trditev}
+\label{mtch:prop:max_aug}
+Maximum matchings do not contain $M$-augmenting paths.
+\end{trditev}
+
+\begin{proof}
+We can construct a larger matching $M' = M \oplus P$, where $P$ is
+an $M$-augmenting path.
+\end{proof}
+
+\begin{izrek}[König]\index{König's theorem}
+Let $G$ be a bipartite graph. Then $\alpha'(G) = \beta(G)$. If $M$
+is a matching in $G$ that contains no $M$-augmenting path, then it
+is a maximum matching.
+\end{izrek}
+
+\begin{proof}
+Let $M$ be a matching such that no $M$-augmenting path exists in
+$G$, and let $A$ and $B$ be the parts of $G$. Denote
+$X = A \setminus V(M)$ and $Y = B \setminus V(M)$. Now let $A_1$
+and $B_1$ be the set of vertices in $A$ and $B$ respectively that
+can be reached via an $M$-alternating path from $X$. Furthermore,
+let $A_2 = A \setminus (A_1 \cup X)$ and
+$B_2 = B \setminus (B_1 \cup Y)$. Then $A_2 \cup B_1$ is a vertex
+cover, as there are no edges in the pairs $(X, Y)$, $(X, B_2)$,
+$(A_1, B_2)$ and $(A_1, Y)$. We constructed a vertex cover of the
+same cardinality as $M$, hence $M$ must be a maximum matching and
+$\alpha'(G) = \beta(G)$.
+\end{proof}
+
+\begin{posledica}
+If $G$ is a bipartite graph, then $\alpha(G) = \beta'(G)$.
+\end{posledica}
+
+\begin{proof}
+We have
+\[
+\alpha(G) = n - \beta(G) = n - \alpha'(G) = \beta'(G). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}[Hall]\index{Hall's theorem}
+Let $G$ be a bipartite graph with parts $A$ and $B$. Then the
+equality $\alpha'(G) = \abs{A}$ holds if and only if
+$\abs{S} \leq \abs{N(S)}$ for all $S \subseteq A$.
+\end{izrek}
+
+\begin{proof}
+The first implication is evident. Suppose now that
+$\alpha'(G) \ne \abs{A}$ and take a maximum matching $M$ in $G$.
+Using the notation from König's theorem, lett $S = A_1 \cup X$.
+Then $N(S) = B_1$, therefore
+\[
+\abs{N(S)} = \abs{B_1} = \abs{A_1} < \abs{S}. \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+A matching $M$ is \emph{perfect}\index{perfect matching} if it
+covers all vertices.
+\end{definicija}
+
+\begin{posledica}
+In a bipartite graph $G$ a perfect matching exists if and only if
+$\abs{A} = \abs{B}$ and Hall's condition holds.
+\end{posledica}
+
+\begin{definicija}
+Let $S \subseteq A$ in a bipartite graph. The
+\emph{deficiency}\index{deficiency} of $S$ is defined as
+\[
+\df(S) = \abs{S} - \abs{N(S)}.
+\]
+\end{definicija}
+
+\begin{izrek}
+In a bipartite graph $G$, we have
+\[
+\alpha'(G) = \abs{A} - \max_{S \subseteq A} \br{\df(S)}.
+\]
+\end{izrek}
+
+\begin{izrek}
+If $G$ is a regular bipartite graph, it has a perfect matching.
+\end{izrek}
+
+\obvs
+
+\datum{2024-10-10}
+
+\begin{izrek}
+Suppose $M$ is a matching in $G$. Then there exists an
+$M$-augmenting path in $G$ if and only if $M$ is not a maximum
+matching.
+\end{izrek}
+
+\begin{proof}
+One implication is precisely proposition~\ref{mtch:prop:max_aug}.
+Suppose now that $M$ is a non-maximum matching. That is, there
+exists a matching $M'$ with $\abs{M'} > \abs{M}$. Consider
+$G' = G[M \oplus M']$. The maximal degree in $G'$ is clearly at
+most $2$, hence every component is either a path or a cycle. As we
+have no odd cycles, by $\abs{M'} > \abs{M}$ there exists an
+odd-length path in $G'$ with both extreme edges are in $M'$, which
+that is an $M$-augmenting path.
+\end{proof}
+
+\begin{opomba}
+Maximum matchings can be found in polynomial time.
+\end{opomba}
+
+\begin{izrek}[Tutte]
+\index{Tutte's theorem}
+Denote by $\sigma(G)$ the number of odd components in $G$. A graph
+$G$ has a perfect matching if and only if the inequality
+\[
+\abs{S} \geq \sigma(G[V \setminus S])
+\]
+holds for every $S \subseteq V$.
+\end{izrek}
+
+\begin{proof}
+Suppose $G$ has a perfect matching. Then every odd component of
+$G[V \setminus S]$ is matched to a distinct vertex in $S$, hence
+Tutte's condition holds.
+
+Now suppose that Tutte's condition holds for $G$. Note that this
+implies that $2 \mid n$, as we can take $S = \emptyset$.
+Furthermore, suppose that $G$ is a maximal counterexample, that is,
+adding any edge to $G$ produces a graph that either breaks Tutte's
+condition or contains a perfect matching. We can check that the
+former is actually impossible, as adding edges can only decrease
+the number $\sigma(G[V \setminus S])$.
+
+Denote $U = \setb{x \in V}{\deg(x) = n-1}$. Clearly, $G[U]$ is a
+complete graph, and hence $U \ne V$. We consider two cases:
+
+\begin{enumerate}[i)]
+\item Every component $H$ of $G[U^{\mathsf{c}}]$ induces a complete
+graph. In this case, just take a maximum matching of each component
+and match the last remaining vertex in odd components with vertices
+in $U$. This can clearly be done by Tutte's condition.
+
+\item Some component $H$ of $G[U^{\mathsf{c}}]$ is not complete.
+Take $x, y \in H$ with $d(x,y) = 2$, and let $xz, yz \in E$. As
+$z \not \in U$, there exists some vertex $w \in V$ such that
+$zw \not \in E$. Consider the graphs $G_1$ and $G_2$ that we get by
+adding edges $xy$ and $zw$ to $G$, respectively. By our assumption
+they have perfect matchings $M_1$ and $M_2$. Clearly they contain
+$xy$ and $zw$ respectively.
+
+Now consider $M_1 \oplus M_2$. As every vertex has degree $0$ or
+$2$, the graph $G' = G[M_1 \oplus M_2]$ splits into isolated
+vertices and cycles. Clearly, the cycles have even length. If $xy$
+and $zw$ belong to different cycles, we can just switch the edges
+of $M_1$ in the cycle containing $xy$, which produces a perfect
+matching in $G$.
+
+Now suppose that the same cycle contains both $xy$ and $zw$. We
+choose the edge $xz$ or $yz$, such that the cycle splits into two
+even components. We can clearly produce a perfect matching in both
+components. By adding the edges of $M_1$ from every other
+component, we have in fact constructed a perfect matching. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{izrek}[Berge-Tutte formula]
+\index{Berge-Tutte formula}
+The maximum matching leaves exactly
+\[
+\max_{S \subseteq V} (\sigma(G[S^{\mathsf{c}}]) - \abs{S})
+\]
+vertices uncovered.
+\end{izrek}
+
+\datum{2024-10-17}
+
+\begin{definicija}
+A \emph{factor}\index{factor} of a graph is a spanning subgraph. A
+$k$-factor is a $k$-regular spanning subgraph.
+\end{definicija}
+
+\begin{opomba}
+A $1$-factor is just a perfect matching.
+\end{opomba}
+
+\begin{izrek}[Peterson]
+\index{Peterson's theorem}
+Every bridgeless cubic\footnote{$3$-regular.} graph has a perfect
+matching.
+\end{izrek}
+
+\begin{proof}
+We will prove that Tutte's condition holds for every set
+$S \subseteq V$. Denote by $E \br{S, S^{\mathsf{c}}}$ the edges
+between $S$ and $S^{\mathsf{c}}$. Clearly,
+$\abs{E \br{S, S^{\mathsf{c}}}} \leq 3 \abs{S}$. By the handshake
+lemma, we can see that every odd component $H$ of
+$G[S^{\mathsf{c}}]$ is connected to $S$ by an odd number of edges.
+As the graph is bridgeless, we can infer that
+$\abs{E(V(H), S)} \geq 3$. Therefore
+\[
+3 \abs{S} \geq
+\abs{E \br{S, S^{\mathsf{c}}}} \geq
+3 \sigma(G[S^{\mathsf{c}}]). \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+If $G$ is a cubic graph with at most one bridge, then $G$ has a
+perfect matching.
+\end{izrek}
+
+\begin{proof}
+Repeating the proof of Peterson's theorem, we find that
+\[
+3 \abs{S} \geq
+\abs{E \br{S, S^{\mathsf{c}}}} \geq
+3 \sigma(G[S^{\mathsf{c}}]) - 2. \qedhere
+\]
+\end{proof}
+
+\begin{izrek}
+If $G$ is a $k$-regular graph and $k$ is even, then $G$ splits into
+$2$-factors.
+\end{izrek}
+
+\begin{proof}
+It suffices to find one $2$-factor and proceed by induction. It is
+clearly enough to consider connected graphs. By Euler's theorem
+there exists an Eulerian circuit $C$ in $G$, which induces a
+directed graph. Define a bipartite graph $F_G$ by taking
+$A = \setb{a_i}{i \leq n}$, $B = \setb{b_i}{i \leq n}$, and take
+$a_i b_j$ as an edge in $F_G$ if $v_i v_j \in E \br{\vv{G}}$, where
+$v_k$ are vertices in $G$. This is a regular bipartite graph. Its
+perfect matching coincides with a $2$-factor of $G$.
+\end{proof}
