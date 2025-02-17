@@ -1,0 +1,81 @@
+\section{Mnogoterosti}
+
+\subsection{Osnovni pojmi}
+
+\datum{2025-2-17}
+
+\begin{definicija}
+Naj bo $X \subseteq \R^N$ vložena podmnogoterost dimenzije $n$ in
+$m \in X$. \emph{Tangentni prostor}\index{tangentni prostor}
+$T_m X$ podmnogoterosti $X$ v točki $m$ je prostor
+\[
+T_m X =
+\setb{\eval{\frac{d}{dt}}{t=0}{} \gamma(t)}
+{\gamma \in \mathcal{C}^\infty((-\varepsilon, \varepsilon), X)
+\land
+\gamma(0) = m}.
+\]
+\end{definicija}
+
+\begin{definicija}
+Naj bo $X$ gladka mnogoterost in $\varphi_\alpha$ lokalna karta za
+okolico točke $m \in X$. Krivulji
+$\gamma_1, \gamma_2 \colon (-\varepsilon, \varepsilon) \to X$, za
+kateri je $\gamma_1(0) = \gamma_2(0) = m$, sta \emph{ekvivalentni},
+če je
+\[
+\eval{\frac{d}{dt}}{t=0}{} \varphi_\alpha(\gamma_1(t)) =
+\eval{\frac{d}{dt}}{t=0}{} \varphi_\alpha(\gamma_2(t)).
+\]
+\end{definicija}
+
+\begin{opomba}
+Relacija je neodvisna od izbire lokalne karte.
+\end{opomba}
+
+\begin{definicija}
+Naj bo $X$ gladka mnogoterost in $m \in X$.
+\emph{Tangentni prostor}\index{tangentni prostor} $T_m X$
+mnogoterosti $X$ v točki $m$ je prostor ekvivalenčnih razredov
+zgornjih krivulj.
+\end{definicija}
+
+\begin{definicija}
+\emph{Predstavnik}\index{predstavnik tangentnega vektorja}
+tangentnega vektorja $[\gamma]$ je vektor
+\[
+\dot{\varphi_\alpha(\gamma)} =
+\eval{\frac{d}{dt}}{t=0}{} \varphi_\alpha(\gamma(t)).
+\]
+\end{definicija}
+
+\begin{definicija}
+Na $T_m X$ definiramo
+\[
+[\gamma_1] + [\gamma_2] =
+\left[
+\varphi_\alpha^{-1} \br{\varphi_\alpha(m) + t \cdot
+\br{\dot{\varphi_\alpha(\gamma_1)} +
+\dot{\varphi_\alpha(\gamma_2)}}}
+\right]
+\]
+in
+\[
+a \cdot [\gamma] = [t \mapsto \gamma(at)].
+\]
+S tema operacijama $T_m X$ postane vektorski prostor.
+\end{definicija}
+
+\begin{definicija}
+Naj bo $f \colon X \to \R$ gladka funkcija.
+\emph{Smerni odvod}\index{smerni odvod} $f$ v točki $m$ v smeri
+$[\gamma]$ je
+\[
+\br{Vf}_{(m)} [\gamma] =
+\eval{\frac{d}{dt}}{t=0}{} \br{f \circ \gamma}(t).
+\]
+\end{definicija}
+
+\begin{opomba}
+Smerni odvod je dobro definiran -- ni odvisen od predstavnika.
+\end{opomba}
