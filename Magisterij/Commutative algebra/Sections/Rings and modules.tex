@@ -1,0 +1,200 @@
+\section{Rings and modules}
+
+\subsection{Rings and ring homomorphisms}
+
+\datum{2025-2-17}
+
+\begin{definicija}
+Unless stated otherwise, rings always have a unit and are
+commutative.
+\end{definicija}
+
+\begin{definicija}
+Let $A$ be a ring. The set $A^\bullet$ denotes the set of
+non-zero-divisors.
+\end{definicija}
+
+\begin{definicija}
+A ring $A$ is a \emph{domain}\index{domain} if $0$ is the only
+zero-divisor of $A$.
+\end{definicija}
+
+\begin{definicija}
+Let $A \subseteq B$ be rings and $S \subseteq B$ a subset. The ring
+\[
+A[S] =
+\bigcap_{\substack{A \subseteq A' \subseteq B \\ S \subseteq A'}}
+A'
+\]
+is the subring of $B$ obtained by \emph{adjoining}\index{adjoining}
+$S$ to $A$.
+\end{definicija}
+
+\begin{definicija}
+The set $\Spec(A)$ denotes the prime ideals of $A$.
+\end{definicija}
+
+\begin{definicija}
+The \emph{radical}\index{radical} of an ideal $I$ is defined as
+\[
+\sqrt{I} = \setb{a \in A}{\exists n \in \N \colon a^n \in I}.
+\]
+\end{definicija}
+
+\begin{trditev}
+The radical of an ideal is again an ideal.
+\end{trditev}
+
+\begin{proof}
+It suffices to show that for any $a, b \in \sqrt{I}$ their sum is
+also in $\sqrt{I}$. Suppose that $a^n, b^m \in I$. Then
+\begin{align*}
+(a+b)^{n+m-1} &=
+\sum_{k=0}^{n+m-1} \binom{m+n-1}{k} a^k b^{n+m-1-k}
+\\
+&=
+b^m \sum_{k=0}^{n-1} \binom{m+n-1}{k} a^k b^{n-1-k} +
+a^n \sum_{k=n}^{n+m-1} \binom{m+n-1}{k} a^{k-n} b^{n+m-1-k} \in I.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{definicija}
+The \emph{nilradical}\index{nilradical} of $A$ is the set
+$\mathcal{N}(A) = \sqrt{(0)}$.
+\end{definicija}
+
+\begin{definicija}
+The \emph{Jacobson radical}\index{Jacobson radical}
+$\mathcal{J}(A)$ is the intersection of all maximal ideals in $A$.
+\end{definicija}
+
+\begin{lema}
+The nilradical is contained in the Jacobson radical.
+\end{lema}
+
+\begin{proof}
+Let $a \in \mathcal{N}(A)$ and suppose that $a^n = 0$. For any
+maximal ideal $M$, we know that $a^n \in M$. Since $M$ is prime, we
+deduce $a \in M$.
+\end{proof}
+
+\begin{lema}
+We have
+\[
+\mathcal{J}(A) =
+\setb{a \in A}{\forall b \in A \colon 1 - ba \in A^\times}.
+\]
+\end{lema}
+
+\begin{proof}
+Let $a \in \mathcal{J}(A)$ and $b \in A$. Note that
+$1 - ab \not \in M$ for any maximal ideal $M$, since $ab \in M$.
+As $1 - ab$ is not contained in any maximal ideal, it follows that
+$(1-ab) = A$, hence $1-ab$ is invertible.
+
+Suppose now that $1 - ab \in A^\times$ for all $b \in A$. Let $M$
+be a maximal ideal and suppose $a \not \in M$. Then $(M, a) = A$.
+In particular, we can write $1 = m + xa$ with $m \in M$ and
+$x \in A$. Rearranging, $m = 1 - xa$, which is a contradiction, as
+$1-xa$ is invertible.
+\end{proof}
+
+\begin{lema}
+The following statements hold:
+
+\begin{enumerate}[i)]
+\item Let $I \edn A$ and $P_1, \dots, P_n \in \Spec(A)$. If
+$I \subseteq P_1 \cup \dots \cup P_n$, there exists some $k$ such
+that $I \subseteq P_k$.
+\item Let $I_1, \dots, I_n \edn A$ and $P \in \Spec(A)$. If
+$I_1 \cap \dots \cap I_n \subseteq P$, then there exists some $k$
+such that $I_k \subseteq P$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item We induct on $n$, noting that the statement trivially holds
+for $n=1$.
+
+Suppose the statement doesn't hold for $n$. By the induction
+hypothesis we can find
+\[
+a_i \in I \bigsetminus \bigcup_{j \ne i} P_j
+\]
+for any $i$. Then $a_i \in P_i$. Consider the element
+\[
+a = \sum_{i=1}^n \prod_{j \ne i} a_j.
+\]
+Note that all but one of the above terms are an element of $P_i$.
+But then $a$ is not an element of any $P_i$, which is a
+contradiction.
+\item Suppose the contrary and let $a_j \in I_j \setminus P$ for
+all $j$. But then
+\[
+\prod_{j=1}^n a_j \subseteq
+\prod_{j=1}^n I_j \subseteq
+\bigcap_{j=1}^n I_j \subseteq
+P,
+\]
+which is a contradiction. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{opomba}
+The first statement is called
+\emph{prime avoidance}\index{prime avoidance}.
+\end{opomba}
+
+\begin{trditev}
+Let $f \colon A \to B$ be a ring homomorphism. If
+$I \edn B$, then $f^{-1}(I) \edn A$. Furthermore, if
+$P \in \Spec(B)$, then $f^{-1}(P) \in \Spec(A)$.
+\end{trditev}
+
+\begin{trditev}[Universal property]
+\index{universal property for quotients}
+Let $I \edn A$ and $\pi \colon A \to \kvoc{A}{I}$ be the canonical
+epimorphism. For every ring homomorphism $f \colon B$ with
+$I \subseteq \ker(f)$, there exists a unique ring homomorphism
+$\hat{f} \colon \kvoc{A}{I} \to B$ such that
+$f = \hat{f} \circ \pi$.
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+A \arrow[r, "\pi"] \arrow[rd, "f"'] &
+\kvoc{A}{I} \arrow[d, dashed, "\hat{f}"] \\ &
+B
+\end{tikzcd}
+\]
+\end{trditev}
+
+\begin{posledica}
+If $f \colon A \to B$ is a ring homomorphism, then
+$\kvoc{A}{\ker f} \cong f(A)$.
+\end{posledica}
+
+\begin{izrek}[Isomorphism theorems]
+\index{isomorphism theorems}
+The following statements hold:
+
+\begin{enumerate}[i)]
+\item Let $I \edn A$. There is a bijective correspondence
+\[
+\setb{J \edn A}{I \subseteq J} \leftrightarrow
+\set{\oline{J} \edn \kvoc{A}{I}},
+\]
+given by $J \mapsto \kvoc{J}{I}$ and
+$\oline{J} \mapsto \pi^{-1} \br{\oline{J}}$.
+\item If $I, J \edn A$ with $I \subseteq J$, then
+\[
+\kvoc{A}{J} \cong \kvoc{\kvoc{A}{I}}{\kvoc{J}{I}}.
+\]
+\item Let $B \subseteq A$ be a subring and $I \edn A$. Then
+$I \cap B \edn B$ and
+\[
+\kvoc{B+I}{I} \cong \kvoc{B}{B \cap I}.
+\]
+\end{enumerate}
+\end{izrek}
