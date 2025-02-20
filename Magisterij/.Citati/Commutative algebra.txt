@@ -1,5 +1,8 @@
 "Commutative algebra is a study of commutative rings."
- - gost. izr. prof. dr. rer. nat. Daniel Smertnig.
+ - gost. izr. prof. dr. rer. nat. Daniel Smertnig, 17. 02. 2025
 
 "Who has done schemes or algebraic geometry? Good, so my course is not redundant."
- - gost. izr. prof. dr. rer. nat. Daniel Smertnig.
+ - gost. izr. prof. dr. rer. nat. Daniel Smertnig, 17. 02. 2025
+
+"Everyone is going to pass."
+ - asist. Daniel Vitas, 19. 02. 2025
