@@ -1,0 +1,73 @@
+\section{Riemann surfaces}
+
+\subsection{Definition and holomorphic maps}
+
+\datum{2025-2-20}
+
+\begin{definicija}
+A \emph{surface}\index{surface} is a manifold of complex dimension
+$1$.
+\end{definicija}
+
+\begin{definicija}
+A \emph{Riemann surface}\index{Riemann!surface} is a connected
+complex surface.
+\end{definicija}
+
+\begin{definicija}
+The \emph{Riemann sphere}\index{Riemann!sphere} is defined as
+$\rs = \proj{\C}{1}$ with the usual complex
+structure.\footnote{Also denoted by ${}\proj{}{1}$.}
+\end{definicija}
+
+\begin{definicija}
+A \emph{complex torus}\index{complex torus} is given by a quotient
+\[
+T = \kvoc{\C}{a\Z \oplus b\Z},
+\]
+where $a, b \in \C$ are $\R$-linearly independent. The
+parallelogram bounded by $0$, $a$, $b$ and $a+b$ is called the
+\emph{fundamental domain}\index{fundamental domain} of $T$.
+\end{definicija}
+
+\begin{izrek}[Identity]
+\index{identity theorem}
+Let $X$ and $Y$ be Riemann surfaces and $f, g \colon X \to Y$ be
+holomorphic maps. If the set $A = \setb{x \in X}{f(x) = g(x)}$ has
+an accumulation point, then $f = g$ on $X$.
+\end{izrek}
+
+\begin{proof}
+We prove that the set of accumulation points is open. Take an
+accumulation point $a \in X$. Note that, by continuity,
+$f(a) = g(a)$. Consider charts $\varphi \colon U \to V$ on $X$ and
+$\psi \colon W \to Z$ on $Y$ such that $a \in U$, $f(a) \in W$ and
+$f(U) \subseteq W$. Applying the identity theorem for holomorphic
+functions on the function $\psi \circ f \circ \varphi^{-1}$, we
+find that $f$ and $g$ agree on $U$, which is a neighbourhood of
+$a$. All such points are accumulation points of $A$.
+
+Note that this means that the set of accumulation points of $A$ is
+both open and closed. As $X$ is connected and this set is
+non-empty, $A = X$. By continuity, $f = g$ on $A = X$.
+\end{proof}
+
+\begin{izrek}[Riemann's removable singularity theorem]
+\index{Riemann's removable singularity theorem}
+Let $X$ be a Riemann surface, $U \subseteq X$ an open set and
+$a \in U$. Suppose that $f \colon U \setminus \set{a} \to \C$ is a
+holomorphic function that is bounded on $U \setminus \set{a}$. Then
+$f$ can be extended uniquely to a holomorphic function
+$\tilde{f} \colon U \to \C$ with
+$\eval{\tilde{f}}{U \setminus \set{a}}{} = f$.
+\end{izrek}
+
+\begin{proof}
+Shrink $U$ down to obtain a chart $\varphi \colon U \to \C$, then
+apply Riemann's removable singularity theorem to the function
+$f \circ \varphi^{-1}$ in the point $\varphi(a)$ and define
+$\tilde{f}(a) =
+\widetilde{\br{f \circ \varphi^{-1}}} \br{\varphi(a)}$.
+As it's a composition of holomorphic functions, is is itself
+holomorphic. By continuity, the extension is unique.
+\end{proof}
