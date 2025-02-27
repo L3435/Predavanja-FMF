@@ -282,3 +282,435 @@ homomorphisms, then there exists a unique homomorphism
 \]
 such that $g_i = \pi_i \circ \hat{g}$ for all $i \in I$.
 \end{izrek}
+
+\datum{2025-2-24}
+
+\begin{opomba}
+Note that
+\[
+\bigoplus_{i \in I} M_i \subseteq \prod_{i \in I} M_i.
+\]
+If $I$ is finite, then $A$-modules form an abelian category.
+\end{opomba}
+
+\begin{definicija}
+An $A$-module $M$ is \emph{free}\index{free module} if
+\[
+M \cong \bigoplus_{i \in I} A
+\]
+for some set $I$. A \emph{basis}\index{basis} of $M$ is a family
+$(m_i)_{i \in I}$ such that the map
+\[
+\bigoplus_{i \in I} A \to M, \quad
+(a_i)_{i \in I} \mapsto \sum_{i \in I} a_i m_i
+\]
+is an isomorphism.
+\end{definicija}
+
+\begin{lema}
+The following statements hold:
+
+\begin{enumerate}[i)]
+\item Every module is a quotient of a free module.
+\item A module $M$ is finitely generated if and only if there
+exists an epimorphism $\varphi \colon A^k \to M$ for some integer
+$k$.
+\item A module $M$ is finitely generated and free if and only if
+$M \cong A^k$ for some integer $k$.
+\end{enumerate}
+\end{lema}
+
+\begin{lema}[Nakayama]
+\index{Nakayama's lemma}
+Let $M$ be a finitely generated module over $A$.
+
+\begin{enumerate}[i)]
+\item If $J(A)M = M$, then $M = (0)$.
+\item If $N \leq M$ such that $M = N + J(A) M$, then $N = M$.
+\end{enumerate}
+\end{lema}
+
+\begin{proof}
+\phantom{i}
+\begin{enumerate}[i)]
+\item Assume $M \ne 0$ and let $m_1, \dots, m_r \in M$ be a minimal
+generating set. Note that, as $M \ne 0$, $r \geq 1$. By our
+assumptions, we can write
+\[
+m_r = \sum_{i=1}^r a_i m_i,
+\]
+where $a_i \in J(A)$. But as $1-a_r$ is invertible, we can express
+$m_r$ as a linear combination of the other elements, which is a
+contradiction.
+\item Note that
+\[
+J(A) \kvoc{M}{N} = \kvoc{J(A) M + N}{N} = \kvoc{M}{N},
+\]
+hence $\kvoc{M}{N} = 0$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{definicija}
+A ring $A$ is \emph{local}\index{local ring} if $A \ne 0$ and $A$
+has a unique maximal ideal. We denote it by $(A, \mathfrak{m})$,
+where $\mathfrak{m}$ is the maximal ideal.
+\end{definicija}
+
+\begin{opomba}
+If $(A, \mathfrak{m})$ is local, then $\kvoc{A}{\mathfrak{m}}$ is
+a field and $\mathfrak{m} = J(A)$.
+\end{opomba}
+
+\begin{posledica}
+Let $(A, \mathfrak{m})$ be a local ring and $M$ a finitely
+generated module. If
+$x_1 + \mathfrak{m} M, \dots, x_r + \mathfrak{m} M$ is a basis of
+the $\kvoc{A}{\mathfrak{m}}$-vector space
+$\kvoc{M}{\mathfrak{m} M}$, then $x_1, \dots, x_r \in M$ generate
+$M$.
+\end{posledica}
+
+\begin{trditev}
+If
+$\begin{tikzcd}[column sep=small]
+0 \arrow[r] &
+M \arrow[r, "f"] &
+N \arrow[r, "g"] &
+P \arrow[r] &
+0
+\end{tikzcd}$
+is a short exact sequence, then the diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+0 \arrow[r] &
+M \arrow[r, "f"] \arrow[d, "f"', "\cong"] &
+N \arrow[r, "g"] \arrow[d, "\id"'] &
+P \arrow[r] \arrow[d, "\br{\hat{g}}^{-1}"', "\cong"] &
+0 \\
+0 \arrow[r] &
+\im(f) \arrow[r, hook] &
+N \arrow[r, "\pi", two heads] &
+\kvoc{N}{K} \arrow[r] &
+0
+\end{tikzcd}
+\]
+commutes and has exact rows, where $\hat{g}(n+K) = g(n)$.
+\end{trditev}
+
+\begin{lema}
+\label{rings:lm:hom_ex}
+The following statements hold:
+
+\begin{enumerate}[i)]
+\item A sequence
+$\begin{tikzcd}[column sep=small]
+0 \arrow[r] &
+N \arrow[r, "f"] &
+M \arrow[r, "g"] &
+P
+\end{tikzcd}$
+is exact if and only if the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Hom(X, N) \arrow[r, "f_*"] &
+\Hom(X, M) \arrow[r, "g_*"] &
+\Hom(X, P)
+\end{tikzcd}
+\]
+is exact for every $A$-module $X$.
+\item A sequence
+$\begin{tikzcd}[column sep=small]
+N \arrow[r, "f"] &
+M \arrow[r, "g"] &
+P \arrow[r] &
+0
+\end{tikzcd}$
+is exact if and only if the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Hom(P, X) \arrow[r, "f^*"] &
+\Hom(M, X) \arrow[r, "g^*"] &
+\Hom(N, X)
+\end{tikzcd}
+\]
+is exact for every $A$-module $X$.
+\end{enumerate}
+\end{lema}
+
+%TODO proof lmao
+
+\begin{definicija}
+Let $M_1, \dots, M_n$ and $P$ be $A$-modules. A map
+$f \colon M_1 \times \dots \times M_n \to P$ is
+\emph{$A$-multilinear}\index{multilinear map} if it is linear in
+every component.
+\end{definicija}
+
+\begin{definicija}
+Let $M_1, \dots, M_n$ be $A$-modules. The
+\emph{tensor product}\index{tensor product}
+$M_1 \otimes \dots \otimes M_n$ is the $A$-module together with
+the multilinear map
+\[
+\otimes \colon \prod_{i=1}^n M_i \to \bigotimes_{i=1}^n M_i
+\]
+defined by the following universal property:
+\index{universal property!tensor product}
+For every $A$-module
+$P$ and every multilinear map
+$f \colon M_1 \times \dots \times M_n \to P$ there exists a unique
+$A$-module homomorphism
+\[
+\hat{f} \colon \bigotimes_{i=1}^n M_i \to P
+\]
+such that $\hat{f} \circ \otimes = f$.
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+\displaystyle
+\prod_{i=1}^n M_i \arrow[r, "\otimes"] \arrow[dr, "f"'] &
+\displaystyle
+\bigotimes_{i=1}^n M_i \arrow[d, dashed, "\hat{f}"] \\ &
+P
+\end{tikzcd}
+\]
+\end{definicija}
+
+\begin{opomba}
+The tensor product is associative and commutative. It is functorial
+in each component.
+\end{opomba}
+
+\begin{izrek}[$\Hom$-$\otimes$ adjunction]
+\index{Hom-$\otimes$ adjunction@$\Hom$-$\otimes$ adjunction}
+Let $M$ be an $A$-module. Then $\cdot \otimes M$ is left-adjoint to
+$\Hom(M, \cdot)$. That is, for any $A$-modules $M$, $N$ and $P$,
+there are $A$-isomorphisms
+$\Hom(N \otimes M, P) \to \Hom(N, \Hom(M, P))$, given by
+$f \mapsto \br{n \mapsto \br{m \mapsto f(n \otimes m)}}$ with
+inverse $g \mapsto \br{n \otimes m \mapsto g(n)(m)}$. These
+isomorphisms are natural transformations in $N$, $M$ and $P$.
+\end{izrek}
+
+%TODO proof lmao
+
+\begin{posledica}
+The tensor product $M \otimes \cdot$ is right-exact. That is, for
+every exact sequence
+$\begin{tikzcd}[column sep=small]
+N \arrow[r, "f"] &
+P \arrow[r, "g"] &
+Q \arrow[r] &
+0
+\end{tikzcd}$
+the sequence
+\[
+\begin{tikzcd}
+M \otimes N \arrow[r, "\id \otimes f"] &
+M \otimes P \arrow[r, "\id \otimes g"] &
+M \otimes Q \arrow[r] &
+0
+\end{tikzcd}
+\]
+is also exact.
+\end{posledica}
+
+\begin{proof}
+Applying lemma~\ref{rings:lm:hom_ex}, we see that
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\Hom(Q, X) \arrow[r, "f^*"] &
+\Hom(P, X) \arrow[r, "g^*"] &
+\Hom(N, X)
+\end{tikzcd}
+\]
+is exact. Applying lemma~\ref{rings:lm:hom_ex} again, we see that
+\[
+\begin{tikzcd}[column sep=scriptsize]
+0 \arrow[r] &
+\Hom(M, \Hom(Q, X)) \arrow[r, "(f^*)_*"] &
+\Hom(M, \Hom(P, X)) \arrow[r, "(g^*)_*"] &
+\Hom(M, \Hom(N, X))
+\end{tikzcd}
+\]
+is exact as well. Applying the previous theorem and
+lemma~\ref{rings:lm:hom_ex} again, we get the required sequence.
+\end{proof}
+
+\begin{posledica}
+For any family $(N_i)_{i \in I}$ of $A$-modules we have
+\[
+M \otimes \br{\bigoplus_{i \in I} N_i} \subseteq
+\bigoplus_{i \in I} \br{M \otimes N_i}.
+\]
+\end{posledica}
+
+\begin{proof}
+We can construct the isomorphisms using the universal properties.
+\end{proof}
+
+\datum{2025-2-27}
+
+\begin{trditev}
+Let $M$ be an $A$-module and $I \edn A$. Then
+$\kvoc{M}{MI} \cong M \otimes_A \kvoc{A}{I}$.
+\end{trditev}
+
+\begin{proof}
+As
+$\begin{tikzcd}[column sep=small]
+0 \arrow[r] &
+I \arrow[r, hook] &
+A \arrow[r] &
+\kvoc{A}{I} \arrow[r] &
+0
+\end{tikzcd}$
+is a short exact sequence, the sequence
+\[
+\begin{tikzcd}
+I \otimes M \arrow[r] &
+A \otimes M \arrow[r] &
+\kvoc{A}{I} \otimes M \arrow[r] &
+0.
+\end{tikzcd}
+\]
+But as $A \otimes M \cong M$ under $\mu(a \otimes m) = am$ and
+$\eval{\mu}{I \otimes M}{} = IM$, we get
+\[
+\kvoc{M}{IM} \cong
+\kvoc{A \otimes M}{I \otimes M} \cong
+\kvoc{A}{I} \otimes M. \qedhere
+\]
+\end{proof}
+
+\begin{trditev}
+If $A \ne 0$ and $A^{(I)} \cong A^{(J)}$, then
+$\abs{I} = \abs{J}$.\footnote{
+$\displaystyle A^{(I)} = \bigoplus_{i \in I} A$.}
+\end{trditev}
+
+\begin{proof}
+Let $M$ be a maximal ideal in $A$, then $K = \kvoc{A}{M}$ is a
+field. Then
+\[
+A^{(I)} \otimes \kvoc{A}{M} \cong
+\br{A \otimes \kvoc{A}{M}}^{(I)} \cong
+\br{\kvoc{A}{M}}^{(I)} \cong
+K^{(I)}
+\]
+as $A$-modules and $\kvoc{A}{M}$-modules. Hence
+$K^{(I)} \cong K^{(J)}$, therefore $\abs{I} = \abs{J}$.
+\end{proof}
+
+\begin{definicija}
+If $M$ is a finitely generated free module, its
+\emph{rank}\index{rank} is the unique $n \in \N$ such that
+$M \cong A^n$.
+\end{definicija}
+
+\begin{definicija}
+A module $M$ is
+
+\begin{itemize}
+\item \emph{projective}\index{projective module} if
+$\Hom(M, \cdot)$ is exact.
+\item \emph{injective}\index{injective module} if
+$\Hom(\cdot, M)$ is exact.
+\item \emph{flat}\index{flat module} if $M \otimes \cdot$ is exact.
+\end{itemize}
+\end{definicija}
+
+\begin{izrek}
+The following statements are equivalent for an $A$-module $P$:
+
+\begin{enumerate}[i)]
+\item The module $P$ is projective.
+\item For every epimorphism $g \colon M \to N$, the map
+$g_* \colon \Hom(P, M) \to \Hom(P, N)$ is an epimorphism.
+\item For every epimorphism $f \colon M \to N$ and homomoprhism
+$\varphi \colon P \to N$ there exists a homomorphism
+$\psi \colon P \to M$ with $f \circ \psi = \varphi$.
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+&
+P \arrow[dl, dash, "\psi"'] \arrow[d, "\varphi"] \\
+M \arrow[r, two heads, "f"'] &
+N
+\end{tikzcd}
+\]
+\item Every epimorphism $g \colon M \to P$ splits.
+\item There exists an $A$-module $M$ such that $P \oplus M$ is
+free.
+\end{enumerate}
+\end{izrek}
+
+\begin{proof}
+The first statement implies the second by definition.
+
+Now assume that the second statement holds. The map
+$f_* \colon \Hom(P, M) \to \Hom(P, N)$ is therefore an epimorphism.
+By definition, we can construct a homomorphism
+$\psi \colon P \to M$ that maps to $f$.
+
+Assume now that the diagram condition holds. Then there exists
+a homomorphism $s \colon P \to M$ such that $g \circ s = \id$.
+
+Suppose every epimorphism $g \colon M \to P$ splits. In particular,
+this holds for an epimorphism $g \colon A^{(I)} \to P$. But then
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+\ker g \arrow[r] &
+A^{(I)} \arrow[r, "g"] &
+P \arrow[r] &
+0
+\end{tikzcd}
+\]
+is a short exact sequence. As it splits,
+$P \oplus \ker g \cong A^{(I)}$.
+
+Finally, suppose that $P \oplus C \cong A^{(I)}$ is a free module.
+Take a short exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] &
+M \arrow[r, "f"] &
+N \arrow[r, "g"] &
+Q \arrow[r] &
+0.
+\end{tikzcd}
+\]
+As $\Hom(P, \cdot)$ is left-exact, we only need to check that
+$g_* \colon \Hom(P, N) \to \Hom(P, Q)$ is surjective. Let
+$\varphi \in \Hom(P, Q)$. Let $\pi \colon A^{(I)} \to P$ be the
+canonical projection and
+$\varepsilon \colon P \hookrightarrow A^{(I)}$ the embedding. Then
+$\pi \circ \varepsilon = \id_P$.
+
+For each basis vector $e_i \in A^{(I)}$, choose $n_i \in N$ such
+that $g(n_i) = \varphi \circ \pi(e_i)$, which is possible by
+surjectivity of $g$.
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+& A^{(I)} \arrow[d, "\pi"] \arrow[ddl, dashed, "\Psi"'] \\
+& P \arrow[u, "\varepsilon"] \arrow[d, "\varphi"]
+\arrow[dl, dashed, "\psi"] \\
+N \arrow[r, "g"', two heads] &
+Q \arrow[r] &
+0
+\end{tikzcd}
+\]
+Construct a homomorphism $\Psi \colon \Hom(A^{(I)}, N)$ by
+$\Psi(e_i) = n_i$. Then $g \circ \Psi = \varphi \circ \pi$. Now
+define $\psi = \Psi \circ \varepsilon$. Then, for every $p \in P$,
+we have
+\[
+g \circ \psi(p) =
+g \circ \Psi \circ \varepsilon(p) =
+\varphi \circ \pi \circ \varepsilon(p) =
+\varphi(p),
+\]
+hence $g_*(\psi) = \varphi$.
+\end{proof}
