@@ -63,11 +63,211 @@ $\eval{\tilde{f}}{U \setminus \set{a}}{} = f$.
 \end{izrek}
 
 \begin{proof}
-Shrink $U$ down to obtain a chart $\varphi \colon U \to \C$, then
-apply Riemann's removable singularity theorem to the function
-$f \circ \varphi^{-1}$ in the point $\varphi(a)$ and define
+First note that we can shrink $U$ down to obtain a chart
+$\varphi \colon U \to \C$, then apply Riemann's removable
+singularity theorem to the function $f \circ \varphi^{-1}$ in the
+point $\varphi(a)$ and define
 $\tilde{f}(a) =
 \widetilde{\br{f \circ \varphi^{-1}}} \br{\varphi(a)}$.
 As it's a composition of holomorphic functions, is is itself
 holomorphic. By continuity, the extension is unique.
+\end{proof}
+
+\datum{2025-2-27}
+
+\begin{definicija}
+Let $X$ be a Riemann surface. A
+\emph{meromorphic}\index{meromorphic funcion} function $f$ on $X$
+is a function $f \colon X \setminus A \to \C$ such that
+$\eval{f}{X \setminus A}{}$ is holomorphic, $A$ is a closed set of
+isolated points, and
+\[
+\lim_{\substack{z \to a \\ z \in X \setminus A}} \abs{f(z)} =
+\infty
+\]
+for all $a \in A$. We denote the set of meromorphic functions on
+$X$ by $\mathcal{M}(X)$.
+\end{definicija}
+
+\begin{opomba}
+The set $\mathcal{M}(X)$ is a field.
+\end{opomba}
+
+\begin{izrek}
+Let $X$ be a Riemann surface and $f \in \mathcal{M}(X)$. For each
+pole $p$ of $f$ we set $f(p) = \infty \in \rs$. Then $f$ is a
+holomorphic map from $X$ to $\rs$. Conversely, every holomorphic
+map $f \colon X \to \rs$ that is not identically $\infty$ defines
+a meromorphic function on $X$.
+\end{izrek}
+
+\begin{proof}
+Note that $f$ is clearly continuous. It therefore suffices to show
+that $f$ is holomorphic at every pole. Recall that a chart around
+$\infty$ is given by $\varphi \colon z \mapsto \frac{1}{z}$.
+Let $U$ be a neighbourhood of $p$ that contains no other pole, and
+define $g \colon U \setminus \set{p} \to \C$ by
+$g(z) = \br{f \circ \varphi^{-1}(z)}^{-1}$. Using Riemann's
+removable singularity theorem, this map has a unique holomorphic
+extension with $g(p) = 0$ by continuity. But that means that the
+proposed extension of $f$ is indeed holomorphic at $p$.
+
+Suppose $f \colon X \to \rs$ is holomorphic. Define
+$A = \setb{z \in X}{f(z) = \infty}$. Then
+$\eval{f}{X \setminus A}{}$ is clearly a meromorphic function.
+\end{proof}
+
+\begin{izrek}
+Let $X$ and $Y$ be Riemann surfaces and $f \colon X \to Y$ a
+holomorphic map. For any point $p \in X$ there exist charts
+$\varphi \colon U \to V$ and $\psi \colon Z \to W$ such that
+$p \in U$, $f(p) \in Z$, $\varphi(p) = 0 = \psi(f(p))$,
+$f(U) \subseteq Z$ and
+\[
+\psi \circ f \circ \varphi^{-1}(z) = z^k
+\]
+for some integer $k \in \N_0$. This integer is determined uniquely.
+\end{izrek}
+
+\begin{proof}
+Let $\tilde{\varphi} \colon U \to V$ be a chart on $X$ with
+$p \in U$ such that $\tilde{\varphi}(p) = 0$. Furthermore, let
+$\psi \colon Z \to W$ be a chart on $Y$ with $f(U) \subseteq Z$ and
+$\psi(f(p)) = 0$. Define
+$g = \psi \circ f \circ \tilde{\varphi}^{-1}$. Then
+$g(z) = z^k \cdot h(z)$, where $k \geq 1$, $h(0) \ne 0$ and $h$ is
+a holomorphic function. Locally, $h$ has a $k$-th root, hence
+\[
+g(z) = \br{z \cdot \sqrt[k]{h(z)}}^k = w(z)^k.
+\]
+Taking $\varphi = w \circ \tilde{\varphi}$, we get the sought
+charts on small enough domains. As $k$ is equal to the number of
+preimages of points distinct from $p$, it is unique.
+\end{proof}
+
+\begin{definicija}
+Such integer $k$ is called the
+\emph{multiplicity}\index{multiplicity} of $f$ in $p$.
+\end{definicija}
+
+\begin{posledica}
+Every non-constant holomorphic map $f \colon X \to Y$ is open.
+\end{posledica}
+
+\begin{proof}
+In the charts from the above theorem, disks around $\varphi{p}$ map
+to disks.
+\end{proof}
+
+\begin{posledica}
+Let $X$ and $Y$ be Riemann surfaces and $f \colon X \to Y$ a
+bijective holomorphic map. Then $f^{-1} \colon Y \to X$ is
+holomorphic.
+\end{posledica}
+
+\begin{proof}
+As $f$ is not constant, it is open, hence $f^{-1}$ is continuous.
+In local coordinates, $f$ is of the form $z \mapsto z^k$. As $f$ is
+bijective, $k=1$, hence the inverse is locally $z \mapsto z$, which
+is holomorphic.
+\end{proof}
+
+\begin{posledica}[Maximum principle]
+\index{maximum principle}
+Let $X$ be a Riemann surface and $f \colon X \to \C$ a non-constant
+holomorphic function. Then $\abs{f}$ does not attain its maximum.
+\end{posledica}
+
+\begin{proof}
+The map $f$ is open.
+\end{proof}
+
+\begin{izrek}
+\label{rsf:thm:sur}
+Let $X$ and $Y$ be Riemann surfaces and $f \colon X \to Y$ a
+non-constant holomorphic map. If $X$ is compact, then $Y$ is
+compact and $f$ is surjective.
+\end{izrek}
+
+\begin{proof}
+Note that $f(X)$ is an open and closed subset of $Y$, which is
+connected.
+\end{proof}
+
+\begin{posledica}
+If $f \colon X \to \C$ is a holomorphic function for a compact
+Riemann surface $X$, then $f$ is constant.
+\end{posledica}
+
+\obvs
+
+\begin{izrek}[Liouville]
+\index{Liouville's theorem}
+Every bounded holomorphic function on complex numbers is constant.
+\end{izrek}
+
+\begin{proof}
+We can extend $f$ to a function $\rs \to \C$ by Riemann's removable
+singularity theorem. Applying the above theorem, we get that $f$ is
+constant as $\C$ is not compact.
+\end{proof}
+
+\begin{izrek}[Fundamental theorem of algebra]
+\index{fundamental theorem of algebra}
+Every non-constant polynomial with complex coefficients has a
+complex root.
+\end{izrek}
+
+\begin{proof}
+The polynomial can be extended to a holomorphic map
+$p \colon \rs \to \rs$, which is surjective by
+theorem~\ref{rsf:thm:sur}. As $p(\infty) = \infty$, the set
+$p^{-1}(0)$ contains a complex number.
+\end{proof}
+
+\begin{izrek}
+Every holomorphic function $f \colon \rs \to \rs$ is either a
+rational function or $f \equiv \infty$.
+\end{izrek}
+
+\begin{proof}
+If $f \not \equiv \infty$, the set
+$A = \setb{z \in \C}{f(z) = \infty}$ is finite -- otherwise, it'd
+have an accumulation point. Let $A = \setb{a_i}{i \leq n}$. If
+needed, replace $f$ by $\frac{1}{f}$ so that $\infty \not \in A$,
+and repeat the argument. Now consider the function
+\[
+g =
+f - \sum_{i=1}^n \sum_{k=1}^{N_i}
+d_{i,k} \cdot \frac{1}{(z - a_i)^k},
+\]
+where $d_{i,k}$ are obtained from principal parts of Laurent series
+around $a_i$. As $g \colon \rs \to \C$ is a holomorphic function,
+it is constant, hence $f$ is a rational function.
+\end{proof}
+
+\newpage
+
+\subsection{Homotopy and the fundamental group}
+
+\begin{definicija}
+Denote the \emph{homotopic}\index{homotopic} relation by $\sim$.
+\end{definicija}
+
+\begin{trditev}
+Not all paths in $\C^*$ are homotopic.
+\end{trditev}
+
+\begin{proof}
+Consider $\gamma(t) = e^{2 \pi i t}$ and
+$\delta(t) = e^{-2 \pi i t}$. Recall that
+\[
+\frac{1}{2 \pi i} \cdot \lint_{\gamma(t)} \frac{1}{z}\,dz = 1
+\]
+and
+\[
+\frac{1}{2 \pi i} \cdot \lint_{\delta(t)} \frac{1}{z}\,dz = -1.
+\]
+As integrals are a homotopy invariant, $\gamma$ and $\delta$ are
+not homotopic.
 \end{proof}
