@@ -248,7 +248,7 @@ it is constant, hence $f$ is a rational function.
 
 \newpage
 
-\subsection{Homotopy and the fundamental group}
+\subsection{Homotopy, fundamental group and coverings}
 
 \begin{definicija}
 Denote the \emph{homotopic}\index{homotopic} relation by $\sim$.
@@ -271,3 +271,150 @@ and
 As integrals are a homotopy invariant, $\gamma$ and $\delta$ are
 not homotopic.
 \end{proof}
+
+\datum{2025-3-6}
+
+\begin{lema}[Reparametrization]
+\index{reparametrization lemma}
+Let $\gamma \colon [0,1] \to X$ be a path and
+$\varphi \colon [0,1] \to [0,1]$ be a continuous map with
+$\varphi(0) = 0$ and $\varphi(1) = 1$. Then
+$\gamma \sim \gamma \circ \varphi$.
+\end{lema}
+
+\begin{proof}
+Take $H(t,s) = \gamma \br{(1-s) t + s \varphi(t)}$.
+\end{proof}
+
+\begin{definicija}
+When the endpoints agree, we define the product of paths as
+\[
+\gamma \cdot \delta (t) =
+\begin{cases}
+\gamma(2t), & t \leq \frac{1}{2}, \\
+\delta(2t-1), & t \geq \frac{1}{2}.
+\end{cases}
+\]
+\end{definicija}
+
+\begin{definicija}
+Let $X$ be a path-connected topological space. We call $X$
+\emph{simply connected}\index{simply connected} if $\pi_1(X, x_0)$
+is trivial.
+\end{definicija}
+
+\begin{definicija}
+Let $p \colon Y \to X$ be a holomorphic map between Riemann
+surfaces. A point $y \in Y$ is called a
+\emph{branch point}\index{branch point, locus}\footnote{Also
+\emph{ramification point}\index{ramification point}.} if it has no
+neighbourhood $V$ such that $\eval{p}{V}{}$ is injective. The set
+of all branch points is called the
+\emph{branch locus} of $p$. If $p$ has no branch point, then $p$ is
+called \emph{unbranched}.
+\end{definicija}
+
+\begin{definicija}
+A map $p \colon Y \to X$ is a
+\emph{local homeomorphism}\index{local homeomorphism} if every
+point $y \in Y$ has a neighbourhood $V$ such that
+$\eval{p}{V}{} \colon V \to p(V)$ is a homeomorphism.
+\end{definicija}
+
+\begin{izrek}
+Let $p \colon Y \to X$ be a non-constant holomorphic map between
+Riemann surfaces. Then $p$ is unbranched if and only if $p$ is a
+local homeomorphism.
+\end{izrek}
+
+\begin{proof}
+If $p$ is a local homeomorphism, it clearly has no branch points.
+Now assume that $p$ is unbranched and choose a point $y \in Y$.
+Locally around $y$, write $p(z) = z^k$. Since $p$ is unbranched, we
+get $k=1$ and hence $p$ is locally biholomorphic.
+\end{proof}
+
+\begin{izrek}
+Let $X$ be a Riemann surface and $Y$ a connected Hausdorff space.
+Suppose that $p \colon Y \to X$ is a local homeomorphism. Then
+there exists a unique holomorphic structure on $Y$ such that $Y$
+becomes a Riemann surface and $p \colon Y \to X$ a holomorphic map.
+\end{izrek}
+
+\begin{proof}
+For every point $y \in Y$ choose a neighbourhood $V$ such that
+$\eval{p}{V}{} \colon V \to p(V)$ is a homeomorphism and
+$p(V) \subseteq U$ for some chart $(U, \varphi)$ in $X$. Then we
+can define a chart $\psi \colon V \to \C$ via
+$\psi = \varphi \circ p$. Note that compatibility on $X$ induces
+compatibility on $Y$.
+
+As $p$ is a local homeomorphism, it is continuous. As charts are
+holomorphic, so is $p$. Now suppose that $\mathcal{U}$ and
+$\mathcal{U}'$ are two atlases on $Y$.
+Note that $\id \colon (Y, \mathcal{U}) \to (Y, \mathcal{U}')$ is
+locally biholomorphic, as it can be written as $p^{-1} \circ p$.
+As $\id$ is bijective, it is biholomorphic, hence the complex
+structures are equal.
+\[
+\begin{tikzcd}[column sep=small]
+(Y, \mathcal{U}) \arrow[rr, "\id"] \arrow[dr, "p"'] &&
+(Y, \mathcal{U}'), \arrow[dl, "p"] \\ &
+X
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{definicija}
+Let $X$, $Y$ and $Z$ be topological spaces and $f \colon Z \to X$
+and $p \colon Y \to X$ be continuous maps. A continuous map
+$\hat{f} \colon Z \to X$ is a \emph{lifting}\index{lifting} of $f$
+with respect to $p$ if $p \circ \hat{f} = f$.
+\end{definicija}
+
+\begin{izrek}[Uniqueness of lifting]
+\index{uniqueness of lifting}
+Let $X$, $Y$ and $Z$ be topological spaces, where $Y$ is Hausdorff
+and $Z$ is connected. Let $p \colon Y \to X$ be a local
+homeomorphism and $f \colon Z \to X$ a continuous map. If
+$g_1, g_2 \colon Z \to Y$ are liftings of $f$ with respect to $p$
+and $g_1(z_0) = g_2(z_0)$ for some $z_0 \in Z$, then $g_1 = g_2$.
+\end{izrek}
+
+\begin{proof}
+The set $\setb{z \in Z}{g_1(z) = g_2(z)}$ is non-empty, open and
+closed.
+\end{proof}
+
+\begin{izrek}
+Let $X$, $Y$ and $Z$ be Riemann surfaces. Suppose that
+$p \colon Y \to X$ is an unbranched holomorphic map and that
+$f \colon Z \to X$ is a holomorphic map. Then every lifting
+$g \colon Z \to Y$ of $f$ with respect to $p$ is holomorphic.
+\end{izrek}
+
+\begin{proof}
+We can locally write $g = p^{-1} \circ f$, as $p$ is a local
+biholomorphism.
+\end{proof}
+
+\begin{posledica}
+Let $X$, $Y$ and $Z$ be Riemann surfaces. Suppose that
+$p \colon Y \to X$ and $q \colon Z \to X$ are unbranched
+holomorphic maps and $f \colon Z \to Y$ be a continuous map that
+preserves the fibers. Then $f$ is holomorphic.
+\end{posledica}
+
+\begin{proof}
+The map $f$ is a lifting of $q$ with respect to $p$.
+\end{proof}
+
+\begin{definicija}
+Let $X$ and $Y$ be topological spaces. A mapping $p \colon X \to Y$
+is called a \emph{covering map}\index{covering map} if all points
+$x \in X$ have an open neighbourhood $U$ such that
+\[
+p^{-1}(U) = \bigcup_{j \in J} V_j,
+\]
+where $V_j$ are disjoint and $\eval{p}{V_j}{}$ are homeomorphisms.
+\end{definicija}
